@@ -8,5 +8,7 @@ namespace BestilNemt
 {
     public class Class1
     {
+        //test
+        Console.WriteLine("test");
     }
 }
