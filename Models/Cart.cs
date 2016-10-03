@@ -15,7 +15,7 @@ namespace Models
 
         public Cart()
         {
-            //hej med dig
+            //hallo
         }
     }
 }
