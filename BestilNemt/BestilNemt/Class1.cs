@@ -8,7 +8,7 @@ namespace BestilNemt
 {
     public class Class1
     {
-        //test 
+        //test olek
         Console.WriteLine("test");
     }
 }
