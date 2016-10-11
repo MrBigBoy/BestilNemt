@@ -11,5 +11,5 @@ namespace Models
         public Company(int id, string name, string email, string address) : base(id, name, email, address)
         {
         }
-    }
+    }//kuku
 }
