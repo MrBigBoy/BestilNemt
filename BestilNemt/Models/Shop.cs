@@ -12,14 +12,13 @@ namespace Models
         public string Name { get; set; }
         public  string Address { get; set; }
         public  int Cvr { get; set; }
-        public List<Person> Persons = new List<Person>();
+        public List<Person> Persons { get; set; }
+        public List <Warehouse> Warehouses { get; set; }
 
-        public Shop(int id, string name, string address, int cvr)
+        public Shop()
         {
-            Id = id;
-            Name = name;
-            Address = address;
-            Cvr = cvr;
+          
+            Persons = new List<Person>();
         }
     }
 }

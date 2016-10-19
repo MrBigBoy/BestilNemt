@@ -13,24 +13,17 @@ namespace Models
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public int Amount { get; set; }
         public string Description { get; set; }
-        public List<Saving> Savings = new List<Saving>();
-       
-        public Product(int id, string name, decimal price, int amount, string description)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Price = price;
-            this.Amount = amount;
-            this.Description = description; 
+        public string Category { get; set; }
+        public Saving Saving { get; set; }
+        public Warehouse Warehouse { get; set; }
 
-        }
+
 
         public Product()
         {
 
-
+            
         }
 
     }

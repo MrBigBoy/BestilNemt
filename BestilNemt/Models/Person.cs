@@ -13,12 +13,12 @@ namespace Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
-        public Login Login;
-        public List<Shop> Shops = new List<Shop>();
+        public Login Login { get; set; }
+        public List<Shop> Shops { get; set; }
 
         public Person()
         {
-
+            
         }
         public Person(int id, string name, string email, string address)
         {
@@ -26,7 +26,7 @@ namespace Models
             this.Name = name;
             this.Email = email;
             this.Address = address;
-            // hej
+            Shops = new List<Shop>();
         }
 
 

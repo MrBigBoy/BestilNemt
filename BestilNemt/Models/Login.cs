@@ -9,15 +9,13 @@ namespace Models
     public class Login
     {
         public int Id { get; set; }
-        public int PersonId { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
+        public Person person { get; set; }
 
-        public Login(int id, int personId, string password)
+        public Login()
         {
-            this.Id = id;
-            this.PersonId = personId;
-            this.Password = password;
-          
+            
         }
     }
 }

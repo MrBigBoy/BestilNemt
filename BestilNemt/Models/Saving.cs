@@ -15,6 +15,7 @@ namespace Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int MaxAmount { get; set; }
+        public Product Product { get; set; }
 
         public Saving(int id, int percent, decimal discountPrice, DateTime satrtDate, DateTime endDate, int maxAmount )
         {

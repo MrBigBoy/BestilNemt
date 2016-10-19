@@ -12,7 +12,7 @@ namespace Models
         public Product Product { get; set; }
         public int Amount { get; set; }
         public decimal PartPrice { get; set; }
-
+        public Cart Cart { get; set; }
         public PartOrder()
         {
                 
