@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BestilNemt
+namespace Controller
 {
-    public class Class1
+    public class PersonCtr
     {
-    // Removed commands
-
-
     }
 }
