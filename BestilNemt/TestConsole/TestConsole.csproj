@@ -55,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\Models.Login.datasource" />
+    <None Include="Properties\DataSources\Models.Person.datasource" />
+    <None Include="Properties\DataSources\Models.Warehouse.datasource" />
+    <None Include="Service References\BestilNemtServiceRef\Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\BestilNemtServiceRef\service.wsdl" />
     <None Include="Service References\BestilNemtServiceRef\service.xsd">
       <SubType>Designer</SubType>

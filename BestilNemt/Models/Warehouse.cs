@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Models
 {
-    [DataContract (IsReference = true)]
+    [DataContract]
     public class Warehouse
     {
         [DataMember]
@@ -13,13 +14,16 @@ namespace Models
         [DataMember]
         public int MinStock  { get; set; }
         [DataMember]
-        public List< Product> Products { get; set; }
-        [DataMember]
+        public List<Product> Products { get; set; }
+
         public Shop Shop { get; set; }
 
 
         public Warehouse()
         {
+            this.Id = Id;
+            this.Stock = Stock;
+            this.MinStock = MinStock;
             Products = new List<Product>();
         }
     }

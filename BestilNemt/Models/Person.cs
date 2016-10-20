@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    [DataContract (IsReference = true)]
+    [DataContract]
     public class Person
     {
         [DataMember]
@@ -20,10 +20,8 @@ namespace Models
         [DataMember]
         public string Address { get; set; }
         [DataMember]
-        public List<Login> Logins { get; set; }
-        [DataMember]
+        public Login Login { get; set; }
         public List<Shop> Shops { get; set; }
-        
 
         public Person()
         {
@@ -36,7 +34,6 @@ namespace Models
             this.Email = email;
             this.Address = address;
             Shops = new List<Shop>();
-            Logins = new List<Login>();
         }
 
 
