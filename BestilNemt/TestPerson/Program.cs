@@ -18,7 +18,6 @@ namespace TestPerson
             var findAll = proxy.GetALlPerson();
             
             Console.WriteLine(find.Name.ToString());
-            Console.WriteLine(find)
            
         }
     }

@@ -61,7 +61,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,18 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\BestilNemtServiceRef\BestilNemtUnitTestTest.BestilNemtServiceRef.Login.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\BestilNemtServiceRef\BestilNemtUnitTestTest.BestilNemtServiceRef.Person.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\BestilNemtServiceRef\BestilNemtUnitTestTest.BestilNemtServiceRef.Shop.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\BestilNemtServiceRef\BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
+    <None Include="Properties\DataSources\Models.Login.datasource" />
+    <None Include="Properties\DataSources\Models.Person.datasource" />
+    <None Include="Properties\DataSources\Models.Shop.datasource" />
+    <None Include="Properties\DataSources\Models.Warehouse.datasource" />
     <None Include="Service References\BestilNemtServiceRef\Models.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -108,13 +99,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{F3B8490E-57FF-4C3C-B102-6EE2485FBD33}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{E5440AD2-1BF8-4133-905F-ADD0855C9226}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestPerson\TestPerson.csproj">
-      <Project>{3E90605E-9251-4E55-BB48-DF5702BDAA52}</Project>
-      <Name>TestPerson</Name>
+    <ProjectReference Include="..\WcfService\WcfService.csproj">
+      <Project>{f2662365-442d-4cdc-ba64-0cc2d500a3e3}</Project>
+      <Name>WcfService</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

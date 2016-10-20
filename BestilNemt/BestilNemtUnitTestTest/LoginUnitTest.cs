@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BestilNemtUnitTestTest.BestilNemtServiceRef;
+using Models;
 
 namespace BestilNemtUnitTestTest
 {
@@ -18,7 +19,6 @@ namespace BestilNemtUnitTestTest
             Client = new BestilNemtServiceRef.BestilNemtServiceClient();
         }
 
-        private TestContext testContextInstance;
 
         #region Additional test attributes
         //
@@ -48,7 +48,34 @@ namespace BestilNemtUnitTestTest
             string Username = "";
             string Password = "";
             Login login = Client.Login(Username, Password);
-            //AssertFailedException(login.Id == 0);
+            Assert.IsTrue(login.Id == 0);
+        }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            string Username = "test@mail.dk";
+            string Password = "testKode";
+            Login login = Client.Login(Username, Password);
+            Assert.IsTrue(login.Id == 1);
+        }
+
+        [TestMethod]
+        public void TestMethod3()
+        {
+            string Username = "test@mail.dk";
+            string Password = "";
+            Login login = Client.Login(Username, Password);
+            Assert.IsFalse(login.Id == 1);
+        }
+
+        [TestMethod]
+        public void TestMethod4()
+        {
+            string Username = "";
+            string Password = "testKode";
+            Login login = Client.Login(Username, Password);
+            Assert.IsFalse(login.Id == 1);
         }
     }
 }

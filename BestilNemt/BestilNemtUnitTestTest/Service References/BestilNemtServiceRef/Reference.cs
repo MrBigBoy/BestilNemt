@@ -9,492 +9,41 @@
 //------------------------------------------------------------------------------
 
 namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Person", Namespace="http://schemas.datacontract.org/2004/07/Models")]
-    [System.SerializableAttribute()]
-    public partial class Person : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BestilNemtUnitTestTest.BestilNemtServiceRef.Login LoginField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email {
-            get {
-                return this.EmailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
-                    this.EmailField = value;
-                    this.RaisePropertyChanged("Email");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Login Login {
-            get {
-                return this.LoginField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
-                    this.LoginField = value;
-                    this.RaisePropertyChanged("Login");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Login", Namespace="http://schemas.datacontract.org/2004/07/Models", IsReference=true)]
-    [System.SerializableAttribute()]
-    public partial class Login : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Warehouse", Namespace="http://schemas.datacontract.org/2004/07/Models")]
-    [System.SerializableAttribute()]
-    public partial class Warehouse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MinStockField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BestilNemtUnitTestTest.BestilNemtServiceRef.Product[] ProductsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StockField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MinStock {
-            get {
-                return this.MinStockField;
-            }
-            set {
-                if ((this.MinStockField.Equals(value) != true)) {
-                    this.MinStockField = value;
-                    this.RaisePropertyChanged("MinStock");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Product[] Products {
-            get {
-                return this.ProductsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductsField, value) != true)) {
-                    this.ProductsField = value;
-                    this.RaisePropertyChanged("Products");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Stock {
-            get {
-                return this.StockField;
-            }
-            set {
-                if ((this.StockField.Equals(value) != true)) {
-                    this.StockField = value;
-                    this.RaisePropertyChanged("Stock");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Product", Namespace="http://schemas.datacontract.org/2004/07/Models", IsReference=true)]
-    [System.SerializableAttribute()]
-    public partial class Product : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal PriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse WarehouseField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Category {
-            get {
-                return this.CategoryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
-                    this.CategoryField = value;
-                    this.RaisePropertyChanged("Category");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Price {
-            get {
-                return this.PriceField;
-            }
-            set {
-                if ((this.PriceField.Equals(value) != true)) {
-                    this.PriceField = value;
-                    this.RaisePropertyChanged("Price");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse Warehouse {
-            get {
-                return this.WarehouseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.WarehouseField, value) != true)) {
-                    this.WarehouseField = value;
-                    this.RaisePropertyChanged("Warehouse");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Shop", Namespace="http://schemas.datacontract.org/2004/07/Models")]
-    [System.SerializableAttribute()]
-    public partial class Shop : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CVRField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CVR {
-            get {
-                return this.CVRField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CVRField, value) != true)) {
-                    this.CVRField = value;
-                    this.RaisePropertyChanged("CVR");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BestilNemtServiceRef.IBestilNemtService")]
     public interface IBestilNemtService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findPerson", ReplyAction="http://tempuri.org/IBestilNemtService/findPersonResponse")]
-        BestilNemtUnitTestTest.BestilNemtServiceRef.Person findPerson(int id);
+        Models.Person findPerson(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findPerson", ReplyAction="http://tempuri.org/IBestilNemtService/findPersonResponse")]
-        System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Person> findPersonAsync(int id);
+        System.Threading.Tasks.Task<Models.Person> findPersonAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createPerson", ReplyAction="http://tempuri.org/IBestilNemtService/createPersonResponse")]
-        void createPerson(BestilNemtUnitTestTest.BestilNemtServiceRef.Person person);
+        void createPerson(Models.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createPerson", ReplyAction="http://tempuri.org/IBestilNemtService/createPersonResponse")]
-        System.Threading.Tasks.Task createPersonAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Person person);
+        System.Threading.Tasks.Task createPersonAsync(Models.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlPerson", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlPersonResponse")]
-        BestilNemtUnitTestTest.BestilNemtServiceRef.Person[] GetALlPerson();
+        Models.Person[] GetALlPerson();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlPerson", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlPersonResponse")]
-        System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Person[]> GetALlPersonAsync();
+        System.Threading.Tasks.Task<Models.Person[]> GetALlPersonAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
-        BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse GetWarehouse(int id);
+        Models.Warehouse GetWarehouse(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
-        System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse> GetWarehouseAsync(int id);
+        System.Threading.Tasks.Task<Models.Warehouse> GetWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse[] GetAllWarehouses();
+        Models.Warehouse[] GetAllWarehouses();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse[]> GetAllWarehousesAsync();
+        System.Threading.Tasks.Task<Models.Warehouse[]> GetAllWarehousesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveWarehouseResponse")]
         void RemoveWarehouse(int id);
@@ -503,28 +52,28 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task RemoveWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
-        void AddWarehouse(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse);
+        void AddWarehouse(Models.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
-        System.Threading.Tasks.Task AddWarehouseAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse);
+        System.Threading.Tasks.Task AddWarehouseAsync(Models.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
-        void UpdateWarehouse(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse);
+        void UpdateWarehouse(Models.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
-        System.Threading.Tasks.Task UpdateWarehouseAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse);
+        System.Threading.Tasks.Task UpdateWarehouseAsync(Models.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
-        BestilNemtUnitTestTest.BestilNemtServiceRef.Shop GetShop(int id);
+        Models.Shop GetShop(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
-        System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Shop> GetShopAsync(int id);
+        System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        BestilNemtUnitTestTest.BestilNemtServiceRef.Shop[] GetAllShops();
+        Models.Shop[] GetAllShops();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Shop[]> GetAllShopsAsync();
+        System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
         void DeleteShop(int id);
@@ -533,22 +82,22 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task DeleteShopAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        void AddShop(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop);
+        void AddShop(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        System.Threading.Tasks.Task AddShopAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop);
+        System.Threading.Tasks.Task AddShopAsync(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        void UpdateShop(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop);
+        void UpdateShop(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        System.Threading.Tasks.Task UpdateShopAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop);
+        System.Threading.Tasks.Task UpdateShopAsync(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        BestilNemtUnitTestTest.BestilNemtServiceRef.Login Login(string Username, string Password);
+        Models.Login Login(string Username, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Login> LoginAsync(string Username, string Password);
+        System.Threading.Tasks.Task<Models.Login> LoginAsync(string Username, string Password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -578,43 +127,43 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
                 base(binding, remoteAddress) {
         }
         
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Person findPerson(int id) {
+        public Models.Person findPerson(int id) {
             return base.Channel.findPerson(id);
         }
         
-        public System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Person> findPersonAsync(int id) {
+        public System.Threading.Tasks.Task<Models.Person> findPersonAsync(int id) {
             return base.Channel.findPersonAsync(id);
         }
         
-        public void createPerson(BestilNemtUnitTestTest.BestilNemtServiceRef.Person person) {
+        public void createPerson(Models.Person person) {
             base.Channel.createPerson(person);
         }
         
-        public System.Threading.Tasks.Task createPersonAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Person person) {
+        public System.Threading.Tasks.Task createPersonAsync(Models.Person person) {
             return base.Channel.createPersonAsync(person);
         }
         
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Person[] GetALlPerson() {
+        public Models.Person[] GetALlPerson() {
             return base.Channel.GetALlPerson();
         }
         
-        public System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Person[]> GetALlPersonAsync() {
+        public System.Threading.Tasks.Task<Models.Person[]> GetALlPersonAsync() {
             return base.Channel.GetALlPersonAsync();
         }
         
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse GetWarehouse(int id) {
+        public Models.Warehouse GetWarehouse(int id) {
             return base.Channel.GetWarehouse(id);
         }
         
-        public System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse> GetWarehouseAsync(int id) {
+        public System.Threading.Tasks.Task<Models.Warehouse> GetWarehouseAsync(int id) {
             return base.Channel.GetWarehouseAsync(id);
         }
         
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse[] GetAllWarehouses() {
+        public Models.Warehouse[] GetAllWarehouses() {
             return base.Channel.GetAllWarehouses();
         }
         
-        public System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse[]> GetAllWarehousesAsync() {
+        public System.Threading.Tasks.Task<Models.Warehouse[]> GetAllWarehousesAsync() {
             return base.Channel.GetAllWarehousesAsync();
         }
         
@@ -626,35 +175,35 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.RemoveWarehouseAsync(id);
         }
         
-        public void AddWarehouse(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse) {
+        public void AddWarehouse(Models.Warehouse warehouse) {
             base.Channel.AddWarehouse(warehouse);
         }
         
-        public System.Threading.Tasks.Task AddWarehouseAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse) {
+        public System.Threading.Tasks.Task AddWarehouseAsync(Models.Warehouse warehouse) {
             return base.Channel.AddWarehouseAsync(warehouse);
         }
         
-        public void UpdateWarehouse(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse) {
+        public void UpdateWarehouse(Models.Warehouse warehouse) {
             base.Channel.UpdateWarehouse(warehouse);
         }
         
-        public System.Threading.Tasks.Task UpdateWarehouseAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Warehouse warehouse) {
+        public System.Threading.Tasks.Task UpdateWarehouseAsync(Models.Warehouse warehouse) {
             return base.Channel.UpdateWarehouseAsync(warehouse);
         }
         
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Shop GetShop(int id) {
+        public Models.Shop GetShop(int id) {
             return base.Channel.GetShop(id);
         }
         
-        public System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Shop> GetShopAsync(int id) {
+        public System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id) {
             return base.Channel.GetShopAsync(id);
         }
         
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Shop[] GetAllShops() {
+        public Models.Shop[] GetAllShops() {
             return base.Channel.GetAllShops();
         }
         
-        public System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Shop[]> GetAllShopsAsync() {
+        public System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync() {
             return base.Channel.GetAllShopsAsync();
         }
         
@@ -666,27 +215,27 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.DeleteShopAsync(id);
         }
         
-        public void AddShop(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop) {
+        public void AddShop(Models.Shop shop) {
             base.Channel.AddShop(shop);
         }
         
-        public System.Threading.Tasks.Task AddShopAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop) {
+        public System.Threading.Tasks.Task AddShopAsync(Models.Shop shop) {
             return base.Channel.AddShopAsync(shop);
         }
         
-        public void UpdateShop(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop) {
+        public void UpdateShop(Models.Shop shop) {
             base.Channel.UpdateShop(shop);
         }
         
-        public System.Threading.Tasks.Task UpdateShopAsync(BestilNemtUnitTestTest.BestilNemtServiceRef.Shop shop) {
+        public System.Threading.Tasks.Task UpdateShopAsync(Models.Shop shop) {
             return base.Channel.UpdateShopAsync(shop);
         }
         
-        public BestilNemtUnitTestTest.BestilNemtServiceRef.Login Login(string Username, string Password) {
+        public Models.Login Login(string Username, string Password) {
             return base.Channel.Login(Username, Password);
         }
         
-        public System.Threading.Tasks.Task<BestilNemtUnitTestTest.BestilNemtServiceRef.Login> LoginAsync(string Username, string Password) {
+        public System.Threading.Tasks.Task<Models.Login> LoginAsync(string Username, string Password) {
             return base.Channel.LoginAsync(Username, Password);
         }
     }
