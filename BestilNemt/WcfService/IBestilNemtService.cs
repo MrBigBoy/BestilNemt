@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,6 +14,15 @@ namespace WcfService
     {
         [OperationContract]
         string GetData(int value);
+
+        [OperationContract]
+        Person findPerson(int id);
+
+        [OperationContract]
+        void createPerson(Person person);
+        [OperationContract]
+        List<Person> GetALlPerson();
+
 
         // TODO: Add your service operations here
     }
