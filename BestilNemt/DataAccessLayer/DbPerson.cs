@@ -73,7 +73,7 @@ namespace DataAccessLayer
                     person.Id = reader.GetInt32(reader.GetOrdinal("Id"));
                     person.Name = reader.GetString(reader.GetOrdinal("Name"));
                     person.Email = reader.GetString(reader.GetOrdinal("Email"));
-                    person.Address = reader.GetString(reader.GetOrdinal("Address"));
+                    //person.Address = reader.GetString(reader.GetOrdinal("Address"));
                     persons.Add(person);
                 }
 

@@ -55,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\Models.Login.datasource" />
+    <None Include="Properties\DataSources\Models.Person.datasource" />
+    <None Include="Properties\DataSources\Models.Warehouse.datasource" />
+    <None Include="Service References\BestilNemtServiceRef\Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\BestilNemtServiceRef\service.wsdl" />
     <None Include="Service References\BestilNemtServiceRef\service.xsd">
       <SubType>Designer</SubType>
@@ -82,6 +88,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{E5440AD2-1BF8-4133-905F-ADD0855C9226}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WcfService\WcfService.csproj">
       <Project>{F2662365-442D-4CDC-BA64-0CC2D500A3E3}</Project>
       <Name>WcfService</Name>

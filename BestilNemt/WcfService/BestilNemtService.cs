@@ -1,40 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+﻿using Controller;
 using Models;
-using Controller;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace WcfService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class BestilNemtService : IBestilNemtService
     {
         public PersonCtr personctr { get; set; }
+        public WarehouseCtr WarehouseController { get; set; }
+        public LoginCtr LoginCtr { get; set; }
+        public ShopCtr ShopCtr { get; set; }
         public BestilNemtService()
         {
-            personctr = new PersonCtr(); 
+            LoginCtr = new LoginCtr();
+            personctr = new PersonCtr();
+            WarehouseController = new WarehouseCtr();
+            ShopCtr = new ShopCtr();
         }
+
         public Person findPerson(int id)
         {
             return personctr.find(id);
         }
 
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
-
         public void createPerson(Person person)
         {
-             personctr.CreatePerson(person);
+            personctr.CreatePerson(person);
         }
 
         public List<Person> GetALlPerson()
         {
-            return personctr.GetALlPerson(); 
+            return personctr.GetALlPerson();
+        }
+
+        public Warehouse GetWarehouse(int id)
+        {
+            return WarehouseController.Get(id);
+        }
+
+        public List<Warehouse> GetAllWarehouses()
+        {
+            return WarehouseController.GetAll();
+        }
+
+        public void RemoveWarehouse(int id)
+        {
+            WarehouseController.Remove(id);
+        }
+
+        public void AddWarehouse(Warehouse warehouse)
+        {
+            WarehouseController.Add(warehouse);
+        }
+
+        public void UpdateWarehouse(Warehouse warehouse)
+        {
+            WarehouseController.Update(warehouse);
+        }
+
+        public Login Login(string Username, string Password)
+        {
+            return LoginCtr.Login(Username, Password);
+        }
+
+        public Shop GetShop(int id)
+        {
+            return ShopCtr.GetShop(id);
+        }
+
+        public List<Shop> GetAllShops()
+        {
+            return ShopCtr.GetAllShops();
+        }
+
+        public void DeleteShop(int id)
+        {
+            ShopCtr.DeleteShop(id);
+        }
+
+        public void AddShop(Shop shop)
+        {
+            ShopCtr.AddShop(shop);
+        }
+
+        public void UpdateShop(Shop shop)
+        {
+            ShopCtr.UpdateShop(shop);
         }
     }
 }
