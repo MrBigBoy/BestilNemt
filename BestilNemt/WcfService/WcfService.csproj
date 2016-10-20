@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -56,11 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controller\Controller.csproj">
-      <Project>{f3b8490e-57ff-4c3c-b102-6ee2485fbd33}</Project>
+      <Project>{F3B8490E-57FF-4C3C-B102-6EE2485FBD33}</Project>
       <Name>Controller</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{e5440ad2-1bf8-4133-905f-add0855c9226}</Project>
+      <Project>{E5440AD2-1BF8-4133-905F-ADD0855C9226}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>

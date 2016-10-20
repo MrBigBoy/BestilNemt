@@ -16,6 +16,16 @@ namespace WcfService
         string GetData(int value);
 
         [OperationContract]
+        Person findPerson(int id);
+
+        [OperationContract]
+        void createPerson(Person person);
+        [OperationContract]
+        List<Person> GetALlPerson();
+
+
+        // TODO: Add your service operations here
+        [OperationContract]
         Warehouse GetWarehouse(int id);
 
         [OperationContract]
