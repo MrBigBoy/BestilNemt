@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,8 @@ namespace TestConsole
 
         static void Main(string[] args)
         {
-            string str = proxy.GetData(4);
-            Console.WriteLine("{0}", str);
+            List<Shop> shops = proxy.GetAllShops();
+            Console.WriteLine(shops.Count);
             Console.ReadLine();
         }
     }

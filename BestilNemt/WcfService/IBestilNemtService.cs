@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -14,6 +15,25 @@ namespace WcfService
         [OperationContract]
         string GetData(int value);
 
-        // TODO: Add your service operations here
+        
+        [OperationContract]
+        Shop GetShop(int id);
+
+        [OperationContract]
+        List<Shop> GetAllShops();
+
+        [OperationContract]
+        void DeleteShop(int id);
+
+        [OperationContract]
+        void AddShop(Shop shop);
+
+        [OperationContract]
+        void UpdateShop(Shop shop);
+
+
     }
+
+
 }
+

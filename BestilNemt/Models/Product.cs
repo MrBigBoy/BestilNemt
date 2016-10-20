@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Models
 {
+    [DataContract(IsReference = true)]
 
     public class Product
     {
@@ -15,14 +17,14 @@ namespace Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-        public Saving Saving { get; set; }
+        public List<Saving> Savings { get; set; }
         public Warehouse Warehouse { get; set; }
 
 
 
         public Product()
         {
-
+            Savings = new List<Saving>();
             
         }
 
