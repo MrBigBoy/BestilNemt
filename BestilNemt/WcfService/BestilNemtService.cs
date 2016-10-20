@@ -13,9 +13,11 @@ namespace WcfService
     public class BestilNemtService : IBestilNemtService
     {
         public PersonCtr personctr { get; set; }
+        public WarehouseCtr WarehouseController { get; set; }
         public BestilNemtService()
         {
-            personctr = new PersonCtr(); 
+            personctr = new PersonCtr();
+            WarehouseController = new WarehouseCtr();
         }
         public Person findPerson(int id)
         {
@@ -29,23 +31,17 @@ namespace WcfService
 
         public void createPerson(Person person)
         {
-             personctr.CreatePerson(person);
+            personctr.CreatePerson(person);
         }
 
         public List<Person> GetALlPerson()
         {
-            return personctr.GetALlPerson(); 
-        }
-
-        public WarehouseCtr WarehouseController { get; set; }
-        public BestilNemtService()
-        {
-            WarehouseController = new WarehouseCtr();
+            return personctr.GetALlPerson();
         }
 
         public Warehouse GetWarehouse(int id)
         {
-           return WarehouseController.Get(id);
+            return WarehouseController.Get(id);
         }
 
         public List<Warehouse> GetAllWarehouses()

@@ -97,7 +97,7 @@ namespace DataAccessLayer
                     Warehouse = new Warehouse();
                     Warehouse.Id = reader.GetInt32(reader.GetOrdinal("id"));
                     Warehouse.Stock = reader.GetInt32(reader.GetOrdinal("stock"));
-                    Warehouse.MinStock = reader.GetInt32(reader.GetOrdinal("minStock"));
+                    //Warehouse.MinStock = reader.GetInt32(reader.GetOrdinal("minStock"));
                     //warehouse.Shop = reader.GetInt32(reader.GetOrdinal(""));
                     //warehouse.Products = reader.GetInt32(reader.GetOrdinal(""));
 
