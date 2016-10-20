@@ -82,6 +82,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{E5440AD2-1BF8-4133-905F-ADD0855C9226}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WcfService\WcfService.csproj">
       <Project>{F2662365-442D-4CDC-BA64-0CC2D500A3E3}</Project>
       <Name>WcfService</Name>

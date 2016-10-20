@@ -11,11 +11,22 @@ namespace Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public Person person { get; set; }
+        public int PersonId { get; set; }
 
         public Login()
         {
-            
+            Id = 0;
+            Username = null;
+            Password = null;
+            PersonId = 0;
+        }
+
+        public Login(int Id, string Username, string Password, int PersonId)
+        {
+            this.Id = Id;
+            this.Username = Username;
+            this.Password = Password;
+            this.PersonId = PersonId;
         }
     }
 }

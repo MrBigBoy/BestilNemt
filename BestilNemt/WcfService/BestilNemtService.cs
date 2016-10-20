@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Controller;
+using Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -7,12 +10,26 @@ using System.Text;
 
 namespace WcfService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class BestilNemtService : IBestilNemtService
     {
+        private SqlConnection Connection { get; set; }
+
+        public SqlConnection GetConnection()
+        {
+            if(Connection == null)
+            {
+                Connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString);
+            }
+            return Connection;
+        }
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
+        }
+
+        public Login Login(string Username, string Password)
+        {
+            return LoginCtr.Login(Username, Password);
         }
     }
 }
