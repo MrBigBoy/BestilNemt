@@ -9,8 +9,8 @@ using WcfService;
 namespace TestConsole
 {
     class Program
-    {
-        static IBestilNemtService proxy = new BestilNemtService();
+    {  
+        static BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceRef.BestilNemtServiceClient();
 
         static void Main(string[] args)
         {
@@ -18,6 +18,7 @@ namespace TestConsole
             string Username = Console.ReadLine();
             Console.WriteLine("Enter a Password");
             string Password = Console.ReadLine();
+            
             Login login = proxy.Login(Username, Password);
             
             if(login.Id == 0)
@@ -28,7 +29,10 @@ namespace TestConsole
                 Console.WriteLine("Login Successful!");
                 Console.WriteLine("Id: {0}, Username: {1}, Password: {2}, personId: {3}", login.Id, login.Username, login.Password, login.PersonId);
             }
+            
             Console.ReadLine();
+            
         }
+        
     }
 }

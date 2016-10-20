@@ -15,11 +15,59 @@ namespace TestConsole.BestilNemtServiceRef {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BestilNemtServiceRef.IBestilNemtService")]
     public interface IBestilNemtService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetData", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataResponse")]
-        string GetData(int value);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findPerson", ReplyAction="http://tempuri.org/IBestilNemtService/findPersonResponse")]
+        Models.Person findPerson(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetData", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findPerson", ReplyAction="http://tempuri.org/IBestilNemtService/findPersonResponse")]
+        System.Threading.Tasks.Task<Models.Person> findPersonAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createPerson", ReplyAction="http://tempuri.org/IBestilNemtService/createPersonResponse")]
+        void createPerson(Models.Person person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createPerson", ReplyAction="http://tempuri.org/IBestilNemtService/createPersonResponse")]
+        System.Threading.Tasks.Task createPersonAsync(Models.Person person);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlPerson", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlPersonResponse")]
+        Models.Person[] GetALlPerson();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlPerson", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlPersonResponse")]
+        System.Threading.Tasks.Task<Models.Person[]> GetALlPersonAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
+        Models.Warehouse GetWarehouse(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
+        System.Threading.Tasks.Task<Models.Warehouse> GetWarehouseAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
+        Models.Warehouse[] GetAllWarehouses();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
+        System.Threading.Tasks.Task<Models.Warehouse[]> GetAllWarehousesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveWarehouseResponse")]
+        void RemoveWarehouse(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveWarehouseResponse")]
+        System.Threading.Tasks.Task RemoveWarehouseAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
+        void AddWarehouse(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
+        System.Threading.Tasks.Task AddWarehouseAsync(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
+        void UpdateWarehouse(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
+        System.Threading.Tasks.Task UpdateWarehouseAsync(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
+        Models.Login Login(string Username, string Password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
+        System.Threading.Tasks.Task<Models.Login> LoginAsync(string Username, string Password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +97,76 @@ namespace TestConsole.BestilNemtServiceRef {
                 base(binding, remoteAddress) {
         }
         
-        public string GetData(int value) {
-            return base.Channel.GetData(value);
+        public Models.Person findPerson(int id) {
+            return base.Channel.findPerson(id);
         }
         
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value) {
-            return base.Channel.GetDataAsync(value);
+        public System.Threading.Tasks.Task<Models.Person> findPersonAsync(int id) {
+            return base.Channel.findPersonAsync(id);
+        }
+        
+        public void createPerson(Models.Person person) {
+            base.Channel.createPerson(person);
+        }
+        
+        public System.Threading.Tasks.Task createPersonAsync(Models.Person person) {
+            return base.Channel.createPersonAsync(person);
+        }
+        
+        public Models.Person[] GetALlPerson() {
+            return base.Channel.GetALlPerson();
+        }
+        
+        public System.Threading.Tasks.Task<Models.Person[]> GetALlPersonAsync() {
+            return base.Channel.GetALlPersonAsync();
+        }
+        
+        public Models.Warehouse GetWarehouse(int id) {
+            return base.Channel.GetWarehouse(id);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Warehouse> GetWarehouseAsync(int id) {
+            return base.Channel.GetWarehouseAsync(id);
+        }
+        
+        public Models.Warehouse[] GetAllWarehouses() {
+            return base.Channel.GetAllWarehouses();
+        }
+        
+        public System.Threading.Tasks.Task<Models.Warehouse[]> GetAllWarehousesAsync() {
+            return base.Channel.GetAllWarehousesAsync();
+        }
+        
+        public void RemoveWarehouse(int id) {
+            base.Channel.RemoveWarehouse(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveWarehouseAsync(int id) {
+            return base.Channel.RemoveWarehouseAsync(id);
+        }
+        
+        public void AddWarehouse(Models.Warehouse warehouse) {
+            base.Channel.AddWarehouse(warehouse);
+        }
+        
+        public System.Threading.Tasks.Task AddWarehouseAsync(Models.Warehouse warehouse) {
+            return base.Channel.AddWarehouseAsync(warehouse);
+        }
+        
+        public void UpdateWarehouse(Models.Warehouse warehouse) {
+            base.Channel.UpdateWarehouse(warehouse);
+        }
+        
+        public System.Threading.Tasks.Task UpdateWarehouseAsync(Models.Warehouse warehouse) {
+            return base.Channel.UpdateWarehouseAsync(warehouse);
+        }
+        
+        public Models.Login Login(string Username, string Password) {
+            return base.Channel.Login(Username, Password);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Login> LoginAsync(string Username, string Password) {
+            return base.Channel.LoginAsync(Username, Password);
         }
     }
 }

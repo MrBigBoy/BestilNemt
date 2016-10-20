@@ -10,9 +10,10 @@ namespace Controller
 {
     public class LoginCtr
     {
-        public static Login Login(string Username, string Password)
+        public Login Login(string Username, string Password)
         {
-            return DbLogin.Login(Username, Password);
+            DbLogin dbLogin = new DbLogin();
+            return dbLogin.Login(Username, Password);
         }
     }
 }

@@ -9,25 +9,18 @@ using System.Text;
 
 namespace WcfService
 {
-    
     [ServiceContract]
     public interface IBestilNemtService
     {
-        [OperationContract]
-        SqlConnection GetConnection();
-        [OperationContract]
-        string GetData(int value);
-
         [OperationContract]
         Person findPerson(int id);
 
         [OperationContract]
         void createPerson(Person person);
+
         [OperationContract]
         List<Person> GetALlPerson();
 
-
-        // TODO: Add your service operations here
         [OperationContract]
         Warehouse GetWarehouse(int id);
 
@@ -42,6 +35,7 @@ namespace WcfService
 
         [OperationContract]
         void UpdateWarehouse(Warehouse warehouse);
+
         [OperationContract]
         Login Login(string Username, string Password);
     }
