@@ -10,26 +10,18 @@ namespace WcfService
         public PersonCtr personctr { get; set; }
         public WarehouseCtr WarehouseController { get; set; }
         public LoginCtr LoginCtr { get; set; }
+        public ShopCtr ShopCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr();
             personctr = new PersonCtr();
             WarehouseController = new WarehouseCtr();
+            ShopCtr = new ShopCtr();
         }
+
         public Person findPerson(int id)
         {
             return personctr.find(id);
-        }
-
-        public ShopCtr ShopCtr { get; set; }
-
-        public BestilNemtService()
-        {
-            ShopCtr = new ShopCtr();
-        }
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
         }
 
         public void createPerson(Person person)
