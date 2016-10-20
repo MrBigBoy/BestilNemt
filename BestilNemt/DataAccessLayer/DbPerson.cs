@@ -38,20 +38,20 @@ namespace DataAccessLayer
         }
         public Person find(int id)
         {
-            Person person = null; 
+            Person person = null;
             Connection.Open();
             using (SqlCommand command = Connection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM Person WHERE Id = @id";
+                command.CommandText = "SELECT * FROM Person WHERE id = @id";
                 command.Parameters.AddWithValue("id", id);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     person = new Person();
-                    person.Id = reader.GetInt32(reader.GetOrdinal("Id"));
-                    person.Name = reader.GetString(reader.GetOrdinal("Name"));
-                    person.Email = reader.GetString(reader.GetOrdinal("Email"));
-                    person.Address = reader.GetString(reader.GetOrdinal("Address"));
+                    person.Id = reader.GetInt32(reader.GetOrdinal("id"));
+                    person.Name = reader.GetString(reader.GetOrdinal("name"));
+                   //person.Email = reader.GetString(reader.GetOrdinal("email"));
+                   // person.Address = reader.GetString(reader.GetOrdinal("address"));
                 }
 
             }
