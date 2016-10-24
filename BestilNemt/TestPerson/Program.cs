@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestPerson
 {
-    class Program
+    internal class Program
     {
+        private static readonly BestilNemtServiceRef.BestilNemtServiceClient Proxy = new BestilNemtServiceRef.BestilNemtServiceClient();
 
-        static void Main(string[] args)
+        private static void Main()
         {
-            ServiceReference1.BestilNemtServiceClient proxy = new
-               ServiceReference1.BestilNemtServiceClient();
+            var find = Proxy.findPerson(1);
+            Proxy.GetALlPerson();
 
-            var find = proxy.findPerson(1);
-            var findAll = proxy.GetALlPerson();
-            
-            Console.WriteLine(find.Name.ToString());
-           
+            Console.WriteLine(find.Name);
+            Console.ReadLine();
         }
     }
 }

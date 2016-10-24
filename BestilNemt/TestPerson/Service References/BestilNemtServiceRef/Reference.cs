@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestPerson.ServiceReference2 {
+namespace TestPerson.BestilNemtServiceRef {
     using System.Runtime.Serialization;
     using System;
     
@@ -32,7 +32,7 @@ namespace TestPerson.ServiceReference2 {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPerson.ServiceReference2.Login LoginField;
+        private TestPerson.BestilNemtServiceRef.Login LoginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -87,7 +87,7 @@ namespace TestPerson.ServiceReference2 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPerson.ServiceReference2.Login Login {
+        public TestPerson.BestilNemtServiceRef.Login Login {
             get {
                 return this.LoginField;
             }
@@ -131,6 +131,18 @@ namespace TestPerson.ServiceReference2 {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PersonIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -138,6 +150,58 @@ namespace TestPerson.ServiceReference2 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PersonId {
+            get {
+                return this.PersonIdField;
+            }
+            set {
+                if ((this.PersonIdField.Equals(value) != true)) {
+                    this.PersonIdField = value;
+                    this.RaisePropertyChanged("PersonId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
             }
         }
         
@@ -167,7 +231,7 @@ namespace TestPerson.ServiceReference2 {
         private int MinStockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPerson.ServiceReference2.Product[] ProductsField;
+        private TestPerson.BestilNemtServiceRef.Product[] ProductsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StockField;
@@ -209,7 +273,7 @@ namespace TestPerson.ServiceReference2 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPerson.ServiceReference2.Product[] Products {
+        public TestPerson.BestilNemtServiceRef.Product[] Products {
             get {
                 return this.ProductsField;
             }
@@ -269,7 +333,7 @@ namespace TestPerson.ServiceReference2 {
         private decimal PriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPerson.ServiceReference2.Warehouse WarehouseField;
+        private TestPerson.BestilNemtServiceRef.Warehouse WarehouseField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -347,7 +411,7 @@ namespace TestPerson.ServiceReference2 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPerson.ServiceReference2.Warehouse Warehouse {
+        public TestPerson.BestilNemtServiceRef.Warehouse Warehouse {
             get {
                 return this.WarehouseField;
             }
@@ -463,38 +527,38 @@ namespace TestPerson.ServiceReference2 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IBestilNemtService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BestilNemtServiceRef.IBestilNemtService")]
     public interface IBestilNemtService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findPerson", ReplyAction="http://tempuri.org/IBestilNemtService/findPersonResponse")]
-        TestPerson.ServiceReference2.Person findPerson(int id);
+        TestPerson.BestilNemtServiceRef.Person findPerson(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findPerson", ReplyAction="http://tempuri.org/IBestilNemtService/findPersonResponse")]
-        System.Threading.Tasks.Task<TestPerson.ServiceReference2.Person> findPersonAsync(int id);
+        System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Person> findPersonAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createPerson", ReplyAction="http://tempuri.org/IBestilNemtService/createPersonResponse")]
-        void createPerson(TestPerson.ServiceReference2.Person person);
+        void createPerson(TestPerson.BestilNemtServiceRef.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createPerson", ReplyAction="http://tempuri.org/IBestilNemtService/createPersonResponse")]
-        System.Threading.Tasks.Task createPersonAsync(TestPerson.ServiceReference2.Person person);
+        System.Threading.Tasks.Task createPersonAsync(TestPerson.BestilNemtServiceRef.Person person);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlPerson", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlPersonResponse")]
-        TestPerson.ServiceReference2.Person[] GetALlPerson();
+        TestPerson.BestilNemtServiceRef.Person[] GetALlPerson();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlPerson", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlPersonResponse")]
-        System.Threading.Tasks.Task<TestPerson.ServiceReference2.Person[]> GetALlPersonAsync();
+        System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Person[]> GetALlPersonAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
-        TestPerson.ServiceReference2.Warehouse GetWarehouse(int id);
+        TestPerson.BestilNemtServiceRef.Warehouse GetWarehouse(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
-        System.Threading.Tasks.Task<TestPerson.ServiceReference2.Warehouse> GetWarehouseAsync(int id);
+        System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Warehouse> GetWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        TestPerson.ServiceReference2.Warehouse[] GetAllWarehouses();
+        TestPerson.BestilNemtServiceRef.Warehouse[] GetAllWarehouses();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        System.Threading.Tasks.Task<TestPerson.ServiceReference2.Warehouse[]> GetAllWarehousesAsync();
+        System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Warehouse[]> GetAllWarehousesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveWarehouseResponse")]
         void RemoveWarehouse(int id);
@@ -503,28 +567,28 @@ namespace TestPerson.ServiceReference2 {
         System.Threading.Tasks.Task RemoveWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
-        void AddWarehouse(TestPerson.ServiceReference2.Warehouse warehouse);
+        void AddWarehouse(TestPerson.BestilNemtServiceRef.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
-        System.Threading.Tasks.Task AddWarehouseAsync(TestPerson.ServiceReference2.Warehouse warehouse);
+        System.Threading.Tasks.Task AddWarehouseAsync(TestPerson.BestilNemtServiceRef.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
-        void UpdateWarehouse(TestPerson.ServiceReference2.Warehouse warehouse);
+        void UpdateWarehouse(TestPerson.BestilNemtServiceRef.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
-        System.Threading.Tasks.Task UpdateWarehouseAsync(TestPerson.ServiceReference2.Warehouse warehouse);
+        System.Threading.Tasks.Task UpdateWarehouseAsync(TestPerson.BestilNemtServiceRef.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
-        TestPerson.ServiceReference2.Shop GetShop(int id);
+        TestPerson.BestilNemtServiceRef.Shop GetShop(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
-        System.Threading.Tasks.Task<TestPerson.ServiceReference2.Shop> GetShopAsync(int id);
+        System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Shop> GetShopAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        TestPerson.ServiceReference2.Shop[] GetAllShops();
+        TestPerson.BestilNemtServiceRef.Shop[] GetAllShops();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        System.Threading.Tasks.Task<TestPerson.ServiceReference2.Shop[]> GetAllShopsAsync();
+        System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Shop[]> GetAllShopsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
         void DeleteShop(int id);
@@ -533,31 +597,31 @@ namespace TestPerson.ServiceReference2 {
         System.Threading.Tasks.Task DeleteShopAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        void AddShop(TestPerson.ServiceReference2.Shop shop);
+        void AddShop(TestPerson.BestilNemtServiceRef.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        System.Threading.Tasks.Task AddShopAsync(TestPerson.ServiceReference2.Shop shop);
+        System.Threading.Tasks.Task AddShopAsync(TestPerson.BestilNemtServiceRef.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        void UpdateShop(TestPerson.ServiceReference2.Shop shop);
+        void UpdateShop(TestPerson.BestilNemtServiceRef.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        System.Threading.Tasks.Task UpdateShopAsync(TestPerson.ServiceReference2.Shop shop);
+        System.Threading.Tasks.Task UpdateShopAsync(TestPerson.BestilNemtServiceRef.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        TestPerson.ServiceReference2.Login Login(string Username, string Password);
+        TestPerson.BestilNemtServiceRef.Login Login(string Username, string Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        System.Threading.Tasks.Task<TestPerson.ServiceReference2.Login> LoginAsync(string Username, string Password);
+        System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Login> LoginAsync(string Username, string Password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBestilNemtServiceChannel : TestPerson.ServiceReference2.IBestilNemtService, System.ServiceModel.IClientChannel {
+    public interface IBestilNemtServiceChannel : TestPerson.BestilNemtServiceRef.IBestilNemtService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BestilNemtServiceClient : System.ServiceModel.ClientBase<TestPerson.ServiceReference2.IBestilNemtService>, TestPerson.ServiceReference2.IBestilNemtService {
+    public partial class BestilNemtServiceClient : System.ServiceModel.ClientBase<TestPerson.BestilNemtServiceRef.IBestilNemtService>, TestPerson.BestilNemtServiceRef.IBestilNemtService {
         
         public BestilNemtServiceClient() {
         }
@@ -578,43 +642,43 @@ namespace TestPerson.ServiceReference2 {
                 base(binding, remoteAddress) {
         }
         
-        public TestPerson.ServiceReference2.Person findPerson(int id) {
+        public TestPerson.BestilNemtServiceRef.Person findPerson(int id) {
             return base.Channel.findPerson(id);
         }
         
-        public System.Threading.Tasks.Task<TestPerson.ServiceReference2.Person> findPersonAsync(int id) {
+        public System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Person> findPersonAsync(int id) {
             return base.Channel.findPersonAsync(id);
         }
         
-        public void createPerson(TestPerson.ServiceReference2.Person person) {
+        public void createPerson(TestPerson.BestilNemtServiceRef.Person person) {
             base.Channel.createPerson(person);
         }
         
-        public System.Threading.Tasks.Task createPersonAsync(TestPerson.ServiceReference2.Person person) {
+        public System.Threading.Tasks.Task createPersonAsync(TestPerson.BestilNemtServiceRef.Person person) {
             return base.Channel.createPersonAsync(person);
         }
         
-        public TestPerson.ServiceReference2.Person[] GetALlPerson() {
+        public TestPerson.BestilNemtServiceRef.Person[] GetALlPerson() {
             return base.Channel.GetALlPerson();
         }
         
-        public System.Threading.Tasks.Task<TestPerson.ServiceReference2.Person[]> GetALlPersonAsync() {
+        public System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Person[]> GetALlPersonAsync() {
             return base.Channel.GetALlPersonAsync();
         }
         
-        public TestPerson.ServiceReference2.Warehouse GetWarehouse(int id) {
+        public TestPerson.BestilNemtServiceRef.Warehouse GetWarehouse(int id) {
             return base.Channel.GetWarehouse(id);
         }
         
-        public System.Threading.Tasks.Task<TestPerson.ServiceReference2.Warehouse> GetWarehouseAsync(int id) {
+        public System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Warehouse> GetWarehouseAsync(int id) {
             return base.Channel.GetWarehouseAsync(id);
         }
         
-        public TestPerson.ServiceReference2.Warehouse[] GetAllWarehouses() {
+        public TestPerson.BestilNemtServiceRef.Warehouse[] GetAllWarehouses() {
             return base.Channel.GetAllWarehouses();
         }
         
-        public System.Threading.Tasks.Task<TestPerson.ServiceReference2.Warehouse[]> GetAllWarehousesAsync() {
+        public System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Warehouse[]> GetAllWarehousesAsync() {
             return base.Channel.GetAllWarehousesAsync();
         }
         
@@ -626,35 +690,35 @@ namespace TestPerson.ServiceReference2 {
             return base.Channel.RemoveWarehouseAsync(id);
         }
         
-        public void AddWarehouse(TestPerson.ServiceReference2.Warehouse warehouse) {
+        public void AddWarehouse(TestPerson.BestilNemtServiceRef.Warehouse warehouse) {
             base.Channel.AddWarehouse(warehouse);
         }
         
-        public System.Threading.Tasks.Task AddWarehouseAsync(TestPerson.ServiceReference2.Warehouse warehouse) {
+        public System.Threading.Tasks.Task AddWarehouseAsync(TestPerson.BestilNemtServiceRef.Warehouse warehouse) {
             return base.Channel.AddWarehouseAsync(warehouse);
         }
         
-        public void UpdateWarehouse(TestPerson.ServiceReference2.Warehouse warehouse) {
+        public void UpdateWarehouse(TestPerson.BestilNemtServiceRef.Warehouse warehouse) {
             base.Channel.UpdateWarehouse(warehouse);
         }
         
-        public System.Threading.Tasks.Task UpdateWarehouseAsync(TestPerson.ServiceReference2.Warehouse warehouse) {
+        public System.Threading.Tasks.Task UpdateWarehouseAsync(TestPerson.BestilNemtServiceRef.Warehouse warehouse) {
             return base.Channel.UpdateWarehouseAsync(warehouse);
         }
         
-        public TestPerson.ServiceReference2.Shop GetShop(int id) {
+        public TestPerson.BestilNemtServiceRef.Shop GetShop(int id) {
             return base.Channel.GetShop(id);
         }
         
-        public System.Threading.Tasks.Task<TestPerson.ServiceReference2.Shop> GetShopAsync(int id) {
+        public System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Shop> GetShopAsync(int id) {
             return base.Channel.GetShopAsync(id);
         }
         
-        public TestPerson.ServiceReference2.Shop[] GetAllShops() {
+        public TestPerson.BestilNemtServiceRef.Shop[] GetAllShops() {
             return base.Channel.GetAllShops();
         }
         
-        public System.Threading.Tasks.Task<TestPerson.ServiceReference2.Shop[]> GetAllShopsAsync() {
+        public System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Shop[]> GetAllShopsAsync() {
             return base.Channel.GetAllShopsAsync();
         }
         
@@ -666,27 +730,27 @@ namespace TestPerson.ServiceReference2 {
             return base.Channel.DeleteShopAsync(id);
         }
         
-        public void AddShop(TestPerson.ServiceReference2.Shop shop) {
+        public void AddShop(TestPerson.BestilNemtServiceRef.Shop shop) {
             base.Channel.AddShop(shop);
         }
         
-        public System.Threading.Tasks.Task AddShopAsync(TestPerson.ServiceReference2.Shop shop) {
+        public System.Threading.Tasks.Task AddShopAsync(TestPerson.BestilNemtServiceRef.Shop shop) {
             return base.Channel.AddShopAsync(shop);
         }
         
-        public void UpdateShop(TestPerson.ServiceReference2.Shop shop) {
+        public void UpdateShop(TestPerson.BestilNemtServiceRef.Shop shop) {
             base.Channel.UpdateShop(shop);
         }
         
-        public System.Threading.Tasks.Task UpdateShopAsync(TestPerson.ServiceReference2.Shop shop) {
+        public System.Threading.Tasks.Task UpdateShopAsync(TestPerson.BestilNemtServiceRef.Shop shop) {
             return base.Channel.UpdateShopAsync(shop);
         }
         
-        public TestPerson.ServiceReference2.Login Login(string Username, string Password) {
+        public TestPerson.BestilNemtServiceRef.Login Login(string Username, string Password) {
             return base.Channel.Login(Username, Password);
         }
         
-        public System.Threading.Tasks.Task<TestPerson.ServiceReference2.Login> LoginAsync(string Username, string Password) {
+        public System.Threading.Tasks.Task<TestPerson.BestilNemtServiceRef.Login> LoginAsync(string Username, string Password) {
             return base.Channel.LoginAsync(Username, Password);
         }
     }
