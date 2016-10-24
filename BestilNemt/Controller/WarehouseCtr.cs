@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Models;
 using DataAccessLayer;
 
@@ -10,35 +6,35 @@ namespace Controller
 {
     public class WarehouseCtr
     {
-        public DbWarehouse Warehouses { get; set; }
+        public IDbWarehouse DbWarehouse { get; set; }
 
-        public WarehouseCtr()
+        public WarehouseCtr(IDbWarehouse dbWarehouse)
         {
-            Warehouses = new DbWarehouse();
+            DbWarehouse = dbWarehouse;
         }
 
         public void Add(Warehouse warehouse)
         {
-            Warehouses.Add(warehouse);
+            DbWarehouse.Add(warehouse);
         }
         public Warehouse Get(int id)
         {
-            return Warehouses.Get(id);
+            return DbWarehouse.Get(id);
         }
 
         public List<Warehouse> GetAll()
         {
-            return Warehouses.GetAll();
+            return DbWarehouse.GetAll();
         }
 
         public void Remove(int id)
         {
-            Warehouses.Remove(id);
+            DbWarehouse.Remove(id);
         }
 
         public void Update(Warehouse warehouse)
         {
-            Warehouses.Update(warehouse);
+            DbWarehouse.Update(warehouse);
         }
     }
 }

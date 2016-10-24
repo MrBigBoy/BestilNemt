@@ -1,33 +1,30 @@
 ﻿using DataAccessLayer;
 using Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
     public class PersonCtr
     {
-       public IDbPerson dbperson { get; set; }
-        public PersonCtr(IDbPerson dbperson)
+        public IDbPerson DbPerson { get; set; }
+
+        public PersonCtr(IDbPerson dbPerson)
         {
-            this.dbperson = dbperson; 
+            DbPerson = dbPerson;
         }
 
         public void CreatePerson(Person person)
         {
-            dbperson.Create(person); 
+            DbPerson.Create(person);
         }
-        public Person find(int id)
+        public Person Find(int id)
         {
-            return dbperson.Find(id);  
+            return DbPerson.Find(id);
         }
 
-        public List<Person> GetALlPerson()
+        public List<Person> GetAllPerson()
         {
-            return dbperson.FindAllPerson();
+            return DbPerson.FindAllPerson();
         }
 
     }

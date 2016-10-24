@@ -48,6 +48,9 @@
     <Compile Include="DbPerson.cs" />
     <Compile Include="DbWarehouse.cs" />
     <Compile Include="DbShop.cs" />
+    <Compile Include="IDbLogin.cs" />
+    <Compile Include="IDbShop.cs" />
+    <Compile Include="IDbWarehouse.cs" />
     <Compile Include="IPerson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

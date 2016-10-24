@@ -16,7 +16,7 @@ namespace DataAccessLayer
         void UpdatePerson(Person person);
     }
 
-    public class PersonTestDb:IDbPerson
+    public class PersonTestDb : IDbPerson
     {
         List<Person> testList = new List<Person>();
 
