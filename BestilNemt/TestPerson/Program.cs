@@ -11,15 +11,13 @@ namespace TestPerson
 
         static void Main(string[] args)
         {
-            ServiceReference2.BestilNemtServiceClient proxy = new
-               ServiceReference2.BestilNemtServiceClient();
+            ServiceReference1.BestilNemtServiceClient proxy = new
+               ServiceReference1.BestilNemtServiceClient();
 
             var find = proxy.findPerson(1);
-            //var findAll = proxy.GetALlPerson();
+            var findAll = proxy.GetALlPerson();
             
             Console.WriteLine(find.Name.ToString());
-            // Console.WriteLine(find);
-            Console.ReadLine();
            
         }
     }

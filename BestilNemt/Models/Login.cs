@@ -17,10 +17,7 @@ namespace Models
 
         public Login()
         {
-            Id = 0;
-            Username = null;
-            Password = null;
-            PersonId = 0;
+
         }
 
         public Login(int Id, string Username, string Password, int PersonId)
