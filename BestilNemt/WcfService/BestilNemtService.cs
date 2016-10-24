@@ -1,4 +1,5 @@
 ﻿using Controller;
+using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,7 +15,7 @@ namespace WcfService
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr();
-            personctr = new PersonCtr();
+            personctr = new PersonCtr(new DbPerson());
             WarehouseController = new WarehouseCtr();
             ShopCtr = new ShopCtr();
         }
@@ -61,7 +62,8 @@ namespace WcfService
 
         public Login Login(string Username, string Password)
         {
-            return LoginCtr.Login(Username, Password);
+           // LoginCtr loginCtr = new LoginCtr();
+            return this.LoginCtr.Login(Username, Password);
         }
 
         public Shop GetShop(int id)

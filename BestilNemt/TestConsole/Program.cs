@@ -15,9 +15,11 @@ namespace TestConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Enter a Username");
-            string Username = Console.ReadLine();
+            //string Username = Console.ReadLine();
+            string Username = "test@mail.dk";
             Console.WriteLine("Enter a Password");
-            string Password = Console.ReadLine();
+            //string Password = Console.ReadLine();
+            string Password = "testKode";
             
             Login login = proxy.Login(Username, Password);
             

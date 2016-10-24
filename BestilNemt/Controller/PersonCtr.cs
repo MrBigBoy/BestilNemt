@@ -10,10 +10,10 @@ namespace Controller
 {
     public class PersonCtr
     {
-       public DbPerson dbperson { get; set; }
-        public PersonCtr()
+       public IDbPerson dbperson { get; set; }
+        public PersonCtr(IDbPerson dbperson)
         {
-            dbperson = new DbPerson(); 
+            this.dbperson = dbperson; 
         }
 
         public void CreatePerson(Person person)
@@ -22,7 +22,7 @@ namespace Controller
         }
         public Person find(int id)
         {
-            return dbperson.find(id);  
+            return dbperson.Find(id);  
         }
 
         public List<Person> GetALlPerson()
