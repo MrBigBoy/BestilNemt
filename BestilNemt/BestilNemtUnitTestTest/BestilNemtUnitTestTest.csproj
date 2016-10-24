@@ -61,8 +61,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceRefPerson\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest2Person.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -91,9 +97,20 @@
     <None Include="Service References\BestilNemtServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceRefPerson\Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceRefPerson\service.wsdl" />
+    <None Include="Service References\ServiceRefPerson\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceRefPerson\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\BestilNemtServiceRef\" />
+    <WCFMetadataStorage Include="Service References\ServiceRefPerson\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\BestilNemtServiceRef\configuration91.svcinfo" />
@@ -108,6 +125,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{F3B8490E-57FF-4C3C-B102-6EE2485FBD33}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{E5440AD2-1BF8-4133-905F-ADD0855C9226}</Project>
       <Name>Models</Name>
@@ -116,6 +137,18 @@
       <Project>{3E90605E-9251-4E55-BB48-DF5702BDAA52}</Project>
       <Name>TestPerson</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRefPerson\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRefPerson\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRefPerson\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
