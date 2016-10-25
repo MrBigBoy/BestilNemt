@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E634C898-468C-4F4C-A2D5-C303D9EA768B}</ProjectGuid>
+    <ProjectGuid>{B5C8782A-F9DF-440C-91F9-4825BBE84F43}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BestilNemtUnitTestTest</RootNamespace>
-    <AssemblyName>BestilNemtUnitTestTest</AssemblyName>
+    <RootNamespace>Controller.Tests</RootNamespace>
+    <AssemblyName>Controller.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,9 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -48,70 +45,13 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="LoginUnitTest.cs" />
-    <Compile Include="Service References\BestilNemtServiceRef\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShopCRUDTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\DataSources\Models.Login.datasource" />
-    <None Include="Properties\DataSources\Models.Person.datasource" />
-    <None Include="Properties\DataSources\Models.Shop.datasource" />
-    <None Include="Properties\DataSources\Models.Warehouse.datasource" />
-    <None Include="Service References\BestilNemtServiceRef\Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\BestilNemtServiceRef\service.wsdl" />
-    <None Include="Service References\BestilNemtServiceRef\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\BestilNemtServiceRef\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\BestilNemtServiceRef\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BestilNemtServiceRef\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BestilNemtServiceRef\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\BestilNemtServiceRef\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Controller\Controller.csproj">
-      <Project>{F3B8490E-57FF-4C3C-B102-6EE2485FBD33}</Project>
-      <Name>Controller</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{E5440AD2-1BF8-4133-905F-ADD0855C9226}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WcfService\WcfService.csproj">
-      <Project>{f2662365-442d-4cdc-ba64-0cc2d500a3e3}</Project>
-      <Name>WcfService</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

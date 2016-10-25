@@ -45,8 +45,9 @@ namespace DataAccessLayer
 
         }
 
-        public void AddShop(Shop shop)
+        public int AddShop(Shop shop)
         {
+            int i = 0;
             Connection.Open();
             using (SqlCommand command = Connection.CreateCommand())
             {
@@ -54,10 +55,11 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("name", shop.Name);
                 command.Parameters.AddWithValue("address", shop.Address);
                 command.Parameters.AddWithValue("cvr", shop.CVR);
-                command.ExecuteNonQuery();
+                i = command.ExecuteNonQuery();
             }
-
+            
             Connection.Close();
+            return i;
         }
 
         public List<Shop> GetAllShops()
