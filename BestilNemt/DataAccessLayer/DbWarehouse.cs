@@ -1,110 +1,107 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Models;
 using System.Data.SqlClient;
 using System.Configuration;
 
 namespace DataAccessLayer
 {
-    public class DbWarehouse
+    public class DbWarehouse : IDbWarehouse
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString;
-        private SqlConnection Connection { get; set; }
 
         public DbWarehouse()
         {
-            Connection = new SqlConnection(connectionString);
+
         }
 
         public void Add(Warehouse warehouse)
         {
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "INSERT INTO Warehouse(stock, minStock)VALUES(@Stock,@MinStock)";
-                command.Parameters.AddWithValue("stock", warehouse.Stock);
-                command.Parameters.AddWithValue("minStock", warehouse.MinStock);
-                command.ExecuteNonQuery();
+                conn.Open();
+                var cmd = new SqlCommand("INSERT INTO Warehouse(stock, minStock)VALUES(@Stock,@MinStock)", conn);
+                cmd.Parameters.AddWithValue("stock", warehouse.Stock);
+                cmd.Parameters.AddWithValue("minStock", warehouse.MinStock);
+                cmd.ExecuteNonQuery();
             }
-            Connection.Close();
         }
 
         public void Remove(int id)
         {
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "DELETE FROM Warehouse Where id=@id";
-                command.Parameters.AddWithValue("id", id);
-                command.ExecuteNonQuery();
+                conn.Open();
+                var cmd = new SqlCommand("DELETE FROM Warehouse Where id=@id", conn);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.ExecuteNonQuery();
             }
-            Connection.Close();
         }
 
         public void Update(Warehouse warehouse)
         {
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "UPDATE Warehouse SET stock=@stock, minStock=@minStock WHERE id=@id";
-                command.Parameters.AddWithValue("stock", warehouse.Stock);
-                command.Parameters.AddWithValue("minStock", warehouse.MinStock);
-                command.Parameters.AddWithValue("id", warehouse.Id);
-                command.ExecuteNonQuery();
+                conn.Open();
+                var cmd = new SqlCommand("UPDATE Warehouse SET stock=@stock, minStock=@minStock WHERE id=@id", conn);
+                cmd.Parameters.AddWithValue("stock", warehouse.Stock);
+                cmd.Parameters.AddWithValue("minStock", warehouse.MinStock);
+                cmd.Parameters.AddWithValue("id", warehouse.Id);
+                cmd.ExecuteNonQuery();
             }
-            Connection.Close();
         }
 
         public List<Warehouse> GetAll()
         {
-            List<Warehouse> Warehouses = new List<Warehouse>();
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            var warehouses = new List<Warehouse>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "SELECT * FROM Warehouse";
-                var reader = command.ExecuteReader();
+                var cmd = new SqlCommand("SELECT * FROM LoginTable where username=@username and password1=@password", conn);
 
-                while (reader.Read())
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    Warehouse Warehouse = new Warehouse();
-                    Warehouse.Id = reader.GetInt32(reader.GetOrdinal("Id"));
-                    Warehouse.Stock = reader.GetInt32(reader.GetOrdinal("Stock"));
-                    Warehouse.MinStock = reader.GetInt32(reader.GetOrdinal("MinStock"));
-                    //warehouse.Shop = reader.GetInt32(reader.GetOrdinal(""));
-                    //warehouse.Products = reader.GetInt32(reader.GetOrdinal(""));
-                    Warehouses.Add(Warehouse);
+                    while (reader.Read())
+                    {
+                        var warehouse = new Warehouse
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
+                            MinStock = reader.GetInt32(reader.GetOrdinal("MinStock")),
+                            //Shop = reader.GetInt32(reader.GetOrdinal("")),
+                            //Products = reader.GetInt32(reader.GetOrdinal(""))
+                        };
+                        warehouses.Add(warehouse);
+                    }
+                }
+                else
+                {
+                    // Error No Lines found
                 }
             }
-            Connection.Close();
-            return Warehouses;
+            return warehouses;
         }
 
         public Warehouse Get(int id)
         {
-            Warehouse Warehouse = null;
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            Warehouse warehouse = null;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "SELECT * FROM Warehouse WHERE id = @id";
-                command.Parameters.AddWithValue("id", id);
-                var reader = command.ExecuteReader();
+                var cmd = new SqlCommand("SELECT * FROM Warehouse WHERE id = @id", conn);
+                cmd.Parameters.AddWithValue("id", id);
+                var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Warehouse = new Warehouse();
-                    Warehouse.Id = reader.GetInt32(reader.GetOrdinal("id"));
-                    Warehouse.Stock = reader.GetInt32(reader.GetOrdinal("stock"));
+                    warehouse = new Warehouse
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Stock = reader.GetInt32(reader.GetOrdinal("stock"))
+                    };
                     //Warehouse.MinStock = reader.GetInt32(reader.GetOrdinal("minStock"));
                     //warehouse.Shop = reader.GetInt32(reader.GetOrdinal(""));
                     //warehouse.Products = reader.GetInt32(reader.GetOrdinal(""));
-
                 }
             }
-            Connection.Close();
-            return Warehouse;
+            return warehouse;
         }
     }
 }

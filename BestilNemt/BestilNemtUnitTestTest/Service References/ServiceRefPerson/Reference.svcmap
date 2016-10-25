@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="eaa200ce-77dd-4f18-881c-7b15b2ad7a8f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="51a1132c-99bd-427f-a468-7d5d1802b9cb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="22994779-9fad-4a04-a5a1-e88fff059dcc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="dac267c3-da26-456e-b33c-bb33e175df5b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3a273d7b-bd5f-4cb2-9a00-22e91dc68545" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
-    <MetadataFile FileName="Models.xsd" MetadataType="Schema" ID="1efed287-b349-4c2b-a119-42f5f47b719e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="769f9a85-ecb3-42ed-a0c5-2ad6a1c30676" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="48770ad0-d6ae-4a10-8698-2a513841fb47" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3b574201-b583-4596-8d30-d5304534ef75" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
+    <MetadataFile FileName="Models.xsd" MetadataType="Schema" ID="97f05ef1-9eed-4d15-9e4f-1f1e4cfb5d69" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

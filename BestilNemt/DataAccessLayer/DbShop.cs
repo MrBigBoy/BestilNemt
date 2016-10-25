@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class DbShop
+    public class DbShop : IDbShop
     {
         private string conString = ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString;
         private SqlConnection Connection { get; set; }

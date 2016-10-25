@@ -1,4 +1,5 @@
 ﻿using Controller;
+using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,15 +14,15 @@ namespace WcfService
         public ShopCtr ShopCtr { get; set; }
         public BestilNemtService()
         {
-            LoginCtr = new LoginCtr();
-            personctr = new PersonCtr();
-            WarehouseController = new WarehouseCtr();
-            ShopCtr = new ShopCtr();
+            LoginCtr = new LoginCtr(new DbLogin());
+            personctr = new PersonCtr(new DbPerson());
+            WarehouseController = new WarehouseCtr(new DbWarehouse());
+            ShopCtr = new ShopCtr(new DbShop());
         }
 
         public Person findPerson(int id)
         {
-            return personctr.find(id);
+            return personctr.Find(id);
         }
 
         public void createPerson(Person person)
@@ -31,7 +32,7 @@ namespace WcfService
 
         public List<Person> GetALlPerson()
         {
-            return personctr.GetALlPerson();
+            return personctr.GetAllPerson();
         }
 
         public Warehouse GetWarehouse(int id)
@@ -59,9 +60,9 @@ namespace WcfService
             WarehouseController.Update(warehouse);
         }
 
-        public Login Login(string Username, string Password)
+        public Login Login(string username, string password)
         {
-            return LoginCtr.Login(Username, Password);
+            return this.LoginCtr.Login(username, password);
         }
 
         public Shop GetShop(int id)

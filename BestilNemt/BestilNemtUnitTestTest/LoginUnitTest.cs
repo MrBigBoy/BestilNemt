@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BestilNemtUnitTestTest.BestilNemtServiceRef;
 using Models;
 
@@ -13,12 +10,12 @@ namespace BestilNemtUnitTestTest
     [TestClass]
     public class LoginUnitTest
     {
-        BestilNemtServiceRef.BestilNemtServiceClient Client;
+        BestilNemtServiceClient Client;
+
         public LoginUnitTest()
         {
-            Client = new BestilNemtServiceRef.BestilNemtServiceClient();
+            Client = new BestilNemtServiceClient();
         }
-
 
         #region Additional test attributes
         //
@@ -41,6 +38,21 @@ namespace BestilNemtUnitTestTest
         // public void MyTestCleanup() { }
         //
         #endregion
+
+
+        [TestMethod]
+        public void TestMethod12()
+        {
+            string Username = "";
+            string Password = "";
+
+            //Controller.LoginCtr ctr = new LoginCtr(new LoginTestDb());
+            //PersonCtr pCtr = new PersonCtr(new PersonTestDb());
+            //ctr.Login("", "");
+
+            Login login = Client.Login(Username, Password);
+            Assert.IsTrue(login.Id == 0);
+        }
 
         [TestMethod]
         public void TestMethod1()

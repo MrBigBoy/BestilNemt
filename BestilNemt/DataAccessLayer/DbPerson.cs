@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class DbPerson
+
+    public class DbPerson : IDbPerson
     {
         private SqlConnection Connection { get; set; }
         private string connectionString = ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString;
@@ -32,11 +33,11 @@ namespace DataAccessLayer
             }
             Connection.Close();
         }
-        public void remove(Person person)
+        public void Remove(Person person)
         {
 
         }
-        public Person find(int id)
+        public Person Find(int id)
         {
             Person person = null;
             Connection.Open();
@@ -83,7 +84,7 @@ namespace DataAccessLayer
             return persons;
         }
 
-        public void updatePerson(Person person)
+        public void UpdatePerson(Person person)
         {
 
         }

@@ -10,9 +10,13 @@ namespace Models
     [DataContract(IsReference = true)]
     public class Login
     {
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Username { get; set; }
+        [DataMember]
         public string Password { get; set; }
+        [DataMember]
         public int PersonId { get; set; }
 
         public Login()

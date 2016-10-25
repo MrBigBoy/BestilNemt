@@ -63,6 +63,36 @@ namespace TestConsole.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         System.Threading.Tasks.Task UpdateWarehouseAsync(Models.Warehouse warehouse);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
+        Models.Shop GetShop(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
+        System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
+        Models.Shop[] GetAllShops();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
+        System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
+        void DeleteShop(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
+        System.Threading.Tasks.Task DeleteShopAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
+        void AddShop(Models.Shop shop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
+        System.Threading.Tasks.Task AddShopAsync(Models.Shop shop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
+        void UpdateShop(Models.Shop shop);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
+        System.Threading.Tasks.Task UpdateShopAsync(Models.Shop shop);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
         Models.Login Login(string Username, string Password);
         
@@ -159,6 +189,46 @@ namespace TestConsole.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task UpdateWarehouseAsync(Models.Warehouse warehouse) {
             return base.Channel.UpdateWarehouseAsync(warehouse);
+        }
+        
+        public Models.Shop GetShop(int id) {
+            return base.Channel.GetShop(id);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id) {
+            return base.Channel.GetShopAsync(id);
+        }
+        
+        public Models.Shop[] GetAllShops() {
+            return base.Channel.GetAllShops();
+        }
+        
+        public System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync() {
+            return base.Channel.GetAllShopsAsync();
+        }
+        
+        public void DeleteShop(int id) {
+            base.Channel.DeleteShop(id);
+        }
+        
+        public System.Threading.Tasks.Task DeleteShopAsync(int id) {
+            return base.Channel.DeleteShopAsync(id);
+        }
+        
+        public void AddShop(Models.Shop shop) {
+            base.Channel.AddShop(shop);
+        }
+        
+        public System.Threading.Tasks.Task AddShopAsync(Models.Shop shop) {
+            return base.Channel.AddShopAsync(shop);
+        }
+        
+        public void UpdateShop(Models.Shop shop) {
+            base.Channel.UpdateShop(shop);
+        }
+        
+        public System.Threading.Tasks.Task UpdateShopAsync(Models.Shop shop) {
+            return base.Channel.UpdateShopAsync(shop);
         }
         
         public Models.Login Login(string Username, string Password) {
