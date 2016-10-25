@@ -29,9 +29,10 @@ namespace Controller
             DbShop.DeleteShop(id);
         }
 
-        public void AddShop(Shop shop)
+        public int AddShop(Shop shop)
         {
             DbShop.AddShop(shop);
+            return dbShop.AddShop(shop);
         }
 
         public void UpdateShop(Shop shop)
