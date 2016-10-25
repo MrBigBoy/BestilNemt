@@ -1,43 +1,42 @@
 ﻿using System.Collections.Generic;
-using Models;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.SqlClient;
+using Models;
 
 namespace DataAccessLayer
 {
     public class DbWarehouse : IDbWarehouse
     {
-
-        public DbWarehouse()
+        public int Add(Warehouse warehouse)
         {
-
-        }
-
-        public void Add(Warehouse warehouse)
-        {
+            int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = new SqlCommand("INSERT INTO Warehouse(stock, minStock)VALUES(@Stock,@MinStock)", conn);
                 cmd.Parameters.AddWithValue("stock", warehouse.Stock);
                 cmd.Parameters.AddWithValue("minStock", warehouse.MinStock);
-                cmd.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
             }
+            return i;
         }
 
-        public void Remove(int id)
+        public int Remove(int id)
         {
+            int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = new SqlCommand("DELETE FROM Warehouse Where id=@id", conn);
                 cmd.Parameters.AddWithValue("id", id);
-                cmd.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
             }
+            return i;
         }
 
-        public void Update(Warehouse warehouse)
+        public int Update(Warehouse warehouse)
         {
+            int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
@@ -45,8 +44,9 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("stock", warehouse.Stock);
                 cmd.Parameters.AddWithValue("minStock", warehouse.MinStock);
                 cmd.Parameters.AddWithValue("id", warehouse.Id);
-                cmd.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
             }
+            return i;
         }
 
         public List<Warehouse> GetAll()
@@ -57,24 +57,17 @@ namespace DataAccessLayer
                 var cmd = new SqlCommand("SELECT * FROM LoginTable where username=@username and password1=@password", conn);
 
                 var reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    var warehouse = new Warehouse
                     {
-                        var warehouse = new Warehouse
-                        {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
-                            MinStock = reader.GetInt32(reader.GetOrdinal("MinStock")),
-                            //Shop = reader.GetInt32(reader.GetOrdinal("")),
-                            //Products = reader.GetInt32(reader.GetOrdinal(""))
-                        };
-                        warehouses.Add(warehouse);
-                    }
-                }
-                else
-                {
-                    // Error No Lines found
+                        Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                        Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
+                        MinStock = reader.GetInt32(reader.GetOrdinal("MinStock"))
+                        //Shop = reader.GetInt32(reader.GetOrdinal("")),
+                        //Products = reader.GetInt32(reader.GetOrdinal(""))
+                    };
+                    warehouses.Add(warehouse);
                 }
             }
             return warehouses;

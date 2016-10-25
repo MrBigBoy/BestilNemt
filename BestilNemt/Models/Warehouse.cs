@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Models
@@ -9,21 +8,24 @@ namespace Models
     {
         [DataMember]
         public int Id  { get; set; }
+
         [DataMember]
         public  int Stock { get; set; }
+
         [DataMember]
         public int MinStock  { get; set; }
+
         [DataMember]
         public List<Product> Products { get; set; }
 
+        [DataMember]
         public Shop Shop { get; set; }
-
 
         public Warehouse()
         {
-            this.Id = Id;
-            this.Stock = Stock;
-            this.MinStock = MinStock;
+            Id = Id;
+            Stock = Stock;
+            MinStock = MinStock;
             Products = new List<Product>();
         }
     }

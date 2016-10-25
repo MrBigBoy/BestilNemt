@@ -16,7 +16,6 @@ namespace Controller
         public Shop GetShop(int id)
         {
             return DbShop.GetShop(id);
-
         }
 
         public List<Shop> GetAllShops()
@@ -24,20 +23,19 @@ namespace Controller
             return DbShop.GetAllShops();
         }
 
-        public void DeleteShop(int id)
+        public int DeleteShop(int id)
         {
-            DbShop.DeleteShop(id);
+            return DbShop.DeleteShop(id);
         }
 
         public int AddShop(Shop shop)
         {
-            DbShop.AddShop(shop);
-            return dbShop.AddShop(shop);
+            return DbShop.AddShop(shop);
         }
 
-        public void UpdateShop(Shop shop)
+        public int UpdateShop(Shop shop)
         {
-            DbShop.UpdateShop(shop);
+            return DbShop.UpdateShop(shop);
         }
     }
 }

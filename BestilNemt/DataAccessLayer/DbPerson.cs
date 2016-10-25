@@ -1,92 +1,98 @@
-﻿using Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Models;
 
 namespace DataAccessLayer
 {
-
     public class DbPerson : IDbPerson
     {
-        private SqlConnection Connection { get; set; }
-        private string connectionString = ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString;
-
-        public DbPerson()
+        public int Create(Person person)
         {
-            Connection = new SqlConnection(connectionString);
-        }
-        public void Create(Person person)
-        {
-       
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            int i;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "INSERT INTO PERSON(Name,Email,Address)VALUES(@name,@email,@address)";
-                command.Parameters.AddWithValue("name", person.Name);
-                command.Parameters.AddWithValue("email", person.Email);
-                command.Parameters.AddWithValue("address", person.Address);
-                command.ExecuteNonQuery(); 
+                conn.Open();
+                var cmd = new SqlCommand("INSERT INTO PERSON(Name,Email,Address)VALUES(@name,@email,@address)", conn);
+                cmd.Parameters.AddWithValue("name", person.Name);
+                cmd.Parameters.AddWithValue("email", person.Email);
+                cmd.Parameters.AddWithValue("address", person.Address);
+                i = cmd.ExecuteNonQuery();
             }
-            Connection.Close();
+            return i;
         }
-        public void Remove(Person person)
-        {
 
+        public int Remove(Person person)
+        {
+            int i;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("DELETE FROM PERSON(id)VALUES(@id)", conn);
+                cmd.Parameters.AddWithValue("id", person.Id);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
         }
         public Person Find(int id)
         {
             Person person = null;
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "SELECT * FROM Person WHERE id = @id";
-                command.Parameters.AddWithValue("id", id);
-                var reader = command.ExecuteReader();
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM Person WHERE id = @id", conn);
+                cmd.Parameters.AddWithValue("id", id);
+                var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    person = new Person();
-                    person.Id = reader.GetInt32(reader.GetOrdinal("id"));
-                    person.Name = reader.GetString(reader.GetOrdinal("name"));
-                   //person.Email = reader.GetString(reader.GetOrdinal("email"));
-                   // person.Address = reader.GetString(reader.GetOrdinal("address"));
+                    person = new Person
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Name = reader.GetString(reader.GetOrdinal("name")),
+                        Email = reader.GetString(reader.GetOrdinal("email")),
+                        Address = reader.GetString(reader.GetOrdinal("address"))
+                    };
                 }
-
             }
-
-            Connection.Close();
-            return person; 
+            return person;
         }
         public List<Person> FindAllPerson()
         {
-            List<Person> persons = new List<Person>();
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            var persons = new List<Person>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "SELECT * FROM Person";
-                var reader = command.ExecuteReader();
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM Person", conn);
+                var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                   Person person = new Person();
-                    person.Id = reader.GetInt32(reader.GetOrdinal("Id"));
-                    person.Name = reader.GetString(reader.GetOrdinal("Name"));
-                    person.Email = reader.GetString(reader.GetOrdinal("Email"));
-                    //person.Address = reader.GetString(reader.GetOrdinal("Address"));
+                    var person = new Person
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Name = reader.GetString(reader.GetOrdinal("name")),
+                        Email = reader.GetString(reader.GetOrdinal("email")),
+                        Address = reader.GetString(reader.GetOrdinal("address"))
+                    };
                     persons.Add(person);
                 }
-
             }
-
-            Connection.Close();
             return persons;
         }
 
-        public void UpdatePerson(Person person)
+        public int UpdatePerson(Person person)
         {
-
+            int i;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("UPDATE Person SET id=@id, name=@name, email=@email, address=@address WHERE id=@id", conn);
+                cmd.Parameters.AddWithValue("id", person.Id);
+                cmd.Parameters.AddWithValue("name", person.Name);
+                cmd.Parameters.AddWithValue("email", person.Email);
+                cmd.Parameters.AddWithValue("address", person.Address);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
         }
     }
 }

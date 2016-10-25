@@ -1,31 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DataAccessLayer
 {
     public interface IDbPerson
     {
-        void Create(Person person);
-        void Remove(Person person);
+        int Create(Person person);
+        int Remove(Person person);
         Person Find(int id);
         List<Person> FindAllPerson();
-        void UpdatePerson(Person person);
+        int UpdatePerson(Person person);
     }
 
     public class PersonTestDb : IDbPerson
     {
         List<Person> testList = new List<Person>();
 
-        public void Create(Person person)
+        public int Create(Person person)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(Person person)
+        public int Remove(Person person)
         {
             throw new NotImplementedException();
         }
@@ -40,7 +37,7 @@ namespace DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public void UpdatePerson(Person person)
+        public int UpdatePerson(Person person)
         {
             throw new NotImplementedException();
         }

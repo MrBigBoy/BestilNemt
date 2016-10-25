@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Models
 {
@@ -24,12 +19,12 @@ namespace Models
 
         }
 
-        public Login(int Id, string Username, string Password, int PersonId)
+        public Login(int id, string username, string password, int personId)
         {
-            this.Id = Id;
-            this.Username = Username;
-            this.Password = Password;
-            this.PersonId = PersonId;
+            Id = id;
+            Username = username;
+            Password = password;
+            PersonId = personId;
         }
     }
 }

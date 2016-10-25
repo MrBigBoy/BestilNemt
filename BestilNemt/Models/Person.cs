@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models
 {
@@ -25,19 +20,15 @@ namespace Models
 
         public Person()
         {
-            
+
         }
         public Person(int id, string name, string email, string address)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Email = email;
-            this.Address = address;
+            Id = id;
+            Name = name;
+            Email = email;
+            Address = address;
             Shops = new List<Shop>();
         }
-
-
     }
-    
-
 }
