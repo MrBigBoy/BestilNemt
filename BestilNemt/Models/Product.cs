@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Models
 {
@@ -21,20 +15,16 @@ namespace Models
         public string Description { get; set; }
         [DataMember]
         public string Category { get; set; }
-        public Saving Saving { get; set; }
+        public double Saving { get; set; }
         [DataMember]
         public Warehouse Warehouse { get; set; }
 
-
-
         public Product()
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Price = Price;
-            this.Description = Description;
-            
+            Id = Id;
+            Name = Name;
+            Price = Price;
+            Description = Description;
         }
-
     }
 }

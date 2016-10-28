@@ -68,6 +68,7 @@
       <xs:element minOccurs="0" name="CVR" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Warehouses" nillable="true" type="tns:ArrayOfWarehouse" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Shop" nillable="true" type="tns:Shop" />
