@@ -15,7 +15,7 @@ namespace Models
         public string Description { get; set; }
         [DataMember]
         public string Category { get; set; }
-        public Saving Saving { get; set; }
+        public double Saving { get; set; }
         [DataMember]
         public Warehouse Warehouse { get; set; }
 
