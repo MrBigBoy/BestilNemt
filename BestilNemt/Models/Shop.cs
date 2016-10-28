@@ -25,5 +25,14 @@ namespace Models
             //Persons = new List<Person>();
             Warehouses = new List<Warehouse>();
         }
+
+        public Shop(int id, string name, string address, string cvr)
+        {
+            Id = id;
+            Name = name;
+            Address = address;
+            CVR = cvr; 
+
+        }
     }
 }
