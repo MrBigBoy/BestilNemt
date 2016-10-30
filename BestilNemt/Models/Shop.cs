@@ -6,6 +6,7 @@ namespace Models
     [DataContract]
     public class Shop
     {
+        
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -33,6 +34,13 @@ namespace Models
             Address = address;
             CVR = cvr; 
 
+        }
+
+        public Shop(string name, string address, string cvr)
+        {
+            Name = name;
+            Address = address;
+            CVR = cvr;
         }
     }
 }
