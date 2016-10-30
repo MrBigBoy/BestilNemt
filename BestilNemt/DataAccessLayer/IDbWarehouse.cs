@@ -5,9 +5,9 @@ namespace DataAccessLayer
 {
     public interface IDbWarehouse
     {
-        void Add(Warehouse warehouse);
-        void Remove(int id);
-        void Update(Warehouse warehouse);
+        int Add(Warehouse warehouse);
+        int Remove(int id);
+        int Update(Warehouse warehouse);
         List<Warehouse> GetAll();
         Warehouse Get(int id);
     }

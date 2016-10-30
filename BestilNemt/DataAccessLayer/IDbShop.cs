@@ -6,9 +6,9 @@ namespace DataAccessLayer
     public interface IDbShop
     {
         Shop GetShop(int id);
-        void AddShop(Shop shop);
+        int AddShop(Shop shop);
         List<Shop> GetAllShops();
-        void UpdateShop(Shop shop);
-        void DeleteShop(int id);
+        int UpdateShop(Shop shop);
+        int DeleteShop(int id);
     }
 }
