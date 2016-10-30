@@ -11,110 +11,101 @@ namespace DataAccessLayer
 {
     public class DbShop : IDbShop
     {
-        private string conString = ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString;
-        private SqlConnection Connection { get; set; }
 
         public DbShop()
         {
-            Connection = new SqlConnection(conString);
+
         }
 
         public Shop GetShop(int id)
         {
             Shop shop = null;
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "Select * from Shop where id = @id";
+                conn.Open();
+                var command = new SqlCommand("Select * from Shop where id = @id", conn);
                 command.Parameters.AddWithValue("id", id);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    shop = new Shop();
-                    shop.Id = reader.GetInt32(reader.GetOrdinal("id"));
-                    shop.Name = reader.GetString(reader.GetOrdinal("shopName"));
-                    shop.Address = reader.GetString(reader.GetOrdinal("shopAddress"));
-                    shop.CVR = reader.GetString(reader.GetOrdinal("shopCVR"));
-
+                    shop = new Shop
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Name = reader.GetString(reader.GetOrdinal("shopName")),
+                        Address = reader.GetString(reader.GetOrdinal("shopAddress")),
+                        CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
+                    };
                 }
             }
-
-            Connection.Close();
             return shop;
-
         }
 
-        public int AddShop(Shop shop)
+        public void AddShop(Shop shop)
         {
-            int i = 0;
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "insert into Shop (shopName, shopAddress, shopCVR)values (@name, @address, @cvr)";
+                conn.Open();
+                var command =
+                    new SqlCommand("insert into Shop (shopName, shopAddress, shopCVR)values (@name, @address, @cvr)",
+                        conn);
                 command.Parameters.AddWithValue("name", shop.Name);
                 command.Parameters.AddWithValue("address", shop.Address);
                 command.Parameters.AddWithValue("cvr", shop.CVR);
-                i = command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
-            
-            Connection.Close();
-            return i;
         }
 
         public List<Shop> GetAllShops()
         {
             List<Shop> shops = new List<Shop>();
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "Select * from Shop";
-
+                conn.Open();
+                var command = new SqlCommand("Select * from Shop", conn);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Shop shop = new Shop();
-                    shop.Id = reader.GetInt32(reader.GetOrdinal("id"));
-                    shop.Name = reader.GetString(reader.GetOrdinal("shopName"));
-                    shop.Address = reader.GetString(reader.GetOrdinal("shopAddress"));
-                    shop.CVR = reader.GetString(reader.GetOrdinal("shopCVR"));
+                    Shop shop = new Shop
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Name = reader.GetString(reader.GetOrdinal("shopName")),
+                        Address = reader.GetString(reader.GetOrdinal("shopAddress")),
+                        CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
+                    };
                     shops.Add(shop);
                 }
             }
 
-            Connection.Close();
             return shops;
         }
 
 
         public void UpdateShop(Shop shop)
         {
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+
             {
-                command.CommandText = "Update Shop Set shopName = @name, shopAddress = @address, shopCVR = @cvr where Id = @id";
+                conn.Open();
+                var command = new SqlCommand("Update Shop Set shopName = @name, shopAddress = @address, shopCVR = @cvr where Id = @id", conn);
                 command.Parameters.AddWithValue("Id", shop.Id);
                 command.Parameters.AddWithValue("name", shop.Name);
                 command.Parameters.AddWithValue("address", shop.Address);
                 command.Parameters.AddWithValue("cvr", shop.CVR);
                 command.ExecuteNonQuery();
             }
-
-            Connection.Close();
         }
 
         public void DeleteShop(int id)
         {
-            Connection.Open();
-            using (SqlCommand command = Connection.CreateCommand())
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
-                command.CommandText = "Delete from Shop where Id = @id";
+                conn.Open();
+                var command = new SqlCommand("Delete from Shop where Id = @id", conn);
                 command.Parameters.AddWithValue("Id", id);
                 command.ExecuteNonQuery();
             }
-
-            Connection.Close();
         }
     }
 }
