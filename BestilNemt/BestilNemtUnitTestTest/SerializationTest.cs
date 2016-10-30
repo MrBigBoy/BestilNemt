@@ -66,6 +66,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void TestWarehouseIdSER()
         {
+            Product pro = new Product();
             Warehouse warehouse = new Warehouse();
             Warehouse serializationResult = SerializerTestHelpClass.TestSerialize<Warehouse>(warehouse);
             Assert.AreEqual(warehouse.Id, serializationResult.Id);
