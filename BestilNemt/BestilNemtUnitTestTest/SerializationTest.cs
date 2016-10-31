@@ -10,28 +10,36 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void TestPersonIdSER()
         {
-            Person person = new Person(4,"Benny","HotforFuck@hotmail.com","Kattevejen");
+            Login login = new Login();
+            Shop shop = new Shop();
+            Person person = new Person(4,"Benny","HotforFuck@hotmail.com","Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person); 
             Assert.AreEqual(person.Id,serializationResult.Id);
         }
         [TestMethod]
         public void TestPersonNameSER()
         {
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen");
+            Login login = new Login();
+            Shop shop = new Shop();
+            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Name, serializationResult.Name);
         }
         [TestMethod]
         public void TestPersonEmailSER()
         {
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen");
+            Login login = new Login();
+            Shop shop = new Shop();
+            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Email, serializationResult.Email);
         }
         [TestMethod]
         public void TestPersonAddresSER()
         {
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen");
+            Login login = new Login();
+            Shop shop = new Shop();
+            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Address, serializationResult.Address);
         }
@@ -66,14 +74,18 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void TestWarehouseIdSER()
         {
-            Warehouse warehouse = new Warehouse();
+            Product product = new Product();
+            Shop shop = new Shop();
+            Warehouse warehouse = new Warehouse(3,3,2,product,shop);
             Warehouse serializationResult = SerializerTestHelpClass.TestSerialize<Warehouse>(warehouse);
             Assert.AreEqual(warehouse.Id, serializationResult.Id);
         }
         [TestMethod]
         public void TestWarehouseStockSER()
         {
-            Warehouse warehouse = new Warehouse();
+            Product product = new Product();
+            Shop shop = new Shop();
+            Warehouse warehouse = new Warehouse(3, 3, 2, product, shop);
             Warehouse serializationResult = SerializerTestHelpClass.TestSerialize<Warehouse>(warehouse);
             Assert.AreEqual(warehouse.Stock, serializationResult.Stock);
         }
@@ -81,7 +93,9 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void TestWarehouseMinStockSER()
         {
-            Warehouse warehouse = new Warehouse();
+            Product product = new Product();
+            Shop shop = new Shop();
+            Warehouse warehouse = new Warehouse(3, 3, 2, product, shop);
             Warehouse serializationResult = SerializerTestHelpClass.TestSerialize<Warehouse>(warehouse);
             Assert.AreEqual(warehouse.MinStock, serializationResult.MinStock);
         }

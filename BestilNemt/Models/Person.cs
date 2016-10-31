@@ -20,14 +20,18 @@ namespace Models
 
         public Person()
         {
-
+            Id = Id;
+            Name = Name;
+            Email = Email;
+            Address = Address;
         }
-        public Person(int id, string name, string email, string address)
+        public Person(int id, string name, string email, string address, Login login, Shop shop)
         {
             Id = id;
             Name = name;
             Email = email;
             Address = address;
+            Login = new Login();
             Shops = new List<Shop>();
         }
     }
