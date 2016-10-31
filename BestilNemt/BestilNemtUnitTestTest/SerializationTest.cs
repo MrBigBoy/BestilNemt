@@ -7,6 +7,7 @@ namespace BestilNemtUnitTestTest
     [TestClass]
     public class SerializationTest
     {
+        //These tests are do the same basic thing. They create object, serialize them and then tests if they still are the same
         [TestMethod]
         public void TestPersonIdSER()
         {
