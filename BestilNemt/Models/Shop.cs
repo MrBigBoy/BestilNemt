@@ -15,7 +15,7 @@ namespace Models
         public  string Address { get; set; }
         [DataMember]
         public  string CVR { get; set; }
-       // [DataMember]
+        [DataMember]
         public List<Person> Persons { get; set; }
         [DataMember]
         public List <Warehouse> Warehouses { get; set; }
@@ -27,7 +27,7 @@ namespace Models
             Warehouses = new List<Warehouse>();
         }
 
-        public Shop(int id, string name, string address, string cvr)
+        public Shop(int id, string name, string address, string cvr, Person person, Warehouse warehouse)
         {
             Id = id;
             Name = name;

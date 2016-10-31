@@ -27,5 +27,16 @@ namespace Models
             Price = Price;
             Description = Description;
         }
+        public Product(int id,string name, decimal price, string description,string category, double saving, Warehouse warehouse)
+        {
+            Id = Id;
+            Name = Name;
+            Price = Price;
+            Description = Description;
+            Category = category;
+            Saving = saving; 
+            warehouse= new Warehouse();
+
+        }
     }
 }
