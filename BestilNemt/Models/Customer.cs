@@ -9,7 +9,7 @@ namespace Models
         [DataMember]
         public DateTime Birthday { get; set; }
 
-        public Customer(int id, string name, string email, string address, DateTime birthday) : base(id, name, email, address)
+        public Customer(int id, string name, string email, string address, DateTime birthday, Login login, Shop shop) : base(id, name, email, address, login, shop)
         {
             Birthday = birthday;
         }

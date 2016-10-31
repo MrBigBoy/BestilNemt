@@ -12,7 +12,7 @@ namespace Controller.ControllerTestClasses
     {
 
         private List<Shop> shops = new List<Shop>();
-        private int idCounter = 0;
+        private int idCounter = 1;
         private int flag = 0;
 
         public Shop GetShop(int id)
@@ -26,9 +26,10 @@ namespace Controller.ControllerTestClasses
             if (shop.CVR.Length == 8)
             {
                 flag = 1;
+                shops.Add(shop);
+                idCounter++;
             }
-            shops.Add(shop);
-            idCounter++;
+           
             return flag;
         }
 

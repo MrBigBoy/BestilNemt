@@ -44,5 +44,12 @@ namespace Models
             Address = address;
             CVR = cvr;
         }
+
+        public Shop(string name, string address, string cvr)
+        {
+            Name = name;
+            Address = address;
+            CVR = cvr;
+        }
     }
 }
