@@ -15,6 +15,9 @@ namespace Models
         [DataMember]
         public string Address { get; set; }
         [DataMember]
+        public string PersonType { get; set; }
+       
+        [DataMember]
         public Login Login { get; set; }
         public List<Shop> Shops { get; set; }
 
@@ -24,8 +27,9 @@ namespace Models
             Name = Name;
             Email = Email;
             Address = Address;
+            PersonType = PersonType;
         }
-        public Person(int id, string name, string email, string address, Login login, Shop shop)
+        public Person(int id, string name, string email, string address, Login login, Shop shop,string personType)
         {
             Id = id;
             Name = name;
@@ -33,6 +37,7 @@ namespace Models
             Address = address;
             Login = new Login();
             Shops = new List<Shop>();
+            PersonType = personType; 
         }
     }
 }
