@@ -1,6 +1,8 @@
-﻿using Models;
+﻿using System;
+using Models;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DataAccessLayer
@@ -30,22 +32,25 @@ namespace DataAccessLayer
                 }
             }
             return shop;
-
         }
 
         public int AddShop(Shop shop)
         {
-            int i;
+            int id;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("insert into Shop (shopName, shopAddress, shopCVR)values (@name, @address, @cvr)", conn);
+                var command = new SqlCommand("insert into Shop (shopName, shopAddress, shopCVR) OUTPUT Inserted.ID values (@name, @address, @cvr)", conn);
                 command.Parameters.AddWithValue("name", shop.Name);
                 command.Parameters.AddWithValue("address", shop.Address);
                 command.Parameters.AddWithValue("cvr", shop.CVR);
-                i = command.ExecuteNonQuery();
+                //command.Parameters.Add("@ID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                //var idStr = command.Parameters["@ID"].Value.ToString();
+               // var i = command.ExecuteNonQuery();
+                id = (int) command.ExecuteScalar();
+                //id = int.Parse(idStr);
             }
-            return i;
+            return id;
         }
 
         public List<Shop> GetAllShops()
@@ -99,6 +104,17 @@ namespace DataAccessLayer
                 i = command.ExecuteNonQuery();
             }
             return i;
+        }
+
+        public bool IsOpen()
+        {
+            var con = false;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                con = true;
+            }
+            return con;
         }
     }
 }
