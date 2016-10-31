@@ -20,7 +20,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("personType", person.PersonType);
                 cmd.Parameters.AddWithValue("address", person.Address);
                 i = cmd.ExecuteNonQuery();
-            }
+            } 
             return i;
         }
 

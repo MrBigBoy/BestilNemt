@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
@@ -8,7 +9,7 @@ using Models;
 
 namespace Controller.ControllerTestClasses
 {
-    public class ShopCtrTestClass: IDbShop
+    public class ShopCtrTestClass : IDbShop
     {
 
         private List<Shop> shops = new List<Shop>();
@@ -17,35 +18,45 @@ namespace Controller.ControllerTestClasses
 
         public Shop GetShop(int id)
         {
-            throw new NotImplementedException();
+            return shops.FirstOrDefault(shop => shop.id == id);
         }
-
+         
         public int AddShop(Shop shop)
         {
             shop.id = idCounter;
-            if (shop.CVR.Length == 8)
-            {
-                flag = 1;
-                shops.Add(shop);
-                idCounter++;
-            }
-           
+            if (shop.CVR.Length != 8)
+                return flag;
+            flag = 1;
+            shops.Add(shop);
+            idCounter++;
+
             return flag;
         }
 
         public List<Shop> GetAllShops()
         {
-            throw new NotImplementedException();
+            return shops;
         }
 
         public int UpdateShop(Shop shop)
         {
-            throw new NotImplementedException();
+            var returnedShop = GetShop(shop.id);
+            returnedShop.Name = shop.Name;
+            returnedShop.Address = shop.Address;
+            returnedShop.CVR = shop.CVR;
+            returnedShop.Persons = shop.Persons;
+            returnedShop.Warehouses = shop.Warehouses;
+            return 1;
         }
 
+        /// <summary>
+        /// if shop was removes return 1 else 0
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int DeleteShop(int id)
         {
-            throw new NotImplementedException();
+            return shops.Remove(GetShop(id)) ? 1 : 0;
         }
     }
 }

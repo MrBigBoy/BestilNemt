@@ -27,14 +27,14 @@ namespace Models
             Warehouses = new List<Warehouse>();
         }
 
-        public Shop(int id, string name, string address, string cvr, Person person, Warehouse warehouse)
+        public Shop(int id, string name, string address, string cvr, List<Person>  persons, List<Warehouse>  warehouses)
         {
             this.id = id;
             Name = name;
             Address = address;
-            CVR = cvr; 
-            Persons = new List<Person>(); 
-            Warehouses = new List<Warehouse>();
+            CVR = cvr;
+            Persons = persons;
+            Warehouses = warehouses; 
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 
@@ -48,8 +49,12 @@ namespace BestilNemtUnitTestTest
         public void TestShopIdSER()
         {
             Person person = new Person();
+            List<Person> persons = new List<Person>();
+            persons.Add(person);
             Warehouse warehouse = new Warehouse();
-            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", person, warehouse);
+            List<Warehouse> warehouses = new List<Warehouse>();
+            warehouses.Add(warehouse);
+            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
             Shop serializationResult = SerializerTestHelpClass.TestSerialize<Shop>(shop);
             Assert.AreEqual(shop.id, serializationResult.id);
         }
@@ -57,8 +62,12 @@ namespace BestilNemtUnitTestTest
         public void TestShopNameSER()
         {
             Person person = new Person();
+            List<Person> persons = new List<Person>();
+            persons.Add(person);
             Warehouse warehouse = new Warehouse();
-            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", person, warehouse);
+            List<Warehouse> warehouses = new List<Warehouse>();
+            warehouses.Add(warehouse);
+            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
             Shop serializationResult = SerializerTestHelpClass.TestSerialize<Shop>(shop);
             Assert.AreEqual(shop.Name, serializationResult.Name);
         }
@@ -66,8 +75,12 @@ namespace BestilNemtUnitTestTest
         public void TestShopAddresSER()
         {
             Person person = new Person();
+            List<Person> persons = new List<Person>();
+            persons.Add(person);
             Warehouse warehouse = new Warehouse();
-            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", person, warehouse);
+            List<Warehouse> warehouses = new List<Warehouse>();
+            warehouses.Add(warehouse);
+            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
             Shop serializationResult = SerializerTestHelpClass.TestSerialize<Shop>(shop);
             Assert.AreEqual(shop.Address, serializationResult.Address);
         }
@@ -75,8 +88,12 @@ namespace BestilNemtUnitTestTest
         public void TestShopCVRSER()
         {
             Person person = new Person();
+            List<Person> persons = new List<Person>();
+            persons.Add(person);
             Warehouse warehouse = new Warehouse();
-            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", person, warehouse);
+            List<Warehouse> warehouses = new List<Warehouse>();
+            warehouses.Add(warehouse);
+            Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
             Shop serializationResult = SerializerTestHelpClass.TestSerialize<Shop>(shop);
             Assert.AreEqual(shop.CVR, serializationResult.CVR);
         }
