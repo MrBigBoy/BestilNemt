@@ -21,7 +21,7 @@ namespace DataAccessLayer
                 {
                     shop = new Shop
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        id = reader.GetInt32(reader.GetOrdinal("id")),
                         Name = reader.GetString(reader.GetOrdinal("shopName")),
                         Address = reader.GetString(reader.GetOrdinal("shopAddress")),
                         CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
@@ -61,7 +61,7 @@ namespace DataAccessLayer
                 {
                     var shop = new Shop
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        id = reader.GetInt32(reader.GetOrdinal("id")),
                         Name = reader.GetString(reader.GetOrdinal("shopName")),
                         Address = reader.GetString(reader.GetOrdinal("shopAddress")),
                         CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
@@ -79,7 +79,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var command = new SqlCommand("Update Shop Set shopName = @name, shopAddress = @address, shopCVR = @cvr where Id = @id", conn);
-                command.Parameters.AddWithValue("Id", shop.Id);
+                command.Parameters.AddWithValue("Id", shop.id);
                 command.Parameters.AddWithValue("name", shop.Name);
                 command.Parameters.AddWithValue("address", shop.Address);
                 command.Parameters.AddWithValue("cvr", shop.CVR);

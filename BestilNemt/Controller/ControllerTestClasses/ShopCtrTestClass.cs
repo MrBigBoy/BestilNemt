@@ -22,7 +22,7 @@ namespace Controller.ControllerTestClasses
 
         public int AddShop(Shop shop)
         {
-            shop.Id = idCounter;
+            shop.id = idCounter;
             if (shop.CVR.Length == 8)
             {
                 flag = 1;
