@@ -1,7 +1,10 @@
-﻿namespace DataAccessLayer
+﻿using Models;
+
+namespace DataAccessLayer
 {
     public interface IDbLogin
     {
-        Models.Login Login(string username, string password);
+        Login Login(string username, string password);
+        int AddLogin(string username, string password, int personId);
     }
 }
