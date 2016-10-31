@@ -13,7 +13,7 @@ namespace BestilNemtUnitTestTest
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop,"Admin");
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop,"Admin");
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Id, serializationResult.Id);
         }
@@ -22,7 +22,7 @@ namespace BestilNemtUnitTestTest
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop, "Admin");
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop, "Admin");
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Name, serializationResult.Name);
         }
@@ -31,7 +31,7 @@ namespace BestilNemtUnitTestTest
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop, "Admin");
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop, "Admin");
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Email, serializationResult.Email);
         }
@@ -40,7 +40,7 @@ namespace BestilNemtUnitTestTest
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop, "Admin");
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop, "Admin");
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Address, serializationResult.Address);
         }
