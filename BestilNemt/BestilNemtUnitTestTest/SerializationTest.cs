@@ -7,12 +7,13 @@ namespace BestilNemtUnitTestTest
     [TestClass]
     public class SerializationTest
     {
+        //These tests are do the same basic thing. They create object, serialize them and then tests if they still are the same
         [TestMethod]
         public void TestPersonIdSER()
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop);
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Id, serializationResult.Id);
         }
@@ -21,7 +22,7 @@ namespace BestilNemtUnitTestTest
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop);
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Name, serializationResult.Name);
         }
@@ -30,7 +31,7 @@ namespace BestilNemtUnitTestTest
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop);
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Email, serializationResult.Email);
         }
@@ -39,7 +40,7 @@ namespace BestilNemtUnitTestTest
         {
             Login login = new Login();
             Shop shop = new Shop();
-            Person person = new Person(4, "Benny", "HotforFuck@hotmail.com", "Kattevejen", login, shop);
+            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shop);
             Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
             Assert.AreEqual(person.Address, serializationResult.Address);
         }
