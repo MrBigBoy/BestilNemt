@@ -21,5 +21,12 @@ namespace Models
             PartOrders = new List<PartOrder>();
             TotalPrice = totalprice; 
         }
+
+        public Cart()
+        {
+            Id = Id;
+            PartOrders = new List<PartOrder>();
+            TotalPrice = TotalPrice;
+        }
     }
 }

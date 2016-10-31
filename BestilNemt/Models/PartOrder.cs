@@ -28,5 +28,14 @@ namespace Models
             Cart = cart; 
 
         }
+
+        public PartOrder()
+        {
+            Id = Id;
+            Product = Product;
+            Amount = Amount;
+            PartPrice = PartPrice;
+            Cart = Cart;
+        }
     }
 }
