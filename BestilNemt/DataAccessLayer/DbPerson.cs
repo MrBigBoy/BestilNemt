@@ -16,11 +16,11 @@ namespace DataAccessLayer
                 var cmd = new SqlCommand("INSERT INTO Person(Name,Email,personType,Address)VALUES(@name,@email,@personType,@address)", conn);
                 cmd.Parameters.AddWithValue("name", person.Name);
                 cmd.Parameters.AddWithValue("email", person.Email);
-                cmd.Parameters.AddWithValue("personType", person.)
+                cmd.Parameters.AddWithValue("personType", person.PersonType);
                 cmd.Parameters.AddWithValue("address", person.Address);
                 //var cmd2 = new SqlCommand("INSERT INTO Administator()",conn);
                 i = cmd.ExecuteNonQuery();
-            }
+            } 
             return i;
         }
 

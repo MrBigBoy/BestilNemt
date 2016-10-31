@@ -54,6 +54,7 @@ namespace DataAccessLayer
             var warehouses = new List<Warehouse>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
+                conn.Open();
                 var cmd = new SqlCommand("SELECT * FROM LoginTable where username=@username and password1=@password", conn);
 
                 var reader = cmd.ExecuteReader();
@@ -78,6 +79,7 @@ namespace DataAccessLayer
             Warehouse warehouse = null;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
+                conn.Open();
                 var cmd = new SqlCommand("SELECT * FROM Warehouse WHERE id = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();

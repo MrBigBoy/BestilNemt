@@ -23,7 +23,7 @@ namespace BestilNemtUnitTestTest
             ShopCtr shopCtr = null;
             Assert.IsNull(shopCtr);
         }
-
+        
 
         [TestMethod]
         public void ShopCtrInitialize()
@@ -113,7 +113,13 @@ namespace BestilNemtUnitTestTest
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             shopCtr.AddShop(shop);
-            var shop2 = new Shop(1, "Hello World", "Address", "12121212");
+            var shop2 = new Shop
+            {
+                id = 1,
+                Name = "MiniShop",
+                Address = "Adress",
+                CVR = "12121212"
+            };
             shopCtr.UpdateShop(shop2);
             var returnedShop = shopCtr.GetShop(1);
             Assert.AreEqual("Hello World", returnedShop.Name);
@@ -127,7 +133,7 @@ namespace BestilNemtUnitTestTest
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             shopCtr.AddShop(shop);
-            var id = shopCtr.DeleteShop(shop.Id);
+            var id = shopCtr.DeleteShop(shop.id);
             Assert.AreEqual(1, id);
         }
 
@@ -138,9 +144,14 @@ namespace BestilNemtUnitTestTest
             // The test is successfull if the id was found and list.count == 0
 
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
-            var shop = new Shop("MiniShop", "Address", "12121212");
+            var shop = new Shop
+            { 
+                Name = "MiniShop",
+                Address = "Adress",
+                CVR = "12121212"
+            };
             shopCtr.AddShop(shop);
-            var id = shopCtr.DeleteShop(shop.Id);
+            var id = shopCtr.DeleteShop(shop.id);
             Assert.AreNotEqual(0, id);
         }
 
@@ -183,7 +194,12 @@ namespace BestilNemtUnitTestTest
         {
             // The test is successfull if the returned value is 1
             var dbShop = new DbShop();
-            var shop = new Shop(1, "Test World", "Test Adress", "12121212");
+            var shop = new Shop
+            {
+                id = 0,
+                Name = "Test World",
+                CVR = "12121212"
+            };
             var returnedValue = dbShop.UpdateShop(shop);
             Assert.AreEqual(1, returnedValue);
         }
@@ -193,7 +209,13 @@ namespace BestilNemtUnitTestTest
         {
             // The test is successfull if the returned value is not 1 because there is no shop with id = 0
             var dbShop = new DbShop();
-            var shop = new Shop(0, "Test World", "Test Adress", "12121212");
+            //var shop = new Shop(0, "Test World", "Test Adress", "12121212");
+            var shop = new Shop
+            {
+                id = 0,
+                Name = "Test World",
+                CVR = "12121212"
+            };
             var returnedValue = dbShop.UpdateShop(shop);
             Assert.AreNotEqual(1, returnedValue);
         }
