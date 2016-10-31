@@ -13,9 +13,14 @@ namespace BestilNemtUnitTestTest
     [TestClass]
     public class ShopUnitTest
     {
+        /// <summary>
+        /// Test a ShopCtr
+        /// </summary>
         [TestMethod]
         public void AddShop()
         {
+         
+            //Test ShopCtr
             //The test is succesfull if cvr is 8 char long => flag ==1 
              
             ShopCtr shopCtr = new ShopCtr(new ShopCtrTestClass());
@@ -26,6 +31,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddShopInvalidCvr()
         {
+            //Test ShopCtrs
             //The test is succesfull if cvr is not valid and != 8 char long => flag == 0
 
             ShopCtr shopCtr = new ShopCtr(new ShopCtrTestClass());
