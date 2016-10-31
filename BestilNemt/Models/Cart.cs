@@ -15,9 +15,18 @@ namespace Models
         [DataMember]
         public decimal TotalPrice { get; set; }
 
+        public Cart(int id, PartOrder partOrder, decimal totalprice)
+        {
+            Id = id; 
+            PartOrders = new List<PartOrder>();
+            TotalPrice = totalprice; 
+        }
+
         public Cart()
         {
+            Id = Id;
             PartOrders = new List<PartOrder>();
+            TotalPrice = TotalPrice;
         }
     }
 }

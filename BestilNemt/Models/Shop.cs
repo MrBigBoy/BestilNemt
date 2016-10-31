@@ -8,14 +8,14 @@ namespace Models
     {
         
         [DataMember]
-        public int Id { get; set; }
+        public int id { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]
         public  string Address { get; set; }
         [DataMember]
         public  string CVR { get; set; }
-       // [DataMember]
+        [DataMember]
         public List<Person> Persons { get; set; }
         [DataMember]
         public List <Warehouse> Warehouses { get; set; }
@@ -27,12 +27,14 @@ namespace Models
             Warehouses = new List<Warehouse>();
         }
 
-        public Shop(int id, string name, string address, string cvr)
+        public Shop(int id, string name, string address, string cvr, Person person, Warehouse warehouse)
         {
-            Id = id;
+            this.id = id;
             Name = name;
             Address = address;
             CVR = cvr; 
+            Persons = new List<Person>(); 
+            Warehouses = new List<Warehouse>();
 
         }
 
@@ -42,5 +44,7 @@ namespace Models
             Address = address;
             CVR = cvr;
         }
+
+       
     }
 }

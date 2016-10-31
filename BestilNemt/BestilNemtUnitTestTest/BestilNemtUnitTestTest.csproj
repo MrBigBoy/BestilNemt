@@ -59,13 +59,14 @@
     <Compile Include="LoginUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerTestHelpClass.cs" />
+    <Compile Include="SerializationTest.cs" />
     <Compile Include="Service References\BestilNemtServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="SerializationTest.cs" />
     <Compile Include="ShopUnitTest.cs" />
+    <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

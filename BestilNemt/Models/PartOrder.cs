@@ -19,9 +19,23 @@ namespace Models
 
         [DataMember]
         public Cart Cart { get; set; }
+        public PartOrder(int id, Product product, int amount, decimal partPrice, Cart cart)
+        {
+            Id = id;
+            Product = product;
+            Amount = amount;
+            PartPrice = partPrice;
+            Cart = cart; 
+
+        }
+
         public PartOrder()
         {
-
+            Id = Id;
+            Product = Product;
+            Amount = Amount;
+            PartPrice = PartPrice;
+            Cart = Cart;
         }
     }
 }
