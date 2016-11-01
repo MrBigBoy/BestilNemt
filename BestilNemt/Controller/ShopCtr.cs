@@ -30,12 +30,27 @@ namespace Controller
 
         public int AddShop(Shop shop)
         {
-            return DbShop.AddShop(shop);
+
+            return ValidateShopInput(shop) ? DbShop.AddShop(shop) : 0;
         }
 
         public int UpdateShop(Shop shop)
         {
-            return DbShop.UpdateShop(shop);
+            return ValidateShopInput(shop) ? DbShop.UpdateShop(shop) : 0;
+        }
+
+        private bool ValidateShopInput(Shop shop)
+        {
+            if (shop == null || shop.CVR.Length != 8 || shop.Name.Equals("")
+                || shop.Name == null || shop.Address.Equals("")
+                || shop.Address == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

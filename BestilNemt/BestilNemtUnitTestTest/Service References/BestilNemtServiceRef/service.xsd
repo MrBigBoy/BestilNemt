@@ -136,7 +136,9 @@
   </xs:element>
   <xs:element name="DeleteShopResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteShopResult" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddShop">
@@ -148,7 +150,9 @@
   </xs:element>
   <xs:element name="AddShopResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddShopResult" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateShop">
@@ -160,7 +164,9 @@
   </xs:element>
   <xs:element name="UpdateShopResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateShopResult" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Login">

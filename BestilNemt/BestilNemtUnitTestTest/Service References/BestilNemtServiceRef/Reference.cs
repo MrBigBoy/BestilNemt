@@ -76,22 +76,22 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
-        void DeleteShop(int id);
+        int DeleteShop(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
-        System.Threading.Tasks.Task DeleteShopAsync(int id);
+        System.Threading.Tasks.Task<int> DeleteShopAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        void AddShop(Models.Shop shop);
+        int AddShop(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        System.Threading.Tasks.Task AddShopAsync(Models.Shop shop);
+        System.Threading.Tasks.Task<int> AddShopAsync(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        void UpdateShop(Models.Shop shop);
+        int UpdateShop(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        System.Threading.Tasks.Task UpdateShopAsync(Models.Shop shop);
+        System.Threading.Tasks.Task<int> UpdateShopAsync(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
         Models.Login Login(string username, string password);
@@ -213,27 +213,27 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.GetAllShopsAsync();
         }
         
-        public void DeleteShop(int id) {
-            base.Channel.DeleteShop(id);
+        public int DeleteShop(int id) {
+            return base.Channel.DeleteShop(id);
         }
         
-        public System.Threading.Tasks.Task DeleteShopAsync(int id) {
+        public System.Threading.Tasks.Task<int> DeleteShopAsync(int id) {
             return base.Channel.DeleteShopAsync(id);
         }
         
-        public void AddShop(Models.Shop shop) {
-            base.Channel.AddShop(shop);
+        public int AddShop(Models.Shop shop) {
+            return base.Channel.AddShop(shop);
         }
         
-        public System.Threading.Tasks.Task AddShopAsync(Models.Shop shop) {
+        public System.Threading.Tasks.Task<int> AddShopAsync(Models.Shop shop) {
             return base.Channel.AddShopAsync(shop);
         }
         
-        public void UpdateShop(Models.Shop shop) {
-            base.Channel.UpdateShop(shop);
+        public int UpdateShop(Models.Shop shop) {
+            return base.Channel.UpdateShop(shop);
         }
         
-        public System.Threading.Tasks.Task UpdateShopAsync(Models.Shop shop) {
+        public System.Threading.Tasks.Task<int> UpdateShopAsync(Models.Shop shop) {
             return base.Channel.UpdateShopAsync(shop);
         }
         

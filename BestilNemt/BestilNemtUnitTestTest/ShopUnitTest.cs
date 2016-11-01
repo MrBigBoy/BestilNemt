@@ -6,6 +6,7 @@ using Models;
 
 namespace BestilNemtUnitTestTest
 {
+
     /// <summary>
     /// 
     /// </summary>
@@ -13,41 +14,37 @@ namespace BestilNemtUnitTestTest
     public class ShopUnitTest
     {
         /// <summary>
-        /// Test a ShopCtr for ShopCtrTestClass
+        /// Test a ShopCtr constructor
+        /// The test is successfull if the instance is not null
         /// </summary>
-
-        [TestMethod]
-        public void ShopCtrInitializeFail()
-        {
-            // The test is successfull if cvr.length(8 char) => flag ==1 
-            ShopCtr shopCtr = null;
-            Assert.IsNull(shopCtr);
-        }
-        
-
         [TestMethod]
         public void ShopCtrInitialize()
         {
-            // The test is successfull if cvr.length(8 char) => flag ==1 
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             Assert.IsNotNull(shopCtr);
         }
 
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the returned value is 1
+        /// </summary>
         [TestMethod]
         public void AddShop()
         {
-            // The test is successfull if cvr.length(8 char) => flag ==1 
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             var flag = shopCtr.AddShop(shop);
             Assert.AreEqual(1, flag);
         }
 
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the returned value is 0
+        /// Cvr is not 8 char
+        /// </summary>
         [TestMethod]
         public void AddShopInvalidCvr()
         {
-            // The test is successfull if cvr is not valid and !cvr.length(8 char) => flag == 0
-
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "323232");
             var flag = shopCtr.AddShop(shop);
@@ -55,7 +52,8 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
-        /// The test is successfull if shop id is found
+        /// Test a ShopCtr with the ShopCtrTestClass (simulate Db) 
+        /// The test is successfull if shop is found (not null)
         /// </summary>
         [TestMethod]
         public void GetShopById()
@@ -63,27 +61,29 @@ namespace BestilNemtUnitTestTest
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             shopCtr.AddShop(shop);
-
             Assert.IsNotNull(shopCtr.GetShop(1));
         }
 
+        /// <summary>
+        /// Test a ShopCtr with the ShopCtrTestClass (simulate Db) 
+        /// The test is successfull if shop is not found (null)
+        /// </summary>
         [TestMethod]
         public void GetShopByIdFail()
         {
-            // The test is successfull if shop id is not found
-
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             shopCtr.AddShop(shop);
-
             Assert.IsNull(shopCtr.GetShop(2));
         }
 
+        /// <summary>
+        /// Test a ShopCtr with the ShopCtrTestClass (simulate Db) 
+        /// The test is successfull if the list of shops is two
+        /// </summary>
         [TestMethod]
         public void GetAllShops()
         {
-            // The test is successfull if the list of shops is two
-
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             var shop2 = new Shop("MiniShop", "Address", "21212121");
@@ -92,11 +92,13 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(2, shopCtr.GetAllShops().Count);
         }
 
+        /// <summary>
+        /// Test a ShopCtr with the ShopCtrTestClass (simulate Db) 
+        /// The test is successfull if the reutrned value = 1
+        /// </summary>
         [TestMethod]
         public void UpdateShopCheckFlag()
         {
-            // The test is successfull if the name of the shop is "Hello World"
-
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             shopCtr.AddShop(shop);
@@ -105,12 +107,13 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, flag);
         }
 
-
+        /// <summary>
+        /// Test a ShopCtr with the ShopCtrTestClass (simulate Db) 
+        /// The test is successfull if the reutrned name equals "Hello World"
+        /// </summary>
         [TestMethod]
         public void UpdateShopCheckName()
         {
-            // The test is successfull if the name of the shop is "Hello World"
-
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             shopCtr.AddShop(shop);
@@ -126,11 +129,13 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual("Hello World", returnedShop.Name);
         }
 
+        /// <summary>
+        /// Test a ShopCtr with the ShopCtrTestClass (simulate Db) 
+        /// The test is successfull if the reutrned value is 1
+        /// </summary>
         [TestMethod]
         public void DeleteShopById()
         {
-            // The test is successfull if the id was found and list.count == 0
-
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop("MiniShop", "Address", "12121212");
             shopCtr.AddShop(shop);
@@ -138,15 +143,16 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, id);
         }
 
-
+        /// <summary>
+        /// Test a ShopCtr with the ShopCtrTestClass (simulate Db) 
+        /// The test is successfull if the reutrned value is 1
+        /// </summary>
         [TestMethod]
         public void DeleteShopByIdFail()
         {
-            // The test is successfull if the id was found and list.count == 0
-
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop
-            { 
+            {
                 Name = "MiniShop",
                 Address = "Adress",
                 CVR = "12121212"
@@ -158,42 +164,47 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test a Connection to Database
+        /// The test is successfull if the connection is open (==true)
         /// </summary>
         [TestMethod]
         public void TestConnectionToDb()
         {
-            // The test is successfull if the id was found and list.count == 0
             var dbShop = new DbShop();
             Assert.IsTrue(dbShop.IsOpen());
         }
 
         /// <summary>
-        /// Test a DbShop
+        /// Test af DbShop
+        /// The test is successfull if the returned id is not 0
         /// </summary>
         [TestMethod]
         public void AddDbShop()
         {
-            // The test is successfull if the returned id is not 0
-
             var dbShop = new DbShop();
             var shop = new Shop("MiniShop", "Address", "12121212");
             var id = dbShop.AddShop(shop);
             Assert.AreNotEqual(0, id);
         }
 
+        /// <summary>
+        /// Test af dbShop
+        /// The test is successfull if the shop is not null
+        /// </summary>
         [TestMethod]
         public void GetDbShop()
         {
-            // The test is successfull if the shop is not null
             var dbShop = new DbShop();
             var shop = dbShop.GetShop(1);
             Assert.IsNotNull(shop);
         }
 
+        /// <summary>
+        /// Test af dbShop
+        /// The test is successfull if the returned value is 1
+        /// </summary>
         [TestMethod]
         public void UpdateDbShop()
         {
-            // The test is successfull if the returned value is 1
             var dbShop = new DbShop();
             var shop = new Shop
             {
@@ -206,12 +217,15 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, returnedValue);
         }
 
+        /// <summary>
+        /// Test af dbShop
+        /// The test is successfull if the returned value is not 1
+        /// because there is no shop with id = 0
+        /// </summary>
         [TestMethod]
         public void UpdateDbShopFail()
         {
-            // The test is successfull if the returned value is not 1 because there is no shop with id = 0
             var dbShop = new DbShop();
-            //var shop = new Shop(0, "Test World", "Test Adress", "12121212");
             var shop = new Shop
             {
                 Id = 0,
@@ -223,11 +237,14 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(1, returnedValue);
         }
 
+        /// <summary>
+        /// Test af dbShop
+        /// The test is successfull if the returned value is 1
+        /// Require testMethod AddDbShop
+        /// </summary>
         [TestMethod]
         public void DelDbShop()
         {
-            // The test is successfull if the returned value is 1
-            // Requere testMethod AddDbShop
             var dbShop = new DbShop();
             var shop = new Shop("Test World", "Test Adress", "12121212");
             var id = dbShop.AddShop(shop);
@@ -235,42 +252,92 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, returnedValue);
         }
 
+        /// <summary>
+        /// Test af dbShop
+        /// The test is successfull if the returned value is 1
+        /// Require testMethod AddDbShop
+        /// </summary>
         [TestMethod]
         public void GetAllDbShop()
         {
-            // The test is successfull if the returned value is 1
-            // Requere testMethod AddDbShop
             var dbShop = new DbShop();
             Assert.AreNotEqual(0, dbShop.GetAllShops().Count);
         }
 
         /// <summary>
-        /// Test a DbShop
+        /// Test a ShopCtr
+        /// The test is successfull if the returned id is  not 0
         /// </summary>
         [TestMethod]
         public void AddCtrDbShop()
         {
-            // The test is successfull if the returned id is not 0
             var shopCtr = new ShopCtr(new DbShop());
             var shop = new Shop("MiniShop", "Address", "12121212");
             var id = shopCtr.AddShop(shop);
             Assert.AreNotEqual(0, id);
         }
 
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the returned id is 0
+        /// Name is empty
+        /// </summary>
+        [TestMethod]
+        public void AddCtrDbShopFailName()
+        {
+            var shopCtr = new ShopCtr(new DbShop());
+            var shop = new Shop("", "Address", "12121212");
+            var id = shopCtr.AddShop(shop);
+            Assert.AreEqual(0, id);
+        }
+
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the returned id is 0
+        /// Address is empty
+        /// </summary>
+        [TestMethod]
+        public void AddCtrDbShopFailAddress()
+        {
+            var shopCtr = new ShopCtr(new DbShop());
+            var shop = new Shop("MiniShop", "", "12121212");
+            var id = shopCtr.AddShop(shop);
+            Assert.AreEqual(0, id);
+        }
+
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the returned id is 0
+        /// Cvr is not 8 char
+        /// </summary>
+        [TestMethod]
+        public void AddCtrDbShopFailCvr()
+        {
+            var shopCtr = new ShopCtr(new DbShop());
+            var shop = new Shop("MiniShop", "Nyvej", "12");
+            var id = shopCtr.AddShop(shop);
+            Assert.AreEqual(0, id);
+        }
+
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the shop is not null
+        /// </summary>
         [TestMethod]
         public void GetCtrDbShop()
         {
-            // The test is successfull if the shop is not null
-
             var shopCtr = new ShopCtr(new DbShop());
             var shop = shopCtr.GetShop(1);
             Assert.IsNotNull(shop);
         }
 
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the returned value is 1
+        /// </summary>
         [TestMethod]
         public void UpdateCtrDbShop()
         {
-            // The test is successfull if the returned value is 1
             var shopCtr = new ShopCtr(new DbShop());
             var shop = new Shop
             {
@@ -283,13 +350,15 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, returnedValue);
         }
 
+        /// <summary>
+        /// Test a ShopCtr
+        ///  The test is successfull if the returned value is not 1 
+        /// because there is no shop with id = 0
+        /// </summary>
         [TestMethod]
         public void UpdateCtrDbShopFail()
         {
-            // The test is successfull if the returned value is not 1 because there is no shop with id = 0
             var shopCtr = new ShopCtr(new DbShop());
-            
-            //var shop = new Shop(0, "Test World", "Test Adress", "12121212");
             var shop = new Shop
             {
                 Id = 0,
@@ -301,27 +370,98 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(1, returnedValue);
         }
 
+        /// <summary>
+        /// Test a ShopCtr
+        ///  The test is successfull if the returned value is 1
+        ///  Require testMethod AddDbShop 
+        /// </summary>
         [TestMethod]
         public void DelCtrDbShop()
         {
-            // The test is successfull if the returned value is 1
-            // Requere testMethod AddDbShop
             var shopCtr = new ShopCtr(new DbShop());
-            
             var shop = new Shop("Test World", "Test Adress", "12121212");
             var id = shopCtr.AddShop(shop);
             var returnedValue = shopCtr.DeleteShop(id);
             Assert.AreEqual(1, returnedValue);
         }
 
+        /// <summary>
+        /// Test a ShopCtr
+        ///  The test is successfull if the returned value is 1
+        ///  Require testMethod AddDbShop 
+        /// </summary>
         [TestMethod]
         public void GetAllCtrDbShop()
         {
-            // The test is successfull if the returned value is 1
-            // Requere testMethod AddDbShop
             var shopCtr = new ShopCtr(new DbShop());
-            
             Assert.AreNotEqual(0, shopCtr.GetAllShops().Count);
+        }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned id is not 0
+        /// </summary>
+        [TestMethod]
+        public void AddShopWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var shop = new Shop("new shop", "new address", "15987533");
+                var i = proxy.AddShop(shop);
+                Assert.AreNotEqual(0, i);
+            }
+        }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned id is 0
+        /// Cvr is not 8 char
+        /// </summary>
+        [TestMethod]
+        public void AddShopWcfFailCvr()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var shop = new Shop("new shop", "new address", "87533");
+                var i = proxy.AddShop(shop);
+                Assert.AreEqual(0, i);
+            }
+        }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned id is 0
+        /// Name is empty
+        /// </summary>
+        [TestMethod]
+        public void AddShopWcfFailName()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var shop = new Shop("", "new address", "82227533");
+                var i = proxy.AddShop(shop);
+                Assert.AreEqual(0, i);
+            }
+        }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned id is 0
+        /// Address is empty
+        /// </summary>
+        [TestMethod]
+        public void AddShopWcfFailAddress()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var shop = new Shop("Fine Name", "", "82227533");
+                var i = proxy.AddShop(shop);
+                Assert.AreEqual(0, i);
+            }
         }
     }
 }

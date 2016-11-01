@@ -24,9 +24,9 @@ namespace Controller.ControllerTestClasses
         public int AddShop(Shop shop)
         {
             shop.Id = idCounter;
-            if (shop.CVR.Length != 8)
-                return flag;
-            flag = 1;
+            if (ValidateShopInput(shop))
+               flag = 1;
+            
             shops.Add(shop);
             idCounter++;
 
@@ -46,7 +46,9 @@ namespace Controller.ControllerTestClasses
             returnedShop.CVR = shop.CVR;
             returnedShop.Persons = shop.Persons;
             returnedShop.Warehouses = shop.Warehouses;
+            
             return 1;
+           
         }
 
         /// <summary>
@@ -57,6 +59,20 @@ namespace Controller.ControllerTestClasses
         public int DeleteShop(int id)
         {
             return shops.Remove(GetShop(id)) ? 1 : 0;
+        }
+
+        private bool ValidateShopInput(Shop shop)
+        {
+            if (shop == null || shop.CVR.Length != 8 || shop.Name.Equals("")
+                || shop.Name == null || shop.Address.Equals("")
+                || shop.Address == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
