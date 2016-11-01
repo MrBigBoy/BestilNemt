@@ -8,5 +8,10 @@ namespace Models
         {
 
         }
+
+        public Admin()
+        {
+            
+        }
     }
 }

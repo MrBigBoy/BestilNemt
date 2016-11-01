@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Net.Sockets;
 using System.ServiceModel.Channels;
+using Controller.ControllerTestClasses;
 using Models;
 
 namespace DataAccessLayer
