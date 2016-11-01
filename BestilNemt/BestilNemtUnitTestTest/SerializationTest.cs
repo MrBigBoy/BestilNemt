@@ -101,8 +101,10 @@ namespace BestilNemtUnitTestTest
         public void TestWarehouseIdSER()
         {
             Product product = new Product();
+            List<Product> products = new List<Product>();
+            products.Add(product);
             Shop shop = new Shop();
-            Warehouse warehouse = new Warehouse(3, 3, 2, product, shop);
+            Warehouse warehouse = new Warehouse(3, 3, 2, products, shop);
             Warehouse serializationResult = SerializerTestHelpClass.TestSerialize<Warehouse>(warehouse);
             Assert.AreEqual(warehouse.Id, serializationResult.Id);
         }
@@ -110,8 +112,10 @@ namespace BestilNemtUnitTestTest
         public void TestWarehouseStockSER()
         {
             Product product = new Product();
+            List<Product> products = new List<Product>();
+            products.Add(product);
             Shop shop = new Shop();
-            Warehouse warehouse = new Warehouse(3, 3, 2, product, shop);
+            Warehouse warehouse = new Warehouse(3, 3, 2, products, shop);
             Warehouse serializationResult = SerializerTestHelpClass.TestSerialize<Warehouse>(warehouse);
             Assert.AreEqual(warehouse.Stock, serializationResult.Stock);
         }
@@ -120,6 +124,8 @@ namespace BestilNemtUnitTestTest
         public void TestWarehouseMinStockSER()
         {
             Product product = new Product();
+            List<Product> products = new List<Product>();
+            products.Add(product);
             Shop shop = new Shop();
             Warehouse warehouse = new Warehouse(3, 3, 2, product, shop);
             Warehouse serializationResult = SerializerTestHelpClass.TestSerialize<Warehouse>(warehouse);
@@ -226,7 +232,9 @@ namespace BestilNemtUnitTestTest
         public void TestCartIdSER()
         {
             PartOrder partOrder = new PartOrder();
-            Cart cart = new Cart(5, partOrder, 200.00m);
+            List<PartOrder> partOrders = new List<PartOrder>();
+            partOrders.Add(partOrder);
+            Cart cart = new Cart(5, partOrders, 200.00m);
             Cart serializationResult = SerializerTestHelpClass.TestSerialize<Cart>(cart);
             Assert.AreEqual(cart.Id, serializationResult.Id);
         }
@@ -234,14 +242,11 @@ namespace BestilNemtUnitTestTest
         public void TestCartTotalPriceSER()
         {
             PartOrder partOrder = new PartOrder();
-            Cart cart = new Cart(5, partOrder, 200.00m);
+            List<PartOrder> partOrders = new List<PartOrder>();
+            partOrders.Add(partOrder);
+            Cart cart = new Cart(5, partOrders, 200.00m);
             Cart serializationResult = SerializerTestHelpClass.TestSerialize<Cart>(cart);
             Assert.AreEqual(cart.TotalPrice, serializationResult.TotalPrice);
         }
-
-
-
-
-
     }
 }
