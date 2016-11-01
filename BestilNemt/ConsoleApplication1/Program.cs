@@ -2,7 +2,7 @@
 using System.ServiceModel;
 using WcfService;
 
-namespace ConsoleApplication1
+namespace HostApplication
 {
     internal class Program
     {

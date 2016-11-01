@@ -48,13 +48,13 @@ namespace WcfService
         List<Shop> GetAllShops();
 
         [OperationContract]
-        void DeleteShop(int id);
+        int DeleteShop(int id);
 
         [OperationContract]
-        void AddShop(Shop shop);
+        int AddShop(Shop shop);
 
         [OperationContract]
-        void UpdateShop(Shop shop);
+        int UpdateShop(Shop shop);
 
         [OperationContract]
         Login Login(string username, string password);

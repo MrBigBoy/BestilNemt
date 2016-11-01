@@ -18,15 +18,15 @@ namespace Controller.ControllerTestClasses
 
         public Shop GetShop(int id)
         {
-            return shops.FirstOrDefault(shop => shop.id == id);
+            return shops.FirstOrDefault(shop => shop.Id == id);
         }
          
         public int AddShop(Shop shop)
         {
-            shop.id = idCounter;
-            if (shop.CVR.Length != 8)
-                return flag;
-            flag = 1;
+            shop.Id = idCounter;
+            if (ValidateShopInput(shop))
+               flag = 1;
+            
             shops.Add(shop);
             idCounter++;
 
@@ -40,13 +40,15 @@ namespace Controller.ControllerTestClasses
 
         public int UpdateShop(Shop shop)
         {
-            var returnedShop = GetShop(shop.id);
+            var returnedShop = GetShop(shop.Id);
             returnedShop.Name = shop.Name;
             returnedShop.Address = shop.Address;
             returnedShop.CVR = shop.CVR;
             returnedShop.Persons = shop.Persons;
             returnedShop.Warehouses = shop.Warehouses;
+            
             return 1;
+           
         }
 
         /// <summary>
@@ -57,6 +59,20 @@ namespace Controller.ControllerTestClasses
         public int DeleteShop(int id)
         {
             return shops.Remove(GetShop(id)) ? 1 : 0;
+        }
+
+        private bool ValidateShopInput(Shop shop)
+        {
+            if (shop == null || shop.CVR.Length != 8 || shop.Name.Equals("")
+                || shop.Name == null || shop.Address.Equals("")
+                || shop.Address == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

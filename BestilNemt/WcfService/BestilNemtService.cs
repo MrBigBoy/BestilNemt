@@ -80,19 +80,19 @@ namespace WcfService
             return ShopCtr.GetAllShops();
         }
 
-        public void DeleteShop(int id)
+        public int DeleteShop(int id)
         {
-            ShopCtr.DeleteShop(id);
+            return ShopCtr.DeleteShop(id);
         }
 
-        public void AddShop(Shop shop)
+        public int AddShop(Shop shop)
         {
-            ShopCtr.AddShop(shop);
+           return ShopCtr.AddShop(shop);
         }
 
-        public void UpdateShop(Shop shop)
+        public int UpdateShop(Shop shop)
         {
-            ShopCtr.UpdateShop(shop);
+            return ShopCtr.UpdateShop(shop);
         }
 
         public void removeCustomer(int id)
