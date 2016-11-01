@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Net.Sockets;
 using System.ServiceModel.Channels;
 using Models;
+using Controller.ControllerTestClasses;
 
 namespace DataAccessLayer
 {

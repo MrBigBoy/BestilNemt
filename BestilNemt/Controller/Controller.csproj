@@ -46,7 +46,7 @@
     <Compile Include="ControllerTestClasses\PersonCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\ShopCtrTestClass.cs" />
     <Compile Include="LoginCtr.cs" />
-    <Compile Include="PersonCtr.cs" />
+    <Compile Include="CustomerCtr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

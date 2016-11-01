@@ -8,31 +8,31 @@ namespace WcfService
 {
     public class BestilNemtService : IBestilNemtService
     {
-        public PersonCtr Personctr { get; set; }
+        public CustomerCtr CustomerCtr { get; set; }
         public WarehouseCtr WarehouseController { get; set; }
         public LoginCtr LoginCtr { get; set; }
         public ShopCtr ShopCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
-            Personctr = new PersonCtr(new DbCustomer());
+            CustomerCtr = new CustomerCtr(new DbCustomer());
             WarehouseController = new WarehouseCtr(new DbWarehouse());
             ShopCtr = new ShopCtr(new DbShop());
         }
 
         public Customer findCustomer(int id)
         {
-            return Personctr.Find(id);
+            return CustomerCtr.Find(id);
         }
 
         public void createCustomer(Customer customer)
         {
-            Personctr.CreatePerson(customer);
+            CustomerCtr.CreatePerson(customer);
         }
 
         public List<Customer> GetALlCustomer()
         {
-            return Personctr.GetAllPerson();
+            return CustomerCtr.GetAllPerson();
         }
 
         public Warehouse GetWarehouse(int id)
@@ -97,12 +97,12 @@ namespace WcfService
 
         public void removeCustomer(int id)
         {
-            Personctr.RemoveCustomer(id);
+            CustomerCtr.RemoveCustomer(id);
         }
 
         public void úpdateCustomer(Customer customer)
         {
-            Personctr.updateCustomer(customer); 
+            CustomerCtr.updateCustomer(customer); 
         }
     }
 }
