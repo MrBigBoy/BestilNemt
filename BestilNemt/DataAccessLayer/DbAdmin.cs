@@ -9,7 +9,7 @@ using Models;
 
 namespace DataAccessLayer
 {
-    class DbAdmin : IDbAdmin
+    public class DbAdmin : IDbAdmin
     {
         public int Create(Admin admin)
         {
