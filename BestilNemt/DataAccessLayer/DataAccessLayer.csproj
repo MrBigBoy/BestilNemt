@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbLogin.cs" />
-    <Compile Include="DbPerson.cs" />
+    <Compile Include="DbCustomer.cs" />
     <Compile Include="DbWarehouse.cs" />
     <Compile Include="DbShop.cs" />
     <Compile Include="IDbLogin.cs" />
