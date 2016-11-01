@@ -15,10 +15,10 @@ namespace Models
         [DataMember]
         public decimal TotalPrice { get; set; }
 
-        public Cart(int id, List<PartOrder> partOrder, decimal totalprice)
+        public Cart(int id, List<PartOrder> partOrders, decimal totalprice)
         {
             Id = id;
-            PartOrders = partOrder;
+            PartOrders = partOrders;
             TotalPrice = totalprice; 
         }
 

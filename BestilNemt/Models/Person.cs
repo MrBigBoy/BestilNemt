@@ -29,14 +29,14 @@ namespace Models
             Address = Address;
             PersonType = PersonType;
         }
-        public Person(int id, string name, string email, string address, Login login, Shop shop,string personType)
+        public Person(int id, string name, string email, string address, Login login, List<Shop> shops,string personType)
         {
             Id = id;
             Name = name;
             Email = email;
             Address = address;
             Login = new Login();
-            Shops = new List<Shop>();
+            Shops = shops; 
             PersonType = personType; 
         }
     }

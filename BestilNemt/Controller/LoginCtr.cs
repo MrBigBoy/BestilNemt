@@ -10,6 +10,12 @@ namespace Controller
         {
             DbLogin = dbLogin;
         }
+
+        public int AddLogin(string username, string password, int personId)
+        {
+            return DbLogin.AddLogin(username, password, personId);
+        }
+
         public Login Login(string username, string password)
         {
             return DbLogin.Login(username, password);
