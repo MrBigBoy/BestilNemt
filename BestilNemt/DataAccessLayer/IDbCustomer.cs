@@ -4,16 +4,18 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public interface IDbPerson
+    public interface IDbCustomer
     {
         int Create(Customer customer);
         int RemoveCustomer(int id);
         Customer FindCustomer(int id);
         List<Customer> FindAllCustomer();
         int UpdateCustomer(Customer customer);
+
+
     }
 
-    public class PersonTestDb : IDbPerson
+    public class PersonTestDb : IDbCustomer
     {
         List<Person> testList = new List<Person>();
 
@@ -41,5 +43,6 @@ namespace DataAccessLayer
         {
             throw new NotImplementedException();
         }
+
     }
 }
