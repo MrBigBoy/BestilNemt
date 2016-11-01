@@ -1,9 +1,8 @@
-﻿using Models;
-using System;
+﻿using System;
 
 namespace TestConsole
 {
-    class Program
+    internal class Program
     {
         private static readonly BestilNemtServiceRef.BestilNemtServiceClient Proxy = new BestilNemtServiceRef.BestilNemtServiceClient();
 
@@ -11,12 +10,12 @@ namespace TestConsole
         {
             Console.WriteLine("Enter a Username");
             var username = Console.ReadLine();
-            //string Username = "test@mail.dk";
+            //string Username = "Admin";
             Console.WriteLine("Enter a Password");
             var password = Console.ReadLine();
-            //string Password = "testKode";
+            //string Password = "SuperAdmin";
 
-            Login login = Proxy.Login(username, password);
+            var login = Proxy.Login(username, password);
 
             if (login.Id == 0)
             {
@@ -25,7 +24,7 @@ namespace TestConsole
             else
             {
                 Console.WriteLine("Login Successful!");
-                Console.WriteLine("Id: {0}, Username: {1}, Password: {2}, personId: {3}", login.Id, login.Username, login.Password, login.PersonId);
+                Console.WriteLine("Username: {0}, personId: {1}", login.Username, login.PersonId);
             }
 
             Console.ReadLine();

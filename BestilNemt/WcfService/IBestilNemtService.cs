@@ -13,13 +13,17 @@ namespace WcfService
     public interface IBestilNemtService
     {
         [OperationContract]
-        Person findPerson(int id);
+        Customer findCustomer(int id);
 
         [OperationContract]
-        void createPerson(Person person);
+        void createCustomer(Customer customer);
+        [OperationContract]
+        void úpdateCustomer(Customer customer);
+        [OperationContract]
+        void removeCustomer(int id);
 
         [OperationContract]
-        List<Person> GetALlPerson();
+        List<Customer> GetALlCustomer();
 
         [OperationContract]
         Warehouse GetWarehouse(int id);

@@ -13,18 +13,28 @@ namespace Controller
             DbPerson = dbPerson;
         }
 
-        public int CreatePerson(Person person)
+        public void CreatePerson(Customer customer)
         {
-           return DbPerson.Create(person);
+            DbPerson.Create(customer);
         }
-        public Person Find(int id)
+        public Customer Find(int id)
         {
-            return DbPerson.Find(id);
+            return DbPerson.FindCustomer(id);
         }
 
-        public List<Person> GetAllPerson()
+        public List<Customer> GetAllPerson()
         {
-            return DbPerson.FindAllPerson();
+            return DbPerson.FindAllCustomer();
+        }
+
+        public int RemoveCustomer(int id)
+        {
+            return DbPerson.RemoveCustomer(id);
+        }
+
+        public void updateCustomer(Customer customer)
+        {
+            DbPerson.UpdateCustomer(customer); 
         }
 
     }

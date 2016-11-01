@@ -2,6 +2,7 @@
 using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
+using System;
 
 namespace WcfService
 {
@@ -14,22 +15,22 @@ namespace WcfService
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
-            Personctr = new PersonCtr(new DbPerson());
+            Personctr = new PersonCtr(new DbCustomer());
             WarehouseController = new WarehouseCtr(new DbWarehouse());
             ShopCtr = new ShopCtr(new DbShop());
         }
 
-        public Person findPerson(int id)
+        public Customer findCustomer(int id)
         {
             return Personctr.Find(id);
         }
 
-        public void createPerson(Person person)
+        public void createCustomer(Customer customer)
         {
-            Personctr.CreatePerson(person);
+            Personctr.CreatePerson(customer);
         }
 
-        public List<Person> GetALlPerson()
+        public List<Customer> GetALlCustomer()
         {
             return Personctr.GetAllPerson();
         }
@@ -92,6 +93,16 @@ namespace WcfService
         public int UpdateShop(Shop shop)
         {
             return ShopCtr.UpdateShop(shop);
+        }
+
+        public void removeCustomer(int id)
+        {
+            Personctr.RemoveCustomer(id);
+        }
+
+        public void úpdateCustomer(Customer customer)
+        {
+            Personctr.updateCustomer(customer); 
         }
     }
 }
