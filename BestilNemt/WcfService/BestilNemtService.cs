@@ -15,7 +15,7 @@ namespace WcfService
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
-            Personctr = new PersonCtr(new DbPerson());
+            Personctr = new PersonCtr(new DbCustomer());
             WarehouseController = new WarehouseCtr(new DbWarehouse());
             ShopCtr = new ShopCtr(new DbShop());
         }
