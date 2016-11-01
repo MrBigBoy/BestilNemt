@@ -17,7 +17,7 @@ namespace BestilNemtUnitTestTest
         public void GetShopTestWCF()
         {
             Shop shop = Proxy.GetShop(1);
-            Assert.AreEqual(1, shop.id);
+            Assert.AreEqual(1, shop.Id);
         }
         [TestMethod]
         public void GetWarehouseTestWCF()

@@ -91,6 +91,12 @@
   <wsdl:message name="IBestilNemtService_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLogin" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLoginResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
     <wsdl:operation name="findPerson">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/findPerson" message="tns:IBestilNemtService_findPerson_InputMessage" />
@@ -147,6 +153,10 @@
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/Login" message="tns:IBestilNemtService_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/LoginResponse" message="tns:IBestilNemtService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddLogin" message="tns:IBestilNemtService_AddLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddLoginResponse" message="tns:IBestilNemtService_AddLogin_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
@@ -270,6 +280,15 @@
     </wsdl:operation>
     <wsdl:operation name="Login">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLogin">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddLogin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

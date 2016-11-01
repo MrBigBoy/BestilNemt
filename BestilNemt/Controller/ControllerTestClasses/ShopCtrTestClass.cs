@@ -18,12 +18,12 @@ namespace Controller.ControllerTestClasses
 
         public Shop GetShop(int id)
         {
-            return shops.FirstOrDefault(shop => shop.id == id);
+            return shops.FirstOrDefault(shop => shop.Id == id);
         }
          
         public int AddShop(Shop shop)
         {
-            shop.id = idCounter;
+            shop.Id = idCounter;
             if (shop.CVR.Length != 8)
                 return flag;
             flag = 1;
@@ -40,7 +40,7 @@ namespace Controller.ControllerTestClasses
 
         public int UpdateShop(Shop shop)
         {
-            var returnedShop = GetShop(shop.id);
+            var returnedShop = GetShop(shop.Id);
             returnedShop.Name = shop.Name;
             returnedShop.Address = shop.Address;
             returnedShop.CVR = shop.CVR;

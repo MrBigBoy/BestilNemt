@@ -94,10 +94,16 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task UpdateShopAsync(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        Models.Login Login(string Username, string Password);
+        Models.Login Login(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        System.Threading.Tasks.Task<Models.Login> LoginAsync(string Username, string Password);
+        System.Threading.Tasks.Task<Models.Login> LoginAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
+        int AddLogin(string username, string password, int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
+        System.Threading.Tasks.Task<int> AddLoginAsync(string username, string password, int personId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -231,12 +237,20 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.UpdateShopAsync(shop);
         }
         
-        public Models.Login Login(string Username, string Password) {
-            return base.Channel.Login(Username, Password);
+        public Models.Login Login(string username, string password) {
+            return base.Channel.Login(username, password);
         }
         
-        public System.Threading.Tasks.Task<Models.Login> LoginAsync(string Username, string Password) {
-            return base.Channel.LoginAsync(Username, Password);
+        public System.Threading.Tasks.Task<Models.Login> LoginAsync(string username, string password) {
+            return base.Channel.LoginAsync(username, password);
+        }
+        
+        public int AddLogin(string username, string password, int personId) {
+            return base.Channel.AddLogin(username, password, personId);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddLoginAsync(string username, string password, int personId) {
+            return base.Channel.AddLoginAsync(username, password, personId);
         }
     }
 }

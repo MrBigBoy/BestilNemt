@@ -64,7 +64,7 @@ namespace BestilNemtUnitTestTest
             warehouses.Add(warehouse);
             Shop shop = new Shop(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
             Shop serializationResult = SerializerTestHelpClass.TestSerialize<Shop>(shop);
-            Assert.AreEqual(shop.id, serializationResult.id);
+            Assert.AreEqual(shop.Id, serializationResult.Id);
         }
         [TestMethod]
         public void TestShopNameSER()
