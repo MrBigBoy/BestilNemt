@@ -6,35 +6,37 @@ namespace Models
     [DataContract]
     public class Shop
     {
-        
+
         [DataMember]
-        public int id { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public  string Address { get; set; }
+        public string Address { get; set; }
         [DataMember]
-        public  string CVR { get; set; }
+        public string CVR { get; set; }
         [DataMember]
         public List<Person> Persons { get; set; }
         [DataMember]
-        public List <Warehouse> Warehouses { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
 
         public Shop()
         {
-          
-            //Persons = new List<Person>();
+            Name = null;
+            Address = null;
+            CVR = null;
+            Persons = new List<Person>();
             Warehouses = new List<Warehouse>();
         }
 
-        public Shop(int id, string name, string address, string cvr, List<Person>  persons, List<Warehouse>  warehouses)
+        public Shop(int id, string name, string address, string cvr, List<Person> persons, List<Warehouse> warehouses)
         {
-            this.id = id;
+            this.Id = id;
             Name = name;
             Address = address;
             CVR = cvr;
             Persons = persons;
-            Warehouses = warehouses; 
+            Warehouses = warehouses;
 
         }
 
@@ -45,6 +47,6 @@ namespace Models
             CVR = cvr;
         }
 
-       
+
     }
 }
