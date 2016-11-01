@@ -51,7 +51,7 @@
     <Compile Include="IDbLogin.cs" />
     <Compile Include="IDbShop.cs" />
     <Compile Include="IDbWarehouse.cs" />
-    <Compile Include="IPerson.cs" />
+    <Compile Include="IDbPerson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

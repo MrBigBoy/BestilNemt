@@ -13,9 +13,9 @@ namespace Controller
             DbPerson = dbPerson;
         }
 
-        public void CreatePerson(Person person)
+        public int CreatePerson(Person person)
         {
-            DbPerson.Create(person);
+           return DbPerson.Create(person);
         }
         public Person Find(int id)
         {
