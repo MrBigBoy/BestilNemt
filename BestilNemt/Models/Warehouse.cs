@@ -21,12 +21,12 @@ namespace Models
         [DataMember]
         public Shop Shop { get; set; }
 
-        public Warehouse(int id, int stock, int minStock, Product product, Shop shop)
+        public Warehouse(int id, int stock, int minStock, List<Product> products, Shop shop)
         {
             Id = Id;
             Stock = Stock;
             MinStock = MinStock;
-            Products = new List<Product>();
+            Products = products; 
             Shop = new Shop();
         }
 
