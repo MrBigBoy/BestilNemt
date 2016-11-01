@@ -12,12 +12,14 @@ namespace WcfService
         public WarehouseCtr WarehouseController { get; set; }
         public LoginCtr LoginCtr { get; set; }
         public ShopCtr ShopCtr { get; set; }
+        public CompanyCtr CompanyCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
             CustomerCtr = new CustomerCtr(new DbCustomer());
             WarehouseController = new WarehouseCtr(new DbWarehouse());
             ShopCtr = new ShopCtr(new DbShop());
+            CompanyCtr = new CompanyCtr(new DbCompany1());
         }
 
         public Customer findCustomer(int id)
@@ -32,7 +34,7 @@ namespace WcfService
 
         public List<Customer> GetALlCustomer()
         {
-            return CustomerCtr.GetAllPerson();
+            return CustomerCtr.GetAllCustomer();
         }
 
         public Warehouse GetWarehouse(int id)
@@ -103,6 +105,16 @@ namespace WcfService
         public void úpdateCustomer(Customer customer)
         {
             CustomerCtr.updateCustomer(customer); 
+        }
+
+        public void CreateCompany(Company company)
+        {
+            CompanyCtr.CreateCompany(company);
+        }
+
+        public List<Company> FindAllCompany()
+        {
+           return CompanyCtr.GetAllCompany();
         }
     }
 }

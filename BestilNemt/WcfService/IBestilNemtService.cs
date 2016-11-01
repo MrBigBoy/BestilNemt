@@ -61,6 +61,12 @@ namespace WcfService
 
         [OperationContract]
         int AddLogin(string username, string password, int personId);
+        [OperationContract]
+        void CreateCompany(Company company);
+
+        [OperationContract]
+        List<Company> FindAllCompany();
+
     }
 
 

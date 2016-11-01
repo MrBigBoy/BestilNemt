@@ -20,7 +20,7 @@ namespace DataAccessLayer
 
                     var cmd =
                         new SqlCommand(
-                            "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(id,birthday) VALUES(@DataID,@birthday);", conn);
+                            "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(id) VALUES(@DataID);", conn);
                     cmd.Parameters.AddWithValue("name", company.Name);
                     cmd.Parameters.AddWithValue("email", company.Email);
                     cmd.Parameters.AddWithValue("personType", company.PersonType);
@@ -33,12 +33,56 @@ namespace DataAccessLayer
 
         public List<Company> FindAllCompany()
         {
-            throw new NotImplementedException();
+            var companys = new List<Company>();
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Customer ON Person.ID = Company.ID WHERE Person.personType = 'Company'", conn);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var company = new Company()
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Name = reader.GetString(reader.GetOrdinal("name")),
+                        Email = reader.GetString(reader.GetOrdinal("email")),
+                        Address = reader.GetString(reader.GetOrdinal("address")),
+                        PersonType = reader.GetString(reader.GetOrdinal("personType")),
+                       
+                    };
+                    companys.Add(company);
+                }
+            }
+            return companys;
         }
 
         public Company FindCompany(int id)
         {
-            throw new NotImplementedException();
+            Company company = null;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.ID = @id", conn);
+                cmd.Parameters.AddWithValue("id", id);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    company = new Company()
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Name = reader.GetString(reader.GetOrdinal("name")),
+                        Email = reader.GetString(reader.GetOrdinal("email")),
+                        Address = reader.GetString(reader.GetOrdinal("address")),
+                        PersonType = reader.GetString(reader.GetOrdinal("personType")),
+                        
+                    };
+                }
+            }
+            return company;
         }
 
         public int RemoveCompany(int id)
