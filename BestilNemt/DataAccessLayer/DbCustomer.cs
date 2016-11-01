@@ -8,7 +8,7 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public class DbCustomer : IDbPerson
+    public class DbCustomer : IDbCustomer
     {
         public int Create(Customer customer)
         {
