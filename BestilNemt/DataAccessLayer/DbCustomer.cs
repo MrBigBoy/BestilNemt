@@ -70,10 +70,6 @@ namespace DataAccessLayer
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
                         Birthday = reader.GetDateTime(reader.GetOrdinal("birthday")),
-                        
-
-
-
                     };
                 }
             }
