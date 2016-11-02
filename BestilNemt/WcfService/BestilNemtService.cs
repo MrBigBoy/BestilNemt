@@ -26,7 +26,7 @@ namespace WcfService
 
         public Customer findCustomer(int id)
         {
-            return CustomerCtr.Find(id);
+            return CustomerCtr.FindCustomer(id);
         }
 
         public void createCustomer(Customer customer)

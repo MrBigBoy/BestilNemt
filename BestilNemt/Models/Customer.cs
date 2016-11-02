@@ -18,6 +18,13 @@ namespace Models
             
         }
 
+        public Customer(string name, string email, string address, DateTime birthday, Login login, List<Shop> shops, string personType) : base(name, email, address, login, shops, personType)
+        {
+
+            Birthday = birthday;
+
+        }
+
         public Customer()
         {
                 

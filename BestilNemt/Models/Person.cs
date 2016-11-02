@@ -41,5 +41,15 @@ namespace Models
             Shops = shops;
             PersonType = personType;
         }
+
+        public Person(string name, string email, string address, Login login, List<Shop> shops, string personType)
+        {
+            Name = name;
+            Email = email;
+            Address = address;
+            Login = new Login();
+            Shops = shops;
+            PersonType = personType;
+        }
     }
 }
