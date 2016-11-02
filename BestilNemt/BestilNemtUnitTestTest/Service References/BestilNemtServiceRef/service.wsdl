@@ -19,11 +19,11 @@
   <wsdl:message name="IBestilNemtService_createCustomer_OutputMessage">
     <wsdl:part name="parameters" element="tns:createCustomerResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_úpdateCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:úpdateCustomer" />
+  <wsdl:message name="IBestilNemtService_UpdateCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_úpdateCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:úpdateCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_UpdateCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCustomerResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_removeCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:removeCustomer" />
@@ -169,18 +169,6 @@
   <wsdl:message name="IBestilNemtService_FindCompany_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindCompanyResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateCompany_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateCompany" />
-  </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateCompany_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateCompanyResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindAllCompany_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindAllCompany" />
-  </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindAllCompany_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindAllCompanyResponse" />
-  </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
     <wsdl:operation name="findCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/findCustomer" message="tns:IBestilNemtService_findCustomer_InputMessage" />
@@ -190,40 +178,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/createCustomer" message="tns:IBestilNemtService_createCustomer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/createCustomerResponse" message="tns:IBestilNemtService_createCustomer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="úpdateCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/úpdateCustomer" message="tns:IBestilNemtService_úpdateCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/úpdateCustomerResponse" message="tns:IBestilNemtService_úpdateCustomer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="removeCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/removeCustomer" message="tns:IBestilNemtService_removeCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/removeCustomerResponse" message="tns:IBestilNemtService_removeCustomer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetALlCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetALlCustomer" message="tns:IBestilNemtService_GetALlCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetALlCustomerResponse" message="tns:IBestilNemtService_GetALlCustomer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CreateAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/CreateAdmin" message="tns:IBestilNemtService_CreateAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/CreateAdminResponse" message="tns:IBestilNemtService_CreateAdmin_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="FindAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindAdmin" message="tns:IBestilNemtService_FindAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindAdminResponse" message="tns:IBestilNemtService_FindAdmin_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetAllAdmins">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllAdmins" message="tns:IBestilNemtService_GetAllAdmins_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse" message="tns:IBestilNemtService_GetAllAdmins_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RemoveAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveAdmin" message="tns:IBestilNemtService_RemoveAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveAdminResponse" message="tns:IBestilNemtService_RemoveAdmin_OutputMessage" />
-    <wsdl:operation name="createCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/createCustomer" message="tns:IBestilNemtService_createCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/createCustomerResponse" message="tns:IBestilNemtService_createCustomer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="úpdateCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/úpdateCustomer" message="tns:IBestilNemtService_úpdateCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/úpdateCustomerResponse" message="tns:IBestilNemtService_úpdateCustomer_OutputMessage" />
+    <wsdl:operation name="UpdateCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCustomer" message="tns:IBestilNemtService_UpdateCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse" message="tns:IBestilNemtService_UpdateCustomer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="removeCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/removeCustomer" message="tns:IBestilNemtService_removeCustomer_InputMessage" />
@@ -249,9 +206,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveAdmin" message="tns:IBestilNemtService_RemoveAdmin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveAdminResponse" message="tns:IBestilNemtService_RemoveAdmin_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateAdmin" message="tns:IBestilNemtService_UpdateAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateAdminResponse" message="tns:IBestilNemtService_UpdateAdmin_OutputMessage" />
     <wsdl:operation name="UpdateAdmin">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateAdmin" message="tns:IBestilNemtService_UpdateAdmin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateAdminResponse" message="tns:IBestilNemtService_UpdateAdmin_OutputMessage" />
@@ -324,14 +278,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCompany" message="tns:IBestilNemtService_FindCompany_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCompanyResponse" message="tns:IBestilNemtService_FindCompany_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CreateCompany">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCompany" message="tns:IBestilNemtService_CreateCompany_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCompanyResponse" message="tns:IBestilNemtService_CreateCompany_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="FindAllCompany">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindAllCompany" message="tns:IBestilNemtService_FindAllCompany_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindAllCompanyResponse" message="tns:IBestilNemtService_FindAllCompany_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -353,8 +299,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="úpdateCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/úpdateCustomer" style="document" />
+    <wsdl:operation name="UpdateCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -571,24 +517,6 @@
     </wsdl:operation>
     <wsdl:operation name="FindCompany">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCompany" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateCompany">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/CreateCompany" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="FindAllCompany">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindAllCompany" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
