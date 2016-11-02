@@ -8,6 +8,7 @@ namespace BestilNemtUnitTestTest
 {
     /// <summary>
     /// Summary description for LoginUnitTest
+    /// ERROR: Here will be described the error
     /// </summary>
     [TestClass]
     public class LoginUnitTest
@@ -15,6 +16,7 @@ namespace BestilNemtUnitTestTest
         /// <summary>
         /// Test a LoginCtr constructor
         /// The test is successfull if the instance is not null
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void LoginCtrInitialize()
@@ -26,6 +28,7 @@ namespace BestilNemtUnitTestTest
         /// <summary>
         /// Test a AddLogin in the db
         /// The test is successfull if the returned value is 1
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void AddLoginDb()
@@ -39,6 +42,7 @@ namespace BestilNemtUnitTestTest
         /// <summary>
         /// Test a Login in the db
         /// The test is successfull if the returned login object is not null
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void LoginLoginDb()
@@ -52,6 +56,7 @@ namespace BestilNemtUnitTestTest
         /// <summary>
         /// Test a UpdateLogin in the db
         /// The test is successfull if the returned value is not 0
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void UpdateLoginDb()
@@ -65,6 +70,7 @@ namespace BestilNemtUnitTestTest
         /// <summary>
         /// Test a DelLogin in the db
         /// The test is successfull if the returned value is not 0
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void DelLoginDb()
@@ -79,6 +85,7 @@ namespace BestilNemtUnitTestTest
         /// <summary>
         /// Test a AddLogin in the Ctr through Db
         /// The test is successfull if the returned value is not 0
+        /// ERROR: non
         /// </summary>
         [TestMethod]
         public void AddLoginCtr()
@@ -92,7 +99,8 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test a AddLogin in the Ctr through Db
-        /// The test is successfull if the returned value is 0 because the Username and Password is a empty string
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username and Password is a empty string
         /// </summary>
         [TestMethod]
         public void AddLoginCtrFail()
@@ -106,7 +114,8 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test a AddLogin in the Ctr through Db
-        /// The test is successfull if the returned value is 0 because the Username and Password is a empty string
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username and Password is null
         /// </summary>
         [TestMethod]
         public void AddLoginCtrFail2()
@@ -120,7 +129,8 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test a AddLogin in the Ctr through Db
-        /// The test is successfull if the returned value is 0 because the Username is a empty string
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username is a empty string
         /// </summary>
         [TestMethod]
         public void AddLoginCtrFailUsername()
@@ -134,7 +144,8 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test a AddLogin in the Ctr through Db
-        /// The test is successfull if the returned value is 0 because the Username is a empty string
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username is null
         /// </summary>
         [TestMethod]
         public void AddLoginCtrFailUsername2()
@@ -148,7 +159,8 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test a AddLogin in the Ctr through Db
-        /// The test is successfull if the returned value is 0 because the Password is a empty string
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Password is a empty string
         /// </summary>
         [TestMethod]
         public void AddLoginCtrFailPassword()
@@ -162,7 +174,8 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test a AddLogin in the Ctr through Db
-        /// The test is successfull if the returned value is 0 because the Password is a empty string
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Password is null
         /// </summary>
         [TestMethod]
         public void AddLoginCtrFailPassword2()
@@ -175,8 +188,22 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
+        /// Test a AddLogin in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Login object is null
+        /// </summary>
+        [TestMethod]
+        public void AddLoginCtrFailNull()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var returnedValue = lCtr.AddLogin(null);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
         /// Test a Login in the Ctr through Db
         /// The test is successfull if the returned object is not null
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void LoginLoginCtr()
@@ -188,8 +215,78 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned object is null
+        /// ERROR: Username is a empty string
+        /// </summary>
+        [TestMethod]
+        public void LoginLoginCtrFailUsername()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("", "SuperAdmin");
+            login = lCtr.Login(login);
+            Assert.IsNull(login);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned object is null
+        /// ERROR: Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void LoginLoginCtrFailPassword()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("Admin", "");
+            login = lCtr.Login(login);
+            Assert.IsNull(login);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned object is null
+        /// ERROR: Username and Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void LoginLoginCtrFailBoth()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("", "");
+            login = lCtr.Login(login);
+            Assert.IsNull(login);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned object is null
+        /// ERROR: Username and Password is null
+        /// </summary>
+        [TestMethod]
+        public void LoginLoginCtrFailBoth2()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login(null, null);
+            login = lCtr.Login(login);
+            Assert.IsNull(login);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned object is null
+        /// ERROR: Login object is null
+        /// </summary>
+        [TestMethod]
+        public void LoginLoginCtrFailNull()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = lCtr.Login(null);
+            Assert.IsNull(login);
+        }
+
+        /// <summary>
         /// Test a UpdateLogin in the Ctr through Db
         /// The test is successfull if the returned value is not 0
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void UpdateLoginCtr()
@@ -201,8 +298,92 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
+        /// Test a UpdateLogin in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username is a empty string
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginCtrFailUsername()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("", "SuperAdmin");
+            var returnedValue = lCtr.UpdateLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a UpdateLogin in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginCtrFailPassword()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("Admin", "");
+            var returnedValue = lCtr.UpdateLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username and Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginCtrFailBoth()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("", "");
+            var returnedValue = lCtr.UpdateLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username and Password is null
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginCtrFailBoth2()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login(null, null);
+            var returnedValue = lCtr.UpdateLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username should be Admin instead of admin
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginCtrFailSmallLetters()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("admin", "SuperAdmin");
+            var returnedValue = lCtr.UpdateLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db
+        /// The test is successfull if the returned object is null
+        /// ERROR: Login object is null
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginCtrFailNull()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = lCtr.Login(null);
+            Assert.IsNull(login);
+        }
+
+        /// <summary>
         /// Test a DelLogin in the Ctr through Db
         /// The test is successfull if the returned value is not 0
+        /// ERROR: Non
         /// </summary>
         [TestMethod]
         public void DelLoginCtr()
@@ -212,6 +393,66 @@ namespace BestilNemtUnitTestTest
             lCtr.AddLogin(login);
             var returnedValue = lCtr.DelLogin(login);
             Assert.AreNotEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username is a empty string
+        /// </summary>
+        [TestMethod]
+        public void DelLoginCtrFailUsername()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("", "Password", 1);
+            lCtr.AddLogin(login);
+            var returnedValue = lCtr.DelLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void DelLoginCtrFailPassword()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("Admin", "", 1);
+            lCtr.AddLogin(login);
+            var returnedValue = lCtr.DelLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username and Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void DelLoginCtrFailBoth()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login("", "", 1);
+            lCtr.AddLogin(login);
+            var returnedValue = lCtr.DelLogin(login);
+            Assert.AreEqual(0, returnedValue);
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username and Password is null
+        /// </summary>
+        [TestMethod]
+        public void DelLoginCtrFailBoth2()
+        {
+            var lCtr = new LoginCtr(new DbLogin());
+            var login = new Login(null, null, 1);
+            lCtr.AddLogin(login);
+            var returnedValue = lCtr.DelLogin(login);
+            Assert.AreEqual(0, returnedValue);
         }
     }
 }

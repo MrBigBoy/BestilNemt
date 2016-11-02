@@ -28,7 +28,7 @@ namespace Controller
 
         public int UpdateLogin(Login login)
         {
-            return DbLogin.UpdateLogin(login);
+            return !ValidateLoginInput(login) ? 0 : DbLogin.UpdateLogin(login);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Controller
         /// <returns></returns>
         public bool ValidateLoginInput(Login login)
         {
-            return login.Username != null && !login.Username.Equals("") && login.Username.Length >= 5 && login.Password != null && !login.Password.Equals("") && login.Password.Length >= 6;
+            return login?.Username != null && !login.Username.Equals("") && login.Username.Length >= 5 && login.Password != null && !login.Password.Equals("") && login.Password.Length >= 6;
         }
     }
 }
