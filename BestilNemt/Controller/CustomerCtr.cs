@@ -33,9 +33,10 @@ namespace Controller
             return DbCustomer.RemoveCustomer(id);
         }
 
-        public void updateCustomer(Customer customer)
+        public int UpdateCustomer(Customer customer)
         {
-            DbCustomer.UpdateCustomer(customer);
+
+           return ValidatePersonInput(customer) ? DbCustomer.UpdateCustomer(customer): 0;
         }
 
         private bool ValidatePersonInput(Customer customer)

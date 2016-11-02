@@ -19,7 +19,7 @@ namespace WcfService
         [OperationContract]
         void createCustomer(Customer customer);
         [OperationContract]
-        void úpdateCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
         [OperationContract]
         void removeCustomer(int id);
 

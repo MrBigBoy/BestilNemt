@@ -9,7 +9,7 @@ using Models;
 
 namespace Controller.ControllerTestClasses
 {
-   public class CustomerCtrTestClass: IDbCustomer
+    public class CustomerCtrTestClass : IDbCustomer
     {
         private List<Customer> customers = new List<Customer>();
         private int idCounter = 1;
@@ -21,13 +21,13 @@ namespace Controller.ControllerTestClasses
             //    flag = 1;
             customers.Add(customer);
             idCounter++;
-           // return flag;
+            // return flag;
             return customer.Id;
         }
 
         public int RemoveCustomer(int id)
         {
-            throw new NotImplementedException();
+            return customers.Remove(FindCustomer(id)) ? 1 : 0;
         }
 
         public Customer FindCustomer(int id)
@@ -37,29 +37,22 @@ namespace Controller.ControllerTestClasses
 
         public List<Customer> FindAllCustomer()
         {
-            throw new NotImplementedException();
+            return customers;
         }
 
         public int UpdateCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            var returnedCust = FindCustomer(customer.Id);
+            returnedCust.Name = customer.Name;
+            returnedCust.Birthday = customer.Birthday;
+            returnedCust.Address = customer.Address;
+            returnedCust.Email = customer.Email;
+            returnedCust.Login = customer.Login;
+            returnedCust.Shops = customer.Shops;
+            returnedCust.PersonType = customer.PersonType;
+
+            return 1;
         }
 
-        private bool ValidatePersonInput(Customer customer)
-        {
-            if (customer == null || customer.Address.Equals("") || customer.Name.Equals("")
-                || customer.Name == null || customer.Address.Equals("")
-                || customer.Address == null || customer.Email.Equals("")
-                || customer.Email == null || customer.PersonType.Equals("") 
-                || !customer.PersonType.Equals("Customer")
-                || customer.PersonType == null || customer.Login == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
     }
 }

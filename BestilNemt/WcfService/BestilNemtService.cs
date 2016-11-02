@@ -129,9 +129,9 @@ namespace WcfService
             CustomerCtr.RemoveCustomer(id);
         }
 
-        public void úpdateCustomer(Customer customer)
+        public void UpdateCustomer(Customer customer)
         {
-            CustomerCtr.updateCustomer(customer); 
+            CustomerCtr.UpdateCustomer(customer); 
         }
 
         public void CreateCompany(Company company)

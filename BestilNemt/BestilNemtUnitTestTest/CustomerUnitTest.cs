@@ -87,7 +87,7 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for 
+        /// Test for the customer object with given id is found and returned value is not null
         /// </summary>
         [TestMethod]
         public void FindCustomerById()
@@ -97,6 +97,97 @@ namespace BestilNemtUnitTestTest
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
             customerCtr.CreatePerson(customer);
             Assert.IsNotNull(customerCtr.FindCustomer(1));
+        }
+
+
+        /// <summary>
+        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        /// Test for the customer object with given id is found and returned value is not null
+        /// </summary>
+        [TestMethod]
+        public void FindCustomerByIdFailed()
+        {
+            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+            Customer customer = new Customer(
+                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
+            customerCtr.CreatePerson(customer);
+            Assert.IsNull(customerCtr.FindCustomer(2));
+        }
+
+        /// <summary>
+        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        /// Test for the returned list size is equal to expected
+        /// </summary>
+        [TestMethod]
+        public void FindAllCustomers()
+        {
+            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+            Customer customer1 = new Customer(
+                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
+            Customer customer2 = new Customer(
+               "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Shop>(), "Customer");
+            customerCtr.CreatePerson(customer1);
+            customerCtr.CreatePerson(customer2);
+            Assert.AreEqual(2, customerCtr.GetAllCustomer().Count);
+        }
+
+        /// <summary>
+        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        /// Test for the returned list size is equal to expected
+        /// </summary>
+        [TestMethod]
+        public void FindAllCustomersFailed()
+        {
+            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+            Customer customer1 = new Customer(
+                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
+            Customer customer2 = new Customer(
+               "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Shop>(), "Customer");
+            customerCtr.CreatePerson(customer1);
+            customerCtr.CreatePerson(customer2);
+            Assert.AreNotEqual(1, customerCtr.GetAllCustomer().Count);
+        }
+
+        /// <summary>
+        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        /// Test for the returned list size is equal to expected
+        /// </summary>
+        [TestMethod]
+        public void UpdateCustomerName()
+        {
+            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+            Customer customer1 = new Customer(
+                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
+            customerCtr.CreatePerson(customer1);
+            Customer customer2 = new Customer
+            {
+                Id = 1,
+                Name = "NewCust",
+                Address = "Ddjk",
+                Email = "email",
+                Birthday = new DateTime(),
+                Login = new Login(),
+                Shops = new List<Shop>(),
+                PersonType = "Customer"
+            };
+            customerCtr.UpdateCustomer(customer2);
+            var returnedCust = customerCtr.FindCustomer(1);
+            Assert.AreEqual("NewCust", returnedCust.Name);
+        }
+
+        /// <summary>
+        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        /// Test for the returned list size is equal to expected
+        /// </summary>
+        [TestMethod]
+        public void RemoveCustomer()
+        {
+            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+            Customer customer1 = new Customer(
+                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
+            customerCtr.CreatePerson(customer1);
+            var flag = customerCtr.RemoveCustomer(1);
+            Assert.AreEqual(1, flag);
         }
     }
 }
