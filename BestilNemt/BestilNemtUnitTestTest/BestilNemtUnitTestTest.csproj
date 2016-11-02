@@ -67,6 +67,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ShopUnitTest.cs" />
+    <Compile Include="AdminUnitTest.cs" />
     <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>
