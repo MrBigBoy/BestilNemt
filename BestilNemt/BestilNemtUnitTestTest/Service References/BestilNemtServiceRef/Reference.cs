@@ -136,16 +136,28 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task<int> UpdateShopAsync(Models.Shop shop);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        Models.Login Login(string username, string password);
+        Models.Login Login([System.ServiceModel.MessageParameterAttribute(Name="login")] Models.Login login1);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
-        System.Threading.Tasks.Task<Models.Login> LoginAsync(string username, string password);
+        System.Threading.Tasks.Task<Models.Login> LoginAsync(Models.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
-        int AddLogin(string username, string password, int personId);
+        int AddLogin(Models.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
-        System.Threading.Tasks.Task<int> AddLoginAsync(string username, string password, int personId);
+        System.Threading.Tasks.Task<int> AddLoginAsync(Models.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateLogin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateLoginResponse")]
+        int UpdateLogin(Models.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateLogin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateLoginResponse")]
+        System.Threading.Tasks.Task<int> UpdateLoginAsync(Models.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DelLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DelLoginResponse")]
+        int DelLogin(Models.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DelLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DelLoginResponse")]
+        System.Threading.Tasks.Task<int> DelLoginAsync(Models.Login login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/CreateCompanyResponse")]
         void CreateCompany(Models.Company company);
@@ -365,20 +377,36 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.UpdateShopAsync(shop);
         }
         
-        public Models.Login Login(string username, string password) {
-            return base.Channel.Login(username, password);
+        public Models.Login Login(Models.Login login1) {
+            return base.Channel.Login(login1);
         }
         
-        public System.Threading.Tasks.Task<Models.Login> LoginAsync(string username, string password) {
-            return base.Channel.LoginAsync(username, password);
+        public System.Threading.Tasks.Task<Models.Login> LoginAsync(Models.Login login) {
+            return base.Channel.LoginAsync(login);
         }
         
-        public int AddLogin(string username, string password, int personId) {
-            return base.Channel.AddLogin(username, password, personId);
+        public int AddLogin(Models.Login login) {
+            return base.Channel.AddLogin(login);
         }
         
-        public System.Threading.Tasks.Task<int> AddLoginAsync(string username, string password, int personId) {
-            return base.Channel.AddLoginAsync(username, password, personId);
+        public System.Threading.Tasks.Task<int> AddLoginAsync(Models.Login login) {
+            return base.Channel.AddLoginAsync(login);
+        }
+        
+        public int UpdateLogin(Models.Login login) {
+            return base.Channel.UpdateLogin(login);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateLoginAsync(Models.Login login) {
+            return base.Channel.UpdateLoginAsync(login);
+        }
+        
+        public int DelLogin(Models.Login login) {
+            return base.Channel.DelLogin(login);
+        }
+        
+        public System.Threading.Tasks.Task<int> DelLoginAsync(Models.Login login) {
+            return base.Channel.DelLoginAsync(login);
         }
         
         public void CreateCompany(Models.Company company) {

@@ -81,7 +81,8 @@ namespace WcfService
         int UpdateLogin(Login login);
 
         [OperationContract]
-        int AddLogin(string username, string password, int personId);
+        int DelLogin(Login login);
+
         [OperationContract]
         void CreateCompany(Company company);
 
@@ -93,8 +94,6 @@ namespace WcfService
         void UpdateCompany(Company company);
         [OperationContract]
         Company FindCompany(int id);
-
-        int DelLogin(Login login);
     }
 
 
