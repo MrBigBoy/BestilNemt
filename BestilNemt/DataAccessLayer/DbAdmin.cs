@@ -55,7 +55,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, birthday FROM Person LEFT JOIN Administator ON Person.ID = Administator.ID WHERE Person.ID = @id", conn);
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Administator ON Person.ID = Administator.ID WHERE Person.ID = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -81,7 +81,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, birthday FROM Person LEFT JOIN Administator ON Person.ID = Administator.ID WHERE Person.personType = 'Administator'", conn);
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Administator ON Person.ID = Administator.ID WHERE Person.personType = 'Administator'", conn);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {

@@ -14,9 +14,9 @@ namespace Controller
             DbAdmin = dbAdmin;
         }
 
-        public void CreateAdmin(Admin admin)
+        public int CreateAdmin(Admin admin)
         {
-            DbAdmin.Create(admin);
+           return ValidateAdminInput(admin) ? DbAdmin.Create(admin) : 0;
         }
         public Admin FindAdmin(int id)
         {
@@ -33,9 +33,22 @@ namespace Controller
             return DbAdmin.RemoveAdmin(id);
         }
 
-        public void UpdateAdmin(Admin admin)
+        public int UpdateAdmin(Admin admin)
         {
-            DbAdmin.UpdateAdmin(admin);
+            return ValidateAdminInput(admin) ? DbAdmin.UpdateAdmin(admin) : 0;
+        }
+
+        private bool ValidateAdminInput(Admin admin)
+        {
+            if (admin == null || admin.Name.Equals("") || admin.Name == null || admin.Address.Equals("") ||
+                admin.Address == null || admin.Email == null || admin.Email.Equals("") || admin.PersonType != "Administator")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

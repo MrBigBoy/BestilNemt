@@ -40,6 +40,60 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="removeCustomer">
+  <xs:element name="findCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeCustomerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetALlCustomer">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetALlCustomerResponse">
+  <xs:element name="findCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetALlCustomerResult" nillable="true" type="q4:ArrayOfCustomer" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="findCustomerResult" nillable="true" type="q1:Customer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createCustomer">
+  <xs:element name="CreateAdmin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="admin" nillable="true" type="q5:Admin" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="customer" nillable="true" type="q2:Customer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createCustomerResponse">
+  <xs:element name="CreateAdminResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="úpdateCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="customer" nillable="true" type="q3:Customer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="úpdateCustomerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeCustomer">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
@@ -75,6 +129,21 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="FindAdmin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindAdminResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAdminResult" nillable="true" type="q6:Admin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAdmins">
   <xs:element name="FindAdmin">
     <xs:complexType>
       <xs:sequence>
@@ -285,6 +354,70 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AddLoginResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="company" nillable="true" type="q18:Company" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateCompanyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindAllCompany">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindAllCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllCompanyResult" nillable="true" type="q19:ArrayOfCompany" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveCompanyResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="company" nillable="true" type="q20:Company" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCompanyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindCompanyResult" nillable="true" type="q21:Company" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
