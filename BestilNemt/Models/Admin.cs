@@ -8,5 +8,18 @@ namespace Models
         {
 
         }
+
+        public Admin()
+        {
+            
+        }
+
+        public Admin(string name, string email, string address, string personType)
+        {
+            Name = name;
+            Email = email;
+            Address = address;
+            PersonType = personType;
+        }
     }
 }

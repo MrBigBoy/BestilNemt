@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 
@@ -13,14 +14,32 @@ namespace WcfService
     public interface IBestilNemtService
     {
         [OperationContract]
-        Person findPerson(int id);
+        Customer findCustomer(int id);
 
         [OperationContract]
-        void createPerson(Person person);
+        void createCustomer(Customer customer);
+        [OperationContract]
+        void UpdateCustomer(Customer customer);
+        [OperationContract]
+        void removeCustomer(int id);
 
         [OperationContract]
-        List<Person> GetALlPerson();
+        List<Customer> GetALlCustomer();
 
+        [OperationContract]
+        void CreateAdmin(Admin admin);
+
+        [OperationContract]
+        Admin FindAdmin(int id);
+
+        [OperationContract]
+        List<Admin> GetAllAdmins();
+
+        [OperationContract]
+        int RemoveAdmin(int id);
+
+        [OperationContract]
+        void UpdateAdmin(Admin admin);
         [OperationContract]
         Warehouse GetWarehouse(int id);
 
@@ -62,6 +81,19 @@ namespace WcfService
         int UpdateLogin(Login login);
 
         [OperationContract]
+        int AddLogin(string username, string password, int personId);
+        [OperationContract]
+        void CreateCompany(Company company);
+
+        [OperationContract]
+        List<Company> FindAllCompany();
+        [OperationContract]
+        int RemoveCompany(int id);
+        [OperationContract]
+        void UpdateCompany(Company company);
+        [OperationContract]
+        Company FindCompany(int id);
+
         int DelLogin(Login login);
     }
 

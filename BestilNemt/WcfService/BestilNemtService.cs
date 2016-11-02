@@ -2,36 +2,66 @@
 using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
+using System;
 
 namespace WcfService
 {
     public class BestilNemtService : IBestilNemtService
     {
-        public PersonCtr Personctr { get; set; }
+        public CustomerCtr CustomerCtr { get; set; }
         public WarehouseCtr WarehouseController { get; set; }
         public LoginCtr LoginCtr { get; set; }
         public ShopCtr ShopCtr { get; set; }
+        public CompanyCtr CompanyCtr { get; set; }
+        public AdminCtr AdminCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
-            Personctr = new PersonCtr(new DbPerson());
+            CustomerCtr = new CustomerCtr(new DbCustomer());
             WarehouseController = new WarehouseCtr(new DbWarehouse());
             ShopCtr = new ShopCtr(new DbShop());
+            CompanyCtr = new CompanyCtr(new DbCompany1());
+            AdminCtr = new AdminCtr(new DbAdmin());
         }
 
-        public Person findPerson(int id)
+        public Customer findCustomer(int id)
         {
-            return Personctr.Find(id);
+            return CustomerCtr.FindCustomer(id);
         }
 
-        public void createPerson(Person person)
+        public void createCustomer(Customer customer)
         {
-            Personctr.CreatePerson(person);
+            CustomerCtr.CreatePerson(customer);
         }
 
-        public List<Person> GetALlPerson()
+        public List<Customer> GetALlCustomer()
         {
-            return Personctr.GetAllPerson();
+            return CustomerCtr.GetAllCustomer();
+        }
+
+        public void CreateAdmin(Admin admin)
+        {
+            AdminCtr.CreateAdmin(admin);
+        }
+
+        public Admin FindAdmin(int id)
+        {
+            return AdminCtr.FindAdmin(id);
+        }
+
+        public List<Admin> GetAllAdmins()
+        {
+            return AdminCtr.GetAllAdmins();
+        }
+
+        public int RemoveAdmin(int id)
+        {
+            return AdminCtr.RemoveAdmin(id);
+        }
+
+        public void UpdateAdmin(Admin admin)
+        {
+            AdminCtr.UpdateAdmin(admin);
         }
 
         public Warehouse GetWarehouse(int id)
@@ -102,6 +132,41 @@ namespace WcfService
         public int UpdateShop(Shop shop)
         {
             return ShopCtr.UpdateShop(shop);
+        }
+
+        public void removeCustomer(int id)
+        {
+            CustomerCtr.RemoveCustomer(id);
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            CustomerCtr.UpdateCustomer(customer); 
+        }
+
+        public void CreateCompany(Company company)
+        {
+            CompanyCtr.CreateCompany(company);
+        }
+
+        public List<Company> FindAllCompany()
+        {
+           return CompanyCtr.GetAllCompany();
+        }
+
+        public int RemoveCompany(int id)
+        {
+           return CompanyCtr.removeCompany(id);
+        }
+
+        public void UpdateCompany(Company company)
+        {
+          CompanyCtr.updateCompany(company);
+        }
+
+        public Company FindCompany(int id)
+        {
+           return CompanyCtr.findCompany(id);
         }
     }
 }

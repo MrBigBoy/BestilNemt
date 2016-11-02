@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="LoginUnitTest.cs" />
+    <Compile Include="CustomerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerTestHelpClass.cs" />
     <Compile Include="SerializationTest.cs" />
@@ -66,10 +67,15 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ShopUnitTest.cs" />
+    <Compile Include="CompanyUnitTest.cs" />
+    <Compile Include="AdminUnitTest.cs" />
     <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Models.Admin.datasource" />
+    <None Include="Properties\DataSources\Models.Company.datasource" />
+    <None Include="Properties\DataSources\Models.Customer.datasource" />
     <None Include="Properties\DataSources\Models.Login.datasource" />
     <None Include="Properties\DataSources\Models.Person.datasource" />
     <None Include="Properties\DataSources\Models.Shop.datasource" />

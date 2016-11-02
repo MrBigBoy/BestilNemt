@@ -16,28 +16,40 @@ namespace Models
         public string Address { get; set; }
         [DataMember]
         public string PersonType { get; set; }
-       
+
         [DataMember]
         public Login Login { get; set; }
+        [DataMember]
         public List<Shop> Shops { get; set; }
 
         public Person()
         {
-            Id = Id;
-            Name = Name;
-            Email = Email;
-            Address = Address;
-            PersonType = PersonType;
+            Name = null;
+            Email = null;
+            Address = null;
+            PersonType = null;
+            Login = new Login();
+            Shops = new List<Shop>();
         }
-        public Person(int id, string name, string email, string address, Login login, List<Shop> shops,string personType)
+        public Person(int id, string name, string email, string address, Login login, List<Shop> shops, string personType)
         {
             Id = id;
             Name = name;
             Email = email;
             Address = address;
             Login = new Login();
-            Shops = shops; 
-            PersonType = personType; 
+            Shops = shops;
+            PersonType = personType;
+        }
+
+        public Person(string name, string email, string address, Login login, List<Shop> shops, string personType)
+        {
+            Name = name;
+            Email = email;
+            Address = address;
+            Login = new Login();
+            Shops = shops;
+            PersonType = personType;
         }
     }
 }
