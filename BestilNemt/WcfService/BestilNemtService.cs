@@ -13,6 +13,7 @@ namespace WcfService
         public LoginCtr LoginCtr { get; set; }
         public ShopCtr ShopCtr { get; set; }
         public CompanyCtr CompanyCtr { get; set; }
+        public AdminCtr AdminCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
