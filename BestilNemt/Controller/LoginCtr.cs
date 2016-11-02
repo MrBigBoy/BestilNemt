@@ -11,14 +11,35 @@ namespace Controller
             DbLogin = dbLogin;
         }
 
-        public int AddLogin(string username, string password, int personId)
+        public int AddLogin(Login login)
         {
-            return DbLogin.AddLogin(username, password, personId);
+            return !ValidateLoginInput(login) ? 0 : DbLogin.AddLogin(login);
         }
 
-        public Login Login(string username, string password)
+        public Login Login(Login login)
         {
-            return DbLogin.Login(username, password);
+            return ValidateLoginInput(login) ? DbLogin.Login(login) : null;
+        }
+
+        public int DelLogin(Login login)
+        {
+            return !ValidateLoginInput(login) ? 0 : DbLogin.DelLogin(login);
+        }
+
+        public int UpdateLogin(Login login)
+        {
+            return DbLogin.UpdateLogin(login);
+        }
+
+        /// <summary>
+        /// The Username must be a string of minimum 5 char
+        /// The Password must be a string of minimum 6 char
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public bool ValidateLoginInput(Login login)
+        {
+            return login.Username != null && !login.Username.Equals("") && login.Username.Length >= 5 && login.Password != null && !login.Password.Equals("") && login.Password.Length >= 6;
         }
     }
 }

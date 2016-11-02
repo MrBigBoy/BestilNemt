@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerTestClasses\LoginCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\ShopCtrTestClass.cs" />
     <Compile Include="LoginCtr.cs" />
     <Compile Include="PersonCtr.cs" />

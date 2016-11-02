@@ -59,14 +59,24 @@ namespace WcfService
             WarehouseController.Update(warehouse);
         }
 
-        public Login Login(string username, string password)
+        public Login Login(Login login)
         {
-            return LoginCtr.Login(username, password);
+            return LoginCtr.Login(login);
         }
 
-        public int AddLogin(string username, string password, int personId)
+        public int AddLogin(Login login)
         {
-            return LoginCtr.AddLogin(username, password, personId);
+            return LoginCtr.AddLogin(login);
+        }
+
+        public int UpdateLogin(Login login)
+        {
+            return LoginCtr.UpdateLogin(login);
+        }
+
+        public int DelLogin(Login login)
+        {
+            return LoginCtr.DelLogin(login);
         }
 
         public Shop GetShop(int id)

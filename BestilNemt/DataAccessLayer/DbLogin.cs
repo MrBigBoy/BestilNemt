@@ -9,28 +9,12 @@ namespace DataAccessLayer
 {
     public class DbLogin : IDbLogin
     {
-        public Login Login(string username, string password)
-        {
-            var login = new Login();
-            var parts = DownloadHash(username);
-            if (PasswordStorage.VerifyPassword(password, parts))
-            {
-                login.PersonId = DownloadPersonId(username);
-                login.Username = username;
-            }
-            else
-            {
-                return null;
-            }
-            return login;
-        }
-
-        public int AddLogin(string username, string password, int personId)
+        public int AddLogin(Login login)
         {
             var returnedValue = 0;
-            if (DownloadPersonId(username) != 0)
+            if (DownloadPersonId(login.Username) != 0)
                 return returnedValue;
-            var parts = PasswordStorage.CreateHash(password);
+            var parts = PasswordStorage.CreateHash(login.Password);
             using (
                 var conn =
                     new SqlConnection(
@@ -39,12 +23,50 @@ namespace DataAccessLayer
                 conn.Open();
                 // Now the connection is open
                 var cmd = new SqlCommand("INSERT into LoginTable values(@username,@parts,@personId)", conn);
-                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("username", login.Username);
                 cmd.Parameters.AddWithValue("parts", parts);
-                cmd.Parameters.AddWithValue("personId", personId);
+                cmd.Parameters.AddWithValue("personId", login.PersonId);
                 returnedValue = cmd.ExecuteNonQuery();
             }
             return returnedValue;
+        }
+
+        public Login Login(Login login)
+        {
+            var parts = DownloadHash(login.Username);
+            if (!PasswordStorage.VerifyPassword(login.Password, parts))
+                return null;
+            login.PersonId = DownloadPersonId(login.Username);
+            return login;
+        }
+
+        public int UpdateLogin(Login login)
+        {
+            var parts = PasswordStorage.CreateHash(login.Password);
+            int i;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("UPDATE LoginTable SET username=@username, parts=@parts WHERE personId=@personId", conn);
+                cmd.Parameters.AddWithValue("username", login.Username);
+                cmd.Parameters.AddWithValue("parts", parts);
+                cmd.Parameters.AddWithValue("personId", login.PersonId);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
+        }
+
+        public int DelLogin(Login login)
+        {
+            int i;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("DELETE FROM LoginTable WHERE personId = @personId", conn);
+                cmd.Parameters.AddWithValue("personId", login.PersonId);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
         }
 
         private static string DownloadHash(string username)

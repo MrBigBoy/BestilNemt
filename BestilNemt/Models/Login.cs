@@ -14,17 +14,55 @@ namespace Models
         [DataMember]
         public int PersonId { get; set; }
 
+        /// <summary>
+        /// The main constructor all contructors is depending on
+        /// </summary>
         public Login()
         {
 
         }
 
-        public Login(int id, string username, string password, int personId)
+        /// <summary>
+        /// The Login contructor with use of constructor chaining
+        /// </summary>
+        /// <param name="id"></param>
+        public Login(int id) : this()
         {
             Id = id;
+        }
+
+        /// <summary>
+        /// The Login contructor with use of constructor chaining
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        public Login(string username, string password) : this()
+        {
             Username = username;
             Password = password;
+        }
+
+        /// <summary>
+        /// The Login contructor with use of constructor chaining
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="personId"></param>
+        public Login(string username, string password, int personId) : this(username, password)
+        {
             PersonId = personId;
+        }
+
+        /// <summary>
+        /// The Login contructor with use of constructor chaining
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="personId"></param>
+        public Login(int id, string username, string password, int personId) : this(username, password, personId)
+        {
+            Id = id;
         }
     }
 }

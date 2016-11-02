@@ -53,10 +53,16 @@ namespace WcfService
         int UpdateShop(Shop shop);
 
         [OperationContract]
-        Login Login(string username, string password);
+        Login Login(Login login);
 
         [OperationContract]
-        int AddLogin(string username, string password, int personId);
+        int AddLogin(Login login);
+
+        [OperationContract]
+        int UpdateLogin(Login login);
+
+        [OperationContract]
+        int DelLogin(Login login);
     }
 
 
