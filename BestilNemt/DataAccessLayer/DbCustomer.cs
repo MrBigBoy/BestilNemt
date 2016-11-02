@@ -13,7 +13,7 @@ namespace DataAccessLayer
     {
         public int Create(Customer customer)
         {
-            int i;
+            int id;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -22,16 +22,16 @@ namespace DataAccessLayer
 
                 var cmd =
                     new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(id,birthday) VALUES(@DataID,@birthday);", conn);
+                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address) output inserted.id VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(id,birthday) VALUES(@DataID,@birthday);", conn);
                 cmd.Parameters.AddWithValue("name", customer.Name);
                 cmd.Parameters.AddWithValue("email", customer.Email);
                 cmd.Parameters.AddWithValue("personType", customer.PersonType);
                 cmd.Parameters.AddWithValue("address", customer.Address);
                 cmd.Parameters.AddWithValue("birthday", customer.Birthday);
-                i = cmd.ExecuteNonQuery();
+                id = (int) cmd.ExecuteScalar();
 
             }
-            return i;
+            return id;
         }
 
         public int RemoveCustomer(int id)
@@ -44,7 +44,6 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = new SqlCommand("Delete from Customer where Id = @id;Delete from Person where Id = @id", conn);
                 cmd.Parameters.AddWithValue("Id", id);
-                //cmd.Parameters.AddWithValue("name", customer.Name);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
@@ -70,7 +69,7 @@ namespace DataAccessLayer
                         Email = reader.GetString(reader.GetOrdinal("email")),
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Birthday = reader.GetDateTime(reader.GetOrdinal("birthday")),
+                        Birthday =  DateTime.Parse(reader.GetString(reader.GetOrdinal("birthday")))
                     };
                 }
             }
@@ -96,7 +95,7 @@ namespace DataAccessLayer
                         Email = reader.GetString(reader.GetOrdinal("email")),
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Birthday = reader.GetDateTime(reader.GetOrdinal("birthday")),
+                        Birthday = DateTime.Parse(reader.GetString(reader.GetOrdinal("birthday")))
                     };
                     customers.Add(customer);
                 }
@@ -113,12 +112,13 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd =
-                    new SqlCommand("UPDATE Person SET name=@name, email=@email, address=@address WHERE id=@id",
-                        conn);
+                    new SqlCommand("UPDATE Person SET name=@name, email=@email, address=@address WHERE id=@id; " +
+                                   "UPDATE Customer SET birthday=@birthday WHERE id = @id", conn);
                 cmd.Parameters.AddWithValue("id", customer.Id);
                 cmd.Parameters.AddWithValue("name", customer.Name);
                 cmd.Parameters.AddWithValue("email", customer.Email);
                 cmd.Parameters.AddWithValue("address", customer.Address);
+                cmd.Parameters.AddWithValue("birthday", customer.Birthday);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
