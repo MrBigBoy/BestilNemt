@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CompanyCtr.cs" />
     <Compile Include="AdminCtr.cs" />
+    <Compile Include="ControllerTestClasses\CompanyCtrTestClasses.cs" />
     <Compile Include="ControllerTestClasses\ShopCtrTestClass.cs" />
     <Compile Include="LoginCtr.cs" />
     <Compile Include="CustomerCtr.cs" />

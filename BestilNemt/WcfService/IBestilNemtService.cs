@@ -81,6 +81,12 @@ namespace WcfService
 
         [OperationContract]
         List<Company> FindAllCompany();
+        [OperationContract]
+        int RemoveCompany(int id);
+        [OperationContract]
+        void UpdateCompany(Company company);
+        [OperationContract]
+        Company FindCompany(int id);
 
     }
 

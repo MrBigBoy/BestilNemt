@@ -143,5 +143,20 @@ namespace WcfService
         {
            return CompanyCtr.GetAllCompany();
         }
+
+        public int RemoveCompany(int id)
+        {
+           return CompanyCtr.removeCompany(id);
+        }
+
+        public void UpdateCompany(Company company)
+        {
+          CompanyCtr.updateCompany(company);
+        }
+
+        public Company FindCompany(int id)
+        {
+           return CompanyCtr.findCompany(id);
+        }
     }
 }
