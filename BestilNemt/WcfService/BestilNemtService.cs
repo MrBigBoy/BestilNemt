@@ -26,7 +26,7 @@ namespace WcfService
 
         public Customer findCustomer(int id)
         {
-            return CustomerCtr.Find(id);
+            return CustomerCtr.FindCustomer(id);
         }
 
         public void createCustomer(Customer customer)
@@ -142,6 +142,21 @@ namespace WcfService
         public List<Company> FindAllCompany()
         {
            return CompanyCtr.GetAllCompany();
+        }
+
+        public int RemoveCompany(int id)
+        {
+           return CompanyCtr.removeCompany(id);
+        }
+
+        public void UpdateCompany(Company company)
+        {
+          CompanyCtr.updateCompany(company);
+        }
+
+        public Company FindCompany(int id)
+        {
+           return CompanyCtr.findCompany(id);
         }
     }
 }

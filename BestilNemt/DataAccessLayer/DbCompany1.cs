@@ -39,7 +39,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Customer ON Person.ID = Company.ID WHERE Person.personType = 'Company'", conn);
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.personType = 'Company'", conn);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -87,12 +87,37 @@ namespace DataAccessLayer
 
         public int RemoveCompany(int id)
         {
-            throw new NotImplementedException();
+            int i;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("Delete from Company where Id = @id;Delete from Person where Id = @id", conn);
+                cmd.Parameters.AddWithValue("Id", id);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
         }
 
         public int UpdateCompany(Company company)
         {
-            throw new NotImplementedException();
+            int i;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd =
+                    new SqlCommand("UPDATE Person SET name=@name, email=@email, address=@address WHERE id=@id",
+                        conn);
+                cmd.Parameters.AddWithValue("id", company.Id);
+                cmd.Parameters.AddWithValue("name", company.Name);
+                cmd.Parameters.AddWithValue("email", company.Email);
+                cmd.Parameters.AddWithValue("address", company.Address);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
         }
     }
 }
