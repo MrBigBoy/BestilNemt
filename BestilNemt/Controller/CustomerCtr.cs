@@ -14,11 +14,11 @@ namespace Controller
             DbCustomer = dbCustomer;
         }
 
-        public void CreatePerson(Customer customer)
+        public int CreatePerson(Customer customer)
         {
-            DbCustomer.Create(customer);
+            return ValidatePersonInput(customer) ? DbCustomer.Create(customer) : 0;
         }
-        public Customer Find(int id)
+        public Customer FindCustomer(int id)
         {
             return DbCustomer.FindCustomer(id);
         }
@@ -35,7 +35,24 @@ namespace Controller
 
         public void updateCustomer(Customer customer)
         {
-            DbCustomer.UpdateCustomer(customer); 
+            DbCustomer.UpdateCustomer(customer);
+        }
+
+        private bool ValidatePersonInput(Customer customer)
+        {
+            if (customer == null || customer.Address.Equals("") || customer.Name.Equals("")
+                || customer.Name == null || customer.Address.Equals("")
+                || customer.Address == null || customer.Email.Equals("")
+                || customer.Email == null || customer.PersonType.Equals("")
+                || !customer.PersonType.Equals("Customer")
+                || customer.PersonType == null )
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
     }
