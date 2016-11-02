@@ -23,7 +23,7 @@ namespace Controller
             return DbCustomer.FindCustomer(id);
         }
 
-        public List<Customer> GetAllPerson()
+        public List<Customer> GetAllCustomer()
         {
             return DbCustomer.FindAllCustomer();
         }

@@ -7,7 +7,7 @@ using Models;
 
 namespace DataAccessLayer
 {
-    interface IDbAdmin
+    public interface IDbAdmin
     {
         int Create(Admin admin);
         int RemoveAdmin(int id);

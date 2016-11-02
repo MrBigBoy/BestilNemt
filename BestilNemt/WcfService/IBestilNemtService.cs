@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 
@@ -25,6 +26,20 @@ namespace WcfService
         [OperationContract]
         List<Customer> GetALlCustomer();
 
+        [OperationContract]
+        void CreateAdmin(Admin admin);
+
+        [OperationContract]
+        Admin FindAdmin(int id);
+
+        [OperationContract]
+        List<Admin> GetAllAdmins();
+
+        [OperationContract]
+        int RemoveAdmin(int id);
+
+        [OperationContract]
+        void UpdateAdmin(Admin admin);
         [OperationContract]
         Warehouse GetWarehouse(int id);
 
@@ -61,6 +76,12 @@ namespace WcfService
 
         [OperationContract]
         int AddLogin(string username, string password, int personId);
+        [OperationContract]
+        void CreateCompany(Company company);
+
+        [OperationContract]
+        List<Company> FindAllCompany();
+
     }
 
 

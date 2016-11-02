@@ -12,12 +12,16 @@ namespace WcfService
         public WarehouseCtr WarehouseController { get; set; }
         public LoginCtr LoginCtr { get; set; }
         public ShopCtr ShopCtr { get; set; }
+        public CompanyCtr CompanyCtr { get; set; }
+        public AdminCtr AdminCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
             CustomerCtr = new CustomerCtr(new DbCustomer());
             WarehouseController = new WarehouseCtr(new DbWarehouse());
             ShopCtr = new ShopCtr(new DbShop());
+            CompanyCtr = new CompanyCtr(new DbCompany1());
+            AdminCtr = new AdminCtr(new DbAdmin());
         }
 
         public Customer findCustomer(int id)
@@ -32,7 +36,32 @@ namespace WcfService
 
         public List<Customer> GetALlCustomer()
         {
-            return CustomerCtr.GetAllPerson();
+            return CustomerCtr.GetAllCustomer();
+        }
+
+        public void CreateAdmin(Admin admin)
+        {
+            AdminCtr.CreateAdmin(admin);
+        }
+
+        public Admin FindAdmin(int id)
+        {
+            return AdminCtr.FindAdmin(id);
+        }
+
+        public List<Admin> GetAllAdmins()
+        {
+            return AdminCtr.GetAllAdmins();
+        }
+
+        public int RemoveAdmin(int id)
+        {
+            return AdminCtr.RemoveAdmin(id);
+        }
+
+        public void UpdateAdmin(Admin admin)
+        {
+            AdminCtr.UpdateAdmin(admin);
         }
 
         public Warehouse GetWarehouse(int id)
@@ -103,6 +132,16 @@ namespace WcfService
         public void úpdateCustomer(Customer customer)
         {
             CustomerCtr.updateCustomer(customer); 
+        }
+
+        public void CreateCompany(Company company)
+        {
+            CompanyCtr.CreateCompany(company);
+        }
+
+        public List<Company> FindAllCompany()
+        {
+           return CompanyCtr.GetAllCompany();
         }
     }
 }
