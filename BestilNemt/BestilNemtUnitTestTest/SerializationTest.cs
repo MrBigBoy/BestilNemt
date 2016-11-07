@@ -323,48 +323,42 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void TestProductIdSER()
         {
-            Warehouse warehouse = new Warehouse();
-            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50, warehouse);
+            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50);
             Product serializationResult = SerializerTestHelpClass.TestSerialize<Product>(product);
             Assert.AreEqual(product.Id, serializationResult.Id);
         }
         [TestMethod]
         public void TestProductNameSER()
         {
-            Warehouse warehouse = new Warehouse();
-            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50, warehouse);
+            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50);
             Product serializationResult = SerializerTestHelpClass.TestSerialize<Product>(product);
             Assert.AreEqual(product.Name, serializationResult.Name);
         }
         [TestMethod]
         public void TestProductCatecorySER()
         {
-            Warehouse warehouse = new Warehouse();
-            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50, warehouse);
+            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50);
             Product serializationResult = SerializerTestHelpClass.TestSerialize<Product>(product);
             Assert.AreEqual(product.Category, serializationResult.Category);
         }
         [TestMethod]
         public void TestProductDescriptionSER()
         {
-            Warehouse warehouse = new Warehouse();
-            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50, warehouse);
+            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50);
             Product serializationResult = SerializerTestHelpClass.TestSerialize<Product>(product);
             Assert.AreEqual(product.Description, serializationResult.Description);
         }
         [TestMethod]
         public void TestProductSavingSER()
         {
-            Warehouse warehouse = new Warehouse();
-            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50, warehouse);
+            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50);
             Product serializationResult = SerializerTestHelpClass.TestSerialize<Product>(product);
             Assert.AreEqual(product.Saving, serializationResult.Saving);
         }
         [TestMethod]
         public void TestProductPriceSER()
         {
-            Warehouse warehouse = new Warehouse();
-            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50, warehouse);
+            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50);
             Product serializationResult = SerializerTestHelpClass.TestSerialize<Product>(product);
             Assert.AreEqual(product.Price, serializationResult.Price);
         }
