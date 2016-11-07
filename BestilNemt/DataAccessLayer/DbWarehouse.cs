@@ -55,7 +55,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM LoginTable where username=@username and password1=@password", conn);
+                var cmd = new SqlCommand("SELECT * FROM Warehouse", conn);
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
