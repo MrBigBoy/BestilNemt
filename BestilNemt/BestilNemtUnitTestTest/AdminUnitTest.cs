@@ -29,7 +29,7 @@ namespace BestilNemtUnitTestTest
         public void CreateAdmin()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "Bob@mail.com","Long road 1", "Administator");
+            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
             var flag = adminCtr.CreateAdmin(admin);
             Assert.AreEqual(1, flag);
         }
@@ -41,7 +41,7 @@ namespace BestilNemtUnitTestTest
         public void CreateAdminNoName()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("","Bob@mail.com", "Long road 1", "Administator");
+            var admin = new Admin("", "Bob@mail.com", "Long road 1", "Administrator", 1);
             var flag = adminCtr.CreateAdmin(admin);
             Assert.AreEqual(0, flag);
         }
@@ -53,7 +53,7 @@ namespace BestilNemtUnitTestTest
         public void CreateAdminNoEmail()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "", "Long road 1", "Administator");
+            var admin = new Admin("Bob", "", "Long road 1", "Administrator", 1);
             var flag = adminCtr.CreateAdmin(admin);
             Assert.AreEqual(0, flag);
         }
@@ -65,19 +65,19 @@ namespace BestilNemtUnitTestTest
         public void CreateAdminNoAddress()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "Bob@mail.com", "", "Administator");
+            var admin = new Admin("Bob", "Bob@mail.com", "", "Administrator", 1);
             var flag = adminCtr.CreateAdmin(admin);
             Assert.AreEqual(0, flag);
         }
         /// <summary>
         /// Tests the AdminCtr
-        /// The return value will be 0 if the person type is something else but Administator
+        /// The return value will be 0 if the person type is something else but Administrator
         /// </summary>
         [TestMethod]
         public void CreateAdminWrongPersonType()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Customer");
+            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Customer", 1);
             var flag = adminCtr.CreateAdmin(admin);
             Assert.AreEqual(0, flag);
         }
@@ -89,7 +89,7 @@ namespace BestilNemtUnitTestTest
         public void CreateAdminNoPersonType()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "");
+            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "", 1);
             var flag = adminCtr.CreateAdmin(admin);
             Assert.AreEqual(0, flag);
         }
@@ -101,7 +101,7 @@ namespace BestilNemtUnitTestTest
         public void GetAdminById()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administator");
+            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
             adminCtr.CreateAdmin(admin);
             Assert.IsNotNull(adminCtr.FindAdmin(1));
         }
@@ -113,7 +113,7 @@ namespace BestilNemtUnitTestTest
         public void GetAdminByIdFail()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administator");
+            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
             adminCtr.CreateAdmin(admin);
             Assert.IsNull(adminCtr.FindAdmin(2));
         }
@@ -125,13 +125,13 @@ namespace BestilNemtUnitTestTest
         public void GetAllAdmins()
         {
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
-            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administator");
-            var admin2 = new Admin("Bill", "Bill@mail.com", "Long road 3", "Administator");
+            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
+            var admin2 = new Admin("Bill", "Bill@mail.com", "Long road 3", "Administrator", 2);
             adminCtr.CreateAdmin(admin);
             adminCtr.CreateAdmin(admin2);
             Assert.AreEqual(2, adminCtr.GetAllAdmins().Count);
         }
 
-        
+
     }
 }

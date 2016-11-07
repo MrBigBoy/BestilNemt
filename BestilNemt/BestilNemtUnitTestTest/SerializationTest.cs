@@ -16,7 +16,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Customer customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops,"Customer");
+            Customer customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
             Customer serializationResult = SerializerTestHelpClass.TestSerialize<Customer>(customer);
             Assert.AreEqual(customer.Id, serializationResult.Id);
         }
@@ -72,7 +72,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops,"Company",1234567,1);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
             Assert.AreEqual(company.Id, serializationResult.Id);
         }
@@ -83,7 +83,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
             Assert.AreEqual(company.Name, serializationResult.Name);
         }
@@ -94,7 +94,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
             Assert.AreEqual(company.Email, serializationResult.Email);
         }
@@ -105,7 +105,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
             Assert.AreEqual(company.Address, serializationResult.Address);
         }
@@ -116,7 +116,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
             Assert.AreEqual(company.PersonType, serializationResult.PersonType);
         }
@@ -127,7 +127,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
             Assert.AreEqual(company.CVR, serializationResult.CVR);
         }
@@ -138,7 +138,7 @@ namespace BestilNemtUnitTestTest
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
             Assert.AreEqual(company.Kontonr, serializationResult.Kontonr);
         }
@@ -236,7 +236,7 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(shop.Name, serializationResult.Name);
         }
 
-        
+
 
         [TestMethod]
         public void TestShopAddresSER()
@@ -324,7 +324,7 @@ namespace BestilNemtUnitTestTest
         public void TestProductIdSER()
         {
             Warehouse warehouse = new Warehouse();
-            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr",10.50, warehouse);
+            Product product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 10.50, warehouse);
             Product serializationResult = SerializerTestHelpClass.TestSerialize<Product>(product);
             Assert.AreEqual(product.Id, serializationResult.Id);
         }
