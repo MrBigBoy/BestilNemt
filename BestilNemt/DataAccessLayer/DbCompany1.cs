@@ -20,7 +20,7 @@ namespace DataAccessLayer
 
                 var cmd =
                     new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(id,cvr,kontorNr) VALUES(@DataID,@CVR,@KontorNr);", conn);
+                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(id, cvr, kontorNr) VALUES(@DataID,@CVR,@KontorNr);", conn);
                 cmd.Parameters.AddWithValue("name", company.Name);
                 cmd.Parameters.AddWithValue("email", company.Email);
                 cmd.Parameters.AddWithValue("personType", company.PersonType);

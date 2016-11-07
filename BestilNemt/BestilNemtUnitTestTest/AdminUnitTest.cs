@@ -131,7 +131,13 @@ namespace BestilNemtUnitTestTest
             adminCtr.CreateAdmin(admin2);
             Assert.AreEqual(2, adminCtr.GetAllAdmins().Count);
         }
-
-
+        [TestMethod]
+        public void CreateAdminCtrDb()
+        {
+            var adminCtr = new AdminCtr(new DbAdmin());
+            var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
+            var id = adminCtr.CreateAdmin(admin);
+            Assert.AreNotEqual(0,id);
+        }
     }
 }
