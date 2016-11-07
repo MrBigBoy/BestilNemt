@@ -455,10 +455,6 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(0, returnedValue);
         }
 
-
-
-
-
         /// <summary>
         /// Test a Login in the Ctr through Db with WCF
         /// The test is successfull if the returned object is null

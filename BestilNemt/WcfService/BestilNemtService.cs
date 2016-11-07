@@ -2,7 +2,6 @@
 using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
-using System;
 
 namespace WcfService
 {
@@ -14,6 +13,7 @@ namespace WcfService
         public ShopCtr ShopCtr { get; set; }
         public CompanyCtr CompanyCtr { get; set; }
         public AdminCtr AdminCtr { get; set; }
+        public ProductCtr ProductCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
@@ -22,6 +22,7 @@ namespace WcfService
             ShopCtr = new ShopCtr(new DbShop());
             CompanyCtr = new CompanyCtr(new DbCompany1());
             AdminCtr = new AdminCtr(new DbAdmin());
+            ProductCtr = new ProductCtr(new DbProduct());
         }
 
         public Customer FindCustomer(int id)
@@ -167,6 +168,31 @@ namespace WcfService
         public Company FindCompany(int id)
         {
            return CompanyCtr.findCompany(id);
+        }
+
+        public int AddProduct(Product product)
+        {
+            return ProductCtr.CreateProduct(product);
+        }
+
+        public Product GetProduct(int id)
+        {
+            return ProductCtr.FindProduct(id);
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            return ProductCtr.FindAllProducts();
+        }
+
+        public int UpdateProduct(Product product)
+        {
+            return ProductCtr.UpdateProduct(product);
+        }
+
+        public int DeleteProduct(int id)
+        {
+            return ProductCtr.DeleteProduct(id);
         }
     }
 }

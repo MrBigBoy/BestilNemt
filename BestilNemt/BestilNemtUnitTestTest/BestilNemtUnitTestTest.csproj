@@ -56,6 +56,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CartUnitTest.cs" />
     <Compile Include="LoginUnitTest.cs" />
     <Compile Include="CustomerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="ShopUnitTest.cs" />
     <Compile Include="CompanyUnitTest.cs" />
     <Compile Include="AdminUnitTest.cs" />
+    <Compile Include="ProductUnitTest.cs" />
     <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>

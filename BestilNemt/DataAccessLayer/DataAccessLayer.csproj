@@ -45,15 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbAdmin.cs" />
+    <Compile Include="DbCart.cs" />
     <Compile Include="DbLogin.cs" />
     <Compile Include="DbCustomer.cs" />
     <Compile Include="DbPartOrder.cs" />
+    <Compile Include="DbProduct.cs" />
     <Compile Include="DbWarehouse.cs" />
     <Compile Include="DbShop.cs" />
     <Compile Include="IDbAdmin.cs" />
+    <Compile Include="IDbCart.cs" />
     <Compile Include="IDbCompany.cs" />
     <Compile Include="DbCompany1.cs" />
     <Compile Include="IDbLogin.cs" />
+    <Compile Include="IDbProduct.cs" />
     <Compile Include="IDbPartOrder.cs" />
     <Compile Include="IDbShop.cs" />
     <Compile Include="IDbWarehouse.cs" />
