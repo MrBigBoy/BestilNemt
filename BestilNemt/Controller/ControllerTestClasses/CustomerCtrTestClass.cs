@@ -37,7 +37,7 @@ namespace Controller.ControllerTestClasses
 
         public List<Customer> FindAllCustomer()
         {
-            return customer;
+            return customers;
         }
 
         public int UpdateCustomer(Customer customer)
