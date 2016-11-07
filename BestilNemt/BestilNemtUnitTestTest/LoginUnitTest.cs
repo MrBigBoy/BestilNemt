@@ -62,7 +62,7 @@ namespace BestilNemtUnitTestTest
         public void UpdateLoginDb()
         {
             var dbLogin = new DbLogin();
-            var login = new Login("Admin", "SuperAdmin", 3);
+            var login = new Login("Admin", "SuperAdmin", 2);
             var returnedValue = dbLogin.UpdateLogin(login);
             Assert.AreNotEqual(0, returnedValue);
         }
@@ -454,5 +454,7 @@ namespace BestilNemtUnitTestTest
             var returnedValue = lCtr.DelLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
+
+
     }
 }
