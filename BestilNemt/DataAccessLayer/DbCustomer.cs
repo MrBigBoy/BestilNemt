@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Net.Sockets;
 using System.ServiceModel.Channels;
-using Controller.ControllerTestClasses;
 using Models;
 
 namespace DataAccessLayer
@@ -69,7 +68,6 @@ namespace DataAccessLayer
                         Email = reader.GetString(reader.GetOrdinal("email")),
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        //Birthday =  DateTime.Parse(reader.GetString(reader.GetOrdinal("birthday")))
                         Birthday = reader.GetDateTime(reader.GetOrdinal("birthday"))
                     };
                 }
