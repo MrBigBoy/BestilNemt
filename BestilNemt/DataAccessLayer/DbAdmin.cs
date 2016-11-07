@@ -21,7 +21,7 @@ namespace DataAccessLayer
 
                 var cmd =
                     new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administator(id) VALUES(@DataID);", conn);
+                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(id) VALUES(@DataID);", conn);
                 cmd.Parameters.AddWithValue("name", admin.Name);
                 cmd.Parameters.AddWithValue("email", admin.Email);
                 cmd.Parameters.AddWithValue("personType", admin.PersonType);
@@ -40,7 +40,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Administator where Id = @id;Delete from Person where Id = @id", conn);
+                var cmd = new SqlCommand("Delete from Administrator where Id = @id;Delete from Person where Id = @id", conn);
                 cmd.Parameters.AddWithValue("Id", id);
                 i = cmd.ExecuteNonQuery();
             }
@@ -55,7 +55,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Administator ON Person.ID = Administator.ID WHERE Person.ID = @id", conn);
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, memberNr FROM Person LEFT JOIN Administrator ON Person.ID = Administrator.ID WHERE Person.ID = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -67,6 +67,8 @@ namespace DataAccessLayer
                         Email = reader.GetString(reader.GetOrdinal("email")),
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
+                        Membernr = reader.GetInt32(reader.GetOrdinal("memberNr"))
+
                     };
                 }
             }
@@ -81,7 +83,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType FROM Person LEFT JOIN Administator ON Person.ID = Administator.ID WHERE Person.personType = 'Administator'", conn);
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, memberNr FROM Person LEFT JOIN Administrator ON Person.ID = Administrator.ID WHERE Person.personType = 'Administrator'", conn);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -92,6 +94,7 @@ namespace DataAccessLayer
                         Email = reader.GetString(reader.GetOrdinal("email")),
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
+                        Membernr = reader.GetInt32(reader.GetOrdinal("memberNr"))
                     };
                     admins.Add(admin);
                 }

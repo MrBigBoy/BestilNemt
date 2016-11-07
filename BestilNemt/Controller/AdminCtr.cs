@@ -41,7 +41,7 @@ namespace Controller
         private bool ValidateAdminInput(Admin admin)
         {
             if (admin == null || admin.Name.Equals("") || admin.Name == null || admin.Address.Equals("") ||
-                admin.Address == null || admin.Email == null || admin.Email.Equals("") || admin.PersonType != "Administator")
+                admin.Address == null || admin.Email == null || admin.Email.Equals("") || admin.PersonType != "Administrator")
             {
                 return false;
             }

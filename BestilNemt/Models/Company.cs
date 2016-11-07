@@ -19,12 +19,14 @@ namespace Models
             Kontonr = kontonr; 
         }
 
-        public Company(string name, string email, string address, string personType)
+        public Company(string name, string email, string address, string personType, int cvr, int kontonr)
         {
             Name = name;
             Email = email;
             Address = address;
-            PersonType = personType; 
+            PersonType = personType;
+            CVR = cvr;
+            Kontonr = kontonr;
 
         }
     }

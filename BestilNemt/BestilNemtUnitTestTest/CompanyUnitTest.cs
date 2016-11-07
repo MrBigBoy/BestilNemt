@@ -11,7 +11,7 @@ namespace BestilNemtUnitTestTest
     public class CompanyUnitTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CompanyCtrInitialize()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             Assert.IsNotNull(companyCtr);
@@ -21,7 +21,7 @@ namespace BestilNemtUnitTestTest
         public void CreateCompany()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
-            var company = new Company("Nordea", "Norea@gmail.com", "Pilevej 12", "Company");
+            var company = new Company("Nordea", "Norea@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             var flag = companyCtr.CreateCompany(company);
             Assert.AreEqual(1, flag);
         }
@@ -30,7 +30,7 @@ namespace BestilNemtUnitTestTest
         public void CreateCompanyNoEmail()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
-            var company = new Company("Nordea", "", "Pilevej 12", "Company");
+            var company = new Company("Nordea", "", "Pilevej 12", "Company", 12345678, 1);
             var flag = companyCtr.CreateCompany(company);
             Assert.AreEqual(0, flag);
         }
@@ -39,7 +39,7 @@ namespace BestilNemtUnitTestTest
         public void FindCompanyById()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
-            var company = new Company("Nordea", "dsds", "Pilevej 12", "Company");
+            var company = new Company("Nordea", "dsds", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.CreateCompany(company);
             Assert.IsNotNull(companyCtr.findCompany(1));
 
@@ -49,7 +49,7 @@ namespace BestilNemtUnitTestTest
         public void FindCompanyByIdFail()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
-            var company = new Company("Nordea", "dsds", "Pilevej 12", "Company");
+            var company = new Company("Nordea", "dsds", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.CreateCompany(company);
             Assert.IsNull(companyCtr.findCompany(4));
         }

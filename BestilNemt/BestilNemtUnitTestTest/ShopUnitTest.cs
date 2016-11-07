@@ -463,6 +463,90 @@ namespace BestilNemtUnitTestTest
                 Assert.AreEqual(0, i);
             }
         }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned object is not null 
+        /// </summary>
+        [TestMethod]
+        public void FindShopWcfById()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                Assert.IsNotNull(proxy.GetShop(1));
+            }
+        }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned object is null 
+        /// </summary>
+        [TestMethod]
+        public void FindShopWcfByIdFail()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                Assert.IsNull(proxy.GetShop(150));
+            }
+        }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned list is not empty 
+        /// </summary>
+        [TestMethod]
+        public void FindAllShopWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                Assert.AreNotEqual(0, proxy.GetAllShops().Length);
+            }
+        }
+
+        /// <summary>
+        /// Test a ShopCtr
+        /// The test is successfull if the returned object name is the same given new name
+        /// </summary>
+        [TestMethod]
+        public void UpdateShopWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var shop = new Shop("MiniShop", "Address", "12121212");
+                var returnedId = proxy.AddShop(shop);
+                var shop1 = new Shop
+                {
+                    Id = returnedId,
+                    Name = "UpdatedName",
+                    Address = "Address",
+                    CVR = "12121212"
+                };
+                proxy.UpdateShop(shop1);
+                var returnedShop = proxy.GetShop(returnedId);
+                Assert.AreEqual("UpdatedName", returnedShop.Name);
+            }
+        }
+
+        /// <summary>
+        /// Test Shop through Wcf
+        /// The test is successfull if the returned object is not null 
+        /// </summary>
+        [TestMethod]
+        public void DeleteShopWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var shop = new Shop("ShopToDelete", "Address", "12121212");
+                var returnedId = proxy.AddShop(shop);
+                var flag = proxy.DeleteShop(returnedId);
+                Assert.AreEqual(1, flag);
+            }
+        }
     }
 }
 
