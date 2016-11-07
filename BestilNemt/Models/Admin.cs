@@ -17,12 +17,13 @@ namespace Models
             
         }
 
-        public Admin(string name, string email, string address, string personType)
+        public Admin(string name, string email, string address, string personType, int membernr)
         {
             Name = name;
             Email = email;
             Address = address;
             PersonType = personType;
+            Membernr = membernr;
         }
     }
 }
