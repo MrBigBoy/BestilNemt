@@ -10,15 +10,15 @@ namespace BestilNemtUnitTestTest
     {
         //These tests are do the same basic thing. They create object, serialize them and then tests if they still are the same
         [TestMethod]
-        public void TestPersonIdSER()
+        public void TestCustomerIdSER()
         {
             Login login = new Login();
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops,"Admin");
-            Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
-            Assert.AreEqual(person.Id, serializationResult.Id);
+            Customer customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops,"Customer");
+            Customer serializationResult = SerializerTestHelpClass.TestSerialize<Customer>(customer);
+            Assert.AreEqual(customer.Id, serializationResult.Id);
         }
         [TestMethod]
         public void TestPersonNameSER()
