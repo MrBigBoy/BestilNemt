@@ -26,7 +26,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("personType", company.PersonType);
                 cmd.Parameters.AddWithValue("address", company.Address);
                 cmd.Parameters.AddWithValue("CVR", company.CVR);
-                cmd.Parameters.AddWithValue("kontorNr", company.Kontonr);
+                cmd.Parameters.AddWithValue("KontorNr", company.Kontonr);
                 i = cmd.ExecuteNonQuery();
 
             }
@@ -41,7 +41,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, cvr, kontorNr FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.personType = 'Company'", conn);
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, cvr, KontorNr FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.personType = 'Company'", conn);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -53,7 +53,7 @@ namespace DataAccessLayer
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
                         CVR = reader.GetInt32(reader.GetOrdinal("cvr")),
-                        Kontonr = reader.GetInt32(reader.GetOrdinal("kontorNr"))
+                        Kontonr = reader.GetInt32(reader.GetOrdinal("KontorNr"))
                     };
                     companys.Add(company);
                 }
@@ -69,7 +69,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, cvr, kontorNr FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.ID = @id", conn);
+                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, cvr, KontorNr FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.ID = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -82,7 +82,7 @@ namespace DataAccessLayer
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
                         CVR = reader.GetInt32(reader.GetOrdinal("cvr")),
-                        Kontonr = reader.GetInt32(reader.GetOrdinal("kontorNr"))
+                        Kontonr = reader.GetInt32(reader.GetOrdinal("KontorNr"))
 
                     };
                 }
