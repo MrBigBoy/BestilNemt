@@ -46,7 +46,7 @@ namespace DataAccessLayer
             }
             return i;
         }
-
+        
         public Admin FindAdmin(int id)
         {
             Admin admin = null;

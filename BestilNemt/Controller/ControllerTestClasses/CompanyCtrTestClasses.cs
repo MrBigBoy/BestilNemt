@@ -53,7 +53,7 @@ namespace Controller.ControllerTestClasses
 
         public List<Company> FindAllCompany()
         {
-            throw new NotImplementedException();
+            return companys;
         }
 
         public int UpdateCompany(Company company)
