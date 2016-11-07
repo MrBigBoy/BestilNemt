@@ -102,7 +102,9 @@
   <xs:complexType name="Admin">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Person">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Membernr" type="xs:int" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -116,7 +118,10 @@
   <xs:complexType name="Company">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Person">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CVR" type="xs:int" />
+          <xs:element minOccurs="0" name="Kontonr" type="xs:int" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
