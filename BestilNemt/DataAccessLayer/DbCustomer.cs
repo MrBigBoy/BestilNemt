@@ -69,7 +69,8 @@ namespace DataAccessLayer
                         Email = reader.GetString(reader.GetOrdinal("email")),
                         Address = reader.GetString(reader.GetOrdinal("address")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Birthday =  DateTime.Parse(reader.GetString(reader.GetOrdinal("birthday")))
+                        //Birthday =  DateTime.Parse(reader.GetString(reader.GetOrdinal("birthday")))
+                        Birthday = reader.GetDateTime(reader.GetOrdinal("birthday"))
                     };
                 }
             }

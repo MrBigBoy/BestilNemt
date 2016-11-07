@@ -15,29 +15,29 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BestilNemtServiceRef.IBestilNemtService")]
     public interface IBestilNemtService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/findCustomerResponse")]
-        Models.Customer findCustomer(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/FindCustomerResponse")]
+        Models.Customer FindCustomer(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/findCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/findCustomerResponse")]
-        System.Threading.Tasks.Task<Models.Customer> findCustomerAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/FindCustomerResponse")]
+        System.Threading.Tasks.Task<Models.Customer> FindCustomerAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/createCustomerResponse")]
-        void createCustomer(Models.Customer customer);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/CreateCustomerResponse")]
+        int CreateCustomer(Models.Customer customer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/createCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/createCustomerResponse")]
-        System.Threading.Tasks.Task createCustomerAsync(Models.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse")]
-        void UpdateCustomer(Models.Customer customer);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/CreateCustomerResponse")]
+        System.Threading.Tasks.Task<int> CreateCustomerAsync(Models.Customer customer);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse")]
-        System.Threading.Tasks.Task UpdateCustomerAsync(Models.Customer customer);
+        int UpdateCustomer(Models.Customer customer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/removeCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/removeCustomerResponse")]
-        void removeCustomer(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse")]
+        System.Threading.Tasks.Task<int> UpdateCustomerAsync(Models.Customer customer);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/removeCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/removeCustomerResponse")]
-        System.Threading.Tasks.Task removeCustomerAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveCustomerResponse")]
+        int RemoveCustomer(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveCustomerResponse")]
+        System.Threading.Tasks.Task<int> RemoveCustomerAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlCustomerResponse")]
         Models.Customer[] GetALlCustomer();
@@ -217,36 +217,36 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
                 base(binding, remoteAddress) {
         }
         
-        public Models.Customer findCustomer(int id) {
-            return base.Channel.findCustomer(id);
+        public Models.Customer FindCustomer(int id) {
+            return base.Channel.FindCustomer(id);
         }
         
-        public System.Threading.Tasks.Task<Models.Customer> findCustomerAsync(int id) {
-            return base.Channel.findCustomerAsync(id);
+        public System.Threading.Tasks.Task<Models.Customer> FindCustomerAsync(int id) {
+            return base.Channel.FindCustomerAsync(id);
         }
         
-        public void createCustomer(Models.Customer customer) {
-            base.Channel.createCustomer(customer);
+        public int CreateCustomer(Models.Customer customer) {
+            return base.Channel.CreateCustomer(customer);
         }
         
-        public System.Threading.Tasks.Task createCustomerAsync(Models.Customer customer) {
-            return base.Channel.createCustomerAsync(customer);
+        public System.Threading.Tasks.Task<int> CreateCustomerAsync(Models.Customer customer) {
+            return base.Channel.CreateCustomerAsync(customer);
         }
         
-        public void UpdateCustomer(Models.Customer customer) {
-            base.Channel.UpdateCustomer(customer);
+        public int UpdateCustomer(Models.Customer customer) {
+            return base.Channel.UpdateCustomer(customer);
         }
         
-        public System.Threading.Tasks.Task UpdateCustomerAsync(Models.Customer customer) {
+        public System.Threading.Tasks.Task<int> UpdateCustomerAsync(Models.Customer customer) {
             return base.Channel.UpdateCustomerAsync(customer);
         }
         
-        public void removeCustomer(int id) {
-            base.Channel.removeCustomer(id);
+        public int RemoveCustomer(int id) {
+            return base.Channel.RemoveCustomer(id);
         }
         
-        public System.Threading.Tasks.Task removeCustomerAsync(int id) {
-            return base.Channel.removeCustomerAsync(id);
+        public System.Threading.Tasks.Task<int> RemoveCustomerAsync(int id) {
+            return base.Channel.RemoveCustomerAsync(id);
         }
         
         public Models.Customer[] GetALlCustomer() {

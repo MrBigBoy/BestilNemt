@@ -24,14 +24,14 @@ namespace WcfService
             AdminCtr = new AdminCtr(new DbAdmin());
         }
 
-        public Customer findCustomer(int id)
+        public Customer FindCustomer(int id)
         {
             return CustomerCtr.FindCustomer(id);
         }
 
-        public void createCustomer(Customer customer)
+        public int CreateCustomer(Customer customer)
         {
-            CustomerCtr.CreatePerson(customer);
+            return CustomerCtr.CreatePerson(customer);
         }
 
         public List<Customer> GetALlCustomer()
@@ -134,14 +134,14 @@ namespace WcfService
             return ShopCtr.UpdateShop(shop);
         }
 
-        public void removeCustomer(int id)
+        public int RemoveCustomer(int id)
         {
-            CustomerCtr.RemoveCustomer(id);
+           return CustomerCtr.RemoveCustomer(id);
         }
 
-        public void UpdateCustomer(Customer customer)
+        public int UpdateCustomer(Customer customer)
         {
-            CustomerCtr.UpdateCustomer(customer); 
+           return CustomerCtr.UpdateCustomer(customer); 
         }
 
         public void CreateCompany(Company company)
