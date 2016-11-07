@@ -80,6 +80,7 @@
     <None Include="Properties\DataSources\Models.Customer.datasource" />
     <None Include="Properties\DataSources\Models.Login.datasource" />
     <None Include="Properties\DataSources\Models.Person.datasource" />
+    <None Include="Properties\DataSources\Models.Product.datasource" />
     <None Include="Properties\DataSources\Models.Shop.datasource" />
     <None Include="Properties\DataSources\Models.Warehouse.datasource" />
     <None Include="Service References\BestilNemtServiceRef\Models.xsd">

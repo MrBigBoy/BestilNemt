@@ -181,6 +181,36 @@
   <wsdl:message name="IBestilNemtService_FindCompany_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindCompanyResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProduct" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProduct" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProducts" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProduct" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteProduct_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProduct" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteProduct_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
     <wsdl:operation name="FindCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomer" message="tns:IBestilNemtService_FindCustomer_InputMessage" />
@@ -297,6 +327,26 @@
     <wsdl:operation name="FindCompany">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCompany" message="tns:IBestilNemtService_FindCompany_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCompanyResponse" message="tns:IBestilNemtService_FindCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddProduct" message="tns:IBestilNemtService_AddProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddProductResponse" message="tns:IBestilNemtService_AddProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetProduct" message="tns:IBestilNemtService_GetProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetProductResponse" message="tns:IBestilNemtService_GetProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllProducts" message="tns:IBestilNemtService_GetAllProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllProductsResponse" message="tns:IBestilNemtService_GetAllProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateProduct" message="tns:IBestilNemtService_UpdateProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateProductResponse" message="tns:IBestilNemtService_UpdateProduct_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProduct">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteProduct" message="tns:IBestilNemtService_DeleteProduct_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteProductResponse" message="tns:IBestilNemtService_DeleteProduct_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
@@ -555,6 +605,51 @@
     </wsdl:operation>
     <wsdl:operation name="FindCompany">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProduct">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProducts">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProduct">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProduct">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteProduct" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
