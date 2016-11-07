@@ -69,6 +69,7 @@
     <Compile Include="ShopUnitTest.cs" />
     <Compile Include="CompanyUnitTest.cs" />
     <Compile Include="AdminUnitTest.cs" />
+    <Compile Include="ProductUnitTest.cs" />
     <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>

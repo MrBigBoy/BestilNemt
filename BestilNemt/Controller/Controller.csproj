@@ -49,9 +49,11 @@
     <Compile Include="ControllerTestClasses\AdminCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\CustomerCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\CompanyCtrTestClasses.cs" />
+    <Compile Include="ControllerTestClasses\ProductCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\ShopCtrTestClass.cs" />
     <Compile Include="LoginCtr.cs" />
     <Compile Include="CustomerCtr.cs" />
+    <Compile Include="ProductCtr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

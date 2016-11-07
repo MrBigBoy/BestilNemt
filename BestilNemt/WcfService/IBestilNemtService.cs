@@ -94,6 +94,20 @@ namespace WcfService
         void UpdateCompany(Company company);
         [OperationContract]
         Company FindCompany(int id);
+
+        [OperationContract]
+        int AddProduct(Product product);
+
+        [OperationContract]
+        Product GetProduct(int id);
+
+        [OperationContract]
+        List<Product> GetAllProducts();
+
+        [OperationContract]
+        int UpdateProduct(Product product);
+        [OperationContract]
+        int DeleteProduct(int id);
     }
 
 

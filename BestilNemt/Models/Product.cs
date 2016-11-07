@@ -17,26 +17,24 @@ namespace Models
         public string Category { get; set; }
         [DataMember]
         public double Saving { get; set; }
-        [DataMember]
-        public Warehouse Warehouse { get; set; }
 
         public Product()
         {
-            Id = Id;
-            Name = Name;
-            Price = Price;
-            Description = Description;
-        }
-        public Product(int id,string name, decimal price, string description,string category, double saving, Warehouse Warehouse)
-        {
-            Id = Id;
-            Name = Name;
-            Price = Price;
-            Description = Description;
-            Category = category;
-            Saving = saving; 
-            Warehouse = new Warehouse();
 
+        }
+
+        public Product(string name, decimal price, string description, string category, double saving) : this()
+        {
+            Name = name;
+            Price = price;
+            Description = description;
+            Category = category;
+            Saving = saving;
+        }
+
+        public Product(int id, string name, decimal price, string description, string category, double saving) : this(name, price, description, category, saving)
+        {
+            Id = id;
         }
     }
 }
