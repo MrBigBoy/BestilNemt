@@ -14,14 +14,14 @@ namespace WcfService
     public interface IBestilNemtService
     {
         [OperationContract]
-        Customer findCustomer(int id);
+        Customer FindCustomer(int id);
 
         [OperationContract]
-        void createCustomer(Customer customer);
+        int CreateCustomer(Customer customer);
         [OperationContract]
-        void UpdateCustomer(Customer customer);
+        int UpdateCustomer(Customer customer);
         [OperationContract]
-        void removeCustomer(int id);
+        int RemoveCustomer(int id);
 
         [OperationContract]
         List<Customer> GetALlCustomer();
