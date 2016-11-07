@@ -7,17 +7,17 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Models" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBestilNemtService_findCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:findCustomer" />
+  <wsdl:message name="IBestilNemtService_FindCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_findCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:findCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_FindCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindCustomerResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_createCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:createCustomer" />
+  <wsdl:message name="IBestilNemtService_CreateCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_createCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:createCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_CreateCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCustomerResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCustomer" />
@@ -25,11 +25,11 @@
   <wsdl:message name="IBestilNemtService_UpdateCustomer_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCustomerResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_removeCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:removeCustomer" />
+  <wsdl:message name="IBestilNemtService_RemoveCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_removeCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:removeCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_RemoveCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCustomerResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetALlCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:GetALlCustomer" />
@@ -182,21 +182,21 @@
     <wsdl:part name="parameters" element="tns:FindCompanyResponse" />
   </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
-    <wsdl:operation name="findCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/findCustomer" message="tns:IBestilNemtService_findCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/findCustomerResponse" message="tns:IBestilNemtService_findCustomer_OutputMessage" />
+    <wsdl:operation name="FindCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomer" message="tns:IBestilNemtService_FindCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomerResponse" message="tns:IBestilNemtService_FindCustomer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="createCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/createCustomer" message="tns:IBestilNemtService_createCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/createCustomerResponse" message="tns:IBestilNemtService_createCustomer_OutputMessage" />
+    <wsdl:operation name="CreateCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCustomer" message="tns:IBestilNemtService_CreateCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCustomerResponse" message="tns:IBestilNemtService_CreateCustomer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCustomer" message="tns:IBestilNemtService_UpdateCustomer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse" message="tns:IBestilNemtService_UpdateCustomer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="removeCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/removeCustomer" message="tns:IBestilNemtService_removeCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/removeCustomerResponse" message="tns:IBestilNemtService_removeCustomer_OutputMessage" />
+    <wsdl:operation name="RemoveCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveCustomer" message="tns:IBestilNemtService_RemoveCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveCustomerResponse" message="tns:IBestilNemtService_RemoveCustomer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetALlCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetALlCustomer" message="tns:IBestilNemtService_GetALlCustomer_InputMessage" />
@@ -301,8 +301,8 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="findCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/findCustomer" style="document" />
+    <wsdl:operation name="FindCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -310,8 +310,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="createCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/createCustomer" style="document" />
+    <wsdl:operation name="CreateCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/CreateCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -328,8 +328,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="removeCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/removeCustomer" style="document" />
+    <wsdl:operation name="RemoveCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/RemoveCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
