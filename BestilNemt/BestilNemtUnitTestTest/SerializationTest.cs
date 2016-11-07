@@ -21,37 +21,193 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(customer.Id, serializationResult.Id);
         }
         [TestMethod]
-        public void TestPersonNameSER()
+        public void TestCustomerNameSER()
         {
             Login login = new Login();
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Admin");
-            Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
-            Assert.AreEqual(person.Name, serializationResult.Name);
+            Customer customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
+            Customer serializationResult = SerializerTestHelpClass.TestSerialize<Customer>(customer);
+            Assert.AreEqual(customer.Name, serializationResult.Name);
         }
         [TestMethod]
-        public void TestPersonEmailSER()
+        public void TestCustomerEmailSER()
         {
             Login login = new Login();
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Admin");
-            Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
-            Assert.AreEqual(person.Email, serializationResult.Email);
+            Customer customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
+            Customer serializationResult = SerializerTestHelpClass.TestSerialize<Customer>(customer);
+            Assert.AreEqual(customer.Email, serializationResult.Email);
         }
         [TestMethod]
-        public void TestPersonAddresSER()
+        public void TestCustomerAddresSER()
         {
             Login login = new Login();
             Shop shop = new Shop();
             List<Shop> shops = new List<Shop>();
             shops.Add(shop);
-            Person person = new Person(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Admin");
-            Person serializationResult = SerializerTestHelpClass.TestSerialize<Person>(person);
-            Assert.AreEqual(person.Address, serializationResult.Address);
+            Customer customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
+            Customer serializationResult = SerializerTestHelpClass.TestSerialize<Customer>(customer);
+            Assert.AreEqual(customer.Address, serializationResult.Address);
+        }
+        [TestMethod]
+        public void TestCustomerBirthdaySER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Customer customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
+            Customer serializationResult = SerializerTestHelpClass.TestSerialize<Customer>(customer);
+            Assert.AreEqual(customer.Birthday, serializationResult.Birthday);
+        }
+
+        [TestMethod]
+        public void TestCompanyIdSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops,"Company",1234567,1);
+            Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
+            Assert.AreEqual(company.Id, serializationResult.Id);
+        }
+        [TestMethod]
+        public void TestCompanyNameSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
+            Assert.AreEqual(company.Name, serializationResult.Name);
+        }
+        [TestMethod]
+        public void TestCompanyEmailSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
+            Assert.AreEqual(company.Email, serializationResult.Email);
+        }
+        [TestMethod]
+        public void TestCompanyAddressSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
+            Assert.AreEqual(company.Address, serializationResult.Address);
+        }
+        [TestMethod]
+        public void TestCompanyPersonTypeSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
+            Assert.AreEqual(company.PersonType, serializationResult.PersonType);
+        }
+        [TestMethod]
+        public void TestCompanyCVRSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
+            Assert.AreEqual(company.CVR, serializationResult.CVR);
+        }
+        [TestMethod]
+        public void TestCompanyKonNrSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Company company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 1234567, 1);
+            Company serializationResult = SerializerTestHelpClass.TestSerialize<Company>(company);
+            Assert.AreEqual(company.Kontonr, serializationResult.Kontonr);
+        }
+
+        [TestMethod]
+        public void TestAdminIdSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Admin admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Administrator", 1);
+            Admin serializationResult = SerializerTestHelpClass.TestSerialize<Admin>(admin);
+            Assert.AreEqual(admin.Id, serializationResult.Id);
+        }
+        [TestMethod]
+        public void TestAdminNameSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Admin admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Administrator", 1);
+            Admin serializationResult = SerializerTestHelpClass.TestSerialize<Admin>(admin);
+            Assert.AreEqual(admin.Name, serializationResult.Name);
+        }
+        [TestMethod]
+        public void TestAdminEmailSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Admin admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Administrator", 1);
+            Admin serializationResult = SerializerTestHelpClass.TestSerialize<Admin>(admin);
+            Assert.AreEqual(admin.Email, serializationResult.Email);
+        }
+        [TestMethod]
+        public void TestAdminAddressSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Admin admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Administrator", 1);
+            Admin serializationResult = SerializerTestHelpClass.TestSerialize<Admin>(admin);
+            Assert.AreEqual(admin.Address, serializationResult.Address);
+        }
+        [TestMethod]
+        public void TestAdminPersonTypeSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Admin admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Administrator", 1);
+            Admin serializationResult = SerializerTestHelpClass.TestSerialize<Admin>(admin);
+            Assert.AreEqual(admin.PersonType, serializationResult.PersonType);
+        }
+        [TestMethod]
+        public void TestAdminMemNrSER()
+        {
+            Login login = new Login();
+            Shop shop = new Shop();
+            List<Shop> shops = new List<Shop>();
+            shops.Add(shop);
+            Admin admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Administrator", 1);
+            Admin serializationResult = SerializerTestHelpClass.TestSerialize<Admin>(admin);
+            Assert.AreEqual(admin.Membernr, serializationResult.Membernr);
         }
         [TestMethod]
         public void TestShopIdSER()
@@ -79,6 +235,9 @@ namespace BestilNemtUnitTestTest
             Shop serializationResult = SerializerTestHelpClass.TestSerialize<Shop>(shop);
             Assert.AreEqual(shop.Name, serializationResult.Name);
         }
+
+        
+
         [TestMethod]
         public void TestShopAddresSER()
         {

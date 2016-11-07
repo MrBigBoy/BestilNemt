@@ -456,5 +456,244 @@ namespace BestilNemtUnitTestTest
         }
 
 
+
+
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db with WCF
+        /// The test is successfull if the returned object is null
+        /// ERROR: Login object is null
+        /// </summary>
+        [TestMethod]
+        public void LoginLoginWcfFailNull()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = lCtr.Login(null);
+                Assert.IsNull(login);
+            }
+        }
+
+        /// <summary>
+        /// Test a UpdateLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is not 0
+        /// ERROR: Non
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("AdminCtr", "SuperAdmin", 3);
+                var returnedValue = lCtr.UpdateLogin(login);
+                Assert.AreEqual(1, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a UpdateLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username is a empty string
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginWcfFailUsername()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("", "SuperAdmin");
+                var returnedValue = lCtr.UpdateLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a UpdateLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginWcfFailPassword()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("Admin", "");
+                var returnedValue = lCtr.UpdateLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username and Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginWcfFailBoth()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("", "");
+                var returnedValue = lCtr.UpdateLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username and Password is null
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginWcfFailBoth2()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login(null, null);
+                var returnedValue = lCtr.UpdateLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: The Username should be Admin instead of admin
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginWcfFailSmallLetters()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("admin", "SuperAdmin");
+                var returnedValue = lCtr.UpdateLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a Login in the Ctr through Db with WCF
+        /// The test is successfull if the returned object is null
+        /// ERROR: Login object is null
+        /// </summary>
+        [TestMethod]
+        public void UpdateLoginWcfFailNull()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = lCtr.Login(null);
+                Assert.IsNull(login);
+            }
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is not 0
+        /// ERROR: Non
+        /// </summary>
+        [TestMethod]
+        public void DelLoginWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("Username", "Password", 1);
+                lCtr.AddLogin(login);
+                var returnedValue = lCtr.DelLogin(login);
+                Assert.AreNotEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username is a empty string
+        /// </summary>
+        [TestMethod]
+        public void DelLoginWcfFailUsername()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("", "Password", 1);
+                lCtr.AddLogin(login);
+                var returnedValue = lCtr.DelLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void DelLoginWcfFailPassword()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("Admin", "", 1);
+                lCtr.AddLogin(login);
+                var returnedValue = lCtr.DelLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username and Password is a empty string
+        /// </summary>
+        [TestMethod]
+        public void DelLoginWcfFailBoth()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login("", "", 1);
+                lCtr.AddLogin(login);
+                var returnedValue = lCtr.DelLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
+
+        /// <summary>
+        /// Test a DelLogin in the Ctr through Db with WCF
+        /// The test is successfull if the returned value is 0
+        /// ERROR: Username and Password is null
+        /// </summary>
+        [TestMethod]
+        public void DelLoginWcfFailBoth2()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var lCtr = new LoginCtr(new DbLogin());
+                var login = new Login(null, null, 1);
+                lCtr.AddLogin(login);
+                var returnedValue = lCtr.DelLogin(login);
+                Assert.AreEqual(0, returnedValue);
+            }
+        }
     }
 }
