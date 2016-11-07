@@ -106,7 +106,7 @@ namespace BestilNemtUnitTestTest
         public void getCompany()
         {
             var dbCompany = new DbCompany1();
-            var company = dbCompany.FindCompany(1);
+            var company = dbCompany.FindCompany(3);
             Assert.IsNotNull(company);
         }
 
@@ -118,7 +118,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void AddCtrDbShop()
+        public void AddCtrDbCompany()
         {
             var companyCtr = new CompanyCtr(new DbCompany1());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
