@@ -38,7 +38,7 @@ namespace WcfService
         /// </returns>
         public int AddCustomer(Customer customer)
         {
-            return CustomerCtr.AddPerson(customer);
+            return CustomerCtr.AddCustomer(customer);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace WcfService
         /// </returns>
         public Company FindCompany(int id)
         {
-            return CompanyCtr.findCompany(id);
+            return CompanyCtr.FindCompany(id);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace WcfService
         /// </returns>
         public int UpdateCompany(Company company)
         {
-            return CompanyCtr.updateCompany(company);
+            return CompanyCtr.UpdateCompany(company);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace WcfService
         /// </returns>
         public int DeleteCompany(int id)
         {
-            return CompanyCtr.removeCompany(id);
+            return CompanyCtr.RemoveCompany(id);
         }
 
         /// <summary>

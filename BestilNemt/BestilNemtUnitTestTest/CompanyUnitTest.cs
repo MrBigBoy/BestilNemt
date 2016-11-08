@@ -40,7 +40,7 @@ namespace BestilNemtUnitTestTest
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "dsds", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.AddCompany(company);
-            Assert.IsNotNull(companyCtr.findCompany(1));
+            Assert.IsNotNull(companyCtr.FindCompany(1));
 
         }
 
@@ -50,7 +50,7 @@ namespace BestilNemtUnitTestTest
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.AddCompany(company);
-            Assert.IsNull(companyCtr.findCompany(4));
+            Assert.IsNull(companyCtr.FindCompany(4));
         }
         [TestMethod]
         public void FindAllcompanys()
@@ -69,7 +69,7 @@ namespace BestilNemtUnitTestTest
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.AddCompany(company);
-            var flag = companyCtr.updateCompany(company);
+            var flag = companyCtr.UpdateCompany(company);
             Assert.AreEqual(1, flag);
         }
 
@@ -79,7 +79,7 @@ namespace BestilNemtUnitTestTest
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.AddCompany(company);
-            var id = companyCtr.removeCompany(company.Id);
+            var id = companyCtr.RemoveCompany(company.Id);
             Assert.AreEqual(1, id);
         }
         [TestMethod]
@@ -88,7 +88,7 @@ namespace BestilNemtUnitTestTest
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.AddCompany(company);
-            var id = companyCtr.removeCompany(company.Id);
+            var id = companyCtr.RemoveCompany(company.Id);
             Assert.AreNotEqual(0, id);
         }
         [TestMethod]
