@@ -13,9 +13,9 @@ namespace Controller
             DbWarehouse = dbWarehouse;
         }
 
-        public void Add(Warehouse warehouse)
+        public int Add(Warehouse warehouse)
         {
-            DbWarehouse.Add(warehouse);
+            return DbWarehouse.Add(warehouse);
         }
         public Warehouse Get(int id)
         {
@@ -27,14 +27,14 @@ namespace Controller
             return DbWarehouse.GetAll();
         }
 
-        public void Remove(int id)
+        public int Remove(int id)
         {
-            DbWarehouse.Remove(id);
+            return DbWarehouse.Remove(id);
         }
 
-        public void Update(Warehouse warehouse)
+        public int Update(Warehouse warehouse)
         {
-            DbWarehouse.Update(warehouse);
+            return DbWarehouse.Update(warehouse);
         }
     }
 }

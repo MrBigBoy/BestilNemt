@@ -68,7 +68,7 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
-        /// Test a DelLogin in the db
+        /// Test a DeleteLogin in the db
         /// The test is successfull if the returned value is not 0
         /// ERROR: Non
         /// </summary>
@@ -78,7 +78,7 @@ namespace BestilNemtUnitTestTest
             var dbLogin = new DbLogin();
             var login = new Login("Username", "Password", 1);
             dbLogin.AddLogin(login);
-            var returnedValue = dbLogin.DelLogin(login);
+            var returnedValue = dbLogin.DeleteLogin(login);
             Assert.AreNotEqual(0, returnedValue);
         }
 
@@ -92,7 +92,7 @@ namespace BestilNemtUnitTestTest
         {
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("AdminCtrsdf", "SuperAdmingfh", 1);
-            lCtr.DelLogin(login);
+            lCtr.DeleteLogin(login);
             var returnedValue = lCtr.AddLogin(login);
             Assert.AreNotEqual(0, returnedValue);
         }
@@ -107,7 +107,7 @@ namespace BestilNemtUnitTestTest
         {
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("", "", 1);
-            lCtr.DelLogin(login);
+            lCtr.DeleteLogin(login);
             var returnedValue = lCtr.AddLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
@@ -122,7 +122,7 @@ namespace BestilNemtUnitTestTest
         {
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login(null, null, 1);
-            lCtr.DelLogin(login);
+            lCtr.DeleteLogin(login);
             var returnedValue = lCtr.AddLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
@@ -137,7 +137,7 @@ namespace BestilNemtUnitTestTest
         {
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("", "SuperAdmingfh", 1);
-            lCtr.DelLogin(login);
+            lCtr.DeleteLogin(login);
             var returnedValue = lCtr.AddLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
@@ -152,7 +152,7 @@ namespace BestilNemtUnitTestTest
         {
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login(null, "SuperAdmingfh", 1);
-            lCtr.DelLogin(login);
+            lCtr.DeleteLogin(login);
             var returnedValue = lCtr.AddLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
@@ -167,7 +167,7 @@ namespace BestilNemtUnitTestTest
         {
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("AdminCtrsdf", "", 1);
-            lCtr.DelLogin(login);
+            lCtr.DeleteLogin(login);
             var returnedValue = lCtr.AddLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
@@ -182,7 +182,7 @@ namespace BestilNemtUnitTestTest
         {
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("AdminCtrsdf", null, 1);
-            lCtr.DelLogin(login);
+            lCtr.DeleteLogin(login);
             var returnedValue = lCtr.AddLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
@@ -381,7 +381,7 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db
+        /// Test a DeleteLogin in the Ctr through Db
         /// The test is successfull if the returned value is not 0
         /// ERROR: Non
         /// </summary>
@@ -391,12 +391,12 @@ namespace BestilNemtUnitTestTest
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("Username", "Password", 1);
             lCtr.AddLogin(login);
-            var returnedValue = lCtr.DelLogin(login);
+            var returnedValue = lCtr.DeleteLogin(login);
             Assert.AreNotEqual(0, returnedValue);
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db
+        /// Test a DeleteLogin in the Ctr through Db
         /// The test is successfull if the returned value is 0
         /// ERROR: Username is a empty string
         /// </summary>
@@ -406,12 +406,12 @@ namespace BestilNemtUnitTestTest
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("", "Password", 1);
             lCtr.AddLogin(login);
-            var returnedValue = lCtr.DelLogin(login);
+            var returnedValue = lCtr.DeleteLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db
+        /// Test a DeleteLogin in the Ctr through Db
         /// The test is successfull if the returned value is 0
         /// ERROR: Password is a empty string
         /// </summary>
@@ -421,12 +421,12 @@ namespace BestilNemtUnitTestTest
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("Admin", "", 1);
             lCtr.AddLogin(login);
-            var returnedValue = lCtr.DelLogin(login);
+            var returnedValue = lCtr.DeleteLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db
+        /// Test a DeleteLogin in the Ctr through Db
         /// The test is successfull if the returned value is 0
         /// ERROR: Username and Password is a empty string
         /// </summary>
@@ -436,12 +436,12 @@ namespace BestilNemtUnitTestTest
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login("", "", 1);
             lCtr.AddLogin(login);
-            var returnedValue = lCtr.DelLogin(login);
+            var returnedValue = lCtr.DeleteLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db
+        /// Test a DeleteLogin in the Ctr through Db
         /// The test is successfull if the returned value is 0
         /// ERROR: Username and Password is null
         /// </summary>
@@ -451,7 +451,7 @@ namespace BestilNemtUnitTestTest
             var lCtr = new LoginCtr(new DbLogin());
             var login = new Login(null, null, 1);
             lCtr.AddLogin(login);
-            var returnedValue = lCtr.DelLogin(login);
+            var returnedValue = lCtr.DeleteLogin(login);
             Assert.AreEqual(0, returnedValue);
         }
 
@@ -598,7 +598,7 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db with WCF
+        /// Test a DeleteLogin in the Ctr through Db with WCF
         /// The test is successfull if the returned value is not 0
         /// ERROR: Non
         /// </summary>
@@ -611,13 +611,13 @@ namespace BestilNemtUnitTestTest
                 var lCtr = new LoginCtr(new DbLogin());
                 var login = new Login("Username", "Password", 1);
                 lCtr.AddLogin(login);
-                var returnedValue = lCtr.DelLogin(login);
+                var returnedValue = lCtr.DeleteLogin(login);
                 Assert.AreNotEqual(0, returnedValue);
             }
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db with WCF
+        /// Test a DeleteLogin in the Ctr through Db with WCF
         /// The test is successfull if the returned value is 0
         /// ERROR: Username is a empty string
         /// </summary>
@@ -630,13 +630,13 @@ namespace BestilNemtUnitTestTest
                 var lCtr = new LoginCtr(new DbLogin());
                 var login = new Login("", "Password", 1);
                 lCtr.AddLogin(login);
-                var returnedValue = lCtr.DelLogin(login);
+                var returnedValue = lCtr.DeleteLogin(login);
                 Assert.AreEqual(0, returnedValue);
             }
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db with WCF
+        /// Test a DeleteLogin in the Ctr through Db with WCF
         /// The test is successfull if the returned value is 0
         /// ERROR: Password is a empty string
         /// </summary>
@@ -649,13 +649,13 @@ namespace BestilNemtUnitTestTest
                 var lCtr = new LoginCtr(new DbLogin());
                 var login = new Login("Admin", "", 1);
                 lCtr.AddLogin(login);
-                var returnedValue = lCtr.DelLogin(login);
+                var returnedValue = lCtr.DeleteLogin(login);
                 Assert.AreEqual(0, returnedValue);
             }
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db with WCF
+        /// Test a DeleteLogin in the Ctr through Db with WCF
         /// The test is successfull if the returned value is 0
         /// ERROR: Username and Password is a empty string
         /// </summary>
@@ -668,13 +668,13 @@ namespace BestilNemtUnitTestTest
                 var lCtr = new LoginCtr(new DbLogin());
                 var login = new Login("", "", 1);
                 lCtr.AddLogin(login);
-                var returnedValue = lCtr.DelLogin(login);
+                var returnedValue = lCtr.DeleteLogin(login);
                 Assert.AreEqual(0, returnedValue);
             }
         }
 
         /// <summary>
-        /// Test a DelLogin in the Ctr through Db with WCF
+        /// Test a DeleteLogin in the Ctr through Db with WCF
         /// The test is successfull if the returned value is 0
         /// ERROR: Username and Password is null
         /// </summary>
@@ -687,7 +687,7 @@ namespace BestilNemtUnitTestTest
                 var lCtr = new LoginCtr(new DbLogin());
                 var login = new Login(null, null, 1);
                 lCtr.AddLogin(login);
-                var returnedValue = lCtr.DelLogin(login);
+                var returnedValue = lCtr.DeleteLogin(login);
                 Assert.AreEqual(0, returnedValue);
             }
         }

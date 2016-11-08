@@ -21,7 +21,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Shop>(), "Customer");
-            var flag = customerCtr.CreatePerson(customer);
+            var flag = customerCtr.AddPerson(customer);
             Assert.AreNotEqual(0, flag);
         }
 
@@ -36,7 +36,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), new Login(), new List<Shop>(), "Customer");
-            var flag = customerCtr.CreatePerson(customer);
+            var flag = customerCtr.AddPerson(customer);
             Assert.AreEqual(0, flag);
         }
 
@@ -51,7 +51,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "", "Addrerrsr", new DateTime(2000, 02, 01), new Login(), new List<Shop>(), "Customer");
-            var flag = customerCtr.CreatePerson(customer);
+            var flag = customerCtr.AddPerson(customer);
             Assert.AreEqual(0, flag);
         }
 
@@ -66,7 +66,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "email", "", new DateTime(2000, 02, 01), new Login(), new List<Shop>(), "Customer");
-            var flag = customerCtr.CreatePerson(customer);
+            var flag = customerCtr.AddPerson(customer);
             Assert.AreEqual(0, flag);
         }
 
@@ -81,7 +81,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "orm");
-            var flag = customerCtr.CreatePerson(customer);
+            var flag = customerCtr.AddPerson(customer);
             Assert.AreEqual(0, flag);
         }
 
@@ -95,7 +95,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
-            customerCtr.CreatePerson(customer);
+            customerCtr.AddPerson(customer);
             Assert.IsNotNull(customerCtr.FindCustomer(1));
         }
 
@@ -110,7 +110,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
-            customerCtr.CreatePerson(customer);
+            customerCtr.AddPerson(customer);
             Assert.IsNull(customerCtr.FindCustomer(2));
         }
 
@@ -126,8 +126,8 @@ namespace BestilNemtUnitTestTest
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
             var customer2 = new Customer(
                "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Shop>(), "Customer");
-            customerCtr.CreatePerson(customer1);
-            customerCtr.CreatePerson(customer2);
+            customerCtr.AddPerson(customer1);
+            customerCtr.AddPerson(customer2);
             Assert.AreEqual(2, customerCtr.GetAllCustomer().Count);
         }
 
@@ -143,8 +143,8 @@ namespace BestilNemtUnitTestTest
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
             var customer2 = new Customer(
                "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Shop>(), "Customer");
-            customerCtr.CreatePerson(customer1);
-            customerCtr.CreatePerson(customer2);
+            customerCtr.AddPerson(customer1);
+            customerCtr.AddPerson(customer2);
             Assert.AreNotEqual(1, customerCtr.GetAllCustomer().Count);
         }
 
@@ -158,7 +158,7 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer1 = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
-            customerCtr.CreatePerson(customer1);
+            customerCtr.AddPerson(customer1);
             var customer2 = new Customer
             {
                 Id = 1,
@@ -178,7 +178,7 @@ namespace BestilNemtUnitTestTest
         /// <summary>
         /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
         /// Test is sucsessfull if returned value is 1, it means that a customer with id = 1 is  
-        /// found and RemoveCustomer method was sucsessfull.
+        /// found and DeleteCustomer method was sucsessfull.
         /// </summary>
         [TestMethod]
         public void RemoveCustomer()
@@ -186,15 +186,15 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer1 = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
-            customerCtr.CreatePerson(customer1);
-            var flag = customerCtr.RemoveCustomer(1);
+            customerCtr.AddPerson(customer1);
+            var flag = customerCtr.DeleteCustomer(1);
             Assert.AreEqual(1, flag);
         }
 
         /// <summary>
         /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
         /// Test is sucsessfull if returned value is 0, it means that a customer with id = 2 is not 
-        /// found and RemoveCustomer method was failed. 
+        /// found and DeleteCustomer method was failed. 
         /// </summary>
         [TestMethod]
         public void RemoveCustomerFaild()
@@ -202,8 +202,8 @@ namespace BestilNemtUnitTestTest
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer1 = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Shop>(), "Customer");
-            customerCtr.CreatePerson(customer1);
-            var flag = customerCtr.RemoveCustomer(2);
+            customerCtr.AddPerson(customer1);
+            var flag = customerCtr.DeleteCustomer(2);
             Assert.AreEqual(0, flag);
         }
 
@@ -282,7 +282,7 @@ namespace BestilNemtUnitTestTest
                 var customer = new Customer(
                     "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Shop>(),
                     "Customer");
-                var flag = proxy.CreateCustomer(customer);
+                var flag = proxy.AddCustomer(customer);
                 Assert.AreNotEqual(0, flag);
             }
         }
@@ -300,7 +300,7 @@ namespace BestilNemtUnitTestTest
                 var customer = new Customer(
                     "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Shop>(),
                     "Customer");
-                var flag = proxy.CreateCustomer(customer);
+                var flag = proxy.AddCustomer(customer);
                 Assert.AreEqual(0, flag);
             }
         }
@@ -317,7 +317,7 @@ namespace BestilNemtUnitTestTest
                 var customer = new Customer(
                     "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Shop>(),
                     "Admin");
-                var flag = proxy.CreateCustomer(customer);
+                var flag = proxy.AddCustomer(customer);
                 Assert.AreEqual(0, flag);
             }
         }
@@ -408,8 +408,8 @@ namespace BestilNemtUnitTestTest
                 proxy.Open();
                 var cust = new Customer("Ole Nielsen", "oel@mail.dk", "ahrtghjv", new DateTime(2009, 02, 13),
                     new Login(), new List<Shop>(), "Customer");
-                var id = proxy.CreateCustomer(cust);
-                var flag = proxy.RemoveCustomer(id);
+                var id = proxy.AddCustomer(cust);
+                var flag = proxy.DeleteCustomer(id);
                 Assert.AreNotEqual(0, flag);
             }
 

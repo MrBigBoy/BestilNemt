@@ -17,12 +17,12 @@ namespace Controller
             DbCompany = dbCustomer;
         }
 
-        public int CreateCompany(Company company)
+        public int AddCompany(Company company)
         {
-            return ValidateCompanyInput(company) ? DbCompany.CreateCompany(company) : 0;
+            return ValidateCompanyInput(company) ? DbCompany.AddCompany(company) : 0;
         }
 
-        public List<Company> GetAllCompany()
+        public List<Company> FindAllCompany()
         {
             return DbCompany.FindAllCompany(); 
         }
@@ -34,7 +34,7 @@ namespace Controller
 
         public int updateCompany(Company company)
         {
-            return ValidateCompanyInput(company) ? DbCompany.CreateCompany(company) : 0;
+            return ValidateCompanyInput(company) ? DbCompany.AddCompany(company) : 0;
            
         }
 

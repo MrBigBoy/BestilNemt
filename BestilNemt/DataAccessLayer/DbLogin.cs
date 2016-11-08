@@ -9,6 +9,13 @@ namespace DataAccessLayer
 {
     public class DbLogin : IDbLogin
     {
+        /// <summary>
+        /// Add a Login
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>
+        /// Return 1 if Login is added, else 0
+        /// </returns>
         public int AddLogin(Login login)
         {
             var returnedValue = 0;
@@ -31,6 +38,13 @@ namespace DataAccessLayer
             return returnedValue;
         }
 
+        /// <summary>
+        /// Login with a Login object
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>
+        /// Return Login if validated = true, else null
+        /// </returns>
         public Login Login(Login login)
         {
             var parts = DownloadHash(login.Username);
@@ -40,6 +54,13 @@ namespace DataAccessLayer
             return login;
         }
 
+        /// <summary>
+        /// Update a Login
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>
+        /// Return 1 if Login is updated, else 0
+        /// </returns>
         public int UpdateLogin(Login login)
         {
             var parts = PasswordStorage.CreateHash(login.Password);
@@ -56,7 +77,14 @@ namespace DataAccessLayer
             return i;
         }
 
-        public int DelLogin(Login login)
+        /// <summary>
+        /// Delete a Login
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>
+        /// Return 1 if Login is deleted, else 0
+        /// </returns>
+        public int DeleteLogin(Login login)
         {
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -69,6 +97,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Return the Hash from a username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns>
+        /// String of Hash
+        /// </returns>
         private static string DownloadHash(string username)
         {
             string parts = null;
@@ -91,6 +126,13 @@ namespace DataAccessLayer
             return parts;
         }
 
+        /// <summary>
+        /// Return a Person id by a username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns>
+        /// Int Person id
+        /// </returns>
         private static int DownloadPersonId(string username)
         {
             var personId = 0;
@@ -114,6 +156,9 @@ namespace DataAccessLayer
         }
     }
 
+    /// <summary>
+    /// Exceptions catched from Hash function
+    /// </summary>
     internal class InvalidHashException : Exception
     {
         public InvalidHashException() { }
@@ -123,6 +168,9 @@ namespace DataAccessLayer
             : base(message, inner) { }
     }
 
+    /// <summary>
+    /// Exceptions cathced from Validation of Hash string
+    /// </summary>
     internal class CannotPerformOperationException : Exception
     {
         public CannotPerformOperationException() { }
@@ -132,25 +180,35 @@ namespace DataAccessLayer
             : base(message, inner) { }
     }
 
+    /// <summary>
+    /// The Password generation class
+    /// </summary>
     internal class PasswordStorage
     {
         // These constants may be changed without breaking existing hashes.
-        public const int SALT_BYTES = 24;
-        public const int HASH_BYTES = 18;
-        public const int PBKDF2_ITERATIONS = 64000;
+        public const int SaltBytes = 24;
+        public const int HashBytes = 18;
+        public const int Pbkdf2Iterations = 64000;
 
         // These constants define the encoding and may not be changed.
-        public const int HASH_SECTIONS = 5;
-        public const int HASH_ALGORITHM_INDEX = 0;
-        public const int ITERATION_INDEX = 1;
-        public const int HASH_SIZE_INDEX = 2;
-        public const int SALT_INDEX = 3;
-        public const int PBKDF2_INDEX = 4;
+        public const int HashSections = 5;
+        public const int HashAlgorithmIndex = 0;
+        public const int IterationIndex = 1;
+        public const int HashSizeIndex = 2;
+        public const int SaltIndex = 3;
+        public const int Pbkdf2Index = 4;
 
+        /// <summary>
+        /// Return a generated Hash from a password
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns>
+        /// String of Hash
+        /// </returns>
         public static string CreateHash(string password)
         {
             // Generate a random salt
-            var salt = new byte[SALT_BYTES];
+            var salt = new byte[SaltBytes];
             try
             {
                 using (var csprng = new RNGCryptoServiceProvider())
@@ -173,11 +231,11 @@ namespace DataAccessLayer
                 );
             }
 
-            var hash = PBKDF2(password, salt, PBKDF2_ITERATIONS, HASH_BYTES);
+            var hash = Pbkdf2(password, salt, Pbkdf2Iterations, HashBytes);
 
             // format: algorithm:iterations:hashSize:salt:hash
             var parts = "sha1:" +
-                PBKDF2_ITERATIONS +
+                Pbkdf2Iterations +
                 ":" +
                 hash.Length +
                 ":" +
@@ -187,20 +245,28 @@ namespace DataAccessLayer
             return parts;
         }
 
+        /// <summary>
+        /// Return true if password is correct, else false
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="goodHash"></param>
+        /// <returns>
+        /// Return true if password is correct, else false
+        /// </returns>
         public static bool VerifyPassword(string password, string goodHash)
         {
             char[] delimiter = { ':' };
             var split = goodHash.Split(delimiter);
 
-            if (split.Length != HASH_SECTIONS)
+            if (split.Length != HashSections)
             {
                 throw new InvalidHashException(
                     "Fields are missing from the password hash."
                 );
             }
 
-            // We only support SHA1 with C#.
-            if (split[HASH_ALGORITHM_INDEX] != "sha1")
+            // Only support SHA1 with C#.
+            if (split[HashAlgorithmIndex] != "sha1")
             {
                 throw new CannotPerformOperationException(
                     "Unsupported hash type."
@@ -210,7 +276,7 @@ namespace DataAccessLayer
             int iterations;
             try
             {
-                iterations = int.Parse(split[ITERATION_INDEX]);
+                iterations = int.Parse(split[IterationIndex]);
             }
             catch (ArgumentNullException ex)
             {
@@ -244,7 +310,7 @@ namespace DataAccessLayer
             byte[] salt;
             try
             {
-                salt = Convert.FromBase64String(split[SALT_INDEX]);
+                salt = Convert.FromBase64String(split[SaltIndex]);
             }
             catch (ArgumentNullException ex)
             {
@@ -264,7 +330,7 @@ namespace DataAccessLayer
             byte[] hash;
             try
             {
-                hash = Convert.FromBase64String(split[PBKDF2_INDEX]);
+                hash = Convert.FromBase64String(split[Pbkdf2Index]);
             }
             catch (ArgumentNullException ex)
             {
@@ -284,7 +350,7 @@ namespace DataAccessLayer
             int storedHashSize;
             try
             {
-                storedHashSize = int.Parse(split[HASH_SIZE_INDEX]);
+                storedHashSize = int.Parse(split[HashSizeIndex]);
             }
             catch (ArgumentNullException ex)
             {
@@ -315,10 +381,19 @@ namespace DataAccessLayer
                 );
             }
 
-            var testHash = PBKDF2(password, salt, iterations, hash.Length);
+            var testHash = Pbkdf2(password, salt, iterations, hash.Length);
             return SlowEquals(hash, testHash);
         }
 
+        /// <summary>
+        /// Return True if the two byte list is equal, else false
+        /// This function is slow to compare to make it to hard to force a password compare
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>
+        /// Return True if the two byte list is equal, else false
+        /// </returns>
         private static bool SlowEquals(IReadOnlyList<byte> a, IReadOnlyList<byte> b)
         {
             var diff = (uint)a.Count ^ (uint)b.Count;
@@ -329,7 +404,17 @@ namespace DataAccessLayer
             return diff == 0;
         }
 
-        private static byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes)
+        /// <summary>
+        /// Return a Byte array after the iterations has passed
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="salt"></param>
+        /// <param name="iterations"></param>
+        /// <param name="outputBytes"></param>
+        /// <returns>
+        /// Return Byte[]
+        /// </returns>
+        private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
         {
             using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt))
             {

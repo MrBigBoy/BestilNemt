@@ -21,143 +21,143 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 1
         /// ERROR: Non
         /// </summary>
         [TestMethod]
-        public void CreateProductCtr()
+        public void AddProductCtr()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(1, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Missing name, null value
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailName()
+        public void AddProductCtrFailName()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product(null, 23.45m, "The product description", "The product catagory", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Missing name, empty string
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailName2()
+        public void AddProductCtrFailName2()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("", 23.45m, "The product description", "The product catagory", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Missing description, null value
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailDescription()
+        public void AddProductCtrFailDescription()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", 23.45m, null, "The product catagory", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Missing description, empty string
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailDescription2()
+        public void AddProductCtrFailDescription2()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", 23.45m, "", "The product catagory", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Missing catagory, null value
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailCategory()
+        public void AddProductCtrFailCategory()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", 23.45m, "The product description", null, 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Missing catagory, empty string
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailCategory2()
+        public void AddProductCtrFailCategory2()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", 23.45m, "The product description", "", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Price lower than 0
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailPrice()
+        public void AddProductCtrFailPrice()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", -1m, "The product description", "", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr Createproduct
+        /// Test a ProductCtr Addproduct
         /// The test is successfull if the flag is 0
         /// ERROR: Saving lower than 0
         /// </summary>
         [TestMethod]
-        public void CreateProductCtrFailSaving()
+        public void AddProductCtrFailSaving()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", 2m, "The product description", "", -10);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             Assert.AreEqual(0, flag);
         }
 
         /// <summary>
-        /// Test a DbProduct Createproduct
-        /// The test is successfull if the flag is 1
+        /// Test a DbProduct Addproduct
+        /// The test is successfull if the flag is not 0
         /// ERROR: Non
         /// </summary>
         [TestMethod]
-        public void CreateProductDb()
+        public void AddProductDb()
         {
             var dbProduct = new DbProduct();
             var product = new Product("The product name", 23.45m, "The product description", "The product catagory", 40);
-            var flag = dbProduct.CreateProduct(product);
-            Assert.AreEqual(1, flag);
+            var flag = dbProduct.AddProduct(product);
+            Assert.AreNotEqual(0, flag);
         }
 
         /// <summary>
@@ -168,9 +168,9 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void FindProductCtr()
         {
-           var productCtr = new ProductCtr(new ProductCtrTestClass());
+            var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", 23.45m, "The product description", "The product catagory", 40);
-            productCtr.CreateProduct(product);
+            productCtr.AddProduct(product);
             var flag = productCtr.FindProduct(1);
             Assert.IsNotNull(flag);
         }
@@ -185,11 +185,11 @@ namespace BestilNemtUnitTestTest
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product1 = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
-            productCtr.CreateProduct(product1);
+            productCtr.AddProduct(product1);
             var product2 = new Product("The product2 name", 34.56m, "The product2 description", "The product2 catagory", 50);
-            productCtr.CreateProduct(product2);
+            productCtr.AddProduct(product2);
             var product3 = new Product("The product3 name", 45.67m, "The product3 description", "The product3 catagory", 60);
-            productCtr.CreateProduct(product3);
+            productCtr.AddProduct(product3);
             var products = productCtr.FindAllProducts();
             Assert.AreEqual(3, products.Count);
         }
@@ -204,7 +204,7 @@ namespace BestilNemtUnitTestTest
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
-            productCtr.CreateProduct(product);
+            productCtr.AddProduct(product);
             product = new Product(1, "The product new name", 34.56m, "The product new description", "The product new catagory", 50);
             var flag = productCtr.UpdateProduct(product);
             Assert.AreEqual(1, flag);
@@ -332,7 +332,7 @@ namespace BestilNemtUnitTestTest
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
-            var flag = productCtr.CreateProduct(product);
+            var flag = productCtr.AddProduct(product);
             flag = productCtr.DeleteProduct(flag);
             Assert.AreEqual(1, flag);
         }
@@ -350,24 +350,61 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(0, flag);
         }
 
-
         /// <summary>
         /// Test a ProductWcf DeleteProduct
-        /// The test is successfull if the flag is 1
+        /// The test is successfull if the flag is not 0
         /// ERROR: Id is 0
         /// </summary>
-        /*
         [TestMethod]
-        public void CreateProductWCF()
+        public void AddProductWcf()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
                 var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
                 var i = proxy.AddProduct(product);
+                proxy.DeleteProduct(i);
+                Assert.AreNotEqual(0, i);
+            }
+        }
+
+        /// <summary>
+        /// Test a ProductWcf DeleteProduct
+        /// The test is successfull if the flag is 1
+        /// ERROR: Id is 0
+        /// </summary>
+        [TestMethod]
+        public void UpdateProductWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+                var id = proxy.AddProduct(product);
+                product.Id = id;
+                var i = proxy.UpdateProduct(product);
+                proxy.DeleteProduct(id);
                 Assert.AreEqual(1, i);
             }
         }
-        */
+
+
+        /// <summary>
+        /// Test a ProductWcf DeleteProduct
+        /// The test is successfull if the flag is 1
+        /// ERROR: Id is 0
+        /// </summary>
+        [TestMethod]
+        public void DeleteProductWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+                var id = proxy.AddProduct(product);
+                var i = proxy.DeleteProduct(id);
+                Assert.AreEqual(1, i);
+            }
+        }
     }
 }

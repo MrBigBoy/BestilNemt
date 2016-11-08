@@ -14,7 +14,7 @@ namespace Controller
             DbCustomer = dbCustomer;
         }
 
-        public int CreatePerson(Customer customer)
+        public int AddPerson(Customer customer)
         {
             return ValidatePersonInput(customer) ? DbCustomer.Create(customer) : 0;
         }
@@ -28,7 +28,7 @@ namespace Controller
             return DbCustomer.FindAllCustomer();
         }
 
-        public int RemoveCustomer(int id)
+        public int DeleteCustomer(int id)
         {
             return DbCustomer.RemoveCustomer(id);
         }

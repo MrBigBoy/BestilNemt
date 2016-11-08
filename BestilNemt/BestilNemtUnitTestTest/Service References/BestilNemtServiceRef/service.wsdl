@@ -13,11 +13,11 @@
   <wsdl:message name="IBestilNemtService_FindCustomer_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindCustomerResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateCustomer" />
+  <wsdl:message name="IBestilNemtService_AddCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_AddCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCustomerResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCustomer" />
@@ -25,23 +25,23 @@
   <wsdl:message name="IBestilNemtService_UpdateCustomer_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCustomerResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_RemoveCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveCustomer" />
+  <wsdl:message name="IBestilNemtService_DeleteCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_RemoveCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_DeleteCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCustomerResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_GetALlCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetALlCustomer" />
+  <wsdl:message name="IBestilNemtService_GetAllCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_GetALlCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetALlCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_GetAllCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCustomerResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateAdmin_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateAdmin" />
+  <wsdl:message name="IBestilNemtService_AddAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAdmin" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateAdmin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateAdminResponse" />
+  <wsdl:message name="IBestilNemtService_AddAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAdminResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_FindAdmin_InputMessage">
     <wsdl:part name="parameters" element="tns:FindAdmin" />
@@ -55,11 +55,11 @@
   <wsdl:message name="IBestilNemtService_GetAllAdmins_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllAdminsResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_RemoveAdmin_InputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveAdmin" />
+  <wsdl:message name="IBestilNemtService_DeleteAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAdmin" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_RemoveAdmin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveAdminResponse" />
+  <wsdl:message name="IBestilNemtService_DeleteAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAdminResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateAdmin_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateAdmin" />
@@ -145,17 +145,17 @@
   <wsdl:message name="IBestilNemtService_UpdateLogin_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateLoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_DelLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:DelLogin" />
+  <wsdl:message name="IBestilNemtService_DeleteLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLogin" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_DelLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DelLoginResponse" />
+  <wsdl:message name="IBestilNemtService_DeleteLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateCompany_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateCompany" />
+  <wsdl:message name="IBestilNemtService_AddCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCompany" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_CreateCompany_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateCompanyResponse" />
+  <wsdl:message name="IBestilNemtService_AddCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCompanyResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_FindAllCompany_InputMessage">
     <wsdl:part name="parameters" element="tns:FindAllCompany" />
@@ -163,11 +163,11 @@
   <wsdl:message name="IBestilNemtService_FindAllCompany_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindAllCompanyResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_RemoveCompany_InputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveCompany" />
+  <wsdl:message name="IBestilNemtService_DeleteCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCompany" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_RemoveCompany_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveCompanyResponse" />
+  <wsdl:message name="IBestilNemtService_DeleteCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCompanyResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateCompany_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCompany" />
@@ -216,25 +216,25 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomer" message="tns:IBestilNemtService_FindCustomer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomerResponse" message="tns:IBestilNemtService_FindCustomer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CreateCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCustomer" message="tns:IBestilNemtService_CreateCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCustomerResponse" message="tns:IBestilNemtService_CreateCustomer_OutputMessage" />
+    <wsdl:operation name="AddCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCustomer" message="tns:IBestilNemtService_AddCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddCustomerResponse" message="tns:IBestilNemtService_AddCustomer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCustomer" message="tns:IBestilNemtService_UpdateCustomer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse" message="tns:IBestilNemtService_UpdateCustomer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RemoveCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveCustomer" message="tns:IBestilNemtService_RemoveCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveCustomerResponse" message="tns:IBestilNemtService_RemoveCustomer_OutputMessage" />
+    <wsdl:operation name="DeleteCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteCustomer" message="tns:IBestilNemtService_DeleteCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteCustomerResponse" message="tns:IBestilNemtService_DeleteCustomer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetALlCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetALlCustomer" message="tns:IBestilNemtService_GetALlCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetALlCustomerResponse" message="tns:IBestilNemtService_GetALlCustomer_OutputMessage" />
+    <wsdl:operation name="GetAllCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCustomer" message="tns:IBestilNemtService_GetAllCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCustomerResponse" message="tns:IBestilNemtService_GetAllCustomer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CreateAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/CreateAdmin" message="tns:IBestilNemtService_CreateAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/CreateAdminResponse" message="tns:IBestilNemtService_CreateAdmin_OutputMessage" />
+    <wsdl:operation name="AddAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddAdmin" message="tns:IBestilNemtService_AddAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddAdminResponse" message="tns:IBestilNemtService_AddAdmin_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="FindAdmin">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindAdmin" message="tns:IBestilNemtService_FindAdmin_InputMessage" />
@@ -244,9 +244,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllAdmins" message="tns:IBestilNemtService_GetAllAdmins_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse" message="tns:IBestilNemtService_GetAllAdmins_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RemoveAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveAdmin" message="tns:IBestilNemtService_RemoveAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveAdminResponse" message="tns:IBestilNemtService_RemoveAdmin_OutputMessage" />
+    <wsdl:operation name="DeleteAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteAdmin" message="tns:IBestilNemtService_DeleteAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteAdminResponse" message="tns:IBestilNemtService_DeleteAdmin_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateAdmin">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateAdmin" message="tns:IBestilNemtService_UpdateAdmin_InputMessage" />
@@ -304,21 +304,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateLogin" message="tns:IBestilNemtService_UpdateLogin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateLoginResponse" message="tns:IBestilNemtService_UpdateLogin_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DelLogin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DelLogin" message="tns:IBestilNemtService_DelLogin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DelLoginResponse" message="tns:IBestilNemtService_DelLogin_OutputMessage" />
+    <wsdl:operation name="DeleteLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteLogin" message="tns:IBestilNemtService_DeleteLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteLoginResponse" message="tns:IBestilNemtService_DeleteLogin_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CreateCompany">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCompany" message="tns:IBestilNemtService_CreateCompany_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/CreateCompanyResponse" message="tns:IBestilNemtService_CreateCompany_OutputMessage" />
+    <wsdl:operation name="AddCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCompany" message="tns:IBestilNemtService_AddCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddCompanyResponse" message="tns:IBestilNemtService_AddCompany_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="FindAllCompany">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindAllCompany" message="tns:IBestilNemtService_FindAllCompany_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindAllCompanyResponse" message="tns:IBestilNemtService_FindAllCompany_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RemoveCompany">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveCompany" message="tns:IBestilNemtService_RemoveCompany_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveCompanyResponse" message="tns:IBestilNemtService_RemoveCompany_OutputMessage" />
+    <wsdl:operation name="DeleteCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteCompany" message="tns:IBestilNemtService_DeleteCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteCompanyResponse" message="tns:IBestilNemtService_DeleteCompany_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateCompany">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCompany" message="tns:IBestilNemtService_UpdateCompany_InputMessage" />
@@ -360,8 +360,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/CreateCustomer" style="document" />
+    <wsdl:operation name="AddCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -378,8 +378,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RemoveCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/RemoveCustomer" style="document" />
+    <wsdl:operation name="DeleteCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -387,8 +387,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetALlCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetALlCustomer" style="document" />
+    <wsdl:operation name="GetAllCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -396,8 +396,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateAdmin">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/CreateAdmin" style="document" />
+    <wsdl:operation name="AddAdmin">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddAdmin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -423,8 +423,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RemoveAdmin">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/RemoveAdmin" style="document" />
+    <wsdl:operation name="DeleteAdmin">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteAdmin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -558,8 +558,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DelLogin">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DelLogin" style="document" />
+    <wsdl:operation name="DeleteLogin">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteLogin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -567,8 +567,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateCompany">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/CreateCompany" style="document" />
+    <wsdl:operation name="AddCompany">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddCompany" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -585,8 +585,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RemoveCompany">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/RemoveCompany" style="document" />
+    <wsdl:operation name="DeleteCompany">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteCompany" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

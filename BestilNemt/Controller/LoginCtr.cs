@@ -21,9 +21,9 @@ namespace Controller
             return ValidateLoginInput(login) ? DbLogin.Login(login) : null;
         }
 
-        public int DelLogin(Login login)
+        public int DeleteLogin(Login login)
         {
-            return !ValidateLoginInput(login) ? 0 : DbLogin.DelLogin(login);
+            return !ValidateLoginInput(login) ? 0 : DbLogin.DeleteLogin(login);
         }
 
         public int UpdateLogin(Login login)

@@ -13,9 +13,9 @@ namespace Controller
             DbProduct = dbProduct;
         }
 
-        public int CreateProduct(Product product)
+        public int AddProduct(Product product)
         {
-            return ValidateProductInput(product) ? DbProduct.CreateProduct(product) : 0;
+            return ValidateProductInput(product) ? DbProduct.AddProduct(product) : 0;
         }
 
         private bool ValidateProductInput(Product product)

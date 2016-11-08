@@ -1,5 +1,4 @@
-﻿using System;
-using Controller;
+﻿using Controller;
 using Controller.ControllerTestClasses;
 using DataAccessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,20 +17,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void CreateCompany()
+        public void AddCompany()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Norea@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            var flag = companyCtr.CreateCompany(company);
+            var flag = companyCtr.AddCompany(company);
             Assert.AreEqual(1, flag);
         }
 
         [TestMethod]
-        public void CreateCompanyNoEmail()
+        public void AddCompanyNoEmail()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "", "Pilevej 12", "Company", 12345678, 1);
-            var flag = companyCtr.CreateCompany(company);
+            var flag = companyCtr.AddCompany(company);
             Assert.AreEqual(0, flag);
         }
 
@@ -40,7 +39,7 @@ namespace BestilNemtUnitTestTest
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "dsds", "Pilevej 12", "Company", 12345678, 1);
-            companyCtr.CreateCompany(company);
+            companyCtr.AddCompany(company);
             Assert.IsNotNull(companyCtr.findCompany(1));
 
         }
@@ -50,27 +49,26 @@ namespace BestilNemtUnitTestTest
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            companyCtr.CreateCompany(company);
+            companyCtr.AddCompany(company);
             Assert.IsNull(companyCtr.findCompany(4));
         }
         [TestMethod]
-        public void GetAllcompanys()
+        public void FindAllcompanys()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             var company2 = new Company("Nordeaa", "Esmail.@gmail.com", "Pilevej 12", "Company", 123456782, 4);
-            companyCtr.CreateCompany(company);
-            companyCtr.CreateCompany(company2);
-            Assert.AreEqual(2, companyCtr.GetAllCompany().Count);
-
+            companyCtr.AddCompany(company);
+            companyCtr.AddCompany(company2);
+            Assert.AreEqual(2, companyCtr.FindAllCompany().Count);
         }
 
         [TestMethod]
-        public void UpdateCompanyCVRFlag()
+        public void UpdateCompanyCvrFlag()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            companyCtr.CreateCompany(company);
+            companyCtr.AddCompany(company);
             var flag = companyCtr.updateCompany(company);
             Assert.AreEqual(1, flag);
         }
@@ -80,7 +78,7 @@ namespace BestilNemtUnitTestTest
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            companyCtr.CreateCompany(company);
+            companyCtr.AddCompany(company);
             var id = companyCtr.removeCompany(company.Id);
             Assert.AreEqual(1, id);
         }
@@ -89,52 +87,50 @@ namespace BestilNemtUnitTestTest
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            companyCtr.CreateCompany(company);
+            companyCtr.AddCompany(company);
             var id = companyCtr.removeCompany(company.Id);
             Assert.AreNotEqual(0, id);
         }
         [TestMethod]
         public void AddDbCompany()
         {
-            var dbCompany = new DbCompany1();
+            var dbCompany = new DbCompany();
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            var id = dbCompany.CreateCompany(company);
+            var id = dbCompany.AddCompany(company);
             Assert.AreNotEqual(0, id);
         }
 
         [TestMethod]
-        public void getCompany()
+        public void FindCompany()
         {
-            var dbCompany = new DbCompany1();
+            var dbCompany = new DbCompany();
             var company = dbCompany.FindCompany(3);
             Assert.IsNotNull(company);
         }
 
         [TestMethod]
-        public void GetAllCompany()
+        public void FindAllCompany()
         {
-            var dbCompany = new DbCompany1();
-            Assert.AreNotEqual(0,dbCompany.FindAllCompany().Count);
+            var dbCompany = new DbCompany();
+            Assert.AreNotEqual(0, dbCompany.FindAllCompany().Count);
         }
 
         [TestMethod]
         public void AddCtrDbCompany()
         {
-            var companyCtr = new CompanyCtr(new DbCompany1());
+            var companyCtr = new CompanyCtr(new DbCompany());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            var id = companyCtr.CreateCompany(company);
-            Assert.AreNotEqual(0,id);
+            var id = companyCtr.AddCompany(company);
+            Assert.AreNotEqual(0, id);
         }
 
         [TestMethod]
         public void AddCtrDbCompanyFailName()
         {
-            var companyCtr = new CompanyCtr(new DbCompany1());
+            var companyCtr = new CompanyCtr(new DbCompany());
             var company = new Company("", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
-            var id = companyCtr.CreateCompany(company);
+            var id = companyCtr.AddCompany(company);
             Assert.AreEqual(0, id);
         }
-
-
     }
 }

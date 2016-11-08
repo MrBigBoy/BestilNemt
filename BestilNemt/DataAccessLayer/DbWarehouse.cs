@@ -7,6 +7,13 @@ namespace DataAccessLayer
 {
     public class DbWarehouse : IDbWarehouse
     {
+        /// <summary>
+        /// Add a Warehouse
+        /// </summary>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// Return 1 if the Warehouse is added, else 0
+        /// </returns>
         public int Add(Warehouse warehouse)
         {
             int i;
@@ -21,6 +28,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Delete a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if the Warehouse is deleted, else 0
+        /// </returns>
         public int Remove(int id)
         {
             int i;
@@ -34,6 +48,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Update a Warehouse
+        /// </summary>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// Return 1 if the Warehouse is updated, else 0
+        /// </returns>
         public int Update(Warehouse warehouse)
         {
             int i;
@@ -49,6 +70,12 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Return a list of all Warehouses
+        /// </summary>
+        /// <returns>
+        /// List of Warehouse
+        /// </returns>
         public List<Warehouse> GetAll()
         {
             var warehouses = new List<Warehouse>();
@@ -74,6 +101,13 @@ namespace DataAccessLayer
             return warehouses;
         }
 
+        /// <summary>
+        /// Return a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Warehouse if found, else null
+        /// </returns>
         public Warehouse Get(int id)
         {
             Warehouse warehouse = null;
@@ -92,7 +126,7 @@ namespace DataAccessLayer
                         Stock = reader.GetInt32(reader.GetOrdinal("stock")),
                         MinStock = reader.GetInt32(reader.GetOrdinal("minStock"))
                     };
-                    
+
                     //warehouse.Shop = reader.GetInt32(reader.GetOrdinal(""));
                     //warehouse.Products = reader.GetInt32(reader.GetOrdinal(""));
                 }

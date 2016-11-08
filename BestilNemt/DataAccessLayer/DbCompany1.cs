@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DataAccessLayer
 {
-    public class DbCompany1 : IDbCompany
+    public class DbCompany : IDbCompany
     {
-        public int CreateCompany(Company company)
+        /// <summary>
+        /// Add a Company
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns>
+        /// Return 1 if Company is added, else 0
+        /// </returns>
+        public int AddCompany(Company company)
         {
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -28,11 +31,16 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("CVR", company.CVR);
                 cmd.Parameters.AddWithValue("KontorNr", company.Kontonr);
                 i = cmd.ExecuteNonQuery();
-
             }
             return i;
         }
 
+        /// <summary>
+        /// Return a list of Companys
+        /// </summary>
+        /// <returns>
+        /// Return List of Company
+        /// </returns>
         public List<Company> FindAllCompany()
         {
             var companys = new List<Company>();
@@ -61,6 +69,13 @@ namespace DataAccessLayer
             return companys;
         }
 
+        /// <summary>
+        /// Return a Company
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return a Company if found, else null
+        /// </returns>
         public Company FindCompany(int id)
         {
             Company company = null;
@@ -90,6 +105,13 @@ namespace DataAccessLayer
             return company;
         }
 
+        /// <summary>
+        /// Remove a Company by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if Company is removed, else 0
+        /// </returns>
         public int RemoveCompany(int id)
         {
             int i;
@@ -105,6 +127,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Update a Company
+        /// </summary>
+        /// <param name="company"></param>
+        /// <returns>
+        /// Return 1 if Company is updated, else 0
+        /// </returns>
         public int UpdateCompany(Company company)
         {
             int i;

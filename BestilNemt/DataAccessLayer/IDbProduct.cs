@@ -5,7 +5,7 @@ namespace DataAccessLayer
 {
     public interface IDbProduct
     {
-        int CreateProduct(Product product);
+        int AddProduct(Product product);
         Product FindProduct(int id);
         List<Product> FindAllProducts();
         int UpdateProduct(Product product);

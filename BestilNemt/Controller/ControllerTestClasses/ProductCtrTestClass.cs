@@ -13,7 +13,7 @@ namespace Controller.ControllerTestClasses
         private List<Product> products = new List<Product>();
         private int idCounter = 1;
 
-        public int CreateProduct(Product product)
+        public int AddProduct(Product product)
         {
             product.Id = idCounter;
             products.Add(product);

@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Net.Sockets;
-using System.ServiceModel.Channels;
 using Models;
 
 namespace DataAccessLayer
 {
     public class DbCustomer : IDbCustomer
     {
+        /// <summary>
+        /// Add a Customer
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns>
+        /// Return 1 if Customer is added, else 0
+        /// </returns>
         public int Create(Customer customer)
         {
             int id;
@@ -27,12 +32,19 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("personType", customer.PersonType);
                 cmd.Parameters.AddWithValue("address", customer.Address);
                 cmd.Parameters.AddWithValue("birthday", customer.Birthday);
-                id = (int) cmd.ExecuteScalar();
+                id = (int)cmd.ExecuteScalar();
 
             }
             return id;
         }
 
+        /// <summary>
+        /// Delete a Customer by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if Customer is deleted, else 0
+        /// </returns>
         public int RemoveCustomer(int id)
         {
             int i;
@@ -48,6 +60,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Return a Customer
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Customer if found, else null
+        /// </returns>
         public Customer FindCustomer(int id)
         {
             Customer customer = null;
@@ -75,6 +94,12 @@ namespace DataAccessLayer
             return customer;
         }
 
+        /// <summary>
+        /// Return a list of all Customers
+        /// </summary>
+        /// <returns>
+        /// Return List of Customer
+        /// </returns>
         public List<Customer> FindAllCustomer()
         {
             var customers = new List<Customer>();
@@ -102,6 +127,13 @@ namespace DataAccessLayer
             return customers;
         }
 
+        /// <summary>
+        /// Update a Customer
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns>
+        /// Return 1 if Customer is updated, else 0
+        /// </returns>
         public int UpdateCustomer(Customer customer)
         {
             int i;
@@ -122,9 +154,5 @@ namespace DataAccessLayer
             }
             return i;
         }
-
-
-
-
     }
 }
