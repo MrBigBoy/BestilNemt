@@ -55,7 +55,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM LoginTable where username=@username and password1=@password", conn);
+                var cmd = new SqlCommand("SELECT * FROM Warehouse", conn);
 
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -89,9 +89,10 @@ namespace DataAccessLayer
                     warehouse = new Warehouse
                     {
                         Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Stock = reader.GetInt32(reader.GetOrdinal("stock"))
+                        Stock = reader.GetInt32(reader.GetOrdinal("stock")),
+                        MinStock = reader.GetInt32(reader.GetOrdinal("minStock"))
                     };
-                    //Warehouse.MinStock = reader.GetInt32(reader.GetOrdinal("minStock"));
+                    
                     //warehouse.Shop = reader.GetInt32(reader.GetOrdinal(""));
                     //warehouse.Products = reader.GetInt32(reader.GetOrdinal(""));
                 }
