@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using System.Collections.Generic;
+using DataAccessLayer;
 using Models;
 
 namespace Controller
@@ -38,17 +39,17 @@ namespace Controller
 
         public int UpdateCart(Cart cart)
         {
-            return CartIdb.UpdateCart(cart);
+            return IDbCart.UpdateCart(cart);
         }
 
         public int DeleteCart(int id)
         {
-            return CartIdb.DeleteCart(id);
+            return IDbCart.DeleteCart(id);
         }
 
         public List<Cart> GetAllCarts()
         {
-            return CartIdb.GetAllCarts();
+            return IDbCart.GetAllCarts();
         }
     }
 }
