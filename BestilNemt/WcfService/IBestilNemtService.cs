@@ -110,6 +110,9 @@ namespace WcfService
 
         [OperationContract]
         PartOrder FindPartOrder(int id);
+
+        [OperationContract]
+        int UpdatePartorder(PartOrder partOrder);
     }
 
 

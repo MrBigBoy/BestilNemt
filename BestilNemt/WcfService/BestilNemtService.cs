@@ -439,5 +439,10 @@ namespace WcfService
         {
             return PartOrderCtr.FindPartOrder(id);
         }
+
+        public int UpdatePartorder(PartOrder partOrder)
+        {
+            return PartOrderCtr.UpdatePartorder(partOrder); 
+        }
     }
 }

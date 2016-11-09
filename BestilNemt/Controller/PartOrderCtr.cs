@@ -27,5 +27,11 @@ namespace Controller
         {
             return partOrder?.Amount != null && partOrder?.Product != null && partOrder?.Cart != null;
         }
+
+        public int UpdatePartorder(PartOrder partOrder)
+        {
+            
+            return ValidatePartOrderInput(partOrder) ? DbPartOrder.UpdatePartOrder(partOrder): 0;
+        }
     }
 }
