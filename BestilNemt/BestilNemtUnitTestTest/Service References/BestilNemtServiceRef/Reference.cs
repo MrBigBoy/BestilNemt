@@ -249,6 +249,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCart", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCartResponse")]
         System.Threading.Tasks.Task<int> DeleteCartAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
+        int AddPartOrderToCart(Models.Cart cart, Models.PartOrder partOrder);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
+        System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(Models.Cart cart, Models.PartOrder partOrder);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/FindPartOrderResponse")]
         Models.PartOrder FindPartOrder(int id);
         
@@ -617,6 +623,14 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> DeleteCartAsync(int id) {
             return base.Channel.DeleteCartAsync(id);
+        }
+        
+        public int AddPartOrderToCart(Models.Cart cart, Models.PartOrder partOrder) {
+            return base.Channel.AddPartOrderToCart(cart, partOrder);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(Models.Cart cart, Models.PartOrder partOrder) {
+            return base.Channel.AddPartOrderToCartAsync(cart, partOrder);
         }
         
         public Models.PartOrder FindPartOrder(int id) {

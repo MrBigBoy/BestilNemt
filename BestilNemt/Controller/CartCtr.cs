@@ -51,5 +51,17 @@ namespace Controller
         {
             return IDbCart.GetAllCarts();
         }
+
+        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        {
+            if (cart != null && partOrder != null)
+            {
+                return IDbCart.AddPartOrderToCart(cart, partOrder);
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

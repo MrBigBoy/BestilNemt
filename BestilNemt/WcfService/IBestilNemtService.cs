@@ -126,6 +126,9 @@ namespace WcfService
         int DeleteCart(int id);
 
         [OperationContract]
+        int AddPartOrderToCart(Cart cart, PartOrder partOrder);
+
+        [OperationContract]
         PartOrder FindPartOrder(int id);
 
         [OperationContract]
@@ -139,6 +142,8 @@ namespace WcfService
 
         [OperationContract]
         List<PartOrder> GetAllPartOrders();
+
+
     }
 }
 

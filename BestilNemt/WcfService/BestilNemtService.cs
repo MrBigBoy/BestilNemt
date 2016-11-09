@@ -413,7 +413,12 @@ namespace WcfService
         {
             return CartCtr.DeleteCart(id);
         }
-        
+
+        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        {
+            return CartCtr.AddPartOrderToCart(cart, partOrder);
+        }
+
         /// <summary>
         /// Add a Login
         /// </summary>
