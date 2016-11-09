@@ -107,6 +107,9 @@ namespace WcfService
         int UpdateProduct(Product product);
         [OperationContract]
         int DeleteProduct(int id);
+
+        [OperationContract]
+        PartOrder FindPartOrder(int id);
     }
 
 
