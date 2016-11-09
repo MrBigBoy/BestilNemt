@@ -23,6 +23,11 @@ namespace Controller
             return DbPartOrder.FindPartOrder(id);
         }
 
+        public List<PartOrder> GetAllPartOrders()
+        {
+            return DbPartOrder.GetAllPartOrders();
+        }
+
         public int RemovePartOrder(int id)
         {
             return DbPartOrder.RemovePartOrder(id);

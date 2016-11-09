@@ -481,5 +481,10 @@ namespace WcfService
         {
             return PartOrderCtr.AddPartOrder(partOrder);
         }
+
+        public List<PartOrder> GetAllPartOrders()
+        {
+            return PartOrderCtr.GetAllPartOrders();
+        }
     }
 }
