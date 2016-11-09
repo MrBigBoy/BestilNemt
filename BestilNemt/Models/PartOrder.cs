@@ -37,5 +37,13 @@ namespace Models
             PartPrice = PartPrice;
             Cart = Cart;
         }
+
+        public PartOrder(Product product, int amount, double partPrice, Cart cart)
+        {
+            Product = Product;
+            Amount = Amount;
+            PartPrice = PartPrice;
+            Cart = Cart;
+        }
     }
 }
