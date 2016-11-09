@@ -241,6 +241,12 @@
   <wsdl:message name="IBestilNemtService_DeleteCart_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteCartResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddPartOrderToCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPartOrderToCart" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddPartOrderToCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPartOrderToCartResponse" />
+  </wsdl:message>
   <wsdl:message name="IBestilNemtService_FindPartOrder_InputMessage">
     <wsdl:part name="parameters" element="tns:FindPartOrder" />
   </wsdl:message>
@@ -264,6 +270,12 @@
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdatePartorder_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePartorderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllPartOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPartOrders" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllPartOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPartOrdersResponse" />
   </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
     <wsdl:operation name="FindCustomer">
@@ -422,6 +434,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteCart" message="tns:IBestilNemtService_DeleteCart_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteCartResponse" message="tns:IBestilNemtService_DeleteCart_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddPartOrderToCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart" message="tns:IBestilNemtService_AddPartOrderToCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse" message="tns:IBestilNemtService_AddPartOrderToCart_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="FindPartOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindPartOrder" message="tns:IBestilNemtService_FindPartOrder_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindPartOrderResponse" message="tns:IBestilNemtService_FindPartOrder_OutputMessage" />
@@ -437,6 +453,10 @@
     <wsdl:operation name="UpdatePartorder">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdatePartorder" message="tns:IBestilNemtService_UpdatePartorder_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse" message="tns:IBestilNemtService_UpdatePartorder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPartOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders" message="tns:IBestilNemtService_GetAllPartOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse" message="tns:IBestilNemtService_GetAllPartOrders_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
@@ -792,6 +812,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddPartOrderToCart">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="FindPartOrder">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindPartOrder" style="document" />
       <wsdl:input>
@@ -821,6 +850,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdatePartorder">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdatePartorder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPartOrders">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllPartOrders" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

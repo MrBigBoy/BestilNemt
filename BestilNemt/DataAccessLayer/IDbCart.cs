@@ -10,5 +10,6 @@ namespace DataAccessLayer
         List<Cart> GetAllCarts();
         int UpdateCart(Cart cart);
         int DeleteCart(int id);
+        int AddPartOrderToCart(Cart cart, PartOrder partOrder);
     }
 }
