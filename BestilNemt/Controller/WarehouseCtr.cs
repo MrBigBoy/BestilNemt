@@ -13,28 +13,31 @@ namespace Controller
             DbWarehouse = dbWarehouse;
         }
 
-        public int Add(Warehouse warehouse)
+        public int AddWarehouse(Warehouse warehouse)
         {
-            return DbWarehouse.Add(warehouse);
+            return warehouse.Shop != null && warehouse.Shop.Id != 0 && warehouse.Product != null &&
+                   warehouse.Product.Id != 0
+                ? DbWarehouse.AddWarehouse(warehouse)
+                : 0;
         }
-        public Warehouse Get(int id)
+        public Warehouse FindWarehouse(int id)
         {
-            return DbWarehouse.Get(id);
-        }
-
-        public List<Warehouse> GetAll()
-        {
-            return DbWarehouse.GetAll();
+            return DbWarehouse.FindWarehouse(id);
         }
 
-        public int Remove(int id)
+        public List<Warehouse> FindAllWarehouses()
         {
-            return DbWarehouse.Remove(id);
+            return DbWarehouse.FindAllWarehouses();
         }
 
-        public int Update(Warehouse warehouse)
+        public int DeleteWarehouse(int id)
         {
-            return DbWarehouse.Update(warehouse);
+            return DbWarehouse.DeleteWarehouse(id);
+        }
+
+        public int UpdateWarehouse(Warehouse warehouse)
+        {
+            return DbWarehouse.UpdateWarehouse(warehouse);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Remove Product
+        /// Delete Product
         /// </summary>
         /// <param name="id"></param>
         /// <returns>

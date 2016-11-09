@@ -106,7 +106,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Remove a Company by id
+        /// Delete a Company by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>

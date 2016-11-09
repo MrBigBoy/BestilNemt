@@ -53,6 +53,7 @@
     <Compile Include="ControllerTestClasses\CompanyCtrTestClasses.cs" />
     <Compile Include="ControllerTestClasses\ProductCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\ShopCtrTestClass.cs" />
+    <Compile Include="ControllerTestClasses\WarehouseCtrTestClass.cs" />
     <Compile Include="LoginCtr.cs" />
     <Compile Include="CustomerCtr.cs" />
     <Compile Include="PartOrderCtr.cs" />

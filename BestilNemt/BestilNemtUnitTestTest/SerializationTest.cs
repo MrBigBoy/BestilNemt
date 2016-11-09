@@ -14,7 +14,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
             var serializationResult = SerializerTestHelpClass.TestSerialize(customer);
             Assert.AreEqual(customer.Id, serializationResult.Id);
@@ -24,7 +24,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
             var serializationResult = SerializerTestHelpClass.TestSerialize(customer);
             Assert.AreEqual(customer.Name, serializationResult.Name);
@@ -34,7 +34,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
             var serializationResult = SerializerTestHelpClass.TestSerialize(customer);
             Assert.AreEqual(customer.Email, serializationResult.Email);
@@ -44,7 +44,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
             var serializationResult = SerializerTestHelpClass.TestSerialize(customer);
             Assert.AreEqual(customer.Address, serializationResult.Address);
@@ -54,7 +54,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var customer = new Customer(4, "Benny", "benny@hotmail.com", "Kattevejen", new DateTime(2000, 02, 01), login, shops, "Customer");
             var serializationResult = SerializerTestHelpClass.TestSerialize(customer);
             Assert.AreEqual(customer.Birthday, serializationResult.Birthday);
@@ -65,7 +65,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(company);
             Assert.AreEqual(company.Id, serializationResult.Id);
@@ -75,7 +75,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(company);
             Assert.AreEqual(company.Name, serializationResult.Name);
@@ -85,7 +85,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(company);
             Assert.AreEqual(company.Email, serializationResult.Email);
@@ -95,7 +95,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(company);
             Assert.AreEqual(company.Address, serializationResult.Address);
@@ -105,7 +105,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(company);
             Assert.AreEqual(company.PersonType, serializationResult.PersonType);
@@ -115,7 +115,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(company);
             Assert.AreEqual(company.CVR, serializationResult.CVR);
@@ -125,7 +125,7 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var shop = new Shop();
-            var shops = new List<Shop> {shop};
+            var shops = new List<Shop> { shop };
             var company = new Company(4, "Benny", "benny@hotmail.com", "Kattevejen", login, shops, "Company", 12345678, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(company);
             Assert.AreEqual(company.Kontonr, serializationResult.Kontonr);
@@ -256,10 +256,8 @@ namespace BestilNemtUnitTestTest
         public void TestWarehouseIdSer()
         {
             var product = new Product();
-            var products = new List<Product>();
-            products.Add(product);
             var shop = new Shop();
-            var warehouse = new Warehouse(3, 3, 2, products, shop);
+            var warehouse = new Warehouse(3, 3, 2, product, shop);
             var serializationResult = SerializerTestHelpClass.TestSerialize(warehouse);
             Assert.AreEqual(warehouse.Id, serializationResult.Id);
         }
@@ -267,10 +265,8 @@ namespace BestilNemtUnitTestTest
         public void TestWarehouseStockSer()
         {
             var product = new Product();
-            var products = new List<Product>();
-            products.Add(product);
             var shop = new Shop();
-            var warehouse = new Warehouse(3, 3, 2, products, shop);
+            var warehouse = new Warehouse(3, 3, 2, product, shop);
             var serializationResult = SerializerTestHelpClass.TestSerialize(warehouse);
             Assert.AreEqual(warehouse.Stock, serializationResult.Stock);
         }
@@ -279,10 +275,8 @@ namespace BestilNemtUnitTestTest
         public void TestWarehouseMinStockSer()
         {
             var product = new Product();
-            var products = new List<Product>();
-            products.Add(product);
             var shop = new Shop();
-            var warehouse = new Warehouse(3, 3, 2, products, shop);
+            var warehouse = new Warehouse(3, 3, 2, product, shop);
             var serializationResult = SerializerTestHelpClass.TestSerialize(warehouse);
             Assert.AreEqual(warehouse.MinStock, serializationResult.MinStock);
         }
@@ -381,7 +375,7 @@ namespace BestilNemtUnitTestTest
         public void TestCartIdSer()
         {
             var partOrder = new PartOrder();
-            var partOrders = new List<PartOrder> {partOrder};
+            var partOrders = new List<PartOrder> { partOrder };
             var cart = new Cart(5, partOrders, 200.00m);
             var serializationResult = SerializerTestHelpClass.TestSerialize(cart);
             Assert.AreEqual(cart.Id, serializationResult.Id);
@@ -390,7 +384,7 @@ namespace BestilNemtUnitTestTest
         public void TestCartTotalPriceSer()
         {
             var partOrder = new PartOrder();
-            var partOrders = new List<PartOrder> {partOrder};
+            var partOrders = new List<PartOrder> { partOrder };
             var cart = new Cart(5, partOrders, 200.00m);
             var serializationResult = SerializerTestHelpClass.TestSerialize(cart);
             Assert.AreEqual(cart.TotalPrice, serializationResult.TotalPrice);
