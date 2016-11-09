@@ -17,17 +17,17 @@ namespace WcfService
         Customer FindCustomer(int id);
 
         [OperationContract]
-        int CreateCustomer(Customer customer);
+        int AddCustomer(Customer customer);
         [OperationContract]
         int UpdateCustomer(Customer customer);
         [OperationContract]
-        int RemoveCustomer(int id);
+        int DeleteCustomer(int id);
 
         [OperationContract]
-        List<Customer> GetALlCustomer();
+        List<Customer> GetAllCustomer();
 
         [OperationContract]
-        void CreateAdmin(Admin admin);
+        int AddAdmin(Admin admin);
 
         [OperationContract]
         Admin FindAdmin(int id);
@@ -36,10 +36,10 @@ namespace WcfService
         List<Admin> GetAllAdmins();
 
         [OperationContract]
-        int RemoveAdmin(int id);
+        int DeleteAdmin(int id);
 
         [OperationContract]
-        void UpdateAdmin(Admin admin);
+        int UpdateAdmin(Admin admin);
         [OperationContract]
         Warehouse GetWarehouse(int id);
 
@@ -47,14 +47,13 @@ namespace WcfService
         List<Warehouse> GetAllWarehouses();
 
         [OperationContract]
-        void RemoveWarehouse(int id);
+        int RemoveWarehouse(int id);
 
         [OperationContract]
-        void AddWarehouse(Warehouse warehouse);
+        int AddWarehouse(Warehouse warehouse);
 
         [OperationContract]
-        void UpdateWarehouse(Warehouse warehouse);
-
+        int UpdateWarehouse(Warehouse warehouse);
         
         [OperationContract]
         Shop GetShop(int id);
@@ -81,31 +80,33 @@ namespace WcfService
         int UpdateLogin(Login login);
 
         [OperationContract]
-        int DelLogin(Login login);
+        int DeleteLogin(Login login);
 
         [OperationContract]
-        void CreateCompany(Company company);
+        int AddCompany(Company company);
 
         [OperationContract]
         List<Company> FindAllCompany();
         [OperationContract]
-        int RemoveCompany(int id);
+        int DeleteCompany(int id);
         [OperationContract]
-        void UpdateCompany(Company company);
+        int UpdateCompany(Company company);
         [OperationContract]
         Company FindCompany(int id);
 
         [OperationContract]
-        int AddCart(Cart cart);
-        [OperationContract]
-        Cart FindCart(int id);
-        [OperationContract]
-        List<Cart> GetAllCarts();
-        [OperationContract]
-        int UpdateCart(Cart cart);
-        [OperationContract]
-        int DeleteCart(int id);
+        int AddProduct(Product product);
 
+        [OperationContract]
+        Product GetProduct(int id);
+
+        [OperationContract]
+        List<Product> GetAllProducts();
+
+        [OperationContract]
+        int UpdateProduct(Product product);
+        [OperationContract]
+        int DeleteProduct(int id);
     }
 
 

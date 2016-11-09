@@ -1,14 +1,19 @@
-﻿using System;
-using Models;
+﻿using Models;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace DataAccessLayer
 {
     public class DbShop : IDbShop
     {
+        /// <summary>
+        /// Return a Shop by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Shop if found, else null
+        /// </returns>
         public Shop GetShop(int id)
         {
             Shop shop = null;
@@ -34,6 +39,13 @@ namespace DataAccessLayer
             return shop;
         }
 
+        /// <summary>
+        /// Add a Shop
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns>
+        /// Return 1 if Shop is added, else 0
+        /// </returns>
         public int AddShop(Shop shop)
         {
             int id;
@@ -46,13 +58,19 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("cvr", shop.CVR);
                 //command.Parameters.Add("@ID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
                 //var idStr = command.Parameters["@ID"].Value.ToString();
-               // var i = command.ExecuteNonQuery();
-                id = (int) command.ExecuteScalar();
+                // var i = command.ExecuteNonQuery();
+                id = (int)command.ExecuteScalar();
                 //id = int.Parse(idStr);
             }
             return id;
         }
 
+        /// <summary>
+        /// Return a list of all shops
+        /// </summary>
+        /// <returns>
+        /// List of Shop
+        /// </returns>
         public List<Shop> GetAllShops()
         {
             var shops = new List<Shop>();
@@ -77,6 +95,13 @@ namespace DataAccessLayer
             return shops;
         }
 
+        /// <summary>
+        /// Update a Shop
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns>
+        /// Return 1 if Shop is updated, else 0
+        /// </returns>
         public int UpdateShop(Shop shop)
         {
             int i;
@@ -93,6 +118,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Delete a Shop
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if Shop is deleted, else 0
+        /// </returns>
         public int DeleteShop(int id)
         {
             int i;
@@ -106,9 +138,15 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Return true if the connection if open, else false
+        /// </summary>
+        /// <returns>
+        /// Return true if the connection if open, else false
+        /// </returns>
         public bool IsOpen()
         {
-            var con = false;
+            bool con;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();

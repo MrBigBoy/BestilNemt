@@ -29,7 +29,7 @@ namespace Controller.ControllerTestClasses
         }
     
 
-        public int CreateCompany(Company company)
+        public int AddCompany(Company company)
         {
             company.Id = idCounter;
             if (ValidateCompanyInput(company))

@@ -47,7 +47,7 @@ namespace Controller.ControllerTestClasses
             return 1;
         }
 
-        public int DelLogin(Login login)
+        public int DeleteLogin(Login login)
         {
             var i = 0;
             foreach (var var in _logins)

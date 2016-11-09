@@ -18,7 +18,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddCart()
         {
-            CartCtr cartCtr = new CartCtr(new CartCtrTestClass());
+            var cartCtr = new CartCtr(new CartCtrTestClass());
             var cart = new Cart();
             var flag = cartCtr.AddCart(cart);
             Assert.AreNotEqual(0, flag);
@@ -32,7 +32,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void FindCart()
         {
-            CartCtr cartCtr = new CartCtr(new CartCtrTestClass());
+            var cartCtr = new CartCtr(new CartCtrTestClass());
             var cart1 = new Cart(new List<PartOrder>(), 100);
             var cart2 = new Cart(new List<PartOrder>(), 50);
             var id1 = cartCtr.AddCart(cart1);

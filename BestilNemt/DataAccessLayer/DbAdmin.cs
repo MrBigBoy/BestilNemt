@@ -11,6 +11,13 @@ namespace DataAccessLayer
 {
     public class DbAdmin : IDbAdmin
     {
+        /// <summary>
+        /// Add a Admin
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns>
+        /// Return 1 if Admin is added, else 0
+        /// </returns>
         public int Create(Admin admin)
         {
             int i;
@@ -32,6 +39,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Remove a Admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if Admin is removed, else 0
+        /// </returns>
         public int RemoveAdmin(int id)
         {
             int i;
@@ -46,7 +60,14 @@ namespace DataAccessLayer
             }
             return i;
         }
-        
+
+        /// <summary>
+        /// Return a Admin by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Admin if found, else null
+        /// </returns>
         public Admin FindAdmin(int id)
         {
             Admin admin = null;
@@ -75,6 +96,12 @@ namespace DataAccessLayer
             return admin;
         }
 
+        /// <summary>
+        /// Return a list of Admins
+        /// </summary>
+        /// <returns>
+        /// Return List of Admin
+        /// </returns>
         public List<Admin> FindAllAdmins()
         {
             var admins = new List<Admin>();
@@ -102,6 +129,13 @@ namespace DataAccessLayer
             return admins;
         }
 
+        /// <summary>
+        /// Update a Admin
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns>
+        /// Return 1 if Admin is updated, else 0
+        /// </returns>
         public int UpdateAdmin(Admin admin)
         {
             int i;

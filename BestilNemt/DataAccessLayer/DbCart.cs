@@ -13,6 +13,13 @@ namespace DataAccessLayer
 {
     public class DbCart : IDbCart
     {
+        /// <summary>
+        /// Add a Cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns>
+        /// Return 1 if Cart is added, else 0
+        /// </returns>
         public int AddCart(Cart cart)
         {
             int id = 0;
@@ -51,6 +58,13 @@ namespace DataAccessLayer
            return id;
         }
 
+        /// <summary>
+        /// Return a Cart by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Cart if found, else null
+        /// </returns>
         public Cart FindCart(int id)
         {
             Cart cart = null;
@@ -74,6 +88,12 @@ namespace DataAccessLayer
             return cart;
         }
 
+        /// <summary>
+        /// Return a list of all Carts
+        /// </summary>
+        /// <returns>
+        /// Return List of Cart 
+        /// </returns>
         public List<Cart> GetAllCarts()
         {
             List<Cart> carts = new List<Cart>();
@@ -97,6 +117,13 @@ namespace DataAccessLayer
             return carts;
         }
 
+        /// <summary>
+        /// Update a Cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns>
+        /// Return 1 if Cart is updated, else 0
+        /// </returns>
         public int UpdateCart(Cart cart)
         {
             int i;
@@ -113,6 +140,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Delete a Cart
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if Cart is deleted, else 0
+        /// </returns>
         public int DeleteCart(int id)
         {
             int i;
