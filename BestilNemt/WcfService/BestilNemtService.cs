@@ -32,7 +32,6 @@ namespace WcfService
             ProductCtr = new ProductCtr(new DbProduct());
             CartCtr = new CartCtr(new DbCart());
             PartOrderCtr = new PartOrderCtr(new DbPartOrder());
-
         }
 
         /// <summary>
@@ -221,7 +220,7 @@ namespace WcfService
         /// </returns>
         public int AddWarehouse(Warehouse warehouse)
         {
-            return WarehouseController.Add(warehouse);
+            return WarehouseController.AddWarehouse(warehouse);
         }
 
         /// <summary>
@@ -233,7 +232,7 @@ namespace WcfService
         /// </returns>
         public Warehouse GetWarehouse(int id)
         {
-            return WarehouseController.Get(id);
+            return WarehouseController.FindWarehouse(id);
         }
 
         /// <summary>
@@ -244,7 +243,7 @@ namespace WcfService
         /// </returns>
         public List<Warehouse> GetAllWarehouses()
         {
-            return WarehouseController.GetAll();
+            return WarehouseController.FindAllWarehouses();
         }
 
         /// <summary>
@@ -256,11 +255,11 @@ namespace WcfService
         /// </returns>
         public int UpdateWarehouse(Warehouse warehouse)
         {
-            return WarehouseController.Update(warehouse);
+            return WarehouseController.UpdateWarehouse(warehouse);
         }
 
         /// <summary>
-        /// Remove a Warehouse
+        /// Delete a Warehouse
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
@@ -268,7 +267,7 @@ namespace WcfService
         /// </returns>
         public int RemoveWarehouse(int id)
         {
-            return WarehouseController.Remove(id);
+            return WarehouseController.DeleteWarehouse(id);
         }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Remove a Admin
+        /// Delete a Admin
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
