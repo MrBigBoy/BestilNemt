@@ -125,9 +125,6 @@ namespace WcfService
         [OperationContract]
         int DeleteCart(int id);
 
-       
-
-
         [OperationContract]
         PartOrder FindPartOrder(int id);
 
@@ -139,8 +136,9 @@ namespace WcfService
 
         [OperationContract]
         int UpdatePartorder(PartOrder partOrder);
+
+        [OperationContract]
+        List<PartOrder> GetAllPartOrders();
     }
-
-
 }
 

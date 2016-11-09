@@ -82,32 +82,40 @@ namespace DataAccessLayer
             return partOrder;
         }
 
-        //public List<PartOrder> FindAllPartOrders()
-        //{
-        //    var admins = new List<Admin>();
-        //    using (
-        //        var conn =
-        //            new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, memberNr FROM Person LEFT JOIN Administrator ON Person.ID = Administrator.ID WHERE Person.personType = 'Administrator'", conn);
-        //        var reader = cmd.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            var admin = new Admin
-        //            {
-        //                Id = reader.GetInt32(reader.GetOrdinal("id")),
-        //                Name = reader.GetString(reader.GetOrdinal("name")),
-        //                Email = reader.GetString(reader.GetOrdinal("email")),
-        //                Address = reader.GetString(reader.GetOrdinal("address")),
-        //                PersonType = reader.GetString(reader.GetOrdinal("personType")),
-        //                Membernr = reader.GetInt32(reader.GetOrdinal("memberNr"))
-        //            };
-        //            admins.Add(admin);
-        //        }
-        //    }
-        //    return admins;
-        //}
+        public List<PartOrder> GetAllPartOrders()
+        {
+            Product product = null;
+            var partOrders = new List<PartOrder>();
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("Select * from PartOrder, Product WHERE PartOrder.productId = Product.id", conn);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    product = new Product()
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Name = reader.GetString(reader.GetOrdinal("name")),
+                        Price = reader.GetDecimal(reader.GetOrdinal("price")),
+                        Description = reader.GetString(reader.GetOrdinal("description")),
+                        Category = reader.GetString(reader.GetOrdinal("category"))
+                    };
+
+                    var partOrder = new PartOrder()
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Product = product,
+                        Amount = reader.GetInt32(reader.GetOrdinal("amount")),
+                        PartPrice = reader.GetDecimal(reader.GetOrdinal("partPrice"))
+                    };
+                    partOrders.Add(partOrder);
+                }
+            }
+            return partOrders;
+        }
 
         public int UpdatePartOrder(PartOrder partOrder)
         {
