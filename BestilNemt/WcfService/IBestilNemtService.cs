@@ -121,6 +121,9 @@ namespace WcfService
 
        
 
+
+        [OperationContract]
+        PartOrder FindPartOrder(int id);
     }
 
 
