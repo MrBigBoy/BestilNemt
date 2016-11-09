@@ -87,7 +87,6 @@
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Price" type="xs:decimal" />
       <xs:element minOccurs="0" name="Saving" type="xs:double" />
-      <xs:element minOccurs="0" name="Warehouse" nillable="true" type="tns:Warehouse" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />

@@ -17,10 +17,10 @@ namespace BestilNemtUnitTestTest
             // The debug.Writeline will not be called in tests, but you can use them while debugging.
             object deserializedObject;
             // Initializing an instance of the same serializer as WCF uses under the hoods
-            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(T));
+            var dataContractSerializer = new DataContractSerializer(typeof(T));
             //Serialize
             // Remember that using statements works as a try catch finally statements. The purpose is to make sure that the fileStream will be close no matter what
-            using (FileStream fileStream = File.Open("test" + typeof(T).Name + ".xml", FileMode.Create))
+            using (var fileStream = File.Open("test" + typeof(T).Name + ".xml", FileMode.Create))
             {
                 System.Diagnostics.Debug.WriteLine("Testing for type: {0}", typeof(T));
                 // After running the test, you examine the result of the serialized file 
@@ -28,7 +28,7 @@ namespace BestilNemtUnitTestTest
                 dataContractSerializer.WriteObject(fileStream, objectToSerialize);
             }
             // Deserialize
-            using (FileStream fs = File.Open("test" + typeof(T).Name + ".xml", FileMode.Open))
+            using (var fs = File.Open("test" + typeof(T).Name + ".xml", FileMode.Open))
             {
                 deserializedObject = dataContractSerializer.ReadObject(fs);
                 if (deserializedObject == null)

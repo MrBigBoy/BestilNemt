@@ -7,6 +7,6 @@ namespace DataAccessLayer
         Login Login(Login login);
         int AddLogin(Login login);
         int UpdateLogin(Login login);
-        int DelLogin(Login login);
+        int DeleteLogin(Login login);
     }
 }

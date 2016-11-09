@@ -150,7 +150,7 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            var propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
@@ -243,7 +243,7 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            var propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
@@ -405,7 +405,7 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            var propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
@@ -514,7 +514,7 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            var propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
@@ -655,7 +655,7 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            var propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
@@ -690,16 +690,16 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/removeCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/removeCustomerResponse")]
         System.Threading.Tasks.Task removeCustomerAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlCustomerResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlCustomerResponse")]
         ConsoleApplication1.BestilNemtServiceRef.Customer[] GetALlCustomer();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetALlCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlCustomerResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetALlCustomerResponse")]
         System.Threading.Tasks.Task<ConsoleApplication1.BestilNemtServiceRef.Customer[]> GetALlCustomerAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/CreateAdminResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/CreateAdminResponse")]
         void CreateAdmin(ConsoleApplication1.BestilNemtServiceRef.Admin admin);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/CreateAdminResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/CreateAdminResponse")]
         System.Threading.Tasks.Task CreateAdminAsync(ConsoleApplication1.BestilNemtServiceRef.Admin admin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/FindAdminResponse")]
@@ -714,10 +714,10 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllAdmins", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse")]
         System.Threading.Tasks.Task<ConsoleApplication1.BestilNemtServiceRef.Admin[]> GetAllAdminsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveAdminResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveAdminResponse")]
         int RemoveAdmin(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveAdminResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveAdminResponse")]
         System.Threading.Tasks.Task<int> RemoveAdminAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateAdminResponse")]
@@ -804,16 +804,16 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateLogin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateLoginResponse")]
         System.Threading.Tasks.Task<int> UpdateLoginAsync(ConsoleApplication1.BestilNemtServiceRef.Login login);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DelLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DelLoginResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DelLoginResponse")]
         int DelLogin(ConsoleApplication1.BestilNemtServiceRef.Login login);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DelLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DelLoginResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DelLoginResponse")]
         System.Threading.Tasks.Task<int> DelLoginAsync(ConsoleApplication1.BestilNemtServiceRef.Login login);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/CreateCompanyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCompany", ReplyAction="http://tempuri.org/IBestilNemtService/CreateCompanyResponse")]
         void CreateCompany(ConsoleApplication1.BestilNemtServiceRef.Company company);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/CreateCompanyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCompany", ReplyAction="http://tempuri.org/IBestilNemtService/CreateCompanyResponse")]
         System.Threading.Tasks.Task CreateCompanyAsync(ConsoleApplication1.BestilNemtServiceRef.Company company);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllCompanyResponse")]
@@ -822,10 +822,10 @@ namespace ConsoleApplication1.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllCompanyResponse")]
         System.Threading.Tasks.Task<ConsoleApplication1.BestilNemtServiceRef.Company[]> FindAllCompanyAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveCompany", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveCompanyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCompany", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveCompanyResponse")]
         int RemoveCompany(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveCompany", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveCompanyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCompany", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveCompanyResponse")]
         System.Threading.Tasks.Task<int> RemoveCompanyAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCompanyResponse")]

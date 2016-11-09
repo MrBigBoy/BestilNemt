@@ -16,13 +16,13 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void GetShopTestWCF()
         {
-            Shop shop = Proxy.GetShop(1);
+            var shop = Proxy.GetShop(1);
             Assert.AreEqual(1, shop.Id);
         }
         [TestMethod]
         public void GetWarehouseTestWCF()
         {
-            Warehouse warehouse = Proxy.GetWarehouse(1);
+            var warehouse = Proxy.GetWarehouse(1);
             Assert.AreEqual(1, warehouse.Id);
         }
     }

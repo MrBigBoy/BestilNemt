@@ -28,5 +28,11 @@ namespace Models
             PartOrders = new List<PartOrder>();
             TotalPrice = TotalPrice;
         }
+
+        public Cart(List<PartOrder> partOrders, decimal totalprice)
+        {
+            PartOrders = partOrders;
+            TotalPrice = totalprice;
+        }
     }
 }
