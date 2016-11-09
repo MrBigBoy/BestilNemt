@@ -107,6 +107,20 @@ namespace WcfService
         int UpdateProduct(Product product);
         [OperationContract]
         int DeleteProduct(int id);
+
+        [OperationContract]
+        int AddCart(Cart cart);
+        [OperationContract]
+        Cart FindCart(int id);
+        [OperationContract]
+        List<Cart> GetAllCarts();
+        [OperationContract]
+        int UpdateCart(Cart cart);
+        [OperationContract]
+        int DeleteCart(int id);
+
+       
+
     }
 
 

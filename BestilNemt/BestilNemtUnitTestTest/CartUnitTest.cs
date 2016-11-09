@@ -122,7 +122,7 @@ namespace BestilNemtUnitTestTest
         public void FindCartWithDb()
         {
             var cartDb = new DbCart();
-           Assert.IsNotNull(cartDb.FindCart(1));
+            Assert.IsNotNull(cartDb.FindCart(1));
         }
 
         [TestMethod]
@@ -130,6 +130,84 @@ namespace BestilNemtUnitTestTest
         {
             var cartDb = new DbCart();
             Assert.AreNotEqual(0, cartDb.GetAllCarts().Count);
+        }
+
+        [TestMethod]
+        public void DeleteCartWithDb()
+        {
+            var cartDb = new DbCart();
+            var cart = new Cart();
+            var id = cartDb.AddCart(cart);
+            Assert.AreEqual(1, cartDb.DeleteCart(id));
+        }
+
+        /// <summary>
+        /// Test of the WcfCervice.
+        /// Test for create new Cart object.test is passed if returned value is not 0. AddCart method 
+        /// returnes generated id.
+        /// </summary>
+        [TestMethod]
+        public void AddCartWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var cart = new Cart();
+                var id = proxy.AddCart(cart);
+                Assert.AreNotEqual(0, id);
+            }
+        }
+
+        /// <summary>
+        /// Test of the WcfCervice.
+        /// Test for find Cart object.test is passed if returned object is not null. 
+        /// </summary>
+        [TestMethod]
+        public void FindCartWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var cart = new Cart();
+                var id = proxy.AddCart(cart);
+                var i = proxy.FindCart(id);
+                Assert.IsNotNull(i);
+            }
+        }
+
+        /// <summary>
+        /// Test of the WcfCervice.
+        /// Test for all Carts . Test is passed if returned list of objects is not empty. 
+        /// </summary>
+        [TestMethod]
+        public void FindAllCartWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var i = proxy.GetAllCarts();
+                Assert.AreNotEqual(0, i.Length);
+            }
+        }
+
+        /// <summary>
+        /// Test of the WcfCervice.
+        /// Test for all Carts . Test is passed if returned list of objects is not empty. 
+        /// </summary>
+        [TestMethod]
+        public void UpdateCartWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var cart1 = new Cart(new List<PartOrder>(), 100);
+                var id1 = proxy.AddCart(cart1);
+                Cart cart2 = new Cart(id1, new List<PartOrder>(), 50);
+                var i = proxy.UpdateCart(cart2);
+                Cart updatedCart = proxy.FindCart(id1);
+                Assert.AreEqual(cart2.TotalPrice, updatedCart.TotalPrice);
+                //Assert.AreEqual(1, i);
+            }
         }
     }
 }

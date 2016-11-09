@@ -218,6 +218,36 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteProduct", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteProductResponse")]
         System.Threading.Tasks.Task<int> DeleteProductAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartResponse")]
+        int AddCart(Models.Cart cart);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartResponse")]
+        System.Threading.Tasks.Task<int> AddCartAsync(Models.Cart cart);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
+        Models.Cart FindCart(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
+        System.Threading.Tasks.Task<Models.Cart> FindCartAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
+        Models.Cart[] GetAllCarts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
+        System.Threading.Tasks.Task<Models.Cart[]> GetAllCartsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
+        int UpdateCart(Models.Cart cart);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
+        System.Threading.Tasks.Task<int> UpdateCartAsync(Models.Cart cart);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCart", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCartResponse")]
+        int DeleteCart(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCart", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCartResponse")]
+        System.Threading.Tasks.Task<int> DeleteCartAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -517,6 +547,46 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> DeleteProductAsync(int id) {
             return base.Channel.DeleteProductAsync(id);
+        }
+        
+        public int AddCart(Models.Cart cart) {
+            return base.Channel.AddCart(cart);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddCartAsync(Models.Cart cart) {
+            return base.Channel.AddCartAsync(cart);
+        }
+        
+        public Models.Cart FindCart(int id) {
+            return base.Channel.FindCart(id);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Cart> FindCartAsync(int id) {
+            return base.Channel.FindCartAsync(id);
+        }
+        
+        public Models.Cart[] GetAllCarts() {
+            return base.Channel.GetAllCarts();
+        }
+        
+        public System.Threading.Tasks.Task<Models.Cart[]> GetAllCartsAsync() {
+            return base.Channel.GetAllCartsAsync();
+        }
+        
+        public int UpdateCart(Models.Cart cart) {
+            return base.Channel.UpdateCart(cart);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateCartAsync(Models.Cart cart) {
+            return base.Channel.UpdateCartAsync(cart);
+        }
+        
+        public int DeleteCart(int id) {
+            return base.Channel.DeleteCart(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteCartAsync(int id) {
+            return base.Channel.DeleteCartAsync(id);
         }
     }
 }
