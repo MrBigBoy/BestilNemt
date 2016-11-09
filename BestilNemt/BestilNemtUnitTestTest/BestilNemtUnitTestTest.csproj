@@ -76,6 +76,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\DataSources\Models.Admin.datasource" />
+    <None Include="Properties\DataSources\Models.Cart.datasource" />
     <None Include="Properties\DataSources\Models.Company.datasource" />
     <None Include="Properties\DataSources\Models.Customer.datasource" />
     <None Include="Properties\DataSources\Models.Login.datasource" />
