@@ -10,41 +10,41 @@ namespace DataAccessLayer
 {
     public class DbPartOrder : IDbPartOrder
     {
-        //public int Create(PartOrder partOrder)
-        //{
-        //    int i;
-        //    using (
-        //        var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
+        public int AddPartOrder(PartOrder partOrder)
+        {
+            int i;
+            using (
+                var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
 
-        //        var cmd =
-        //            new SqlCommand(
-        //                "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(id) VALUES(@DataID);", conn);
-        //        cmd.Parameters.AddWithValue("name", admin.Name);
-        //        cmd.Parameters.AddWithValue("email", admin.Email);
-        //        cmd.Parameters.AddWithValue("personType", admin.PersonType);
-        //        cmd.Parameters.AddWithValue("address", admin.Address);
-        //        i = cmd.ExecuteNonQuery();
+                var cmd =
+                    new SqlCommand(
+                        "Insert into PartOrder(productId,amount,partPrice,cartId) values(@productId, @amount, @partPrice, @cartId)", conn);
+                cmd.Parameters.AddWithValue("productId", partOrder.Product.Id);
+                cmd.Parameters.AddWithValue("amount", partOrder.Amount);
+                cmd.Parameters.AddWithValue("partPrice", partOrder.PartPrice);
+                cmd.Parameters.AddWithValue("cartId", partOrder.Cart.Id);
+                i = cmd.ExecuteNonQuery();
 
-        //    }
-        //    return i;
-        //}
+            }
+            return i;
+        }
 
-        //public int RemovePartOrder(int id)
-        //{
-        //    int i;
-        //    using (
-        //        var conn =
-        //            new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = new SqlCommand("Delete from Administrator where Id = @id;Delete from Person where Id = @id", conn);
-        //        cmd.Parameters.AddWithValue("Id", id);
-        //        i = cmd.ExecuteNonQuery();
-        //    }
-        //    return i;
-        //}
+        public int RemovePartOrder(int id)
+        {
+            int i;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("Delete From PartOrder Where id = @id", conn);
+                cmd.Parameters.AddWithValue("Id", id);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
+        }
 
         public PartOrder FindPartOrder(int id)
         {
