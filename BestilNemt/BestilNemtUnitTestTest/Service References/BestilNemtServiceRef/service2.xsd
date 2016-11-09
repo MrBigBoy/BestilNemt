@@ -612,15 +612,6 @@
   <xs:element name="GetAllPartOrdersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllPartOrdersResult" nillable="true" type="q37:ArrayOfPartOrder" />
-  <xs:element name="GetAllPartOrders">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllPartOrdersResponse">
-    <xs:complexType>
-      <xs:sequence>
         <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllPartOrdersResult" nillable="true" type="q39:ArrayOfPartOrder" />
       </xs:sequence>
     </xs:complexType>

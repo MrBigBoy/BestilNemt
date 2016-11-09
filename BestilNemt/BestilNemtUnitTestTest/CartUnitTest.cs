@@ -118,6 +118,11 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, id);
         }
 
+        /// <summary>
+        /// Test of the Database accses layer only.
+        /// Test for find existing object. Test is passed if returned value is not null. FindCart method 
+        /// returnes returns Cart object with given id.
+        /// </summary>
         [TestMethod]
         public void FindCartWithDb()
         {
@@ -125,6 +130,10 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(cartDb.FindCart(1));
         }
 
+        /// <summary>
+        /// Test of the Database accses layer only.
+        /// Test for return a collection of Cart objects. Test is passed if returned collection size is not 0. 
+        /// </summary>
         [TestMethod]
         public void FindAllCartsWithDb()
         {
@@ -132,6 +141,11 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, cartDb.GetAllCarts().Count);
         }
 
+        /// <summary>
+        /// Test of the Database accses layer only.
+        /// Test for delete existing Cart object from databese. Test is passed if returned value is 1.
+        /// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
+        /// </summary>
         [TestMethod]
         public void DeleteCartWithDb()
         {
@@ -141,6 +155,13 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, cartDb.DeleteCart(id));
         }
 
+        /// <summary>
+        /// Test of the Database accses layer only.
+        /// Test for add a partOrder to a Cart. The method AddPartOrderToCart takes cart and partOrder 
+        /// objects as parameters and updates partOrder entry with cart.Id
+        /// Test is passed if returned value is 1.
+        /// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
+        /// </summary>
         [TestMethod]
         public void AddPartOrderToCartWithDb()
         {
@@ -243,6 +264,13 @@ namespace BestilNemtUnitTestTest
             }
         }
 
+        /// <summary>
+        /// Test of the wcf service.
+        /// Test for add a partOrder to a Cart using wcf. The method AddPartOrderToCart takes cart and partOrder 
+        /// objects as parameters and updates partOrder entry with cart.Id
+        /// Test is passed if returned value is 1.
+        /// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
+        /// </summary>
         [TestMethod]
         public void AddPartOrderToCartWcf()
         {
@@ -260,7 +288,5 @@ namespace BestilNemtUnitTestTest
                 Assert.AreEqual(1, i);
             }
         }
-
-
     }
 }

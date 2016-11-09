@@ -23,7 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e6533690-0916-43d3-9d14-48d6d72abcaf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="0aca2af6-bf87-43f7-acd7-ed3790c5707d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="ab4e2e6a-9bfe-4e84-afc9-6a30efe529f3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ebc4f028-81c6-43b2-ab07-65ab38ae14d3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
     <MetadataFile FileName="Models.xsd" MetadataType="Schema" ID="e11b344d-6bad-44e0-8d93-fa9cf3a749df" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
   </Metadata>
