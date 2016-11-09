@@ -15,6 +15,7 @@ namespace BestilNemtUnitTestTest
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             Assert.IsNotNull(companyCtr);
         }
+
         /// <summary>
         ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
         /// Test is sucsessful if all customer input values are valid and return value is not 0 
@@ -37,12 +38,13 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddCompanyNoEmail()
         {
-           
+
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "", "Pilevej 12", "Company", 12345678, 1);
             var flag = companyCtr.AddCompany(company);
             Assert.AreEqual(0, flag);
         }
+
         /// <summary>
         ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
         /// Test for Company object with given id is found and return value is not null
@@ -57,6 +59,7 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(companyCtr.FindCompany(1));
 
         }
+
         /// <summary>
         /// Test only CompanyCtr using CompanyCrtTestClass that simulates database.
         /// Tést for the company object with given id is not found return with be null 
@@ -69,6 +72,7 @@ namespace BestilNemtUnitTestTest
             companyCtr.AddCompany(company);
             Assert.IsNull(companyCtr.FindCompany(4));
         }
+
         /// <summary>
         ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
         /// Test for the returned list size is equal to expected one
@@ -83,6 +87,7 @@ namespace BestilNemtUnitTestTest
             companyCtr.AddCompany(company2);
             Assert.AreEqual(2, companyCtr.FindAllCompany().Count);
         }
+
         /// <summary>
         ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
         ///  Test for return Cvr is equal to the new one. 
@@ -96,6 +101,7 @@ namespace BestilNemtUnitTestTest
             var flag = companyCtr.UpdateCompany(company);
             Assert.AreEqual(1, flag);
         }
+
         /// <summary>
         ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
         /// Test is suxsessful if returned is 1, it means that a company with id = 1, 
@@ -110,6 +116,7 @@ namespace BestilNemtUnitTestTest
             var id = companyCtr.RemoveCompany(company.Id);
             Assert.AreEqual(1, id);
         }
+
         /// <summary>
         ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
         /// Test is suxsessful if returned is 0, it means that a company with id = , 
@@ -123,6 +130,7 @@ namespace BestilNemtUnitTestTest
             var id = companyCtr.RemoveCompany(company.Id);
             Assert.AreNotEqual(0, id);
         }
+
         /// <summary>
         /// Test only DbCompany 
         /// Test is sucsessful if all Company input values are valid and returned value is not 0
@@ -135,6 +143,7 @@ namespace BestilNemtUnitTestTest
             var id = dbCompany.AddCompany(company);
             Assert.AreNotEqual(0, id);
         }
+
         /// <summary>
         /// Test only DbCompany 
         /// Test is sucsessfull if returned company object is not null 
@@ -147,6 +156,7 @@ namespace BestilNemtUnitTestTest
             var company = dbCompany.FindCompany(3);
             Assert.IsNotNull(company);
         }
+
         /// <summary>
         /// Test only DbCompany 
         /// Test is sucsessfull if returned company object is not null 
@@ -157,6 +167,7 @@ namespace BestilNemtUnitTestTest
             var dbCompany = new DbCompany();
             Assert.AreNotEqual(0, dbCompany.FindAllCompany().Count);
         }
+
         /// <summary>
         /// Test both CTR And DB 
         /// 
@@ -169,6 +180,7 @@ namespace BestilNemtUnitTestTest
             var id = companyCtr.AddCompany(company);
             Assert.AreNotEqual(0, id);
         }
+
         /// <summary>
         /// Test both CTR And DB 
         /// 
@@ -188,7 +200,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var company = proxy.FindCompany(1);
+                var company = proxy.FindCompany(3);
                 if (company != null)
                 {
                     company.Name = "UCN";
@@ -196,9 +208,23 @@ namespace BestilNemtUnitTestTest
                     company.Email = "email@email.com";
                     company.CVR = 123455678;
                     company.Kontonr = 2121212;
+
                 }
-                var flag = proxy.UpdateCompany(company); 
-                Assert.AreEqual(0,flag);
+                var flag = proxy.UpdateCompany(company);
+                Assert.AreEqual(0, flag);
+            }
+
+
+        }
+
+        [TestMethod]
+        public void findme()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var company = proxy.FindCompany(3);
+                Assert.IsNotNull(company);
             }
         }
     }
