@@ -272,6 +272,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartorder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse")]
         System.Threading.Tasks.Task<int> UpdatePartorderAsync(Models.PartOrder partOrder);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
+        Models.PartOrder[] GetAllPartOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
+        System.Threading.Tasks.Task<Models.PartOrder[]> GetAllPartOrdersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -643,6 +649,14 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> UpdatePartorderAsync(Models.PartOrder partOrder) {
             return base.Channel.UpdatePartorderAsync(partOrder);
+        }
+        
+        public Models.PartOrder[] GetAllPartOrders() {
+            return base.Channel.GetAllPartOrders();
+        }
+        
+        public System.Threading.Tasks.Task<Models.PartOrder[]> GetAllPartOrdersAsync() {
+            return base.Channel.GetAllPartOrdersAsync();
         }
     }
 }
