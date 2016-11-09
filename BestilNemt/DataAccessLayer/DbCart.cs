@@ -192,7 +192,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "Update PartOrder Set cartId = @cartId where id = @partOrderId";
+                    cmd.CommandText = "Update PartOrder Set cartId = @cartId where partOrderId = @partOrderId";
                     cmd.Parameters.AddWithValue("cartId", cart.Id);
                     cmd.Parameters.AddWithValue("partOrderId", partOrder.Id);
                     i = (int)cmd.ExecuteNonQuery();

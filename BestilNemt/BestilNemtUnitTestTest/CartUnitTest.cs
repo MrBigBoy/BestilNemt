@@ -249,9 +249,6 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                //var cartDb = new DbCart();
-                //var poDb = new DbPartOrder();
-                //var prodDb = new DbProduct();
                 var cart = new Cart(new List<PartOrder>(), 100);
                 var id = proxy.AddCart(cart);
                 cart.Id = id;

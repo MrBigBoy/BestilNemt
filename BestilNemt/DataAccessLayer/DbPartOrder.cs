@@ -55,7 +55,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Product, PartOrder where PartOrder.id = @id and product.id = productId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Product, PartOrder where partOrderId = @id and product.id = productId", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -72,7 +72,7 @@ namespace DataAccessLayer
 
                     partOrder = new PartOrder()
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Id = reader.GetInt32(reader.GetOrdinal("partOrderId")),
                         Product = product,
                         Amount = reader.GetInt32(reader.GetOrdinal("amount")),
                         PartPrice = reader.GetDecimal(reader.GetOrdinal("partPrice"))
@@ -106,7 +106,7 @@ namespace DataAccessLayer
 
                     var partOrder = new PartOrder()
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        Id = reader.GetInt32(reader.GetOrdinal("partOrderId")),
                         Product = product,
                         Amount = reader.GetInt32(reader.GetOrdinal("amount")),
                         PartPrice = reader.GetDecimal(reader.GetOrdinal("partPrice"))
