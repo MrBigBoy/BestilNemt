@@ -9,6 +9,6 @@ namespace DataAccessLayer
         int RemovePartOrder(int id);
         PartOrder FindPartOrder(int id);
         //List<PartOrder> FindAllPartOrders();
-        //int UpdatePartOrder(PartOrder partOrder);
+        int UpdatePartOrder(PartOrder partOrder);
     }
 }

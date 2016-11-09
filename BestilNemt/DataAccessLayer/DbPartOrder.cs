@@ -109,24 +109,25 @@ namespace DataAccessLayer
         //    return admins;
         //}
 
-        //public int UpdatePartOrder(PartOrder partOrder)
-        //{
-        //    int i;
-        //    using (
-        //        var conn =
-        //            new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd =
-        //            new SqlCommand("UPDATE Person SET name=@name, email=@email, address=@address WHERE id=@id",
-        //                conn);
-        //        cmd.Parameters.AddWithValue("id", admin.Id);
-        //        cmd.Parameters.AddWithValue("name", admin.Name);
-        //        cmd.Parameters.AddWithValue("email", admin.Email);
-        //        cmd.Parameters.AddWithValue("address", admin.Address);
-        //        i = cmd.ExecuteNonQuery();
-        //    }
-        //    return i;
-        //}
+        public int UpdatePartOrder(PartOrder partOrder)
+        {
+            int i;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd =
+                    new SqlCommand("UPDATE PartOrder SET amount=@amount, partprice=@partprice WHERE id=@id",
+                        conn);
+                
+                cmd.Parameters.AddWithValue("id", partOrder.Id);
+                cmd.Parameters.AddWithValue("amount", partOrder.Amount);
+                cmd.Parameters.AddWithValue("partprice", partOrder.PartPrice);
+               
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
+        }
     }
 }

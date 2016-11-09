@@ -16,6 +16,7 @@ namespace WcfService
         public AdminCtr AdminCtr { get; set; }
         public ProductCtr ProductCtr { get; set; }
         public PartOrderCtr PartOrderCtr { get; set; }
+        public CartCtr CartCtr { get; set; }
 
         /// <summary>
         /// Initialize all Controllers
@@ -29,6 +30,7 @@ namespace WcfService
             CompanyCtr = new CompanyCtr(new DbCompany());
             AdminCtr = new AdminCtr(new DbAdmin());
             ProductCtr = new ProductCtr(new DbProduct());
+            CartCtr = new CartCtr(new DbCart());
             PartOrderCtr = new PartOrderCtr(new DbPartOrder());
 
         }
@@ -387,6 +389,31 @@ namespace WcfService
             return ProductCtr.DeleteProduct(id);
         }
 
+        public int AddCart(Cart cart)
+        {
+            return CartCtr.AddCart(cart);
+        }
+
+        public Cart FindCart(int id)
+        {
+            return CartCtr.FindCart(id);
+        }
+        
+        public List<Cart> GetAllCarts()
+        {
+            return CartCtr.GetAllCarts();
+        }
+
+        public int UpdateCart(Cart cart)
+        {
+            return CartCtr.UpdateCart(cart);
+        }
+
+        public int DeleteCart(int id)
+        {
+            return CartCtr.DeleteCart(id);
+        }
+        
         /// <summary>
         /// Add a Login
         /// </summary>
@@ -438,6 +465,11 @@ namespace WcfService
         public PartOrder FindPartOrder(int id)
         {
             return PartOrderCtr.FindPartOrder(id);
+        }
+
+        public int UpdatePartorder(PartOrder partOrder)
+        {
+            return PartOrderCtr.UpdatePartorder(partOrder); 
         }
 
         public int RemovePartOrder(int id)
