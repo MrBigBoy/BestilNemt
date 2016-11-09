@@ -192,7 +192,7 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test of the WcfCervice.
-        /// Test for all Carts . Test is passed if returned list of objects is not empty. 
+        /// Test for update total price in Cart. Test is passed if returned value is 1. 
         /// </summary>
         [TestMethod]
         public void UpdateCartWcf()
@@ -206,7 +206,23 @@ namespace BestilNemtUnitTestTest
                 var i = proxy.UpdateCart(cart2);
                 Cart updatedCart = proxy.FindCart(id1);
                 Assert.AreEqual(cart2.TotalPrice, updatedCart.TotalPrice);
-                //Assert.AreEqual(1, i);
+            }
+        }
+
+        /// <summary>
+        /// Test of the WcfCervice.
+        /// Test for delete a Cart. Test is passed if returned value is 1. 
+        /// </summary>
+        [TestMethod]
+        public void DeleteCartWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var cart1 = new Cart(new List<PartOrder>(), 100);
+                var id1 = proxy.AddCart(cart1);
+                var i = proxy.DeleteCart(id1);
+                Assert.AreEqual(1, i);
             }
         }
     }

@@ -36,6 +36,8 @@ namespace BestilNemtUnitTestTest
             var dbLogin = new DbLogin();
             var login = new Login("AdminDb", "SuperAdmin", 1);
             var returnedValue = dbLogin.AddLogin(login);
+            login.Id = returnedValue;
+            dbLogin.DeleteLogin(login);
             Assert.AreEqual(1, returnedValue);
         }
 

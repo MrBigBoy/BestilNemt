@@ -18,8 +18,10 @@ namespace WcfService
 
         [OperationContract]
         int AddCustomer(Customer customer);
+
         [OperationContract]
         int UpdateCustomer(Customer customer);
+
         [OperationContract]
         int DeleteCustomer(int id);
 
@@ -54,7 +56,7 @@ namespace WcfService
 
         [OperationContract]
         int UpdateWarehouse(Warehouse warehouse);
-        
+
         [OperationContract]
         Shop GetShop(int id);
 
@@ -87,10 +89,13 @@ namespace WcfService
 
         [OperationContract]
         List<Company> FindAllCompany();
+
         [OperationContract]
         int DeleteCompany(int id);
+
         [OperationContract]
         int UpdateCompany(Company company);
+
         [OperationContract]
         Company FindCompany(int id);
 
@@ -105,6 +110,7 @@ namespace WcfService
 
         [OperationContract]
         int UpdateProduct(Product product);
+
         [OperationContract]
         int DeleteProduct(int id);
 
@@ -119,16 +125,20 @@ namespace WcfService
         [OperationContract]
         int DeleteCart(int id);
 
-       
-
-
         [OperationContract]
         PartOrder FindPartOrder(int id);
 
         [OperationContract]
+        int RemovePartOrder(int id);
+
+        [OperationContract]
+        int AddPartOrder(PartOrder partOrder);
+
+        [OperationContract]
         int UpdatePartorder(PartOrder partOrder);
+
+        [OperationContract]
+        List<PartOrder> GetAllPartOrders();
     }
-
-
 }
 

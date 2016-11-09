@@ -471,5 +471,20 @@ namespace WcfService
         {
             return PartOrderCtr.UpdatePartorder(partOrder); 
         }
+
+        public int RemovePartOrder(int id)
+        {
+            return PartOrderCtr.RemovePartOrder(id);
+        }
+
+        public int AddPartOrder(PartOrder partOrder)
+        {
+            return PartOrderCtr.AddPartOrder(partOrder);
+        }
+
+        public List<PartOrder> GetAllPartOrders()
+        {
+            return PartOrderCtr.GetAllPartOrders();
+        }
     }
 }

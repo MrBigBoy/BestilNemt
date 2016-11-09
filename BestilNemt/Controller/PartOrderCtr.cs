@@ -13,14 +13,24 @@ namespace Controller
             DbPartOrder = dbPartOrder;
         }
 
-        //public int AddPartOrder(PartOrder partOrder)
-        //{
-        //    return ValidatePartOrderInput(partOrder) ? DbPartOrder.create(partOrder) : 0;
-        //}
+        public int AddPartOrder(PartOrder partOrder)
+        {
+            return ValidatePartOrderInput(partOrder) ? DbPartOrder.AddPartOrder(partOrder) : 0;
+        }
 
         public PartOrder FindPartOrder(int id)
         {
             return DbPartOrder.FindPartOrder(id);
+        }
+
+        public List<PartOrder> GetAllPartOrders()
+        {
+            return DbPartOrder.GetAllPartOrders();
+        }
+
+        public int RemovePartOrder(int id)
+        {
+            return DbPartOrder.RemovePartOrder(id);
         }
 
         private bool ValidatePartOrderInput(PartOrder partOrder)

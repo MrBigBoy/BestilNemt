@@ -5,10 +5,10 @@ namespace DataAccessLayer
 {
     public interface IDbPartOrder
     {
-        //int Create(PartOrder partOrder);
-        //int RemovePartOrder(int id);
+        int AddPartOrder(PartOrder partOrder);
+        int RemovePartOrder(int id);
         PartOrder FindPartOrder(int id);
-        //List<PartOrder> FindAllPartOrders();
+        List<PartOrder> GetAllPartOrders();
         int UpdatePartOrder(PartOrder partOrder);
     }
 }
