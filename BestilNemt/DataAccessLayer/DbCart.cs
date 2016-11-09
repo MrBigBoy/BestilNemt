@@ -161,5 +161,60 @@ namespace DataAccessLayer
             }
             return i;
         }
+
+        //public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        //{
+        //    int i;
+        //    using (
+        //        var conn =
+        //            new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = new SqlCommand("Update PartOrder Set cartId = @cartId where id = @partOrderId", conn);
+        //        cmd.Parameters.AddWithValue("cartId", cart.Id);
+        //        cmd.Parameters.AddWithValue("partOrderId", partOrder.Id);
+        //        i = cmd.ExecuteNonQuery();
+        //    }
+        //    return i;
+        //}
+
+        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        {
+            int i = 0;
+            using (
+               var conn =
+                   new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = conn.CreateCommand();
+                SqlTransaction transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Connection = conn;
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "Update PartOrder Set cartId = @cartId where partOrderId = @partOrderId";
+                    cmd.Parameters.AddWithValue("cartId", cart.Id);
+                    cmd.Parameters.AddWithValue("partOrderId", partOrder.Id);
+                    i = (int)cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                    Console.WriteLine("Commit was succsesfull");
+
+                }
+                catch (Exception e)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
+
+            }
+            return i;
+        }
     }
 }

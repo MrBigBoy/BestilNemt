@@ -16,6 +16,10 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(companyCtr);
         }
 
+        /// <summary>
+        ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        /// Test is sucsessful if all customer input values are valid and return value is not 0 
+        /// </summary>
         [TestMethod]
         public void AddCompany()
         {
@@ -25,14 +29,26 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, flag);
         }
 
+        /// <summary>
+        ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        /// Test for invalid input email
+        /// Test is sucsessful if validation of input failed ad returned value is 0
+        /// </summary>
+        /// 
         [TestMethod]
         public void AddCompanyNoEmail()
         {
+
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "", "Pilevej 12", "Company", 12345678, 1);
             var flag = companyCtr.AddCompany(company);
             Assert.AreEqual(0, flag);
         }
+
+        /// <summary>
+        ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        /// Test for Company object with given id is found and return value is not null
+        /// </summary>
 
         [TestMethod]
         public void FindCompanyById()
@@ -44,6 +60,10 @@ namespace BestilNemtUnitTestTest
 
         }
 
+        /// <summary>
+        /// Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        /// Tést for the company object with given id is not found return with be null 
+        /// </summary>
         [TestMethod]
         public void FindCompanyByIdFail()
         {
@@ -52,6 +72,11 @@ namespace BestilNemtUnitTestTest
             companyCtr.AddCompany(company);
             Assert.IsNull(companyCtr.FindCompany(4));
         }
+
+        /// <summary>
+        ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        /// Test for the returned list size is equal to expected one
+        /// </summary>
         [TestMethod]
         public void FindAllcompanys()
         {
@@ -63,6 +88,10 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(2, companyCtr.FindAllCompany().Count);
         }
 
+        /// <summary>
+        ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        ///  Test for return Cvr is equal to the new one. 
+        /// </summary>
         [TestMethod]
         public void UpdateCompanyCvrFlag()
         {
@@ -73,6 +102,11 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, flag);
         }
 
+        /// <summary>
+        ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        /// Test is suxsessful if returned is 1, it means that a company with id = 1, 
+        /// is found and DeleteCompany metothe was sucsessfull 
+        /// </summary>
         [TestMethod]
         public void DeleteCompanyById()
         {
@@ -82,6 +116,11 @@ namespace BestilNemtUnitTestTest
             var id = companyCtr.RemoveCompany(company.Id);
             Assert.AreEqual(1, id);
         }
+
+        /// <summary>
+        ///  Test only CompanyCtr using CompanyCrtTestClass that simulates database.
+        /// Test is suxsessful if returned is 0, it means that a company with id = , 
+        /// is not found and there for will not get delete. 
         [TestMethod]
         public void DeleteCompanyByIdFail()
         {
@@ -91,6 +130,11 @@ namespace BestilNemtUnitTestTest
             var id = companyCtr.RemoveCompany(company.Id);
             Assert.AreNotEqual(0, id);
         }
+
+        /// <summary>
+        /// Test only DbCompany 
+        /// Test is sucsessful if all Company input values are valid and returned value is not 0
+        /// </summary>
         [TestMethod]
         public void AddDbCompany()
         {
@@ -100,6 +144,11 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, id);
         }
 
+        /// <summary>
+        /// Test only DbCompany 
+        /// Test is sucsessfull if returned company object is not null 
+        /// </summary>
+
         [TestMethod]
         public void FindCompany()
         {
@@ -108,6 +157,10 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(company);
         }
 
+        /// <summary>
+        /// Test only DbCompany 
+        /// Test is sucsessfull if returned company object is not null 
+        /// </summary>
         [TestMethod]
         public void FindAllCompany()
         {
@@ -115,6 +168,10 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, dbCompany.FindAllCompany().Count);
         }
 
+        /// <summary>
+        /// Test both CTR And DB 
+        /// 
+        /// </summary>
         [TestMethod]
         public void AddCtrDbCompany()
         {
@@ -124,6 +181,10 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, id);
         }
 
+        /// <summary>
+        /// Test both CTR And DB 
+        /// 
+        /// </summary>
         [TestMethod]
         public void AddCtrDbCompanyFailName()
         {
@@ -131,6 +192,40 @@ namespace BestilNemtUnitTestTest
             var company = new Company("", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             var id = companyCtr.AddCompany(company);
             Assert.AreEqual(0, id);
+        }
+
+        [TestMethod]
+        public void updateCompanyWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var company = proxy.FindCompany(3);
+                if (company != null)
+                {
+                    company.Name = "UCN";
+                    company.Address = "vej";
+                    company.Email = "email@email.com";
+                    company.CVR = 123455678;
+                    company.Kontonr = 2121212;
+
+                }
+                var flag = proxy.UpdateCompany(company);
+                Assert.AreEqual(0, flag);
+            }
+
+
+        }
+
+        [TestMethod]
+        public void findme()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var company = proxy.FindCompany(3);
+                Assert.IsNotNull(company);
+            }
         }
     }
 }

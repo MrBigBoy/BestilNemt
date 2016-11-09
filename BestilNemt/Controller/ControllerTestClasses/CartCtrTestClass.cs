@@ -44,5 +44,10 @@ namespace Controller.ControllerTestClasses
         {
             return carts.Remove(FindCart(id)) ? 1 : 0;
         }
+
+        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        {
+            return 1;
+        }
     }
 }

@@ -141,6 +141,23 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, cartDb.DeleteCart(id));
         }
 
+        [TestMethod]
+        public void AddPartOrderToCartWithDb()
+        {
+            var cartDb = new DbCart();
+            var poDb = new DbPartOrder();
+            var prodDb = new DbProduct();
+            var cart = new Cart(new List<PartOrder>(), 100);
+            var id = cartDb.AddCart(cart);
+            cart.Id = id;
+            var product = new Product("banan", 2, "fjhl", "Frugt", 0);
+            var prodId = prodDb.AddProduct(product);
+            product.Id = prodId;
+            var partOrder = poDb.FindPartOrder(1);
+            int i = cartDb.AddPartOrderToCart(cart, partOrder);
+            Assert.AreEqual(1, i);
+        }
+
         /// <summary>
         /// Test of the WcfCervice.
         /// Test for create new Cart object.test is passed if returned value is not 0. AddCart method 
@@ -225,5 +242,25 @@ namespace BestilNemtUnitTestTest
                 Assert.AreEqual(1, i);
             }
         }
+
+        [TestMethod]
+        public void AddPartOrderToCartWcf()
+        {
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                var cart = new Cart(new List<PartOrder>(), 100);
+                var id = proxy.AddCart(cart);
+                cart.Id = id;
+                var product = new Product("banan", 2, "fjhl", "Frugt", 0);
+                var prodId = proxy.AddProduct(product);
+                product.Id = prodId;
+                var partOrder = proxy.FindPartOrder(2);
+                int i = proxy.AddPartOrderToCart(cart, partOrder);
+                Assert.AreEqual(1, i);
+            }
+        }
+
+
     }
 }
