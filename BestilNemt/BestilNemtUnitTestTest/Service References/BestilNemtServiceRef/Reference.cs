@@ -254,6 +254,24 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/FindPartOrderResponse")]
         System.Threading.Tasks.Task<Models.PartOrder> FindPartOrderAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemovePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/RemovePartOrderResponse")]
+        int RemovePartOrder(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemovePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/RemovePartOrderResponse")]
+        System.Threading.Tasks.Task<int> RemovePartOrderAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
+        int AddPartOrder(Models.PartOrder partOrder);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
+        System.Threading.Tasks.Task<int> AddPartOrderAsync(Models.PartOrder partOrder);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartorder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse")]
+        int UpdatePartorder(Models.PartOrder partOrder);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartorder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse")]
+        System.Threading.Tasks.Task<int> UpdatePartorderAsync(Models.PartOrder partOrder);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -601,6 +619,30 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.PartOrder> FindPartOrderAsync(int id) {
             return base.Channel.FindPartOrderAsync(id);
+        }
+        
+        public int RemovePartOrder(int id) {
+            return base.Channel.RemovePartOrder(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> RemovePartOrderAsync(int id) {
+            return base.Channel.RemovePartOrderAsync(id);
+        }
+        
+        public int AddPartOrder(Models.PartOrder partOrder) {
+            return base.Channel.AddPartOrder(partOrder);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddPartOrderAsync(Models.PartOrder partOrder) {
+            return base.Channel.AddPartOrderAsync(partOrder);
+        }
+        
+        public int UpdatePartorder(Models.PartOrder partOrder) {
+            return base.Channel.UpdatePartorder(partOrder);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdatePartorderAsync(Models.PartOrder partOrder) {
+            return base.Channel.UpdatePartorderAsync(partOrder);
         }
     }
 }
