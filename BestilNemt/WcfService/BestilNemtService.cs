@@ -14,6 +14,7 @@ namespace WcfService
         public ShopCtr ShopCtr { get; set; }
         public CompanyCtr CompanyCtr { get; set; }
         public AdminCtr AdminCtr { get; set; }
+        public CartCtr CartCtr { get; set; }
         public BestilNemtService()
         {
             LoginCtr = new LoginCtr(new DbLogin());
@@ -22,6 +23,7 @@ namespace WcfService
             ShopCtr = new ShopCtr(new DbShop());
             CompanyCtr = new CompanyCtr(new DbCompany1());
             AdminCtr = new AdminCtr(new DbAdmin());
+            CartCtr = new CartCtr(new DbCart());
         }
 
         public Customer FindCustomer(int id)
@@ -126,7 +128,7 @@ namespace WcfService
 
         public int AddShop(Shop shop)
         {
-           return ShopCtr.AddShop(shop);
+            return ShopCtr.AddShop(shop);
         }
 
         public int UpdateShop(Shop shop)
@@ -136,12 +138,12 @@ namespace WcfService
 
         public int RemoveCustomer(int id)
         {
-           return CustomerCtr.RemoveCustomer(id);
+            return CustomerCtr.RemoveCustomer(id);
         }
 
         public int UpdateCustomer(Customer customer)
         {
-           return CustomerCtr.UpdateCustomer(customer); 
+            return CustomerCtr.UpdateCustomer(customer);
         }
 
         public void CreateCompany(Company company)
@@ -151,22 +153,47 @@ namespace WcfService
 
         public List<Company> FindAllCompany()
         {
-           return CompanyCtr.GetAllCompany();
+            return CompanyCtr.GetAllCompany();
         }
 
         public int RemoveCompany(int id)
         {
-           return CompanyCtr.removeCompany(id);
+            return CompanyCtr.removeCompany(id);
         }
 
         public void UpdateCompany(Company company)
         {
-          CompanyCtr.updateCompany(company);
+            CompanyCtr.updateCompany(company);
         }
 
         public Company FindCompany(int id)
         {
-           return CompanyCtr.findCompany(id);
+            return CompanyCtr.findCompany(id);
+        }
+
+        public int AddCart(Cart cart)
+        {
+            return CartCtr.AddCart(cart);
+        }
+
+        public Cart FindCart(int id)
+        {
+            return CartCtr.FindCart(id);
+        }
+
+        public List<Cart> GetAllCarts()
+        {
+            return CartCtr.GetAllCarts();
+        }
+
+        public int UpdateCart(Cart cart)
+        {
+            return CartCtr.UpdateCart(cart);
+        }
+
+        public int DeleteCart(int id)
+        {
+            return CartCtr.DeleteCart(id);
         }
     }
 }

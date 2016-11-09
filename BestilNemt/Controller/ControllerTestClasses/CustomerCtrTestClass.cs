@@ -13,15 +13,11 @@ namespace Controller.ControllerTestClasses
     {
         private List<Customer> customers = new List<Customer>();
         private int idCounter = 1;
-        //private int flag = 0;
         public int Create(Customer customer)
         {
             customer.Id = idCounter;
-            //if (ValidatePersonInput(customer))
-            //    flag = 1;
             customers.Add(customer);
             idCounter++;
-            // return flag;
             return customer.Id;
         }
 

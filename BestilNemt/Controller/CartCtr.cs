@@ -26,5 +26,20 @@ namespace Controller
         {
             return CartIdb.FindCart(id) ;
         }
+
+        public int UpdateCart(Cart cart)
+        {
+            return CartIdb.UpdateCart(cart);
+        }
+
+        public int DeleteCart(int id)
+        {
+            return CartIdb.DeleteCart(id);
+        }
+
+        public List<Cart> GetAllCarts()
+        {
+            return CartIdb.GetAllCarts();
+        }
     }
 }

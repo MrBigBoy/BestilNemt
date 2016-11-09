@@ -28,17 +28,21 @@ namespace Controller.ControllerTestClasses
 
         public List<Cart> GetAllCarts()
         {
-            throw new NotImplementedException();
+            return carts;
         }
 
         public int UpdateCart(Cart cart)
         {
-            throw new NotImplementedException();
+            var cartToUpdate = FindCart(cart.Id);
+            if (cartToUpdate == null) return 0;
+            cartToUpdate.TotalPrice = cart.TotalPrice;
+            cartToUpdate.PartOrders = cart.PartOrders;
+            return 1;
         }
 
         public int DeleteCart(int id)
         {
-            throw new NotImplementedException();
+            return carts.Remove(FindCart(id)) ? 1 : 0;
         }
     }
 }
