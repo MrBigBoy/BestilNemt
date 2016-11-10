@@ -28,7 +28,7 @@ namespace DataAccessLayer
 
                 var cmd =
                     new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(id) VALUES(@DataID);", conn);
+                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);", conn);
                 cmd.Parameters.AddWithValue("name", admin.Name);
                 cmd.Parameters.AddWithValue("email", admin.Email);
                 cmd.Parameters.AddWithValue("personType", admin.PersonType);
@@ -54,7 +54,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Administrator where Id = @id;Delete from Person where Id = @id", conn);
+                var cmd = new SqlCommand("Delete from Administrator where administratorId = @id;Delete from Person where personId = @id", conn);
                 cmd.Parameters.AddWithValue("Id", id);
                 i = cmd.ExecuteNonQuery();
             }
@@ -76,19 +76,19 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, memberNr FROM Person LEFT JOIN Administrator ON Person.ID = Administrator.ID WHERE Person.ID = @id", conn);
+                var cmd = new SqlCommand("SELECT person.personId, personName, personEmail, personAddress, personType, administratorMemberNr FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personId = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     admin = new Admin()
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Name = reader.GetString(reader.GetOrdinal("name")),
-                        Email = reader.GetString(reader.GetOrdinal("email")),
-                        Address = reader.GetString(reader.GetOrdinal("address")),
+                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
+                        Name = reader.GetString(reader.GetOrdinal("personName")),
+                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
+                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Membernr = reader.GetInt32(reader.GetOrdinal("memberNr"))
+                        Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr"))
 
                     };
                 }
@@ -110,18 +110,18 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, memberNr FROM Person LEFT JOIN Administrator ON Person.ID = Administrator.ID WHERE Person.personType = 'Administrator'", conn);
+                var cmd = new SqlCommand("SELECT Person.personId, personName, personEmail, personAddress, personType, administratorMemberNr FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personType = 'Administrator'", conn);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     var admin = new Admin
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Name = reader.GetString(reader.GetOrdinal("name")),
-                        Email = reader.GetString(reader.GetOrdinal("email")),
-                        Address = reader.GetString(reader.GetOrdinal("address")),
+                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
+                        Name = reader.GetString(reader.GetOrdinal("personName")),
+                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
+                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Membernr = reader.GetInt32(reader.GetOrdinal("memberNr"))
+                        Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr"))
                     };
                     admins.Add(admin);
                 }
@@ -145,12 +145,12 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd =
-                    new SqlCommand("UPDATE Person SET name=@name, email=@email, address=@address WHERE id=@id",
+                    new SqlCommand("UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id",
                         conn);
-                cmd.Parameters.AddWithValue("id", admin.Id);
-                cmd.Parameters.AddWithValue("name", admin.Name);
-                cmd.Parameters.AddWithValue("email", admin.Email);
-                cmd.Parameters.AddWithValue("address", admin.Address);
+                cmd.Parameters.AddWithValue("personId", admin.Id);
+                cmd.Parameters.AddWithValue("personName", admin.Name);
+                cmd.Parameters.AddWithValue("personEmail", admin.Email);
+                cmd.Parameters.AddWithValue("personAddress", admin.Address);
                 i = cmd.ExecuteNonQuery();
             }
             return i;

@@ -34,7 +34,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Cart(totalPrice) output inserted.id VALUES(@totalPrice)";
+                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice) output inserted.cartId VALUES(@totalPrice)";
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
@@ -73,15 +73,15 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT id, totalPrice FROM Cart WHERE id = @id", conn);
+                var cmd = new SqlCommand("SELECT cartId, cartTotalPrice FROM Cart WHERE cartId = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     cart = new Cart
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        TotalPrice = reader.GetDecimal(reader.GetOrdinal("totalPrice")),
+                        Id = reader.GetInt32(reader.GetOrdinal("cartId")),
+                        TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice")),
                     };
                 }
             }
@@ -108,8 +108,8 @@ namespace DataAccessLayer
                 {
                     var cart = new Cart
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        TotalPrice = reader.GetDecimal(reader.GetOrdinal("totalPrice")),
+                        Id = reader.GetInt32(reader.GetOrdinal("cartId")),
+                        TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice")),
                     };
                     carts.Add(cart);
                 }
@@ -132,7 +132,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Cart SET totalPrice=@totalPrice WHERE id=@id", conn);
+                var cmd = new SqlCommand("UPDATE Cart SET cartTotalPrice=@totalPrice WHERE cartId=@id", conn);
                 cmd.Parameters.AddWithValue("id", cart.Id);
                 cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                 i = cmd.ExecuteNonQuery();
@@ -155,7 +155,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Cart WHERE id=@id", conn);
+                var cmd = new SqlCommand("Delete from Cart WHERE cartId=@id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 i = cmd.ExecuteNonQuery();
             }
@@ -192,7 +192,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "Update PartOrder Set cartId = @cartId where partOrderId = @partOrderId";
+                    cmd.CommandText = "Update PartOrder Set partOrderCartId = @cartId where partOrderId = @partOrderId";
                     cmd.Parameters.AddWithValue("cartId", cart.Id);
                     cmd.Parameters.AddWithValue("partOrderId", partOrder.Id);
                     i = (int)cmd.ExecuteNonQuery();

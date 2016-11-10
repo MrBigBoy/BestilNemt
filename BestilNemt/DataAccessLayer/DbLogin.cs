@@ -29,7 +29,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 // Now the connection is open
-                var cmd = new SqlCommand("INSERT into LoginTable values(@username,@parts,@personId)", conn);
+                var cmd = new SqlCommand("INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)", conn);
                 cmd.Parameters.AddWithValue("username", login.Username);
                 cmd.Parameters.AddWithValue("parts", parts);
                 cmd.Parameters.AddWithValue("personId", login.PersonId);
@@ -68,7 +68,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE LoginTable SET username=@username, parts=@parts WHERE personId=@personId", conn);
+                var cmd = new SqlCommand("UPDATE LoginTable SET loginTableUsername=@username, loginTableParts=@parts WHERE loginTablePersonId=@personId", conn);
                 cmd.Parameters.AddWithValue("username", login.Username);
                 cmd.Parameters.AddWithValue("parts", parts);
                 cmd.Parameters.AddWithValue("personId", login.PersonId);
@@ -90,7 +90,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("DELETE FROM LoginTable WHERE personId = @personId", conn);
+                var cmd = new SqlCommand("DELETE FROM LoginTable WHERE loginTablePersonId = @personId", conn);
                 cmd.Parameters.AddWithValue("personId", login.PersonId);
                 i = cmd.ExecuteNonQuery();
             }
@@ -113,14 +113,14 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 // Now the connection is open
-                var cmd = new SqlCommand("SELECT * FROM LoginTable where username=@username", conn);
+                var cmd = new SqlCommand("SELECT * FROM LoginTable where loginTableUsername=@username", conn);
                 cmd.Parameters.AddWithValue("username", username);
                 var loginReader = cmd.ExecuteReader();
                 if (!loginReader.HasRows)
                     return null;
                 while (loginReader.Read())
                 {
-                    parts = loginReader.GetString(loginReader.GetOrdinal("parts"));
+                    parts = loginReader.GetString(loginReader.GetOrdinal("loginTableParts"));
                 }
             }
             return parts;
@@ -142,14 +142,14 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 // Now the connection is open
-                var cmd = new SqlCommand("SELECT personId FROM LoginTable where username=@username", conn);
+                var cmd = new SqlCommand("SELECT personId FROM LoginTable where loginTableUsername=@username", conn);
                 cmd.Parameters.AddWithValue("username", username);
                 var loginReader = cmd.ExecuteReader();
                 if (!loginReader.HasRows)
                     return 0;
                 while (loginReader.Read())
                 {
-                    personId = loginReader.GetInt32(loginReader.GetOrdinal("personId"));
+                    personId = loginReader.GetInt32(loginReader.GetOrdinal("loginTablePersonId"));
                 }
             }
             return personId;

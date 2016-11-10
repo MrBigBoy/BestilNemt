@@ -21,7 +21,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd =
-                    new SqlCommand("INSERT INTO Product(name, price, description, category, saving) OUTPUT Inserted.ID VALUES(@Name, @Price, @Description, @Category, @Saving)", conn);
+                    new SqlCommand("INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSaving) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @Saving)", conn);
                 cmd.Parameters.AddWithValue("Name", product.Name);
                 cmd.Parameters.AddWithValue("Price", product.Price);
                 cmd.Parameters.AddWithValue("Description", product.Description);
@@ -45,7 +45,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE Id = @id", conn);
+                var command = new SqlCommand("DELETE FROM Product WHERE productId = @id", conn);
                 command.Parameters.AddWithValue("Id", id);
                 i = command.ExecuteNonQuery();
             }
@@ -65,19 +65,19 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("SELECT * FROM Product WHERE id=@Id", conn);
+                var command = new SqlCommand("SELECT * FROM Product WHERE productId=@Id", conn);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
                     product = new Product
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Name = reader.GetString(reader.GetOrdinal("name")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("price")),
-                        Description = reader.GetString(reader.GetOrdinal("description")),
-                        Category = reader.GetString(reader.GetOrdinal("category")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("saving"))
+                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
+                        Name = reader.GetString(reader.GetOrdinal("productName")),
+                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
+                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
+                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
+                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving"))
                     };
                 }
             }
@@ -103,12 +103,12 @@ namespace DataAccessLayer
                 {
                     var product = new Product
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Name = reader.GetString(reader.GetOrdinal("name")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("price")),
-                        Description = reader.GetString(reader.GetOrdinal("description")),
-                        Category = reader.GetString(reader.GetOrdinal("category")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("saving"))
+                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
+                        Name = reader.GetString(reader.GetOrdinal("productName")),
+                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
+                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
+                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
+                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving"))
                     };
                     products.Add(product);
                 }
@@ -129,13 +129,13 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Product SET name = @Name, price = @Price, description = @Description, category = @Category, saving = @saving WHERE id = @Id", conn);
-                command.Parameters.AddWithValue("Id", product.Id);
-                command.Parameters.AddWithValue("Name", product.Name);
-                command.Parameters.AddWithValue("Price", product.Price);
-                command.Parameters.AddWithValue("Description", product.Description);
-                command.Parameters.AddWithValue("Category", product.Category);
-                command.Parameters.AddWithValue("Saving", product.Saving);
+                var command = new SqlCommand("UPDATE Product SET productName = @Name, productPrice = @Price, productDescription = @Description, productCategory = @Category, productSaving = @saving WHERE id = @Id", conn);
+                command.Parameters.AddWithValue("productId", product.Id);
+                command.Parameters.AddWithValue("productName", product.Name);
+                command.Parameters.AddWithValue("productPrice", product.Price);
+                command.Parameters.AddWithValue("productDescription", product.Description);
+                command.Parameters.AddWithValue("productCategory", product.Category);
+                command.Parameters.AddWithValue("productSaving", product.Saving);
                 i = command.ExecuteNonQuery();
             }
             return i;
@@ -154,7 +154,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE Id = @id", conn);
+                var command = new SqlCommand("DELETE FROM Product WHERE productId = @id", conn);
                 command.Parameters.AddWithValue("Id", id);
                 i = command.ExecuteNonQuery();
             }

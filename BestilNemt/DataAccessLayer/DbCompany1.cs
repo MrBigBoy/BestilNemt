@@ -23,7 +23,7 @@ namespace DataAccessLayer
 
                 var cmd =
                     new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(Name, Email, personType, Address)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(id, cvr, kontorNr) VALUES(@DataID,@CVR,@KontorNr);", conn);
+                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(companyId, companyCVR, companyKontorNr) VALUES(@DataID,@CVR,@KontorNr);", conn);
                 cmd.Parameters.AddWithValue("name", company.Name);
                 cmd.Parameters.AddWithValue("email", company.Email);
                 cmd.Parameters.AddWithValue("personType", company.PersonType);
@@ -49,19 +49,19 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, cvr, KontorNr FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.personType = 'Company'", conn);
+                var cmd = new SqlCommand("SELECT Person.personId, personName, personEmail, personAddress, personType, companyCVR, companyKontorNr FROM Person LEFT JOIN Company ON Person.personId = Company.companyId WHERE Person.personType = 'Company'", conn);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     var company = new Company()
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Name = reader.GetString(reader.GetOrdinal("name")),
-                        Email = reader.GetString(reader.GetOrdinal("email")),
-                        Address = reader.GetString(reader.GetOrdinal("address")),
+                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
+                        Name = reader.GetString(reader.GetOrdinal("personName")),
+                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
+                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        CVR = reader.GetInt32(reader.GetOrdinal("cvr")),
-                        Kontonr = reader.GetInt32(reader.GetOrdinal("KontorNr"))
+                        CVR = reader.GetInt32(reader.GetOrdinal("companyCVR")),
+                        Kontonr = reader.GetInt32(reader.GetOrdinal("companyKontorNr"))
                     };
                     companys.Add(company);
                 }
@@ -84,20 +84,20 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.id, name, email, address, personType, cvr, KontorNr FROM Person LEFT JOIN Company ON Person.ID = Company.ID WHERE Person.ID = @id", conn);
+                var cmd = new SqlCommand("SELECT Person.personId, personName, personEmail, personAddress, personType, companyCVR, companyKontorNr FROM Person LEFT JOIN Company ON Person.personId = Company.companyId WHERE Person.personId = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     company = new Company()
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Name = reader.GetString(reader.GetOrdinal("name")),
-                        Email = reader.GetString(reader.GetOrdinal("email")),
-                        Address = reader.GetString(reader.GetOrdinal("address")),
+                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
+                        Name = reader.GetString(reader.GetOrdinal("personName")),
+                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
+                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
                         PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        CVR = reader.GetInt32(reader.GetOrdinal("cvr")),
-                        Kontonr = reader.GetInt32(reader.GetOrdinal("KontorNr"))
+                        CVR = reader.GetInt32(reader.GetOrdinal("companyCVR")),
+                        Kontonr = reader.GetInt32(reader.GetOrdinal("companyKontorNr"))
 
                     };
                 }
@@ -120,7 +120,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Company where Id = @id;Delete from Person where Id = @id", conn);
+                var cmd = new SqlCommand("Delete from Company where companyId = @id;Delete from Person where personId = @id", conn);
                 cmd.Parameters.AddWithValue("Id", id);
                 i = cmd.ExecuteNonQuery();
             }
@@ -143,7 +143,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd =
-                    new SqlCommand("UPDATE Person SET name=@name, email=@email, address=@address WHERE id=@id",
+                    new SqlCommand("UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id",
                         conn);
                 cmd.Parameters.AddWithValue("id", company.Id);
                 cmd.Parameters.AddWithValue("name", company.Name);

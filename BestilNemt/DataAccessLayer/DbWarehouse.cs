@@ -20,7 +20,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("INSERT INTO Warehouse(stock, minStock, shopId, productid) OUTPUT Inserted.ID VALUES(@Stock, @MinStock, @ShopId, @ProductId)", conn);
+                var cmd = new SqlCommand("INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId) OUTPUT Inserted.warehouseId VALUES(@Stock, @MinStock, @ShopId, @ProductId)", conn);
                 cmd.Parameters.AddWithValue("stock", warehouse.Stock);
                 cmd.Parameters.AddWithValue("MinStock", warehouse.MinStock);
                 cmd.Parameters.AddWithValue("ShopId", warehouse.Shop.Id);
@@ -43,7 +43,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("DELETE FROM Warehouse Where id=@id", conn);
+                var cmd = new SqlCommand("DELETE FROM Warehouse Where warehouseId=@id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 i = cmd.ExecuteNonQuery();
             }
@@ -63,7 +63,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Warehouse SET stock=@Stock, minStock=@MinStock, shopId=@ShopId, productId=ProductId WHERE id=@id", conn);
+                var cmd = new SqlCommand("UPDATE Warehouse SET warehouseStock=@Stock, warehouseMinStock=@MinStock, warehouseShopId=@ShopId, warehouseProductId=ProductId WHERE id=@id", conn);
                 cmd.Parameters.AddWithValue("Stock", warehouse.Stock);
                 cmd.Parameters.AddWithValue("MinStock", warehouse.MinStock);
                 cmd.Parameters.AddWithValue("ShopId", warehouse.Shop.Id);
@@ -87,7 +87,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("select * from Warehouse, Shop, Product WHERE Warehouse.id = @id and shopId = Shop.Id and productId = Product.id", conn);
+                var cmd = new SqlCommand("select * from Warehouse, Shop, Product WHERE warehouseId = @id and shopId = Shop.shopId and productId = Product.productId", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
 
@@ -95,25 +95,25 @@ namespace DataAccessLayer
                 {
                     var shop = new Shop
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("Shop.id")),
+                        Id = reader.GetInt32(reader.GetOrdinal("shopId")),
                         Name = reader.GetString(reader.GetOrdinal("shopName")),
                         Address = reader.GetString(reader.GetOrdinal("shopAddress")),
                         CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
                     };
                     var product = new Product
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("Product.id")),
-                        Category = reader.GetString(reader.GetOrdinal("category")),
-                        Name = reader.GetString(reader.GetOrdinal("Product.name")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("Saving")),
-                        Description = reader.GetString(reader.GetOrdinal("description")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("price")),
+                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
+                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
+                        Name = reader.GetString(reader.GetOrdinal("productName")),
+                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving")),
+                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
+                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
                     };
                     warehouse = new Warehouse
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("Warehouse.id")),
-                        Stock = reader.GetInt32(reader.GetOrdinal("stock")),
-                        MinStock = reader.GetInt32(reader.GetOrdinal("minStock")),
+                        Id = reader.GetInt32(reader.GetOrdinal("warehouseId")),
+                        Stock = reader.GetInt32(reader.GetOrdinal("warehouseStock")),
+                        MinStock = reader.GetInt32(reader.GetOrdinal("warehouseMinStock")),
                         Shop = shop,
                         Product = product
                     };
@@ -134,32 +134,32 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("select * from Warehouse, Shop, Product WHERE shopId = Shop.Id and productId = Product.id", conn);
+                var cmd = new SqlCommand("select * from Warehouse, Shop, Product WHERE warehouseShopId = shopId and warehouseProductId = productId", conn);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     var shop = new Shop
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("Shop.id")),
+                        Id = reader.GetInt32(reader.GetOrdinal("shopId")),
                         Name = reader.GetString(reader.GetOrdinal("shopName")),
                         Address = reader.GetString(reader.GetOrdinal("shopAddress")),
                         CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
                     };
                     var product = new Product
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("Product.id")),
-                        Category = reader.GetString(reader.GetOrdinal("category")),
-                        Name = reader.GetString(reader.GetOrdinal("Product.name")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("Saving")),
-                        Description = reader.GetString(reader.GetOrdinal("description")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("price")),
+                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
+                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
+                        Name = reader.GetString(reader.GetOrdinal("productName")),
+                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving")),
+                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
+                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
                     };
                     var warehouse = new Warehouse
                     {
-                        Id = reader.GetInt32(reader.GetOrdinal("id")),
-                        Stock = reader.GetInt32(reader.GetOrdinal("stock")),
-                        MinStock = reader.GetInt32(reader.GetOrdinal("minStock")),
+                        Id = reader.GetInt32(reader.GetOrdinal("warehouseId")),
+                        Stock = reader.GetInt32(reader.GetOrdinal("warehouseStock")),
+                        MinStock = reader.GetInt32(reader.GetOrdinal("warehouseMinStock")),
                         Shop = shop,
                         Product = product
                     };
