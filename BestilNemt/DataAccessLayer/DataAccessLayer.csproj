@@ -62,6 +62,7 @@
     <Compile Include="IDbShop.cs" />
     <Compile Include="IDbWarehouse.cs" />
     <Compile Include="IDbCustomer.cs" />
+    <Compile Include="ObjectBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

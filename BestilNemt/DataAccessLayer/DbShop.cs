@@ -23,17 +23,9 @@ namespace DataAccessLayer
                 var command = new SqlCommand("Select * from Shop where shopId = @id", conn);
                 command.Parameters.AddWithValue("id", id);
                 var reader = command.ExecuteReader();
-
                 while (reader.Read())
                 {
-                    shop = new Shop
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("shopId")),
-                        Name = reader.GetString(reader.GetOrdinal("shopName")),
-                        Address = reader.GetString(reader.GetOrdinal("shopAddress")),
-                        CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
-                    };
-
+                    shop = ObjectBuilder.CreateShop(reader);
                 }
             }
             return shop;
@@ -56,11 +48,7 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("name", shop.Name);
                 command.Parameters.AddWithValue("address", shop.Address);
                 command.Parameters.AddWithValue("cvr", shop.CVR);
-                //command.Parameters.Add("@ID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-                //var idStr = command.Parameters["@ID"].Value.ToString();
-                // var i = command.ExecuteNonQuery();
                 id = (int)command.ExecuteScalar();
-                //id = int.Parse(idStr);
             }
             return id;
         }
@@ -82,13 +70,7 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
-                    var shop = new Shop
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("shopId")),
-                        Name = reader.GetString(reader.GetOrdinal("shopName")),
-                        Address = reader.GetString(reader.GetOrdinal("shopAddress")),
-                        CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
-                    };
+                    var shop = ObjectBuilder.CreateShop(reader);
                     shops.Add(shop);
                 }
             }

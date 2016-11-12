@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
-using System.Management.Instrumentation;
 
 namespace DataAccessLayer
 {
@@ -22,14 +18,14 @@ namespace DataAccessLayer
         /// </returns>
         public int AddCart(Cart cart)
         {
-            int id = 0;
+            var id = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                SqlCommand cmd = conn.CreateCommand();
-                SqlTransaction transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Connection = conn;
                 cmd.Transaction = transaction;
                 try
@@ -41,19 +37,18 @@ namespace DataAccessLayer
                     Console.WriteLine("Commit was succsesfull");
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     try
                     {
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
-
             }
             return id;
         }
@@ -78,11 +73,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    cart = new Cart
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("cartId")),
-                        TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice")),
-                    };
+                    cart = ObjectBuilder.CreateCart(reader);
                 }
             }
             return cart;
@@ -96,7 +87,7 @@ namespace DataAccessLayer
         /// </returns>
         public List<Cart> GetAllCarts()
         {
-            List<Cart> carts = new List<Cart>();
+            var carts = new List<Cart>();
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -106,11 +97,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var cart = new Cart
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("cartId")),
-                        TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice")),
-                    };
+                    var cart = ObjectBuilder.CreateCart(reader);
                     carts.Add(cart);
                 }
             }
@@ -180,14 +167,14 @@ namespace DataAccessLayer
 
         public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
         {
-            int i = 0;
+            var i = 0;
             using (
                var conn =
                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                SqlCommand cmd = conn.CreateCommand();
-                SqlTransaction transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Connection = conn;
                 cmd.Transaction = transaction;
                 try
@@ -195,24 +182,23 @@ namespace DataAccessLayer
                     cmd.CommandText = "Update PartOrder Set partOrderCartId = @cartId where partOrderId = @partOrderId";
                     cmd.Parameters.AddWithValue("cartId", cart.Id);
                     cmd.Parameters.AddWithValue("partOrderId", partOrder.Id);
-                    i = (int)cmd.ExecuteNonQuery();
+                    i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     try
                     {
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
-
             }
             return i;
         }

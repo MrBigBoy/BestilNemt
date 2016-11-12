@@ -80,15 +80,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    customer = new Customer()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
-                        Name = reader.GetString(reader.GetOrdinal("personName")),
-                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
-                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
-                        PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Birthday = reader.GetDateTime(reader.GetOrdinal("customerBirthday"))
-                    };
+                    customer = ObjectBuilder.CreateCustomer(reader);
                 }
             }
             return customer;
@@ -112,15 +104,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var customer = new Customer
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
-                        Name = reader.GetString(reader.GetOrdinal("personName")),
-                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
-                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
-                        PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Birthday=  reader.GetDateTime(reader.GetOrdinal("customerBirthday"))
-                    };
+                    var customer = ObjectBuilder.CreateCustomer(reader);
                     customers.Add(customer);
                 }
             }

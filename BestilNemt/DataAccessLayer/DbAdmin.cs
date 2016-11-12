@@ -79,18 +79,11 @@ namespace DataAccessLayer
                 var cmd = new SqlCommand("SELECT person.personId, personName, personEmail, personAddress, personType, administratorMemberNr FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personId = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
+                if (!reader.HasRows)
+                    return null;
                 while (reader.Read())
                 {
-                    admin = new Admin()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
-                        Name = reader.GetString(reader.GetOrdinal("personName")),
-                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
-                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
-                        PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr"))
-
-                    };
+                    admin = ObjectBuilder.CreateAdmin(reader);
                 }
             }
             return admin;
@@ -114,15 +107,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var admin = new Admin
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("personId")),
-                        Name = reader.GetString(reader.GetOrdinal("personName")),
-                        Email = reader.GetString(reader.GetOrdinal("personEmail")),
-                        Address = reader.GetString(reader.GetOrdinal("personAddress")),
-                        PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                        Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr"))
-                    };
+                    var admin = ObjectBuilder.CreateAdmin(reader);
                     admins.Add(admin);
                 }
             }

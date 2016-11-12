@@ -93,30 +93,9 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
-                    var shop = new Shop
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("shopId")),
-                        Name = reader.GetString(reader.GetOrdinal("shopName")),
-                        Address = reader.GetString(reader.GetOrdinal("shopAddress")),
-                        CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
-                    };
-                    var product = new Product
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
-                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
-                        Name = reader.GetString(reader.GetOrdinal("productName")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving")),
-                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
-                    };
-                    warehouse = new Warehouse
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("warehouseId")),
-                        Stock = reader.GetInt32(reader.GetOrdinal("warehouseStock")),
-                        MinStock = reader.GetInt32(reader.GetOrdinal("warehouseMinStock")),
-                        Shop = shop,
-                        Product = product
-                    };
+                    var shop = ObjectBuilder.CreateShop(reader);
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    warehouse = ObjectBuilder.CreateWarehouse(reader, shop, product);
                 }
             }
             return warehouse;
@@ -139,30 +118,9 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
-                    var shop = new Shop
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("shopId")),
-                        Name = reader.GetString(reader.GetOrdinal("shopName")),
-                        Address = reader.GetString(reader.GetOrdinal("shopAddress")),
-                        CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
-                    };
-                    var product = new Product
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
-                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
-                        Name = reader.GetString(reader.GetOrdinal("productName")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving")),
-                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
-                    };
-                    var warehouse = new Warehouse
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("warehouseId")),
-                        Stock = reader.GetInt32(reader.GetOrdinal("warehouseStock")),
-                        MinStock = reader.GetInt32(reader.GetOrdinal("warehouseMinStock")),
-                        Shop = shop,
-                        Product = product
-                    };
+                    var shop = ObjectBuilder.CreateShop(reader);
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    var warehouse = ObjectBuilder.CreateWarehouse(reader, shop, product);
                     warehouses.Add(warehouse);
                 }
             }

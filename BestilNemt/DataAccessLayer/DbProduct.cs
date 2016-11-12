@@ -68,17 +68,10 @@ namespace DataAccessLayer
                 var command = new SqlCommand("SELECT * FROM Product WHERE productId=@Id", conn);
                 var reader = command.ExecuteReader();
 
+                if (!reader.HasRows) return null;
                 while (reader.Read())
                 {
-                    product = new Product
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
-                        Name = reader.GetString(reader.GetOrdinal("productName")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
-                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
-                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving"))
-                    };
+                    product = ObjectBuilder.CreateProduct(reader);
                 }
             }
             return product;
@@ -98,18 +91,9 @@ namespace DataAccessLayer
                 conn.Open();
                 var command = new SqlCommand("SELECT * FROM Product", conn);
                 var reader = command.ExecuteReader();
-
                 while (reader.Read())
                 {
-                    var product = new Product
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
-                        Name = reader.GetString(reader.GetOrdinal("productName")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
-                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
-                        Category = reader.GetString(reader.GetOrdinal("productCategory")),
-                        Saving = reader.GetDouble(reader.GetOrdinal("productSaving"))
-                    };
+                    var product = ObjectBuilder.CreateProduct(reader);
                     products.Add(product);
                 }
             }

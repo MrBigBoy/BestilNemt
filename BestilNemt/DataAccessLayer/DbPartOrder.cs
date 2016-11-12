@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Net.Sockets;
-using System.ServiceModel.Channels;
 using Models;
 
 namespace DataAccessLayer
@@ -48,7 +45,6 @@ namespace DataAccessLayer
 
         public PartOrder FindPartOrder(int id)
         {
-            Product product = null;
             PartOrder partOrder = null;
             using (
                 var conn =
@@ -60,23 +56,8 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-
-                    product = new Product()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
-                        Name = reader.GetString(reader.GetOrdinal("productName")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
-                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
-                        Category = reader.GetString(reader.GetOrdinal("productCategory"))
-                    };
-
-                    partOrder = new PartOrder()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("partOrderId")),
-                        Product = product,
-                        Amount = reader.GetInt32(reader.GetOrdinal("partOrderAmount")),
-                        PartPrice = reader.GetDecimal(reader.GetOrdinal("partOrderPartPrice"))
-                    };
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    partOrder = ObjectBuilder.CreatePartOrder(reader, product);
                 }
             }
             return partOrder;
@@ -84,7 +65,6 @@ namespace DataAccessLayer
 
         public List<PartOrder> GetAllPartOrders()
         {
-            Product product = null;
             var partOrders = new List<PartOrder>();
             using (
                 var conn =
@@ -95,22 +75,8 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    product = new Product()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("productId")),
-                        Name = reader.GetString(reader.GetOrdinal("productName")),
-                        Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
-                        Description = reader.GetString(reader.GetOrdinal("productDescription")),
-                        Category = reader.GetString(reader.GetOrdinal("productCategory"))
-                    };
-
-                    var partOrder = new PartOrder()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("partOrderId")),
-                        Product = product,
-                        Amount = reader.GetInt32(reader.GetOrdinal("partOrderAmount")),
-                        PartPrice = reader.GetDecimal(reader.GetOrdinal("partOrderPartPrice"))
-                    };
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    var partOrder = ObjectBuilder.CreatePartOrder(reader, product);
                     partOrders.Add(partOrder);
                 }
             }
@@ -128,11 +94,9 @@ namespace DataAccessLayer
                 var cmd =
                     new SqlCommand("UPDATE PartOrder SET partOrderAmount=@amount, partOrderPartPrice=@partprice WHERE partOrderId=@id",
                         conn);
-                
                 cmd.Parameters.AddWithValue("id", partOrder.Id);
                 cmd.Parameters.AddWithValue("amount", partOrder.Amount);
                 cmd.Parameters.AddWithValue("partprice", partOrder.PartPrice);
-               
                 i = cmd.ExecuteNonQuery();
             }
             return i;
