@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Controller;
 using Controller.ControllerTestClasses;
 using DataAccessLayer;
@@ -272,8 +271,8 @@ namespace BestilNemtUnitTestTest
             var warehouse = new Warehouse()
             {
                 MinStock = 0,
-                Product = null,
-                Shop = null,
+                Product = new Product(1, "Product name", 2,"Product description", "Product category", 1),
+                Shop = new Shop(1, "Shop name", "Shop address", "Shop cvr", new List<Person>(), new List<Warehouse>()),
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
