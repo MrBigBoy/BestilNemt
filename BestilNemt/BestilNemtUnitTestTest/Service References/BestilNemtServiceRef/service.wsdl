@@ -869,7 +869,7 @@
   </wsdl:binding>
   <wsdl:service name="BestilNemtService">
     <wsdl:port name="BasicHttpBinding_IBestilNemtService" binding="tns:BasicHttpBinding_IBestilNemtService">
-      <soap:address location="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/" />
+      <soap:address location="http://localhost:8733/Design_Time_AddWarehouseresses/WcfService/BestilNemtService/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

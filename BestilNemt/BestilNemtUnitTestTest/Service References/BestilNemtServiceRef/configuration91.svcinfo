@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="StYzw7CUgKxZGygcsKRKlasWn0Y=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="892b2jQeTI7FhZuv/rrAR/VbPvg=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IBestilNemtService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IBestilNemtService" contract="BestilNemtServiceRef.IBestilNemtService" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/" bindingConfiguration="BasicHttpBinding_IBestilNemtService">
+    <endpoint name="BasicHttpBinding_IBestilNemtService" contract="BestilNemtServiceRef.IBestilNemtService" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_AddWarehouseresses/WcfService/BestilNemtService/" bindingConfiguration="BasicHttpBinding_IBestilNemtService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/</serializedValue>
+          <serializedValue>http://localhost:8733/Design_Time_AddWarehouseresses/WcfService/BestilNemtService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
