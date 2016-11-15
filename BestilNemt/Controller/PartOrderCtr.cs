@@ -35,7 +35,7 @@ namespace Controller
 
         private bool ValidatePartOrderInput(PartOrder partOrder)
         {
-            return partOrder?.Amount != null && partOrder?.Product != null && partOrder?.Cart != null;
+            return partOrder.Amount > 0 && partOrder.Product != null && partOrder.Cart != null;
         }
 
         public int UpdatePartorder(PartOrder partOrder)
