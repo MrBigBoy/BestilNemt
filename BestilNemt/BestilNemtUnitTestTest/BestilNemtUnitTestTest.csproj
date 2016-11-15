@@ -91,10 +91,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\BestilNemtServiceRef\service.wsdl" />
-    <None Include="Service References\BestilNemtServiceRef\service1.xsd">
+    <None Include="Service References\BestilNemtServiceRef\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\BestilNemtServiceRef\service2.xsd">
+    <None Include="Service References\BestilNemtServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
