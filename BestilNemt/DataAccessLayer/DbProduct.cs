@@ -45,8 +45,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE productId = @id", conn);
-                command.Parameters.AddWithValue("Id", id);
+                var command = new SqlCommand("DELETE FROM Product WHERE productId = @ProductId", conn);
+                command.Parameters.AddWithValue("ProductId", id);
                 i = command.ExecuteNonQuery();
             }
             return i;
@@ -65,7 +65,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("SELECT * FROM Product WHERE productId=@Id", conn);
+                var command = new SqlCommand("SELECT * FROM Product WHERE productId=@ProductId", conn);
+                command.Parameters.AddWithValue("ProductId", id);
                 var reader = command.ExecuteReader();
 
                 if (!reader.HasRows) return null;
@@ -113,13 +114,13 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Product SET productName = @Name, productPrice = @Price, productDescription = @Description, productCategory = @Category, productSaving = @saving WHERE id = @Id", conn);
-                command.Parameters.AddWithValue("productId", product.Id);
-                command.Parameters.AddWithValue("productName", product.Name);
-                command.Parameters.AddWithValue("productPrice", product.Price);
-                command.Parameters.AddWithValue("productDescription", product.Description);
-                command.Parameters.AddWithValue("productCategory", product.Category);
-                command.Parameters.AddWithValue("productSaving", product.Saving);
+                var command = new SqlCommand("UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSaving = @ProductSaving WHERE productId = @ProductId", conn);
+                command.Parameters.AddWithValue("ProductId", product.Id);
+                command.Parameters.AddWithValue("ProductName", product.Name);
+                command.Parameters.AddWithValue("ProductPrice", product.Price);
+                command.Parameters.AddWithValue("ProductDescription", product.Description);
+                command.Parameters.AddWithValue("ProductCategory", product.Category);
+                command.Parameters.AddWithValue("ProductSaving", product.Saving);
                 i = command.ExecuteNonQuery();
             }
             return i;
@@ -138,8 +139,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE productId = @id", conn);
-                command.Parameters.AddWithValue("Id", id);
+                var command = new SqlCommand("DELETE FROM Product WHERE productId = @ProductId", conn);
+                command.Parameters.AddWithValue("ProductId", id);
                 i = command.ExecuteNonQuery();
             }
             return i;
