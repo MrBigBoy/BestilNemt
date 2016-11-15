@@ -51,7 +51,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Product, PartOrder where partOrderId = @id and product.id = partOrderProductId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Product, PartOrder where partOrderId = @id and product.productId = partOrderProductId", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())

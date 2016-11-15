@@ -283,7 +283,7 @@ namespace BestilNemtUnitTestTest
                 var product = new Product("banan", 2, "fjhl", "Frugt", 0);
                 var prodId = proxy.AddProduct(product);
                 product.Id = prodId;
-                var partOrder = proxy.FindPartOrder(2);
+                var partOrder = proxy.FindPartOrder(1);
                 int i = proxy.AddPartOrderToCart(cart, partOrder);
                 Assert.AreEqual(1, i);
             }
