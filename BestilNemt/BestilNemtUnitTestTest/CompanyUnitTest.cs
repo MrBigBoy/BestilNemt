@@ -194,15 +194,20 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(0, id);
         }
 
-        [TestMethod]
+      /*  [TestMethod]
         public void updateCompanyWcf()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
+                Login log = new Login();
                 var company = proxy.FindCompany(3);
                 if (company != null)
                 {
+                    log.Id = 1221;
+                    log.Password = "sddsd";
+                    log.Username = "dsdsd";
+                    log.PersonId = 3232; 
                     company.Name = "UCN";
                     company.Address = "vej";
                     company.Email = "email@email.com";
@@ -211,12 +216,13 @@ namespace BestilNemtUnitTestTest
 
                 }
                 var flag = proxy.UpdateCompany(company);
+                proxy.AddLogin(log);
                 Assert.AreEqual(0, flag);
             }
 
 
         }
-
+        */
         [TestMethod]
         public void findme()
         {

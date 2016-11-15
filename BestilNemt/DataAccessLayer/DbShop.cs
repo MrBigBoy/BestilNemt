@@ -20,8 +20,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("Select * from Shop where shopId = @id", conn);
-                command.Parameters.AddWithValue("id", id);
+                var command = new SqlCommand("SELECT * FROM Shop where shopId = @ShopId", conn);
+                command.Parameters.AddWithValue("ShopId", id);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -44,10 +44,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("insert into Shop (shopName, shopAddress, shopCVR) OUTPUT Inserted.shopId values (@name, @address, @cvr)", conn);
-                command.Parameters.AddWithValue("name", shop.Name);
-                command.Parameters.AddWithValue("address", shop.Address);
-                command.Parameters.AddWithValue("cvr", shop.CVR);
+                var command = new SqlCommand("INSERT INTO Shop (shopName, shopAddress, shopCVR) OUTPUT Inserted.shopId values (@ShopName, @ShopAddress, @ShopCvr)", conn);
+                command.Parameters.AddWithValue("ShopName", shop.Name);
+                command.Parameters.AddWithValue("ShopAddress", shop.Address);
+                command.Parameters.AddWithValue("ShopCvr", shop.CVR);
                 id = (int)command.ExecuteScalar();
             }
             return id;
@@ -65,7 +65,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("Select * from Shop", conn);
+                var command = new SqlCommand("SELECT * FROM Shop", conn);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -90,11 +90,11 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("Update Shop Set shopName = @name, shopAddress = @address, shopCVR = @cvr where shopId = @id", conn);
+                var command = new SqlCommand("UPDATE Shop SET shopName = @ShopName, shopAddress = @ShopAddress, shopCVR = @ShopCvr where shopId = @ShopId", conn);
                 command.Parameters.AddWithValue("shopId", shop.Id);
                 command.Parameters.AddWithValue("shopName", shop.Name);
                 command.Parameters.AddWithValue("shopAddress", shop.Address);
-                command.Parameters.AddWithValue("shopCVR", shop.CVR);
+                command.Parameters.AddWithValue("shopCvr", shop.CVR);
                 i = command.ExecuteNonQuery();
             }
             return i;
@@ -113,8 +113,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("Delete from Shop where shopId = @id", conn);
-                command.Parameters.AddWithValue("Id", id);
+                var command = new SqlCommand("DELETE FROM Shop WHERE shopId = @ShopId", conn);
+                command.Parameters.AddWithValue("ShopId", id);
                 i = command.ExecuteNonQuery();
             }
             return i;

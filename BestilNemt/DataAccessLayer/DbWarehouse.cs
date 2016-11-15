@@ -20,11 +20,11 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId) OUTPUT Inserted.warehouseId VALUES(@Stock, @MinStock, @ShopId, @ProductId)", conn);
-                cmd.Parameters.AddWithValue("stock", warehouse.Stock);
-                cmd.Parameters.AddWithValue("MinStock", warehouse.MinStock);
-                cmd.Parameters.AddWithValue("ShopId", warehouse.Shop.Id);
-                cmd.Parameters.AddWithValue("ProductId", warehouse.Product.Id);
+                var cmd = new SqlCommand("INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId) OUTPUT Inserted.warehouseId VALUES(@WarehouseStock, @WarehouseMinStock, @WarehouseShopId, @WarehouseProductId)", conn);
+                cmd.Parameters.AddWithValue("WarehouseStock", warehouse.Stock);
+                cmd.Parameters.AddWithValue("WarehouseMinStock", warehouse.MinStock);
+                cmd.Parameters.AddWithValue("WarehouseShopId", warehouse.Shop.Id);
+                cmd.Parameters.AddWithValue("WarehouseProductId", warehouse.Product.Id);
                 i = (int)cmd.ExecuteScalar();
             }
             return i;
@@ -43,8 +43,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("DELETE FROM Warehouse Where warehouseId=@id", conn);
-                cmd.Parameters.AddWithValue("id", id);
+                var cmd = new SqlCommand("DELETE FROM Warehouse Where warehouseId=@WarehouseId", conn);
+                cmd.Parameters.AddWithValue("WarehouseId", id);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
@@ -63,12 +63,12 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Warehouse SET warehouseStock=@Stock, warehouseMinStock=@MinStock, warehouseShopId=@ShopId, warehouseProductId=ProductId WHERE id=@id", conn);
-                cmd.Parameters.AddWithValue("Stock", warehouse.Stock);
-                cmd.Parameters.AddWithValue("MinStock", warehouse.MinStock);
-                cmd.Parameters.AddWithValue("ShopId", warehouse.Shop.Id);
-                cmd.Parameters.AddWithValue("ProductId", warehouse.Product.Id);
-                cmd.Parameters.AddWithValue("id", warehouse.Id);
+                var cmd = new SqlCommand("UPDATE Warehouse SET warehouseStock=@WarehouseStock, warehouseMinStock=@WarehouseMinStock, warehouseShopId=@WarehouseShopId, warehouseProductId=ProductId WHERE id=@WarehouseId", conn);
+                cmd.Parameters.AddWithValue("WarehouseStock", warehouse.Stock);
+                cmd.Parameters.AddWithValue("WarehouseMinStock", warehouse.MinStock);
+                cmd.Parameters.AddWithValue("WarehouseShopId", warehouse.Shop.Id);
+                cmd.Parameters.AddWithValue("WarehouseProductId", warehouse.Product.Id);
+                cmd.Parameters.AddWithValue("WarehouseId", warehouse.Id);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
@@ -87,8 +87,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("select * from Warehouse, Shop, Product WHERE warehouseId = @id and shopId = Shop.shopId and productId = Product.productId", conn);
-                cmd.Parameters.AddWithValue("id", id);
+                var cmd = new SqlCommand("SELECT * FROM Warehouse, Shop, Product WHERE warehouseId = @WarehouseId and shopId = Shop.shopId and productId = Product.productId", conn);
+                cmd.Parameters.AddWithValue("WarehouseId", id);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -113,7 +113,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("select * from Warehouse, Shop, Product WHERE warehouseShopId = shopId and warehouseProductId = productId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Warehouse, Shop, Product WHERE warehouseShopId = shopId and warehouseProductId = productId", conn);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
