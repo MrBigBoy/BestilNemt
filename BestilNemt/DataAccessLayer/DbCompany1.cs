@@ -126,10 +126,10 @@ namespace DataAccessLayer
                 var cmd =
                     new SqlCommand("UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id",
                         conn);
-                cmd.Parameters.AddWithValue("id", company.Id);
-                cmd.Parameters.AddWithValue("name", company.Name);
-                cmd.Parameters.AddWithValue("email", company.Email);
-                cmd.Parameters.AddWithValue("address", company.Address);
+                cmd.Parameters.AddWithValue("personId", company.Id);
+                cmd.Parameters.AddWithValue("personName", company.Name);
+                cmd.Parameters.AddWithValue("personEmail", company.Email);
+                cmd.Parameters.AddWithValue("personAddress", company.Address);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
