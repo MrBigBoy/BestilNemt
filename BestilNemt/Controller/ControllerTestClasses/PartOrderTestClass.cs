@@ -51,13 +51,13 @@ namespace Controller.ControllerTestClasses
 
         private bool ValidatePartOrderInput(PartOrder partOrder)
         {
-            if (partOrder?.Amount != null && partOrder?.Product != null && partOrder?.Cart != null)
+            if (partOrder.Amount > 0 && partOrder.Product != null && partOrder.Cart != null)
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
     }

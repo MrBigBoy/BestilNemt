@@ -194,28 +194,30 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(0, id);
         }
 
-        [TestMethod]
-        public void updateCompanyWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var company = proxy.FindCompany(3);
-                if (company != null)
-                {
-                    company.Name = "UCN";
-                    company.Address = "vej";
-                    company.Email = "email@email.com";
-                    company.CVR = 123455678;
-                    company.Kontonr = 2121212;
+        //[TestMethod]
+        //public void updateCompanyWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var company = proxy.FindCompany(3);
+        //        var log = new Login(222,"fd","FDF",3232);
+        //        if (company != null)
+        //        {
+        //            company.Name = "UCN";
+        //            company.Address = "vej";
+        //            company.Email = "email@email.com";
+        //            company.CVR = 123455678;
+        //            company.Kontonr = 2121212;
 
-                }
-                var flag = proxy.UpdateCompany(company);
-                Assert.AreEqual(0, flag);
-            }
+        //        }
+        //        Assert.IsNotNull(log);
+        //        var flag = proxy.UpdateCompany(company);
+        //        Assert.AreEqual(0, flag);
+        //    }
 
 
-        }
+        //}
 
         [TestMethod]
         public void findme()
