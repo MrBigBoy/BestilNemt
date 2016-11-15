@@ -38,12 +38,13 @@ namespace Models
             Cart = Cart;
         }
 
-        public PartOrder(Product product, int amount, double partPrice, Cart cart)
+        public PartOrder(Product product, int amount, decimal partPrice, Cart cart)
         {
-            Product = Product;
-            Amount = Amount;
-            PartPrice = PartPrice;
-            Cart = Cart;
+            Product = product;
+            Amount = amount;
+            PartPrice = partPrice;
+            Cart = cart;
         }
+    }
     }
 }
