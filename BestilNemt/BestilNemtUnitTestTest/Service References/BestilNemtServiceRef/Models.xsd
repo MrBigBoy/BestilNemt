@@ -14,33 +14,22 @@
   <xs:complexType name="Person">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Chains" nillable="true" type="tns:ArrayOfChain" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Login" nillable="true" type="tns:Login" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PersonType" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Shops" nillable="true" type="tns:ArrayOfShop" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Person" nillable="true" type="tns:Person" />
-  <xs:complexType name="Login">
+  <xs:complexType name="ArrayOfChain">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PersonId" type="xs:int" />
-      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="Login" nillable="true" type="tns:Login" />
-  <xs:complexType name="ArrayOfShop">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Shop" nillable="true" type="tns:Shop" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Chain" nillable="true" type="tns:Chain" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfShop" nillable="true" type="tns:ArrayOfShop" />
-  <xs:complexType name="Shop">
+  <xs:element name="ArrayOfChain" nillable="true" type="tns:ArrayOfChain" />
+  <xs:complexType name="Chain">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CVR" nillable="true" type="xs:string" />
@@ -50,7 +39,7 @@
       <xs:element minOccurs="0" name="Warehouses" nillable="true" type="tns:ArrayOfWarehouse" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Shop" nillable="true" type="tns:Shop" />
+  <xs:element name="Chain" nillable="true" type="tns:Chain" />
   <xs:complexType name="ArrayOfPerson">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Person" nillable="true" type="tns:Person" />
@@ -65,10 +54,10 @@
   <xs:element name="ArrayOfWarehouse" nillable="true" type="tns:ArrayOfWarehouse" />
   <xs:complexType name="Warehouse">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Chain" nillable="true" type="tns:Chain" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="MinStock" type="xs:int" />
       <xs:element minOccurs="0" name="Product" nillable="true" type="tns:Product" />
-      <xs:element minOccurs="0" name="Shop" nillable="true" type="tns:Shop" />
       <xs:element minOccurs="0" name="Stock" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -86,6 +75,17 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Product" nillable="true" type="tns:Product" />
+  <xs:complexType name="Login">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonId" type="xs:int" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Login" nillable="true" type="tns:Login" />
   <xs:complexType name="ArrayOfCustomer">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Customer" nillable="true" type="tns:Customer" />

@@ -19,20 +19,20 @@ namespace Models
         public Product Product { get; set; }
 
         [DataMember]
-        public Shop Shop { get; set; }
+        public Chain Chain { get; set; }
 
         public Warehouse()
         {
             
         }
 
-        public Warehouse(int id, int stock, int minStock, Product product, Shop shop) : this()
+        public Warehouse(int id, int stock, int minStock, Product product, Chain chain) : this()
         {
             Id = id;
             Stock = stock;
             MinStock = minStock;
             Product = product; 
-            Shop = shop;
+            Chain = chain;
         }
 
     }

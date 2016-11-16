@@ -14,7 +14,7 @@ namespace BestilNemtUnitTestTest
         /// The test is successfull if the instance is not null
         /// </summary>
         [TestMethod]
-        public void ShopCtrInitialize()
+        public void ChainCtrInitialize()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             Assert.IsNotNull(productCtr);

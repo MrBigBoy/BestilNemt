@@ -20,10 +20,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId) OUTPUT Inserted.warehouseId VALUES(@WarehouseStock, @WarehouseMinStock, @WarehouseShopId, @WarehouseProductId)", conn);
+                var cmd = new SqlCommand("INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseChainId, warehouseProductId) OUTPUT Inserted.warehouseId VALUES(@WarehouseStock, @WarehouseMinStock, @WarehouseChainId, @WarehouseProductId)", conn);
                 cmd.Parameters.AddWithValue("WarehouseStock", warehouse.Stock);
                 cmd.Parameters.AddWithValue("WarehouseMinStock", warehouse.MinStock);
-                cmd.Parameters.AddWithValue("WarehouseShopId", warehouse.Shop.Id);
+                cmd.Parameters.AddWithValue("WarehouseChainId", warehouse.Chain.Id);
                 cmd.Parameters.AddWithValue("WarehouseProductId", warehouse.Product.Id);
                 i = (int)cmd.ExecuteScalar();
             }
@@ -63,10 +63,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Warehouse SET warehouseStock=@WarehouseStock, warehouseMinStock=@WarehouseMinStock, warehouseShopId=@WarehouseShopId, warehouseProductId=ProductId WHERE id=@WarehouseId", conn);
+                var cmd = new SqlCommand("UPDATE Warehouse SET warehouseStock=@WarehouseStock, warehouseMinStock=@WarehouseMinStock, warehouseChainId=@WarehouseChainId, warehouseProductId=ProductId WHERE id=@WarehouseId", conn);
                 cmd.Parameters.AddWithValue("WarehouseStock", warehouse.Stock);
                 cmd.Parameters.AddWithValue("WarehouseMinStock", warehouse.MinStock);
-                cmd.Parameters.AddWithValue("WarehouseShopId", warehouse.Shop.Id);
+                cmd.Parameters.AddWithValue("WarehouseChainId", warehouse.Chain.Id);
                 cmd.Parameters.AddWithValue("WarehouseProductId", warehouse.Product.Id);
                 cmd.Parameters.AddWithValue("WarehouseId", warehouse.Id);
                 i = cmd.ExecuteNonQuery();
@@ -87,15 +87,15 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Warehouse, Shop, Product WHERE warehouseId = @WarehouseId and shopId = Shop.shopId and productId = Product.productId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Warehouse, Chain, Product WHERE warehouseId = @WarehouseId and chainId = Chain.chainId and productId = Product.productId", conn);
                 cmd.Parameters.AddWithValue("WarehouseId", id);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var shop = ObjectBuilder.CreateShop(reader);
+                    var chain = ObjectBuilder.CreateChain(reader);
                     var product = ObjectBuilder.CreateProduct(reader);
-                    warehouse = ObjectBuilder.CreateWarehouse(reader, shop, product);
+                    warehouse = ObjectBuilder.CreateWarehouse(reader, chain, product);
                 }
             }
             return warehouse;
@@ -113,14 +113,14 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Warehouse, Shop, Product WHERE warehouseShopId = shopId and warehouseProductId = productId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Warehouse, Chain, Product WHERE warehouseChainId = chainId and warehouseProductId = productId", conn);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var shop = ObjectBuilder.CreateShop(reader);
+                    var chain = ObjectBuilder.CreateChain(reader);
                     var product = ObjectBuilder.CreateProduct(reader);
-                    var warehouse = ObjectBuilder.CreateWarehouse(reader, shop, product);
+                    var warehouse = ObjectBuilder.CreateWarehouse(reader, chain, product);
                     warehouses.Add(warehouse);
                 }
             }

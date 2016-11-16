@@ -21,7 +21,7 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseDb()
         {
             var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -33,7 +33,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = dbWarehouse.AddWarehouse(warehouse);
@@ -45,7 +45,7 @@ namespace BestilNemtUnitTestTest
         public void FindWarehouseDb()
         {
             var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -57,7 +57,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = dbWarehouse.AddWarehouse(warehouse);
@@ -70,7 +70,7 @@ namespace BestilNemtUnitTestTest
         public void FindAllWarehouseDb()
         {
             var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -82,7 +82,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = dbWarehouse.AddWarehouse(warehouse);
@@ -97,7 +97,7 @@ namespace BestilNemtUnitTestTest
         public void DeleteWarehouseDb()
         {
             var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -109,7 +109,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = dbWarehouse.AddWarehouse(warehouse);
@@ -121,7 +121,7 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -133,7 +133,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -142,7 +142,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void AddWarehouseCtrFailShop()
+        public void AddWarehouseCtrFailChain()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var product = new Product()
@@ -153,7 +153,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = null,
+                Chain = null,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -165,7 +165,7 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseCtrFailProduct()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -173,7 +173,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = null,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -189,7 +189,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = null,
-                Shop = null,
+                Chain = null,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -201,7 +201,7 @@ namespace BestilNemtUnitTestTest
         public void FindWarehouseCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -213,7 +213,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -223,7 +223,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindWarehouseCtrFailShop()
+        public void FindWarehouseCtrFailChain()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var product = new Product()
@@ -234,7 +234,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = null,
+                Chain = null,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -247,7 +247,7 @@ namespace BestilNemtUnitTestTest
         public void FindWarehouseCtrFailProduct()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -255,7 +255,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = null,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -272,7 +272,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = new Product(1, "Product name", 2,"Product description", "Product category", 1),
-                Shop = new Shop(1, "Shop name", "Shop address", "Shop cvr", new List<Person>(), new List<Warehouse>()),
+                Chain = new Chain(1, "Chain name", "Chain address", "Chain cvr", new List<Person>(), new List<Warehouse>()),
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -285,7 +285,7 @@ namespace BestilNemtUnitTestTest
         public void FindAllWarehouseCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -297,7 +297,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);
@@ -312,7 +312,7 @@ namespace BestilNemtUnitTestTest
         public void DeleteWarehouseCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -324,7 +324,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
             var i = warehouseCtr.AddWarehouse(warehouse);

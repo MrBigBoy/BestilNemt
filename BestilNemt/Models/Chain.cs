@@ -4,9 +4,8 @@ using System.Runtime.Serialization;
 namespace Models
 {
     [DataContract]
-    public class Shop
+    public class Chain
     {
-
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -20,7 +19,7 @@ namespace Models
         [DataMember]
         public List<Warehouse> Warehouses { get; set; }
 
-        public Shop()
+        public Chain()
         {
             Name = null;
             Address = null;
@@ -29,7 +28,7 @@ namespace Models
             Warehouses = new List<Warehouse>();
         }
 
-        public Shop(int id, string name, string address, string cvr, List<Person> persons, List<Warehouse> warehouses)
+        public Chain(int id, string name, string address, string cvr, List<Person> persons, List<Warehouse> warehouses)
         {
             this.Id = id;
             Name = name;
@@ -40,7 +39,7 @@ namespace Models
 
         }
 
-        public Shop(string name, string address, string cvr)
+        public Chain(string name, string address, string cvr)
         {
             Name = name;
             Address = address;

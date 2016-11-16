@@ -15,7 +15,7 @@ namespace Controller
 
         public int AddWarehouse(Warehouse warehouse)
         {
-            return warehouse.Shop != null && warehouse.Shop.Id != 0 && warehouse.Product != null &&
+            return warehouse.Chain != null && warehouse.Chain.Id != 0 && warehouse.Product != null &&
                    warehouse.Product.Id != 0
                 ? DbWarehouse.AddWarehouse(warehouse)
                 : 0;

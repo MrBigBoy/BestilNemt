@@ -1,12 +1,6 @@
 ﻿using Models;
-using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
-using System.Text;
 
 namespace WcfService
 {
@@ -58,19 +52,19 @@ namespace WcfService
         int UpdateWarehouse(Warehouse warehouse);
 
         [OperationContract]
-        Shop GetShop(int id);
+        Chain GetChain(int id);
 
         [OperationContract]
-        List<Shop> GetAllShops();
+        List<Chain> GetAllChains();
 
         [OperationContract]
-        int DeleteShop(int id);
+        int DeleteChain(int id);
 
         [OperationContract]
-        int AddShop(Shop shop);
+        int AddChain(Chain chain);
 
         [OperationContract]
-        int UpdateShop(Shop shop);
+        int UpdateChain(Chain chain);
 
         [OperationContract]
         Login Login(Login login);

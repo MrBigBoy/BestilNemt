@@ -11,7 +11,7 @@ namespace WcfService
         public CustomerCtr CustomerCtr { get; set; }
         public WarehouseCtr WarehouseController { get; set; }
         public LoginCtr LoginCtr { get; set; }
-        public ShopCtr ShopCtr { get; set; }
+        public ChainCtr ChainCtr { get; set; }
         public CompanyCtr CompanyCtr { get; set; }
         public AdminCtr AdminCtr { get; set; }
         public ProductCtr ProductCtr { get; set; }
@@ -26,7 +26,7 @@ namespace WcfService
             LoginCtr = new LoginCtr(new DbLogin());
             CustomerCtr = new CustomerCtr(new DbCustomer());
             WarehouseController = new WarehouseCtr(new DbWarehouse());
-            ShopCtr = new ShopCtr(new DbShop());
+            ChainCtr = new ChainCtr(new DbChain());
             CompanyCtr = new CompanyCtr(new DbCompany());
             AdminCtr = new AdminCtr(new DbAdmin());
             ProductCtr = new ProductCtr(new DbProduct());
@@ -271,62 +271,62 @@ namespace WcfService
         }
 
         /// <summary>
-        /// Add a Shop
+        /// Add a Chain
         /// </summary>
-        /// <param name="shop"></param>
+        /// <param name="chain"></param>
         /// <returns>
-        /// Return 1 if Shop was added, else 0
+        /// Return 1 if Chain was added, else 0
         /// </returns>
-        public int AddShop(Shop shop)
+        public int AddChain(Chain chain)
         {
-            return ShopCtr.AddShop(shop);
+            return ChainCtr.AddChain(chain);
         }
 
         /// <summary>
-        /// Return a Shop by id
+        /// Return a Chain by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return a Shop if found, else null
+        /// Return a Chain if found, else null
         /// </returns>
-        public Shop GetShop(int id)
+        public Chain GetChain(int id)
         {
-            return ShopCtr.GetShop(id);
+            return ChainCtr.GetChain(id);
         }
 
         /// <summary>
-        /// Return a list of all Shops
+        /// Return a list of all Chains
         /// </summary>
         /// <returns>
-        /// List of Shop
+        /// List of Chain
         /// </returns>
-        public List<Shop> GetAllShops()
+        public List<Chain> GetAllChains()
         {
-            return ShopCtr.GetAllShops();
+            return ChainCtr.GetAllChains();
         }
 
         /// <summary>
-        /// Update a Shop
+        /// Update a Chain
         /// </summary>
-        /// <param name="shop"></param>
+        /// <param name="chain"></param>
         /// <returns>
-        /// Return 1 if Shop was updated, else 0
+        /// Return 1 if Chain was updated, else 0
         /// </returns>
-        public int UpdateShop(Shop shop)
+        public int UpdateChain(Chain chain)
         {
-            return ShopCtr.UpdateShop(shop);
+            return ChainCtr.UpdateChain(chain);
         }
 
         /// <summary>
-        /// Delete a Shop
+        /// Delete a Chain
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return 1 if Shop was deleted, else 0
+        /// Return 1 if Chain was deleted, else 0
         /// </returns>
-        public int DeleteShop(int id)
+        public int DeleteChain(int id)
         {
-            return ShopCtr.DeleteShop(id);
+            return ChainCtr.DeleteChain(id);
         }
 
         /// <summary>

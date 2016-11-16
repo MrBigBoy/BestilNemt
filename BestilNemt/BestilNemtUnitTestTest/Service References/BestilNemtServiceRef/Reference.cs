@@ -105,35 +105,35 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         System.Threading.Tasks.Task<int> UpdateWarehouseAsync(Models.Warehouse warehouse);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
-        Models.Shop GetShop(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetChain", ReplyAction="http://tempuri.org/IBestilNemtService/GetChainResponse")]
+        Models.Chain GetChain(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
-        System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetChain", ReplyAction="http://tempuri.org/IBestilNemtService/GetChainResponse")]
+        System.Threading.Tasks.Task<Models.Chain> GetChainAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        Models.Shop[] GetAllShops();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllChains", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllChainsResponse")]
+        Models.Chain[] GetAllChains();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllChains", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllChainsResponse")]
+        System.Threading.Tasks.Task<Models.Chain[]> GetAllChainsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
-        int DeleteShop(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteChain", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteChainResponse")]
+        int DeleteChain(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteShopResponse")]
-        System.Threading.Tasks.Task<int> DeleteShopAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteChain", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteChainResponse")]
+        System.Threading.Tasks.Task<int> DeleteChainAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        int AddShop(Models.Shop shop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddChain", ReplyAction="http://tempuri.org/IBestilNemtService/AddChainResponse")]
+        int AddChain(Models.Chain chain);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
-        System.Threading.Tasks.Task<int> AddShopAsync(Models.Shop shop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddChain", ReplyAction="http://tempuri.org/IBestilNemtService/AddChainResponse")]
+        System.Threading.Tasks.Task<int> AddChainAsync(Models.Chain chain);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        int UpdateShop(Models.Shop shop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateChain", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateChainResponse")]
+        int UpdateChain(Models.Chain chain);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
-        System.Threading.Tasks.Task<int> UpdateShopAsync(Models.Shop shop);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateChain", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateChainResponse")]
+        System.Threading.Tasks.Task<int> UpdateChainAsync(Models.Chain chain);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
         Models.Login Login([System.ServiceModel.MessageParameterAttribute(Name="login")] Models.Login login1);
@@ -433,44 +433,44 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.UpdateWarehouseAsync(warehouse);
         }
         
-        public Models.Shop GetShop(int id) {
-            return base.Channel.GetShop(id);
+        public Models.Chain GetChain(int id) {
+            return base.Channel.GetChain(id);
         }
         
-        public System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id) {
-            return base.Channel.GetShopAsync(id);
+        public System.Threading.Tasks.Task<Models.Chain> GetChainAsync(int id) {
+            return base.Channel.GetChainAsync(id);
         }
         
-        public Models.Shop[] GetAllShops() {
-            return base.Channel.GetAllShops();
+        public Models.Chain[] GetAllChains() {
+            return base.Channel.GetAllChains();
         }
         
-        public System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync() {
-            return base.Channel.GetAllShopsAsync();
+        public System.Threading.Tasks.Task<Models.Chain[]> GetAllChainsAsync() {
+            return base.Channel.GetAllChainsAsync();
         }
         
-        public int DeleteShop(int id) {
-            return base.Channel.DeleteShop(id);
+        public int DeleteChain(int id) {
+            return base.Channel.DeleteChain(id);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteShopAsync(int id) {
-            return base.Channel.DeleteShopAsync(id);
+        public System.Threading.Tasks.Task<int> DeleteChainAsync(int id) {
+            return base.Channel.DeleteChainAsync(id);
         }
         
-        public int AddShop(Models.Shop shop) {
-            return base.Channel.AddShop(shop);
+        public int AddChain(Models.Chain chain) {
+            return base.Channel.AddChain(chain);
         }
         
-        public System.Threading.Tasks.Task<int> AddShopAsync(Models.Shop shop) {
-            return base.Channel.AddShopAsync(shop);
+        public System.Threading.Tasks.Task<int> AddChainAsync(Models.Chain chain) {
+            return base.Channel.AddChainAsync(chain);
         }
         
-        public int UpdateShop(Models.Shop shop) {
-            return base.Channel.UpdateShop(shop);
+        public int UpdateChain(Models.Chain chain) {
+            return base.Channel.UpdateChain(chain);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateShopAsync(Models.Shop shop) {
-            return base.Channel.UpdateShopAsync(shop);
+        public System.Threading.Tasks.Task<int> UpdateChainAsync(Models.Chain chain) {
+            return base.Channel.UpdateChainAsync(chain);
         }
         
         public Models.Login Login(Models.Login login1) {

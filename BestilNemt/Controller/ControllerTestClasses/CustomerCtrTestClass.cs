@@ -44,7 +44,7 @@ namespace Controller.ControllerTestClasses
             returnedCust.Address = customer.Address;
             returnedCust.Email = customer.Email;
             returnedCust.Login = customer.Login;
-            returnedCust.Shops = customer.Shops;
+            returnedCust.Chains = customer.Chains;
             returnedCust.PersonType = customer.PersonType;
 
             return 1;

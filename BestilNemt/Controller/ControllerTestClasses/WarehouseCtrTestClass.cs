@@ -31,7 +31,7 @@ namespace Controller.ControllerTestClasses
             var returnedWarehouse = FindWarehouse(warehouse.Id);
             returnedWarehouse.MinStock = warehouse.MinStock;
             returnedWarehouse.Stock = warehouse.Stock;
-            returnedWarehouse.Shop = warehouse.Shop;
+            returnedWarehouse.Chain = warehouse.Chain;
             returnedWarehouse.Product = warehouse.Product;
             return 1;
         }

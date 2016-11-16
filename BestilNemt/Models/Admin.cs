@@ -7,7 +7,7 @@ namespace Models
     {
         [DataMember]
         public int Membernr { get; set; }
-        public Admin(int id, string name, string email, string address, Login login, List<Shop> shops , string personType,int membernr) : base(id, name, email, address, login, shops, personType)
+        public Admin(int id, string name, string email, string address, Login login, List<Chain> chains , string personType,int membernr) : base(id, name, email, address, login, chains, personType)
         {
             Membernr = membernr;
         }

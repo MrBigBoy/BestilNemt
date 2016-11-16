@@ -85,26 +85,26 @@ namespace DataAccessLayer
             return partOrder;
         }
 
-        public static Shop CreateShop(SqlDataReader reader)
+        public static Chain CreateChain(SqlDataReader reader)
         {
-            var shop = new Shop
+            var chain = new Chain
             {
-                Id = reader.GetInt32(reader.GetOrdinal("shopId")),
-                Name = reader.GetString(reader.GetOrdinal("shopName")),
-                Address = reader.GetString(reader.GetOrdinal("shopAddress")),
-                CVR = reader.GetString(reader.GetOrdinal("shopCVR"))
+                Id = reader.GetInt32(reader.GetOrdinal("chainId")),
+                Name = reader.GetString(reader.GetOrdinal("chainName")),
+                Address = reader.GetString(reader.GetOrdinal("chainAddress")),
+                CVR = reader.GetString(reader.GetOrdinal("chainCVR"))
             };
-            return shop;
+            return chain;
         }
 
-        public static Warehouse CreateWarehouse(SqlDataReader reader, Shop shop, Product product)
+        public static Warehouse CreateWarehouse(SqlDataReader reader, Chain chain, Product product)
         {
             var warehouse = new Warehouse
             {
                 Id = reader.GetInt32(reader.GetOrdinal("warehouseId")),
                 Stock = reader.GetInt32(reader.GetOrdinal("warehouseStock")),
                 MinStock = reader.GetInt32(reader.GetOrdinal("warehouseMinStock")),
-                Shop = shop,
+                Chain = chain,
                 Product = product
             };
             return warehouse;

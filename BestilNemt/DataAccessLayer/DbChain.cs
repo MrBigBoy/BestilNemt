@@ -5,116 +5,116 @@ using System.Data.SqlClient;
 
 namespace DataAccessLayer
 {
-    public class DbShop : IDbShop
+    public class DbChain : IDbChain
     {
         /// <summary>
-        /// Return a Shop by id
+        /// Return a Chain by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return Shop if found, else null
+        /// Return Chain if found, else null
         /// </returns>
-        public Shop GetShop(int id)
+        public Chain GetChain(int id)
         {
-            Shop shop = null;
+            Chain chain = null;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("SELECT * FROM Shop where shopId = @ShopId", conn);
-                command.Parameters.AddWithValue("ShopId", id);
+                var command = new SqlCommand("SELECT * FROM Chain where chainId = @ChainId", conn);
+                command.Parameters.AddWithValue("ChainId", id);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    shop = ObjectBuilder.CreateShop(reader);
+                    chain = ObjectBuilder.CreateChain(reader);
                 }
             }
-            return shop;
+            return chain;
         }
 
         /// <summary>
-        /// Add a Shop
+        /// Add a Chain
         /// </summary>
-        /// <param name="shop"></param>
+        /// <param name="chain"></param>
         /// <returns>
-        /// Return 1 if Shop is added, else 0
+        /// Return 1 if Chain is added, else 0
         /// </returns>
-        public int AddShop(Shop shop)
+        public int AddChain(Chain chain)
         {
             int id;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("INSERT INTO Shop (shopName, shopAddress, shopCVR) OUTPUT Inserted.shopId values (@ShopName, @ShopAddress, @ShopCvr)", conn);
-                command.Parameters.AddWithValue("ShopName", shop.Name);
-                command.Parameters.AddWithValue("ShopAddress", shop.Address);
-                command.Parameters.AddWithValue("ShopCvr", shop.CVR);
+                var command = new SqlCommand("INSERT INTO Chain (chainName, chainAddress, chainCVR) OUTPUT Inserted.chainId values (@ChainName, @ChainAddress, @ChainCvr)", conn);
+                command.Parameters.AddWithValue("ChainName", chain.Name);
+                command.Parameters.AddWithValue("ChainAddress", chain.Address);
+                command.Parameters.AddWithValue("ChainCvr", chain.CVR);
                 id = (int)command.ExecuteScalar();
             }
             return id;
         }
 
         /// <summary>
-        /// Return a list of all shops
+        /// Return a list of all chains
         /// </summary>
         /// <returns>
-        /// List of Shop
+        /// List of Chain
         /// </returns>
-        public List<Shop> GetAllShops()
+        public List<Chain> GetAllChains()
         {
-            var shops = new List<Shop>();
+            var chains = new List<Chain>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("SELECT * FROM Shop", conn);
+                var command = new SqlCommand("SELECT * FROM Chain", conn);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var shop = ObjectBuilder.CreateShop(reader);
-                    shops.Add(shop);
+                    var chain = ObjectBuilder.CreateChain(reader);
+                    chains.Add(chain);
                 }
             }
-            return shops;
+            return chains;
         }
 
         /// <summary>
-        /// Update a Shop
+        /// Update a Chain
         /// </summary>
-        /// <param name="shop"></param>
+        /// <param name="chain"></param>
         /// <returns>
-        /// Return 1 if Shop is updated, else 0
+        /// Return 1 if Chain is updated, else 0
         /// </returns>
-        public int UpdateShop(Shop shop)
+        public int UpdateChain(Chain chain)
         {
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Shop SET shopName = @ShopName, shopAddress = @ShopAddress, shopCVR = @ShopCvr where shopId = @ShopId", conn);
-                command.Parameters.AddWithValue("shopId", shop.Id);
-                command.Parameters.AddWithValue("shopName", shop.Name);
-                command.Parameters.AddWithValue("shopAddress", shop.Address);
-                command.Parameters.AddWithValue("shopCvr", shop.CVR);
+                var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainAddress = @ChainAddress, chainCVR = @ChainCvr where chainId = @ChainId", conn);
+                command.Parameters.AddWithValue("chainId", chain.Id);
+                command.Parameters.AddWithValue("chainName", chain.Name);
+                command.Parameters.AddWithValue("chainAddress", chain.Address);
+                command.Parameters.AddWithValue("chainCvr", chain.CVR);
                 i = command.ExecuteNonQuery();
             }
             return i;
         }
 
         /// <summary>
-        /// Delete a Shop
+        /// Delete a Chain
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return 1 if Shop is deleted, else 0
+        /// Return 1 if Chain is deleted, else 0
         /// </returns>
-        public int DeleteShop(int id)
+        public int DeleteChain(int id)
         {
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Shop WHERE shopId = @ShopId", conn);
-                command.Parameters.AddWithValue("ShopId", id);
+                var command = new SqlCommand("DELETE FROM Chain WHERE chainId = @ChainId", conn);
+                command.Parameters.AddWithValue("ChainId", id);
                 i = command.ExecuteNonQuery();
             }
             return i;

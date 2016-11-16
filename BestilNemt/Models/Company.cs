@@ -13,7 +13,7 @@ namespace Models
         {
         }
 
-        public Company(int id, string name, string email, string address, Login login, List<Shop> shops, string personType, int cvr, int kontonr) : base(id, name, email, address, login, shops, personType)
+        public Company(int id, string name, string email, string address, Login login, List<Chain> chains, string personType, int cvr, int kontonr) : base(id, name, email, address, login, chains, personType)
         {
             CVR = cvr;
             Kontonr = kontonr; 
