@@ -261,7 +261,7 @@ namespace BestilNemtUnitTestTest
             var i = warehouseCtr.AddWarehouse(warehouse);
             var j = warehouseCtr.FindWarehouse(i);
             warehouseCtr.DeleteWarehouse(i);
-            Assert.IsNotNull(j);
+            Assert.IsNull(j);
         }
 
         [TestMethod]

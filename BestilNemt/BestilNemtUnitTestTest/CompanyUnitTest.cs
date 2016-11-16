@@ -165,7 +165,9 @@ namespace BestilNemtUnitTestTest
         public void FindAllCompany()
         {
             var dbCompany = new DbCompany();
-            Assert.AreNotEqual(0, dbCompany.FindAllCompany().Count);
+            var i = dbCompany.FindAllCompany();
+            var j = i.Count;
+            Assert.AreNotEqual(0, i);
         }
 
         /// <summary>

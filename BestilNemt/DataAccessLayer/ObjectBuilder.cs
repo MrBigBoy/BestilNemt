@@ -54,7 +54,7 @@ namespace DataAccessLayer
                 Address = reader.GetString(reader.GetOrdinal("personAddress")),
                 PersonType = reader.GetString(reader.GetOrdinal("personType")),
                 CVR = reader.GetInt32(reader.GetOrdinal("companyCVR")),
-                Kontonr = reader.GetInt32(reader.GetOrdinal("companyKontorNr"))
+                Kontonr = reader.GetInt32(reader.GetOrdinal("companyKontoNr"))
             };
             return company;
         }

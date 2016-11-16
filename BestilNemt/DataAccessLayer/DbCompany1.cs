@@ -23,13 +23,13 @@ namespace DataAccessLayer
 
                 var cmd =
                     new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(companyId, companyCVR, companyKontorNr) VALUES(@DataID,@CVR,@KontorNr);", conn);
+                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(companyId, companyCVR, companyKontoNr) VALUES(@DataID,@CVR,@KontoNr);", conn);
                 cmd.Parameters.AddWithValue("name", company.Name);
                 cmd.Parameters.AddWithValue("email", company.Email);
                 cmd.Parameters.AddWithValue("personType", company.PersonType);
                 cmd.Parameters.AddWithValue("address", company.Address);
                 cmd.Parameters.AddWithValue("CVR", company.CVR);
-                cmd.Parameters.AddWithValue("KontorNr", company.Kontonr);
+                cmd.Parameters.AddWithValue("KontoNr", company.Kontonr);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
@@ -49,7 +49,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.personId, personName, personEmail, personAddress, personType, companyCVR, companyKontorNr FROM Person LEFT JOIN Company ON Person.personId = Company.companyId WHERE Person.personType = 'Company'", conn);
+                var cmd = new SqlCommand("SELECT * FROM Person, Company WHERE Person.personType = 'Company' AND companyId = personId", conn);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -75,7 +75,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT Person.personId, personName, personEmail, personAddress, personType, companyCVR, companyKontorNr FROM Person LEFT JOIN Company ON Person.personId = Company.companyId WHERE Person.personId = @id", conn);
+                var cmd = new SqlCommand("SELECT Person.personId, personName, personEmail, personAddress, personType, companyCVR, companyKontoNr FROM Person LEFT JOIN Company ON Person.personId = Company.companyId WHERE Person.personId = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
