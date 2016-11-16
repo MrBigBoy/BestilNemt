@@ -20,10 +20,10 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, chain.Id);
         }
         [TestMethod]
-        public void GetWarehouseTestWCF()
+        public void GetShopTestWCF()
         {
-            var warehouse = Proxy.GetWarehouse(1);
-            Assert.AreEqual(1, warehouse.Id);
+            var shop = Proxy.GetShop(1);
+            Assert.AreEqual(1, shop.Id);
         }
     }
 }

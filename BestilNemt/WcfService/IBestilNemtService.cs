@@ -37,19 +37,19 @@ namespace WcfService
         [OperationContract]
         int UpdateAdmin(Admin admin);
         [OperationContract]
-        Warehouse GetWarehouse(int id);
+        Shop GetShop(int id);
 
         [OperationContract]
-        List<Warehouse> GetAllWarehouses();
+        List<Shop> GetAllShops();
 
         [OperationContract]
-        int RemoveWarehouse(int id);
+        int RemoveShop(int id);
 
         [OperationContract]
-        int AddWarehouse(Warehouse warehouse);
+        int AddShop(Shop shop);
 
         [OperationContract]
-        int UpdateWarehouse(Warehouse warehouse);
+        int UpdateShop(Shop shop);
 
         [OperationContract]
         Chain GetChain(int id);

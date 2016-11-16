@@ -203,10 +203,10 @@ namespace BestilNemtUnitTestTest
             var person = new Person();
             var persons = new List<Person>();
             persons.Add(person);
-            var warehouse = new Warehouse();
-            var warehouses = new List<Warehouse>();
-            warehouses.Add(warehouse);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
+            var shop = new Shop();
+            var shops = new List<Shop>();
+            shops.Add(shop);
+            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.Id, serializationResult.Id);
         }
@@ -216,10 +216,10 @@ namespace BestilNemtUnitTestTest
             var person = new Person();
             var persons = new List<Person>();
             persons.Add(person);
-            var warehouse = new Warehouse();
-            var warehouses = new List<Warehouse>();
-            warehouses.Add(warehouse);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
+            var shop = new Shop();
+            var shops = new List<Shop>();
+            shops.Add(shop);
+            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.Name, serializationResult.Name);
         }
@@ -232,10 +232,10 @@ namespace BestilNemtUnitTestTest
             var person = new Person();
             var persons = new List<Person>();
             persons.Add(person);
-            var warehouse = new Warehouse();
-            var warehouses = new List<Warehouse>();
-            warehouses.Add(warehouse);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
+            var shop = new Shop();
+            var shops = new List<Shop>();
+            shops.Add(shop);
+            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.Address, serializationResult.Address);
         }
@@ -245,40 +245,40 @@ namespace BestilNemtUnitTestTest
             var person = new Person();
             var persons = new List<Person>();
             persons.Add(person);
-            var warehouse = new Warehouse();
-            var warehouses = new List<Warehouse>();
-            warehouses.Add(warehouse);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, warehouses);
+            var shop = new Shop();
+            var shops = new List<Shop>();
+            shops.Add(shop);
+            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.CVR, serializationResult.CVR);
         }
         [TestMethod]
-        public void TestWarehouseIdSer()
+        public void TestShopIdSer()
         {
             var product = new Product();
             var chain = new Chain();
-            var warehouse = new Warehouse(3, 3, 2, product, chain);
-            var serializationResult = SerializerTestHelpClass.TestSerialize(warehouse);
-            Assert.AreEqual(warehouse.Id, serializationResult.Id);
+            var shop = new Shop(3, 3, 2, product, chain);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
+            Assert.AreEqual(shop.Id, serializationResult.Id);
         }
         [TestMethod]
-        public void TestWarehouseStockSer()
+        public void TestShopStockSer()
         {
             var product = new Product();
             var chain = new Chain();
-            var warehouse = new Warehouse(3, 3, 2, product, chain);
-            var serializationResult = SerializerTestHelpClass.TestSerialize(warehouse);
-            Assert.AreEqual(warehouse.Stock, serializationResult.Stock);
+            var shop = new Shop(3, 3, 2, product, chain);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
+            Assert.AreEqual(shop.Stock, serializationResult.Stock);
         }
 
         [TestMethod]
-        public void TestWarehouseMinStockSer()
+        public void TestShopMinStockSer()
         {
             var product = new Product();
             var chain = new Chain();
-            var warehouse = new Warehouse(3, 3, 2, product, chain);
-            var serializationResult = SerializerTestHelpClass.TestSerialize(warehouse);
-            Assert.AreEqual(warehouse.MinStock, serializationResult.MinStock);
+            var shop = new Shop(3, 3, 2, product, chain);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
+            Assert.AreEqual(shop.MinStock, serializationResult.MinStock);
         }
         [TestMethod]
 

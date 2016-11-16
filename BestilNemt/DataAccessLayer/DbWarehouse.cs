@@ -5,126 +5,126 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public class DbWarehouse : IDbWarehouse
+    public class DbShop : IDbShop
     {
         /// <summary>
-        /// AddWarehouse a Warehouse
+        /// AddShop a Shop
         /// </summary>
-        /// <param name="warehouse"></param>
+        /// <param name="shop"></param>
         /// <returns>
-        /// Return id of Warehouse is added, else 0
+        /// Return id of Shop is added, else 0
         /// </returns>
-        public int AddWarehouse(Warehouse warehouse)
+        public int AddShop(Shop shop)
         {
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseChainId, warehouseProductId) OUTPUT Inserted.warehouseId VALUES(@WarehouseStock, @WarehouseMinStock, @WarehouseChainId, @WarehouseProductId)", conn);
-                cmd.Parameters.AddWithValue("WarehouseStock", warehouse.Stock);
-                cmd.Parameters.AddWithValue("WarehouseMinStock", warehouse.MinStock);
-                cmd.Parameters.AddWithValue("WarehouseChainId", warehouse.Chain.Id);
-                cmd.Parameters.AddWithValue("WarehouseProductId", warehouse.Product.Id);
+                var cmd = new SqlCommand("INSERT INTO Shop(shopStock, shopMinStock, shopChainId, shopProductId) OUTPUT Inserted.shopId VALUES(@ShopStock, @ShopMinStock, @ShopChainId, @ShopProductId)", conn);
+                cmd.Parameters.AddWithValue("ShopStock", shop.Stock);
+                cmd.Parameters.AddWithValue("ShopMinStock", shop.MinStock);
+                cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
+                cmd.Parameters.AddWithValue("ShopProductId", shop.Product.Id);
                 i = (int)cmd.ExecuteScalar();
             }
             return i;
         }
 
         /// <summary>
-        /// Delete a Warehouse
+        /// Delete a Shop
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return 1 if the Warehouse is deleted, else 0
+        /// Return 1 if the Shop is deleted, else 0
         /// </returns>
-        public int DeleteWarehouse(int id)
+        public int DeleteShop(int id)
         {
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("DELETE FROM Warehouse Where warehouseId=@WarehouseId", conn);
-                cmd.Parameters.AddWithValue("WarehouseId", id);
+                var cmd = new SqlCommand("DELETE FROM Shop Where shopId=@ShopId", conn);
+                cmd.Parameters.AddWithValue("ShopId", id);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
         }
 
         /// <summary>
-        /// UpdateWarehouse a Warehouse
+        /// UpdateShop a Shop
         /// </summary>
-        /// <param name="warehouse"></param>
+        /// <param name="shop"></param>
         /// <returns>
-        /// Return 1 if the Warehouse is updated, else 0
+        /// Return 1 if the Shop is updated, else 0
         /// </returns>
-        public int UpdateWarehouse(Warehouse warehouse)
+        public int UpdateShop(Shop shop)
         {
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Warehouse SET warehouseStock=@WarehouseStock, warehouseMinStock=@WarehouseMinStock, warehouseChainId=@WarehouseChainId, warehouseProductId=ProductId WHERE id=@WarehouseId", conn);
-                cmd.Parameters.AddWithValue("WarehouseStock", warehouse.Stock);
-                cmd.Parameters.AddWithValue("WarehouseMinStock", warehouse.MinStock);
-                cmd.Parameters.AddWithValue("WarehouseChainId", warehouse.Chain.Id);
-                cmd.Parameters.AddWithValue("WarehouseProductId", warehouse.Product.Id);
-                cmd.Parameters.AddWithValue("WarehouseId", warehouse.Id);
+                var cmd = new SqlCommand("UPDATE Shop SET shopStock=@ShopStock, shopMinStock=@ShopMinStock, shopChainId=@ShopChainId, shopProductId=ProductId WHERE id=@ShopId", conn);
+                cmd.Parameters.AddWithValue("ShopStock", shop.Stock);
+                cmd.Parameters.AddWithValue("ShopMinStock", shop.MinStock);
+                cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
+                cmd.Parameters.AddWithValue("ShopProductId", shop.Product.Id);
+                cmd.Parameters.AddWithValue("ShopId", shop.Id);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
         }
 
         /// <summary>
-        /// Return a Warehouse
+        /// Return a Shop
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return Warehouse if found, else null
+        /// Return Shop if found, else null
         /// </returns>
-        public Warehouse FindWarehouse(int id)
+        public Shop FindShop(int id)
         {
-            Warehouse warehouse = null;
+            Shop shop = null;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Warehouse, Chain, Product WHERE warehouseId = @WarehouseId and chainId = Chain.chainId and productId = Product.productId", conn);
-                cmd.Parameters.AddWithValue("WarehouseId", id);
+                var cmd = new SqlCommand("SELECT * FROM Shop, Chain, Product WHERE shopId = @ShopId and chainId = Chain.chainId and productId = Product.productId", conn);
+                cmd.Parameters.AddWithValue("ShopId", id);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     var chain = ObjectBuilder.CreateChain(reader);
                     var product = ObjectBuilder.CreateProduct(reader);
-                    warehouse = ObjectBuilder.CreateWarehouse(reader, chain, product);
+                    shop = ObjectBuilder.CreateShop(reader, chain, product);
                 }
             }
-            return warehouse;
+            return shop;
         }
 
         /// <summary>
-        /// Return a list of all Warehouses
+        /// Return a list of all Shops
         /// </summary>
         /// <returns>
-        /// List of Warehouse
+        /// List of Shop
         /// </returns>
-        public List<Warehouse> FindAllWarehouses()
+        public List<Shop> FindAllShops()
         {
-            var warehouses = new List<Warehouse>();
+            var shops = new List<Shop>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Warehouse, Chain, Product WHERE warehouseChainId = chainId and warehouseProductId = productId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Shop, Chain, Product WHERE shopChainId = chainId and shopProductId = productId", conn);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     var chain = ObjectBuilder.CreateChain(reader);
                     var product = ObjectBuilder.CreateProduct(reader);
-                    var warehouse = ObjectBuilder.CreateWarehouse(reader, chain, product);
-                    warehouses.Add(warehouse);
+                    var shop = ObjectBuilder.CreateShop(reader, chain, product);
+                    shops.Add(shop);
                 }
             }
-            return warehouses;
+            return shops;
         }
     }
 }

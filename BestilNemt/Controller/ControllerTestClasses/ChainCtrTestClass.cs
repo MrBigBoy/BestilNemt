@@ -36,7 +36,7 @@ namespace Controller.ControllerTestClasses
             returnedChain.Address = chain.Address;
             returnedChain.CVR = chain.CVR;
             returnedChain.Persons = chain.Persons;
-            returnedChain.Warehouses = chain.Warehouses;
+            returnedChain.Shops = chain.Shops;
 
             return 1;
 

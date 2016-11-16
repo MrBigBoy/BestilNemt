@@ -137,71 +137,71 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetWarehouse">
+  <xs:element name="GetShop">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetWarehouseResponse">
+  <xs:element name="GetShopResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetWarehouseResult" nillable="true" type="q9:Warehouse" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetShopResult" nillable="true" type="q9:Shop" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAllWarehouses">
+  <xs:element name="GetAllShops">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAllWarehousesResponse">
+  <xs:element name="GetAllShopsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllWarehousesResult" nillable="true" type="q10:ArrayOfWarehouse" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllShopsResult" nillable="true" type="q10:ArrayOfShop" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RemoveWarehouse">
+  <xs:element name="RemoveShop">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RemoveWarehouseResponse">
+  <xs:element name="RemoveShopResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="RemoveWarehouseResult" type="xs:int" />
+        <xs:element minOccurs="0" name="RemoveShopResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddWarehouse">
+  <xs:element name="AddShop">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q11:Warehouse" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="shop" nillable="true" type="q11:Shop" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddWarehouseResponse">
+  <xs:element name="AddShopResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AddWarehouseResult" type="xs:int" />
+        <xs:element minOccurs="0" name="AddShopResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateWarehouse">
+  <xs:element name="UpdateShop">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q12:Warehouse" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="shop" nillable="true" type="q12:Shop" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateWarehouseResponse">
+  <xs:element name="UpdateShopResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateWarehouseResult" type="xs:int" />
+        <xs:element minOccurs="0" name="UpdateShopResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Models
 {
     [DataContract]
-    public class Warehouse
+    public class Shop
     {
         [DataMember]
         public int Id  { get; set; }
@@ -21,12 +21,12 @@ namespace Models
         [DataMember]
         public Chain Chain { get; set; }
 
-        public Warehouse()
+        public Shop()
         {
             
         }
 
-        public Warehouse(int id, int stock, int minStock, Product product, Chain chain) : this()
+        public Shop(int id, int stock, int minStock, Product product, Chain chain) : this()
         {
             Id = id;
             Stock = stock;

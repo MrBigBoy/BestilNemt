@@ -3,12 +3,12 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public interface IDbWarehouse
+    public interface IDbShop
     {
-        int AddWarehouse(Warehouse warehouse);
-        int DeleteWarehouse(int id);
-        int UpdateWarehouse(Warehouse warehouse);
-        List<Warehouse> FindAllWarehouses();
-        Warehouse FindWarehouse(int id);
+        int AddShop(Shop shop);
+        int DeleteShop(int id);
+        int UpdateShop(Shop shop);
+        List<Shop> FindAllShops();
+        Shop FindShop(int id);
     }
 }
