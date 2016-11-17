@@ -284,6 +284,42 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
         System.Threading.Tasks.Task<Models.PartOrder[]> GetAllPartOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
+        int AddWarehouse(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
+        System.Threading.Tasks.Task<int> AddWarehouseAsync(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/FindWarehouseResponse")]
+        Models.Warehouse FindWarehouse(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/FindWarehouseResponse")]
+        System.Threading.Tasks.Task<Models.Warehouse> FindWarehouseAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesResponse")]
+        Models.Warehouse[] FindAllWarehouses();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesResponse")]
+        System.Threading.Tasks.Task<Models.Warehouse[]> FindAllWarehousesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
+        int UpdateWarehouse(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
+        System.Threading.Tasks.Task<int> UpdateWarehouseAsync(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
+        int DeleteWarehouse(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
+        System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
+        int AddSaving(Models.Saving saving, Models.Product product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
+        System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Product product);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -671,6 +707,54 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.PartOrder[]> GetAllPartOrdersAsync() {
             return base.Channel.GetAllPartOrdersAsync();
+        }
+        
+        public int AddWarehouse(Models.Warehouse warehouse) {
+            return base.Channel.AddWarehouse(warehouse);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddWarehouseAsync(Models.Warehouse warehouse) {
+            return base.Channel.AddWarehouseAsync(warehouse);
+        }
+        
+        public Models.Warehouse FindWarehouse(int id) {
+            return base.Channel.FindWarehouse(id);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Warehouse> FindWarehouseAsync(int id) {
+            return base.Channel.FindWarehouseAsync(id);
+        }
+        
+        public Models.Warehouse[] FindAllWarehouses() {
+            return base.Channel.FindAllWarehouses();
+        }
+        
+        public System.Threading.Tasks.Task<Models.Warehouse[]> FindAllWarehousesAsync() {
+            return base.Channel.FindAllWarehousesAsync();
+        }
+        
+        public int UpdateWarehouse(Models.Warehouse warehouse) {
+            return base.Channel.UpdateWarehouse(warehouse);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateWarehouseAsync(Models.Warehouse warehouse) {
+            return base.Channel.UpdateWarehouseAsync(warehouse);
+        }
+        
+        public int DeleteWarehouse(int id) {
+            return base.Channel.DeleteWarehouse(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id) {
+            return base.Channel.DeleteWarehouseAsync(id);
+        }
+        
+        public int AddSaving(Models.Saving saving, Models.Product product) {
+            return base.Channel.AddSaving(saving, product);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Product product) {
+            return base.Channel.AddSavingAsync(saving, product);
         }
     }
 }

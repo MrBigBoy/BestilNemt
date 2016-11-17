@@ -368,7 +368,7 @@ namespace BestilNemtUnitTestTest
             var serializationResult = SerializerTestHelpClass.TestSerialize(cart);
             Assert.AreEqual(cart.Id, serializationResult.Id);
         }
-
+        [TestMethod]
         public void TestCartTotalPriceSer()
         {
             var partOrder = new PartOrder();
@@ -377,5 +377,66 @@ namespace BestilNemtUnitTestTest
             var serializationResult = SerializerTestHelpClass.TestSerialize(cart);
             Assert.AreEqual(cart.TotalPrice, serializationResult.TotalPrice);
         }
+        [TestMethod]
+        public void TestWareHouseMinStockSer()
+        {
+           var wareHouse = new Warehouse(2,32,10);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(wareHouse);
+            Assert.AreEqual(wareHouse.MinStock, serializationResult.MinStock);
+        }
+        [TestMethod]
+        public void TestWareHouseIdSer()
+        {
+            var wareHouse = new Warehouse(2, 32, 10);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(wareHouse);
+            Assert.AreEqual(wareHouse.Id, serializationResult.Id);
+        }
+        [TestMethod]
+        public void TestWareHouseStockSer()
+        {
+            var wareHouse = new Warehouse(2, 32, 10);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(wareHouse);
+            Assert.AreEqual(wareHouse.Stock, serializationResult.Stock);
+        }
+        [TestMethod]
+        public void TestSavingIdSer()
+        {
+            var product = new Product();
+            var products = new List<Product> { product };
+            var saving = new Saving(new DateTime(2000, 02, 01), new DateTime(2000, 02, 01),2.1, products);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(saving);
+            Assert.AreEqual(saving.Id, serializationResult.Id);
+        }
+
+        [TestMethod]
+        public void TestSavingStartDateSer()
+        {
+            var product = new Product();
+            var products = new List<Product> { product };
+            var saving = new Saving(new DateTime(2000, 02, 01), new DateTime(2000, 02, 01), 2.1, products);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(saving);
+            Assert.AreEqual(saving.StartDate, serializationResult.StartDate);
+        }
+        [TestMethod]
+        public void TestSavingÉndDateSer()
+        {
+            var product = new Product();
+            var products = new List<Product> { product };
+            var saving = new Saving(new DateTime(2000, 02, 01), new DateTime(2000, 02, 01), 2.1, products);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(saving);
+            Assert.AreEqual(saving.EndDate, serializationResult.EndDate);
+        }
+        [TestMethod]
+        public void TestSavingSavingPercentSer()
+        {
+            var product = new Product();
+            var products = new List<Product> { product };
+            var saving = new Saving(new DateTime(2000, 02, 01), new DateTime(2000, 02, 01), 2.1, products);
+            var serializationResult = SerializerTestHelpClass.TestSerialize(saving);
+            Assert.AreEqual(saving.SavingPercent, serializationResult.SavingPercent);
+        }
+
+
+
     }
 }
