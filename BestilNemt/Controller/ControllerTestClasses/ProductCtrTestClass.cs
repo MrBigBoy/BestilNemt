@@ -42,7 +42,7 @@ namespace Controller.ControllerTestClasses
             returnedProduct.Price = product.Price;
             returnedProduct.Category = product.Category;
             returnedProduct.Description = product.Description;
-            returnedProduct.Saving = product.Saving;
+            returnedProduct.SavingId = product.SavingId;
             return 1;
         }
 
