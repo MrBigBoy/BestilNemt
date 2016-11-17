@@ -43,6 +43,14 @@ namespace Models
             MinStock = minStock;
             Product = product;
         }
+        //Constructor for SerializationTest
+        public Warehouse(int id, int stock, int minStock)
+        {
+            Id = id; 
+            Stock = stock;
+            MinStock = minStock;
+          
+        }
 
     }
 }
