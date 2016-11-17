@@ -1,43 +1,52 @@
-﻿using System.Collections.Generic;
-using Models;
+﻿using Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataAccessLayer;
 
 namespace Controller
 {
-    public class ShopCtr
+    public class WarehouseCtr
     {
-        public IDbShop DbShop { get; set; }
+        public IDbWarehouse DbWarehouse { get; set; }
 
-        public ShopCtr(IDbShop dbShop)
+        public WarehouseCtr(IDbWarehouse dbWarehouse)
         {
-            DbShop = dbShop;
-        }
-
-        public int AddShop(Shop shop)
-        {
-            return shop.Chain != null && shop.Chain.Id != 0 && shop.Product != null &&
-                   shop.Product.Id != 0
-                ? DbShop.AddShop(shop)
-                : 0;
-        }
-        public Shop FindShop(int id)
-        {
-            return DbShop.FindShop(id);
+            DbWarehouse = dbWarehouse;
         }
 
-        public List<Shop> FindAllShops()
+        public int AddWarehouse(Warehouse warehouse)
         {
-            return DbShop.FindAllShops();
+            return DbWarehouse.AddWarehouse(warehouse);
         }
 
-        public int DeleteShop(int id)
+        public Warehouse FindWarehouse(int id)
         {
-            return DbShop.DeleteShop(id);
+            return DbWarehouse.FindWarehouse(id);
         }
 
-        public int UpdateShop(Shop shop)
+        public List<Warehouse> FindAllWarehouses()
         {
-            return DbShop.UpdateShop(shop);
+            return  DbWarehouse.FindAllWarehouses();
         }
+
+     
+
+        public int UpdateWarehouse(Warehouse warehouse)
+        {
+            return DbWarehouse.UpdateWarehouse(warehouse);
+        }
+
+        public int DeleteWarehouse(int id)
+        {
+            return DbWarehouse.DeleteWarehouse(id);
+        }
+
+        //private bool ValidateWarehouse(Warehouse warehouse)
+        //{
+        //    if (warehouse == null || warehouse.)
+        //}
     }
 }

@@ -17,6 +17,7 @@ namespace WcfService
         public ProductCtr ProductCtr { get; set; }
         public PartOrderCtr PartOrderCtr { get; set; }
         public CartCtr CartCtr { get; set; }
+        public WarehouseCtr WarehouseCtr { get; set; }
 
         /// <summary>
         /// Initialize all Controllers
@@ -32,6 +33,7 @@ namespace WcfService
             ProductCtr = new ProductCtr(new DbProduct());
             CartCtr = new CartCtr(new DbCart());
             PartOrderCtr = new PartOrderCtr(new DbPartOrder());
+            WarehouseCtr = new WarehouseCtr(new DbWarehouse());
         }
 
         /// <summary>
@@ -489,6 +491,32 @@ namespace WcfService
         public List<PartOrder> GetAllPartOrders()
         {
             return PartOrderCtr.GetAllPartOrders();
+        }
+        //Warehouse
+
+        public int AddWarehouse(Warehouse warehouse)
+        {
+            return  WarehouseCtr.AddWarehouse(warehouse);
+        }
+
+        public Warehouse FindWarehouse(int id)
+        {
+            return WarehouseCtr.FindWarehouse(id);
+        }
+
+        public List<Warehouse> FindAllWarehouses()
+        {
+           return  WarehouseCtr.FindAllWarehouses();
+        }
+
+        public int UpdateWarehouse(Warehouse warehouse)
+        {
+            return WarehouseCtr.UpdateWarehouse(warehouse);
+        }
+
+        public int DeleteWarehouse(int id)
+        {
+            return WarehouseCtr.DeleteWarehouse(id);
         }
     }
 }
