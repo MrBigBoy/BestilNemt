@@ -30,7 +30,6 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    Address = "",
                     CVR = "",
                     Name = "",
                     Persons = new List<Person>(),
@@ -73,7 +72,6 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    Address = "",
                     CVR = "",
                     Name = "",
                     Persons = new List<Person>(),
@@ -101,7 +99,6 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    Address = "",
                     CVR = "",
                     Name = "",
                     Persons = new List<Person>(),
