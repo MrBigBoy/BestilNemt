@@ -26,6 +26,26 @@ namespace Controller
             return ValidateSavingInput(saving) ? DbSaving.AddSaving(saving, product) : 0;
         }
 
+        public Saving FindSaving(int id)
+        {
+            return DbSaving.FindSaving(id);
+        }
+
+        public List<Saving> FindAllSavings()
+        {
+            return DbSaving.FindAllSavings();
+        }
+
+        public int UpdateSaving(Saving saving)
+        {
+            return DbSaving.UpdateSaving(saving);
+        }
+
+        public int DeleteSaving(int id)
+        {
+            return DbSaving.DeleteSaving(id);
+        }
+
         private bool ValidateSavingInput(Saving saving)
         {
             return saving.SavingPercent > 0.0;

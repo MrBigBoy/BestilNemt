@@ -36,6 +36,10 @@ namespace WcfService
 
         [OperationContract]
         int UpdateAdmin(Admin admin);
+
+        [OperationContract]
+        int AddShop(Shop shop);
+
         [OperationContract]
         Shop GetShop(int id);
 
@@ -43,13 +47,10 @@ namespace WcfService
         List<Shop> GetAllShops();
 
         [OperationContract]
-        int RemoveShop(int id);
-
-        [OperationContract]
-        int AddShop(Shop shop);
-
-        [OperationContract]
         int UpdateShop(Shop shop);
+
+        [OperationContract]
+        int DeleteShop(int id);
 
         [OperationContract]
         Chain GetChain(int id);
@@ -156,6 +157,17 @@ namespace WcfService
         [OperationContract]
         int AddSaving(Saving saving, Product product);
 
+        [OperationContract]
+        Saving FindSaving(int id);
+
+        [OperationContract]
+        List<Saving> FindAllSavings();
+
+        [OperationContract]
+        int UpdateSaving(Saving saving);
+
+        [OperationContract]
+        int DeleteSaving(int id);
     }
 }
 

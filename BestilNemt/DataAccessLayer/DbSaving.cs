@@ -19,7 +19,10 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("DECLARE @DataID int; INSERT INTO Saving(savingStartDate,savingEndDate,savingPercent)VALUES(@startDate, @endDate, @percent); SELECT @DataID = scope_identity(); UPDATE Product SET productSavingId = @DataID WHERE productId = @productId;", conn);
+                var cmd =
+                    new SqlCommand(
+                        "DECLARE @DataID int; INSERT INTO Saving(savingStartDate,savingEndDate,savingPercent)VALUES(@startDate, @endDate, @percent); SELECT @DataID = scope_identity(); UPDATE Product SET productSavingId = @DataID WHERE productId = @productId;",
+                        conn);
                 cmd.Parameters.AddWithValue("startDate", saving.StartDate);
                 cmd.Parameters.AddWithValue("endDate", saving.EndDate);
                 cmd.Parameters.AddWithValue("percent", saving.SavingPercent);
@@ -31,22 +34,79 @@ namespace DataAccessLayer
 
         public Saving FindSaving(int id)
         {
-            throw new NotImplementedException();
+            Saving saving = null;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * from Saving Where savingId = @savingId", conn);
+                cmd.Parameters.AddWithValue("savingId", id);
+                var reader = cmd.ExecuteReader();
+                if (!reader.HasRows)
+                    return null;
+                while (reader.Read())
+                {
+                    saving = ObjectBuilder.CreateSaving(reader);
+                }
+            }
+            return saving;
         }
 
         public List<Saving> FindAllSavings()
         {
-            throw new NotImplementedException();
+            List<Saving> savings = new List<Saving>();
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * from Saving", conn);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var saving = ObjectBuilder.CreateSaving(reader);
+                    savings.Add(saving);
+                }
+            }
+            return savings;
         }
 
         public int UpdateSaving(Saving saving)
         {
-            throw new NotImplementedException();
+            int i;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd =
+                    new SqlCommand(
+                        "UPDATE Saving Set savingStartDate = @StartDate, savingEndDate = @EndDate, savingPercent = @SavingPercent WHERE savingId = @ID;",
+                        conn);
+                cmd.Parameters.AddWithValue("startdate", saving.StartDate);
+                cmd.Parameters.AddWithValue("EndDate", saving.EndDate);
+                cmd.Parameters.AddWithValue("SavingPercent", saving.SavingPercent);
+                cmd.Parameters.AddWithValue("ID", saving.Id);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
         }
 
         public int DeleteSaving(int id)
         {
-            throw new NotImplementedException();
+            int i;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd =
+                    new SqlCommand("UPDATE Product SET productSavingId = null WHERE productSavingId = @ID; DELETE FROM Saving WHERE savingId = @ID", conn);
+                cmd.Parameters.AddWithValue("ID", id);
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
         }
     }
 }

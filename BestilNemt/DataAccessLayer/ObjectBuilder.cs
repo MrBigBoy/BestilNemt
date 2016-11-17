@@ -121,5 +121,17 @@ namespace DataAccessLayer
             };
             return shop;
         }
+
+        public static Saving CreateSaving(SqlDataReader reader)
+        {
+            var saving = new Saving
+            {
+                Id = reader.GetInt32(reader.GetOrdinal("savingId")),
+                StartDate = reader.GetDateTime(reader.GetOrdinal("savingStartDate")),
+                EndDate = reader.GetDateTime(reader.GetOrdinal("savingEndDate")),
+                SavingPercent = reader.GetDouble(reader.GetOrdinal("savingPercent"))
+            };
+            return saving;
+        }
     }
 }

@@ -29,8 +29,8 @@ namespace Models
 
         public Saving()
         {
-            StartDate = default(DateTime);
-            EndDate = default(DateTime);
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
             SavingPercent = double.NaN;
             Products = new List<Product>();
         }

@@ -61,6 +61,7 @@
     <Compile Include="CustomerUnitTest.cs" />
     <Compile Include="PartOrderUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SavingUnitTest.cs" />
     <Compile Include="SerializerTestHelpClass.cs" />
     <Compile Include="SerializationTest.cs" />
     <Compile Include="ChainUnitTest.cs" />
@@ -88,6 +89,7 @@
     <None Include="Properties\DataSources\Models.Product.datasource" />
     <None Include="Properties\DataSources\Models.Shop.datasource" />
     <None Include="Properties\DataSources\Models.Warehouse.datasource" />
+    <None Include="Properties\DataSources\Models.Warehouse1.datasource" />
     <None Include="Service References\BestilNemtServiceRef\Models.xsd">
       <SubType>Designer</SubType>
     </None>
