@@ -21,16 +21,14 @@ namespace Models
 
         public Chain()
         {
-            Name = null;
-            Address = null;
-            CVR = null;
+            Id = 0;
             Persons = new List<Person>();
             Shops = new List<Shop>();
         }
 
         public Chain(int id, string name, string address, string cvr, List<Person> persons, List<Shop> shops)
         {
-            this.Id = id;
+            Id = id;
             Name = name;
             Address = address;
             CVR = cvr;

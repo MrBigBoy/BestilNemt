@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 using Models;
 
 namespace DataAccessLayer
@@ -97,15 +98,14 @@ namespace DataAccessLayer
             return chain;
         }
 
-        public static Shop CreateShop(SqlDataReader reader, Chain chain, Product product)
+        public static Shop CreateShop(SqlDataReader reader)
         {
             var shop = new Shop
             {
                 Id = reader.GetInt32(reader.GetOrdinal("shopId")),
-                Stock = reader.GetInt32(reader.GetOrdinal("shopStock")),
-                MinStock = reader.GetInt32(reader.GetOrdinal("shopMinStock")),
-                Chain = chain,
-                Product = product
+                Name = reader.GetString(reader.GetOrdinal("shopName")),
+                Address = reader.GetString(reader.GetOrdinal("shopAddress")),
+                Cvr = reader.GetString(reader.GetOrdinal("shopCvr"))
             };
             return shop;
         }

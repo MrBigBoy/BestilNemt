@@ -7,33 +7,36 @@ namespace Models
     public class Shop
     {
         [DataMember]
-        public int Id  { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public  int Stock { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
-        public int MinStock  { get; set; }
+        public string Address { get; set; }
 
         [DataMember]
-        public Product Product { get; set; }
+        public string Cvr { get; set; }
 
         [DataMember]
         public Chain Chain { get; set; }
 
+        [DataMember]
+        public List<Warehouse> Warehouses { get; set; }
+
         public Shop()
         {
-            
+            Warehouses = new List<Warehouse>();
         }
 
-        public Shop(int id, int stock, int minStock, Product product, Chain chain) : this()
+        public Shop(int id, string name, string address, string cvr, Chain chain, List<Warehouse> warehouses)
         {
             Id = id;
-            Stock = stock;
-            MinStock = minStock;
-            Product = product; 
+            Name = name;
+            Address = address;
+            Cvr = cvr;
             Chain = chain;
+            Warehouses = warehouses;
         }
-
     }
 }

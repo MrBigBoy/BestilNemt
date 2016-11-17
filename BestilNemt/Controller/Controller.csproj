@@ -75,7 +75,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WarehouseCtr.cs" />
+    <Compile Include="ShopCtr.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">

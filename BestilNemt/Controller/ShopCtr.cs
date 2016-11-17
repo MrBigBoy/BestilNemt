@@ -15,10 +15,7 @@ namespace Controller
 
         public int AddShop(Shop shop)
         {
-            return shop.Chain != null && shop.Chain.Id != 0 && shop.Product != null &&
-                   shop.Product.Id != 0
-                ? DbShop.AddShop(shop)
-                : 0;
+            return ValidateShop(shop) ? DbShop.AddShop(shop) : 0;
         }
         public Shop FindShop(int id)
         {
@@ -37,7 +34,14 @@ namespace Controller
 
         public int UpdateShop(Shop shop)
         {
-            return DbShop.UpdateShop(shop);
+            return ValidateShop(shop) ? DbShop.UpdateShop(shop) : 0;
+        }
+
+        private static bool ValidateShop(Shop shop)
+        {
+            return shop?.Address != null && !shop.Address.Equals("") && shop.Name != null &&
+                !shop.Name.Equals("") && shop.Cvr != null && !shop.Cvr.Equals("") && shop.Address != null &&
+                !shop.Address.Equals("") && shop.Chain != null;
         }
     }
 }
