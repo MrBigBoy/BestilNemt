@@ -60,6 +60,7 @@
     <Compile Include="PartOrderCtr.cs" />
     <Compile Include="ProductCtr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WarehouseCtr.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
@@ -77,6 +78,7 @@
   <ItemGroup>
     <Compile Include="SavingCtr.cs" />
     <Compile Include="WarehouseCtr.cs" />
+    <Compile Include="ShopCtr.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">

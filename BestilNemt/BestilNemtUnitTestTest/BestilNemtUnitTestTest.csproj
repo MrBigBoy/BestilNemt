@@ -72,7 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="WarehouseUnitTest.cs" />
+    <Compile Include="ShopUnitTest.cs" />
     <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>

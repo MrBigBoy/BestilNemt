@@ -238,33 +238,35 @@ namespace BestilNemtUnitTestTest
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.CVR, serializationResult.CVR);
         }
+
         [TestMethod]
         public void TestShopIdSer()
         {
-            var product = new Product();
+            var warehouses = new List<Warehouse>();
             var chain = new Chain();
-            var shop = new Shop(3, 3, 2, product, chain);
+            var shop = new Shop(3, "name", "Address", "long cvr", chain, warehouses);
             var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
             Assert.AreEqual(shop.Id, serializationResult.Id);
         }
+
         [TestMethod]
-        public void TestShopStockSer()
+        public void TestShopNameSer()
         {
-            var product = new Product();
+            var warehouses = new List<Warehouse>();
             var chain = new Chain();
-            var shop = new Shop(3, 3, 2, product, chain);
+            var shop = new Shop(3, "name", "Address", "long cvr", chain, warehouses);
             var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
-            Assert.AreEqual(shop.Stock, serializationResult.Stock);
+            Assert.AreEqual(shop.Name, serializationResult.Name);
         }
 
         [TestMethod]
-        public void TestShopMinStockSer()
+        public void TestShopAddressSer()
         {
-            var product = new Product();
+            var warehouses = new List<Warehouse>();
             var chain = new Chain();
-            var shop = new Shop(3, 3, 2, product, chain);
+            var shop = new Shop(3, "name", "Address", "long cvr", chain, warehouses);
             var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
-            Assert.AreEqual(shop.MinStock, serializationResult.MinStock);
+            Assert.AreEqual(shop.Address, serializationResult.Address);
         }
         [TestMethod]
 
