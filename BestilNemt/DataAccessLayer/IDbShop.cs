@@ -9,6 +9,7 @@ namespace DataAccessLayer
         int DeleteShop(int id);
         int UpdateShop(Shop shop);
         List<Shop> FindAllShops();
+        List<Shop> FindAllShopsByChainId(int chainId);
         Shop FindShop(int id);
     }
 }

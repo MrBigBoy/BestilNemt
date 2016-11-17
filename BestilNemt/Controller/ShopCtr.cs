@@ -27,6 +27,10 @@ namespace Controller
             return DbShop.FindAllShops();
         }
 
+        public List<Shop> FindAllShopsByChainId(int chainId)
+        {
+            return DbShop.FindAllShopsByChainId(chainId);
+        }
 
         public int DeleteShop(int id)
         {

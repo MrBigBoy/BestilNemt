@@ -121,5 +121,29 @@ namespace DataAccessLayer
             }
             return shops;
         }
+
+        /// <summary>
+        /// Return a list of all Shops
+        /// </summary>
+        /// <returns>
+        /// List of Shop
+        /// </returns>
+        public List<Shop> FindAllShopsByChainId(int chainId)
+        {
+            var shops = new List<Shop>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM Shop WHERE shopChainId", conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var shop = ObjectBuilder.CreateShop(reader);
+                    shops.Add(shop);
+                }
+            }
+            return shops;
+        }
     }
 }

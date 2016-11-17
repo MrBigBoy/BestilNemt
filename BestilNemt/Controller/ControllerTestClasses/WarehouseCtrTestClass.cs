@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -10,7 +7,7 @@ namespace Controller.ControllerTestClasses
 {
     public class ShopCtrTestClass : IDbShop
     {
-        List<Shop> shops = new List<Shop>();
+        private List<Shop> shops = new List<Shop>();
         private int idCounter = 1;
 
         public int AddShop(Shop shop)
@@ -24,7 +21,7 @@ namespace Controller.ControllerTestClasses
         public int DeleteShop(int id)
         {
             return shops.Remove(FindShop(id)) ? 1 : 0;
-        } 
+        }
 
         public int UpdateShop(Shop shop)
         {
@@ -39,6 +36,11 @@ namespace Controller.ControllerTestClasses
         public List<Shop> FindAllShops()
         {
             return shops;
+        }
+
+        public List<Shop> FindAllShopsByChainId(int chainId)
+        {
+            return shops.Where(shop => shop.Chain.Id == chainId).ToList();
         }
 
         public Shop FindShop(int id)
