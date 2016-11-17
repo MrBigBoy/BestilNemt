@@ -21,7 +21,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd =
-                    new SqlCommand("INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSaving) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @Saving)", conn);
+                    new SqlCommand("INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSavingId) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @SavingId)", conn);
                 cmd.Parameters.AddWithValue("Name", product.Name);
                 cmd.Parameters.AddWithValue("Price", product.Price);
                 cmd.Parameters.AddWithValue("Description", product.Description);
@@ -114,13 +114,13 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSaving = @ProductSaving WHERE productId = @ProductId", conn);
+                var command = new SqlCommand("UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSavingId = @ProductSavingId WHERE productId = @ProductId", conn);
                 command.Parameters.AddWithValue("ProductId", product.Id);
                 command.Parameters.AddWithValue("ProductName", product.Name);
                 command.Parameters.AddWithValue("ProductPrice", product.Price);
                 command.Parameters.AddWithValue("ProductDescription", product.Description);
                 command.Parameters.AddWithValue("ProductCategory", product.Category);
-                command.Parameters.AddWithValue("ProductSaving", product.Saving);
+                command.Parameters.AddWithValue("ProductSavingId", product.Saving);
                 i = command.ExecuteNonQuery();
             }
             return i;
