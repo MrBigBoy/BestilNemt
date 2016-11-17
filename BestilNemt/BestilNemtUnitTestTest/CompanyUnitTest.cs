@@ -222,7 +222,7 @@ namespace BestilNemtUnitTestTest
         //}
 
         [TestMethod]
-        public void findme()
+        public void FindCompanyWCF()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {

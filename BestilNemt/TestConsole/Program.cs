@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 
 namespace TestConsole
 {
@@ -15,7 +16,12 @@ namespace TestConsole
             var password = Console.ReadLine();
             //string Password = "SuperAdmin";
 
-            var login = Proxy.Login(username, password);
+            var loginObject = new Login
+            {
+                Username = username,
+                Password = password
+            };
+            var login = Proxy.Login(loginObject);
 
             if (login.Id == 0)
             {

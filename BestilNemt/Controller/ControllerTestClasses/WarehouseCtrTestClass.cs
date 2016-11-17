@@ -8,42 +8,42 @@ using Models;
 
 namespace Controller.ControllerTestClasses
 {
-    public class WarehouseCtrTestClass : IDbWarehouse
+    public class ShopCtrTestClass : IDbShop
     {
-        List<Warehouse> warehouses = new List<Warehouse>();
+        List<Shop> shops = new List<Shop>();
         private int idCounter = 1;
 
-        public int AddWarehouse(Warehouse warehouse)
+        public int AddShop(Shop shop)
         {
-            warehouse.Id = idCounter;
-            warehouses.Add(warehouse);
+            shop.Id = idCounter;
+            shops.Add(shop);
             idCounter++;
-            return warehouse.Id;
+            return shop.Id;
         }
 
-        public int DeleteWarehouse(int id)
+        public int DeleteShop(int id)
         {
-            return warehouses.Remove(FindWarehouse(id)) ? 1 : 0;
+            return shops.Remove(FindShop(id)) ? 1 : 0;
         } 
 
-        public int UpdateWarehouse(Warehouse warehouse)
+        public int UpdateShop(Shop shop)
         {
-            var returnedWarehouse = FindWarehouse(warehouse.Id);
-            returnedWarehouse.MinStock = warehouse.MinStock;
-            returnedWarehouse.Stock = warehouse.Stock;
-            returnedWarehouse.Shop = warehouse.Shop;
-            returnedWarehouse.Product = warehouse.Product;
+            var returnedShop = FindShop(shop.Id);
+            returnedShop.MinStock = shop.MinStock;
+            returnedShop.Stock = shop.Stock;
+            returnedShop.Chain = shop.Chain;
+            returnedShop.Product = shop.Product;
             return 1;
         }
 
-        public List<Warehouse> FindAllWarehouses()
+        public List<Shop> FindAllShops()
         {
-            return warehouses;
+            return shops;
         }
 
-        public Warehouse FindWarehouse(int id)
+        public Shop FindShop(int id)
         {
-            return warehouses.FirstOrDefault(warehouse => warehouse.Id == id);
+            return shops.FirstOrDefault(shop => shop.Id == id);
         }
     }
 }

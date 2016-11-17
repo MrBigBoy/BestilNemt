@@ -53,6 +53,7 @@
     <Compile Include="DbSaving.cs" />
     <Compile Include="DbWarehouse.cs" />
     <Compile Include="DbShop.cs" />
+    <Compile Include="DbChain.cs" />
     <Compile Include="IDbAdmin.cs" />
     <Compile Include="IDbCart.cs" />
     <Compile Include="IDbCompany.cs" />
@@ -61,8 +62,8 @@
     <Compile Include="IDbProduct.cs" />
     <Compile Include="IDbPartOrder.cs" />
     <Compile Include="IDbSaving.cs" />
+    <Compile Include="IDbChain.cs" />
     <Compile Include="IDbShop.cs" />
-    <Compile Include="IDbWarehouse.cs" />
     <Compile Include="IDbCustomer.cs" />
     <Compile Include="ObjectBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

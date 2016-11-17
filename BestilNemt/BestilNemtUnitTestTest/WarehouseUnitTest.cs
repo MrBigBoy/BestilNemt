@@ -8,20 +8,20 @@ using Models;
 namespace BestilNemtUnitTestTest
 {
     [TestClass]
-    public class WarehouseUnitTest
+    public class ShopUnitTest
     {
         [TestMethod]
-        public void WarehouseCtrInitialize()
+        public void ShopCtrInitialize()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Assert.IsNotNull(warehouseCtr);
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            Assert.IsNotNull(shopCtr);
         }
 
         [TestMethod]
-        public void AddWarehouseDb()
+        public void AddShopDb()
         {
-            var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var dbShop = new DbShop();
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -29,23 +29,23 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = dbWarehouse.AddWarehouse(warehouse);
-            dbWarehouse.DeleteWarehouse(i);
+            var i = dbShop.AddShop(shop);
+            dbShop.DeleteShop(i);
             Assert.AreNotEqual(0, i);
         }
 
         [TestMethod]
-        public void FindWarehouseDb()
+        public void FindShopDb()
         {
-            var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var dbShop = new DbShop();
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -53,24 +53,24 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = dbWarehouse.AddWarehouse(warehouse);
-            var j = dbWarehouse.FindWarehouse(i);
-            dbWarehouse.DeleteWarehouse(i);
+            var i = dbShop.AddShop(shop);
+            var j = dbShop.FindShop(i);
+            dbShop.DeleteShop(i);
             Assert.IsNotNull(j);
         }
 
         [TestMethod]
-        public void FindAllWarehouseDb()
+        public void FindAllShopDb()
         {
-            var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var dbShop = new DbShop();
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -78,26 +78,26 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = dbWarehouse.AddWarehouse(warehouse);
-            var i2 = dbWarehouse.AddWarehouse(warehouse);
-            var j = dbWarehouse.FindAllWarehouses();
-            dbWarehouse.DeleteWarehouse(i);
-            dbWarehouse.DeleteWarehouse(i2);
+            var i = dbShop.AddShop(shop);
+            var i2 = dbShop.AddShop(shop);
+            var j = dbShop.FindAllShops();
+            dbShop.DeleteShop(i);
+            dbShop.DeleteShop(i2);
             Assert.IsNotNull(j);
         }
 
         [TestMethod]
-        public void DeleteWarehouseDb()
+        public void DeleteShopDb()
         {
-            var dbWarehouse = new DbWarehouse();
-            var shop = new Shop()
+            var dbShop = new DbShop();
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -105,23 +105,23 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = dbWarehouse.AddWarehouse(warehouse);
-            var j = dbWarehouse.DeleteWarehouse(i);
+            var i = dbShop.AddShop(shop);
+            var j = dbShop.DeleteShop(i);
             Assert.AreEqual(1, j);
         }
 
         [TestMethod]
-        public void AddWarehouseCtr()
+        public void AddShopCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -129,79 +129,79 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            warehouseCtr.DeleteWarehouse(i);
+            var i = shopCtr.AddShop(shop);
+            shopCtr.DeleteShop(i);
             Assert.AreNotEqual(0, i);
         }
 
         [TestMethod]
-        public void AddWarehouseCtrFailShop()
+        public void AddShopCtrFailChain()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var product = new Product()
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = null,
+                Chain = null,
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            warehouseCtr.DeleteWarehouse(i);
+            var i = shopCtr.AddShop(shop);
+            shopCtr.DeleteShop(i);
             Assert.AreEqual(0, i);
         }
 
         [TestMethod]
-        public void AddWarehouseCtrFailProduct()
+        public void AddShopCtrFailProduct()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var chain = new Chain()
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
-            {
-                MinStock = 0,
-                Product = null,
-                Shop = shop,
-                Stock = 2
-            };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            warehouseCtr.DeleteWarehouse(i);
-            Assert.AreEqual(0, i);
-        }
-
-        [TestMethod]
-        public void AddWarehouseCtrFailBoth()
-        {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var warehouse = new Warehouse()
-            {
-                MinStock = 0,
-                Product = null,
-                Shop = null,
-                Stock = 2
-            };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            warehouseCtr.DeleteWarehouse(i);
-            Assert.AreEqual(0, i);
-        }
-
-        [TestMethod]
-        public void FindWarehouseCtr()
-        {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var shop = new Shop()
+            {
+                MinStock = 0,
+                Product = null,
+                Chain = chain,
+                Stock = 2
+            };
+            var i = shopCtr.AddShop(shop);
+            shopCtr.DeleteShop(i);
+            Assert.AreEqual(0, i);
+        }
+
+        [TestMethod]
+        public void AddShopCtrFailBoth()
+        {
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var shop = new Shop()
+            {
+                MinStock = 0,
+                Product = null,
+                Chain = null,
+                Stock = 2
+            };
+            var i = shopCtr.AddShop(shop);
+            shopCtr.DeleteShop(i);
+            Assert.AreEqual(0, i);
+        }
+
+        [TestMethod]
+        public void FindShopCtr()
+        {
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -209,83 +209,83 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            var j = warehouseCtr.FindWarehouse(i);
-            warehouseCtr.DeleteWarehouse(i);
+            var i = shopCtr.AddShop(shop);
+            var j = shopCtr.FindShop(i);
+            shopCtr.DeleteShop(i);
             Assert.IsNotNull(j);
         }
 
         [TestMethod]
-        public void FindWarehouseCtrFailShop()
+        public void FindShopCtrFailChain()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var product = new Product()
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = null,
+                Chain = null,
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            var j = warehouseCtr.FindWarehouse(i);
-            warehouseCtr.DeleteWarehouse(i);
+            var i = shopCtr.AddShop(shop);
+            var j = shopCtr.FindShop(i);
+            shopCtr.DeleteShop(i);
             Assert.IsNull(j);
         }
 
         [TestMethod]
-        public void FindWarehouseCtrFailProduct()
+        public void FindShopCtrFailProduct()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var chain = new Chain()
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = null,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            var j = warehouseCtr.FindWarehouse(i);
-            warehouseCtr.DeleteWarehouse(i);
+            var i = shopCtr.AddShop(shop);
+            var j = shopCtr.FindShop(i);
+            shopCtr.DeleteShop(i);
             Assert.IsNull(j);
         }
 
         [TestMethod]
-        public void FindWarehouseCtrFailBoth()
+        public void FindShopCtrFailBoth()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var warehouse = new Warehouse()
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = new Product(1, "Product name", 2,"Product description", "Product category", 1),
-                Shop = new Shop(1, "Shop name", "Shop address", "Shop cvr", new List<Person>(), new List<Warehouse>()),
+               // Chain = new Chain(1, "Chain name", "Chain address", "Chain cvr", new List<Person>(), new List<Shop>()),
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            var j = warehouseCtr.FindWarehouse(i);
-            warehouseCtr.DeleteWarehouse(i);
+            var i = shopCtr.AddShop(shop);
+            var j = shopCtr.FindShop(i);
+            shopCtr.DeleteShop(i);
             Assert.IsNotNull(j);
         }
 
         [TestMethod]
-        public void FindAllWarehouseCtr()
+        public void FindAllShopCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -293,26 +293,26 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            var i2 = warehouseCtr.AddWarehouse(warehouse);
-            var j = warehouseCtr.FindAllWarehouses();
-            warehouseCtr.DeleteWarehouse(i);
-            warehouseCtr.DeleteWarehouse(i2);
+            var i = shopCtr.AddShop(shop);
+            var i2 = shopCtr.AddShop(shop);
+            var j = shopCtr.FindAllShops();
+            shopCtr.DeleteShop(i);
+            shopCtr.DeleteShop(i2);
             Assert.IsNotNull(j);
         }
 
         [TestMethod]
-        public void DeleteWarehouseCtr()
+        public void DeleteShopCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var shop = new Shop()
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var chain = new Chain()
             {
                 Id = 1
             };
@@ -320,23 +320,23 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1
             };
-            var warehouse = new Warehouse()
+            var shop = new Shop()
             {
                 MinStock = 0,
                 Product = product,
-                Shop = shop,
+                Chain = chain,
                 Stock = 2
             };
-            var i = warehouseCtr.AddWarehouse(warehouse);
-            var j = warehouseCtr.DeleteWarehouse(i);
+            var i = shopCtr.AddShop(shop);
+            var j = shopCtr.DeleteShop(i);
             Assert.AreEqual(1, j);
         }
 
         [TestMethod]
-        public void DeleteWarehouseCtrFailId()
+        public void DeleteShopCtrFailId()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var j = warehouseCtr.DeleteWarehouse(0);
+            var shopCtr = new ShopCtr(new ShopCtrTestClass());
+            var j = shopCtr.DeleteShop(0);
             Assert.AreEqual(0, j);
         }
     }

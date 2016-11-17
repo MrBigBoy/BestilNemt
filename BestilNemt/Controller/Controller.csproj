@@ -53,7 +53,7 @@
     <Compile Include="ControllerTestClasses\CompanyCtrTestClasses.cs" />
     <Compile Include="ControllerTestClasses\PartOrderTestClass.cs" />
     <Compile Include="ControllerTestClasses\ProductCtrTestClass.cs" />
-    <Compile Include="ControllerTestClasses\ShopCtrTestClass.cs" />
+    <Compile Include="ControllerTestClasses\ChainCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\WarehouseCtrTestClass.cs" />
     <Compile Include="LoginCtr.cs" />
     <Compile Include="CustomerCtr.cs" />
@@ -97,7 +97,7 @@
       <Project>{E5440AD2-1BF8-4133-905F-ADD0855C9226}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <Compile Include="ShopCtr.cs" />
+    <Compile Include="ChainCtr.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">

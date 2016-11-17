@@ -20,7 +20,7 @@ namespace Models
         [DataMember]
         public Login Login { get; set; }
         [DataMember]
-        public List<Shop> Shops { get; set; }
+        public List<Chain> Chains { get; set; }
 
         public Person()
         {
@@ -29,26 +29,26 @@ namespace Models
             Address = null;
             PersonType = null;
             Login = new Login();
-            Shops = new List<Shop>();
+            Chains = new List<Chain>();
         }
-        public Person(int id, string name, string email, string address, Login login, List<Shop> shops, string personType)
+        public Person(int id, string name, string email, string address, Login login, List<Chain> chains, string personType)
         {
             Id = id;
             Name = name;
             Email = email;
             Address = address;
-            Login = new Login();
-            Shops = shops;
+            Login = login;
+            Chains = chains;
             PersonType = personType;
         }
 
-        public Person(string name, string email, string address, Login login, List<Shop> shops, string personType)
+        public Person(string name, string email, string address, Login login, List<Chain> chains, string personType)
         {
             Name = name;
             Email = email;
             Address = address;
-            Login = new Login();
-            Shops = shops;
+            Login = login;
+            Chains = chains;
             PersonType = personType;
         }
     }

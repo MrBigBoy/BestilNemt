@@ -4,40 +4,40 @@ using DataAccessLayer;
 
 namespace Controller
 {
-    public class WarehouseCtr
+    public class ShopCtr
     {
-        public IDbWarehouse DbWarehouse { get; set; }
+        public IDbShop DbShop { get; set; }
 
-        public WarehouseCtr(IDbWarehouse dbWarehouse)
+        public ShopCtr(IDbShop dbShop)
         {
-            DbWarehouse = dbWarehouse;
+            DbShop = dbShop;
         }
 
-        public int AddWarehouse(Warehouse warehouse)
+        public int AddShop(Shop shop)
         {
-            return warehouse.Shop != null && warehouse.Shop.Id != 0 && warehouse.Product != null &&
-                   warehouse.Product.Id != 0
-                ? DbWarehouse.AddWarehouse(warehouse)
+            return shop.Chain != null && shop.Chain.Id != 0 && shop.Product != null &&
+                   shop.Product.Id != 0
+                ? DbShop.AddShop(shop)
                 : 0;
         }
-        public Warehouse FindWarehouse(int id)
+        public Shop FindShop(int id)
         {
-            return DbWarehouse.FindWarehouse(id);
+            return DbShop.FindShop(id);
         }
 
-        public List<Warehouse> FindAllWarehouses()
+        public List<Shop> FindAllShops()
         {
-            return DbWarehouse.FindAllWarehouses();
+            return DbShop.FindAllShops();
         }
 
-        public int DeleteWarehouse(int id)
+        public int DeleteShop(int id)
         {
-            return DbWarehouse.DeleteWarehouse(id);
+            return DbShop.DeleteShop(id);
         }
 
-        public int UpdateWarehouse(Warehouse warehouse)
+        public int UpdateShop(Shop shop)
         {
-            return DbWarehouse.UpdateWarehouse(warehouse);
+            return DbShop.UpdateShop(shop);
         }
     }
 }

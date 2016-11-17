@@ -9,9 +9,9 @@ namespace WcfService
     public class BestilNemtService : IBestilNemtService
     {
         public CustomerCtr CustomerCtr { get; set; }
-        public WarehouseCtr WarehouseController { get; set; }
+        public ShopCtr ShopController { get; set; }
         public LoginCtr LoginCtr { get; set; }
-        public ShopCtr ShopCtr { get; set; }
+        public ChainCtr ChainCtr { get; set; }
         public CompanyCtr CompanyCtr { get; set; }
         public AdminCtr AdminCtr { get; set; }
         public ProductCtr ProductCtr { get; set; }
@@ -26,8 +26,8 @@ namespace WcfService
         {
             LoginCtr = new LoginCtr(new DbLogin());
             CustomerCtr = new CustomerCtr(new DbCustomer());
-            WarehouseController = new WarehouseCtr(new DbWarehouse());
-            ShopCtr = new ShopCtr(new DbShop());
+            ShopController = new ShopCtr(new DbShop());
+            ChainCtr = new ChainCtr(new DbChain());
             CompanyCtr = new CompanyCtr(new DbCompany());
             AdminCtr = new AdminCtr(new DbAdmin());
             ProductCtr = new ProductCtr(new DbProduct());
@@ -214,65 +214,6 @@ namespace WcfService
         }
 
         /// <summary>
-        /// Add a Warehouse
-        /// </summary>
-        /// <param name="warehouse"></param>
-        /// <returns>
-        /// Return 1 if Warehouse was added, else 0
-        /// </returns>
-        public int AddWarehouse(Warehouse warehouse)
-        {
-            return WarehouseController.AddWarehouse(warehouse);
-        }
-
-        /// <summary>
-        /// Return a Warehouse by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return a Warehouse if found, else null
-        /// </returns>
-        public Warehouse GetWarehouse(int id)
-        {
-            return WarehouseController.FindWarehouse(id);
-        }
-
-        /// <summary>
-        /// Return a list of all Warehouses
-        /// </summary>
-        /// <returns>
-        /// List of Warehouse
-        /// </returns>
-        public List<Warehouse> GetAllWarehouses()
-        {
-            return WarehouseController.FindAllWarehouses();
-        }
-
-        /// <summary>
-        /// Update a Warehouse
-        /// </summary>
-        /// <param name="warehouse"></param>
-        /// <returns>
-        /// Return 1 if Warehouse was updated, else 0
-        /// </returns>
-        public int UpdateWarehouse(Warehouse warehouse)
-        {
-            return WarehouseController.UpdateWarehouse(warehouse);
-        }
-
-        /// <summary>
-        /// Delete a Warehouse
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Warehouse was removed, else 0
-        /// </returns>
-        public int RemoveWarehouse(int id)
-        {
-            return WarehouseController.DeleteWarehouse(id);
-        }
-
-        /// <summary>
         /// Add a Shop
         /// </summary>
         /// <param name="shop"></param>
@@ -281,7 +222,7 @@ namespace WcfService
         /// </returns>
         public int AddShop(Shop shop)
         {
-            return ShopCtr.AddShop(shop);
+            return ShopController.AddShop(shop);
         }
 
         /// <summary>
@@ -293,7 +234,7 @@ namespace WcfService
         /// </returns>
         public Shop GetShop(int id)
         {
-            return ShopCtr.GetShop(id);
+            return ShopController.FindShop(id);
         }
 
         /// <summary>
@@ -304,7 +245,7 @@ namespace WcfService
         /// </returns>
         public List<Shop> GetAllShops()
         {
-            return ShopCtr.GetAllShops();
+            return ShopController.FindAllShops();
         }
 
         /// <summary>
@@ -316,7 +257,7 @@ namespace WcfService
         /// </returns>
         public int UpdateShop(Shop shop)
         {
-            return ShopCtr.UpdateShop(shop);
+            return ShopController.UpdateShop(shop);
         }
 
         /// <summary>
@@ -324,11 +265,70 @@ namespace WcfService
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return 1 if Shop was deleted, else 0
+        /// Return 1 if Shop was removed, else 0
         /// </returns>
-        public int DeleteShop(int id)
+        public int RemoveShop(int id)
         {
-            return ShopCtr.DeleteShop(id);
+            return ShopController.DeleteShop(id);
+        }
+
+        /// <summary>
+        /// Add a Chain
+        /// </summary>
+        /// <param name="chain"></param>
+        /// <returns>
+        /// Return 1 if Chain was added, else 0
+        /// </returns>
+        public int AddChain(Chain chain)
+        {
+            return ChainCtr.AddChain(chain);
+        }
+
+        /// <summary>
+        /// Return a Chain by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return a Chain if found, else null
+        /// </returns>
+        public Chain GetChain(int id)
+        {
+            return ChainCtr.GetChain(id);
+        }
+
+        /// <summary>
+        /// Return a list of all Chains
+        /// </summary>
+        /// <returns>
+        /// List of Chain
+        /// </returns>
+        public List<Chain> GetAllChains()
+        {
+            return ChainCtr.GetAllChains();
+        }
+
+        /// <summary>
+        /// Update a Chain
+        /// </summary>
+        /// <param name="chain"></param>
+        /// <returns>
+        /// Return 1 if Chain was updated, else 0
+        /// </returns>
+        public int UpdateChain(Chain chain)
+        {
+            return ChainCtr.UpdateChain(chain);
+        }
+
+        /// <summary>
+        /// Delete a Chain
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if Chain was deleted, else 0
+        /// </returns>
+        public int DeleteChain(int id)
+        {
+            return ChainCtr.DeleteChain(id);
         }
 
         /// <summary>

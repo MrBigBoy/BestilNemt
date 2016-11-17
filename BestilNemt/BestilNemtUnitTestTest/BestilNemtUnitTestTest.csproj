@@ -63,15 +63,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializerTestHelpClass.cs" />
     <Compile Include="SerializationTest.cs" />
+    <Compile Include="ChainUnitTest.cs" />
+    <Compile Include="CompanyUnitTest.cs" />
+    <Compile Include="AdminUnitTest.cs" />
+    <Compile Include="ProductUnitTest.cs" />
     <Compile Include="Service References\BestilNemtServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ShopUnitTest.cs" />
-    <Compile Include="CompanyUnitTest.cs" />
-    <Compile Include="AdminUnitTest.cs" />
-    <Compile Include="ProductUnitTest.cs" />
     <Compile Include="WarehouseUnitTest.cs" />
     <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
@@ -79,6 +79,7 @@
     <None Include="app.config" />
     <None Include="Properties\DataSources\Models.Admin.datasource" />
     <None Include="Properties\DataSources\Models.Cart.datasource" />
+    <None Include="Properties\DataSources\Models.Chain.datasource" />
     <None Include="Properties\DataSources\Models.Company.datasource" />
     <None Include="Properties\DataSources\Models.Customer.datasource" />
     <None Include="Properties\DataSources\Models.Login.datasource" />
