@@ -29,10 +29,10 @@ namespace Controller.ControllerTestClasses
         public int UpdateShop(Shop shop)
         {
             var returnedShop = FindShop(shop.Id);
-            returnedShop.MinStock = shop.MinStock;
-            returnedShop.Stock = shop.Stock;
-            returnedShop.Chain = shop.Chain;
-            returnedShop.Product = shop.Product;
+            returnedShop.Name = shop.Name;
+            returnedShop.Address = shop.Address;
+            returnedShop.Cvr = shop.Cvr;
+            returnedShop.Warehouses = shop.Warehouses;
             return 1;
         }
 

@@ -20,11 +20,11 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("INSERT INTO Shop(shopStock, shopMinStock, shopChainId, shopProductId) OUTPUT Inserted.shopId VALUES(@ShopStock, @ShopMinStock, @ShopChainId, @ShopProductId)", conn);
-                cmd.Parameters.AddWithValue("ShopStock", shop.Stock);
-                cmd.Parameters.AddWithValue("ShopMinStock", shop.MinStock);
+                var cmd = new SqlCommand("INSERT INTO Shop(shopName, shopAddress, shopCVR, shopChainId) OUTPUT Inserted.shopId VALUES(@ShopName, @ShopAddress, @ShopCvr, @ShopChainId)", conn);
+                cmd.Parameters.AddWithValue("ShopName", shop.Name);
+                cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
+                cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
                 cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
-                cmd.Parameters.AddWithValue("ShopProductId", shop.Product.Id);
                 i = (int)cmd.ExecuteScalar();
             }
             return i;
@@ -63,11 +63,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Shop SET shopStock=@ShopStock, shopMinStock=@ShopMinStock, shopChainId=@ShopChainId, shopProductId=ProductId WHERE id=@ShopId", conn);
-                cmd.Parameters.AddWithValue("ShopStock", shop.Stock);
-                cmd.Parameters.AddWithValue("ShopMinStock", shop.MinStock);
-                cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
-                cmd.Parameters.AddWithValue("ShopProductId", shop.Product.Id);
+                var cmd = new SqlCommand("UPDATE Shop SET shopName=@ShopName, shopAddress=@ShopAddress, shopCvr=@ShopCvr WHERE shopId=@ShopId", conn);
+                cmd.Parameters.AddWithValue("ShopName", shop.Name);
+                cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
+                cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
                 cmd.Parameters.AddWithValue("ShopId", shop.Id);
                 i = cmd.ExecuteNonQuery();
             }
@@ -87,15 +86,13 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Shop, Chain, Product WHERE shopId = @ShopId and chainId = Chain.chainId and productId = Product.productId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Shop WHERE shopId = @ShopId", conn);
                 cmd.Parameters.AddWithValue("ShopId", id);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var chain = ObjectBuilder.CreateChain(reader);
-                    var product = ObjectBuilder.CreateProduct(reader);
-                    shop = ObjectBuilder.CreateShop(reader, chain, product);
+                    shop = ObjectBuilder.CreateShop(reader);
                 }
             }
             return shop;
@@ -113,14 +110,12 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Shop, Chain, Product WHERE shopChainId = chainId and shopProductId = productId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Shop", conn);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var chain = ObjectBuilder.CreateChain(reader);
-                    var product = ObjectBuilder.CreateProduct(reader);
-                    var shop = ObjectBuilder.CreateShop(reader, chain, product);
+                    var shop = ObjectBuilder.CreateShop(reader);
                     shops.Add(shop);
                 }
             }
