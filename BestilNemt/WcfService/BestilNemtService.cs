@@ -236,7 +236,7 @@ namespace WcfService
         /// </returns>
         public Shop GetShop(int id)
         {
-            return ShopController.FindShop(id);
+            return ShopController.GetShop(id);
         }
 
         /// <summary>
@@ -269,7 +269,7 @@ namespace WcfService
         /// <returns>
         /// Return 1 if Shop was removed, else 0
         /// </returns>
-        public int RemoveShop(int id)
+        public int DeleteShop(int id)
         {
             return ShopController.DeleteShop(id);
         }

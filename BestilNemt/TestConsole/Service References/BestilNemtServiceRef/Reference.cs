@@ -87,10 +87,10 @@ namespace TestConsole.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
         System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveShop", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveShopResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveShopResponse")]
         int RemoveShop(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemoveShop", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveShopResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteShop", ReplyAction="http://tempuri.org/IBestilNemtService/RemoveShopResponse")]
         System.Threading.Tasks.Task<int> RemoveShopAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
