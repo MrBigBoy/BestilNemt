@@ -104,7 +104,6 @@ namespace DataAccessLayer
             {
                 Id = reader.GetInt32(reader.GetOrdinal("chainId")),
                 Name = reader.GetString(reader.GetOrdinal("chainName")),
-                Address = reader.GetString(reader.GetOrdinal("chainAddress")),
                 CVR = reader.GetString(reader.GetOrdinal("chainCVR"))
             };
             return chain;

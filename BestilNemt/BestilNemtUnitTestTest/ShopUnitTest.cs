@@ -272,7 +272,7 @@ namespace BestilNemtUnitTestTest
             {
                 MinStock = 0,
                 Product = new Product(1, "Product name", 2,"Product description", "Product category", 1),
-                Chain = new Chain(1, "Chain name", "Chain address", "Chain cvr", new List<Person>(), new List<Shop>()),
+               // Chain = new Chain(1, "Chain name", "Chain address", "Chain cvr", new List<Person>(), new List<Shop>()),
                 Stock = 2
             };
             var i = shopCtr.AddShop(shop);
