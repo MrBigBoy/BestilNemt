@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,26 +23,33 @@ namespace Models
         [DataMember]
         public double SavingPercent { get; set; }
 
+        [DataMember]
+        private List<Product> Products { get; set; }
+
+
         public Saving()
         {
             StartDate = default(DateTime);
             EndDate = default(DateTime);
             SavingPercent = double.NaN;
+            Products = new List<Product>();
         }
 
-        public Saving(int id, DateTime startdate, DateTime enddate, double savingpercent)
+        public Saving(int id, DateTime startdate, DateTime enddate, double savingpercent, List<Product> products)
         {
             Id = id;
             StartDate = startdate;
             EndDate = enddate;
             SavingPercent = savingpercent;
+            Products = products;
         }
 
-        public Saving(DateTime startdate, DateTime enddate, double savingpercent)
+        public Saving(DateTime startdate, DateTime enddate, double savingpercent, List<Product> products)
         {
             StartDate = startdate;
             EndDate = enddate;
             SavingPercent = savingpercent;
+            Products = products;
         }
     }
 }

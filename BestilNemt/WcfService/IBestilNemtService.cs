@@ -143,6 +143,8 @@ namespace WcfService
         [OperationContract]
         List<PartOrder> GetAllPartOrders();
 
+        [OperationContract]
+        int AddSaving(Saving saving, Product product);
 
     }
 }

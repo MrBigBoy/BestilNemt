@@ -17,6 +17,7 @@ namespace WcfService
         public ProductCtr ProductCtr { get; set; }
         public PartOrderCtr PartOrderCtr { get; set; }
         public CartCtr CartCtr { get; set; }
+        public SavingCtr SavingCtr { get; set; }
 
         /// <summary>
         /// Initialize all Controllers
@@ -32,6 +33,7 @@ namespace WcfService
             ProductCtr = new ProductCtr(new DbProduct());
             CartCtr = new CartCtr(new DbCart());
             PartOrderCtr = new PartOrderCtr(new DbPartOrder());
+            SavingCtr = new SavingCtr(new DbSaving());
         }
 
         /// <summary>
@@ -489,6 +491,11 @@ namespace WcfService
         public List<PartOrder> GetAllPartOrders()
         {
             return PartOrderCtr.GetAllPartOrders();
+        }
+
+        public int AddSaving(Saving saving, Product product)
+        {
+            return SavingCtr.AddSaving(saving, product);
         }
     }
 }

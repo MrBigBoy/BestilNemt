@@ -75,6 +75,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SavingCtr.cs" />
     <Compile Include="WarehouseCtr.cs" />
   </ItemGroup>
   <ItemGroup>
