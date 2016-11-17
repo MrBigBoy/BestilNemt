@@ -16,23 +16,23 @@ namespace Models
         [DataMember]
         public string Category { get; set; }
         [DataMember]
-        public double Saving { get; set; }
+        public int SavingId { get; set; }
 
         public Product()
         {
 
         }
 
-        public Product(string name, decimal price, string description, string category, double saving) : this()
+        public Product(string name, decimal price, string description, string category, int savingId) : this()
         {
             Name = name;
             Price = price;
             Description = description;
             Category = category;
-            Saving = saving;
+            SavingId = savingId;
         }
 
-        public Product(int id, string name, decimal price, string description, string category, double saving) : this(name, price, description, category, saving)
+        public Product(int id, string name, decimal price, string description, string category, int savingId) : this(name, price, description, category, savingId)
         {
             Id = id;
         }

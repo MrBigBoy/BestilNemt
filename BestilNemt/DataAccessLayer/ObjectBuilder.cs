@@ -15,7 +15,7 @@ namespace DataAccessLayer
                 Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
                 Description = reader.GetString(reader.GetOrdinal("productDescription")),
                 Category = reader.GetString(reader.GetOrdinal("productCategory")),
-                Saving = reader.GetDouble(reader.GetOrdinal("productSaving"))
+                SavingId = reader.GetInt32(reader.GetOrdinal("productSavingId"))
             };
             return product;
         }

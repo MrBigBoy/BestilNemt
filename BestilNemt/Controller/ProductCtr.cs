@@ -22,7 +22,7 @@ namespace Controller
         {
             return product?.Name != null && !product.Name.Equals("") && product.Description != null && 
                 !product.Description.Equals("") && product.Category != null && !product.Category.Equals("") && 
-                product.Price >= 0 && product.Saving >= 0;
+                product.Price >= 0;
         }
 
         public int UpdateProduct(Product product)

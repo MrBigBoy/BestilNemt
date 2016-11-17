@@ -26,7 +26,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("Price", product.Price);
                 cmd.Parameters.AddWithValue("Description", product.Description);
                 cmd.Parameters.AddWithValue("Category", product.Category);
-                cmd.Parameters.AddWithValue("Saving", product.Saving);
+                cmd.Parameters.AddWithValue("SavingId", product.SavingId);
                 i = (int)cmd.ExecuteScalar();
             }
             return i;
@@ -120,7 +120,7 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("ProductPrice", product.Price);
                 command.Parameters.AddWithValue("ProductDescription", product.Description);
                 command.Parameters.AddWithValue("ProductCategory", product.Category);
-                command.Parameters.AddWithValue("ProductSavingId", product.Saving);
+                command.Parameters.AddWithValue("ProductSavingId", product.SavingId);
                 i = command.ExecuteNonQuery();
             }
             return i;
