@@ -206,10 +206,11 @@ namespace BestilNemtUnitTestTest
             var shop = new Shop();
             var shops = new List<Shop>();
             shops.Add(shop);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
+            var chain = new Chain(5, "Rema", "3323232", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.Id, serializationResult.Id);
         }
+
         [TestMethod]
         public void TestChainNameSer()
         {
@@ -219,26 +220,11 @@ namespace BestilNemtUnitTestTest
             var shop = new Shop();
             var shops = new List<Shop>();
             shops.Add(shop);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
+            var chain = new Chain(5, "Rema", "3323232", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.Name, serializationResult.Name);
         }
 
-
-
-        [TestMethod]
-        public void TestChainAddresSer()
-        {
-            var person = new Person();
-            var persons = new List<Person>();
-            persons.Add(person);
-            var shop = new Shop();
-            var shops = new List<Shop>();
-            shops.Add(shop);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
-            var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
-            Assert.AreEqual(chain.Address, serializationResult.Address);
-        }
         [TestMethod]
         public void TestChainCvrser()
         {
@@ -248,7 +234,7 @@ namespace BestilNemtUnitTestTest
             var shop = new Shop();
             var shops = new List<Shop>();
             shops.Add(shop);
-            var chain = new Chain(5, "Rema", "VimmerVej", "3323232", persons, shops);
+            var chain = new Chain(5, "Rema", "3323232", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.CVR, serializationResult.CVR);
         }

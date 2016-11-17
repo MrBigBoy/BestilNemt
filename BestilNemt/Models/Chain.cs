@@ -11,8 +11,6 @@ namespace Models
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string Address { get; set; }
-        [DataMember]
         public string CVR { get; set; }
         [DataMember]
         public List<Person> Persons { get; set; }
@@ -22,27 +20,24 @@ namespace Models
         public Chain()
         {
             Name = null;
-            Address = null;
             CVR = null;
             Persons = new List<Person>();
             Shops = new List<Shop>();
         }
 
-        public Chain(int id, string name, string address, string cvr, List<Person> persons, List<Shop> shops)
+        public Chain(int id, string name, string cvr, List<Person> persons, List<Shop> shops)
         {
             this.Id = id;
             Name = name;
-            Address = address;
             CVR = cvr;
             Persons = persons;
             Shops = shops;
 
         }
 
-        public Chain(string name, string address, string cvr)
+        public Chain(string name, string cvr)
         {
             Name = name;
-            Address = address;
             CVR = cvr;
         }
 
