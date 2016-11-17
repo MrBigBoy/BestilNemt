@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SavingCtr.cs" />
-    <Compile Include="WarehouseCtr.cs" />
     <Compile Include="ShopCtr.cs" />
   </ItemGroup>
   <ItemGroup>

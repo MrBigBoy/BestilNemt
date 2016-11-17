@@ -30,10 +30,10 @@ namespace Controller
 
         public List<Warehouse> FindAllWarehouses()
         {
-            return  DbWarehouse.FindAllWarehouses();
+            return DbWarehouse.FindAllWarehouses();
         }
 
-     
+
 
         public int UpdateWarehouse(Warehouse warehouse)
         {

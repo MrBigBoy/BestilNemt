@@ -51,7 +51,6 @@
     <Compile Include="DbPartOrder.cs" />
     <Compile Include="DbProduct.cs" />
     <Compile Include="DbSaving.cs" />
-    <Compile Include="DbWarehouse.cs" />
     <Compile Include="DbShop.cs" />
     <Compile Include="DbChain.cs" />
     <Compile Include="DbWarehouse.cs" />
