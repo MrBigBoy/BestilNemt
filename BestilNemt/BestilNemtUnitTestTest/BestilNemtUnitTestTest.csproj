@@ -61,6 +61,7 @@
     <Compile Include="CustomerUnitTest.cs" />
     <Compile Include="PartOrderUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SavingUnitTest.cs" />
     <Compile Include="SerializerTestHelpClass.cs" />
     <Compile Include="SerializationTest.cs" />
     <Compile Include="ChainUnitTest.cs" />
