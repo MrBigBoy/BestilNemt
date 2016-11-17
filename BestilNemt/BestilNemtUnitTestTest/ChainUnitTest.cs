@@ -33,7 +33,7 @@ namespace BestilNemtUnitTestTest
         public void AddChain()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             var flag = chainCtr.AddChain(chain);
             Assert.AreEqual(1, flag);
         }
@@ -47,7 +47,7 @@ namespace BestilNemtUnitTestTest
         public void AddChainInvalidCvr()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "323232");
+            var chain = new Chain("MiniChain", "323232");
             var flag = chainCtr.AddChain(chain);
             Assert.AreEqual(0, flag);
         }
@@ -60,7 +60,7 @@ namespace BestilNemtUnitTestTest
         public void GetChainById()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             chainCtr.AddChain(chain);
             Assert.IsNotNull(chainCtr.GetChain(1));
         }
@@ -73,7 +73,7 @@ namespace BestilNemtUnitTestTest
         public void GetChainByIdFail()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             chainCtr.AddChain(chain);
             Assert.IsNull(chainCtr.GetChain(2));
         }
@@ -86,8 +86,8 @@ namespace BestilNemtUnitTestTest
         public void GetAllChains()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "12121212");
-            var chain2 = new Chain("MiniChain", "Address", "21212121");
+            var chain = new Chain("MiniChain", "12121212");
+            var chain2 = new Chain("MiniChain", "21212121");
             chainCtr.AddChain(chain);
             chainCtr.AddChain(chain2);
             Assert.AreEqual(2, chainCtr.GetAllChains().Count);
@@ -101,7 +101,7 @@ namespace BestilNemtUnitTestTest
         public void UpdateChainCheckFlag()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             chainCtr.AddChain(chain);
             chain.Name = "Hello World";
             var flag = chainCtr.UpdateChain(chain);
@@ -116,13 +116,12 @@ namespace BestilNemtUnitTestTest
         public void UpdateChainCheckName()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             chainCtr.AddChain(chain);
             var chain2 = new Chain
             {
                 Id = 1,
                 Name = "Hello World",
-                Address = "Address",
                 CVR = "12121212"
             };
             chainCtr.UpdateChain(chain2);
@@ -138,7 +137,7 @@ namespace BestilNemtUnitTestTest
         public void DeleteChainById()
         {
             var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             chainCtr.AddChain(chain);
             var id = chainCtr.DeleteChain(chain.Id);
             Assert.AreEqual(1, id);
@@ -155,7 +154,6 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain
             {
                 Name = "MiniChain",
-                Address = "Adress",
                 CVR = "12121212"
             };
             chainCtr.AddChain(chain);
@@ -182,7 +180,7 @@ namespace BestilNemtUnitTestTest
         public void AddDbChain()
         {
             var dbChain = new DbChain();
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             var id = dbChain.AddChain(chain);
             Assert.AreNotEqual(0, id);
         }
@@ -211,7 +209,6 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1,
                 Name = "Test World",
-                Address = "ADrerreth",
                 CVR = "12121212"
             };
             var returnedValue = dbChain.UpdateChain(chain);
@@ -231,7 +228,6 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 0,
                 Name = "Test World",
-                Address = "jksagdhfgujn",
                 CVR = "12121212"
             };
             var returnedValue = dbChain.UpdateChain(chain);
@@ -247,7 +243,7 @@ namespace BestilNemtUnitTestTest
         public void DelDbChain()
         {
             var dbChain = new DbChain();
-            var chain = new Chain("Test World", "Test Adress", "12121212");
+            var chain = new Chain("Test World", "12121212");
             var id = dbChain.AddChain(chain);
             var returnedValue = dbChain.DeleteChain(id);
             Assert.AreEqual(1, returnedValue);
@@ -273,7 +269,7 @@ namespace BestilNemtUnitTestTest
         public void AddCtrDbChain()
         {
             var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("MiniChain", "Address", "12121212");
+            var chain = new Chain("MiniChain", "12121212");
             var id = chainCtr.AddChain(chain);
             Assert.AreNotEqual(0, id);
         }
@@ -287,21 +283,7 @@ namespace BestilNemtUnitTestTest
         public void AddCtrDbChainFailName()
         {
             var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("", "Address", "12121212");
-            var id = chainCtr.AddChain(chain);
-            Assert.AreEqual(0, id);
-        }
-
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned id is 0
-        /// Address is empty
-        /// </summary>
-        [TestMethod]
-        public void AddCtrDbChainFailAddress()
-        {
-            var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("MiniChain", "", "12121212");
+            var chain = new Chain("", "12121212");
             var id = chainCtr.AddChain(chain);
             Assert.AreEqual(0, id);
         }
@@ -315,7 +297,7 @@ namespace BestilNemtUnitTestTest
         public void AddCtrDbChainFailCvr()
         {
             var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("MiniChain", "Nyvej", "12");
+            var chain = new Chain("MiniChain", "12");
             var id = chainCtr.AddChain(chain);
             Assert.AreEqual(0, id);
         }
@@ -343,7 +325,6 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain
             {
                 Id = 1,
-                Address = "fkgshdjk",
                 Name = "Test World",
                 CVR = "12121212"
             };
@@ -364,7 +345,6 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 0,
                 Name = "Test World",
-                Address = "jfjgljlksj",
                 CVR = "12121212"
             };
             var returnedValue = chainCtr.UpdateChain(chain);
@@ -380,7 +360,7 @@ namespace BestilNemtUnitTestTest
         public void DelCtrDbChain()
         {
             var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("Test World", "Test Adress", "12121212");
+            var chain = new Chain("Test World", "12121212");
             var id = chainCtr.AddChain(chain);
             var returnedValue = chainCtr.DeleteChain(id);
             Assert.AreEqual(1, returnedValue);
@@ -408,7 +388,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var chain = new Chain("new chain", "new address", "15987533");
+                var chain = new Chain("new chain", "15987533");
                 var i = proxy.AddChain(chain);
                 Assert.AreNotEqual(0, i);
             }
@@ -425,7 +405,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var chain = new Chain("new chain", "new address", "87533");
+                var chain = new Chain("new chain", "87533");
                 var i = proxy.AddChain(chain);
                 Assert.AreEqual(0, i);
             }
@@ -442,24 +422,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var chain = new Chain("", "new address", "82227533");
-                var i = proxy.AddChain(chain);
-                Assert.AreEqual(0, i);
-            }
-        }
-
-        /// <summary>
-        /// Test Chain through Wcf
-        /// The test is successfull if the returned id is 0
-        /// Address is empty
-        /// </summary>
-        [TestMethod]
-        public void AddChainWcfFailAddress()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var chain = new Chain("Fine Name", "", "82227533");
+                var chain = new Chain("", "82227533");
                 var i = proxy.AddChain(chain);
                 Assert.AreEqual(0, i);
             }
@@ -517,13 +480,12 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var chain = new Chain("MiniChain", "Address", "12121212");
+                var chain = new Chain("MiniChain", "12121212");
                 var returnedId = proxy.AddChain(chain);
                 var chain1 = new Chain
                 {
                     Id = returnedId,
                     Name = "UpdatedName",
-                    Address = "Address",
                     CVR = "12121212"
                 };
                 proxy.UpdateChain(chain1);
@@ -542,7 +504,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var chain = new Chain("ChainToDelete", "Address", "12121212");
+                var chain = new Chain("ChainToDelete", "12121212");
                 var returnedId = proxy.AddChain(chain);
                 var flag = proxy.DeleteChain(returnedId);
                 Assert.AreEqual(1, flag);

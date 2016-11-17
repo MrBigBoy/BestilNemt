@@ -44,9 +44,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("INSERT INTO Chain (chainName, chainAddress, chainCVR) OUTPUT Inserted.chainId values (@ChainName, @ChainAddress, @ChainCvr)", conn);
+                var command = new SqlCommand("INSERT INTO Chain (chainName, chainCVR) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr)", conn);
                 command.Parameters.AddWithValue("ChainName", chain.Name);
-                command.Parameters.AddWithValue("ChainAddress", chain.Address);
                 command.Parameters.AddWithValue("ChainCvr", chain.CVR);
                 id = (int)command.ExecuteScalar();
             }
@@ -90,10 +89,9 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainAddress = @ChainAddress, chainCVR = @ChainCvr where chainId = @ChainId", conn);
+                var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr where chainId = @ChainId", conn);
                 command.Parameters.AddWithValue("chainId", chain.Id);
                 command.Parameters.AddWithValue("chainName", chain.Name);
-                command.Parameters.AddWithValue("chainAddress", chain.Address);
                 command.Parameters.AddWithValue("chainCvr", chain.CVR);
                 i = command.ExecuteNonQuery();
             }
