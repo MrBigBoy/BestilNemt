@@ -51,7 +51,14 @@ namespace BestilNemtUnitTestTest
                 Address = "Hello address",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
-                Chain = new Chain()
+                Chain = new Chain
+                {
+                    Id = 1,
+                    CVR = "Cvr",
+                    Name ="",
+                    Persons = new List<Person>(),
+                    Shops = new List<Shop>()
+                }
             };
             var i = dbShop.AddShop(shop);
             var j = dbShop.FindShop(i);
@@ -118,8 +125,9 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
-                Cvr = "Hello Cvr",
-                Warehouses = new List<Warehouse>()
+                Cvr = "12121212",
+                Warehouses = new List<Warehouse>(),
+                Chain = new Chain()
             };
             var i = shopCtr.AddShop(shop);
             shopCtr.DeleteShop(i);
@@ -278,8 +286,9 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
-                Cvr = "Hello Cvr",
-                Warehouses = new List<Warehouse>()
+                Cvr = "12121212",
+                Warehouses = new List<Warehouse>(),
+                Chain = new Chain()
             };
             var i = shopCtr.AddShop(shop);
             var j = shopCtr.FindShop(i);
@@ -451,8 +460,9 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
-                Cvr = "Hello Cvr",
-                Warehouses = new List<Warehouse>()
+                Cvr = "12121212",
+                Warehouses = new List<Warehouse>(),
+                Chain = new Chain()
             };
             var i = shopCtr.AddShop(shop);
             var j = shopCtr.DeleteShop(i);
