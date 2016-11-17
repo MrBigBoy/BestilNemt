@@ -156,6 +156,17 @@ namespace WcfService
         [OperationContract]
         int AddSaving(Saving saving, Product product);
 
+        [OperationContract]
+        Saving FindSaving(int id);
+
+        [OperationContract]
+        List<Saving> FindAllSavings();
+
+        [OperationContract]
+        int UpdateSaving(Saving saving);
+
+        [OperationContract]
+        int DeleteSaving(int id);
     }
 }
 
