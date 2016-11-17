@@ -537,6 +537,11 @@ namespace WcfService
            return  WarehouseCtr.FindAllWarehouses();
         }
 
+        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
+        {
+            return WarehouseCtr.FindAllWarehousesByShopId(shopId);
+        }
+
         public int UpdateWarehouse(Warehouse warehouse)
         {
             return WarehouseCtr.UpdateWarehouse(warehouse);

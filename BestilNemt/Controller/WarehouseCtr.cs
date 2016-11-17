@@ -10,7 +10,7 @@ namespace Controller
 {
     public class WarehouseCtr
     { 
-        private readonly Exception NotFoundExeption =  new Exception("Warehouse was not found");
+       // private readonly Exception NotFoundExeption =  new Exception("Warehouse was not found");
     
 
         public IDbWarehouse DbWarehouse { get; set; }
@@ -29,18 +29,26 @@ namespace Controller
         {
             var warehouse = DbWarehouse.FindWarehouse(id);
             if (warehouse == null)
-                throw NotFoundExeption;
+                throw  new NullReferenceException();
             return warehouse;
         }
 
 
         public List<Warehouse> FindAllWarehouses()
         {
-            if (DbWarehouse.FindAllWarehouses().Count == 0)
-                throw new Exception("No Warehouses found");
-            return DbWarehouse.FindAllWarehouses();
+            var warehouses = DbWarehouse.FindAllWarehouses();
+            if (warehouses.Count == 0)
+                throw new NullReferenceException();
+            return warehouses;
         }
 
+        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
+        {
+            var warehouses = DbWarehouse.FindAllWarehousesByShopId(shopId);
+            if (warehouses.Count == 0)
+                throw new NullReferenceException();
+            return warehouses;
+        }
 
 
         public int UpdateWarehouse(Warehouse warehouse)
@@ -59,5 +67,7 @@ namespace Controller
                 return false;
             return true;
         }
+
+       
     }
 }
