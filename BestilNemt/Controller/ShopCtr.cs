@@ -30,6 +30,7 @@ namespace Controller
             return DbShop.FindAllShops();
         }
 
+
         public int DeleteShop(int id)
         {
             return DbShop.DeleteShop(id);

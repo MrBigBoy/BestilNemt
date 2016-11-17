@@ -27,6 +27,7 @@ namespace Controller
             return DbWarehouse.FindWarehouse(id);
         }
 
+
         public List<Warehouse> FindAllWarehouses()
         {
             return  DbWarehouse.FindAllWarehouses();
