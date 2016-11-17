@@ -137,6 +137,22 @@ namespace WcfService
         [OperationContract]
         List<PartOrder> GetAllPartOrders();
 
+        //Warehouse
+        [OperationContract]
+        int AddWarehouse(Warehouse warehouse);
+
+        [OperationContract]
+        Warehouse FindWarehouse(int id);
+
+        [OperationContract]
+        List<Warehouse> FindAllWarehouses();
+
+        [OperationContract]
+        int UpdateWarehouse(Warehouse warehouse);
+
+        [OperationContract]
+        int DeleteWarehouse(int id);
+
 
     }
 }

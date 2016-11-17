@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using Models;
 
@@ -72,6 +73,18 @@ namespace DataAccessLayer
                 Birthday = reader.GetDateTime(reader.GetOrdinal("customerBirthday"))
             };
             return customer;
+        }
+
+        public static Warehouse CreateWarehouse(SqlDataReader reader, Product product)
+        {
+            var warehouse = new Warehouse
+            {
+                Id = reader.GetInt32(reader.GetOrdinal("warehouseId")),
+                Stock = reader.GetInt32(reader.GetOrdinal("warehouseStock")),
+                MinStock = reader.GetInt32(reader.GetOrdinal("warehouseMinStock")),
+                Product = product
+            };
+            return warehouse;
         }
 
         public static PartOrder CreatePartOrder(SqlDataReader reader, Product product)
