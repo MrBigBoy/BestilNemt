@@ -17,7 +17,7 @@ namespace Controller
         {
             return ValidateShop(shop) ? DbShop.AddShop(shop) : 0;
         }
-        public Shop FindShop(int id)
+        public Shop GetShop(int id)
         {
             return DbShop.FindShop(id);
         }
