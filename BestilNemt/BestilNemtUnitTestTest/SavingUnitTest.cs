@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using Controller;
+using Controller.ControllerTestClasses;
+using DataAccessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 
 namespace BestilNemtUnitTestTest
 {
@@ -11,59 +15,78 @@ namespace BestilNemtUnitTestTest
     [TestClass]
     public class SavingUnitTest
     {
-        public SavingUnitTest()
+        [TestMethod]
+        public void SavingCtrInitialize()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            var savingCtr = new SavingCtr(new SavingCtrTestClass());
+            Assert.IsNotNull(savingCtr);
         }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void AddSaving()
         {
-            //
-            // TODO: Add test logic here
-            //
+            var savingCtr = new SavingCtr(new SavingCtrTestClass());
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory",
+                40);
+            var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50,
+                new List<Product>());
+            var flag = savingCtr.AddSaving(saving, product);
+            Assert.AreEqual(1, flag);
+        }
+
+        [TestMethod]
+        public void AddSavingNoStartDate()
+        {
+            var savingCtr = new SavingCtr(new SavingCtrTestClass());
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory",
+                40);
+            var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 0, new List<Product>());
+            var flag = savingCtr.AddSaving(saving, product);
+            Assert.AreEqual(0, flag);
+        }
+
+        [TestMethod]
+        public void GetSavingById()
+        {
+            var savingCtr = new SavingCtr(new SavingCtrTestClass());
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var saving = new Saving(new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
+            savingCtr.AddSaving(saving, product);
+            Assert.IsNotNull(savingCtr.FindSaving(1));
+        }
+
+        [TestMethod]
+        public void GetSavingByIdFail()
+        {
+            var savingCtr = new SavingCtr(new SavingCtrTestClass());
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
+            savingCtr.AddSaving(saving, product);
+            Assert.IsNull(savingCtr.FindSaving(2));
+        }
+
+        [TestMethod]
+        public void FindAllSavings()
+        {
+            var savingCtr = new SavingCtr(new SavingCtrTestClass());
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var product2 = new Product(2, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
+            var saving2 = new Saving(2, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
+            savingCtr.AddSaving(saving, product);
+            savingCtr.AddSaving(saving2, product2);
+            Assert.AreEqual(2, savingCtr.FindAllSavings().Count);
+        }
+
+        [TestMethod]
+        public void AddAdminCtrDb()
+        {
+            var savingCtr = new SavingCtr(new DbSaving());
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var saving = new Saving(new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
+            var id = savingCtr.AddSaving(saving, product);
+            Assert.AreNotEqual(0, id);
         }
     }
 }
+
