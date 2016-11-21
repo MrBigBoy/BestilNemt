@@ -189,4 +189,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Saving" nillable="true" type="tns:Saving" />
+  <xs:complexType name="ArrayOfSaving">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Saving" nillable="true" type="tns:Saving" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSaving" nillable="true" type="tns:ArrayOfSaving" />
 </xs:schema>
