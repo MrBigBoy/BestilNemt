@@ -48,7 +48,14 @@ namespace Controller
 
         private bool ValidateSavingInput(Saving saving)
         {
-            return saving.SavingPercent > 0.0;
+            if(saving.SavingPercent < 0.1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
