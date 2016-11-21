@@ -191,12 +191,12 @@ namespace DataAccessLayer
         public const int Pbkdf2Iterations = 64000;
 
         // These constants define the encoding and may not be changed.
-        public const int HashSections = 5;
         public const int HashAlgorithmIndex = 0;
         public const int IterationIndex = 1;
         public const int HashSizeIndex = 2;
         public const int SaltIndex = 3;
         public const int Pbkdf2Index = 4;
+        public const int HashSections = 5;
 
         /// <summary>
         /// Return a generated Hash from a password
