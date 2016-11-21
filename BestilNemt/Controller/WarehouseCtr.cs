@@ -9,7 +9,10 @@ using DataAccessLayer;
 namespace Controller
 {
     public class WarehouseCtr
-    {
+    { 
+       // private readonly Exception NotFoundExeption =  new Exception("Warehouse was not found");
+    
+
         public IDbWarehouse DbWarehouse { get; set; }
 
         public WarehouseCtr(IDbWarehouse dbWarehouse)
@@ -19,25 +22,38 @@ namespace Controller
 
         public int AddWarehouse(Warehouse warehouse)
         {
-            return DbWarehouse.AddWarehouse(warehouse);
+            return ValidateWarehouse(warehouse) ? DbWarehouse.AddWarehouse(warehouse) : 0;
         }
 
         public Warehouse FindWarehouse(int id)
         {
-            return DbWarehouse.FindWarehouse(id);
+            var warehouse = DbWarehouse.FindWarehouse(id);
+            if (warehouse == null)
+                throw  new NullReferenceException();
+            return warehouse;
         }
 
 
         public List<Warehouse> FindAllWarehouses()
         {
-            return DbWarehouse.FindAllWarehouses();
+            var warehouses = DbWarehouse.FindAllWarehouses();
+            if (warehouses.Count == 0)
+                throw new NullReferenceException();
+            return warehouses;
         }
 
+        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
+        {
+            var warehouses = DbWarehouse.FindAllWarehousesByShopId(shopId);
+            if (warehouses.Count == 0)
+                throw new NullReferenceException();
+            return warehouses;
+        }
 
 
         public int UpdateWarehouse(Warehouse warehouse)
         {
-            return DbWarehouse.UpdateWarehouse(warehouse);
+            return ValidateWarehouse(warehouse) ? DbWarehouse.UpdateWarehouse(warehouse) : 0;
         }
 
         public int DeleteWarehouse(int id)
@@ -45,9 +61,13 @@ namespace Controller
             return DbWarehouse.DeleteWarehouse(id);
         }
 
-        //private bool ValidateWarehouse(Warehouse warehouse)
-        //{
-        //    if (warehouse == null || warehouse.)
-        //}
+        private bool ValidateWarehouse(Warehouse warehouse)
+        {
+            if (warehouse == null || warehouse.MinStock < 0 || warehouse.Stock < 0 || warehouse.Shop == null)
+                return false;
+            return true;
+        }
+
+       
     }
 }

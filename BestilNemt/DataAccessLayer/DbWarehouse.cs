@@ -117,12 +117,80 @@ namespace DataAccessLayer
 
         public int UpdateWarehouse(Warehouse warehouse)
         {
-            throw new NotImplementedException();
+            var i = 0;
+            using (
+               var conn =
+                   new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Connection = conn;
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "Update Warehouse Set warehouseStock = @stock, warehouseMinStock = @minStock, warehouseShopId = @shopId, warehouseProductId = @productId where warehouseId = @warehouseId";
+                    cmd.Parameters.AddWithValue("stock", warehouse.Stock);
+                    cmd.Parameters.AddWithValue("minStock", warehouse.MinStock);
+                    cmd.Parameters.AddWithValue("shopId", warehouse.Shop.Id);
+                    cmd.Parameters.AddWithValue("productId", warehouse.Product.Id);
+                    cmd.Parameters.AddWithValue("warehouseId", warehouse.Id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                    Console.WriteLine("Commit was succsesfull");
+
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
+            }
+            return i;
         }
 
         public int DeleteWarehouse(int id)
         {
-            throw new NotImplementedException();
+            var i = 0;
+            using (
+               var conn =
+                   new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Connection = conn;
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "Delete from Warehouse where warehouseId = @warehouseId";
+                    cmd.Parameters.AddWithValue("warehouseId", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                    Console.WriteLine("Commit was succsesfull");
+
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
+            }
+            return i;
         }
     }
 }

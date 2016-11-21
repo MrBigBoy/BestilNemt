@@ -155,7 +155,7 @@ namespace BestilNemtUnitTestTest
         public void AddProductDb()
         {
             var dbProduct = new DbProduct();
-            var product = new Product("The product name", 23.45m, "The product description", "The product catagory", 40);
+            var product = new Product("The product name", 23.45m, "The product description", "The product catagory", 1);
             var flag = dbProduct.AddProduct(product);
             Assert.AreNotEqual(0, flag);
         }
@@ -361,7 +361,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 1);
                 var i = proxy.AddProduct(product);
                 proxy.DeleteProduct(i);
                 Assert.AreNotEqual(0, i);
@@ -379,7 +379,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 1);
                 var id = proxy.AddProduct(product);
                 product.Id = id;
                 var i = proxy.UpdateProduct(product);
@@ -400,7 +400,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+                var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 1);
                 var id = proxy.AddProduct(product);
                 var i = proxy.DeleteProduct(id);
                 Assert.AreEqual(1, i);

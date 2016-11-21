@@ -74,6 +74,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ShopUnitTest.cs" />
+    <Compile Include="WarehouseUnitTest.cs" />
     <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +88,7 @@
     <None Include="Properties\DataSources\Models.PartOrder.datasource" />
     <None Include="Properties\DataSources\Models.Person.datasource" />
     <None Include="Properties\DataSources\Models.Product.datasource" />
+    <None Include="Properties\DataSources\Models.Saving.datasource" />
     <None Include="Properties\DataSources\Models.Shop.datasource" />
     <None Include="Properties\DataSources\Models.Warehouse.datasource" />
     <None Include="Properties\DataSources\Models.Warehouse1.datasource" />

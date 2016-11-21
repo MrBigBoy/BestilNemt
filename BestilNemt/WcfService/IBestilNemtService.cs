@@ -149,6 +149,9 @@ namespace WcfService
         List<Warehouse> FindAllWarehouses();
 
         [OperationContract]
+        List<Warehouse> FindAllWarehousesByShopId(int shopId);
+
+        [OperationContract]
         int UpdateWarehouse(Warehouse warehouse);
 
         [OperationContract]
