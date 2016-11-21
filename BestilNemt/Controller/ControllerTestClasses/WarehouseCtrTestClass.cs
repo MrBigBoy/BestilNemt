@@ -8,7 +8,7 @@ using Models;
 
 namespace Controller.ControllerTestClasses
 {
-    public class WarehouseTestClass: IDbWarehouse
+    public class WarehouseCtrTestClass: IDbWarehouse
     {
         private List<Warehouse> warehouses = new List<Warehouse>();
         private int idCounter = 1;

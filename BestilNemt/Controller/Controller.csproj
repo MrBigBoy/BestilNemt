@@ -56,7 +56,7 @@
     <Compile Include="ControllerTestClasses\ChainCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\SavingCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\ShopCtrTestClass.cs" />
-    <Compile Include="ControllerTestClasses\WarehouseTestClass.cs" />
+    <Compile Include="ControllerTestClasses\WarehouseCtrTestClass.cs" />
     <Compile Include="LoginCtr.cs" />
     <Compile Include="CustomerCtr.cs" />
     <Compile Include="PartOrderCtr.cs" />

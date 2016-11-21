@@ -19,14 +19,14 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void WarehouseCtrInitialize()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Assert.IsNotNull(warehouseCtr);
         }
 
         [TestMethod]
         public void AddWarehouseCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse = new Warehouse(10, 5, new Product(), new Shop());
             int id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreNotEqual(0, id);
@@ -35,7 +35,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddWarehouseFailMinStockCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse = new Warehouse(10, -5, new Product(), new Shop());
             int id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreEqual(0, id);
@@ -44,7 +44,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddWarehouseMinStockZeroCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse = new Warehouse(10, 0, new Product(), new Shop());
             int id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreNotEqual(0, id);
@@ -53,7 +53,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddWarehouseFailStockCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse = new Warehouse(-1, 5, new Product(), new Shop());
             int id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreEqual(0, id);
@@ -62,7 +62,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddWarehouseStockZeroCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse = new Warehouse(0, 5, new Product(), new Shop());
             int id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreNotEqual(0, id);
@@ -71,7 +71,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void AddWarehouseFailShopNullCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse = new Warehouse(10, 5, new Product(), null);
             int id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreEqual(0, id);
@@ -80,7 +80,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void FindWarehouseCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             int id1 = warehouseCtr.AddWarehouse(warehouse1);
@@ -93,7 +93,7 @@ namespace BestilNemtUnitTestTest
         [ExpectedException(typeof(NullReferenceException))]
         public void FindWarehouseInvalidIdCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             int id1 = warehouseCtr.AddWarehouse(warehouse1);
@@ -104,7 +104,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void FindAllWarehousesCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             warehouseCtr.AddWarehouse(warehouse1);
@@ -116,7 +116,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void FindAllWarehousesFailCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             warehouseCtr.AddWarehouse(warehouse1);
@@ -128,7 +128,7 @@ namespace BestilNemtUnitTestTest
         [ExpectedException(typeof(NullReferenceException))]
         public void FindAllWarehouseFail1Ctr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             var count = warehouseCtr.FindAllWarehouses().Count;
@@ -137,7 +137,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void FindAllWarehousesByShopIdCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "12312312", null, null));
             var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
             var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
@@ -151,7 +151,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void FindAllWarehousesByShopId1Ctr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "12312312", null, null));
             var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
             var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
@@ -166,7 +166,7 @@ namespace BestilNemtUnitTestTest
         [ExpectedException(typeof(NullReferenceException))]
         public void FindAllWarehousesByShopIdZeroCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "12312312", null, null));
             var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
             var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
@@ -176,7 +176,7 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void UpdateWarehouseCtr()
         {
-            var warehouseCtr = new WarehouseCtr(new WarehouseTestClass());
+            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouseToUpdate = new Warehouse(10, 5, new Product(), new Shop());
             var id = warehouseCtr.AddWarehouse(warehouseToUpdate);
             var warehouseNew = new Warehouse(id, 1, 3, new Product(), new Shop());
