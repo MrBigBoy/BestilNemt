@@ -90,7 +90,6 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
         public void FindWarehouseInvalidIdCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
@@ -99,6 +98,7 @@ namespace BestilNemtUnitTestTest
             int id1 = warehouseCtr.AddWarehouse(warehouse1);
             int id2 = warehouseCtr.AddWarehouse(warehouse2);
             var rw = warehouseCtr.FindWarehouse(0);
+            Assert.IsNull(rw);
         }
 
         [TestMethod]
@@ -111,27 +111,6 @@ namespace BestilNemtUnitTestTest
             warehouseCtr.AddWarehouse(warehouse2);
             var count = warehouseCtr.FindAllWarehouses().Count;
             Assert.AreEqual(2, count);
-        }
-
-        [TestMethod]
-        public void FindAllWarehousesFailCtr()
-        {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
-            Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
-            warehouseCtr.AddWarehouse(warehouse1);
-            var count = warehouseCtr.FindAllWarehouses().Count;
-            Assert.AreNotEqual(2, count);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindAllWarehouseFail1Ctr()
-        {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
-            Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
-            var count = warehouseCtr.FindAllWarehouses().Count;
         }
 
         [TestMethod]
@@ -162,16 +141,6 @@ namespace BestilNemtUnitTestTest
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void FindAllWarehousesByShopIdZeroCtr()
-        {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "12312312", null, null));
-            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
-            var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
-            var count = warehouseCtr.FindAllWarehousesByShopId(2).Count;
-        }
 
         [TestMethod]
         public void UpdateWarehouseCtr()
@@ -214,7 +183,7 @@ namespace BestilNemtUnitTestTest
             warehouseDb.DeleteWarehouse(id);
             Assert.AreNotEqual(0, id);
         }
-        
+
         [TestMethod]
         public void FindWarehouseDb()
         {
@@ -243,7 +212,7 @@ namespace BestilNemtUnitTestTest
             var rw = warehouseDb.FindWarehouse(id);
             Assert.IsNotNull(rw);
         }
-        
+
         [TestMethod]
         public void FindWarehouseFailDb()
         {
@@ -298,7 +267,7 @@ namespace BestilNemtUnitTestTest
             var updatedWarehouse = warehouseDb.FindWarehouse(id);
             Assert.AreEqual(warehouseNew.Stock, updatedWarehouse.Stock);
         }
-        
+
         //Wcf test
         [TestMethod]
         public void AddWarehouseWcf()
@@ -330,7 +299,7 @@ namespace BestilNemtUnitTestTest
                 Assert.AreNotEqual(0, id);
             }
         }
-        
+
         [TestMethod]
         public void FindWarehouseWcf()
         {
@@ -366,42 +335,42 @@ namespace BestilNemtUnitTestTest
             }
         }
 
-        //[TestMethod]
-        //public void FindWarehouseFailWcf()
-        //{
-        //    var prod = new Product
-        //    {
-        //        Id = 1,
-        //        Category = "category",
-        //        Description = "ddeskr",
-        //        Name = "banan",
-        //        Price = 10,
-        //        SavingId = 1
-        //    };
+        [TestMethod]
+        public void FindWarehouseFailWcf()
+        {
+            var prod = new Product
+            {
+                Id = 1,
+                Category = "category",
+                Description = "ddeskr",
+                Name = "banan",
+                Price = 10,
+                SavingId = 1
+            };
 
-        //    var shop = new Shop
-        //    {
-        //        Id = 1,
-        //        Name = "ShopName",
-        //        Address = "new addr",
-        //        Chain = new Chain(),
-        //        Cvr = "12121212",
-        //        Warehouses = new List<Warehouse>()
-        //    };
+            var shop = new Shop
+            {
+                Id = 1,
+                Name = "ShopName",
+                Address = "new addr",
+                Chain = new Chain(),
+                Cvr = "12121212",
+                Warehouses = new List<Warehouse>()
+            };
 
-        //    Warehouse warehouse1 = new Warehouse(10, 5, prod, shop);
-        //    Warehouse warehouse2 = new Warehouse(10, 5, prod, shop);
-        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-        //    {
-        //        proxy.Open();
-        //        int id1 = proxy.AddWarehouse(warehouse1);
-        //        int id2 = proxy.AddWarehouse(warehouse2);
-        //        proxy.DeleteWarehouse(id1);
-        //        var rw = proxy.FindWarehouse(id1);
-        //        proxy.DeleteWarehouse(id2);
-        //        Assert.IsNull(rw);
-        //    }
-        //}
+            Warehouse warehouse1 = new Warehouse(10, 5, prod, shop);
+            Warehouse warehouse2 = new Warehouse(10, 5, prod, shop);
+            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+            {
+                proxy.Open();
+                int id1 = proxy.AddWarehouse(warehouse1);
+                int id2 = proxy.AddWarehouse(warehouse2);
+                proxy.DeleteWarehouse(id1);
+                var rw = proxy.FindWarehouse(id1);
+                proxy.DeleteWarehouse(id2);
+                Assert.IsNull(rw);
+            }
+        }
 
         [TestMethod]
         public void FindAllWarehousesWcf()
@@ -413,7 +382,7 @@ namespace BestilNemtUnitTestTest
                 Assert.AreNotEqual(0, count);
             }
         }
-        
+
         [TestMethod]
         public void FindAllWarehousesByShopIdWcf()
         {

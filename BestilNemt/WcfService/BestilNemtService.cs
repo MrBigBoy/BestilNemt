@@ -401,7 +401,7 @@ namespace WcfService
         {
             return CartCtr.FindCart(id);
         }
-        
+
         public List<Cart> GetAllCarts()
         {
             return CartCtr.GetAllCarts();
@@ -477,7 +477,7 @@ namespace WcfService
 
         public int UpdatePartorder(PartOrder partOrder)
         {
-            return PartOrderCtr.UpdatePartorder(partOrder); 
+            return PartOrderCtr.UpdatePartorder(partOrder);
         }
 
         public int RemovePartOrder(int id)
@@ -524,7 +524,7 @@ namespace WcfService
 
         public int AddWarehouse(Warehouse warehouse)
         {
-            return  WarehouseCtr.AddWarehouse(warehouse);
+            return WarehouseCtr.AddWarehouse(warehouse);
         }
 
         public Warehouse FindWarehouse(int id)
@@ -534,7 +534,7 @@ namespace WcfService
 
         public List<Warehouse> FindAllWarehouses()
         {
-           return  WarehouseCtr.FindAllWarehouses();
+            return WarehouseCtr.FindAllWarehouses();
         }
 
         public List<Warehouse> FindAllWarehousesByShopId(int shopId)
