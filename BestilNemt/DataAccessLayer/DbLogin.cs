@@ -11,6 +11,19 @@ namespace DataAccessLayer
 {
     public class DbLogin : IDbLogin
     {
+        // These constants may be changed without breaking existing hashes.
+        public const int SaltBytes = 24;
+        public const int HashBytes = 18;
+        public const int Pbkdf2Iterations = 64000;
+
+        // These constants define the encoding and may not be changed.
+        public const int HashAlgorithmIndex = 0;
+        public const int IterationIndex = 1;
+        public const int HashSizeIndex = 2;
+        public const int SaltIndex = 3;
+        public const int Pbkdf2Index = 4;
+        public const int HashSections = 5;
+
         /// <summary>
         /// Add a Login
         /// </summary>
@@ -23,7 +36,7 @@ namespace DataAccessLayer
             var returnedValue = 0;
             if (DownloadPersonId(login.Username) != 0)
                 return returnedValue;
-            var parts = PasswordStorage.CreateHash(login.Password);
+            var parts = CreateHash(login.Password);
             using (
                 var conn =
                     new SqlConnection(
@@ -50,7 +63,7 @@ namespace DataAccessLayer
         public Login Login(Login login)
         {
             var parts = DownloadHash(login.Username);
-            if (!PasswordStorage.VerifyPassword(login.Password, parts))
+            if (!VerifyPassword(login.Password, parts))
                 return null;
             login.PersonId = DownloadPersonId(login.Username);
             return login;
@@ -65,7 +78,7 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateLogin(Login login)
         {
-            var parts = PasswordStorage.CreateHash(login.Password);
+            var parts = CreateHash(login.Password);
             int i;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
@@ -156,49 +169,6 @@ namespace DataAccessLayer
             }
             return personId;
         }
-    }
-
-    /// <summary>
-    /// Exceptions catched from Hash function
-    /// </summary>
-    internal class InvalidHashException : Exception
-    {
-        public InvalidHashException() { }
-        public InvalidHashException(string message)
-            : base(message) { }
-        public InvalidHashException(string message, Exception inner)
-            : base(message, inner) { }
-    }
-
-    /// <summary>
-    /// Exceptions cathced from Validation of Hash string
-    /// </summary>
-    internal class CannotPerformOperationException : Exception
-    {
-        public CannotPerformOperationException() { }
-        public CannotPerformOperationException(string message)
-            : base(message) { }
-        public CannotPerformOperationException(string message, Exception inner)
-            : base(message, inner) { }
-    }
-
-    /// <summary>
-    /// The Password generation class
-    /// </summary>
-    internal class PasswordStorage
-    {
-        // These constants may be changed without breaking existing hashes.
-        public const int SaltBytes = 24;
-        public const int HashBytes = 18;
-        public const int Pbkdf2Iterations = 64000;
-
-        // These constants define the encoding and may not be changed.
-        public const int HashAlgorithmIndex = 0;
-        public const int IterationIndex = 1;
-        public const int HashSizeIndex = 2;
-        public const int SaltIndex = 3;
-        public const int Pbkdf2Index = 4;
-        public const int HashSections = 5;
 
         /// <summary>
         /// Return a generated Hash from a password
@@ -418,5 +388,29 @@ namespace DataAccessLayer
                 return pbkdf2.GetBytes(outputBytes);
             }
         }
+    }
+
+    /// <summary>
+    /// Exceptions catched from Hash function
+    /// </summary>
+    internal class InvalidHashException : Exception
+    {
+        public InvalidHashException() { }
+        public InvalidHashException(string message)
+            : base(message) { }
+        public InvalidHashException(string message, Exception inner)
+            : base(message, inner) { }
+    }
+
+    /// <summary>
+    /// Exceptions cathced from Validation of Hash string
+    /// </summary>
+    internal class CannotPerformOperationException : Exception
+    {
+        public CannotPerformOperationException() { }
+        public CannotPerformOperationException(string message)
+            : base(message) { }
+        public CannotPerformOperationException(string message, Exception inner)
+            : base(message, inner) { }
     }
 }
