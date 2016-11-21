@@ -1,8 +1,10 @@
 ﻿using Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 
 namespace DataAccessLayer
@@ -396,12 +398,7 @@ namespace DataAccessLayer
         /// </returns>
         private static bool SlowEquals(IReadOnlyList<byte> a, IReadOnlyList<byte> b)
         {
-            var diff = (uint)a.Count ^ (uint)b.Count;
-            for (var i = 0; i < a.Count && i < b.Count; i++)
-            {
-                diff |= (uint)(a[i] ^ b[i]);
-            }
-            return diff == 0;
+            return StructuralComparisons.StructuralEqualityComparer.Equals(a, b);
         }
 
         /// <summary>
@@ -416,9 +413,8 @@ namespace DataAccessLayer
         /// </returns>
         private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
         {
-            using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt))
+            using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations))
             {
-                pbkdf2.IterationCount = iterations;
                 return pbkdf2.GetBytes(outputBytes);
             }
         }
