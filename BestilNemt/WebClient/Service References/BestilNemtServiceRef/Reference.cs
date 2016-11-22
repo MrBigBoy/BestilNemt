@@ -1180,6 +1180,12 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop>> GetAllShopsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse")]
+        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop> GetAllShopsByChainId(int chainId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop>> GetAllShopsByChainIdAsync(int chainId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
         int UpdateShop(WebClient.BestilNemtServiceRef.Shop shop);
         
@@ -1568,6 +1574,14 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop>> GetAllShopsAsync() {
             return base.Channel.GetAllShopsAsync();
+        }
+        
+        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop> GetAllShopsByChainId(int chainId) {
+            return base.Channel.GetAllShopsByChainId(chainId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop>> GetAllShopsByChainIdAsync(int chainId) {
+            return base.Channel.GetAllShopsByChainIdAsync(chainId);
         }
         
         public int UpdateShop(WebClient.BestilNemtServiceRef.Shop shop) {

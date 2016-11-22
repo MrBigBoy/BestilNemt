@@ -85,6 +85,12 @@
   <wsdl:message name="IBestilNemtService_GetAllShops_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllShopsResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllShopsByChainId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShopsByChainId" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllShopsByChainId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShopsByChainIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateShop_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateShop" />
   </wsdl:message>
@@ -396,6 +402,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShops" message="tns:IBestilNemtService_GetAllShops_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShopsResponse" message="tns:IBestilNemtService_GetAllShops_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllShopsByChainId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId" message="tns:IBestilNemtService_GetAllShopsByChainId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse" message="tns:IBestilNemtService_GetAllShopsByChainId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateShop">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateShop" message="tns:IBestilNemtService_UpdateShop_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateShopResponse" message="tns:IBestilNemtService_UpdateShop_OutputMessage" />
@@ -681,6 +691,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllShops">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllShops" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllShopsByChainId">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

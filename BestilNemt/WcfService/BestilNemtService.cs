@@ -251,6 +251,17 @@ namespace WcfService
         }
 
         /// <summary>
+        /// Return a list of all Shops by a chain Id
+        /// </summary>
+        /// <returns>
+        /// List of Shop
+        /// </returns>
+        public List<Shop> GetAllShopsByChainId(int chainId)
+        {
+            return ShopController.FindAllShopsByChainId(chainId);
+        }
+
+        /// <summary>
         /// Update a Shop
         /// </summary>
         /// <param name="shop"></param>
