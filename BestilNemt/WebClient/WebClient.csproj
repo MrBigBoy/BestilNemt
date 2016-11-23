@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{39A1DB2A-BCF7-46D4-8F55-D108101BE93A}</ProjectGuid>
+    <ProjectGuid>{EAF88164-DFFE-48E6-86CF-4A2BB63FD90A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -23,9 +23,10 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ApplicationInsightsResourceId>/subscriptions/c3b48af4-9339-45ef-b1a7-ff96a55dc3cb/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebClient</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/7dbe52e2-10aa-4e04-8dab-d1cdbaa3b8f1/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebClient</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,8 +82,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -151,21 +150,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ChainController.cs" />
-    <Compile Include="Controllers\FrontPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\BestilNemtServiceRef\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -189,12 +182,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Service References\BestilNemtServiceRef\configuration91.svcinfo" />
-    <None Include="Service References\BestilNemtServiceRef\configuration.svcinfo" />
-    <None Include="Service References\BestilNemtServiceRef\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -210,59 +197,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <None Include="Service References\BestilNemtServiceRef\Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\BestilNemtServiceRef\service.wsdl" />
-    <None Include="Service References\BestilNemtServiceRef\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\BestilNemtServiceRef\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Admin.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Cart.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Chain.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Company.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Customer.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Login.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.PartOrder.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Product.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Saving.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Shop.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Warehouse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Views\Home\Chain.cshtml" />
-    <Content Include="Views\Chain\Index.cshtml" />
-    <Content Include="Views\FrontPage\Index.cshtml" />
-    <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\Shop\ShopList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\ChainFrontPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -274,9 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\BestilNemtServiceRef\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -294,7 +229,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50483</DevelopmentServerPort>
+          <DevelopmentServerPort>30917</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50483/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
