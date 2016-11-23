@@ -154,6 +154,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FrontPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,6 +253,8 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\FrontPage\Index.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shop\ShopList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

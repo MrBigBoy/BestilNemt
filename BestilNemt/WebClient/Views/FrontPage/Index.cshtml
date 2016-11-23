@@ -2,10 +2,12 @@
 @model List<Chain>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FrontPage";
 }
 
-<h2>Index</h2>
+<h2>Bestil nemt</h2>
+
+<h2>Kæder</h2>
 @foreach (var item in Model)
 {
     <button name=@item.Name value="@item.Id" class="button" style="width: 200px;" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = item.Id })'"
