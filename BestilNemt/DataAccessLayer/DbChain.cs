@@ -44,9 +44,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("INSERT INTO Chain (chainName, chainCVR) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr)", conn);
+                var command = new SqlCommand("INSERT INTO Chain (chainName, chainCVR, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)", conn);
                 command.Parameters.AddWithValue("ChainName", chain.Name);
                 command.Parameters.AddWithValue("ChainCvr", chain.CVR);
+                command.Parameters.AddWithValue("ChainÍmgPath", chain.ImgPath);
                 id = (int)command.ExecuteScalar();
             }
             return id;
@@ -89,10 +90,11 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr where chainId = @ChainId", conn);
-                command.Parameters.AddWithValue("chainId", chain.Id);
-                command.Parameters.AddWithValue("chainName", chain.Name);
-                command.Parameters.AddWithValue("chainCvr", chain.CVR);
+                var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId", conn);
+                command.Parameters.AddWithValue("ChainId", chain.Id);
+                command.Parameters.AddWithValue("ChainName", chain.Name);
+                command.Parameters.AddWithValue("ChainCvr", chain.CVR);
+                command.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
                 i = command.ExecuteNonQuery();
             }
             return i;
@@ -116,23 +118,6 @@ namespace DataAccessLayer
                 i = command.ExecuteNonQuery();
             }
             return i;
-        }
-
-        /// <summary>
-        /// Return true if the connection if open, else false
-        /// </summary>
-        /// <returns>
-        /// Return true if the connection if open, else false
-        /// </returns>
-        public bool IsOpen()
-        {
-            bool con;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                con = true;
-            }
-            return con;
         }
     }
 }

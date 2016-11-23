@@ -27,7 +27,7 @@ namespace BestilNemtUnitTestTest
         {
             var savingCtr = new SavingCtr(new SavingCtrTestClass());
             var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory",
-                40);
+                40, "Img path");
             var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50,
                 new List<Product>());
             var flag = savingCtr.AddSaving(saving, product);
@@ -39,7 +39,7 @@ namespace BestilNemtUnitTestTest
         {
             var savingCtr = new SavingCtr(new SavingCtrTestClass());
             var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory",
-                40);
+                40, "Img path");
             var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 0, new List<Product>());
             var flag = savingCtr.AddSaving(saving, product);
             Assert.AreEqual(0, flag);
@@ -49,7 +49,7 @@ namespace BestilNemtUnitTestTest
         public void GetSavingById()
         {
             var savingCtr = new SavingCtr(new SavingCtrTestClass());
-            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
             var saving = new Saving(new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             savingCtr.AddSaving(saving, product);
             Assert.IsNotNull(savingCtr.FindSaving(1));
@@ -59,7 +59,7 @@ namespace BestilNemtUnitTestTest
         public void GetSavingByIdFail()
         {
             var savingCtr = new SavingCtr(new SavingCtrTestClass());
-            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
             var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             savingCtr.AddSaving(saving, product);
             Assert.IsNull(savingCtr.FindSaving(2));
@@ -69,8 +69,8 @@ namespace BestilNemtUnitTestTest
         public void FindAllSavings()
         {
             var savingCtr = new SavingCtr(new SavingCtrTestClass());
-            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
-            var product2 = new Product(2, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
+            var product2 = new Product(2, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
             var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             var saving2 = new Saving(2, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             savingCtr.AddSaving(saving, product);
@@ -82,7 +82,7 @@ namespace BestilNemtUnitTestTest
         public void AddAdminCtrDb()
         {
             var savingCtr = new SavingCtr(new DbSaving());
-            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40);
+            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
             var saving = new Saving(new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             var id = savingCtr.AddSaving(saving, product);
             Assert.AreNotEqual(0, id);

@@ -33,6 +33,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="CVR" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ImgPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Persons" nillable="true" type="tns:ArrayOfPerson" />
       <xs:element minOccurs="0" name="Shops" nillable="true" type="tns:ArrayOfShop" />

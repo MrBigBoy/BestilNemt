@@ -17,7 +17,8 @@ namespace DataAccessLayer
                 Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
                 Description = reader.GetString(reader.GetOrdinal("productDescription")),
                 Category = reader.GetString(reader.GetOrdinal("productCategory")),
-                SavingId = reader.GetInt32(reader.GetOrdinal("productSavingId"))
+                SavingId = reader.GetInt32(reader.GetOrdinal("productSavingId")),
+                ImgPath = reader.GetString(reader.GetOrdinal("productImgPath"))
             };
             return product;
         }
@@ -105,7 +106,8 @@ namespace DataAccessLayer
             {
                 Id = reader.GetInt32(reader.GetOrdinal("chainId")),
                 Name = reader.GetString(reader.GetOrdinal("chainName")),
-                CVR = reader.GetString(reader.GetOrdinal("chainCVR"))
+                CVR = reader.GetString(reader.GetOrdinal("chainCVR")),
+                ImgPath = reader.GetString(reader.GetOrdinal("chainImgPath"))
             };
             return chain;
         }

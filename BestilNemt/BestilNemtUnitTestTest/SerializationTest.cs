@@ -206,7 +206,7 @@ namespace BestilNemtUnitTestTest
             var shop = new Shop();
             var shops = new List<Shop>();
             shops.Add(shop);
-            var chain = new Chain(5, "Rema", "3323232", persons, shops);
+            var chain = new Chain(5, "Rema", "3323232", "Img path", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.Id, serializationResult.Id);
         }
@@ -220,7 +220,7 @@ namespace BestilNemtUnitTestTest
             var shop = new Shop();
             var shops = new List<Shop>();
             shops.Add(shop);
-            var chain = new Chain(5, "Rema", "3323232", persons, shops);
+            var chain = new Chain(5, "Rema", "3323232", "Img path", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.Name, serializationResult.Name);
         }
@@ -234,7 +234,7 @@ namespace BestilNemtUnitTestTest
             var shop = new Shop();
             var shops = new List<Shop>();
             shops.Add(shop);
-            var chain = new Chain(5, "Rema", "3323232", persons, shops);
+            var chain = new Chain(5, "Rema", "3323232", "Img path", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
             Assert.AreEqual(chain.CVR, serializationResult.CVR);
         }
@@ -293,42 +293,42 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void TestProductIdSer()
         {
-            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0);
+            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0, "Img path");
             var serializationResult = SerializerTestHelpClass.TestSerialize(product);
             Assert.AreEqual(product.Id, serializationResult.Id);
         }
         [TestMethod]
         public void TestProductNameSer()
         {
-            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0);
+            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0, "Img path");
             var serializationResult = SerializerTestHelpClass.TestSerialize(product);
             Assert.AreEqual(product.Name, serializationResult.Name);
         }
         [TestMethod]
         public void TestProductCatecorySer()
         {
-            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0);
+            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0, "Img path");
             var serializationResult = SerializerTestHelpClass.TestSerialize(product);
             Assert.AreEqual(product.Category, serializationResult.Category);
         }
         [TestMethod]
         public void TestProductDescriptionSer()
         {
-            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0);
+            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0, "Img path");
             var serializationResult = SerializerTestHelpClass.TestSerialize(product);
             Assert.AreEqual(product.Description, serializationResult.Description);
         }
         [TestMethod]
         public void TestProductSavingSer()
         {
-            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0);
+            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0, "Img path");
             var serializationResult = SerializerTestHelpClass.TestSerialize(product);
             Assert.AreEqual(product.SavingId, serializationResult.SavingId);
         }
         [TestMethod]
         public void TestProductPriceSer()
         {
-            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0);
+            var product = new Product(3, "Kat", 20.50m, "Stor kat", "Dyr", 0, "Img path");
             var serializationResult = SerializerTestHelpClass.TestSerialize(product);
             Assert.AreEqual(product.Price, serializationResult.Price);
         }
