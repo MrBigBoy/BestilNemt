@@ -20,5 +20,20 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 1920px;
+}
+
+#wrap {
+    width: 1920px;
+    margin: 0 auto;
+}
+
+#left_col {
+    float: left;
+    width: 950px;
+}
+
+#right_col {
+    float: right;
+    width: 950px;
 }
