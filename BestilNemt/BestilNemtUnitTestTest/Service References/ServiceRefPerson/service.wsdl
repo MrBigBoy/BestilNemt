@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BestilNemtService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBestilNemtService_findPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:findPerson" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_findPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:findPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_createPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:createPerson" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_createPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetALlPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetALlPerson" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetALlPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetALlPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllWarehouses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWarehouses" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllWarehouses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWarehousesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_RemoveWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_RemoveWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShop" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllShops_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShops" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllShops_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShopsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShop" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddShop" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddShopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateShop" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateShopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBestilNemtService">
+    <wsdl:operation name="findPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/findPerson" message="tns:IBestilNemtService_findPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/findPersonResponse" message="tns:IBestilNemtService_findPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/createPerson" message="tns:IBestilNemtService_createPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/createPersonResponse" message="tns:IBestilNemtService_createPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetALlPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetALlPerson" message="tns:IBestilNemtService_GetALlPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetALlPersonResponse" message="tns:IBestilNemtService_GetALlPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouse" message="tns:IBestilNemtService_GetWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouseResponse" message="tns:IBestilNemtService_GetWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWarehouses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses" message="tns:IBestilNemtService_GetAllWarehouses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse" message="tns:IBestilNemtService_GetAllWarehouses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveWarehouse" message="tns:IBestilNemtService_RemoveWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/RemoveWarehouseResponse" message="tns:IBestilNemtService_RemoveWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddWarehouse" message="tns:IBestilNemtService_AddWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddWarehouseResponse" message="tns:IBestilNemtService_AddWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse" message="tns:IBestilNemtService_UpdateWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse" message="tns:IBestilNemtService_UpdateWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetShop" message="tns:IBestilNemtService_GetShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetShopResponse" message="tns:IBestilNemtService_GetShop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllShops">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShops" message="tns:IBestilNemtService_GetAllShops_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShopsResponse" message="tns:IBestilNemtService_GetAllShops_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteShop" message="tns:IBestilNemtService_DeleteShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteShopResponse" message="tns:IBestilNemtService_DeleteShop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddShop" message="tns:IBestilNemtService_AddShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddShopResponse" message="tns:IBestilNemtService_AddShop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateShop" message="tns:IBestilNemtService_UpdateShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateShopResponse" message="tns:IBestilNemtService_UpdateShop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/Login" message="tns:IBestilNemtService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/LoginResponse" message="tns:IBestilNemtService_Login_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="findPerson">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/findPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createPerson">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/createPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetALlPerson">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetALlPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWarehouses">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllWarehouses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/RemoveWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShop">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetShop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllShops">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllShops" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShop">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteShop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddShop">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddShop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateShop">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateShop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BestilNemtService">
+    <wsdl:port name="BasicHttpBinding_IBestilNemtService" binding="tns:BasicHttpBinding_IBestilNemtService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

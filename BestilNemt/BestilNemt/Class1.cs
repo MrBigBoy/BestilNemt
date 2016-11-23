@@ -8,8 +8,8 @@ namespace BestilNemt
 {
     public class Class1
     {
-        //test olek
-        Console.WriteLine("test");
-            //me 
+    // Removed commands
+
+
     }
 }

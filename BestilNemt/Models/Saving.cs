@@ -1,30 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Models
 {
+    [DataContract]
     public class Saving
     {
+        [DataMember]
         public int Id { get; set; }
-        public int Percent { get; set; }
-        public decimal DiscountPrice { get; set; }
+
+        [DataMember]
         public DateTime StartDate { get; set; }
+
+        [DataMember]
         public DateTime EndDate { get; set; }
-        public int MaxAmount { get; set; }
 
-        public Saving(int id, int percent, decimal discountPrice, DateTime satrtDate, DateTime endDate, int maxAmount )
+        [DataMember]
+        public double SavingPercent { get; set; }
+
+        [DataMember]
+        private List<Product> Products { get; set; }
+
+
+        public Saving()
         {
-            this.Id = id;
-            this.Percent = percent;
-            this.DiscountPrice = discountPrice;
-            this.StartDate = satrtDate;
-            this.EndDate = endDate;
-            this.MaxAmount = maxAmount;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
+            SavingPercent = double.NaN;
+            Products = new List<Product>();
+        }
 
+        public Saving(int id, DateTime startdate, DateTime enddate, double savingpercent, List<Product> products)
+        {
+            Id = id;
+            StartDate = startdate;
+            EndDate = enddate;
+            SavingPercent = savingpercent;
+            Products = products;
+        }
+
+        public Saving(DateTime startdate, DateTime enddate, double savingpercent, List<Product> products)
+        {
+            StartDate = startdate;
+            EndDate = enddate;
+            SavingPercent = savingpercent;
+            Products = products;
         }
     }
 }

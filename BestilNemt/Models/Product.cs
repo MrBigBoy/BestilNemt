@@ -1,37 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Models
 {
-
+    [DataContract(IsReference = true)]
     public class Product
     {
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public decimal Price { get; set; }
-        public int Amount { get; set; }
+        [DataMember]
         public string Description { get; set; }
-        public List<Saving> Savings = new List<Saving>();
-       
-        public Product(int id, string name, decimal price, int amount, string description)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.Price = price;
-            this.Amount = amount;
-            this.Description = description; 
-
-        }
+        [DataMember]
+        public string Category { get; set; }
+        [DataMember]
+        public int SavingId { get; set; }
 
         public Product()
         {
 
-
         }
 
+        public Product(string name, decimal price, string description, string category, int savingId) : this()
+        {
+            Name = name;
+            Price = price;
+            Description = description;
+            Category = category;
+            SavingId = savingId;
+        }
+
+        public Product(int id, string name, decimal price, string description, string category, int savingId) : this(name, price, description, category, savingId)
+        {
+            Id = id;
+        }
     }
 }
