@@ -93,6 +93,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
         System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse")]
+        Models.Shop[] GetAllShopsByChainId(int chainId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse")]
+        System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsByChainIdAsync(int chainId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateShop", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateShopResponse")]
         int UpdateShop(Models.Shop shop);
         
@@ -481,6 +487,14 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync() {
             return base.Channel.GetAllShopsAsync();
+        }
+        
+        public Models.Shop[] GetAllShopsByChainId(int chainId) {
+            return base.Channel.GetAllShopsByChainId(chainId);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsByChainIdAsync(int chainId) {
+            return base.Channel.GetAllShopsByChainIdAsync(chainId);
         }
         
         public int UpdateShop(Models.Shop shop) {

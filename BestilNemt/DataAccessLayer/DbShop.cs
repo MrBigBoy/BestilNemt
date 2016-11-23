@@ -134,7 +134,8 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Shop WHERE shopChainId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Shop WHERE shopChainId=@ChainId", conn);
+                cmd.Parameters.AddWithValue("ChainId", chainId);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
