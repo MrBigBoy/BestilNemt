@@ -75,7 +75,6 @@
     </Compile>
     <Compile Include="ShopUnitTest.cs" />
     <Compile Include="WarehouseUnitTest.cs" />
-    <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
