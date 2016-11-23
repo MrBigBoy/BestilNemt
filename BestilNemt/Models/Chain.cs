@@ -13,34 +13,33 @@ namespace Models
         [DataMember]
         public string CVR { get; set; }
         [DataMember]
+        public string ImgPath { get; set; }
+        [DataMember]
         public List<Person> Persons { get; set; }
         [DataMember]
         public List<Shop> Shops { get; set; }
 
         public Chain()
         {
-            Name = null;
-            CVR = null;
             Persons = new List<Person>();
             Shops = new List<Shop>();
         }
 
-        public Chain(int id, string name, string cvr, List<Person> persons, List<Shop> shops)
+        public Chain(int id, string name, string cvr, string imgPath, List<Person> persons, List<Shop> shops)
         {
-            this.Id = id;
+            Id = id;
             Name = name;
             CVR = cvr;
+            ImgPath = imgPath;
             Persons = persons;
             Shops = shops;
-
         }
 
-        public Chain(string name, string cvr)
+        public Chain(string name, string cvr, string imgPath)
         {
             Name = name;
             CVR = cvr;
+            ImgPath = imgPath;
         }
-
-
     }
 }

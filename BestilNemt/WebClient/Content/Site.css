@@ -17,6 +17,31 @@
     white-space: normal;
 }
 
+.button {
+    background-color: #ffffff; /* White */
+    border: none;
+    color: white;
+    padding: 0px 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#wrap {
+    width: 1920px;
+    margin: 0 auto;
+}
+
+#left_col {
+    float: left;
+    width: 950px;
+}
+
+#right_col {
+    float: right;
+    width: 950px;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

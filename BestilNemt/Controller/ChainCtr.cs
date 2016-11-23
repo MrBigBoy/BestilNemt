@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using System;
+using Models;
 using DataAccessLayer;
 using System.Collections.Generic;
 
@@ -40,16 +41,8 @@ namespace Controller
 
         private bool ValidateChainInput(Chain chain)
         {
-            if (chain == null || chain.CVR.Length != 8 || chain.Name.Equals("")
-                || chain.Name == null )
-
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return chain != null && chain.CVR.Length == 8 &&
+                   !String.IsNullOrEmpty(chain.Name);
         }
     }
 }

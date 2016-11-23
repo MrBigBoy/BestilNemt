@@ -52,7 +52,7 @@ namespace BestilNemtUnitTestTest
         public void GetAllPartOrders()
         {
             var partOrderCtr = new PartOrderCtr(new PartOrderTestClass());
-            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40, "Img path");
             var cart = new Cart(new List<PartOrder>(), 100);
             var partOrder1 = new PartOrder(product, 2, 10, cart);
             var partOrder2 = new PartOrder(product, 2, 10, cart);
@@ -66,7 +66,7 @@ namespace BestilNemtUnitTestTest
         public void UpdatePartOrderCtr()
         {
             var partOrderCtr = new PartOrderCtr(new PartOrderTestClass());
-            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40, "Img path");
             var cart = new Cart(new List<PartOrder>(), 100);
             var partOrder = new PartOrder(product, 2, 10, cart);
             partOrderCtr.AddPartOrder(partOrder);
@@ -80,7 +80,7 @@ namespace BestilNemtUnitTestTest
         public void UpdatePartOrderCtrFailAmount()
         {
             var partOrderCtr = new PartOrderCtr(new PartOrderTestClass());
-            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40);
+            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40, "Img path");
             var cart = new Cart(new List<PartOrder>(), 100);
             var partOrder = new PartOrder(product, 2, 10, cart);
             partOrderCtr.AddPartOrder(partOrder);

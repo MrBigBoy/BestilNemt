@@ -171,7 +171,7 @@ namespace BestilNemtUnitTestTest
             var cart = new Cart(new List<PartOrder>(), 100);
             var id = cartDb.AddCart(cart);
             cart.Id = id;
-            var product = new Product("banan", 2, "fjhl", "Frugt", 1);
+            var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");
             var prodId = prodDb.AddProduct(product);
             product.Id = prodId;
             var partOrder = poDb.FindPartOrder(1);
@@ -280,7 +280,7 @@ namespace BestilNemtUnitTestTest
                 var cart = new Cart(new List<PartOrder>(), 100);
                 var id = proxy.AddCart(cart);
                 cart.Id = id;
-                var product = new Product("banan", 2, "fjhl", "Frugt", 1);
+                var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");
                 var prodId = proxy.AddProduct(product);
                 product.Id = prodId;
                 var partOrder = proxy.FindPartOrder(1);
