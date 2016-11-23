@@ -69,13 +69,34 @@ namespace DataAccessLayer
                 command.Parameters.AddWithValue("ProductId", id);
                 var reader = command.ExecuteReader();
 
-                if (!reader.HasRows) return null;
+                if (!reader.HasRows)
+                    return null;
                 while (reader.Read())
                 {
                     product = ObjectBuilder.CreateProduct(reader);
                 }
             }
             return product;
+        }
+
+        public List<Product> FindProductsByName(string input)
+        {
+            var products = new List<Product>();
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var command = new SqlCommand("Select * From Product Where productName Like @name", conn);
+                command.Parameters.AddWithValue("name", input);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    products.Add(product);
+                }
+            }
+            return products;
         }
 
         /// <summary>

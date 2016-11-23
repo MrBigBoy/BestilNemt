@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -44,4 +45,32 @@
 #right_col {
     float: right;
     width: 50%;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 500px;
+}
+
+
+table {
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid;
+}
+
+#descriptionBox {
+    border: 3px solid mediumspringgreen;
+}
+
+#BuyModul {
+    padding: 10px;
+	text-align: right;
+    background: rgba(76, 175, 80, 0.3);
+    border-radius: 10px;
 }

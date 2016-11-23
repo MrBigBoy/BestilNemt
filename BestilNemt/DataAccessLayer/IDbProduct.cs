@@ -10,5 +10,6 @@ namespace DataAccessLayer
         List<Product> FindAllProducts();
         int UpdateProduct(Product product);
         int DeleteProduct(int id);
+        List<Product> FindProductsByName(string input);
     }
 }

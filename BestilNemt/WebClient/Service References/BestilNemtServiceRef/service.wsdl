@@ -349,6 +349,12 @@
   <wsdl:message name="IBestilNemtService_DeleteSaving_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteSavingResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_FindProductsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindProductsByName" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_FindProductsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindProductsByNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
     <wsdl:operation name="FindCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomer" message="tns:IBestilNemtService_FindCustomer_InputMessage" />
@@ -577,6 +583,10 @@
     <wsdl:operation name="DeleteSaving">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteSaving" message="tns:IBestilNemtService_DeleteSaving_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteSavingResponse" message="tns:IBestilNemtService_DeleteSaving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindProductsByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindProductsByName" message="tns:IBestilNemtService_FindProductsByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindProductsByNameResponse" message="tns:IBestilNemtService_FindProductsByName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
@@ -1087,6 +1097,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteSaving">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteSaving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindProductsByName">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindProductsByName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

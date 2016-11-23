@@ -44,5 +44,10 @@ namespace Controller
         {
             return DbProduct.FindAllProducts();
         }
+
+        public List<Product> FindProductsByName(string input)
+        {
+            return DbProduct.FindProductsByName(input);
+        }
     }
 }
