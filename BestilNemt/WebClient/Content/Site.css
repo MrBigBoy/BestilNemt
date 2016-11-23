@@ -40,5 +40,8 @@ th, td {
 }
 
 #BuyModul {
+    padding: 10px;
 	text-align: right;
+    background: rgba(76, 175, 80, 0.3);
+    border-radius: 10px;
 }
