@@ -351,6 +351,9 @@ namespace WebClient.BestilNemtServiceRef {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImgPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -391,6 +394,19 @@ namespace WebClient.BestilNemtServiceRef {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImgPath {
+            get {
+                return this.ImgPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImgPathField, value) != true)) {
+                    this.ImgPathField = value;
+                    this.RaisePropertyChanged("ImgPath");
                 }
             }
         }
@@ -697,6 +713,9 @@ namespace WebClient.BestilNemtServiceRef {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ImgPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -750,6 +769,19 @@ namespace WebClient.BestilNemtServiceRef {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImgPath {
+            get {
+                return this.ImgPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImgPathField, value) != true)) {
+                    this.ImgPathField = value;
+                    this.RaisePropertyChanged("ImgPath");
                 }
             }
         }
