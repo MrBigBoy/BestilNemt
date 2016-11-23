@@ -174,6 +174,9 @@ namespace WcfService
 
         [OperationContract]
         int DeleteSaving(int id);
+
+        [OperationContract]
+        List<Product> FindProductsByName(string input);
     }
 }
 

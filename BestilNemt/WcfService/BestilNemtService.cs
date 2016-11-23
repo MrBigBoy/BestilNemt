@@ -531,6 +531,11 @@ namespace WcfService
             return SavingCtr.DeleteSaving(id);
         }
 
+        public List<Product> FindProductsByName(string input)
+        {
+            return ProductCtr.FindProductsByName(input);
+        }
+
         //Warehouse
 
         public int AddWarehouse(Warehouse warehouse)

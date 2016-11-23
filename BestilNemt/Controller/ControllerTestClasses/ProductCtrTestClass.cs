@@ -50,5 +50,10 @@ namespace Controller.ControllerTestClasses
         {
             return products.Remove(FindProduct(id)) ? 1 : 0;
         }
+
+        public List<Product> FindProductsByName(string input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
