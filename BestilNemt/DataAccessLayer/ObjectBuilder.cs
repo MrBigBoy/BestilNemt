@@ -21,6 +21,7 @@ namespace DataAccessLayer
                 ImgPath = reader.GetString(reader.GetOrdinal("productImgPath"))
             };
             return product;
+
         }
 
         public static Admin CreateAdmin(SqlDataReader reader)
