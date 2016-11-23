@@ -380,6 +380,28 @@ namespace WcfService
         }
 
         /// <summary>
+        /// Get a list of all Sold Products
+        /// </summary>
+        /// <returns>
+        /// List of Product
+        /// </returns>
+        public List<Product> GetAllSoldProducts()
+        {
+            return ProductCtr.FindAllSoldProducts();
+        }
+
+        /// <summary>
+        /// Get a list of all Products with a saving
+        /// </summary>
+        /// <returns>
+        /// List of Product
+        /// </returns>
+        public List<Product> GetAllProductsWithSavings()
+        {
+            return ProductCtr.FindAllProductsWithSavings();
+        }
+
+        /// <summary>
         /// Update a Product
         /// </summary>
         /// <param name="product"></param>

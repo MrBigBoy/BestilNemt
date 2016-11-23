@@ -18,8 +18,9 @@ namespace WebClient.Controllers
             {
                 proxy.Open();
                 var chains = proxy.GetAllChains();
-                var products = proxy.GetAllProducts();
-                var tuple = new Tuple<List<Chain>, List<Product>, List<Product>>(chains, products, products);
+                var products = proxy.GetAllProductsWithSavings();
+                var soldProducts = proxy.GetAllSoldProducts();
+                var tuple = new Tuple<List<Chain>, List<Product>, List<Product>>(chains, soldProducts, products);
                 return View(tuple);
             }
         }

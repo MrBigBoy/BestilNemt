@@ -35,6 +35,16 @@ namespace Controller.ControllerTestClasses
             return products;
         }
 
+        public List<Product> FindAllSoldProducts()
+        {
+            return products;
+        }
+
+        public List<Product> FindAllProductsWithSavings()
+        {
+            return products;
+        }
+
         public int UpdateProduct(Product product)
         {
             var returnedProduct = FindProduct(product.Id);

@@ -107,6 +107,12 @@ namespace WcfService
         List<Product> GetAllProducts();
 
         [OperationContract]
+        List<Product> GetAllSoldProducts();
+
+        [OperationContract]
+        List<Product> GetAllProductsWithSavings();
+
+        [OperationContract]
         int UpdateProduct(Product product);
 
         [OperationContract]

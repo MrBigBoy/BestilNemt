@@ -123,6 +123,54 @@ namespace DataAccessLayer
         }
 
         /// <summary>
+        /// Return a List of all Products
+        /// </summary>
+        /// <returns>
+        /// List of products
+        /// </returns>
+        public List<Product> FindAllSoldProducts()
+        {
+            var products = new List<Product>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var command = new SqlCommand("SELECT * FROM Cart, PartOrder, Product WHERE cartId = partOrderCartId AND partOrderProductId = productId", conn);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    products.Add(product);
+                }
+            }
+            return products;
+        }
+
+        /// <summary>
+        /// Return a List of all Products
+        /// </summary>
+        /// <returns>
+        /// List of products
+        /// </returns>
+        public List<Product> FindAllProductsWithSavings()
+        {
+            var products = new List<Product>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var command = new SqlCommand("SELECT * FROM Product, Saving WHERE productSavingId = savingId", conn);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    products.Add(product);
+                }
+            }
+            return products;
+        }
+
+
+
+        /// <summary>
         /// Update a Product
         /// </summary>
         /// <param name="product"></param>
