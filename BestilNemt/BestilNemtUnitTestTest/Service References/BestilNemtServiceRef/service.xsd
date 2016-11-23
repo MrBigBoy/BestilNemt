@@ -656,24 +656,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllWarehousesByShopId">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="shopId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FindAllWarehousesByShopIdResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllWarehousesByShopIdResult" nillable="true" type="q43:ArrayOfWarehouse" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="UpdateWarehouse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q44:Warehouse" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q43:Warehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -701,8 +687,8 @@
   <xs:element name="AddSaving">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q45:Saving" />
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="product" nillable="true" type="q46:Product" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q44:Saving" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="product" nillable="true" type="q45:Product" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -710,60 +696,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AddSavingResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FindSaving">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="id" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FindSavingResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindSavingResult" nillable="true" type="q47:Saving" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FindAllSavings">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FindAllSavingsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllSavingsResult" nillable="true" type="q48:ArrayOfSaving" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateSaving">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q49:Saving" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateSavingResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateSavingResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteSaving">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="id" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteSavingResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteSavingResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

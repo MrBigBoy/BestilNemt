@@ -303,12 +303,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesResponse")]
         System.Threading.Tasks.Task<Models.Warehouse[]> FindAllWarehousesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopIdResponse")]
-        Models.Warehouse[] FindAllWarehousesByShopId(int shopId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopIdResponse")]
-        System.Threading.Tasks.Task<Models.Warehouse[]> FindAllWarehousesByShopIdAsync(int shopId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         int UpdateWarehouse(Models.Warehouse warehouse);
         
@@ -326,30 +320,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
         System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Product product);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindSaving", ReplyAction="http://tempuri.org/IBestilNemtService/FindSavingResponse")]
-        Models.Saving FindSaving(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindSaving", ReplyAction="http://tempuri.org/IBestilNemtService/FindSavingResponse")]
-        System.Threading.Tasks.Task<Models.Saving> FindSavingAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllSavingsResponse")]
-        Models.Saving[] FindAllSavings();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllSavingsResponse")]
-        System.Threading.Tasks.Task<Models.Saving[]> FindAllSavingsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateSaving", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateSavingResponse")]
-        int UpdateSaving(Models.Saving saving);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateSaving", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateSavingResponse")]
-        System.Threading.Tasks.Task<int> UpdateSavingAsync(Models.Saving saving);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
-        int DeleteSaving(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
-        System.Threading.Tasks.Task<int> DeleteSavingAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -763,14 +733,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.FindAllWarehousesAsync();
         }
         
-        public Models.Warehouse[] FindAllWarehousesByShopId(int shopId) {
-            return base.Channel.FindAllWarehousesByShopId(shopId);
-        }
-        
-        public System.Threading.Tasks.Task<Models.Warehouse[]> FindAllWarehousesByShopIdAsync(int shopId) {
-            return base.Channel.FindAllWarehousesByShopIdAsync(shopId);
-        }
-        
         public int UpdateWarehouse(Models.Warehouse warehouse) {
             return base.Channel.UpdateWarehouse(warehouse);
         }
@@ -793,38 +755,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Product product) {
             return base.Channel.AddSavingAsync(saving, product);
-        }
-        
-        public Models.Saving FindSaving(int id) {
-            return base.Channel.FindSaving(id);
-        }
-        
-        public System.Threading.Tasks.Task<Models.Saving> FindSavingAsync(int id) {
-            return base.Channel.FindSavingAsync(id);
-        }
-        
-        public Models.Saving[] FindAllSavings() {
-            return base.Channel.FindAllSavings();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Saving[]> FindAllSavingsAsync() {
-            return base.Channel.FindAllSavingsAsync();
-        }
-        
-        public int UpdateSaving(Models.Saving saving) {
-            return base.Channel.UpdateSaving(saving);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateSavingAsync(Models.Saving saving) {
-            return base.Channel.UpdateSavingAsync(saving);
-        }
-        
-        public int DeleteSaving(int id) {
-            return base.Channel.DeleteSaving(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteSavingAsync(int id) {
-            return base.Channel.DeleteSavingAsync(id);
         }
     }
 }

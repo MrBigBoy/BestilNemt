@@ -155,7 +155,7 @@ namespace BestilNemtUnitTestTest
         public void AddProductDb()
         {
             var dbProduct = new DbProduct();
-            var product = new Product("The product name", 23.45m, "The product description", "The product catagory", 1);
+            var product = new Product("The product name", 23.45m, "The product description", "The product catagory", 40);
             var flag = dbProduct.AddProduct(product);
             Assert.AreNotEqual(0, flag);
         }
