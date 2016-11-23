@@ -1443,6 +1443,12 @@ namespace WebClient.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
         System.Threading.Tasks.Task<int> DeleteSavingAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/FindProductsByNameResponse")]
+        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> FindProductsByName(string input);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/FindProductsByNameResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> FindProductsByNameAsync(string input);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1926,6 +1932,14 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> DeleteSavingAsync(int id) {
             return base.Channel.DeleteSavingAsync(id);
+        }
+        
+        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> FindProductsByName(string input) {
+            return base.Channel.FindProductsByName(input);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> FindProductsByNameAsync(string input) {
+            return base.Channel.FindProductsByNameAsync(input);
         }
     }
 }

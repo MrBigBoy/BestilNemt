@@ -1,0 +1,18 @@
+﻿@using WebClient.BestilNemtServiceRef
+@model Product
+
+@{
+    ViewBag.Title = "Product Page";
+}
+
+<h1>@Model.Name</h1>
+<div id="BuyModul">
+    <p>Pris: @Model.Price kr</p>
+    
+
+</div>
+
+<div id="descriptionBox">
+    <h3>Produkt information</h3>
+    <p>@Model.Description</p>
+</div>
