@@ -21,26 +21,30 @@
     background-color: #ffffff; /* White */
     border: none;
     color: white;
-    padding: 0px 0px;
+    padding: 0 0;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
 }
 
+.frontPage {
+    text-align: center;
+}
+
 #wrap {
-    width: 1920px;
+    width: 100%;
     margin: 0 auto;
+    text-align: center;
 }
 
 #left_col {
     float: left;
-    width: 950px;
+    width: 50%;
 }
 
 #right_col {
     float: right;
-    width: 950px;
+    width: 50%;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -67,6 +71,7 @@ th, td {
 #BuyModul {
     padding: 10px;
 	text-align: right;
+    background: #4caf50;
     background: rgba(76, 175, 80, 0.3);
     border-radius: 10px;
 }

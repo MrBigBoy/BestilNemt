@@ -1332,6 +1332,18 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllProductsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllProductsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSoldProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSoldProductsResponse")]
+        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllSoldProducts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSoldProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSoldProductsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllSoldProductsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllProductsWithSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllProductsWithSavingsResponse")]
+        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllProductsWithSavings();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllProductsWithSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllProductsWithSavingsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllProductsWithSavingsAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateProduct", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateProductResponse")]
         int UpdateProduct(WebClient.BestilNemtServiceRef.Product product);
         
@@ -1772,6 +1784,22 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllProductsAsync() {
             return base.Channel.GetAllProductsAsync();
+        }
+        
+        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllSoldProducts() {
+            return base.Channel.GetAllSoldProducts();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllSoldProductsAsync() {
+            return base.Channel.GetAllSoldProductsAsync();
+        }
+        
+        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllProductsWithSavings() {
+            return base.Channel.GetAllProductsWithSavings();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllProductsWithSavingsAsync() {
+            return base.Channel.GetAllProductsWithSavingsAsync();
         }
         
         public int UpdateProduct(WebClient.BestilNemtServiceRef.Product product) {

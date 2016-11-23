@@ -1,45 +1,37 @@
 ﻿@using WebClient.BestilNemtServiceRef
-@model List<Chain>
+@model Tuple<List<Chain>, List<Product>, List<Product>>
 
 @{
     ViewBag.Title = "FrontPage";
 }
 
-@foreach (var item in Model)
+@foreach (var item in Model.Item1)
 {
-    var imgPath = "/Images/" + @item.ImgPath;
-    <button name=@item.Name value="@item.Id" class="button" style="width: 200px;" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = item.Id })'">
-        <img src=@imgPath alt="@item.Name" height="200" width="200">
+    var imgPath = "/Images/Chains/" + @item.ImgPath;
+    <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = item.Id })'">
+        <img src=@imgPath alt="@item.Name" style="width:200px;border:0;">
     </button>
 }
 
 <div id="wrap">
     <div id="left_col">
-        <h2>Populære produkter</h2>
-        <table>
-            <tr>
-                @foreach (var item in Model)
-                {
-                    <button name=@item.Name value="@item.Id" class="button" style="width: 100px; height: 100px;" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = item.Id })'">
-                        <img src="http://www.klapjob.dk/media/1158/foetexlille.jpg" alt="@item.Name" height="100" width="100">
-                    </button>
-                }
-            </tr>
-
-        </table>
+        <h2 class="frontPage">Populære produkter</h2>
+        @foreach (var item in Model.Item2)
+        {
+            var imgPath = "/Images/Products/" + @item.ImgPath;
+            <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("Index", "Product", new { id = item.Id })'">
+                <img src=@imgPath alt="@item.Name" style="width:200px;border:0;">
+            </button>
+        }
     </div>
     <div id="right_col">
-        <h2>Aktuelle tilbud</h2>
-        <table>
-            <tr>
-                @foreach (var item in Model)
-                {
-                    <button name=@item.Name value="@item.Id" class="button" style="width: 100px; height: 100px;" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = item.Id })'">
-                        <img src="http://www.klapjob.dk/media/1158/foetexlille.jpg" alt="@item.Name" height="100" width="100">
-                    </button>
-                }
-            </tr>
-
-        </table>
+        <h2 class="frontPage">Aktuelle tilbud</h2>
+        @foreach (var item in Model.Item3)
+        {
+            var imgPath = "/Images/Products/" + @item.ImgPath;
+            <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("Index", "Product", new { id = item.Id })'">
+                <img src=@imgPath alt="@item.Name" style="width:200px;border:0;">
+            </button>
+        }
     </div>
 </div>
