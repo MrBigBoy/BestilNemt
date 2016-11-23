@@ -1,0 +1,13 @@
+﻿@using WebClient.BestilNemtServiceRef
+
+@model List<Chain>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@foreach (var chain in Model)
+{
+    <h3>@chain.Name</h3>
+}

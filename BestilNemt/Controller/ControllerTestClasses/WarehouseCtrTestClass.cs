@@ -1,51 +1,56 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
 namespace Controller.ControllerTestClasses
 {
-    public class ShopCtrTestClass : IDbShop
+    public class WarehouseCtrTestClass: IDbWarehouse
     {
-        private List<Shop> shops = new List<Shop>();
+        private List<Warehouse> warehouses = new List<Warehouse>();
         private int idCounter = 1;
-
-        public int AddShop(Shop shop)
+        public int AddWarehouse(Warehouse warehouse)
         {
-            shop.Id = idCounter;
-            shops.Add(shop);
+            warehouse.Id = idCounter;
+            warehouses.Add(warehouse);
             idCounter++;
-            return shop.Id;
+            return warehouse.Id;
         }
 
-        public int DeleteShop(int id)
+        public Warehouse FindWarehouse(int id)
         {
-            return shops.Remove(FindShop(id)) ? 1 : 0;
+            return warehouses.FirstOrDefault(w => w.Id == id);
         }
 
-        public int UpdateShop(Shop shop)
+        public List<Warehouse> FindAllWarehouses()
         {
-            var returnedShop = FindShop(shop.Id);
-            returnedShop.Name = shop.Name;
-            returnedShop.Address = shop.Address;
-            returnedShop.Cvr = shop.Cvr;
-            returnedShop.Warehouses = shop.Warehouses;
+            return warehouses;
+        }
+
+        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
+        {
+            return warehouses.Where(w => w.Shop.Id == shopId).ToList();
+        }
+
+        public int UpdateWarehouse(Warehouse warehouse)
+        {
+            var returnedWarehouse = FindWarehouse(warehouse.Id);
+            returnedWarehouse.Stock = warehouse.Stock;
+            returnedWarehouse.MinStock = warehouse.Stock;
+            returnedWarehouse.Shop = warehouse.Shop;
+            returnedWarehouse.Product = warehouse.Product;
             return 1;
         }
 
-        public List<Shop> FindAllShops()
+        public int DeleteWarehouse(int id)
         {
-            return shops;
+            return warehouses.Remove(FindWarehouse(id)) ? 1 : 0;
+
         }
 
-        public List<Shop> FindAllShopsByChainId(int chainId)
-        {
-            return shops.Where(shop => shop.Chain.Id == chainId).ToList();
-        }
-
-        public Shop FindShop(int id)
-        {
-            return shops.FirstOrDefault(shop => shop.Id == id);
-        }
+       
     }
 }

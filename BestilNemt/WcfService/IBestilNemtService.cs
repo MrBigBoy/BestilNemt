@@ -47,6 +47,9 @@ namespace WcfService
         List<Shop> GetAllShops();
 
         [OperationContract]
+        List<Shop> GetAllShopsByChainId(int chainId);
+
+        [OperationContract]
         int UpdateShop(Shop shop);
 
         [OperationContract]
