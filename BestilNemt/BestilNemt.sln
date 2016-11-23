@@ -24,6 +24,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostApplication", "ConsoleApplication1\HostApplication.csproj", "{7ECAB184-581C-409B-A24C-065160E7C726}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{EAF88164-DFFE-48E6-86CF-4A2BB63FD90A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2662365-442D-4CDC-BA64-0CC2D500A3E3} = {F2662365-442D-4CDC-BA64-0CC2D500A3E3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
