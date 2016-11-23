@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebClient.BestilNemtServiceRef;
 
 namespace WebClient.Controllers
 {
@@ -16,8 +17,9 @@ namespace WebClient.Controllers
 
         public ActionResult Product()
         {
-           // using(var prox)
-            return View(); 
+            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var product = proxy.GetAllProducts(); 
+            return View(product); 
         }
     }
 }
