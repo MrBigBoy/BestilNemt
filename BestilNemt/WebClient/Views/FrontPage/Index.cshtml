@@ -19,7 +19,7 @@
         @foreach (var item in Model.Item2)
         {
             var imgPath = "/Images/ProductPictures/" + @item.ImgPath;
-            <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("Index", "Product", new { id = item.Id })'">
+            <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ProductPage", "Product", new { id = item.Id })'">
                 <img src=@imgPath alt="@item.Name" style="width:200px;border:0;">
             </button>
         }
@@ -29,7 +29,7 @@
         @foreach (var item in Model.Item3)
         {
             var imgPath = "/Images/ProductPictures/" + @item.ImgPath;
-            <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("Index", "Product", new { id = item.Id })'">
+            <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ProductPage", "Product", new { id = item.Id })'">
                 <img src=@imgPath alt="@item.Name" style="width:200px;border:0;">
             </button>
         }

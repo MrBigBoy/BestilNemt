@@ -120,6 +120,7 @@ namespace DataAccessLayer
                 Id = reader.GetInt32(reader.GetOrdinal("shopId")),
                 Name = reader.GetString(reader.GetOrdinal("shopName")),
                 Address = reader.GetString(reader.GetOrdinal("shopAddress")),
+                OpeningTime = reader.GetString(reader.GetOrdinal("shopOpeningTime")),
                 Cvr = reader.GetString(reader.GetOrdinal("shopCvr"))
             };
             return shop;

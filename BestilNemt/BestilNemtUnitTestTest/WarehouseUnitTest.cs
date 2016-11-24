@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Controller;
 using Controller.ControllerTestClasses;
 using DataAccessLayer;
@@ -27,8 +24,8 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse = new Warehouse(10, 5, new Product(), new Shop());
-            int id = warehouseCtr.AddWarehouse(warehouse);
+            var warehouse = new Warehouse(10, 5, new Product(), new Shop());
+            var id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreNotEqual(0, id);
         }
 
@@ -36,8 +33,8 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseFailMinStockCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse = new Warehouse(10, -5, new Product(), new Shop());
-            int id = warehouseCtr.AddWarehouse(warehouse);
+            var warehouse = new Warehouse(10, -5, new Product(), new Shop());
+            var id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreEqual(0, id);
         }
 
@@ -45,8 +42,8 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseMinStockZeroCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse = new Warehouse(10, 0, new Product(), new Shop());
-            int id = warehouseCtr.AddWarehouse(warehouse);
+            var warehouse = new Warehouse(10, 0, new Product(), new Shop());
+            var id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreNotEqual(0, id);
         }
 
@@ -54,8 +51,8 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseFailStockCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse = new Warehouse(-1, 5, new Product(), new Shop());
-            int id = warehouseCtr.AddWarehouse(warehouse);
+            var warehouse = new Warehouse(-1, 5, new Product(), new Shop());
+            var id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreEqual(0, id);
         }
 
@@ -63,8 +60,8 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseStockZeroCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse = new Warehouse(0, 5, new Product(), new Shop());
-            int id = warehouseCtr.AddWarehouse(warehouse);
+            var warehouse = new Warehouse(0, 5, new Product(), new Shop());
+            var id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreNotEqual(0, id);
         }
 
@@ -72,8 +69,8 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseFailShopNullCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse = new Warehouse(10, 5, new Product(), null);
-            int id = warehouseCtr.AddWarehouse(warehouse);
+            var warehouse = new Warehouse(10, 5, new Product(), null);
+            var id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreEqual(0, id);
         }
 
@@ -81,10 +78,10 @@ namespace BestilNemtUnitTestTest
         public void FindWarehouseCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
-            Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
-            int id1 = warehouseCtr.AddWarehouse(warehouse1);
-            int id2 = warehouseCtr.AddWarehouse(warehouse2);
+            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
+            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
+            var id1 = warehouseCtr.AddWarehouse(warehouse1);
+            warehouseCtr.AddWarehouse(warehouse2);
             var rw = warehouseCtr.FindWarehouse(id1);
             Assert.IsNotNull(rw);
         }
@@ -93,10 +90,10 @@ namespace BestilNemtUnitTestTest
         public void FindWarehouseInvalidIdCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
-            Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
-            int id1 = warehouseCtr.AddWarehouse(warehouse1);
-            int id2 = warehouseCtr.AddWarehouse(warehouse2);
+            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
+            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
+            warehouseCtr.AddWarehouse(warehouse1);
+            warehouseCtr.AddWarehouse(warehouse2);
             var rw = warehouseCtr.FindWarehouse(0);
             Assert.IsNull(rw);
         }
@@ -105,8 +102,8 @@ namespace BestilNemtUnitTestTest
         public void FindAllWarehousesCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            Warehouse warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
-            Warehouse warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
+            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
+            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
             var count = warehouseCtr.FindAllWarehouses().Count;
@@ -117,9 +114,9 @@ namespace BestilNemtUnitTestTest
         public void FindAllWarehousesByShopIdCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "12312312", null, null));
-            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
-            var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
+            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
+            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
+            var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
             warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
             warehouseCtr.AddWarehouse(warehouse3);
@@ -131,9 +128,9 @@ namespace BestilNemtUnitTestTest
         public void FindAllWarehousesByShopId1Ctr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "12312312", null, null));
-            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
-            var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "12312312", null, null));
+            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
+            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
+            var warehouse3 = new Warehouse(1, 3, new Product(), new Shop(2, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
             warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
             warehouseCtr.AddWarehouse(warehouse3);
@@ -149,7 +146,7 @@ namespace BestilNemtUnitTestTest
             var warehouseToUpdate = new Warehouse(10, 5, new Product(), new Shop());
             var id = warehouseCtr.AddWarehouse(warehouseToUpdate);
             var warehouseNew = new Warehouse(id, 1, 3, new Product(), new Shop());
-            var flag = warehouseCtr.UpdateWarehouse(warehouseNew);
+            warehouseCtr.UpdateWarehouse(warehouseNew);
             var updatedWarehouse = warehouseCtr.FindWarehouse(id);
             Assert.AreEqual(warehouseNew.Stock, updatedWarehouse.Stock);
         }
@@ -173,13 +170,14 @@ namespace BestilNemtUnitTestTest
                 Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
+                OpeningTime = "Manday Never",
                 Chain = new Chain(),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            Warehouse warehouse = new Warehouse(10, 5, prod, shop);
+            var warehouse = new Warehouse(10, 5, prod, shop);
             var warehouseDb = new DbWarehouse();
-            int id = warehouseDb.AddWarehouse(warehouse);
+            var id = warehouseDb.AddWarehouse(warehouse);
             warehouseDb.DeleteWarehouse(id);
             Assert.AreNotEqual(0, id);
         }
@@ -203,12 +201,13 @@ namespace BestilNemtUnitTestTest
                 Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
+                OpeningTime = "Manday Never",
                 Chain = new Chain(),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            Warehouse warehouse = new Warehouse(10, 5, prod, shop);
-            int id = warehouseDb.AddWarehouse(warehouse);
+            var warehouse = new Warehouse(10, 5, prod, shop);
+            var id = warehouseDb.AddWarehouse(warehouse);
             var rw = warehouseDb.FindWarehouse(id);
             Assert.IsNotNull(rw);
         }
@@ -256,6 +255,7 @@ namespace BestilNemtUnitTestTest
                 Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
+                OpeningTime = "Manday Never",
                 Chain = new Chain(),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
@@ -286,15 +286,16 @@ namespace BestilNemtUnitTestTest
                 Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
+                OpeningTime = "Manday Never",
                 Chain = new Chain(),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            Warehouse warehouse = new Warehouse(10, 5, prod, shop);
+            var warehouse = new Warehouse(10, 5, prod, shop);
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                int id = proxy.AddWarehouse(warehouse);
+                var id = proxy.AddWarehouse(warehouse);
                 proxy.DeleteWarehouse(id);
                 Assert.AreNotEqual(0, id);
             }
@@ -321,13 +322,13 @@ namespace BestilNemtUnitTestTest
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            Warehouse warehouse1 = new Warehouse(10, 5, prod, shop);
-            Warehouse warehouse2 = new Warehouse(10, 5, prod, shop);
+            var warehouse1 = new Warehouse(10, 5, prod, shop);
+            var warehouse2 = new Warehouse(10, 5, prod, shop);
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                int id1 = proxy.AddWarehouse(warehouse1);
-                int id2 = proxy.AddWarehouse(warehouse2);
+                var id1 = proxy.AddWarehouse(warehouse1);
+                var id2 = proxy.AddWarehouse(warehouse2);
                 var rw = proxy.FindWarehouse(id1);
                 proxy.DeleteWarehouse(id1);
                 proxy.DeleteWarehouse(id2);
@@ -358,13 +359,13 @@ namespace BestilNemtUnitTestTest
                 Warehouses = new List<Warehouse>()
             };
 
-            Warehouse warehouse1 = new Warehouse(10, 5, prod, shop);
-            Warehouse warehouse2 = new Warehouse(10, 5, prod, shop);
+            var warehouse1 = new Warehouse(10, 5, prod, shop);
+            var warehouse2 = new Warehouse(10, 5, prod, shop);
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                int id1 = proxy.AddWarehouse(warehouse1);
-                int id2 = proxy.AddWarehouse(warehouse2);
+                var id1 = proxy.AddWarehouse(warehouse1);
+                var id2 = proxy.AddWarehouse(warehouse2);
                 proxy.DeleteWarehouse(id1);
                 var rw = proxy.FindWarehouse(id1);
                 proxy.DeleteWarehouse(id2);

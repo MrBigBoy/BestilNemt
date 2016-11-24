@@ -485,6 +485,9 @@ namespace WebClient.BestilNemtServiceRef {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OpeningTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Warehouse> WarehousesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -558,6 +561,19 @@ namespace WebClient.BestilNemtServiceRef {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OpeningTime {
+            get {
+                return this.OpeningTimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OpeningTimeField, value) != true)) {
+                    this.OpeningTimeField = value;
+                    this.RaisePropertyChanged("OpeningTime");
                 }
             }
         }
@@ -722,7 +738,7 @@ namespace WebClient.BestilNemtServiceRef {
         private decimal PriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SavingIdField;
+        private System.Nullable<int> SavingIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -813,7 +829,7 @@ namespace WebClient.BestilNemtServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SavingId {
+        public System.Nullable<int> SavingId {
             get {
                 return this.SavingIdField;
             }

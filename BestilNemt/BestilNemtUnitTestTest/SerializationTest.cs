@@ -244,7 +244,7 @@ namespace BestilNemtUnitTestTest
         {
             var warehouses = new List<Warehouse>();
             var chain = new Chain();
-            var shop = new Shop(3, "name", "Address", "long cvr", chain, warehouses);
+            var shop = new Shop(3, "name", "Address", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "long cvr", chain, warehouses);
             var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
             Assert.AreEqual(shop.Id, serializationResult.Id);
         }
@@ -254,7 +254,7 @@ namespace BestilNemtUnitTestTest
         {
             var warehouses = new List<Warehouse>();
             var chain = new Chain();
-            var shop = new Shop(3, "name", "Address", "long cvr", chain, warehouses);
+            var shop = new Shop(3, "name", "Address", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "long cvr", chain, warehouses);
             var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
             Assert.AreEqual(shop.Name, serializationResult.Name);
         }
@@ -264,7 +264,7 @@ namespace BestilNemtUnitTestTest
         {
             var warehouses = new List<Warehouse>();
             var chain = new Chain();
-            var shop = new Shop(3, "name", "Address", "long cvr", chain, warehouses);
+            var shop = new Shop(3, "name", "Address", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "long cvr", chain, warehouses);
             var serializationResult = SerializerTestHelpClass.TestSerialize(shop);
             Assert.AreEqual(shop.Address, serializationResult.Address);
         }

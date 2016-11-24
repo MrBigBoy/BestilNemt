@@ -16,6 +16,9 @@ namespace Models
         public string Address { get; set; }
 
         [DataMember]
+        public string OpeningTime { get; set; }
+
+        [DataMember]
         public string Cvr { get; set; }
 
         [DataMember]
@@ -29,11 +32,12 @@ namespace Models
             Warehouses = new List<Warehouse>();
         }
 
-        public Shop(int id, string name, string address, string cvr, Chain chain, List<Warehouse> warehouses)
+        public Shop(int id, string name, string address, string cvr, string openingTime, Chain chain, List<Warehouse> warehouses)
         {
             Id = id;
             Name = name;
             Address = address;
+            OpeningTime = openingTime;
             Cvr = cvr;
             Chain = chain;
             Warehouses = warehouses;

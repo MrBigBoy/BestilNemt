@@ -59,6 +59,7 @@
       <xs:element minOccurs="0" name="Cvr" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OpeningTime" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Warehouses" nillable="true" type="tns:ArrayOfWarehouse" />
     </xs:sequence>
   </xs:complexType>
@@ -87,7 +88,7 @@
       <xs:element minOccurs="0" name="ImgPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Price" type="xs:decimal" />
-      <xs:element minOccurs="0" name="SavingId" type="xs:int" />
+      <xs:element minOccurs="0" name="SavingId" nillable="true" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
