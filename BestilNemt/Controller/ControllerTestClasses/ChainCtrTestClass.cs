@@ -33,7 +33,7 @@ namespace Controller.ControllerTestClasses
         {
             var returnedChain = GetChain(chain.Id);
             returnedChain.Name = chain.Name;
-            returnedChain.CVR = chain.CVR;
+            returnedChain.Cvr = chain.Cvr;
             returnedChain.Persons = chain.Persons;
             returnedChain.Shops = chain.Shops;
 

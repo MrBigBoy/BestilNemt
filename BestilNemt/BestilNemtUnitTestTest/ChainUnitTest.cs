@@ -121,7 +121,7 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1,
                 Name = "Hello World",
-                CVR = "12121212"
+                Cvr = "12121212"
             };
             chainCtr.UpdateChain(chain2);
             var returnedChain = chainCtr.GetChain(1);
@@ -153,7 +153,7 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain
             {
                 Name = "MiniChain",
-                CVR = "12121212"
+                Cvr = "12121212"
             };
             chainCtr.AddChain(chain);
             var id = chainCtr.DeleteChain(chain.Id);
@@ -197,7 +197,8 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1,
                 Name = "Test World",
-                CVR = "12121212"
+                Cvr = "12121212",
+                ImgPath = "Img Path"
             };
             var returnedValue = dbChain.UpdateChain(chain);
             Assert.AreEqual(1, returnedValue);
@@ -216,7 +217,8 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 0,
                 Name = "Test World",
-                CVR = "12121212"
+                Cvr = "12121212",
+                ImgPath = "Img Path"
             };
             var returnedValue = dbChain.UpdateChain(chain);
             Assert.AreNotEqual(1, returnedValue);
@@ -314,7 +316,8 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 1,
                 Name = "Test World",
-                CVR = "12121212"
+                Cvr = "12121212",
+                ImgPath = "Img Path"
             };
             var returnedValue = chainCtr.UpdateChain(chain);
             Assert.AreEqual(1, returnedValue);
@@ -333,7 +336,8 @@ namespace BestilNemtUnitTestTest
             {
                 Id = 0,
                 Name = "Test World",
-                CVR = "12121212"
+                Cvr = "12121212",
+                ImgPath = "Img Path"
             };
             var returnedValue = chainCtr.UpdateChain(chain);
             Assert.AreNotEqual(1, returnedValue);
@@ -474,7 +478,8 @@ namespace BestilNemtUnitTestTest
                 {
                     Id = returnedId,
                     Name = "UpdatedName",
-                    CVR = "12121212"
+                    Cvr = "12121212",
+                    ImgPath = "Img path"
                 };
                 proxy.UpdateChain(chain1);
                 var returnedChain = proxy.GetChain(returnedId);

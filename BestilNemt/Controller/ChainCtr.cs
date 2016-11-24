@@ -41,7 +41,7 @@ namespace Controller
 
         private bool ValidateChainInput(Chain chain)
         {
-            return chain != null && chain.CVR.Length == 8 &&
+            return chain != null && chain.Cvr.Length == 8 &&
                    !String.IsNullOrEmpty(chain.Name);
         }
     }

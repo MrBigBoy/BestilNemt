@@ -236,7 +236,7 @@ namespace BestilNemtUnitTestTest
             shops.Add(shop);
             var chain = new Chain(5, "Rema", "3323232", "Img path", persons, shops);
             var serializationResult = SerializerTestHelpClass.TestSerialize(chain);
-            Assert.AreEqual(chain.CVR, serializationResult.CVR);
+            Assert.AreEqual(chain.Cvr, serializationResult.Cvr);
         }
 
         [TestMethod]

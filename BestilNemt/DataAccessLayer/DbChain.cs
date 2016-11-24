@@ -44,10 +44,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("INSERT INTO Chain (chainName, chainCVR, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)", conn);
+                var command = new SqlCommand("INSERT INTO Chain (chainName, chainCvr, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)", conn);
                 command.Parameters.AddWithValue("ChainName", chain.Name);
-                command.Parameters.AddWithValue("ChainCvr", chain.CVR);
-                command.Parameters.AddWithValue("ChainÍmgPath", chain.ImgPath);
+                command.Parameters.AddWithValue("ChainCvr", chain.Cvr);
+                command.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
                 id = (int)command.ExecuteScalar();
             }
             return id;
@@ -93,7 +93,7 @@ namespace DataAccessLayer
                 var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId", conn);
                 command.Parameters.AddWithValue("ChainId", chain.Id);
                 command.Parameters.AddWithValue("ChainName", chain.Name);
-                command.Parameters.AddWithValue("ChainCvr", chain.CVR);
+                command.Parameters.AddWithValue("ChainCvr", chain.Cvr);
                 command.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
                 i = command.ExecuteNonQuery();
             }

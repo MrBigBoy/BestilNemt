@@ -31,7 +31,7 @@
   <xs:element name="ArrayOfChain" nillable="true" type="tns:ArrayOfChain" />
   <xs:complexType name="Chain">
     <xs:sequence>
-      <xs:element minOccurs="0" name="CVR" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Cvr" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="ImgPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
