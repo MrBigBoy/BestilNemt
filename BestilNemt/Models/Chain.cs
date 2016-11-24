@@ -11,7 +11,7 @@ namespace Models
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string CVR { get; set; }
+        public string Cvr { get; set; }
         [DataMember]
         public string ImgPath { get; set; }
         [DataMember]
@@ -29,7 +29,7 @@ namespace Models
         {
             Id = id;
             Name = name;
-            CVR = cvr;
+            Cvr = cvr;
             ImgPath = imgPath;
             Persons = persons;
             Shops = shops;
@@ -38,7 +38,7 @@ namespace Models
         public Chain(string name, string cvr, string imgPath)
         {
             Name = name;
-            CVR = cvr;
+            Cvr = cvr;
             ImgPath = imgPath;
         }
     }

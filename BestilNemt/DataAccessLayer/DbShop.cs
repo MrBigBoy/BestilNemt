@@ -20,9 +20,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("INSERT INTO Shop(shopName, shopAddress, shopCVR, shopChainId) OUTPUT Inserted.shopId VALUES(@ShopName, @ShopAddress, @ShopCvr, @ShopChainId)", conn);
+                var cmd = new SqlCommand("INSERT INTO Shop(shopName, shopAddress, shopOpeningTime, shopCVR, shopChainId) OUTPUT Inserted.shopId VALUES(@ShopName, @ShopAddress, @ShopOpeningTime, @ShopCvr, @ShopChainId)", conn);
                 cmd.Parameters.AddWithValue("ShopName", shop.Name);
                 cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
+                cmd.Parameters.AddWithValue("ShopOpeningTime", shop.OpeningTime);
                 cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
                 cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
                 i = (int)cmd.ExecuteScalar();
@@ -63,9 +64,10 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Shop SET shopName=@ShopName, shopAddress=@ShopAddress, shopCvr=@ShopCvr WHERE shopId=@ShopId", conn);
+                var cmd = new SqlCommand("UPDATE Shop SET shopName=@ShopName, shopAddress=@ShopAddress, shopOpeningTime=@ShopOpeningTime, shopCvr=@ShopCvr WHERE shopId=@ShopId", conn);
                 cmd.Parameters.AddWithValue("ShopName", shop.Name);
                 cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
+                cmd.Parameters.AddWithValue("ShopOpeningTime", shop.OpeningTime);
                 cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
                 cmd.Parameters.AddWithValue("ShopId", shop.Id);
                 i = cmd.ExecuteNonQuery();

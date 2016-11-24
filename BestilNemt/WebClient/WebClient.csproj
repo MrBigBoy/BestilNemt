@@ -254,7 +254,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\FrontPage\Index.cshtml" />
-    <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shop\ShopList.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\SearchProduct.cshtml" />

@@ -130,7 +130,7 @@ namespace DataAccessLayer
             {
                 Id = reader.GetInt32(reader.GetOrdinal("chainId")),
                 Name = reader.GetString(reader.GetOrdinal("chainName")),
-                CVR = reader.GetString(reader.GetOrdinal("chainCVR")),
+                Cvr = reader.GetString(reader.GetOrdinal("chainCVR")),
                 ImgPath = reader.GetString(reader.GetOrdinal("chainImgPath"))
             };
             return chain;
@@ -143,6 +143,7 @@ namespace DataAccessLayer
                 Id = reader.GetInt32(reader.GetOrdinal("shopId")),
                 Name = reader.GetString(reader.GetOrdinal("shopName")),
                 Address = reader.GetString(reader.GetOrdinal("shopAddress")),
+                OpeningTime = reader.GetString(reader.GetOrdinal("shopOpeningTime")),
                 Cvr = reader.GetString(reader.GetOrdinal("shopCvr"))
             };
             return shop;

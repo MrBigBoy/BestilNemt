@@ -25,12 +25,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -49,12 +50,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -74,12 +76,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -101,12 +104,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -125,12 +129,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -149,12 +154,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = null,
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -173,12 +179,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -197,12 +204,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = null,
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -221,12 +229,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -245,12 +254,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = null,
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -269,12 +279,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -294,11 +305,12 @@ namespace BestilNemtUnitTestTest
                 Name = null,
                 Address = null,
                 Cvr = null,
+                OpeningTime = "Manday Never",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -317,12 +329,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "",
                 Address = "",
+                OpeningTime = "Manday Never",
                 Cvr = "",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -341,6 +354,7 @@ namespace BestilNemtUnitTestTest
             {
                 Name = null,
                 Address = null,
+                OpeningTime = "Manday Never",
                 Cvr = null,
                 Warehouses = null
             };
@@ -357,12 +371,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -382,12 +397,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = null,
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -407,12 +423,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -432,12 +449,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = null,
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -457,12 +475,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -482,12 +501,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = null,
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -507,12 +527,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -572,7 +593,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -599,7 +620,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -625,12 +646,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -657,7 +679,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -684,7 +706,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -711,7 +733,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -738,7 +760,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -765,7 +787,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -792,7 +814,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -819,7 +841,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -846,7 +868,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -887,12 +909,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -920,7 +943,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -948,7 +971,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -976,7 +999,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1004,7 +1027,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1032,7 +1055,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1060,7 +1083,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1124,12 +1147,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1154,12 +1178,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
