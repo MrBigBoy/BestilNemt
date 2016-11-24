@@ -5,11 +5,37 @@
     ViewBag.Title = "Butikker";
 }
 
+
+
 <h2>Vælg en butik</h2>
-@foreach (var item in Model)
-{
-    var butName = item.Name + " - " + item.Address + " - ";
-    <button name=@butName value="@item.Id" class="ShopListButton" style="width: 100%; height: 20px" onclick="location.href = '@Url.Action("Product", "Product", new {id = item.Id})'">
-        @butName
-    </button>
-}
+<table class="ShopListTable">
+    <tr>
+        <td>
+            <h3 class="ShopListTableHeader">Navn</h3>
+        </td>
+        <td>
+            <h3 class="ShopListTableHeader">Adresse</h3>
+        </td>
+        <td>
+            <h3 id="ShopListTableHeader">Åbningstider</h3>
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        var opTime = @item.OpeningTime.Split(';');
+        <tr>
+            <td>
+                <a href="/Product/Product/@item.Id">@item.Name</a>
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                @foreach (var j in opTime)
+                {
+                    <p>@j</p>
+                }
+            </td>
+        </tr>
+    }
+</table>
