@@ -35,7 +35,7 @@ namespace DataAccessLayer
             }
             if (saving)
             {
-                product.SavingId = null; 
+                product.SavingId = 1; 
             }
             else
             {
