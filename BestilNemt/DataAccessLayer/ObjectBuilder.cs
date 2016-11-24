@@ -16,10 +16,33 @@ namespace DataAccessLayer
                 Name = reader.GetString(reader.GetOrdinal("productName")),
                 Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
                 Description = reader.GetString(reader.GetOrdinal("productDescription")),
-                Category = reader.GetString(reader.GetOrdinal("productCategory")),
-                SavingId = reader.GetInt32(reader.GetOrdinal("productSavingId")),
-                ImgPath = reader.GetString(reader.GetOrdinal("productImgPath"))
+                Category = reader.GetString(reader.GetOrdinal("productCategory"))
+              
+
+
             };
+            var j = reader.IsDBNull(reader.GetOrdinal("productImgPath"));
+            var saving = reader.IsDBNull(reader.GetOrdinal("productSavingId"));
+
+            if (j)
+            {
+                product.ImgPath = "NoPhoto.png";
+            }
+           
+            else
+            {
+                product.ImgPath = reader.GetString(reader.GetOrdinal("productImgPath"));
+            }
+            if (saving)
+            {
+                product.SavingId = null; 
+            }
+            else
+            {
+                product.SavingId = reader.GetInt32(reader.GetOrdinal("productSavingId"));
+
+            }
+
             return product;
 
         }

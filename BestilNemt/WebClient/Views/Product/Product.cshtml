@@ -3,48 +3,37 @@
 @{
     ViewBag.Title = "Product";
 }
-@*<script>
-        function myFunction() {
-            var input, filter, table, tr, td, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("ProductTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("MyInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("ProductTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
                 }
             }
         }
-    </script>
-*@
-<script>
- var $rows = $('#ProductTable tr');
-    $('#myInput')
-        .keyup(function () {
-            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-
-            $rows.show()
-                .filter(function () {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                })
-                .hide();
-        });
-
+    }
 </script>
 
 <h2>Alle produkter</h2>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<input type="text" id="MyInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-<table class="ProductTable">
+<table id="ProductTable">
     <tr>
+        <th></th>
         <th>Navn</th>
         <th>Beskrivelse</th>
         <th>Pris</th>
@@ -52,6 +41,7 @@
     @foreach (var product in Model)
     {
         <tr>
+            <td><img src="/Images/ProductPictures/@product.ImgPath" height="50" width="50"></td>
             <td><a href="/Product/ProductPage/@product.Id">@product.Name</a></td>
             <td>@product.Description</td>
             <td>@product.Price kr</td>

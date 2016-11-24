@@ -35,5 +35,12 @@ namespace WebClient.Controllers
             var ProductsByName = proxy.FindProductsByName(input);
             return View(ProductsByName);
         }
+
+        public ActionResult AddProductToCart(PartOrder partOrder)
+        {
+            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var addProductCart = proxy.AddPartOrder(partOrder);
+            return View(addProductCart);
+        }
     }
 }

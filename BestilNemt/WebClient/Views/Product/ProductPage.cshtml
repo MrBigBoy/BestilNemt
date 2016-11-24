@@ -1,23 +1,29 @@
 ﻿@using WebClient.BestilNemtServiceRef
 @model Product
 
+
 @{
     ViewBag.Title = "Product Page";
 }
-<h1>@Model.Name</h1>
-<img src="/Images/ProductPictures/@Model.ImgPath">
-<div id="BuyModul">
-    <p>Pris: @Model.Price kr</p>
-    <select>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select><br>
-    <button type="button"onclick="alert('Tilføjet til kurv');">Tilføj til kurv</button>
-</div>
 
-<div id="descriptionBox">
-    <h3>Produkt information</h3>
-    <p>@Model.Description</p>
+
+<h1>@Model.Name</h1>
+<div id="ProductPicture"><img src="/Images/ProductPictures/@Model.ImgPath" height="350" width="350"></div>
+<div id="ProductInformation">
+    <div id="BuyModul">
+        <p>Pris: @Model.Price kr</p>
+        <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br>
+        <button type="button" onclick="alert('Tilføjet til kurv');">Tilføj til kurv</button>
+    </div>
+
+
+    <div id="descriptionBox">
+        <h3>Produkt information</h3>
+        <p>@Model.Description</p>
+    </div>
 </div>

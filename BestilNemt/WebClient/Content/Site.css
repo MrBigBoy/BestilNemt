@@ -64,14 +64,23 @@ th, td {
     border: 1px solid;
 }
 
+#ProductInformation {
+    width: 50%;
+    position: absolute;
+    right: 50px;
+    top: 100px;
+}
+
 #descriptionBox {
-    border: 3px solid mediumspringgreen;
+    border: 3px solid green;
 }
 
 #BuyModul {
     padding: 10px;
-	text-align: right;
-    background: #4caf50;
-    background: rgba(76, 175, 80, 0.3);
-    border-radius: 10px;
+    text-align: right;
+    font-size: large;
+}
+
+#ProductPicture {
+    width: 100px;
 }
