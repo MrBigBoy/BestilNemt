@@ -1,0 +1,36 @@
+﻿@using WebClient.BestilNemtServiceRef
+@model List<Product>
+@{
+    ViewBag.Title = "Product";
+    Cart shoppingCart = (Cart)ViewBag.Cart;
+}
+
+<h2>Din Kurv</h2>
+
+
+<table id="Carttable">
+    <tr>
+        <th></th>
+        <th>Navn</th>
+        <th>Beskrivelse</th>
+        <th>Pris pr/stk</th>
+        <th>Antal</th>
+        <th>Total</th>
+    </tr>
+    @foreach (var partOrder in shoppingCart.PartOrders)
+    {
+        <tr>
+            <td><img src="/Images/ProductPictures/@partOrder.Product.ImgPath" height="50" width="50"></td>
+            <td>@partOrder.Product.Name</td>
+            <td>@partOrder.Product.Description</td>
+            <td>@partOrder.Product.Price kr</td>
+            <td>@partOrder.Amount kr</td>
+            <td>@partOrder.PartPrice kr</td>
+        </tr>
+    
+    }
+  
+</table>
+
+
+

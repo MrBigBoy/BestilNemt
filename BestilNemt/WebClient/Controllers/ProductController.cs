@@ -70,5 +70,13 @@ namespace WebClient.Controllers
             //var addProductCart = proxy.AddPartOrder(po);
             return RedirectToAction("ProductPage",new {id=partOrder.Product.Id});
         }
+
+        public ActionResult getCart(int id )
+        {
+            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var kuku = proxy.FindCart(id);
+            ViewBag.Cart = ShoppingCart;
+            return View(); 
+        }
     }
 }

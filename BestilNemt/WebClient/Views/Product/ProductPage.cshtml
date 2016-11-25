@@ -12,19 +12,23 @@
 <div id="ProductInformation">
     <div id="BuyModul">
         <p>Pris: @Model.Product.Price kr</p>
-       @using (Html.BeginForm("AddProductToCart", "Product", FormMethod.Post))
-       {
-         <select name="Amount">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select><br>
-       
-            @Html.HiddenFor(x=>x.Product.Id)
-            <button type="submit">Tilføj til kurv</button>
+        @using (Html.BeginForm("AddProductToCart", "Product", FormMethod.Post))
+        {
+            <select name="Amount">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select><br>
+
+            @Html.HiddenFor(x => x.Product.Id)
+            <button type="submit" onclick="alert('@Model.Product.Name er tilføjet til kurven');">Tilføj til kurv</button>
+         
         }
-        
+
+
+
+
     </div>
 
 
@@ -32,4 +36,5 @@
         <h3>Produkt information</h3>
         <p>@Model.Product.Description</p>
     </div>
+
 </div>
