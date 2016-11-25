@@ -15,15 +15,17 @@ namespace WebClient.Controllers
             return View();
         }
 
-        public ActionResult AddtoCart(int? id,PartOrder partOrder)
+        public ActionResult AddtoCart( PartOrder partOrder)
         {
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            if (partOrder==null)
+            if (partOrder == null)
             {
                 return View();
             }
             var addProductCart = proxy.AddPartOrder(partOrder);
-            return View(addProductCart);
+            return View();
         }
+
+ 
     }
 }
