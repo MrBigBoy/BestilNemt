@@ -22,30 +22,41 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            <div class="navbar-inverse navbar-right">
+                <button name="Login" value="Login" id="LoginButton" style="width: 100%; height: 100%" onclick="location.href = '@Url.Action("AddtoCart", "Cart")'">
+                    MrBigBoy Log af
+                </button>
+                <button name="Kurv" value="Kurv" id="CartButton" style="width: 100%; height: 100%" onclick="location.href = '@Url.Action("AddtoCart", "Cart")'">
+                    12<img src="/Images/Cart2.png" alt="Kurv" style="width: 50px; border: 0;">
+                </button>
+            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+
             </div>
+            
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Produkter","Product","Product")</li>
-                    <li>@Html.ActionLink("Kæder","Index","FrontPage")</li>
+                    <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
+                    <li>@Html.ActionLink("Kæder", "Index", "FrontPage")</li>
                 </ul>
             </div>
+
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Bestil Nemt Inc.</p>
         </footer>
     </div>
 

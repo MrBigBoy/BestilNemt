@@ -3514,9 +3514,9 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 768px) {
-    .navbar-right .dropdown-menu {
-        right: 0;
-        left: auto;
+    .navbar-left .dropdown-menu {
+        right: auto;
+        left: 0;
     }
 }
 
