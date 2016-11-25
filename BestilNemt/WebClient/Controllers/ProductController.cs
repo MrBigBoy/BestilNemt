@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
+using WebClient.Models;
 
 namespace WebClient.Controllers
 {
@@ -18,15 +19,18 @@ namespace WebClient.Controllers
         public ActionResult Product()
         {
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            var AllProducts = proxy.GetAllProducts(); 
+            var AllProducts = proxy.GetAllProducts();
+            ViewBag.Cart = ShoppingCart;
             return View(AllProducts); 
         }
 
         public ActionResult ProductPage(int id)
         {
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            var ProductInformation = proxy.GetProduct(id);
-            return View(ProductInformation);
+            
+            ProductPartOrderViewModel pvm = new ProductPartOrderViewModel();
+            pvm.Product = proxy.GetProduct(id);
+            return View(pvm);
         }
 
         public ActionResult SearchProduct(string input)
@@ -36,11 +40,35 @@ namespace WebClient.Controllers
             return View(ProductsByName);
         }
 
-        public ActionResult AddProductToCart(PartOrder partOrder)
+        
+        public Cart ShoppingCart
         {
+            get
+            {
+                if (Session["ShoppingCart"] == null)
+                {
+                    var cart = new Cart();
+                    cart.PartOrders = new List<PartOrder>();
+                    Session["ShoppingCart"] = cart;
+                }
+                return (Cart)Session["ShoppingCart"];
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddProductToCart(ProductPartOrderViewModel partOrder)
+        {
+
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            var addProductCart = proxy.AddPartOrder(partOrder);
-            return View(addProductCart);
+
+            PartOrder po = new PartOrder();
+            po.Product = proxy.GetProduct(partOrder.Product.Id);
+            po.Amount = partOrder.Amount;
+            po.PartPrice = po.Product.Price*po.Amount;
+            po.Cart = ShoppingCart;
+            ShoppingCart.PartOrders.Add(po);
+            //var addProductCart = proxy.AddPartOrder(po);
+            return RedirectToAction("ProductPage",new {id=partOrder.Product.Id});
         }
     }
 }

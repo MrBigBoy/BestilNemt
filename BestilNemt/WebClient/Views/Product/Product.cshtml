@@ -2,6 +2,7 @@
 @model List<Product>
 @{
     ViewBag.Title = "Product";
+    Cart shoppingCart = (Cart)ViewBag.Cart;
 }
 
 <script>
@@ -49,7 +50,13 @@
     }
 </table>
 
-
+<div>
+    @foreach (var partOrder in shoppingCart.PartOrders)
+    {
+        @partOrder.Product.Name @partOrder.Product.Price @:kr @partOrder.Amount stk i alt @partOrder.PartPrice<br/>
+    }
+    @shoppingCart.TotalPrice
+</div>
 
 
 
