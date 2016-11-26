@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebClient.BestilNemtServiceRef;
 
 namespace WebClient.Controllers
 {
@@ -10,7 +11,16 @@ namespace WebClient.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var proxy = new BestilNemtServiceClient();
+            using (proxy)
+            {
+                proxy.Open();
+                var chains = proxy.GetAllChains();
+                var products = proxy.GetAllProductsWithSavings();
+                var soldProducts = proxy.GetAllSoldProducts();
+                var tuple = new Tuple<List<Chain>, List<Product>, List<Product>>(chains, soldProducts, products);
+                return View(tuple);
+            }
         }
 
         public ActionResult About()

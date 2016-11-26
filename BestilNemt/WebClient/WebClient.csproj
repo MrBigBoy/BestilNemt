@@ -153,7 +153,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\FrontPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -255,7 +254,6 @@
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Warehouse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\FrontPage\Index.cshtml" />
     <Content Include="Views\Shop\ShopList.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\SearchProduct.cshtml" />

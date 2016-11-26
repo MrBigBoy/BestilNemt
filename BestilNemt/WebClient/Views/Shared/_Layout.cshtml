@@ -26,7 +26,7 @@
                 <button name="Login" value="Login" id="LoginButton" style="width: 100%; height: 100%" onclick="location.href = '@Url.Action("AddtoCart", "Cart")'">
                     MrBigBoy Log af
                 </button>
-                <button name="Kurv" value="Kurv" id="CartButton" style="width: 100%; height: 100%" onclick="location.href = '@Url.Action("AddtoCart", "Cart")'">
+                <button name="Kurv" value="Kurv" id="CartButton" style="width: 100%; height: 100%" onclick="location.href = '@Url.Action("getCart", "Product")'">
                     12<img src="/Images/Cart2.png" alt="Kurv" style="width: 50px; border: 0;">
                 </button>
             </div>
@@ -46,7 +46,6 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
-                    <li>@Html.ActionLink("Kæder", "Index", "FrontPage")</li>
                 </ul>
             </div>
 
