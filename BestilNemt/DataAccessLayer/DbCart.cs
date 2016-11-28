@@ -247,18 +247,36 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
+                    //save Cart in DB and get generated cartId
                     cmd.CommandText = "INSERT INTO Cart(cartTotalPrice) output inserted.cartId VALUES(@totalPrice)";
-                    
+
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     id = (int)cmd.ExecuteScalar();
                     foreach (var po in cart.PartOrders)
                     {
+                        //Save all PartOrders from cart in DB
                         cmd.CommandText = "Insert Into PartOrder (partOrderProductId, partOrderAmount, partOrderPartPrice, partOrderCartId) values (@productId, @amount, @partPrice, @cartId)";
                         cmd.Parameters.AddWithValue("productId", po.Product.Id);
                         cmd.Parameters.AddWithValue("amount", po.Amount);
                         cmd.Parameters.AddWithValue("partPrice", po.PartPrice);
                         cmd.Parameters.AddWithValue("cartId", id);
                         cmd.ExecuteNonQuery();
+
+                       //// Get warehouseStock form DB decrese it with partOrder Amount and save in a variable
+                       // cmd.CommandText = "Select warehouseStock from Warehouse where warehouseProductId = @productId";
+                       // cmd.Parameters.AddWithValue("productId", po.Product.Id);
+                       // var newStock = 0;
+                       // var reader = cmd.ExecuteReader();
+                       // while (reader.Read())
+                       // {
+                       //     newStock = reader.GetInt32(reader.GetOrdinal("warehouseStock")) - po.Amount;
+                       // }
+
+                       // //update warehouseStock with new saved value
+                       // cmd.CommandText = "Update Warehouse Set warehouseStock = @newStock where warehouseProductId = @productId";
+                       // cmd.Parameters.AddWithValue("newStock", newStock);
+                       // cmd.Parameters.AddWithValue("productId", po.Product.Id);
+                       // cmd.ExecuteNonQuery();
                     }
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
@@ -281,5 +299,5 @@ namespace DataAccessLayer
         }
 
     }
- 
+
 }
