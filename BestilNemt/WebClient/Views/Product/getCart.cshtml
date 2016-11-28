@@ -24,22 +24,22 @@
             <td>@partOrder.Product.Name</td>
             <td>@partOrder.Product.Description</td>
             <td>@partOrder.Product.Price kr</td>
-            <td>@partOrder.Amount kr</td>
+            <td>@partOrder.Amount </td>
             <td>@partOrder.PartPrice kr</td>
         </tr>
-    
+
     }
-  
+
 </table>
 
-<div id="BuyModul">
+<div id="CheckOut">
     @*<p>Pris: @shoppingCart.PartOrders kr</p>*@
     @using (Html.BeginForm("CheckOut", "Product", FormMethod.Post))
     {
-        
+
 
         @Html.HiddenFor(x => x.Cart.Id)
-        <button type="submit">Til betaling</button>
+        <button class ="CheckOut" type="submit">Til betaling</button>
 
     }
 
@@ -47,6 +47,13 @@
 
 
 </div>
+
+    @using (Html.BeginForm("ClearCart", "Product", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.Cart.Id)
+        <button class="ClearCart"  type="submit" >Ryd kurv</button>
+    }
+
 
 
 

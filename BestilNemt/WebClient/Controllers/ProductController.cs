@@ -84,5 +84,22 @@ namespace WebClient.Controllers
             proxy.AddCartWithPartOrders(ShoppingCart);
             return View();
         }
+      //  [HttpPost]
+        public ActionResult ClearCart()
+        {
+         
+            ShoppingCart.PartOrders= new List<PartOrder>();
+            return RedirectToAction("getCart", new { id = ShoppingCart.Id });
+
+
+        }
+        public ActionResult CompleteCart()
+        {
+
+            ShoppingCart.PartOrders = new List<PartOrder>();
+            return RedirectToAction("Index",("Home") );
+
+
+        }
     }
 }

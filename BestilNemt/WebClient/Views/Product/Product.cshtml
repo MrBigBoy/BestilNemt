@@ -49,17 +49,9 @@
         </tr>
     }
 </table>
-<div>
-    <button type="button" onclick="location.href='@Url.Action("getCart", "Product", new { id = shoppingCart.Id })'"> Gå til kurv</button>
-</div>
 
-<div>
-    @foreach (var partOrder in shoppingCart.PartOrders)
-    {
-        @partOrder.Product.Name @partOrder.Product.Price @:kr @partOrder.Amount stk i alt @partOrder.PartPrice<br/>
-    }
-    @shoppingCart.TotalPrice
-</div>
+
+
 
 
 
