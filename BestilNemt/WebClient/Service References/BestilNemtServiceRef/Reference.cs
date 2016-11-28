@@ -1378,6 +1378,12 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartResponse")]
         System.Threading.Tasks.Task<int> AddCartAsync(WebClient.BestilNemtServiceRef.Cart cart);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse")]
+        int AddCartWithPartOrders(WebClient.BestilNemtServiceRef.Cart cart);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse")]
+        System.Threading.Tasks.Task<int> AddCartWithPartOrdersAsync(WebClient.BestilNemtServiceRef.Cart cart);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
         WebClient.BestilNemtServiceRef.Cart FindCart(int id);
         
@@ -1846,6 +1852,14 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> AddCartAsync(WebClient.BestilNemtServiceRef.Cart cart) {
             return base.Channel.AddCartAsync(cart);
+        }
+        
+        public int AddCartWithPartOrders(WebClient.BestilNemtServiceRef.Cart cart) {
+            return base.Channel.AddCartWithPartOrders(cart);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddCartWithPartOrdersAsync(WebClient.BestilNemtServiceRef.Cart cart) {
+            return base.Channel.AddCartWithPartOrdersAsync(cart);
         }
         
         public WebClient.BestilNemtServiceRef.Cart FindCart(int id) {

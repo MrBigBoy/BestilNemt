@@ -429,7 +429,10 @@ namespace WcfService
         {
             return CartCtr.AddCart(cart);
         }
-
+        public int AddCartWithPartOrders(Cart cart)
+        {
+            return CartCtr.AddCartWithPartOrders(cart);
+        }
         public Cart FindCart(int id)
         {
             return CartCtr.FindCart(id);
@@ -593,5 +596,7 @@ namespace WcfService
         {
             return WarehouseCtr.DeleteWarehouse(id);
         }
+
+       
     }
 }

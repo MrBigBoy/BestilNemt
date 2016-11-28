@@ -54,5 +54,10 @@ namespace Controller.ControllerTestClasses
         {
             return 1;
         }
+
+        public int AddCartWithPartOrders(Cart cart)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

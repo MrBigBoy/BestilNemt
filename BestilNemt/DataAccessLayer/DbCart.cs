@@ -227,6 +227,59 @@ namespace DataAccessLayer
                 }
             }
             return i;
+
         }
+        public void SaveCart()
+        {
+
+        }
+        public int AddCartWithPartOrders(Cart cart)
+        {
+            var id = 0;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Connection = conn;
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice) output inserted.cartId VALUES(@totalPrice)";
+                    
+                    cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
+                    id = (int)cmd.ExecuteScalar();
+                    foreach (var po in cart.PartOrders)
+                    {
+                        cmd.CommandText = "Insert Into PartOrder (partOrderProductId, partOrderAmount, partOrderPartPrice, partOrderCartId) values (@productId, @amount, @partPrice, @cartId)";
+                        cmd.Parameters.AddWithValue("productId", po.Product.Id);
+                        cmd.Parameters.AddWithValue("amount", po.Amount);
+                        cmd.Parameters.AddWithValue("partPrice", po.PartPrice);
+                        cmd.Parameters.AddWithValue("cartId", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                    Console.WriteLine("Commit was succsesfull");
+
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
+            }
+            return id;
+        }
+
     }
+ 
 }
