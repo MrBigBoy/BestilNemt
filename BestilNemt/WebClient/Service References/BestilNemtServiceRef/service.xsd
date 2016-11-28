@@ -517,6 +517,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddCartWithPartOrders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="cart" nillable="true" type="q34:Cart" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCartWithPartOrdersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddCartWithPartOrdersResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="FindCart">
     <xs:complexType>
       <xs:sequence>
@@ -527,7 +541,7 @@
   <xs:element name="FindCartResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindCartResult" nillable="true" type="q34:Cart" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindCartResult" nillable="true" type="q35:Cart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -539,14 +553,14 @@
   <xs:element name="GetAllCartsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllCartsResult" nillable="true" type="q35:ArrayOfCart" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllCartsResult" nillable="true" type="q36:ArrayOfCart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateCart">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="cart" nillable="true" type="q36:Cart" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="cart" nillable="true" type="q37:Cart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -574,8 +588,8 @@
   <xs:element name="AddPartOrderToCart">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="cart" nillable="true" type="q37:Cart" />
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="partOrder" nillable="true" type="q38:PartOrder" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="cart" nillable="true" type="q38:Cart" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="partOrder" nillable="true" type="q39:PartOrder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -596,7 +610,7 @@
   <xs:element name="FindPartOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindPartOrderResult" nillable="true" type="q39:PartOrder" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindPartOrderResult" nillable="true" type="q40:PartOrder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -617,7 +631,7 @@
   <xs:element name="AddPartOrder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="partOrder" nillable="true" type="q40:PartOrder" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="partOrder" nillable="true" type="q41:PartOrder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -631,7 +645,7 @@
   <xs:element name="UpdatePartorder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="partOrder" nillable="true" type="q41:PartOrder" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="partOrder" nillable="true" type="q42:PartOrder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -650,14 +664,14 @@
   <xs:element name="GetAllPartOrdersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllPartOrdersResult" nillable="true" type="q42:ArrayOfPartOrder" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllPartOrdersResult" nillable="true" type="q43:ArrayOfPartOrder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddWarehouse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q43:Warehouse" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q44:Warehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -678,7 +692,7 @@
   <xs:element name="FindWarehouseResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindWarehouseResult" nillable="true" type="q44:Warehouse" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindWarehouseResult" nillable="true" type="q45:Warehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -690,7 +704,7 @@
   <xs:element name="FindAllWarehousesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllWarehousesResult" nillable="true" type="q45:ArrayOfWarehouse" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllWarehousesResult" nillable="true" type="q46:ArrayOfWarehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -704,14 +718,14 @@
   <xs:element name="FindAllWarehousesByShopIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllWarehousesByShopIdResult" nillable="true" type="q46:ArrayOfWarehouse" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllWarehousesByShopIdResult" nillable="true" type="q47:ArrayOfWarehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateWarehouse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q47:Warehouse" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q48:Warehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -739,8 +753,8 @@
   <xs:element name="AddSaving">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q48:Saving" />
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="product" nillable="true" type="q49:Product" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q49:Saving" />
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="product" nillable="true" type="q50:Product" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -761,7 +775,7 @@
   <xs:element name="FindSavingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindSavingResult" nillable="true" type="q50:Saving" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindSavingResult" nillable="true" type="q51:Saving" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -773,14 +787,14 @@
   <xs:element name="FindAllSavingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllSavingsResult" nillable="true" type="q51:ArrayOfSaving" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllSavingsResult" nillable="true" type="q52:ArrayOfSaving" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateSaving">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q52:Saving" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q53:Saving" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -815,7 +829,7 @@
   <xs:element name="FindProductsByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindProductsByNameResult" nillable="true" type="q53:ArrayOfProduct" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindProductsByNameResult" nillable="true" type="q54:ArrayOfProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

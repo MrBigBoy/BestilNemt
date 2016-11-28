@@ -21,13 +21,13 @@ namespace WebClient.Controllers
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             var AllProducts = proxy.GetAllProducts();
             ViewBag.Cart = ShoppingCart;
-            return View(AllProducts); 
+            return View(AllProducts);
         }
 
         public ActionResult ProductPage(int id)
         {
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            
+
             ProductPartOrderViewModel pvm = new ProductPartOrderViewModel();
             pvm.Product = proxy.GetProduct(id);
             return View(pvm);
@@ -40,7 +40,7 @@ namespace WebClient.Controllers
             return View(ProductsByName);
         }
 
-        
+
         public Cart ShoppingCart
         {
             get
@@ -64,19 +64,25 @@ namespace WebClient.Controllers
             PartOrder po = new PartOrder();
             po.Product = proxy.GetProduct(partOrder.Product.Id);
             po.Amount = partOrder.Amount;
-            po.PartPrice = po.Product.Price*po.Amount;
+            po.PartPrice = po.Product.Price * po.Amount;
             po.Cart = ShoppingCart;
             ShoppingCart.PartOrders.Add(po);
             //var addProductCart = proxy.AddPartOrder(po);
-            return RedirectToAction("ProductPage",new {id=partOrder.Product.Id});
+            return RedirectToAction("ProductPage", new { id = partOrder.Product.Id });
         }
 
-        public ActionResult getCart(int id )
+        public ActionResult getCart(int id)
+        {
+            ViewBag.Cart = ShoppingCart;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CheckOut()
         {
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            var kuku = proxy.FindCart(id);
-            ViewBag.Cart = ShoppingCart;
-            return View(); 
+            proxy.AddCartWithPartOrders(ShoppingCart);
+            return View();
         }
     }
 }

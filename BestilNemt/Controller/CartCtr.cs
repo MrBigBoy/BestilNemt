@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DataAccessLayer;
 using Models;
 
@@ -62,6 +63,11 @@ namespace Controller
             {
                 return 0;
             }
+        }
+
+        public int AddCartWithPartOrders(Cart cart)
+        {
+            return IDbCart.AddCartWithPartOrders(cart);
         }
     }
 }
