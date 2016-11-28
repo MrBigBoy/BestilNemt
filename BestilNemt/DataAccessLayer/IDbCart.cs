@@ -7,6 +7,7 @@ namespace DataAccessLayer
     {
         int AddCart(Cart cart);
         Cart FindCart(int id);
+        Cart FindCartWithPartOrders(int id);
         List<Cart> GetAllCarts();
         int UpdateCart(Cart cart);
         int DeleteCart(int id);

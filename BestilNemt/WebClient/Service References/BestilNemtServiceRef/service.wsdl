@@ -247,6 +247,12 @@
   <wsdl:message name="IBestilNemtService_FindCart_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindCartResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_FindCartWithPartOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindCartWithPartOrders" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_FindCartWithPartOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindCartWithPartOrdersResponse" />
+  </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetAllCarts_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCarts" />
   </wsdl:message>
@@ -533,6 +539,10 @@
     <wsdl:operation name="FindCart">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCart" message="tns:IBestilNemtService_FindCart_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCartResponse" message="tns:IBestilNemtService_FindCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindCartWithPartOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders" message="tns:IBestilNemtService_FindCartWithPartOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrdersResponse" message="tns:IBestilNemtService_FindCartWithPartOrders_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllCarts">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCarts" message="tns:IBestilNemtService_GetAllCarts_InputMessage" />
@@ -974,6 +984,15 @@
     </wsdl:operation>
     <wsdl:operation name="FindCart">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindCartWithPartOrders">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using Models;
 
 namespace DataAccessLayer
@@ -17,32 +15,11 @@ namespace DataAccessLayer
                 Price = reader.GetDecimal(reader.GetOrdinal("productPrice")),
                 Description = reader.GetString(reader.GetOrdinal("productDescription")),
                 Category = reader.GetString(reader.GetOrdinal("productCategory"))
-              
-
-
             };
             var j = reader.IsDBNull(reader.GetOrdinal("productImgPath"));
             var saving = reader.IsDBNull(reader.GetOrdinal("productSavingId"));
-
-            if (j)
-            {
-                product.ImgPath = "NoPhoto.png";
-            }
-           
-            else
-            {
-                product.ImgPath = reader.GetString(reader.GetOrdinal("productImgPath"));
-            }
-            if (saving)
-            {
-                product.SavingId = 1; 
-            }
-            else
-            {
-                product.SavingId = reader.GetInt32(reader.GetOrdinal("productSavingId"));
-
-            }
-
+            product.ImgPath = j ? "NoPhoto.png" : reader.GetString(reader.GetOrdinal("productImgPath"));
+            product.SavingId = saving ? 1 : reader.GetInt32(reader.GetOrdinal("productSavingId"));
             return product;
 
         }
@@ -68,6 +45,21 @@ namespace DataAccessLayer
                 Id = reader.GetInt32(reader.GetOrdinal("cartId")),
                 TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice")),
             };
+            return cart;
+        }
+
+        public static Cart CreateCartWithPartOrders(SqlDataReader reader)
+        {
+            var product = CreateProduct(reader);
+            var partOrder = CreatePartOrder(reader, product);
+            var cart = new Cart
+            {
+                Id = reader.GetInt32(reader.GetOrdinal("cartId")),
+                TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice"))
+            };
+            var list = cart.PartOrders;
+            list.Add(partOrder);
+            cart.PartOrders = list;
             return cart;
         }
 

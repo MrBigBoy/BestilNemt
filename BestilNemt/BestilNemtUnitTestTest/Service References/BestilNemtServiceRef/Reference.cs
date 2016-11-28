@@ -249,6 +249,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
         System.Threading.Tasks.Task<Models.Cart> FindCartAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartWithPartOrdersResponse")]
+        Models.Cart FindCartWithPartOrders(int cartId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartWithPartOrdersResponse")]
+        System.Threading.Tasks.Task<Models.Cart> FindCartWithPartOrdersAsync(int cartId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
         Models.Cart[] GetAllCarts();
         
@@ -713,6 +719,14 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.Cart> FindCartAsync(int id) {
             return base.Channel.FindCartAsync(id);
+        }
+        
+        public Models.Cart FindCartWithPartOrders(int cartId) {
+            return base.Channel.FindCartWithPartOrders(cartId);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Cart> FindCartWithPartOrdersAsync(int cartId) {
+            return base.Channel.FindCartWithPartOrdersAsync(cartId);
         }
         
         public Models.Cart[] GetAllCarts() {

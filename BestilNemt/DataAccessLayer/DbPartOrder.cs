@@ -82,6 +82,25 @@ namespace DataAccessLayer
             }
             return partOrders;
         }
+        public List<PartOrder> GetAllPartOrdersFromCart()
+        {
+            var partOrders = new List<PartOrder>();
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM Cart, PartOrder, Product WHERE partOrderProductId = productId AND cartId = partOrderCartId", conn);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    var partOrder = ObjectBuilder.CreatePartOrder(reader, product);
+                    partOrders.Add(partOrder);
+                }
+            }
+            return partOrders;
+        }
 
         public int UpdatePartOrder(PartOrder partOrder)
         {

@@ -80,6 +80,32 @@ namespace DataAccessLayer
         }
 
         /// <summary>
+        /// Return a Cart by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Cart if found, else null
+        /// </returns>
+        public Cart FindCartWithPartOrders(int cartId)
+        {
+            Cart cart = null;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM Cart, PartOrder, Product WHERE partOrderProductId = productId AND cartId = partOrderCartId AND cartId = @CartId", conn);
+                cmd.Parameters.AddWithValue("CartId", cartId);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    cart = ObjectBuilder.CreateCartWithPartOrders(reader);
+                }
+            }
+            return cart;
+        }
+
+        /// <summary>
         /// Return a list of all Carts
         /// </summary>
         /// <returns>

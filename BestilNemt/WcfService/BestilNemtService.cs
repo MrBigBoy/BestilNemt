@@ -437,6 +437,10 @@ namespace WcfService
         {
             return CartCtr.FindCart(id);
         }
+        public Cart FindCartWithPartOrders(int cartId)
+        {
+            return CartCtr.FindCartWithPartOrders(cartId);
+        }
 
         public List<Cart> GetAllCarts()
         {
