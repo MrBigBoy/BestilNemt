@@ -38,7 +38,7 @@
     font-size: 24px;
 }
 
-.ShopListTableHeader{
+.ShopListTableHeader {
     font-size: 26px;
 }
 
@@ -73,10 +73,6 @@ table {
     border: 1px solid black;
     table-layout: fixed;
     width: 100%;
-}
-
-th, td {
-    border: 1px solid;
 }
 
 #ProductInformation {
@@ -123,11 +119,58 @@ th, td {
     text-decoration: none;
     font-size: 16px;
 }
-#Carttable{
-     border: 1px solid black;
+
+#Carttable {
+    border: 1px solid black;
     table-layout: fixed;
     width: 100%;
 }
+
 th, td {
     border: 1px solid;
+}
+
+ul.dropdown-cart{
+    min-width:500px;
+}
+ul.dropdown-cart li .item{
+    display:block;
+    padding:3px 10px;
+    margin: 3px 0;
+}
+ul.dropdown-cart li .item:hover{
+    background-color:#f3f3f3;
+}
+ul.dropdown-cart li .item:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+ul.dropdown-cart li .item-left{
+    float:left;
+}
+ul.dropdown-cart li .item-left img,
+ul.dropdown-cart li .item-left span.item-info{
+    float:left;
+}
+ul.dropdown-cart li .item-left span.item-info{
+    margin-left:10px;   
+}
+ul.dropdown-cart li .item-left span.item-info span{
+    display:block;
+}
+ul.dropdown-cart li .item-right{
+    float:right;
+}
+ul.dropdown-cart li .item-right button{
+    margin-top:14px;
+}
+
+.navbar-right .dropdown-menu {
+    right: 0;
+    left: auto;
 }

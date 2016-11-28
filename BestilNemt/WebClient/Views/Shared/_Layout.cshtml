@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using WebClient.BestilNemtServiceRef
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,51 +7,93 @@
     <title>@ViewBag.Title - Bestil Nemt</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script type = 'text/javascript' >
-        var appInsights=window.appInsights||function(config)
-        {
-            function r(config){ t[config] = function(){ var i = arguments; t.queue.push(function(){ t[config].apply(t, i)})} }
-            var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
+    <script type='text/javascript'>
+        var appInsights = window.appInsights || function (config) {
+            function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
+            var t = { config: config }, u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;) r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o), s }), t
         }({
-            instrumentationKey:'11493d8e-cadf-4c0c-a0bd-f647a13aee8e'
+            instrumentationKey: '11493d8e-cadf-4c0c-a0bd-f647a13aee8e'
         });
-        
-        window.appInsights=appInsights;
+
+        window.appInsights = appInsights;
         appInsights.trackPageView();
     </script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-inverse navbar-right">
-                <button name="Login" value="Login" id="LoginButton" style="width: 100%; height: 100%" onclick="location.href = '@Url.Action("AddtoCart", "Cart")'">
-                    MrBigBoy Log af
-                </button>
-                <button name="Kurv" value="Kurv" id="CartButton" style="width: 100%; height: 100%" onclick="location.href = '@Url.Action("getCart", "Product")'">
-                    12<img src="/Images/Cart2.png" alt="Kurv" style="width: 50px; border: 0;">
-                </button>
-            </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
-
+                <a class="navbar-brand" href="#">Bestil Nemt</a>
             </div>
-            
-            <div class="navbar-collapse collapse">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
                 </ul>
-            </div>
+                <ul class="nav navbar-nav navbar-right">
 
-        </div>
-    </div>
+                    <li class="dropdown">
+                        <!-- Get the current Cart -->
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Produkter<span class="caret"></span></a>
+
+                        <ul class="dropdown-menu dropdown-cart" role="menu">
+                            <!-- For every item in cart loop and view -->
+                            @*var proxy = new BestilNemtServiceClient();
+                                using(proxy)
+                                {
+                                proxy.Open();
+                                List<PartOrder> partOrders = proxy.FindCart(1).PartOrders;
+                                foreach (var partOrder in partOrders)
+                                {
+                                <li>
+                                    <span class="item">
+                                        <span class="item-left">
+                                            <img src=@partOrder.Product.ImgPath alt="" />
+                                            <span class="item-info">
+                                                <span>@partOrder.Product.Name</span>
+                                                <span>@partOrder.Product.Price</span>
+                                            </span>
+                                        </span>
+                                        <span class="item-right">
+                                            <button class="btn btn-xs btn-danger pull-right">x</button>
+                                        </span>
+                                    </span>
+                                </li>
+                                }*@
+                            <li>
+                                <span class="item">
+                                    <span class="item-left">
+                                        <img src="http://lorempixel.com/50/50/" alt="" />
+                                        <span class="item-info">
+                                            <span>Item name og meget meget meget meget meget langt navn</span>
+                                            <span>23$</span>
+                                        </span>
+                                    </span>
+                                    <span class="item-right">
+                                        <button class="btn btn-xs btn-danger pull-right">x</button>
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a class="text-center" href="\Product\getCart\0">Vis kurv</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
