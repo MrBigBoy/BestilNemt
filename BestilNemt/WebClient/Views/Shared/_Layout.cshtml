@@ -1,4 +1,5 @@
-﻿@using WebClient.BestilNemtServiceRef
+﻿@using System.Web.UI.WebControls
+@using WebClient.BestilNemtServiceRef
 @using WebGrease.Css.ImageAssemblyAnalysis
 <!DOCTYPE html>
 <html>
@@ -21,62 +22,62 @@
     </script>
 </head>
 <body>
+    <!-- Get the current Cart -->
+    @{
+        if (Session["ShoppingCart"] == null)
+        {
+            var cart = new Cart { PartOrders = new List<PartOrder>() };
+            Session["ShoppingCart"] = cart;
+        }
+        var shoppingCart = (Cart)Session["ShoppingCart"];
+        var partOrders = new List<PartOrder>();
+        var amount = 0;
+        if (shoppingCart != null)
+        {
+            partOrders = shoppingCart.PartOrders;
+            if (partOrders != null)
+            {
+                amount += partOrders.Sum(partOrder => partOrder.Amount);
+            }
+        }
+    }
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Bestil Nemt</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Bestil Nemt</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
 
-                    <li class="dropdown">
-                        <!-- Get the current Cart -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @amount - Produkter<span class="caret"></span></a>
+
+                    <ul class="dropdown-menu dropdown-cart" role="menu">
+                        <!-- For every item in cart loop and view -->
                         @{
-                            var proxy = new BestilNemtServiceClient();
-                            if (Session["ShoppingCart"] == null)
+                            var buttonId = -1;
+                            for (var i = partOrders.Count - 1; i >= 0; i--)
                             {
-                                var cart = new Cart { PartOrders = new List<PartOrder>() };
-                                Session["ShoppingCart"] = cart;
-                            }
-                            var shoppingCart = (Cart)Session["ShoppingCart"];
-                            var partOrders = new List<PartOrder>();
-                            var amount = 0;
-                            if (shoppingCart != null)
-                            {
-                                partOrders = shoppingCart.PartOrders;
-                                if (partOrders != null)
+                                var product = partOrders[i].Product;
+                                if (product != null)
                                 {
-                                    amount += partOrders.Sum(partOrder => partOrder.Amount);
-                                }
-                            }
-                        }
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @amount - Produkter<span class="caret"></span></a>
-
-                        <ul class="dropdown-menu dropdown-cart" role="menu">
-                            <!-- For every item in cart loop and view -->
-                            @{
-                                foreach (var partOrder in partOrders)
-                                {
-                                    var product = partOrder.Product;
-                                    if (product != null)
-                                    {
-                                        <li>
-                                            <span class="item">
+                                    <li>
+                                        <span class="item">
                                                 <span class="item-left">
                                                     <img src=\Images\ProductPictures\@product.ImgPath alt="" width="50" />
                                                     <span class="item-info">
@@ -93,9 +94,9 @@
                                                             }
                                                         }
                                                         @{
-                                                            if (partOrder.Amount > 1)
+                                                            if (partOrders[i].Amount > 1)
                                                             {
-                                                                <span>@partOrder.Amount X @product.Price kr</span>
+                                                                <span>@partOrders[i].Amount X @product.Price kr</span>
                                                             }
                                                             else
                                                             {
@@ -105,23 +106,36 @@
                                                     </span>
                                                 </span>
                                                 <span class="item-right">
-                                                    <button class="btn btn-xs btn-danger pull-right">x</button>
+                                                    @{
+                                                        buttonId++;
+                                                    }
+                                                    <button class="btn btn-xs btn-danger pull-right" value=@buttonId>x</button>
+                                                    @*<button class="btn btn-xs btn-danger pull-right" value=@buttonId onclick="@{
+                                                                                                                              shoppingCart.PartOrders.RemoveAt(@buttonId);
+                                                                                                                             }">x</button>*@
                                                 </span>
                                             </span>
-                                        </li>
-                                                                }
-                                                            }
+                                    </li>
+                                }
                             }
-                            <li class="divider"></li>
-                            <li><a class="text-center" onclick="location.href='@Url.Action("getCart", "Product" , new { id=shoppingCart.Id })'">Vis kurv</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+                        }
+                        <li class="divider"></li>
+                        <li><a class="text-center" onclick="location.href = '@Url.Action("getCart", "Product" , new {id=shoppingCart.Id})'">Vis kurv</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<script type="text/javascript">
+    shoppingCart.PartOrder.removeAt();
+    function Test() {
+        shoppingCart
+        alert('client click');
+    }
+</script>
 
-    <div class="container body-content">
+<div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
