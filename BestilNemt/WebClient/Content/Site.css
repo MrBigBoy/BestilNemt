@@ -131,7 +131,7 @@ th, td {
 }
 
 ul.dropdown-cart{
-    min-width:500px;
+    min-width:250px;
 }
 ul.dropdown-cart li .item{
     display:block;
@@ -173,4 +173,7 @@ ul.dropdown-cart li .item-right button{
 .navbar-right .dropdown-menu {
     right: 0;
     left: auto;
+}
+.item {
+    Display: block;
 }

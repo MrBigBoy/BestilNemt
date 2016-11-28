@@ -20,6 +20,7 @@
     </script>
 </head>
 <body>
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,49 +45,52 @@
 
                     <li class="dropdown">
                         <!-- Get the current Cart -->
-
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Produkter<span class="caret"></span></a>
+                        @{
+                            var proxy = new BestilNemtServiceClient();
+                            var cartId = 1;
+                            var cart = proxy.FindCartWithPartOrders(cartId);
+                            var partOrders = new List<PartOrder>();
+                            var amount = 0;
+                            if (cart != null)
+                            {
+                                partOrders = cart.PartOrders;
+                                if (partOrders != null)
+                                {
+                                    amount += partOrders.Sum(partOrder => partOrder.Amount);
+                                }
+                            }
+                        }
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @amount - Produkter<span class="caret"></span></a>
 
                         <ul class="dropdown-menu dropdown-cart" role="menu">
                             <!-- For every item in cart loop and view -->
-                            @*var proxy = new BestilNemtServiceClient();
-                                using(proxy)
-                                {
-                                proxy.Open();
-                                List<PartOrder> partOrders = proxy.FindCart(1).PartOrders;
+                            @{
                                 foreach (var partOrder in partOrders)
                                 {
-                                <li>
-                                    <span class="item">
-                                        <span class="item-left">
-                                            <img src=@partOrder.Product.ImgPath alt="" />
-                                            <span class="item-info">
-                                                <span>@partOrder.Product.Name</span>
-                                                <span>@partOrder.Product.Price</span>
+                                    var product = partOrder.Product;
+                                    if (product != null)
+                                    {
+                                        <li>
+                                            <span class="item">
+                                                <span class="item-left">
+                                                    <img src=@product.ImgPath alt="" />
+                                                    <span class="item-info">
+                                                        <!-- 15 digit wide name as max -->
+                                                        @*<span>@product.Name.Substring(0, 15)</span>*@
+                                                        <span>@product.Name</span>
+                                                        <span>@product.Price</span>
+                                                    </span>
+                                                </span>
+                                                <span class="item-right">
+                                                    <button class="btn btn-xs btn-danger pull-right">x</button>
+                                                </span>
                                             </span>
-                                        </span>
-                                        <span class="item-right">
-                                            <button class="btn btn-xs btn-danger pull-right">x</button>
-                                        </span>
-                                    </span>
-                                </li>
-                                }*@
-                            <li>
-                                <span class="item">
-                                    <span class="item-left">
-                                        <img src="http://lorempixel.com/50/50/" alt="" />
-                                        <span class="item-info">
-                                            <span>Item name og meget meget meget meget meget langt navn</span>
-                                            <span>23$</span>
-                                        </span>
-                                    </span>
-                                    <span class="item-right">
-                                        <button class="btn btn-xs btn-danger pull-right">x</button>
-                                    </span>
-                                </span>
-                            </li>
+                                        </li>
+                                    }
+                                }
+                            }
                             <li class="divider"></li>
-                            <li><a class="text-center" href="\Product\getCart\0">Vis kurv</a></li>
+                            <li><a class="text-center" href="\Product\getCart\@cartId">Vis kurv</a></li>
                         </ul>
                     </li>
                 </ul>

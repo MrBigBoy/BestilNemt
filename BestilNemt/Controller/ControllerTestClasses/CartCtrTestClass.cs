@@ -25,6 +25,11 @@ namespace Controller.ControllerTestClasses
             return carts.FirstOrDefault(c => c.Id == id);
 
         }
+        public Cart FindCartWithPartOrders(int id)
+        {
+            return carts.FirstOrDefault(c => c.Id == id);
+
+        }
 
         public List<Cart> GetAllCarts()
         {

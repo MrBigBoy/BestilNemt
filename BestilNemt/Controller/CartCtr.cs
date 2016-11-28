@@ -4,7 +4,7 @@ using Models;
 
 namespace Controller
 {
-   public class CartCtr
+    public class CartCtr
     {
         public IDbCart IDbCart { get; set; }
 
@@ -22,7 +22,7 @@ namespace Controller
         /// </returns>
         public int AddCart(Cart cart)
         {
-           return IDbCart.AddCart(cart);
+            return IDbCart.AddCart(cart);
         }
 
         /// <summary>
@@ -34,7 +34,19 @@ namespace Controller
         /// </returns>
         public Cart FindCart(int id)
         {
-            return IDbCart.FindCart(id) ;
+            return IDbCart.FindCart(id);
+        }
+
+        /// <summary>
+        /// Return a Cart by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Cart if found, else null
+        /// </returns>
+        public Cart FindCartWithPartOrders(int id)
+        {
+            return IDbCart.FindCartWithPartOrders(id);
         }
 
         public int UpdateCart(Cart cart)
