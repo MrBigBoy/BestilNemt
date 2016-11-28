@@ -1,0 +1,38 @@
+﻿@using WebClient.BestilNemtServiceRef
+@model Login
+@{
+    ViewBag.Title = "Sign in";
+}
+
+<div class="container">
+    <div class="col-md-12 text-center">
+        <p>Indtast dit brugernavn og adgangskode for at logge ind</p>
+    </div>
+    <div class="row" id="pwd-container">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+            <section class="login-form">
+                <form method="post" action="#">
+
+                    <input type="email" name="email" placeholder="Brugernavn" required class="form-control input-lg" />
+
+                    <input type="password" class="form-control input-lg" id="password" placeholder="Adgangskode" required="" />
+
+                    <div class="pwstrength_viewport_progress"></div>
+
+                    <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+                    <div>
+                        <a onclick="location.href = '@Url.Action("CreateLogin", "Login")'">Opret konto</a> eller <a onclick="location.href = '@Url.Action("ResetLogin", "Login")'">Nulstil Adgangskode</a>
+                    </div>
+                </form>
+                <div class="form-links">
+                    <a onclick="location.href = '@Url.Action("Index", "Home")'">www.BestilNemt.dk</a>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-md-4"></div>
+
+    </div>
+</div>

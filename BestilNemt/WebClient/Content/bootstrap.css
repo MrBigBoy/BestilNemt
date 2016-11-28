@@ -1884,7 +1884,6 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 14px;
     line-height: 1.428571429;
     color: #555555;
-    vertical-align: middle;
     background-color: #ffffff;
     border: 1px solid #cccccc;
     border-radius: 4px;
@@ -1923,13 +1922,11 @@ textarea.form-control {
     padding-left: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    vertical-align: middle;
 }
 
     .radio label,
     .checkbox label {
         display: inline;
-        margin-bottom: 0;
         font-weight: normal;
         cursor: pointer;
     }
@@ -2176,7 +2173,6 @@ textarea.input-lg {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -o-user-select: none;
     user-select: none;
 }
 
@@ -4470,10 +4466,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-form {
     padding: 10px 15px;
-    margin-top: 8px;
-    margin-right: -15px;
-    margin-bottom: 8px;
-    margin-left: -15px;
+    margin: 8px, -15px, 8px, -15px;
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -5352,7 +5345,6 @@ a.thumbnail:focus {
 .progress.active .progress-bar {
     -webkit-animation: progress-bar-stripes 2s linear infinite;
     -moz-animation: progress-bar-stripes 2s linear infinite;
-    -ms-animation: progress-bar-stripes 2s linear infinite;
     -o-animation: progress-bar-stripes 2s linear infinite;
     animation: progress-bar-stripes 2s linear infinite;
 }

@@ -154,6 +154,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
@@ -260,8 +261,11 @@
     <Content Include="Views\Product\ProductPage.cshtml" />
     <Content Include="Views\Product\AddProductToCart.cshtml" />
     <Content Include="Views\Cart\AddtoCart.cshtml" />
-    <Content Include="Views\Product\getCart.cshtml" />
+    <Content Include="Views\Product\GetCart.cshtml" />
     <Content Include="Views\Product\CheckOut.cshtml" />
+    <Content Include="Views\Login\SignIn.cshtml" />
+    <Content Include="Views\Login\CreateLogin.cshtml" />
+    <Content Include="Views\Login\ResetLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

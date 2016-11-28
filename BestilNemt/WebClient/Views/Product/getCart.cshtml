@@ -7,7 +7,6 @@
 
 <h2>Din Kurv</h2>
 
-
 <table id="Carttable">
     <tr>
         <th></th>
@@ -20,14 +19,14 @@
     @foreach (var partOrder in shoppingCart.PartOrders)
     {
         <tr>
-            <td><img src="/Images/ProductPictures/@partOrder.Product.ImgPath" height="50" width="50"></td>
+            <td>
+                <img height="50" src="/Images/ProductPictures/@partOrder.Product.ImgPath" width="50" alt=""></td>
             <td>@partOrder.Product.Name</td>
             <td>@partOrder.Product.Description</td>
             <td>@partOrder.Product.Price kr</td>
             <td>@partOrder.Amount </td>
             <td>@partOrder.PartPrice kr</td>
         </tr>
-
     }
 
 </table>
@@ -36,30 +35,13 @@
     @*<p>Pris: @shoppingCart.PartOrders kr</p>*@
     @using (Html.BeginForm("CheckOut", "Product", FormMethod.Post))
     {
-
-
         @Html.HiddenFor(x => x.Cart.Id)
-        <button class ="CheckOut" type="submit">Til betaling</button>
-
+        <button class="CheckOut" type="submit">Til betaling</button>
     }
-
-
-
-
 </div>
 
-    @using (Html.BeginForm("ClearCart", "Product", FormMethod.Post))
-    {
-        @Html.HiddenFor(x => x.Cart.Id)
-        <button class="ClearCart"  type="submit" >Ryd kurv</button>
-    }
-
-
-
-
-
-
-
-
-
-
+@using (Html.BeginForm("ClearCart", "Product", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Cart.Id)
+    <button class="ClearCart" type="submit">Ryd kurv</button>
+}
