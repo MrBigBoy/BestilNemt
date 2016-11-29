@@ -5,32 +5,32 @@
     ViewBag.Title = "Kæder";
 }
 
-@foreach (var item in Model.Item1)
+@foreach (var chain in Model.Item1)
 {
-    var imgPath = "/Images/Chains/" + @item.ImgPath;
-    <button name=@item.Name value="@item.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = item.Id })'">
-        <img src=@imgPath alt=@item.Name style="width:200px;border:0;">
+    var imgPath = "/Images/Chains/" + chain.ImgPath;
+    <button name=@chain.Name value="@chain.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = chain.Id })'">
+    <img src=@imgPath alt=@chain.Name style="width:200px;border:0;">
     </button>
 }
 
 <div id="wrap">
     <div id="left_col">
         <h2 class="frontPage">Populære produkter</h2>
-        @foreach (var item in Model.Item2)
+        @foreach (var product in Model.Item2)
         {
-            var imgPath = "/Images/ProductPictures/" + @item.ImgPath;
-            <button name=@item.Name value=@item.Id class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ProductPage", "Product", new { id = item.Id })'">
-                <img src=@imgPath alt="@item.Name" style="width:200px;border:0;">
+            var imgPath = "/Images/ProductPictures/" + product.ImgPath;
+            <button name=@product.Name value=@product.Id class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ProductPage", "Product", new { id = product.Id })'">
+            <img src=@imgPath alt="@product.Name" style="width:200px;border:0;">
             </button>
         }
     </div>
     <div id="right_col">
         <h2 class="frontPage">Aktuelle tilbud</h2>
-        @foreach (var item in Model.Item3)
+        @foreach (var product in Model.Item3)
         {
-            var imgPath = "/Images/ProductPictures/" + @item.ImgPath;
-            <button name=@item.Name value=@item.Id class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ProductPage", "Product", new { id = item.Id })'">
-                <img src=@imgPath alt="@item.Name" style="width:200px;border:0;">
+            var imgPath = "/Images/ProductPictures/" + product.ImgPath;
+            <button name=@product.Name value=@product.Id class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ProductPage", "Product", new { id = product.Id })'">
+            <img src=@imgPath alt="@product.Name" style="width:200px;border:0;">
             </button>
         }
     </div>

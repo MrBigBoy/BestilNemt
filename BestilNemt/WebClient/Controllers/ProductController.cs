@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
 using WebClient.Models;
@@ -20,93 +17,50 @@ namespace WebClient.Controllers
         {
             var proxy = new BestilNemtServiceClient();
             var allProducts = proxy.GetAllProducts();
-            ViewBag.Cart = ShoppingCart;
-            if (id != null)
-            {
-                var shop = proxy.GetShop(id.Value);
-                shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
-                Session["Shop"] = shop;
-
-            }
+            var cart = (Cart)Session["ShoppingCart"];
+            ViewBag.Cart = cart;
+            if (id == null)
+                return View(allProducts);
+            if (id.Value <= 0) return View(allProducts);
+            var shop = proxy.GetShop(id.Value);
+            shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
+            Session["Shop"] = shop;
             return View(allProducts);
         }
 
-        public ActionResult ProductPage(int id)
+        public ActionResult ProductPage(int? id)
         {
-            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-
-            ProductPartOrderViewModel pvm = new ProductPartOrderViewModel();
-            pvm.Product = proxy.GetProduct(id);
+            var pvm = new ProductPartOrderViewModel();
+            if (id == null) return View(pvm);
+            var proxy = new BestilNemtServiceClient();
+            pvm.Product = proxy.GetProduct(id.Value);
             return View(pvm);
         }
 
         public ActionResult SearchProduct(string input)
         {
-            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            var ProductsByName = proxy.FindProductsByName(input);
-            return View(ProductsByName);
-        }
-
-
-        public Cart ShoppingCart
-        {
-            get
-            {
-                if (Session["ShoppingCart"] == null)
-                {
-                    var cart = new Cart();
-                    cart.PartOrders = new List<PartOrder>();
-                    Session["ShoppingCart"] = cart;
-                }
-                return (Cart)Session["ShoppingCart"];
-            }
+            var proxy = new BestilNemtServiceClient();
+            var productsByName = proxy.FindProductsByName(input);
+            return View(productsByName);
         }
 
         [HttpPost]
         public ActionResult AddProductToCart(ProductPartOrderViewModel partOrder)
         {
-
-            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-
-            PartOrder po = new PartOrder();
-            po.Product = proxy.GetProduct(partOrder.Product.Id);
-            po.Amount = partOrder.Amount;
-            po.PartPrice = po.Product.Price * po.Amount;
-            po.Cart = ShoppingCart;
-            ShoppingCart.PartOrders.Add(po);
-            //var addProductCart = proxy.AddPartOrder(po);
+            var proxy = new BestilNemtServiceClient();
+            var cart = (Cart)Session["ShoppingCart"];
+            var product = proxy.GetProduct(partOrder.Product.Id);
+            var po = new PartOrder
+            {
+                Product = product,
+                Amount = partOrder.Amount,
+                PartPrice = product.Price * partOrder.Amount,
+                Cart = cart
+            };
+            cart.PartOrders.Add(po);
+            // Update the session
+            Session["ShoppingCart"] = cart;
             return RedirectToAction("ProductPage", new { id = partOrder.Product.Id });
-        }
-
-        public ActionResult getCart(int id)
-        {
-            ViewBag.Cart = ShoppingCart;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CheckOut()
-        {
-            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            proxy.AddCartWithPartOrders(ShoppingCart);
-            return View();
-        }
-      //  [HttpPost]
-        public ActionResult ClearCart()
-        {
-         
-            ShoppingCart.PartOrders= new List<PartOrder>();
-            return RedirectToAction("getCart", new { id = ShoppingCart.Id });
-
-
-        }
-        public ActionResult CompleteCart()
-        {
-
-            ShoppingCart.PartOrders = new List<PartOrder>();
-            return RedirectToAction("Index",("Home") );
-
-
         }
     }
 }

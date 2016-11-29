@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
 
@@ -17,33 +14,69 @@ namespace WebClient.Controllers
 
         public ActionResult AddtoCart(PartOrder partOrder)
         {
-            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var proxy = new BestilNemtServiceClient();
             if (partOrder == null)
             {
                 return View();
             }
-            var addProductCart = proxy.AddPartOrder(partOrder);
+            proxy.AddPartOrder(partOrder);
             return View();
         }
 
         public ActionResult UpdateCart(int PartOrderId, int selAmount)
         {
-            var cart = (Cart)Session["ShoppingCart"];
-            if (cart != null)
+            if (ShoppingCart == null)
+                return RedirectToAction("GetCart", new { id = 0 });
+            var partOrders = ShoppingCart.PartOrders;
+            foreach (var partOrder in partOrders)
             {
-                var partOrders = cart.PartOrders;
-                foreach (var partOrder in partOrders)
-                {
-                    if (partOrder.Id == PartOrderId)
-                    {
-                        partOrder.Amount = selAmount;
-                        partOrder.PartPrice = selAmount * partOrder.Product.Price;
-                    }
-                }
-                cart.PartOrders = partOrders;
-                Session["ShoppingCart"] = cart;
+                if (partOrder.Id != PartOrderId)
+                    continue;
+                partOrder.Amount = selAmount;
+                partOrder.PartPrice = selAmount * partOrder.Product.Price;
             }
-            return RedirectToAction("getCart", "Product", new { id = cart.Id });
+            ShoppingCart.PartOrders = partOrders;
+            Session["ShoppingCart"] = ShoppingCart;
+            return RedirectToAction("GetCart", new { id = ShoppingCart.Id });
+        }
+
+        public Cart ShoppingCart
+        {
+            get
+            {
+                if (Session["ShoppingCart"] != null)
+                    return (Cart)Session["ShoppingCart"];
+                var cart = new Cart { PartOrders = new List<PartOrder>() };
+                Session["ShoppingCart"] = cart;
+                return (Cart)Session["ShoppingCart"];
+            }
+        }
+
+        //  [HttpPost]
+        public ActionResult ClearCart()
+        {
+            ShoppingCart.PartOrders = new List<PartOrder>();
+            return RedirectToAction("GetCart", new { id = ShoppingCart.Id });
+        }
+
+        public ActionResult CompleteCart()
+        {
+            ShoppingCart.PartOrders = new List<PartOrder>();
+            return RedirectToAction("Index", ("Home"));
+        }
+
+        public ActionResult GetCart(int? id)
+        {
+            ViewBag.Cart = (Cart)Session["ShoppingCart"];
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CheckOut()
+        {
+            var proxy = new BestilNemtServiceClient();
+            proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
+            return View();
         }
     }
 }

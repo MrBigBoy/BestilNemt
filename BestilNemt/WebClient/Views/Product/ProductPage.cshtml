@@ -1,14 +1,14 @@
 ﻿@using WebClient.BestilNemtServiceRef
 @model global::WebClient.Models.ProductPartOrderViewModel
 
-
 @{
     ViewBag.Title = "Product Page";
 }
 
-
 <h1>@Model.Product.Name</h1>
-<div id="ProductPicture"><img src="/Images/ProductPictures/@Model.Product.ImgPath" height="350" width="350"></div>
+<div id="ProductPicture">
+    <img alt="" height="350" src="/Images/ProductPictures/@Model.Product.ImgPath" width="350">
+</div>
 <div id="ProductInformation">
     <div id="BuyModul">
         <p>Pris: @Model.Product.Price kr</p>
@@ -23,18 +23,11 @@
 
             @Html.HiddenFor(x => x.Product.Id)
             <button type="submit" onclick="alert('@Model.Product.Name er tilføjet til kurven');">Tilføj til kurv</button>
-         
         }
-
-
-
-
     </div>
-
 
     <div id="descriptionBox">
         <h3>Produkt information</h3>
         <p>@Model.Product.Description</p>
     </div>
-
 </div>

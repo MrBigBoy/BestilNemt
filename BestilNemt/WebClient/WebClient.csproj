@@ -260,7 +260,7 @@
     <Content Include="Views\Product\ProductPage.cshtml" />
     <Content Include="Views\Product\AddProductToCart.cshtml" />
     <Content Include="Views\Cart\AddtoCart.cshtml" />
-    <Content Include="Views\Product\GetCart.cshtml" />
+    <Content Include="Views\Cart\GetCart.cshtml" />
     <Content Include="Views\Product\CheckOut.cshtml" />
     <Content Include="Views\Login\SignIn.cshtml" />
     <Content Include="Views\Login\CreateLogin.cshtml" />

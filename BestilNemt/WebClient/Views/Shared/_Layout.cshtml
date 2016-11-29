@@ -10,10 +10,14 @@
     <title>@ViewBag.Title - Bestil Nemt</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script type='text/javascript'>
+    <script type="text/javascript">
         var appInsights = window.appInsights || function (config) {
+            var t;
+
             function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
-            var t = { config: config }, u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;) r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o), s }), t
+
+            t = { config: config };
+            var u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;) r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== true && t['_' + i](config, r, u, e, o), s }), t;
         }({
             instrumentationKey: '11493d8e-cadf-4c0c-a0bd-f647a13aee8e'
         });
@@ -51,12 +55,6 @@
                 amount += partOrders.Sum(partOrder => partOrder.Amount);
             }
         }
-    }
-<!-- Chain and Shop Session -->
-    @{
-        var chain = (Chain) Session["Chain"];
-        var shop = (Shop) Session["Shop"];
-        
     }
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -102,53 +100,56 @@
                             <!-- For every item in cart loop and view -->
                             @{
                                 var buttonId = -1;
-                                for (var i = partOrders.Count - 1; i >= 0; i--)
+                                if (partOrders != null)
                                 {
-                                    var product = partOrders[i].Product;
-                                    if (product != null)
+                                    for (var i = partOrders.Count - 1; i >= 0; i--)
                                     {
-                                        <li>
-                                            <span class="item">
-                                                <span class="item-left">
-                                                    <img src=\Images\ProductPictures\@product.ImgPath alt="" width="50" />
-                                                    <span class="item-info">
-                                                        <!-- 15 digit wide name as max -->
+                                        var product = partOrders[i].Product;
+                                        if (product != null)
+                                        {
+                                            <li>
+                                                <span class="item">
+                                                    <span class="item-left">
+                                                        <img src=\Images\ProductPictures\@product.ImgPath alt="" width="50" />
+                                                        <span class="item-info">
+                                                            <!-- 15 digit wide name as max -->
+                                                            @{
+                                                                var name = product.Name;
+                                                                if (name.Length > 15)
+                                                                {
+                                                                    <span>@product.Name.Substring(0, 15)</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span>@product.Name</span>
+                                                                }
+                                                            }
+                                                            @{
+                                                                if (partOrders[i].Amount > 1)
+                                                                {
+                                                                    <span>@partOrders[i].Amount X @product.Price kr</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span>@product.Price kr</span>
+                                                                }
+                                                            }
+                                                        </span>
+                                                    </span>
+                                                    <span class="item-right">
                                                         @{
-                                                            var name = product.Name;
-                                                            if (name.Length > 15)
-                                                            {
-                                                                <span>@product.Name.Substring(0, 15)</span>
-                                                            }
-                                                            else
-                                                            {
-                                                                <span>@product.Name</span>
-                                                            }
+                                                            buttonId++;
                                                         }
-                                                        @{
-                                                            if (partOrders[i].Amount > 1)
-                                                            {
-                                                                <span>@partOrders[i].Amount X @product.Price kr</span>
-                                                            }
-                                                            else
-                                                            {
-                                                                <span>@product.Price kr</span>
-                                                            }
-                                                        }
+                                                        <button class="btn btn-xs btn-danger pull-right" value=@buttonId>x</button>
                                                     </span>
                                                 </span>
-                                                <span class="item-right">
-                                                    @{
-                                                        buttonId++;
-                                                    }
-                                                    <button class="btn btn-xs btn-danger pull-right" value=@buttonId>x</button>
-                                                </span>
-                                            </span>
-                                        </li>
+                                            </li>
+                                                                    }
+                                                                }
                                                             }
-                                                        }
                             }
                             <li class="divider"></li>
-                            <li><a class="text-center" onclick="location.href='@Url.Action("GetCart", "Product" , new { id=shoppingCart.Id })'">Vis kurv</a></li>
+                            <li><a class="text-center" onclick="location.href='@Url.Action("GetCart", "Cart" , new { id=shoppingCart.Id })'">Vis kurv</a></li>
                         </ul>
                     </li>
                 </ul>

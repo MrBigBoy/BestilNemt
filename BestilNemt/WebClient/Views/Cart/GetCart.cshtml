@@ -1,0 +1,109 @@
+﻿@using WebClient.BestilNemtServiceRef
+@model global::WebClient.Models.ProductPartOrderViewModel
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Din Kurv</h2>
+
+<table id="Carttable">
+    <tr>
+        <th></th>
+        <th>Navn</th>
+        <th>Beskrivelse</th>
+        <th>Pris pr/stk</th>
+        <th>Antal</th>
+        <th>Total</th>
+    </tr>
+    @{
+        var cart = (Cart)Session["ShoppingCart"];
+        if (cart != null)
+        {
+            foreach (var partOrder in cart.PartOrders)
+            {
+                <tr>
+                    <td>
+                        <img alt="" height="50" src="/Images/ProductPictures/@partOrder.Product.ImgPath" width="50">
+                    </td>
+                    <td>@partOrder.Product.Name</td>
+                    <td>@partOrder.Product.Description</td>
+                    <td>@partOrder.Product.Price kr</td>
+                    <TD>
+                        <form action="@Url.Action("UpdateCart", "Cart")" method="post">
+                            @Html.Hidden("PartOrderId", partOrder.Id)
+                            <select class="selAmount" name="selAmount">
+                                @{
+                                    var shop = (Shop)Session["Shop"];
+                                    if (shop != null)
+                                    {
+                                        if (shop.Warehouses.Count == 0)
+                                        {
+                                            <option value="0">0</option>
+                                        }
+                                        foreach (var warehouse in shop.Warehouses)
+                                        {
+                                            if (warehouse.Product.Id == partOrder.Product.Id)
+                                            {
+                                                var stock = warehouse.Stock;
+                                                if (stock < 0)
+                                                {
+                                                    // FUUU somebody removed a product there was NOT in stock
+                                                    <option value="0">0</option>
+                                                }
+                                                else
+                                                {
+                                                    for (var i = 1; i <= stock; i++)
+                                                    {
+                                                        if (@partOrder.Amount == i)
+                                                        {
+                                                            <option value="@i" selected>@i</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option value="0">0</option>
+                                    }
+                                }
+                                }
+                            </select>
+                        </form>
+                    </TD>
+                    <td>@partOrder.PartPrice kr</td>
+                </tr>
+                                        }
+                                    }
+    }
+</table>
+
+<div id="CheckOut">
+    @*<p>Pris: @shoppingCart.PartOrders kr</p>*@
+    @using (Html.BeginForm("CheckOut", "Cart", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.Cart.Id)
+        <button class="CheckOut" type="submit">Til betaling</button>
+    }
+</div>
+
+@using (Html.BeginForm("ClearCart", "Cart", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Cart.Id)
+    <button class="ClearCart" type="submit">Ryd kurv</button>
+}
+
+@section scripts
+{
+    <script>
+        $('.selAmount').change(function () {
+            this.form.submit();
+        });
+
+    </script>
+}

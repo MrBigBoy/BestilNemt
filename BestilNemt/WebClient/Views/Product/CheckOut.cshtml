@@ -4,48 +4,41 @@
 }
 
 <h2>CheckOut</h2>
-<script>
-function validateForm() {
-    var cardNumber = document.forms["PaymentForm"]["cardNumber"].value;
-    var exDate = document.forms["PaymentForm"]["exspiringdate"].value;
-    var controlNumbers = document.forms["PaymentForm"]["Controlnumbers"].value;
-    if (cardNumber == "") {
-        alert("CardNumber must be filled out");
-        return false;
-    }
-    if (exDate == "") {
-        alert("exspiringdate must be filled out");
-        return false;
-    }
-    if (controlNumbers == "") {
-        alert("controlNumbers must be filled out");
-        return false;
-    }
-
-    else {
-        alert("Betalling gennemført");
-
-        return true; 
-    }
+@section scripts
+{
+    <script>
+        function validateForm() {
+            var cardNumber = document.forms["PaymentForm"]["cardNumber"].value;
+            var exDate = document.forms["PaymentForm"]["exspiringdate"].value;
+            var controlNumbers = document.forms["PaymentForm"]["Controlnumbers"].value;
+            if (cardNumber === "") {
+                alert("CardNumber must be filled out");
+                return false;
+            }
+            if (exDate === "") {
+                alert("Expiry date must be filled out");
+                return false;
+            }
+            if (controlNumbers === "") {
+                alert("ControlNumbers must be filled out");
+                return false;
+            } else {
+                alert("Betaling gennemført");
+                return true;
+            }
+        }
+    </script>
 }
-</script>
 
 <form name="PaymentForm" class="Payment" onsubmit="return validateForm()">
-   
-
     Kortnummer:<br>
-    <input type="text" name="cardNumber" maxlength="10"> <br >
+    <input type="text" name="cardNumber" maxlength="10"> <br>
     Udløbsnings dato:<br>
     <input type="text" name="exspiringdate" maxlength="10"> <br>
     Kontrol cifre:<br>
     <input type="text" name="Controlnumbers" maxlength="10"> <br>
-
-
-   
-    
-
 </form>
-@using (Html.BeginForm("CompleteCart", "Product", FormMethod.Post))
+@using (Html.BeginForm("CompleteCart", "Cart", FormMethod.Post))
 {
     <button input type="submit" class="CheckOut">Til betaling</button>
 }
