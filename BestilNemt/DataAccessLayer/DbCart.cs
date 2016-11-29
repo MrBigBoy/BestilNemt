@@ -243,7 +243,6 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Connection = conn;
                 cmd.Transaction = transaction;
                 try
                 {
@@ -252,37 +251,43 @@ namespace DataAccessLayer
 
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     id = (int)cmd.ExecuteScalar();
+                    
                     foreach (var po in cart.PartOrders)
                     {
+                        var cmdPartOrder = conn.CreateCommand();
+                        cmdPartOrder.Transaction = transaction;
                         //Save all PartOrders from cart in DB
-                        cmd.CommandText = "Insert Into PartOrder (partOrderProductId, partOrderAmount, partOrderPartPrice, partOrderCartId) values (@productId, @amount, @partPrice, @cartId)";
-                        cmd.Parameters.AddWithValue("productId", po.Product.Id);
-                        cmd.Parameters.AddWithValue("amount", po.Amount);
-                        cmd.Parameters.AddWithValue("partPrice", po.PartPrice);
-                        cmd.Parameters.AddWithValue("cartId", id);
-                        cmd.ExecuteNonQuery();
-
-                       //// Get warehouseStock form DB decrese it with partOrder Amount and save in a variable
-                       // cmd.CommandText = "Select warehouseStock from Warehouse where warehouseProductId = @productId";
-                       // cmd.Parameters.AddWithValue("productId", po.Product.Id);
-                       // var newStock = 0;
-                       // var reader = cmd.ExecuteReader();
-                       // while (reader.Read())
-                       // {
-                       //     newStock = reader.GetInt32(reader.GetOrdinal("warehouseStock")) - po.Amount;
-                       // }
-
-                       // //update warehouseStock with new saved value
-                       // cmd.CommandText = "Update Warehouse Set warehouseStock = @newStock where warehouseProductId = @productId";
-                       // cmd.Parameters.AddWithValue("newStock", newStock);
-                       // cmd.Parameters.AddWithValue("productId", po.Product.Id);
-                       // cmd.ExecuteNonQuery();
+                        cmdPartOrder.CommandText = "Insert Into PartOrder (partOrderProductId, partOrderAmount, partOrderPartPrice, partOrderCartId) values (@productId, @amount, @partPrice, @cartId)";
+                        cmdPartOrder.Parameters.AddWithValue("productId", po.Product.Id);
+                        cmdPartOrder.Parameters.AddWithValue("amount", po.Amount);
+                        cmdPartOrder.Parameters.AddWithValue("partPrice", po.PartPrice);
+                        cmdPartOrder.Parameters.AddWithValue("cartId", id);
+                        cmdPartOrder.ExecuteNonQuery();
+                        var cmdDecreseStock = conn.CreateCommand();
+                        // Get warehouseStock form DB decrese it with partOrder Amount and save in a variable
+                        cmdDecreseStock.CommandText = "Select warehouseStock from Warehouse where warehouseProductId = @productId";
+                        cmdDecreseStock.Parameters.AddWithValue("productId", po.Product.Id);
+                        cmdDecreseStock.Transaction = transaction;
+                        var newStock = 0;
+                        var reader = cmdDecreseStock.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            newStock = reader.GetInt32(reader.GetOrdinal("warehouseStock")) - po.Amount;
+                        }
+                        reader.Close();
+                        var cmdUpdateWarehouse = conn.CreateCommand();
+                        //update warehouseStock with new saved value
+                        cmdUpdateWarehouse.CommandText = "Update Warehouse Set warehouseStock = @newStock where warehouseProductId = @productId";
+                        cmdUpdateWarehouse.Parameters.AddWithValue("newStock", newStock);
+                        cmdUpdateWarehouse.Parameters.AddWithValue("productId", po.Product.Id);
+                        cmdUpdateWarehouse.Transaction = transaction;
+                        cmdUpdateWarehouse.ExecuteNonQuery();
                     }
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     try
                     {
