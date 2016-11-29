@@ -16,16 +16,19 @@ namespace WebClient.Controllers
             return View();
         }
 
-        public ActionResult Product()
+        public ActionResult Product(int? id)
         {
-            
-     //    var id = (Int32.Parse(UrlParameter.Optional));
-            BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            var AllProducts = proxy.GetAllProducts();
-          //  var shop = (Shop)Session["Shop"];
-           //  var WarehouseStock = proxy.FindAllWarehousesByShopId(shop.Id);
+            var proxy = new BestilNemtServiceClient();
+            var allProducts = proxy.GetAllProducts();
             ViewBag.Cart = ShoppingCart;
-            return View(AllProducts);
+            if (id != null)
+            {
+                var shop = proxy.GetShop(id.Value);
+                shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
+                Session["Shop"] = shop;
+
+            }
+            return View(allProducts);
         }
 
         public ActionResult ProductPage(int id)
