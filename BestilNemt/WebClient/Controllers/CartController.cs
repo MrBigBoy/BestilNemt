@@ -25,19 +25,22 @@ namespace WebClient.Controllers
 
         public ActionResult UpdateCart(int PartOrderId, int selAmount)
         {
-            if (ShoppingCart == null)
-                return RedirectToAction("GetCart", new { id = 0 });
-            var partOrders = ShoppingCart.PartOrders;
-            foreach (var partOrder in partOrders)
+            if (ShoppingCart != null)
             {
-                if (partOrder.Id != PartOrderId)
-                    continue;
-                partOrder.Amount = selAmount;
-                partOrder.PartPrice = selAmount * partOrder.Product.Price;
+                var partOrders = ShoppingCart.PartOrders;
+                foreach (var partOrder in partOrders)
+                {
+                    if (partOrder.Id == PartOrderId)
+                    {
+                        partOrder.Amount = selAmount;
+                        partOrder.PartPrice = selAmount * partOrder.Product.Price;
+                    }
+                }
+                ShoppingCart.PartOrders = partOrders;
+                Session["ShoppingCart"] = ShoppingCart;
+                return RedirectToAction("GetCart", new { id = ShoppingCart.Id });
             }
-            ShoppingCart.PartOrders = partOrders;
-            Session["ShoppingCart"] = ShoppingCart;
-            return RedirectToAction("GetCart", new { id = ShoppingCart.Id });
+            return RedirectToAction("GetCart", new { id = 0 });
         }
 
         public Cart ShoppingCart
