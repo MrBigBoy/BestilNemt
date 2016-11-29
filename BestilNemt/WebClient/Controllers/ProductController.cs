@@ -18,8 +18,12 @@ namespace WebClient.Controllers
 
         public ActionResult Product()
         {
+            
+     //    var id = (Int32.Parse(UrlParameter.Optional));
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             var AllProducts = proxy.GetAllProducts();
+          //  var shop = (Shop)Session["Shop"];
+           //  var WarehouseStock = proxy.FindAllWarehousesByShopId(shop.Id);
             ViewBag.Cart = ShoppingCart;
             return View(AllProducts);
         }
