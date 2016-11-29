@@ -15,7 +15,7 @@ namespace WebClient.Controllers
             return View();
         }
 
-        public ActionResult AddtoCart( PartOrder partOrder)
+        public ActionResult AddtoCart(PartOrder partOrder)
         {
             BestilNemtServiceRef.BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             if (partOrder == null)
@@ -26,6 +26,24 @@ namespace WebClient.Controllers
             return View();
         }
 
- 
+        public ActionResult UpdateCart(int PartOrderId, int selAmount)
+        {
+            var cart = (Cart)Session["ShoppingCart"];
+            if (cart != null)
+            {
+                var partOrders = cart.PartOrders;
+                foreach (var partOrder in partOrders)
+                {
+                    if (partOrder.Id == PartOrderId)
+                    {
+                        partOrder.Amount = selAmount;
+                        partOrder.PartPrice = selAmount * partOrder.Product.Price;
+                    }
+                }
+                cart.PartOrders = partOrders;
+                Session["ShoppingCart"] = cart;
+            }
+            return RedirectToAction("getCart", "Product", new { id = cart.Id });
+        }
     }
 }

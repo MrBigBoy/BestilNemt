@@ -52,6 +52,12 @@
             }
         }
     }
+<!-- Chain and Shop Session -->
+    @{
+        var chain = (Chain) Session["Chain"];
+        var shop = (Shop) Session["Shop"];
+        
+    }
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -68,8 +74,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
                 </ul>
 
@@ -144,20 +148,13 @@
                                                         }
                             }
                             <li class="divider"></li>
-                            <li><a class="text-center" onclick="location.href='@Url.Action("getCart", "Product" , new { id=shoppingCart.Id })'">Vis kurv</a></li>
+                            <li><a class="text-center" onclick="location.href='@Url.Action("GetCart", "Product" , new { id=shoppingCart.Id })'">Vis kurv</a></li>
                         </ul>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-    <script type="text/javascript">
-        shoppingCart.PartOrder.removeAt();
-
-        function Test() {
-            alert('client click');
-        }
-    </script>
 
     <div class="container body-content">
         @RenderBody()

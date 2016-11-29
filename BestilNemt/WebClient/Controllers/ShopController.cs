@@ -19,8 +19,10 @@ namespace WebClient.Controllers
             using (proxy)
             {
                 proxy.Open();
-                return View(proxy.GetAllShopsByChainId((int)id));
+                Session["Chain"] = proxy.GetChain(id.Value);
+                return View(proxy.GetAllShopsByChainId(id.Value));
             }
+
         }
     }
 }
