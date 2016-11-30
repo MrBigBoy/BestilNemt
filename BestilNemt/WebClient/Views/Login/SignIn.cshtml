@@ -4,7 +4,7 @@
     ViewBag.Title = "Sign in";
 }
 
-<div class="container">
+<div class="LogIn">
     <div class="col-md-12 text-center">
         <p>Indtast dit brugernavn og adgangskode for at logge ind</p>
     </div>
@@ -17,23 +17,21 @@
             <section class="login-form">
                 <form method="post" action="#">
                     <div class="form-group">
-                        @*@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                        Indtast Email:<br>
-                        <div class="col-md-10">
+                        Indtast Email<br>
+                        <div class="EmailField">
                             @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                         </div>
                     </div>
                         <div class="form-group">
-                            @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                            Indtast Kodeord(mindst 6 cifre):<br>
-                            <div class="col-md-10">
+                            <br/>Indtast Kodeord<br>
+                            <div class="PasswordField">
                                 @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+                        <div class="">
                             <input type="submit" value="Login" class="btn btn-default" />
                         </div>
                     </div>
