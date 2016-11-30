@@ -9,6 +9,6 @@ namespace WebClient.Models
     {
         public Login login { get; set; }
 
-        public Person Person { get; set; }
+        public Customer Customer { get; set; }
     }
 }

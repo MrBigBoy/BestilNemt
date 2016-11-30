@@ -26,13 +26,13 @@ namespace DataAccessLayer
 
                 var cmd =
                     new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);", conn);
+                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);", conn);
                 cmd.Parameters.AddWithValue("name", customer.Name);
                 cmd.Parameters.AddWithValue("email", customer.Email);
-                cmd.Parameters.AddWithValue("personType", customer.PersonType);
                 cmd.Parameters.AddWithValue("address", customer.Address);
                 cmd.Parameters.AddWithValue("birthday", customer.Birthday);
                 id = (int)cmd.ExecuteScalar();
+              
 
             }
             return id;
@@ -137,6 +137,40 @@ namespace DataAccessLayer
                 i = cmd.ExecuteNonQuery();
             }
             return i;
+        }
+        public int AddCustomerWithLogin(Customer customer,Login login)
+        {
+            int id;
+            
+            var DbLogin = new DbLogin();
+            var returnedValue = 0;
+            if (DbLogin.DownloadPersonId(login.Username) != 0)
+                return returnedValue;
+            var parts = DbLogin.CreateHash(login.Password);
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+
+                var cmd =
+                    new SqlCommand(
+                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);", conn);
+                cmd.Parameters.AddWithValue("name", customer.Name);
+                cmd.Parameters.AddWithValue("email", customer.Email);
+                cmd.Parameters.AddWithValue("address", customer.Address);
+                cmd.Parameters.AddWithValue("birthday", customer.Birthday);
+                id = (int)cmd.ExecuteScalar();
+
+                var cmd2 = new SqlCommand("INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)", conn);
+                cmd2.Parameters.AddWithValue("loginTableUsername", login.Username);
+                cmd2.Parameters.AddWithValue("loginTableParts", parts);
+                cmd2.Parameters.AddWithValue("loginTablePersonId", id);
+                cmd2.ExecuteNonQuery();
+
+
+            }
+            return id;
         }
     }
 }

@@ -50,5 +50,9 @@ namespace Controller.ControllerTestClasses
             return 1;
         }
 
+        public int AddCustomerWithLogin(Customer customer, Login login)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

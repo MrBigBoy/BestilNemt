@@ -148,7 +148,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Int Person id
         /// </returns>
-        private static int DownloadPersonId(string username)
+        public static int DownloadPersonId(string username)
         {
             var personId = 0;
             using (
@@ -157,7 +157,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 // Now the connection is open
-                var cmd = new SqlCommand("SELECT loginTablePersonId FROM LoginTable where loginTableUsername=@LoginTableUsername", conn);
+                var cmd = new SqlCommand("SELECT * FROM LoginTable where loginTableUsername=@LoginTableUsername", conn);
                 cmd.Parameters.AddWithValue("LoginTableUsername", username);
                 var loginReader = cmd.ExecuteReader();
                 if (!loginReader.HasRows)

@@ -78,14 +78,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         @{
-                            login.Username = "Admin";
-                            login.Password = "SuperAdmin";
-                            var proxy = new BestilNemtServiceClient();
-                            login = proxy.Login(login);
-                            var username = login.Username;
                             if (login.PersonId != 0)
                             {
-                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">@username Log af </a>
+                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">@login.Username Log af </a>
                             }
                             else
                             {
