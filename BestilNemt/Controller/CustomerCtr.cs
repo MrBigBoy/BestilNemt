@@ -88,7 +88,7 @@ namespace Controller
         {
             return customer != null && !customer.Address.Equals("") && !customer.Name.Equals("") &&
                 customer.Name != null && !customer.Address.Equals("") && customer.Address != null &&
-                !customer.Email.Equals("") && customer.Email != null;
+                !customer.Email.Equals("") && customer.Email != null && customer.PersonType.Equals("Customer");
         }
 
         public int CreateCustomerWithLogin(Customer customer, Login login)
