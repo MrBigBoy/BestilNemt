@@ -30,7 +30,7 @@
                     <td>@partOrder.Product.Price kr</td>
                     <TD>
                         <form action="@Url.Action("UpdateCart", "Cart")" method="post">
-                            @Html.Hidden("PartOrderId", partOrder.Id)
+                            @Html.Hidden("ProductId", partOrder.Product.Id)
                             <select class="selAmount" name="selAmount">
                                 @{
                                     var shop = (Shop)Session["Shop"];

@@ -23,14 +23,14 @@ namespace WebClient.Controllers
             return View();
         }
 
-        public ActionResult UpdateCart(int PartOrderId, int selAmount)
+        public ActionResult UpdateCart(int ProductId, int selAmount)
         {
             if (ShoppingCart != null)
             {
                 var partOrders = ShoppingCart.PartOrders;
                 foreach (var partOrder in partOrders)
                 {
-                    if (partOrder.Id == PartOrderId)
+                    if (partOrder.Product.Id == ProductId)
                     {
                         partOrder.Amount = selAmount;
                         partOrder.PartPrice = selAmount * partOrder.Product.Price;
