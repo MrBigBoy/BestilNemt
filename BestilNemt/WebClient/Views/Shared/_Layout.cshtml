@@ -40,8 +40,7 @@
     @{
         if (Session["ShoppingCart"] == null)
         {
-            var cart = new Cart();
-            cart.PartOrders = new List<PartOrder>();
+            var cart = new Cart {PartOrders = new List<PartOrder>()};
             Session["ShoppingCart"] = cart;
         }
         var shoppingCart = (Cart)Session["ShoppingCart"];
@@ -68,11 +67,23 @@
                 </button>
                 <a class="navbar-brand" onclick="location.href = '@Url.Action("Index", "Home", new {id = shoppingCart.Id})'">Bestil Nemt</a>
             </div>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                @{
+                    var shop = (Shop)Session["Shop"];
+                }
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
+                    @{
+                        if (shop != null)
+                        {
+                            <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
+                            <li>
+                                <h3>Du shopper nu i @shop.Name - @shop.Address</h3>
+                            </li>
+                        }
+                    }
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -80,11 +91,11 @@
                         @{
                             if (login.PersonId != 0)
                             {
-                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">@login.Username Log af </a>
+                                <a class="LoginClass" onclick="location.href = '@Url.Action("Index", "Login")'">@login.Username Log af </a>
                             }
                             else
                             {
-                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">Log ind </a>
+                                <a class="LoginClass" onclick="location.href = '@Url.Action("Index", "Login")'">Log ind </a>
                             }
                         }
                     </li>
@@ -144,7 +155,7 @@
                                                             }
                             }
                             <li class="divider"></li>
-                            <li><a class="text-center" onclick="location.href='@Url.Action("GetCart", "Cart" , new { id=shoppingCart.Id })'">Vis kurv</a></li>
+                            <li><a class="text-center" onclick="location.href = '@Url.Action("GetCart", "Cart" , new {id=shoppingCart.Id})'">Vis kurv</a></li>
                         </ul>
                     </li>
                 </ul>
