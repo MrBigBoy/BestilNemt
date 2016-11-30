@@ -13,25 +13,56 @@ namespace WebClient.Controllers
 
         public ActionResult SignIn()
         {
-            var login = Login;
-            Session["login"] = login;
-            return View(login);
+
+            return View();
+        }
+        public ActionResult Signdo(Login login)
+        {
+            var proxy = new BestilNemtServiceClient();
+            if (login != null)
+            {
+                login = proxy.Login(login);
+                if (login != null)
+                {
+                    // var login = (Login)Session["Login"];
+                    Session["Login"] = login;
+                    if (!string.IsNullOrEmpty(login.Username))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            //  return RedirectToAction("Index", "Home");
+
         }
 
         public ActionResult CreateLogin()
         {
-           
+
             return View();
         }
         [HttpPost]
-        public ActionResult CreateCustomer(Customer customer,Login login)
+        public ActionResult CreateCustomer(Customer customer, Login login)
         {
 
             var proxy = new BestilNemtServiceClient();
             login.Username = customer.Email;
-            proxy.CreateWithCustomer(customer, login); 
-            
-            return RedirectToAction("Index"); 
+            proxy.CreateWithCustomer(customer, login);
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult ResetLogin()

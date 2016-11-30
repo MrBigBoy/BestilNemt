@@ -34,7 +34,7 @@
             var loginObj = new Login();
             Session["Login"] = loginObj;
         }
-        var login = (Login)Session["login"];
+        var login = (Login)Session["Login"];
     }
     <!-- Get the current Cart -->
     @{
@@ -91,7 +91,7 @@
                         @{
                             if (login.PersonId != 0)
                             {
-                                <a class="LoginClass" onclick="location.href = '@Url.Action("Index", "Login")'">@login.Username Log af </a>
+                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Home")'">@login.Username Log af </a>
                             }
                             else
                             {
