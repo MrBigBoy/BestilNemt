@@ -15,56 +15,59 @@
         @using (Html.BeginForm("AddProductToCart", "Product", FormMethod.Post))
         {
             var shop = (Shop)Session["Shop"];
-            var proxy = new BestilNemtServiceClient();
-            var warehouses = proxy.FindAllWarehousesByShopId(shop.Id);
-
-            var maxAmount = 0;
-            foreach (var warehouse in warehouses)
+            if (shop != null)
             {
-                if (warehouse.Product.Id == @Model.Product.Id)
+                var proxy = new BestilNemtServiceClient();
+                var warehouses = proxy.FindAllWarehousesByShopId(shop.Id);
+
+                var maxAmount = 0;
+                foreach (var warehouse in warehouses)
                 {
-                    maxAmount = warehouse.Stock;
-                    if (maxAmount > 100)
+                    if (warehouse.Product.Id == @Model.Product.Id)
                     {
-                        maxAmount = 100;
+                        maxAmount = warehouse.Stock;
+                        if (maxAmount > 100)
+                        {
+                            maxAmount = 100;
+                        }
                     }
                 }
-            }
-            if (maxAmount == 0)
-            {
-                <p>Ingen varer på lager</p>
-            }
-            else
-            {
-                var cart = (Cart)Session["ShoppingCart"];
-                foreach (var partOrder in cart.PartOrders)
-                {
-                    if (@Model.Product.Id == partOrder.Product.Id)
-                    {
-                        maxAmount = maxAmount - partOrder.Amount;
-                    }
-                }
-
                 if (maxAmount == 0)
                 {
-                    <p>Det maksimale antal af dette produkt er allerede tilføjet til kurven</p>
+                    <p>Ingen varer på lager</p>
                 }
                 else
                 {
-                    <select name="Amount">
-                        @{
-                            for (var i = 1; i <= maxAmount; i++)
-                            {
-                                <option value="@i"> @i </option>
-                            }
+                    var cart = (Cart)Session["ShoppingCart"];
+                    foreach (var partOrder in cart.PartOrders)
+                    {
+                        if (@Model.Product.Id == partOrder.Product.Id)
+                        {
+                            maxAmount = maxAmount - partOrder.Amount;
                         }
-                    </select>
+                    }
 
-                    @Html.HiddenFor(x => x.Product.Id)
-                            <button type="submit" onclick="alert('@Model.Product.Name er tilføjet til kurven');">Tilføj til kurv</button>
-                                    }
+                    if (maxAmount == 0)
+                    {
+                        <p>Det maksimale antal af dette produkt er allerede tilføjet til kurven</p>
+                    }
+                    else
+                    {
+                        <select name="Amount">
+                            @{
+                                for (var i = 1; i <= maxAmount; i++)
+                                {
+                                    <option value="@i"> @i </option>
                                 }
                             }
+                        </select>
+
+                        @Html.HiddenFor(x => x.Product.Id)
+                                <button type="submit" onclick="alert('@Model.Product.Name er tilføjet til kurven');">Tilføj til kurv</button>
+                                            }
+                                        }
+                                    }
+                                }
     </div>
 
     <div id="descriptionBox">
