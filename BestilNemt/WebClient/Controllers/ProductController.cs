@@ -21,7 +21,8 @@ namespace WebClient.Controllers
             ViewBag.Cart = cart;
             if (id == null)
                 return View(allProducts);
-            if (id.Value <= 0) return View(allProducts);
+            if (id.Value <= 0)
+                return View(allProducts);
             var shop = proxy.GetShop(id.Value);
             shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
             Session["Shop"] = shop;
@@ -30,10 +31,11 @@ namespace WebClient.Controllers
 
         public ActionResult ProductPage(int? id)
         {
-            var pvm = new ProductPartOrderViewModel();
-            if (id == null) return View(pvm);
+            // If no id is set redirect to frontpage
+            if (id == null)
+                return RedirectToAction("Index", "Home");
             var proxy = new BestilNemtServiceClient();
-            pvm.Product = proxy.GetProduct(id.Value);
+            var pvm = new ProductPartOrderViewModel { Product = proxy.GetProduct(id.Value) };
             return View(pvm);
         }
 
