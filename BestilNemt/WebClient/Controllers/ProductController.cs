@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
@@ -17,17 +18,22 @@ namespace WebClient.Controllers
         public ActionResult Product(int? id)
         {
             var proxy = new BestilNemtServiceClient();
-            var allProducts = proxy.GetAllProducts();
+            var warehouses = proxy.FindAllWarehouses();
+            var products = new List<Product>();
+            foreach (var warehouse in warehouses)
+            {
+                products.Add(warehouse.Product);
+            }
             var cart = (Cart)Session["ShoppingCart"];
             ViewBag.Cart = cart;
-            if (id == null)
-                return View(allProducts);
-            if (id.Value <= 0)
-                return View(allProducts);
+            if (id == null || id.Value <= 0)
+                return View(products);
             var shop = proxy.GetShop(id.Value);
             shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
             Session["Shop"] = shop;
-            return View(allProducts);
+            // Get the products from the warehouses
+            var listProduct = shop.Warehouses.Select(warehouse => warehouse.Product).ToList();
+            return View(listProduct);
         }
 
         public ActionResult ProductPage(int? id)
@@ -71,28 +77,7 @@ namespace WebClient.Controllers
                 {
                     if (partOrderLoop.Product.Id == partOrder.Product.Id)
                     {
-                        var i = partOrder.Amount + partOrderLoop.Amount;
-                        var shop = (Shop)Session["Shop"];
-                        var warehouses = proxy.FindAllWarehousesByShopId(shop.Id);
-
-                        var maxAmount = 0;
-                        foreach (var warehouse in warehouses)
-                        {
-                            if (warehouse.Product.Id == partOrderLoop.Product.Id)
-                            {
-                                maxAmount = warehouse.Stock;
-                            }
-                        }
-
-                        //if (i > maxAmount)
-                        //{
-                        //    // pop up
-
-                        //    return
-                        //        Content(
-                        //            "<script language='javascript' type='text/javascript'>alert('Det maksimale antal er allerede tilføjet!');</script>");
-                        //}
-                        partOrderLoop.Amount = i;
+                        partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
                     }
                     else
                     {

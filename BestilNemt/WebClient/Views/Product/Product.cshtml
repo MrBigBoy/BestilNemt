@@ -2,7 +2,6 @@
 @model List<Product>
 @{
     ViewBag.Title = "Product";
-    Cart shoppingCart = (Cart)ViewBag.Cart;
 }
 
 <script>
@@ -32,27 +31,59 @@
 
 <input type="text" id="MyInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-<table id="ProductTable">
-    <tr>
-        <th></th>
-        <th>Navn</th>
-        <th>Beskrivelse</th>
-        <th>Pris</th>
-    </tr>
-    @foreach (var product in Model)
+@{
+    if (@Model.Count > 0)
     {
-        <tr>
-            <td><img src="/Images/ProductPictures/@product.ImgPath" height="50" width="50"></td>
-            <td><a href="/Product/ProductPage/@product.Id">@product.Name</a></td>
-            <td>@product.Description</td>
-            <td>@product.Price kr</td>
-        </tr>
-    }
-</table>
+        var shop = (Shop)Session["Shop"];
 
-
-
-
-
-
-
+        <table id="ProductTable">
+            <tr>
+                <th></th>
+                <th>Navn</th>
+                <th>Beskrivelse</th>
+                <th>Antal på lager</th>
+                <th>Pris</th>
+            </tr>
+            @foreach (var product in Model)
+                {
+                <tr>
+                    <td><img src="/Images/ProductPictures/@product.ImgPath" height="50" width="50"></td>
+                    <td><a href="/Product/ProductPage/@product.Id">@product.Name</a></td>
+                    <td>@product.Description</td>
+                    @{
+                        var isFound = false;
+                        if (shop?.Warehouses.Count > 0)
+                        {
+                            foreach (var warehouse in shop.Warehouses)
+                            {
+                                if (warehouse.Product.Id == product.Id)
+                                {
+                                    isFound = true;
+                                    var stock = warehouse.Stock;
+                                    if (stock > 100)
+                                    {
+                                        stock = 100;
+                                        W‌riteLiteral(@"<td>"); /*​*/
+                                        W‌rite(stock); /*​*/
+                                        W‌riteLiteral(@"+</td>");
+                                    }
+                                    else
+                                    {
+                                        W‌riteLiteral(@"<td>"); /*​*/
+                                        W‌rite(stock); /*​*/
+                                        W‌riteLiteral(@"</td>");
+                                    }
+                                }
+                            }
+                        }
+                        if (!isFound)
+                        {
+                            <td>0</td>
+                        }
+                    }
+                    <td>@product.Price kr</td>
+                </tr>
+                        }
+        </table>
+                        }
+}
