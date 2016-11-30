@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Principal;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
 using WebClient.Models;
@@ -52,6 +53,7 @@ namespace WebClient.Controllers
             var proxy = new BestilNemtServiceClient();
             var cart = (Cart)Session["ShoppingCart"];
             var product = proxy.GetProduct(partOrder.Product.Id);
+            var partOrders = cart.PartOrders;
             var po = new PartOrder
             {
                 Product = product,
@@ -59,7 +61,46 @@ namespace WebClient.Controllers
                 PartPrice = product.Price * partOrder.Amount,
                 Cart = cart
             };
-            cart.PartOrders.Add(po);
+            if (partOrders.Count == 0)
+            {
+                partOrders.Add(po);
+            }
+            else
+            {
+                foreach (var partOrderLoop in partOrders)
+                {
+                    if (partOrderLoop.Product.Id == partOrder.Product.Id)
+                    {
+                        var i = partOrder.Amount + partOrderLoop.Amount;
+                        var shop = (Shop)Session["Shop"];
+                        var warehouses = proxy.FindAllWarehousesByShopId(shop.Id);
+
+                        var maxAmount = 0;
+                        foreach (var warehouse in warehouses)
+                        {
+                            if (warehouse.Product.Id == partOrderLoop.Product.Id)
+                            {
+                                maxAmount = warehouse.Stock;
+                            }
+                        }
+
+                        //if (i > maxAmount)
+                        //{
+                        //    // pop up
+
+                        //    return
+                        //        Content(
+                        //            "<script language='javascript' type='text/javascript'>alert('Det maksimale antal er allerede tilføjet!');</script>");
+                        //}
+                        partOrderLoop.Amount = i;
+                    }
+                    else
+                    {
+                        partOrders.Add(po);
+                    }
+                }
+                cart.PartOrders = partOrders;
+            }
             // Update the session
             Session["ShoppingCart"] = cart;
             return RedirectToAction("ProductPage", new { id = partOrder.Product.Id });

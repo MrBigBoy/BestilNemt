@@ -52,6 +52,10 @@
                                                 }
                                                 else
                                                 {
+                                                    if (stock > 100)
+                                                    {
+                                                        stock = 100;
+                                                    }
                                                     for (var i = 1; i <= stock; i++)
                                                     {
                                                         if (@partOrder.Amount == i)
