@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
+using System;
 
 namespace Controller
 {
@@ -87,9 +88,12 @@ namespace Controller
         {
             return customer != null && !customer.Address.Equals("") && !customer.Name.Equals("") &&
                 customer.Name != null && !customer.Address.Equals("") && customer.Address != null &&
-                !customer.Email.Equals("") && customer.Email != null && !customer.PersonType.Equals("") &&
-                customer.PersonType.Equals("Customer") && customer.PersonType != null;
+                !customer.Email.Equals("") && customer.Email != null;
         }
 
+        public int CreateCustomerWithLogin(Customer customer, Login login)
+        {
+            return DbCustomer.AddCustomerWithLogin(customer, login);
+        }
     }
 }

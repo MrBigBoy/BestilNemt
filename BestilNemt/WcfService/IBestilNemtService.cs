@@ -188,6 +188,9 @@ namespace WcfService
 
         [OperationContract]
         List<Product> FindProductsByName(string input);
+
+        [OperationContract]
+        int CreateWithCustomer(Customer customer, Login login);
     }
 }
 

@@ -847,4 +847,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CreateWithCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="customer" nillable="true" type="q56:Customer" />
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="login" nillable="true" type="q57:Login" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateWithCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateWithCustomerResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

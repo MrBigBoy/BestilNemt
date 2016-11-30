@@ -597,6 +597,9 @@ namespace WcfService
             return WarehouseCtr.DeleteWarehouse(id);
         }
 
-       
+        public int CreateWithCustomer(Customer customer, Login login)
+        {
+            return CustomerCtr.CreateCustomerWithLogin(customer, login);
+        }
     }
 }

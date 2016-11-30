@@ -1521,6 +1521,12 @@ namespace WebClient.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/FindProductsByNameResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> FindProductsByNameAsync(string input);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateWithCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/CreateWithCustomerResponse")]
+        int CreateWithCustomer(WebClient.BestilNemtServiceRef.Customer customer, WebClient.BestilNemtServiceRef.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateWithCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/CreateWithCustomerResponse")]
+        System.Threading.Tasks.Task<int> CreateWithCustomerAsync(WebClient.BestilNemtServiceRef.Customer customer, WebClient.BestilNemtServiceRef.Login login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2044,6 +2050,14 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> FindProductsByNameAsync(string input) {
             return base.Channel.FindProductsByNameAsync(input);
+        }
+        
+        public int CreateWithCustomer(WebClient.BestilNemtServiceRef.Customer customer, WebClient.BestilNemtServiceRef.Login login) {
+            return base.Channel.CreateWithCustomer(customer, login);
+        }
+        
+        public System.Threading.Tasks.Task<int> CreateWithCustomerAsync(WebClient.BestilNemtServiceRef.Customer customer, WebClient.BestilNemtServiceRef.Login login) {
+            return base.Channel.CreateWithCustomerAsync(customer, login);
         }
     }
 }

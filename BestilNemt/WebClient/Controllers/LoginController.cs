@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
+using WebClient.Models;
 
 namespace WebClient.Controllers
 {
@@ -13,14 +14,26 @@ namespace WebClient.Controllers
         public ActionResult SignIn()
         {
             var login = Login;
+            Session["login"] = login;
             return View(login);
         }
 
         public ActionResult CreateLogin()
         {
-            var login = Login;
-            return View(login);
+           
+            return View();
         }
+        [HttpPost]
+        public ActionResult CreateCustomer(Customer customer,Login login)
+        {
+
+            var proxy = new BestilNemtServiceClient();
+            login.Username = customer.Email;
+            proxy.CreateWithCustomer(customer, login); 
+            
+            return RedirectToAction("Index"); 
+        }
+
         public ActionResult ResetLogin()
         {
             var login = Login;
@@ -31,10 +44,11 @@ namespace WebClient.Controllers
         {
             get
             {
-                if (Session["Login"] != null) return (Login) Session["Login"];
+                if (Session["Login"] != null)
+                    return (Login)Session["Login"];
                 var login = new Login();
                 Session["Login"] = login;
-                return (Login) Session["Login"];
+                return (Login)Session["Login"];
             }
         }
     }
