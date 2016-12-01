@@ -82,5 +82,16 @@ namespace WebClient.Controllers
                 return (Login)Session["Login"];
             }
         }
+        public ActionResult LogAf(Login login)
+        {
+            var proxy = new BestilNemtServiceClient();
+            Session["Login"] = login;
+            if(login != null)
+            {
+                 new Login(); 
+            }
+
+            return View(); 
+        }
     }
 }
