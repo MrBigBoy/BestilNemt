@@ -206,6 +206,7 @@ ul.dropdown-cart {
     align-content: center;
     text-align: center;
 }
+
 .LogIn {
     width: 100%;
     align-content: center;
@@ -227,5 +228,4 @@ input[type="password"] {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    text-align:center
 }
