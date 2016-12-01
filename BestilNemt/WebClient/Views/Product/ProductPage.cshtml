@@ -12,10 +12,21 @@
 <div id="ProductInformation">
     <div id="BuyModul">
         <p>Pris: @Model.Product.Price kr</p>
+        @{
+            if (Session["Login"] == null)
+            {
+                var loginObj = new Login();
+                Session["Login"] = loginObj;
+            }
+            var login = (Login)Session["Login"];
+        }
+
+
         @using (Html.BeginForm("AddProductToCart", "Product", FormMethod.Post))
         {
             var shop = (Shop)Session["Shop"];
             if (shop != null)
+
             {
                 var proxy = new BestilNemtServiceClient();
                 var warehouses = proxy.FindAllWarehousesByShopId(shop.Id);
@@ -61,9 +72,15 @@
                                 }
                             }
                         </select>
-
+                                if (login.PersonId == 0)
+                                {
                         @Html.HiddenFor(x => x.Product.Id)
-                                <button type="submit" onclick="alert('@Model.Product.Name er tilføjet til kurven');">Tilføj til kurv</button>
+                                <button type="submit" >Tilføj til kurv</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" onclick="alert('@Model.Product.Name er tilføjet til kurven');">Tilføj til kurv</button>
+                                                }
                                             }
                                         }
                                     }

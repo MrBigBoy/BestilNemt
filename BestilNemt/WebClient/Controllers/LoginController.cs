@@ -79,7 +79,7 @@ namespace WebClient.Controllers
             Session["Login"] = login;
             if(login != null)
             {
-                 new Login(); 
+                var login2 = new Login();
             }
 
             return View(); 

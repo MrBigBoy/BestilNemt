@@ -77,9 +77,21 @@ namespace WebClient.Controllers
         [HttpPost]
         public ActionResult CheckOut()
         {
+       
             var proxy = new BestilNemtServiceClient();
-            proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
-            return View();
+           
+            if (ShoppingCart.PartOrders.Capacity == 0)
+            {
+
+                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>"); 
+              
+            }
+            else
+            {
+                proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
+                return View();
+            }
+
         }
 
         public ActionResult Receipt()

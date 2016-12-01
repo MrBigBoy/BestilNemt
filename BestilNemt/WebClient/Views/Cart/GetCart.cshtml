@@ -93,6 +93,7 @@
     {
         @Html.HiddenFor(x => x.Cart.Id)
         <button class="CheckOut" type="submit">Til betaling</button>
+        <script></script>
     }
 </div>
 
@@ -100,6 +101,12 @@
 {
     @Html.HiddenFor(x => x.Cart.Id)
     <button class="ClearCart" type="submit">Ryd kurv</button>
+ <script>
+     if (ShoppingCart.PartOrders.Capacity == 0) {
+         alert("Du mangler at tilføje en vare til kurv");
+
+     }
+ </script>
 }
 
 @section scripts

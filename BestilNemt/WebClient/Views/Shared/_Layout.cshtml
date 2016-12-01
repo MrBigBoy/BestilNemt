@@ -40,7 +40,7 @@
     @{
         if (Session["ShoppingCart"] == null)
         {
-            var cart = new Cart {PartOrders = new List<PartOrder>()};
+            var cart = new Cart { PartOrders = new List<PartOrder>() };
             Session["ShoppingCart"] = cart;
         }
         var shoppingCart = (Cart)Session["ShoppingCart"];
@@ -91,17 +91,27 @@
                         @{
                             if (login.PersonId != 0)
                             {
-                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Home")'">@login.Username Log af </a>
+                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Home")';alert('Du logger nu af');">@login.Username.ToLower() Log af </a>
                                 using (Html.BeginForm("LogAf", "Login", FormMethod.Get))
                                 {
-                                    
+                                    if (login.PersonId != 0)
+                                    {
+
+                                    if (Session["Login"] == null)
+                                    {
+                                        var loginObj = new Login();
+                                        Session["Login"] = loginObj;
+                                    }
+                                  
+
+                                    }
                                 }
-                               }
-                                        else
-                                        {
+                            }
+                            else
+                            {
                                 <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">Log ind</a>
                             }
-                                }
+                        }
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @amount - Produkter<span class="caret"></span></a>
