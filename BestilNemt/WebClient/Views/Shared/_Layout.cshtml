@@ -92,20 +92,23 @@
                             if (login.PersonId != 0)
                             {
                                 <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Home")'">@login.Username Log af </a>
-                                using (Html.BeginForm("LogAf", "Login", FormMethod.Get))
+
+
+                                if (login.PersonId != 0)
                                 {
 
-                                    if (login.PersonId != 0)
+                                    if (Session["Login"] == null)
                                     {
-
                                         var loginObj = new Login();
                                         Session["Login"] = loginObj;
+                                    }
+                                  
 
-                                      
+
                                         <a class="dsds" href="/Home/" onclick="alert('@login.Username du er logget af');"></a>
                                            }
                                            }
-                                           }
+                                           
                                            else
                                            {
                                 <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">Log ind</a>
@@ -168,7 +171,7 @@
                                                             }
                             }
                             <li class="divider"></li>
-                            <li><a class="text-center" onclick="location.href = '@Url.Action(" GetCart", "Cart" , new {id=shoppingCart.Id})'">Vis kurv</a></li>
+                            <li><a class="text-center" onclick="location.href = '@Url.Action("GetCart", "Cart" , new {id=shoppingCart.Id})'">Vis kurv</a></li>
                         </ul>
                     </li>
                 </ul>

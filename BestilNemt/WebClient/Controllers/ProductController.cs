@@ -14,6 +14,17 @@ namespace WebClient.Controllers
         {
             return View();
         }
+        public Login Login
+        {
+            get
+            {
+                if (Session["Login"] != null)
+                    return (Login)Session["Login"];
+                var login = new Login();
+                Session["Login"] = login;
+                return (Login)Session["Login"];
+            }
+        }
 
         public ActionResult Product(int? id)
         {
@@ -56,6 +67,7 @@ namespace WebClient.Controllers
         [HttpPost]
         public ActionResult AddProductToCart(ProductPartOrderViewModel partOrder)
         {
+            var login = (Login)Session["Login"];
             var proxy = new BestilNemtServiceClient();
             var cart = (Cart)Session["ShoppingCart"];
             var product = proxy.GetProduct(partOrder.Product.Id);
@@ -67,6 +79,10 @@ namespace WebClient.Controllers
                 PartPrice = product.Price * partOrder.Amount,
                 Cart = cart
             };
+            if(login.PersonId == 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Du skal være logget ind får at tilføje til kurv :)');</script>");
+            }
             if (partOrders.Count == 0)
             {
                 partOrders.Add(po);
@@ -78,6 +94,7 @@ namespace WebClient.Controllers
                     if (partOrderLoop.Product.Id == partOrder.Product.Id)
                     {
                         partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
+                        
                     }
                     else
                     {
