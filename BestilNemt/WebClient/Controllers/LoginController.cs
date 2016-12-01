@@ -73,16 +73,13 @@ namespace WebClient.Controllers
                 return (Login)Session["Login"];
             }
         }
-        public ActionResult LogAf(Login login)
+        public ActionResult LogOff()
         {
-            var proxy = new BestilNemtServiceClient();
-            Session["Login"] = login;
-            if(login != null)
-            {
-                var login2 = new Login();
-            }
 
-            return View(); 
+            var loginObj = new Login();
+            Session["Login"] = loginObj;
+
+            return RedirectToAction("Index");
         }
     }
 }
