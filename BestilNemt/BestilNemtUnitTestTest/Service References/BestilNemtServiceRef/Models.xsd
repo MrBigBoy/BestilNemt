@@ -154,7 +154,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="PartOrders" nillable="true" type="tns:ArrayOfPartOrder" />
-      <xs:element minOccurs="0" name="Person" nillable="true" type="tns:Person" />
+      <xs:element minOccurs="0" name="PersonId" type="xs:int" />
       <xs:element minOccurs="0" name="TotalPrice" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>

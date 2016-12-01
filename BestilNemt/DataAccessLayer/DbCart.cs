@@ -32,7 +32,7 @@ namespace DataAccessLayer
                 {
                     cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId) output inserted.cartId VALUES(@totalPrice, @personId)";
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
-                    cmd.Parameters.AddWithValue("personId", cart.Person.Id);
+                    cmd.Parameters.AddWithValue("personId", cart.PersonId);
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
@@ -132,6 +132,34 @@ namespace DataAccessLayer
         }
 
         /// <summary>
+        /// Return a list of all Carts
+        /// </summary>
+        /// <returns>
+        /// Return List of Cart 
+        /// </returns>
+        public List<Cart> GetAllCartsByPersonId(int personId)
+        {
+            personId = 1;
+            var carts = new List<Cart>();
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand("SELECT * FROM Cart, PartOrder, Product, Person_Chain WHERE partOrderProductId = productId AND cartId = partOrderCartId AND cartPersonId = @PersonId AND personChainPersonId = @PersonId", conn);
+                cmd.Parameters.AddWithValue("PersonId", personId);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var cart = ObjectBuilder.CreateCartWithPartOrders(reader);
+                    cart.ChainId = reader.GetInt32(reader.GetOrdinal("personChainChainId"));
+                    carts.Add(cart);
+                }
+            }
+            return carts;
+        }
+       
+        /// <summary>
         /// Update a Cart
         /// </summary>
         /// <param name="cart"></param>
@@ -149,7 +177,7 @@ namespace DataAccessLayer
                 var cmd = new SqlCommand("UPDATE Cart SET cartTotalPrice=@totalPrice AND cartPersonId=@PersonId WHERE cartId=@id", conn);
                 cmd.Parameters.AddWithValue("id", cart.Id);
                 cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
-                cmd.Parameters.AddWithValue("PersonId", cart.Person.Id);
+                cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
@@ -236,7 +264,7 @@ namespace DataAccessLayer
                     cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId) output inserted.cartId VALUES(@totalPrice, @PersonId)";
 
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
-                    cmd.Parameters.AddWithValue("PersonId", cart.Person.Id);
+                    cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
                     id = (int)cmd.ExecuteScalar();
                     
                     foreach (var po in cart.PartOrders)

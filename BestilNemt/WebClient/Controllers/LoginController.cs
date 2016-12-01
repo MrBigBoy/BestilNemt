@@ -34,27 +34,7 @@ namespace WebClient.Controllers
             var cart = (Cart)Session["ShoppingCart"];
             if (personId == 0)
                 return RedirectToAction("Index", !string.IsNullOrEmpty(login.Username) ? "Home" : "Login");
-            var customer = proxy.FindCustomer(personId);
-            if (customer == null)
-            {
-                var admin = proxy.FindAdmin(personId);
-                if (admin == null)
-                {
-                    var company = proxy.FindCompany(personId);
-                    if (company != null)
-                    {
-                        cart.Person = company;
-                    }
-                }
-                else
-                {
-                    cart.Person = admin;
-                }
-            }
-            else
-            {
-                cart.Person = customer;
-            }
+            cart.PersonId = personId;
             Session["ShoppingCart"] = cart;
             // Redirect to Home if Username is null or empty, else to Login
             return RedirectToAction("Index", !string.IsNullOrEmpty(login.Username) ? "Home" : "Login");

@@ -238,36 +238,24 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task<int> DeleteProductAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         int AddCart(Models.Cart cart);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartResponse")]
         System.Threading.Tasks.Task<int> AddCartAsync(Models.Cart cart);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         int AddCartWithPartOrders(Models.Cart cart);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse")]
         System.Threading.Tasks.Task<int> AddCartWithPartOrdersAsync(Models.Cart cart);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         Models.Cart FindCart(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
         System.Threading.Tasks.Task<Models.Cart> FindCartAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartWithPartOrdersResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         Models.Cart FindCartWithPartOrders(int cartId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartWithPartOrdersResponse")]
@@ -279,10 +267,13 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
         System.Threading.Tasks.Task<Models.Cart[]> GetAllCartsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse")]
+        Models.Cart[] GetAllCartsByPersonId(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse")]
+        System.Threading.Tasks.Task<Models.Cart[]> GetAllCartsByPersonIdAsync(int personId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         int UpdateCart(Models.Cart cart);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
@@ -295,18 +286,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task<int> DeleteCartAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         int AddPartOrderToCart(Models.Cart cart, Models.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
         System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(Models.Cart cart, Models.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/FindPartOrderResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         Models.PartOrder FindPartOrder(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/FindPartOrderResponse")]
@@ -319,18 +304,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task<int> RemovePartOrderAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         int AddPartOrder(Models.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
         System.Threading.Tasks.Task<int> AddPartOrderAsync(Models.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartorder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Admin))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Company))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Models.Customer))]
         int UpdatePartorder(Models.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartorder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse")]
@@ -782,6 +761,14 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.Cart[]> GetAllCartsAsync() {
             return base.Channel.GetAllCartsAsync();
+        }
+        
+        public Models.Cart[] GetAllCartsByPersonId(int personId) {
+            return base.Channel.GetAllCartsByPersonId(personId);
+        }
+        
+        public System.Threading.Tasks.Task<Models.Cart[]> GetAllCartsByPersonIdAsync(int personId) {
+            return base.Channel.GetAllCartsByPersonIdAsync(personId);
         }
         
         public int UpdateCart(Models.Cart cart) {

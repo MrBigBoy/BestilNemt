@@ -120,17 +120,25 @@ namespace WcfService
 
         [OperationContract]
         int AddCart(Cart cart);
+
         [OperationContract]
         int AddCartWithPartOrders(Cart cart);
 
         [OperationContract]
         Cart FindCart(int id);
+
         [OperationContract]
         Cart FindCartWithPartOrders(int cartId);
+
         [OperationContract]
         List<Cart> GetAllCarts();
+
+        [OperationContract]
+        List<Cart> GetAllCartsByPersonId(int personId);
+
         [OperationContract]
         int UpdateCart(Cart cart);
+
         [OperationContract]
         int DeleteCart(int id);
 
