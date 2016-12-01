@@ -92,12 +92,16 @@
                             if (login.PersonId != 0)
                             {
                                 <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Home")'">@login.Username Log af </a>
+                                using (Html.BeginForm("LogAf", "Login", FormMethod.Get))
+                                {
+                                    
+                                }
+                               }
+                                        else
+                                        {
+                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">Log ind</a>
                             }
-                            else
-                            {
-                                <a class="LoginClass" onclick="location.href = '@Url.Action("Index", "Login")'">Log ind </a>
-                            }
-                        }
+                                }
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @amount - Produkter<span class="caret"></span></a>
