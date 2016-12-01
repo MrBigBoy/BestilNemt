@@ -6,7 +6,7 @@
 
 <div class="LogIn">
     <div class="col-md-12 text-center">
-        <p>Indtast dit brugernavn og adgangskode for at logge ind</p>
+        <h3>Indtast dit brugernavn og adgangskode for at logge ind</h3>
     </div>
     <div class="row" id="pwd-container">
         <div class="col-md-4"></div>
@@ -17,14 +17,14 @@
             <section class="login-form">
                 <form method="post" action="#">
                     <div class="form-group">
-                        Indtast Email<br>
+                        <h4>Indtast Email<br></h4>
                         <div class="EmailField">
                             @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                         </div>
                     </div>
                         <div class="form-group">
-                            <br/>Indtast Kodeord<br>
+                            <br/><h4>Indtast Kodeord<br></h4>
                             <div class="PasswordField">
                                 @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
