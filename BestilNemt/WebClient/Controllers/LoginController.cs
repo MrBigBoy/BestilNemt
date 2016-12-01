@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Xml.Xsl;
 using WebClient.BestilNemtServiceRef;
 using WebClient.Models;
 
@@ -20,12 +21,41 @@ namespace WebClient.Controllers
         {
             var proxy = new BestilNemtServiceClient();
             // Get the login object from the Session
-            if (login == null) return RedirectToAction("Index", "Home");
+            if (login == null)
+                return RedirectToAction("Index", "Home");
             login = proxy.Login(login);
             // Login is now null if the username and password not match
-            if (login == null) return RedirectToAction("Index", "Login");
+            if (login == null)
+                return RedirectToAction("Index", "Login");
             // Save the new login object to session
             Session["Login"] = login;
+            // Save the person to the cart
+            var personId = login.PersonId;
+            var cart = (Cart)Session["ShoppingCart"];
+            if (personId == 0)
+                return RedirectToAction("Index", !string.IsNullOrEmpty(login.Username) ? "Home" : "Login");
+            var customer = proxy.FindCustomer(personId);
+            if (customer == null)
+            {
+                var admin = proxy.FindAdmin(personId);
+                if (admin == null)
+                {
+                    var company = proxy.FindCompany(personId);
+                    if (company != null)
+                    {
+                        cart.Person = company;
+                    }
+                }
+                else
+                {
+                    cart.Person = admin;
+                }
+            }
+            else
+            {
+                cart.Person = customer;
+            }
+            Session["ShoppingCart"] = cart;
             // Redirect to Home if Username is null or empty, else to Login
             return RedirectToAction("Index", !string.IsNullOrEmpty(login.Username) ? "Home" : "Login");
         }
