@@ -867,6 +867,9 @@ namespace WebClient.BestilNemtServiceRef {
         private System.Collections.Generic.List<WebClient.BestilNemtServiceRef.PartOrder> PartOrdersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WebClient.BestilNemtServiceRef.Person PersonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal TotalPriceField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -901,6 +904,19 @@ namespace WebClient.BestilNemtServiceRef {
                 if ((object.ReferenceEquals(this.PartOrdersField, value) != true)) {
                     this.PartOrdersField = value;
                     this.RaisePropertyChanged("PartOrders");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WebClient.BestilNemtServiceRef.Person Person {
+            get {
+                return this.PersonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PersonField, value) != true)) {
+                    this.PersonField = value;
+                    this.RaisePropertyChanged("Person");
                 }
             }
         }

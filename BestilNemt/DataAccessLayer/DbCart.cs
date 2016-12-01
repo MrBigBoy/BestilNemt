@@ -30,8 +30,9 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice) output inserted.cartId VALUES(@totalPrice)";
+                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId) output inserted.cartId VALUES(@totalPrice, @personId)";
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
+                    cmd.Parameters.AddWithValue("personId", cart.Person.Id);
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
@@ -68,7 +69,7 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT cartId, cartTotalPrice FROM Cart WHERE cartId = @id", conn);
+                var cmd = new SqlCommand("SELECT * FROM Cart WHERE cartId = @id", conn);
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -145,9 +146,10 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Cart SET cartTotalPrice=@totalPrice WHERE cartId=@id", conn);
+                var cmd = new SqlCommand("UPDATE Cart SET cartTotalPrice=@totalPrice AND cartPersonId=@PersonId WHERE cartId=@id", conn);
                 cmd.Parameters.AddWithValue("id", cart.Id);
                 cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
+                cmd.Parameters.AddWithValue("PersonId", cart.Person.Id);
                 i = cmd.ExecuteNonQuery();
             }
             return i;
@@ -174,23 +176,7 @@ namespace DataAccessLayer
             }
             return i;
         }
-
-        //public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
-        //{
-        //    int i;
-        //    using (
-        //        var conn =
-        //            new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = new SqlCommand("Update PartOrder Set cartId = @cartId where id = @partOrderId", conn);
-        //        cmd.Parameters.AddWithValue("cartId", cart.Id);
-        //        cmd.Parameters.AddWithValue("partOrderId", partOrder.Id);
-        //        i = cmd.ExecuteNonQuery();
-        //    }
-        //    return i;
-        //}
-
+        
         public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
         {
             var i = 0;
@@ -247,9 +233,10 @@ namespace DataAccessLayer
                 try
                 {
                     //save Cart in DB and get generated cartId
-                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice) output inserted.cartId VALUES(@totalPrice)";
+                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId) output inserted.cartId VALUES(@totalPrice, @PersonId)";
 
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
+                    cmd.Parameters.AddWithValue("PersonId", cart.Person.Id);
                     id = (int)cmd.ExecuteScalar();
                     
                     foreach (var po in cart.PartOrders)
@@ -287,7 +274,7 @@ namespace DataAccessLayer
                     Console.WriteLine("Commit was succsesfull");
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
