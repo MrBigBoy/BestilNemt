@@ -265,6 +265,7 @@
     <Content Include="Views\Login\SignIn.cshtml" />
     <Content Include="Views\Login\CreateLogin.cshtml" />
     <Content Include="Views\Login\ResetLogin.cshtml" />
+    <Content Include="Views\Cart\Receipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

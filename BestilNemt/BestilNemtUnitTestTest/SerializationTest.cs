@@ -364,7 +364,7 @@ namespace BestilNemtUnitTestTest
         {
             var partOrder = new PartOrder();
             var partOrders = new List<PartOrder> { partOrder };
-            var cart = new Cart(5, partOrders, 200.00m, new Person());
+            var cart = new Cart(5, partOrders, 200.00m, new Person().Id, new Chain().Id);
             var serializationResult = SerializerTestHelpClass.TestSerialize(cart);
             Assert.AreEqual(cart.Id, serializationResult.Id);
         }
@@ -373,7 +373,7 @@ namespace BestilNemtUnitTestTest
         {
             var partOrder = new PartOrder();
             var partOrders = new List<PartOrder> { partOrder };
-            var cart = new Cart(5, partOrders, 200.00m, new Person());
+            var cart = new Cart(5, partOrders, 200.00m, new Person().Id, new Chain().Id);
             var serializationResult = SerializerTestHelpClass.TestSerialize(cart);
             Assert.AreEqual(cart.TotalPrice, serializationResult.TotalPrice);
         }

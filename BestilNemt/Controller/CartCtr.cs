@@ -71,15 +71,17 @@ namespace Controller
             {
                 return IDbCart.AddPartOrderToCart(cart, partOrder);
             }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
 
         public int AddCartWithPartOrders(Cart cart)
         {
             return IDbCart.AddCartWithPartOrders(cart);
+        }
+
+        public List<Cart> GetAllCartsByPersonId(int personId)
+        {
+            return IDbCart.GetAllCartsByPersonId(personId);
         }
     }
 }

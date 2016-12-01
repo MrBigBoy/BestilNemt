@@ -81,5 +81,14 @@ namespace WebClient.Controllers
             proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
             return View();
         }
+
+        public ActionResult Receipt()
+        {
+            var login = (Login)Session["Login"];
+            var personId = login?.PersonId ?? 0;
+            var proxy = new BestilNemtServiceClient();
+            var carts = proxy.GetAllCartsByPersonId(personId);
+            return View(carts);
+        }
     }
 }

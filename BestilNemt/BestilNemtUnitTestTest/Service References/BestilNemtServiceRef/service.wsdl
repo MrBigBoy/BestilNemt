@@ -259,6 +259,12 @@
   <wsdl:message name="IBestilNemtService_GetAllCarts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCartsResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllCartsByPersonId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCartsByPersonId" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllCartsByPersonId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCartsByPersonIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateCart_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCart" />
   </wsdl:message>
@@ -553,6 +559,10 @@
     <wsdl:operation name="GetAllCarts">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCarts" message="tns:IBestilNemtService_GetAllCarts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCartsResponse" message="tns:IBestilNemtService_GetAllCarts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCartsByPersonId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId" message="tns:IBestilNemtService_GetAllCartsByPersonId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse" message="tns:IBestilNemtService_GetAllCartsByPersonId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateCart">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCart" message="tns:IBestilNemtService_UpdateCart_InputMessage" />
@@ -1012,6 +1022,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllCarts">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllCarts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCartsByPersonId">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

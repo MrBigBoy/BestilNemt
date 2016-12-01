@@ -861,13 +861,16 @@ namespace WebClient.BestilNemtServiceRef {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ChainIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<WebClient.BestilNemtServiceRef.PartOrder> PartOrdersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WebClient.BestilNemtServiceRef.Person PersonField;
+        private int PersonIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal TotalPriceField;
@@ -879,6 +882,19 @@ namespace WebClient.BestilNemtServiceRef {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ChainId {
+            get {
+                return this.ChainIdField;
+            }
+            set {
+                if ((this.ChainIdField.Equals(value) != true)) {
+                    this.ChainIdField = value;
+                    this.RaisePropertyChanged("ChainId");
+                }
             }
         }
         
@@ -909,14 +925,14 @@ namespace WebClient.BestilNemtServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WebClient.BestilNemtServiceRef.Person Person {
+        public int PersonId {
             get {
-                return this.PersonField;
+                return this.PersonIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.PersonField, value) != true)) {
-                    this.PersonField = value;
-                    this.RaisePropertyChanged("Person");
+                if ((this.PersonIdField.Equals(value) != true)) {
+                    this.PersonIdField = value;
+                    this.RaisePropertyChanged("PersonId");
                 }
             }
         }
@@ -1418,6 +1434,12 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart>> GetAllCartsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse")]
+        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart> GetAllCartsByPersonId(int personId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart>> GetAllCartsByPersonIdAsync(int personId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
         int UpdateCart(WebClient.BestilNemtServiceRef.Cart cart);
         
@@ -1906,6 +1928,14 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart>> GetAllCartsAsync() {
             return base.Channel.GetAllCartsAsync();
+        }
+        
+        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart> GetAllCartsByPersonId(int personId) {
+            return base.Channel.GetAllCartsByPersonId(personId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart>> GetAllCartsByPersonIdAsync(int personId) {
+            return base.Channel.GetAllCartsByPersonIdAsync(personId);
         }
         
         public int UpdateCart(WebClient.BestilNemtServiceRef.Cart cart) {

@@ -447,6 +447,11 @@ namespace WcfService
             return CartCtr.GetAllCarts();
         }
 
+        public List<Cart> GetAllCartsByPersonId(int personId)
+        {
+            return CartCtr.GetAllCartsByPersonId(personId);
+        }
+
         public int UpdateCart(Cart cart)
         {
             return CartCtr.UpdateCart(cart);

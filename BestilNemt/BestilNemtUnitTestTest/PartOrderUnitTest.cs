@@ -53,7 +53,7 @@ namespace BestilNemtUnitTestTest
         {
             var partOrderCtr = new PartOrderCtr(new PartOrderTestClass());
             var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40, "Img path");
-            var cart = new Cart(new List<PartOrder>(), 100, new Person());
+            var cart = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
             var partOrder1 = new PartOrder(product, 2, 10, cart);
             var partOrder2 = new PartOrder(product, 2, 10, cart);
             partOrderCtr.AddPartOrder(partOrder1);
@@ -67,7 +67,7 @@ namespace BestilNemtUnitTestTest
         {
             var partOrderCtr = new PartOrderCtr(new PartOrderTestClass());
             var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40, "Img path");
-            var cart = new Cart(new List<PartOrder>(), 100, new Person());
+            var cart = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
             var partOrder = new PartOrder(product, 2, 10, cart);
             partOrderCtr.AddPartOrder(partOrder);
             partOrder = new PartOrder(product, 2, 20, cart);
@@ -81,7 +81,7 @@ namespace BestilNemtUnitTestTest
         {
             var partOrderCtr = new PartOrderCtr(new PartOrderTestClass());
             var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 40, "Img path");
-            var cart = new Cart(new List<PartOrder>(), 100, new Person());
+            var cart = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
             var partOrder = new PartOrder(product, 2, 10, cart);
             partOrderCtr.AddPartOrder(partOrder);
             partOrder = new PartOrder(product, -2, 20, cart);

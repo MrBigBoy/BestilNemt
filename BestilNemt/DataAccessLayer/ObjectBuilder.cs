@@ -44,22 +44,16 @@ namespace DataAccessLayer
             {
                 Id = reader.GetInt32(reader.GetOrdinal("cartId")),
                 TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice")),
+                PersonId = reader.GetInt32(reader.GetOrdinal("cartPersonId"))
             };
             return cart;
         }
 
         public static Cart CreateCartWithPartOrders(SqlDataReader reader)
         {
-            var product = CreateProduct(reader);
-            var partOrder = CreatePartOrder(reader, product);
-            var cart = new Cart
-            {
-                Id = reader.GetInt32(reader.GetOrdinal("cartId")),
-                TotalPrice = reader.GetDecimal(reader.GetOrdinal("cartTotalPrice"))
-            };
-            var list = cart.PartOrders;
-            list.Add(partOrder);
-            cart.PartOrders = list;
+            var partOrder = CreatePartOrder(reader);
+            var cart = CreateCart(reader);
+            cart.PartOrders.Add(partOrder);
             return cart;
         }
 
@@ -104,12 +98,12 @@ namespace DataAccessLayer
             return warehouse;
         }
 
-        public static PartOrder CreatePartOrder(SqlDataReader reader, Product product)
+        public static PartOrder CreatePartOrder(SqlDataReader reader)
         {
             var partOrder = new PartOrder()
             {
                 Id = reader.GetInt32(reader.GetOrdinal("partOrderId")),
-                Product = product,
+                Product = CreateProduct(reader),
                 Amount = reader.GetInt32(reader.GetOrdinal("partOrderAmount")),
                 PartPrice = reader.GetDecimal(reader.GetOrdinal("partOrderPartPrice"))
             };

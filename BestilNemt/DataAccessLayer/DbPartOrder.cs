@@ -56,8 +56,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var product = ObjectBuilder.CreateProduct(reader);
-                    partOrder = ObjectBuilder.CreatePartOrder(reader, product);
+                    partOrder = ObjectBuilder.CreatePartOrder(reader);
                 }
             }
             return partOrder;
@@ -75,8 +74,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var product = ObjectBuilder.CreateProduct(reader);
-                    var partOrder = ObjectBuilder.CreatePartOrder(reader, product);
+                    var partOrder = ObjectBuilder.CreatePartOrder(reader);
                     partOrders.Add(partOrder);
                 }
             }
@@ -94,8 +92,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var product = ObjectBuilder.CreateProduct(reader);
-                    var partOrder = ObjectBuilder.CreatePartOrder(reader, product);
+                    var partOrder = ObjectBuilder.CreatePartOrder(reader);
                     partOrders.Add(partOrder);
                 }
             }

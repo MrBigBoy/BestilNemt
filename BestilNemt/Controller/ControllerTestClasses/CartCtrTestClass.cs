@@ -59,5 +59,10 @@ namespace Controller.ControllerTestClasses
         {
             throw new NotImplementedException();
         }
+
+        public List<Cart> GetAllCartsByPersonId(int personId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
