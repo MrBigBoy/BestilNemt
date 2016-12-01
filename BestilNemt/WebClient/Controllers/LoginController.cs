@@ -19,34 +19,15 @@ namespace WebClient.Controllers
         public ActionResult Signdo(Login login)
         {
             var proxy = new BestilNemtServiceClient();
-            if (login != null)
-            {
-                login = proxy.Login(login);
-                if (login != null)
-                {
-                    // var login = (Login)Session["Login"];
-                    Session["Login"] = login;
-                    if (!string.IsNullOrEmpty(login.Username))
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Login");
-                    }
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Login");
-                }
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            //  return RedirectToAction("Index", "Home");
-
+            // Get the login object from the Session
+            if (login == null) return RedirectToAction("Index", "Home");
+            login = proxy.Login(login);
+            // Login is now null if the username and password not match
+            if (login == null) return RedirectToAction("Index", "Login");
+            // Save the new login object to session
+            Session["Login"] = login;
+            // Redirect to Home if Username is null or empty, else to Login
+            return RedirectToAction("Index", !string.IsNullOrEmpty(login.Username) ? "Home" : "Login");
         }
 
         public ActionResult CreateLogin()
