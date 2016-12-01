@@ -91,23 +91,20 @@
                         @{
                             if (login.PersonId != 0)
                             {
-                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Home")'">@login.Username Log af </a>
+                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Home")';alert('Du logger nu af');">@login.Username Log af </a>
                                 using (Html.BeginForm("LogAf", "Login", FormMethod.Get))
                                 {
-
                                     if (login.PersonId != 0)
                                     {
 
                                         var loginObj = new Login();
                                         Session["Login"] = loginObj;
 
-                                      
-                                        <a class="dsds" href="/Home/" onclick="alert('@login.Username du er logget af');"></a>
-                                           }
-                                           }
-                                           }
-                                           else
-                                           {
+                                    }
+                                }
+                            }
+                            else
+                            {
                                 <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">Log ind</a>
                             }
                         }
