@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using System.Xml.Xsl;
 using WebClient.BestilNemtServiceRef;
 using WebClient.Models;
@@ -73,13 +74,26 @@ namespace WebClient.Controllers
                 return (Login)Session["Login"];
             }
         }
+        public Cart ShoppingCart
+        {
+            get
+            {
+                if (Session["ShoppingCart"] != null)
+                    return (Cart)Session["ShoppingCart"];
+                var cart = new Cart { PartOrders = new List<PartOrder>() };
+                Session["ShoppingCart"] = cart;
+                return (Cart)Session["ShoppingCart"];
+            }
+        }
         public ActionResult LogOff()
         {
 
             var loginObj = new Login();
             Session["Login"] = loginObj;
+            ShoppingCart.PartOrders = new List<PartOrder>();
 
             return RedirectToAction("Index");
         }
+
     }
 }

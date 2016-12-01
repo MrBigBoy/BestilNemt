@@ -79,7 +79,7 @@ namespace WebClient.Controllers
                 PartPrice = product.Price * partOrder.Amount,
                 Cart = cart
             };
-            if(login.PersonId == 0)
+            if (login.PersonId == 0)
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Du skal være logget ind får at tilføje til kurv :)');</script>");
             }
@@ -89,20 +89,22 @@ namespace WebClient.Controllers
             }
             else
             {
+                var isFound = false;
                 foreach (var partOrderLoop in partOrders)
                 {
                     if (partOrderLoop.Product.Id == partOrder.Product.Id)
                     {
                         partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
-                        
-                    }
-                    else
-                    {
-                        partOrders.Add(po);
+                        isFound = true;
                     }
                 }
-                cart.PartOrders = partOrders;
+                if (!isFound)
+                {
+                    partOrders.Add(po);
+                }
+
             }
+            cart.PartOrders = partOrders;
             // Update the session
             Session["ShoppingCart"] = cart;
             return RedirectToAction("ProductPage", new { id = partOrder.Product.Id });
