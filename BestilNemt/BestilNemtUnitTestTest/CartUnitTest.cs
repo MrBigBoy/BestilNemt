@@ -33,8 +33,8 @@ namespace BestilNemtUnitTestTest
         public void FindCart()
         {
             var cartCtr = new CartCtr(new CartCtrTestClass());
-            var cart1 = new Cart(new List<PartOrder>(), 100);
-            var cart2 = new Cart(new List<PartOrder>(), 50);
+            var cart1 = new Cart(new List<PartOrder>(), 100, new Person());
+            var cart2 = new Cart(new List<PartOrder>(), 50, new Person());
             var id1 = cartCtr.AddCart(cart1);
             var id2 = cartCtr.AddCart(cart2);
             Assert.IsNotNull(cartCtr.FindCart(id1));
@@ -49,8 +49,8 @@ namespace BestilNemtUnitTestTest
         public void FindCartFailed()
         {
             CartCtr cartCtr = new CartCtr(new CartCtrTestClass());
-            var cart1 = new Cart(new List<PartOrder>(), 100);
-            var cart2 = new Cart(new List<PartOrder>(), 50);
+            var cart1 = new Cart(new List<PartOrder>(), 100, new Person());
+            var cart2 = new Cart(new List<PartOrder>(), 50, new Person());
             var id1 = cartCtr.AddCart(cart1);
             var id2 = cartCtr.AddCart(cart2);
             Assert.IsNull(cartCtr.FindCart(10));
@@ -66,9 +66,9 @@ namespace BestilNemtUnitTestTest
         public void UpdateCart()
         {
             CartCtr cartCtr = new CartCtr(new CartCtrTestClass());
-            var cart1 = new Cart(new List<PartOrder>(), 100);
+            var cart1 = new Cart(new List<PartOrder>(), 100, new Person());
             var id1 = cartCtr.AddCart(cart1);
-            Cart cart2 = new Cart(id1, new List<PartOrder>(), 50);
+            Cart cart2 = new Cart(id1, new List<PartOrder>(), 50, new Person());
             cartCtr.UpdateCart(cart2);
             Cart updatedCart = cartCtr.FindCart(id1);
             Assert.AreEqual(cart2.TotalPrice, updatedCart.TotalPrice);
@@ -83,7 +83,7 @@ namespace BestilNemtUnitTestTest
         public void DeleteCart()
         {
             CartCtr cartCtr = new CartCtr(new CartCtrTestClass());
-            var cart1 = new Cart(new List<PartOrder>(), 100);
+            var cart1 = new Cart(new List<PartOrder>(), 100, new Person());
             var id1 = cartCtr.AddCart(cart1);
             var flag = cartCtr.DeleteCart(id1);
             Assert.AreEqual(1, flag);
@@ -98,7 +98,7 @@ namespace BestilNemtUnitTestTest
         public void DeleteCartFail()
         {
             CartCtr cartCtr = new CartCtr(new CartCtrTestClass());
-            var cart1 = new Cart(new List<PartOrder>(), 100);
+            var cart1 = new Cart(new List<PartOrder>(), 100, new Person());
             var id1 = cartCtr.AddCart(cart1);
             var flag = cartCtr.DeleteCart(0);
             Assert.AreEqual(0, flag);
@@ -168,7 +168,7 @@ namespace BestilNemtUnitTestTest
             var cartDb = new DbCart();
             var poDb = new DbPartOrder();
             var prodDb = new DbProduct();
-            var cart = new Cart(new List<PartOrder>(), 100);
+            var cart = new Cart(new List<PartOrder>(), 100, new Person());
             var id = cartDb.AddCart(cart);
             cart.Id = id;
             var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");
@@ -238,9 +238,9 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart1 = new Cart(new List<PartOrder>(), 100);
+                var cart1 = new Cart(new List<PartOrder>(), 100, new Person());
                 var id1 = proxy.AddCart(cart1);
-                Cart cart2 = new Cart(id1, new List<PartOrder>(), 50);
+                Cart cart2 = new Cart(id1, new List<PartOrder>(), 50, new Person());
                 var i = proxy.UpdateCart(cart2);
                 Cart updatedCart = proxy.FindCart(id1);
                 Assert.AreEqual(cart2.TotalPrice, updatedCart.TotalPrice);
@@ -257,7 +257,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart1 = new Cart(new List<PartOrder>(), 100);
+                var cart1 = new Cart(new List<PartOrder>(), 100, new Person());
                 var id1 = proxy.AddCart(cart1);
                 var i = proxy.DeleteCart(id1);
                 Assert.AreEqual(1, i);
@@ -277,7 +277,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart = new Cart(new List<PartOrder>(), 100);
+                var cart = new Cart(new List<PartOrder>(), 100, new Person());
                 var id = proxy.AddCart(cart);
                 cart.Id = id;
                 var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");
