@@ -6,36 +6,6 @@
     ViewBag.Title = "Opret Login";
 }
 
-    <script>
-        function validateForm() {
-            var name = document.forms["CreateCustomer"]["name"].value;
-            var adresse = document.forms["CreateCustomer"]["exspiringdate"].value;
-            var email = document.forms["CreateCustomer"]["Controlnumbers"].value;
-            var birtday = document.forms["CreateCustomer"]["Controlnumbers"].value;
-            var password = document.forms["CreateCustomer"]["Controlnumbers"].value;
-            if (name == "") {
-                alert("CardNumber must be filled out");
-                return false;
-            }
-            if (exDate === "") {
-                alert("Expiry date must be filled out");
-                return false;
-            }
-            if (controlNumbers === "") {
-                alert("ControlNumbers must be filled out");
-                return false;
-            } else {
-                alert("Betaling gennemført");
-                return true;
-            }
-        }
-    </script>
-
-
-
-
-
-
 <div id="CreateCustomerForm">
     @using (Html.BeginForm("CreateCustomer", "Login", FormMethod.Post))
     {
@@ -48,7 +18,7 @@
                 <div class="form-group" name="name">
                     @Html.LabelFor(model => model.Customer.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10" name="name">
-                        @Html.EditorFor(model => model.Customer.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Customer.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "f.eks. Lars Larsen" } })
                         @Html.ValidationMessageFor(model => model.Customer.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -56,7 +26,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Customer.Address, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Customer.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Customer.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "f.eks. Vej 1, 9000 Aalborg" } })
                         @Html.ValidationMessageFor(model => model.Customer.Address, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -64,7 +34,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Customer.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Customer.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Customer.Email, new { htmlAttributes = new { @class = "form-control", placeholder ="f.eks. lars@bestilnemt.dk" } })
                         @Html.ValidationMessageFor(model => model.Customer.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -72,17 +42,23 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Customer.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Customer.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Customer.Birthday, new { htmlAttributes = new { @class = "form-control", placeholder = "DD-MM-ÅÅÅÅ" } })
                         @Html.ValidationMessageFor(model => model.Customer.Birthday, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.login.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.PasswordFor(model => model.login.Password, new { htmlAttributes = new { @class = "form-control", align="left" } })
-                        @Html.ValidationMessageFor(model => model.login.Password, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(model => model.login.Password, new { htmlAttributes = new { @class = "form-control", align="left"} })
+                        @Html.ValidationMessageFor(model => model.login.Password, "Mininum 6 tegn", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <p>Alle felter skal være udfyldt</p>
+                    </div>
+                </div>
+                
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
