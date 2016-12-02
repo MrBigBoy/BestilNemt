@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using Models;
 
@@ -16,18 +18,36 @@ namespace DataAccessLayer
         /// </returns>
         public int AddProduct(Product product)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand("INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSavingId) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @SavingId)", conn);
-                cmd.Parameters.AddWithValue("Name", product.Name);
-                cmd.Parameters.AddWithValue("Price", product.Price);
-                cmd.Parameters.AddWithValue("Description", product.Description);
-                cmd.Parameters.AddWithValue("Category", product.Category);
-                cmd.Parameters.AddWithValue("SavingId", product.SavingId);
-                i = (int)cmd.ExecuteScalar();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSavingId) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @SavingId)";
+                    cmd.Parameters.AddWithValue("Name", product.Name);
+                    cmd.Parameters.AddWithValue("Price", product.Price);
+                    cmd.Parameters.AddWithValue("Description", product.Description);
+                    cmd.Parameters.AddWithValue("Category", product.Category);
+                    cmd.Parameters.AddWithValue("SavingId", product.SavingId);
+                    i = (int)cmd.ExecuteScalar();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -41,13 +61,32 @@ namespace DataAccessLayer
         /// </returns>
         public int RemoveProduct(int id)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE productId = @ProductId", conn);
-                command.Parameters.AddWithValue("ProductId", id);
-                i = command.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DELETE FROM Product WHERE productId = @ProductId";
+                    cmd.Parameters.AddWithValue("ProductId", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -179,18 +218,37 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateProduct(Product product)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSavingId = @ProductSavingId WHERE productId = @ProductId", conn);
-                command.Parameters.AddWithValue("ProductId", product.Id);
-                command.Parameters.AddWithValue("ProductName", product.Name);
-                command.Parameters.AddWithValue("ProductPrice", product.Price);
-                command.Parameters.AddWithValue("ProductDescription", product.Description);
-                command.Parameters.AddWithValue("ProductCategory", product.Category);
-                command.Parameters.AddWithValue("ProductSavingId", product.SavingId);
-                i = command.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSavingId = @ProductSavingId WHERE productId = @ProductId";
+                    cmd.Parameters.AddWithValue("ProductId", product.Id);
+                    cmd.Parameters.AddWithValue("ProductName", product.Name);
+                    cmd.Parameters.AddWithValue("ProductPrice", product.Price);
+                    cmd.Parameters.AddWithValue("ProductDescription", product.Description);
+                    cmd.Parameters.AddWithValue("ProductCategory", product.Category);
+                    cmd.Parameters.AddWithValue("ProductSavingId", product.SavingId);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -204,13 +262,32 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteProduct(int id)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE productId = @ProductId", conn);
-                command.Parameters.AddWithValue("ProductId", id);
-                i = command.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DELETE FROM Product WHERE productId = @ProductId";
+                    cmd.Parameters.AddWithValue("ProductId", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }

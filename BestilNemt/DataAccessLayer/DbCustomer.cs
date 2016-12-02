@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using Models;
 
@@ -17,22 +18,37 @@ namespace DataAccessLayer
         /// </returns>
         public int Create(Customer customer)
         {
-            int id;
+            int id = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-
-                var cmd =
-                    new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);", conn);
-                cmd.Parameters.AddWithValue("name", customer.Name);
-                cmd.Parameters.AddWithValue("email", customer.Email);
-                cmd.Parameters.AddWithValue("address", customer.Address);
-                cmd.Parameters.AddWithValue("birthday", customer.Birthday);
-                id = (int)cmd.ExecuteScalar();
-              
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);";
+                    cmd.Parameters.AddWithValue("name", customer.Name);
+                    cmd.Parameters.AddWithValue("email", customer.Email);
+                    cmd.Parameters.AddWithValue("address", customer.Address);
+                    cmd.Parameters.AddWithValue("birthday", customer.Birthday);
+                    id = (int)cmd.ExecuteScalar();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
 
             }
             return id;
@@ -47,15 +63,34 @@ namespace DataAccessLayer
         /// </returns>
         public int RemoveCustomer(int id)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Customer where customerId = @id;Delete from Person where personId = @id", conn);
-                cmd.Parameters.AddWithValue("Id", id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "Delete from Customer where customerId = @id;Delete from Person where personId = @id";
+                    cmd.Parameters.AddWithValue("Id", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -120,29 +155,45 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateCustomer(Customer customer)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand("UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id; " +
-                                   "UPDATE Customer SET customerBirthday=@birthday WHERE customerId = @id", conn);
-                cmd.Parameters.AddWithValue("id", customer.Id);
-                cmd.Parameters.AddWithValue("name", customer.Name);
-                cmd.Parameters.AddWithValue("email", customer.Email);
-                cmd.Parameters.AddWithValue("address", customer.Address);
-                cmd.Parameters.AddWithValue("birthday", customer.Birthday);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id; " +
+                                              "UPDATE Customer SET customerBirthday=@birthday WHERE customerId = @id";
+                    cmd.Parameters.AddWithValue("id", customer.Id);
+                    cmd.Parameters.AddWithValue("name", customer.Name);
+                    cmd.Parameters.AddWithValue("email", customer.Email);
+                    cmd.Parameters.AddWithValue("address", customer.Address);
+                    cmd.Parameters.AddWithValue("birthday", customer.Birthday);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
-        public int AddCustomerWithLogin(Customer customer,Login login)
+        public int AddCustomerWithLogin(Customer customer, Login login)
         {
-            int id;
-            
-            var DbLogin = new DbLogin();
+            int id = 0;
             var returnedValue = 0;
             if (DbLogin.DownloadPersonId(login.Username) != 0)
                 return returnedValue;
@@ -152,23 +203,38 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address);" +
+                                              " SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);";
+                    cmd.Parameters.AddWithValue("name", customer.Name);
+                    cmd.Parameters.AddWithValue("email", customer.Email);
+                    cmd.Parameters.AddWithValue("address", customer.Address);
+                    cmd.Parameters.AddWithValue("birthday", customer.Birthday);
+                    id = (int)cmd.ExecuteScalar();
 
-                var cmd =
-                    new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address); SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);", conn);
-                cmd.Parameters.AddWithValue("name", customer.Name);
-                cmd.Parameters.AddWithValue("email", customer.Email);
-                cmd.Parameters.AddWithValue("address", customer.Address);
-                cmd.Parameters.AddWithValue("birthday", customer.Birthday);
-                id = (int)cmd.ExecuteScalar();
-
-                var cmd2 = new SqlCommand("INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)", conn);
-                cmd2.Parameters.AddWithValue("loginTableUsername", login.Username);
-                cmd2.Parameters.AddWithValue("loginTableParts", parts);
-                cmd2.Parameters.AddWithValue("loginTablePersonId", id);
-                cmd2.ExecuteNonQuery();
-
-
+                    var cmd2 = new SqlCommand("INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)", conn);
+                    cmd2.Parameters.AddWithValue("loginTableUsername", login.Username);
+                    cmd2.Parameters.AddWithValue("loginTableParts", parts);
+                    cmd2.Parameters.AddWithValue("loginTablePersonId", id);
+                    cmd2.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return id;
         }

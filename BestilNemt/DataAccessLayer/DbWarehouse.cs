@@ -22,7 +22,6 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Connection = conn;
                 cmd.Transaction = transaction;
                 try
                 {
@@ -125,7 +124,6 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Connection = conn;
                 cmd.Transaction = transaction;
                 try
                 {

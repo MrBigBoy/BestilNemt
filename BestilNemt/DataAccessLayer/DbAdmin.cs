@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Net.Sockets;
 using System.ServiceModel.Channels;
@@ -20,21 +21,36 @@ namespace DataAccessLayer
         /// </returns>
         public int Create(Admin admin)
         {
-            int i;
+            int i = 0;
             using (
                 var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-
-                var cmd =
-                    new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);", conn);
-                cmd.Parameters.AddWithValue("name", admin.Name);
-                cmd.Parameters.AddWithValue("email", admin.Email);
-                cmd.Parameters.AddWithValue("personType", admin.PersonType);
-                cmd.Parameters.AddWithValue("address", admin.Address);
-                i = cmd.ExecuteNonQuery();
-
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);";
+                    cmd.Parameters.AddWithValue("name", admin.Name);
+                    cmd.Parameters.AddWithValue("email", admin.Email);
+                    cmd.Parameters.AddWithValue("personType", admin.PersonType);
+                    cmd.Parameters.AddWithValue("address", admin.Address);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -48,15 +64,34 @@ namespace DataAccessLayer
         /// </returns>
         public int RemoveAdmin(int id)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Administrator where administratorId = @id;Delete from Person where personId = @id", conn);
-                cmd.Parameters.AddWithValue("Id", id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "Delete from Administrator where administratorId = @id;Delete from Person where personId = @id";
+                    cmd.Parameters.AddWithValue("Id", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -123,20 +158,37 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateAdmin(Admin admin)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand("UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id",
-                        conn);
-                cmd.Parameters.AddWithValue("personId", admin.Id);
-                cmd.Parameters.AddWithValue("personName", admin.Name);
-                cmd.Parameters.AddWithValue("personEmail", admin.Email);
-                cmd.Parameters.AddWithValue("personAddress", admin.Address);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id";
+                    cmd.Parameters.AddWithValue("personId", admin.Id);
+                    cmd.Parameters.AddWithValue("personName", admin.Name);
+                    cmd.Parameters.AddWithValue("personEmail", admin.Email);
+                    cmd.Parameters.AddWithValue("personAddress", admin.Address);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }

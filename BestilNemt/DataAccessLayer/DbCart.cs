@@ -26,7 +26,6 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Connection = conn;
                 cmd.Transaction = transaction;
                 try
                 {
@@ -36,7 +35,6 @@ namespace DataAccessLayer
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
-
                 }
                 catch (Exception)
                 {
@@ -158,7 +156,7 @@ namespace DataAccessLayer
             }
             return carts;
         }
-       
+
         /// <summary>
         /// Update a Cart
         /// </summary>
@@ -168,17 +166,36 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateCart(Cart cart)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Cart SET cartTotalPrice=@totalPrice AND cartPersonId=@PersonId WHERE cartId=@id", conn);
-                cmd.Parameters.AddWithValue("id", cart.Id);
-                cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
-                cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Cart SET cartTotalPrice=@totalPrice AND cartPersonId=@PersonId WHERE cartId=@id";
+                    cmd.Parameters.AddWithValue("id", cart.Id);
+                    cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
+                    cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -192,19 +209,38 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteCart(int id)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Cart WHERE cartId=@id", conn);
-                cmd.Parameters.AddWithValue("id", id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "Delete from Cart WHERE cartId=@id";
+                    cmd.Parameters.AddWithValue("id", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
-        
+
         public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
         {
             var i = 0;
@@ -243,10 +279,7 @@ namespace DataAccessLayer
             return i;
 
         }
-        public void SaveCart()
-        {
 
-        }
         public int AddCartWithPartOrders(Cart cart)
         {
             var id = 0;
@@ -266,7 +299,7 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
                     id = (int)cmd.ExecuteScalar();
-                    
+
                     foreach (var po in cart.PartOrders)
                     {
                         var cmdPartOrder = conn.CreateCommand();
@@ -278,8 +311,9 @@ namespace DataAccessLayer
                         cmdPartOrder.Parameters.AddWithValue("partPrice", po.PartPrice);
                         cmdPartOrder.Parameters.AddWithValue("cartId", id);
                         cmdPartOrder.ExecuteNonQuery();
-                        var cmdDecreseStock = conn.CreateCommand();
+
                         // Get warehouseStock form DB decrese it with partOrder Amount and save in a variable
+                        var cmdDecreseStock = conn.CreateCommand();
                         cmdDecreseStock.CommandText = "Select warehouseStock from Warehouse where warehouseProductId = @productId";
                         cmdDecreseStock.Parameters.AddWithValue("productId", po.Product.Id);
                         cmdDecreseStock.Transaction = transaction;
@@ -290,8 +324,9 @@ namespace DataAccessLayer
                             newStock = reader.GetInt32(reader.GetOrdinal("warehouseStock")) - po.Amount;
                         }
                         reader.Close();
-                        var cmdUpdateWarehouse = conn.CreateCommand();
+
                         //update warehouseStock with new saved value
+                        var cmdUpdateWarehouse = conn.CreateCommand();
                         cmdUpdateWarehouse.CommandText = "Update Warehouse Set warehouseStock = @newStock where warehouseProductId = @productId";
                         cmdUpdateWarehouse.Parameters.AddWithValue("newStock", newStock);
                         cmdUpdateWarehouse.Parameters.AddWithValue("productId", po.Product.Id);
@@ -317,7 +352,5 @@ namespace DataAccessLayer
             }
             return id;
         }
-
     }
-
 }
