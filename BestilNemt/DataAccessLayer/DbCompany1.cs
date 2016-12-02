@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using Models;
 
@@ -16,21 +18,37 @@ namespace DataAccessLayer
         /// </returns>
         public int AddCompany(Company company)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-
-                var cmd =
-                    new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(companyId, companyCVR, companyKontoNr) VALUES(@DataID,@CVR,@KontoNr);", conn);
-                cmd.Parameters.AddWithValue("name", company.Name);
-                cmd.Parameters.AddWithValue("email", company.Email);
-                cmd.Parameters.AddWithValue("personType", company.PersonType);
-                cmd.Parameters.AddWithValue("address", company.Address);
-                cmd.Parameters.AddWithValue("CVR", company.CVR);
-                cmd.Parameters.AddWithValue("KontoNr", company.Kontonr);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(companyId, companyCVR, companyKontoNr) VALUES(@DataID,@CVR,@KontoNr);";
+                    cmd.Parameters.AddWithValue("name", company.Name);
+                    cmd.Parameters.AddWithValue("email", company.Email);
+                    cmd.Parameters.AddWithValue("personType", company.PersonType);
+                    cmd.Parameters.AddWithValue("address", company.Address);
+                    cmd.Parameters.AddWithValue("CVR", company.CVR);
+                    cmd.Parameters.AddWithValue("KontoNr", company.Kontonr);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -95,15 +113,34 @@ namespace DataAccessLayer
         /// </returns>
         public int RemoveCompany(int id)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("Delete from Company where companyId = @id;Delete from Person where personId = @id", conn);
-                cmd.Parameters.AddWithValue("Id", id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "Delete from Company where companyId = @id;Delete from Person where personId = @id";
+                    cmd.Parameters.AddWithValue("Id", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -117,20 +154,37 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateCompany(Company company)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand("UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id",
-                        conn);
-                cmd.Parameters.AddWithValue("personId", company.Id);
-                cmd.Parameters.AddWithValue("personName", company.Name);
-                cmd.Parameters.AddWithValue("personEmail", company.Email);
-                cmd.Parameters.AddWithValue("personAddress", company.Address);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Person SET personName=@name, personEmail=@email, personAddress=@address WHERE personId=@id";
+                    cmd.Parameters.AddWithValue("personId", company.Id);
+                    cmd.Parameters.AddWithValue("personName", company.Name);
+                    cmd.Parameters.AddWithValue("personEmail", company.Email);
+                    cmd.Parameters.AddWithValue("personAddress", company.Address);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }

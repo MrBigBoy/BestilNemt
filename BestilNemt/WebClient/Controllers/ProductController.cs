@@ -97,6 +97,11 @@ namespace WebClient.Controllers
                         partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
                         isFound = true;
                     }
+
+                }
+                if (!isFound)
+                {
+                    partOrders.Add(po);
                 }
                 if (!isFound)
                 {

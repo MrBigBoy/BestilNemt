@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,21 +14,36 @@ namespace DataAccessLayer
     {
         public int AddSaving(Saving saving, Product product)
         {
-            int i;
-            using (
-                var conn =
-                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            int i = 0;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand(
-                        "DECLARE @DataID int; INSERT INTO Saving(savingStartDate,savingEndDate,savingPercent)VALUES(@startDate, @endDate, @percent); SELECT @DataID = scope_identity(); UPDATE Product SET productSavingId = @DataID WHERE productId = @productId;",
-                        conn);
-                cmd.Parameters.AddWithValue("startDate", saving.StartDate);
-                cmd.Parameters.AddWithValue("endDate", saving.EndDate);
-                cmd.Parameters.AddWithValue("percent", saving.SavingPercent);
-                cmd.Parameters.AddWithValue("productId", product.Id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Saving(savingStartDate,savingEndDate,savingPercent)VALUES(@startDate, @endDate, @percent); " +
+                                             "SELECT @DataID = scope_identity(); UPDATE Product SET productSavingId = @DataID WHERE productId = @productId;";
+                    cmd.Parameters.AddWithValue("startDate", saving.StartDate);
+                    cmd.Parameters.AddWithValue("endDate", saving.EndDate);
+                    cmd.Parameters.AddWithValue("percent", saving.SavingPercent);
+                    cmd.Parameters.AddWithValue("productId", product.Id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -74,37 +90,72 @@ namespace DataAccessLayer
 
         public int UpdateSaving(Saving saving)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand(
-                        "UPDATE Saving Set savingStartDate = @StartDate, savingEndDate = @EndDate, savingPercent = @SavingPercent WHERE savingId = @ID;",
-                        conn);
-                cmd.Parameters.AddWithValue("startdate", saving.StartDate);
-                cmd.Parameters.AddWithValue("EndDate", saving.EndDate);
-                cmd.Parameters.AddWithValue("SavingPercent", saving.SavingPercent);
-                cmd.Parameters.AddWithValue("ID", saving.Id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Saving Set savingStartDate = @StartDate, savingEndDate = @EndDate, savingPercent = @SavingPercent " +
+                                              "WHERE savingId = @ID;";
+                    cmd.Parameters.AddWithValue("startdate", saving.StartDate);
+                    cmd.Parameters.AddWithValue("EndDate", saving.EndDate);
+                    cmd.Parameters.AddWithValue("SavingPercent", saving.SavingPercent);
+                    cmd.Parameters.AddWithValue("ID", saving.Id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
 
         public int DeleteSaving(int id)
         {
-            int i;
+            int i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand("UPDATE Product SET productSavingId = null WHERE productSavingId = @ID; DELETE FROM Saving WHERE savingId = @ID", conn);
-                cmd.Parameters.AddWithValue("ID", id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Product SET productSavingId = null WHERE productSavingId = @ID; DELETE FROM Saving WHERE savingId = @ID;";
+                    cmd.Parameters.AddWithValue("ID", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
