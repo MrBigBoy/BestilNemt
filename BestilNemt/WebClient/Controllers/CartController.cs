@@ -89,8 +89,17 @@ namespace WebClient.Controllers
                 }
                 else
                 {
-                    proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
-                    return View();
+                    var fl = proxy.AddCartWithPartOrders((Cart) Session["ShoppingCart"]);
+                    if (fl == 1)
+                    {
+
+                        return View();
+                    }
+                    else
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('Du er for langsomt. Varen er blevet købt. Øv-Øv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
+                    }
+                    
                 }
             }
             catch (System.Exception)

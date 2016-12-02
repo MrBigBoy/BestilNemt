@@ -282,6 +282,7 @@ namespace DataAccessLayer
         public int AddCartWithPartOrders(Cart cart)
         {
             var id = 0;
+            var flag = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -290,12 +291,18 @@ namespace DataAccessLayer
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
+                decimal cartTotalPrice = 0;
+                foreach (var partOrder in cart.PartOrders)
+                {
+
+                    cartTotalPrice = partOrder.PartPrice + cartTotalPrice;
+                }
                 try
                 {
                     //save Cart in DB and get generated cartId
                     cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId) output inserted.cartId VALUES(@totalPrice, @PersonId)";
 
-                    cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
+                    cmd.Parameters.AddWithValue("totalPrice", cartTotalPrice);
                     cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
                     id = (int)cmd.ExecuteScalar();
 
@@ -333,11 +340,13 @@ namespace DataAccessLayer
                         cmdUpdateWarehouse.ExecuteNonQuery();
                     }
                     transaction.Commit();
+                    flag = 1;
                     Console.WriteLine("Commit was succsesfull");
 
                 }
                 catch (Exception)
                 {
+                    flag = 0;
                     try
                     {
                         transaction.Rollback();
@@ -349,7 +358,7 @@ namespace DataAccessLayer
                     }
                 }
             }
-            return id;
+            return flag;
         }
     }
 }
