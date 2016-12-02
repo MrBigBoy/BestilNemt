@@ -87,13 +87,18 @@ namespace WebClient.Controllers
                     return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
 
                 }
-                else
+               
+                else if (ShoppingCart.PartOrders.Capacity != 0)
                 {
                     proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
                     return View();
                 }
+                else
+                {
+                    return null;
+                }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
 
                 return Content("<script language='javascript' type='text/javascript'>alert('Ønsket antal varer ikke på lager'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
