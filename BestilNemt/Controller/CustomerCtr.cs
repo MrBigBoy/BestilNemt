@@ -86,14 +86,24 @@ namespace Controller
         /// </returns>
         private bool ValidatePersonInput(Customer customer)
         {
-            return customer != null && !customer.Address.Equals("") && !customer.Name.Equals("") &&
-                customer.Name != null && !customer.Address.Equals("") && customer.Address != null &&
-                !customer.Email.Equals("") && customer.Email != null && customer.PersonType.Equals("Customer");
+            try
+            {
+                return customer != null && !customer.Address.Equals("") && !customer.Name.Equals("") &&
+               customer.Name != null && !customer.Address.Equals("") && customer.Address != null &&
+               !customer.Email.Equals("") && customer.Email != null && customer.PersonType.Equals("Customer");
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("dlfkldkfæd"); 
+                
+            }
+          
         }
 
         public int CreateCustomerWithLogin(Customer customer, Login login)
         {
-            return DbCustomer.AddCustomerWithLogin(customer, login);
+            return ValidatePersonInput(customer) ? DbCustomer.AddCustomerWithLogin(customer, login) : 0;
         }
     }
 }
