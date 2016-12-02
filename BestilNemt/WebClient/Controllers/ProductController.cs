@@ -103,8 +103,13 @@ namespace WebClient.Controllers
                 {
                     partOrders.Add(po);
                 }
-                cart.PartOrders = partOrders;
+                if (!isFound)
+                {
+                    partOrders.Add(po);
+                }
+
             }
+            cart.PartOrders = partOrders;
             // Update the session
             Session["ShoppingCart"] = cart;
             return RedirectToAction("ProductPage", new { id = partOrder.Product.Id });

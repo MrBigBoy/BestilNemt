@@ -1,6 +1,8 @@
-﻿using Models;
+﻿using System;
+using Models;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DataAccessLayer
@@ -40,15 +42,34 @@ namespace DataAccessLayer
         /// </returns>
         public int AddChain(Chain chain)
         {
-            int id;
+            var id = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("INSERT INTO Chain (chainName, chainCvr, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)", conn);
-                command.Parameters.AddWithValue("ChainName", chain.Name);
-                command.Parameters.AddWithValue("ChainCvr", chain.Cvr);
-                command.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
-                id = (int)command.ExecuteScalar();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "INSERT INTO Chain (chainName, chainCvr, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)";
+                    cmd.Parameters.AddWithValue("ChainName", chain.Name);
+                    cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
+                    cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
+                    id = (int)cmd.ExecuteScalar();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return id;
         }
@@ -86,16 +107,35 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateChain(Chain chain)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId", conn);
-                command.Parameters.AddWithValue("ChainId", chain.Id);
-                command.Parameters.AddWithValue("ChainName", chain.Name);
-                command.Parameters.AddWithValue("ChainCvr", chain.Cvr);
-                command.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
-                i = command.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId";
+                    cmd.Parameters.AddWithValue("ChainId", chain.Id);
+                    cmd.Parameters.AddWithValue("ChainName", chain.Name);
+                    cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
+                    cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -109,13 +149,32 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteChain(int id)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Chain WHERE chainId = @ChainId", conn);
-                command.Parameters.AddWithValue("ChainId", id);
-                i = command.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DELETE FROM Chain WHERE chainId = @ChainId";
+                    cmd.Parameters.AddWithValue("ChainId", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
@@ -43,12 +44,31 @@ namespace DataAccessLayer
                         ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
                 // Now the connection is open
-                var cmd = new SqlCommand("INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)", conn);
-                cmd.Parameters.AddWithValue("loginTableUsername", login.Username);
-                cmd.Parameters.AddWithValue("loginTableParts", parts);
-                cmd.Parameters.AddWithValue("loginTablePersonId", login.PersonId);
-                returnedValue = cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.CommandText = "INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)";
+                    cmd.Parameters.AddWithValue("loginTableUsername", login.Username);
+                    cmd.Parameters.AddWithValue("loginTableParts", parts);
+                    cmd.Parameters.AddWithValue("loginTablePersonId", login.PersonId);
+                    returnedValue = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return returnedValue;
         }
@@ -79,15 +99,34 @@ namespace DataAccessLayer
         public int UpdateLogin(Login login)
         {
             var parts = CreateHash(login.Password);
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE LoginTable SET loginTableUsername=@LoginTableUsername, loginTableParts=@LoginTableParts WHERE loginTablePersonId=@LoginTablePersonId", conn);
-                cmd.Parameters.AddWithValue("LoginTableUsername", login.Username);
-                cmd.Parameters.AddWithValue("LoginTableParts", parts);
-                cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE LoginTable SET loginTableUsername=@LoginTableUsername, loginTableParts=@LoginTableParts WHERE loginTablePersonId=@LoginTablePersonId";
+                    cmd.Parameters.AddWithValue("LoginTableUsername", login.Username);
+                    cmd.Parameters.AddWithValue("LoginTableParts", parts);
+                    cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -101,13 +140,32 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteLogin(Login login)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("DELETE FROM LoginTable WHERE loginTablePersonId = @LoginTablePersonId", conn);
-                cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DELETE FROM LoginTable WHERE loginTablePersonId = @LoginTablePersonId";
+                    cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }

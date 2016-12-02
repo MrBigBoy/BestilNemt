@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using Models;
 
@@ -16,17 +18,36 @@ namespace DataAccessLayer
         /// </returns>
         public int AddShop(Shop shop)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("INSERT INTO Shop(shopName, shopAddress, shopOpeningTime, shopCVR, shopChainId) OUTPUT Inserted.shopId VALUES(@ShopName, @ShopAddress, @ShopOpeningTime, @ShopCvr, @ShopChainId)", conn);
-                cmd.Parameters.AddWithValue("ShopName", shop.Name);
-                cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
-                cmd.Parameters.AddWithValue("ShopOpeningTime", shop.OpeningTime);
-                cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
-                cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
-                i = (int)cmd.ExecuteScalar();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "INSERT INTO Shop(shopName, shopAddress, shopOpeningTime, shopCVR, shopChainId) OUTPUT Inserted.shopId VALUES(@ShopName, @ShopAddress, @ShopOpeningTime, @ShopCvr, @ShopChainId)";
+                    cmd.Parameters.AddWithValue("ShopName", shop.Name);
+                    cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
+                    cmd.Parameters.AddWithValue("ShopOpeningTime", shop.OpeningTime);
+                    cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
+                    cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
+                    i = (int)cmd.ExecuteScalar();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -40,13 +61,32 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteShop(int id)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("DELETE FROM Shop Where shopId=@ShopId", conn);
-                cmd.Parameters.AddWithValue("ShopId", id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DELETE FROM Shop Where shopId=@ShopId";
+                    cmd.Parameters.AddWithValue("ShopId", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -60,17 +100,36 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateShop(Shop shop)
         {
-            int i;
+            int i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("UPDATE Shop SET shopName=@ShopName, shopAddress=@ShopAddress, shopOpeningTime=@ShopOpeningTime, shopCvr=@ShopCvr WHERE shopId=@ShopId", conn);
-                cmd.Parameters.AddWithValue("ShopName", shop.Name);
-                cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
-                cmd.Parameters.AddWithValue("ShopOpeningTime", shop.OpeningTime);
-                cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
-                cmd.Parameters.AddWithValue("ShopId", shop.Id);
-                i = cmd.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Shop SET shopName=@ShopName, shopAddress=@ShopAddress, shopOpeningTime=@ShopOpeningTime, shopCvr=@ShopCvr WHERE shopId=@ShopId";
+                    cmd.Parameters.AddWithValue("ShopName", shop.Name);
+                    cmd.Parameters.AddWithValue("ShopAddress", shop.Address);
+                    cmd.Parameters.AddWithValue("ShopOpeningTime", shop.OpeningTime);
+                    cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
+                    cmd.Parameters.AddWithValue("ShopId", shop.Id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
