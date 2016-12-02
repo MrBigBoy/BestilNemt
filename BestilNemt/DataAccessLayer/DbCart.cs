@@ -139,7 +139,6 @@ namespace DataAccessLayer
         /// </returns>
         public List<Cart> GetAllCartsByPersonId(int personId)
         {
-            personId = 1;
             var carts = new List<Cart>();
             using (
                 var conn =
