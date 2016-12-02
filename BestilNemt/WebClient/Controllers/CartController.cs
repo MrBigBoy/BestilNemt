@@ -79,18 +79,26 @@ namespace WebClient.Controllers
         {
        
             var proxy = new BestilNemtServiceClient();
-           
-            if (ShoppingCart.PartOrders.Capacity == 0)
+            try
+            {
+                if (ShoppingCart.PartOrders.Capacity == 0)
+                {
+
+                    return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
+
+                }
+                else
+                {
+                    proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
+                    return View();
+                }
+            }
+            catch (System.Exception)
             {
 
-                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>"); 
-              
+                return Content("<script language='javascript' type='text/javascript'>alert('Ønsket antal varer ikke på lager'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
             }
-            else
-            {
-                proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
-                return View();
-            }
+        
 
         }
 
