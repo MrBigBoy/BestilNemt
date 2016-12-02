@@ -6,36 +6,6 @@
     ViewBag.Title = "Opret Login";
 }
 
-    <script>
-        function validateForm() {
-            var name = document.forms["CreateCustomer"]["name"].value;
-            var adresse = document.forms["CreateCustomer"]["exspiringdate"].value;
-            var email = document.forms["CreateCustomer"]["Controlnumbers"].value;
-            var birtday = document.forms["CreateCustomer"]["Controlnumbers"].value;
-            var password = document.forms["CreateCustomer"]["Controlnumbers"].value;
-            if (name == "") {
-                alert("CardNumber must be filled out");
-                return false;
-            }
-            if (exDate === "") {
-                alert("Expiry date must be filled out");
-                return false;
-            }
-            if (controlNumbers === "") {
-                alert("ControlNumbers must be filled out");
-                return false;
-            } else {
-                alert("Betaling gennemført");
-                return true;
-            }
-        }
-    </script>
-
-
-
-
-
-
 <div id="CreateCustomerForm">
     @using (Html.BeginForm("CreateCustomer", "Login", FormMethod.Post))
     {
@@ -83,6 +53,12 @@
                         @Html.ValidationMessageFor(model => model.login.Password, "Mininum 6 tegn", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <p>Alle felter skal være udfyldt</p>
+                    </div>
+                </div>
+                
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
