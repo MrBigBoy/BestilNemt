@@ -194,6 +194,7 @@ namespace DataAccessLayer
         public int AddCustomerWithLogin(Customer customer, Login login)
         {
             int id = 0;
+            var DbLogin = new DbLogin();
             var returnedValue = 0;
             if (DbLogin.DownloadPersonId(login.Username) != 0)
                 return returnedValue;
@@ -204,8 +205,10 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                var cmd2 = conn.CreateCommand();
+                var transaction = conn.BeginTransaction(IsolationLevel.Serializable);
                 cmd.Transaction = transaction;
+                cmd2.Transaction = transaction;
                 try
                 {
                     cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address);" +
@@ -215,20 +218,20 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("address", customer.Address);
                     cmd.Parameters.AddWithValue("birthday", customer.Birthday);
                     id = (int)cmd.ExecuteScalar();
-
-                    var cmd2 = new SqlCommand("INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)", conn);
+                    
+                    cmd2.CommandText = "INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)";
                     cmd2.Parameters.AddWithValue("loginTableUsername", login.Username);
                     cmd2.Parameters.AddWithValue("loginTableParts", parts);
                     cmd2.Parameters.AddWithValue("loginTablePersonId", id);
                     cmd2.ExecuteNonQuery();
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     try
                     {
                         transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
+                        Console.WriteLine("Transaction was rolled back" +e.Message);
                     }
                     catch (SqlException)
                     {
