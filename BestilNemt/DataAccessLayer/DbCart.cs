@@ -341,11 +341,11 @@ namespace DataAccessLayer
                     try
                     {
                         transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
+                        System.Diagnostics.Debug.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
-                        Console.WriteLine("Transaction rollback failed");
+                        System.Diagnostics.Debug.WriteLine("Transaction rollback failed");
                     }
                 }
             }
