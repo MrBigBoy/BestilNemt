@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CartUnitTest.cs" />
+    <Compile Include="ConcurentTransactionTest.cs" />
     <Compile Include="LoginUnitTest.cs" />
     <Compile Include="CustomerUnitTest.cs" />
     <Compile Include="PartOrderUnitTest.cs" />
