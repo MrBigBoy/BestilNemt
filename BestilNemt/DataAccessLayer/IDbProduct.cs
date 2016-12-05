@@ -6,12 +6,12 @@ namespace DataAccessLayer
     public interface IDbProduct
     {
         int AddProduct(Product product);
-        Product FindProduct(int id);
-        List<Product> FindAllProducts();
-        List<Product> FindAllSoldProducts();
-        List<Product> FindAllProductsWithSavings();
+        Product GetProduct(int id);
+        List<Product> GetAllProducts();
+        List<Product> GetAllSoldProducts();
+        List<Product> GetAllProductsWithSavings();
         int UpdateProduct(Product product);
         int DeleteProduct(int id);
-        List<Product> FindProductsByName(string input);
+        List<Product> GetProductsByName(string input);
     }
 }

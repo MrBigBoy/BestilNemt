@@ -7,6 +7,10 @@ namespace Controller
     {
         public IDbLogin DbLogin { get; set; }
 
+        /// <summary>
+        /// Constructor for Login controller
+        /// </summary>
+        /// <param name="dbLogin"></param>
         public LoginCtr(IDbLogin dbLogin)
         {
             DbLogin = dbLogin;
@@ -25,11 +29,11 @@ namespace Controller
         }
 
         /// <summary>
-        /// Return a Login object if validation is true, else null
+        /// Method to login
         /// </summary>
         /// <param name="login"></param>
         /// <returns>
-        /// Return a Login object if validation is true, else null
+        /// Return a Login object if validation is true with a PersonId, else null
         /// </returns>
         public Login Login(Login login)
         {
@@ -65,12 +69,13 @@ namespace Controller
         /// The Password must be a string of minimum 6 char
         /// </summary>
         /// <param name="login"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// True if fields is correct, else false
+        /// </returns>
         public bool ValidateLoginInput(Login login)
         {
-            return login?.Username != null && !login.Username.Equals("") &&
-                login.Username.Length >= 5 && login.Password != null &&
-                !login.Password.Equals("") && login.Password.Length >= 6;
+            return !string.IsNullOrEmpty(login?.Username) && !string.IsNullOrEmpty(login.Password) &&
+                login.Username.Length >= 5 && login.Password.Length >= 6;
         }
     }
 }

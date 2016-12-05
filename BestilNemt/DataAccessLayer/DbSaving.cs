@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DataAccessLayer
@@ -48,7 +45,7 @@ namespace DataAccessLayer
             return i;
         }
 
-        public Saving FindSaving(int id)
+        public Saving GetSaving(int id)
         {
             Saving saving = null;
             using (
@@ -69,7 +66,7 @@ namespace DataAccessLayer
             return saving;
         }
 
-        public List<Saving> FindAllSavings()
+        public List<Saving> GetAllSavings()
         {
             List<Saving> savings = new List<Saving>();
             using (

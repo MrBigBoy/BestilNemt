@@ -1198,11 +1198,11 @@ namespace WPF_Client.BestilNemtWPF {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BestilNemtWPF.IBestilNemtService")]
     public interface IBestilNemtService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/FindCustomerResponse")]
-        WPF_Client.BestilNemtWPF.Customer FindCustomer(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetCustomerResponse")]
+        WPF_Client.BestilNemtWPF.Customer GetCustomer(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/FindCustomerResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Customer> FindCustomerAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetCustomerResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Customer> GetCustomerAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerResponse")]
         int AddCustomer(WPF_Client.BestilNemtWPF.Customer customer);
@@ -1234,11 +1234,11 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/AddAdminResponse")]
         System.Threading.Tasks.Task<int> AddAdminAsync(WPF_Client.BestilNemtWPF.Admin admin);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/FindAdminResponse")]
-        WPF_Client.BestilNemtWPF.Admin FindAdmin(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/GetAdminResponse")]
+        WPF_Client.BestilNemtWPF.Admin GetAdmin(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/FindAdminResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Admin> FindAdminAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/GetAdminResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Admin> GetAdminAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllAdmins", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse")]
         WPF_Client.BestilNemtWPF.Admin[] GetAllAdmins();
@@ -1354,11 +1354,11 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCompany", ReplyAction="http://tempuri.org/IBestilNemtService/AddCompanyResponse")]
         System.Threading.Tasks.Task<int> AddCompanyAsync(WPF_Client.BestilNemtWPF.Company company);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllCompanyResponse")]
-        WPF_Client.BestilNemtWPF.Company[] FindAllCompany();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCompanyResponse")]
+        WPF_Client.BestilNemtWPF.Company[] GetAllCompany();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllCompanyResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company[]> FindAllCompanyAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCompanyResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company[]> GetAllCompanyAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCompany", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCompanyResponse")]
         int DeleteCompany(int id);
@@ -1372,11 +1372,11 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCompanyResponse")]
         System.Threading.Tasks.Task<int> UpdateCompanyAsync(WPF_Client.BestilNemtWPF.Company company);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCompany", ReplyAction="http://tempuri.org/IBestilNemtService/FindCompanyResponse")]
-        WPF_Client.BestilNemtWPF.Company FindCompany(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetCompanyResponse")]
+        WPF_Client.BestilNemtWPF.Company GetCompany(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCompany", ReplyAction="http://tempuri.org/IBestilNemtService/FindCompanyResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company> FindCompanyAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetCompanyResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company> GetCompanyAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddProduct", ReplyAction="http://tempuri.org/IBestilNemtService/AddProductResponse")]
         int AddProduct(WPF_Client.BestilNemtWPF.Product product);
@@ -1432,17 +1432,17 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse")]
         System.Threading.Tasks.Task<int> AddCartWithPartOrdersAsync(WPF_Client.BestilNemtWPF.Cart cart);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
-        WPF_Client.BestilNemtWPF.Cart FindCart(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCart", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartResponse")]
+        WPF_Client.BestilNemtWPF.Cart GetCart(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCart", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> FindCartAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCart", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> GetCartAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartWithPartOrdersResponse")]
-        WPF_Client.BestilNemtWPF.Cart FindCartWithPartOrders(int cartId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartWithPartOrdersResponse")]
+        WPF_Client.BestilNemtWPF.Cart GetCartWithPartOrders(int cartId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/FindCartWithPartOrdersResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> FindCartWithPartOrdersAsync(int cartId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartWithPartOrdersResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> GetCartWithPartOrdersAsync(int cartId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
         WPF_Client.BestilNemtWPF.Cart[] GetAllCarts();
@@ -1474,11 +1474,11 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
         System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(WPF_Client.BestilNemtWPF.Cart cart, WPF_Client.BestilNemtWPF.PartOrder partOrder);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/FindPartOrderResponse")]
-        WPF_Client.BestilNemtWPF.PartOrder FindPartOrder(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/GetPartOrderResponse")]
+        WPF_Client.BestilNemtWPF.PartOrder GetPartOrder(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/FindPartOrderResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.PartOrder> FindPartOrderAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/GetPartOrderResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.PartOrder> GetPartOrderAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemovePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/RemovePartOrderResponse")]
         int RemovePartOrder(int id);
@@ -1510,23 +1510,23 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
         System.Threading.Tasks.Task<int> AddWarehouseAsync(WPF_Client.BestilNemtWPF.Warehouse warehouse);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/FindWarehouseResponse")]
-        WPF_Client.BestilNemtWPF.Warehouse FindWarehouse(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
+        WPF_Client.BestilNemtWPF.Warehouse GetWarehouse(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/FindWarehouseResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> FindWarehouseAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> GetWarehouseAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesResponse")]
-        WPF_Client.BestilNemtWPF.Warehouse[] FindAllWarehouses();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
+        WPF_Client.BestilNemtWPF.Warehouse[] GetAllWarehouses();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> FindAllWarehousesAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> GetAllWarehousesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopIdResponse")]
-        WPF_Client.BestilNemtWPF.Warehouse[] FindAllWarehousesByShopId(int shopId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopIdResponse")]
+        WPF_Client.BestilNemtWPF.Warehouse[] GetAllWarehousesByShopId(int shopId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllWarehousesByShopIdResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> FindAllWarehousesByShopIdAsync(int shopId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopIdResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> GetAllWarehousesByShopIdAsync(int shopId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         int UpdateWarehouse(WPF_Client.BestilNemtWPF.Warehouse warehouse);
@@ -1546,17 +1546,17 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
         System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindSaving", ReplyAction="http://tempuri.org/IBestilNemtService/FindSavingResponse")]
-        WPF_Client.BestilNemtWPF.Saving FindSaving(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
+        WPF_Client.BestilNemtWPF.Saving GetSaving(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindSaving", ReplyAction="http://tempuri.org/IBestilNemtService/FindSavingResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving> FindSavingAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving> GetSavingAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllSavingsResponse")]
-        WPF_Client.BestilNemtWPF.Saving[] FindAllSavings();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSavingsResponse")]
+        WPF_Client.BestilNemtWPF.Saving[] GetAllSavings();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/FindAllSavingsResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving[]> FindAllSavingsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSavingsResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving[]> GetAllSavingsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateSaving", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateSavingResponse")]
         int UpdateSaving(WPF_Client.BestilNemtWPF.Saving saving);
@@ -1570,11 +1570,11 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
         System.Threading.Tasks.Task<int> DeleteSavingAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/FindProductsByNameResponse")]
-        WPF_Client.BestilNemtWPF.Product[] FindProductsByName(string input);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse")]
+        WPF_Client.BestilNemtWPF.Product[] GetProductsByName(string input);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/FindProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/FindProductsByNameResponse")]
-        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Product[]> FindProductsByNameAsync(string input);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Product[]> GetProductsByNameAsync(string input);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateWithCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/CreateWithCustomerResponse")]
         int CreateWithCustomer(WPF_Client.BestilNemtWPF.Customer customer, WPF_Client.BestilNemtWPF.Login login);
@@ -1610,12 +1610,12 @@ namespace WPF_Client.BestilNemtWPF {
                 base(binding, remoteAddress) {
         }
         
-        public WPF_Client.BestilNemtWPF.Customer FindCustomer(int id) {
-            return base.Channel.FindCustomer(id);
+        public WPF_Client.BestilNemtWPF.Customer GetCustomer(int id) {
+            return base.Channel.GetCustomer(id);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Customer> FindCustomerAsync(int id) {
-            return base.Channel.FindCustomerAsync(id);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Customer> GetCustomerAsync(int id) {
+            return base.Channel.GetCustomerAsync(id);
         }
         
         public int AddCustomer(WPF_Client.BestilNemtWPF.Customer customer) {
@@ -1658,12 +1658,12 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.AddAdminAsync(admin);
         }
         
-        public WPF_Client.BestilNemtWPF.Admin FindAdmin(int id) {
-            return base.Channel.FindAdmin(id);
+        public WPF_Client.BestilNemtWPF.Admin GetAdmin(int id) {
+            return base.Channel.GetAdmin(id);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Admin> FindAdminAsync(int id) {
-            return base.Channel.FindAdminAsync(id);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Admin> GetAdminAsync(int id) {
+            return base.Channel.GetAdminAsync(id);
         }
         
         public WPF_Client.BestilNemtWPF.Admin[] GetAllAdmins() {
@@ -1818,12 +1818,12 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.AddCompanyAsync(company);
         }
         
-        public WPF_Client.BestilNemtWPF.Company[] FindAllCompany() {
-            return base.Channel.FindAllCompany();
+        public WPF_Client.BestilNemtWPF.Company[] GetAllCompany() {
+            return base.Channel.GetAllCompany();
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company[]> FindAllCompanyAsync() {
-            return base.Channel.FindAllCompanyAsync();
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company[]> GetAllCompanyAsync() {
+            return base.Channel.GetAllCompanyAsync();
         }
         
         public int DeleteCompany(int id) {
@@ -1842,12 +1842,12 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.UpdateCompanyAsync(company);
         }
         
-        public WPF_Client.BestilNemtWPF.Company FindCompany(int id) {
-            return base.Channel.FindCompany(id);
+        public WPF_Client.BestilNemtWPF.Company GetCompany(int id) {
+            return base.Channel.GetCompany(id);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company> FindCompanyAsync(int id) {
-            return base.Channel.FindCompanyAsync(id);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Company> GetCompanyAsync(int id) {
+            return base.Channel.GetCompanyAsync(id);
         }
         
         public int AddProduct(WPF_Client.BestilNemtWPF.Product product) {
@@ -1922,20 +1922,20 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.AddCartWithPartOrdersAsync(cart);
         }
         
-        public WPF_Client.BestilNemtWPF.Cart FindCart(int id) {
-            return base.Channel.FindCart(id);
+        public WPF_Client.BestilNemtWPF.Cart GetCart(int id) {
+            return base.Channel.GetCart(id);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> FindCartAsync(int id) {
-            return base.Channel.FindCartAsync(id);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> GetCartAsync(int id) {
+            return base.Channel.GetCartAsync(id);
         }
         
-        public WPF_Client.BestilNemtWPF.Cart FindCartWithPartOrders(int cartId) {
-            return base.Channel.FindCartWithPartOrders(cartId);
+        public WPF_Client.BestilNemtWPF.Cart GetCartWithPartOrders(int cartId) {
+            return base.Channel.GetCartWithPartOrders(cartId);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> FindCartWithPartOrdersAsync(int cartId) {
-            return base.Channel.FindCartWithPartOrdersAsync(cartId);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Cart> GetCartWithPartOrdersAsync(int cartId) {
+            return base.Channel.GetCartWithPartOrdersAsync(cartId);
         }
         
         public WPF_Client.BestilNemtWPF.Cart[] GetAllCarts() {
@@ -1978,12 +1978,12 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.AddPartOrderToCartAsync(cart, partOrder);
         }
         
-        public WPF_Client.BestilNemtWPF.PartOrder FindPartOrder(int id) {
-            return base.Channel.FindPartOrder(id);
+        public WPF_Client.BestilNemtWPF.PartOrder GetPartOrder(int id) {
+            return base.Channel.GetPartOrder(id);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.PartOrder> FindPartOrderAsync(int id) {
-            return base.Channel.FindPartOrderAsync(id);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.PartOrder> GetPartOrderAsync(int id) {
+            return base.Channel.GetPartOrderAsync(id);
         }
         
         public int RemovePartOrder(int id) {
@@ -2026,28 +2026,28 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.AddWarehouseAsync(warehouse);
         }
         
-        public WPF_Client.BestilNemtWPF.Warehouse FindWarehouse(int id) {
-            return base.Channel.FindWarehouse(id);
+        public WPF_Client.BestilNemtWPF.Warehouse GetWarehouse(int id) {
+            return base.Channel.GetWarehouse(id);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> FindWarehouseAsync(int id) {
-            return base.Channel.FindWarehouseAsync(id);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> GetWarehouseAsync(int id) {
+            return base.Channel.GetWarehouseAsync(id);
         }
         
-        public WPF_Client.BestilNemtWPF.Warehouse[] FindAllWarehouses() {
-            return base.Channel.FindAllWarehouses();
+        public WPF_Client.BestilNemtWPF.Warehouse[] GetAllWarehouses() {
+            return base.Channel.GetAllWarehouses();
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> FindAllWarehousesAsync() {
-            return base.Channel.FindAllWarehousesAsync();
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> GetAllWarehousesAsync() {
+            return base.Channel.GetAllWarehousesAsync();
         }
         
-        public WPF_Client.BestilNemtWPF.Warehouse[] FindAllWarehousesByShopId(int shopId) {
-            return base.Channel.FindAllWarehousesByShopId(shopId);
+        public WPF_Client.BestilNemtWPF.Warehouse[] GetAllWarehousesByShopId(int shopId) {
+            return base.Channel.GetAllWarehousesByShopId(shopId);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> FindAllWarehousesByShopIdAsync(int shopId) {
-            return base.Channel.FindAllWarehousesByShopIdAsync(shopId);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse[]> GetAllWarehousesByShopIdAsync(int shopId) {
+            return base.Channel.GetAllWarehousesByShopIdAsync(shopId);
         }
         
         public int UpdateWarehouse(WPF_Client.BestilNemtWPF.Warehouse warehouse) {
@@ -2074,20 +2074,20 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.AddSavingAsync(saving, product);
         }
         
-        public WPF_Client.BestilNemtWPF.Saving FindSaving(int id) {
-            return base.Channel.FindSaving(id);
+        public WPF_Client.BestilNemtWPF.Saving GetSaving(int id) {
+            return base.Channel.GetSaving(id);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving> FindSavingAsync(int id) {
-            return base.Channel.FindSavingAsync(id);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving> GetSavingAsync(int id) {
+            return base.Channel.GetSavingAsync(id);
         }
         
-        public WPF_Client.BestilNemtWPF.Saving[] FindAllSavings() {
-            return base.Channel.FindAllSavings();
+        public WPF_Client.BestilNemtWPF.Saving[] GetAllSavings() {
+            return base.Channel.GetAllSavings();
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving[]> FindAllSavingsAsync() {
-            return base.Channel.FindAllSavingsAsync();
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving[]> GetAllSavingsAsync() {
+            return base.Channel.GetAllSavingsAsync();
         }
         
         public int UpdateSaving(WPF_Client.BestilNemtWPF.Saving saving) {
@@ -2106,12 +2106,12 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.DeleteSavingAsync(id);
         }
         
-        public WPF_Client.BestilNemtWPF.Product[] FindProductsByName(string input) {
-            return base.Channel.FindProductsByName(input);
+        public WPF_Client.BestilNemtWPF.Product[] GetProductsByName(string input) {
+            return base.Channel.GetProductsByName(input);
         }
         
-        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Product[]> FindProductsByNameAsync(string input) {
-            return base.Channel.FindProductsByNameAsync(input);
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Product[]> GetProductsByNameAsync(string input) {
+            return base.Channel.GetProductsByNameAsync(input);
         }
         
         public int CreateWithCustomer(WPF_Client.BestilNemtWPF.Customer customer, WPF_Client.BestilNemtWPF.Login login) {

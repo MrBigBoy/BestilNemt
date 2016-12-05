@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Xml.Xsl;
 using WebClient.BestilNemtServiceRef;
-using WebClient.Models;
 
 namespace WebClient.Controllers
 {
@@ -52,8 +48,6 @@ namespace WebClient.Controllers
         [HttpPost]
         public ActionResult CreateCustomer(Customer customer, Login login)
         {
-          
-            DateTime dt;
             var proxy = new BestilNemtServiceClient();
             login.Username = customer.Email;
             if (customer.Name == null)

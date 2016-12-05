@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using Controller;
 using Controller.ControllerTestClasses;
@@ -52,7 +51,7 @@ namespace BestilNemtUnitTestTest
             var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
             var saving = new Saving(new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             savingCtr.AddSaving(saving, product);
-            Assert.IsNotNull(savingCtr.FindSaving(1));
+            Assert.IsNotNull(savingCtr.GetSaving(1));
         }
 
         [TestMethod]
@@ -62,11 +61,11 @@ namespace BestilNemtUnitTestTest
             var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
             var saving = new Saving(1, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             savingCtr.AddSaving(saving, product);
-            Assert.IsNull(savingCtr.FindSaving(2));
+            Assert.IsNull(savingCtr.GetSaving(2));
         }
 
         [TestMethod]
-        public void FindAllSavings()
+        public void GetAllSavings()
         {
             var savingCtr = new SavingCtr(new SavingCtrTestClass());
             var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", 40, "Img path");
@@ -75,7 +74,7 @@ namespace BestilNemtUnitTestTest
             var saving2 = new Saving(2, new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
             savingCtr.AddSaving(saving, product);
             savingCtr.AddSaving(saving2, product2);
-            Assert.AreEqual(2, savingCtr.FindAllSavings().Count);
+            Assert.AreEqual(2, savingCtr.GetAllSavings().Count);
         }
 
         [TestMethod]

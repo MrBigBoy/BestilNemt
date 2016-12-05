@@ -43,7 +43,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopDb()
+        public void GetShopDb()
         {
             var dbShop = new DbShop();
             var shop = new Shop()
@@ -63,13 +63,13 @@ namespace BestilNemtUnitTestTest
                 }
             };
             var i = dbShop.AddShop(shop);
-            var j = dbShop.FindShop(i);
+            var j = dbShop.GetShop(i);
             dbShop.DeleteShop(i);
             Assert.IsNotNull(j);
         }
 
         [TestMethod]
-        public void FindAllShopDb()
+        public void GetAllShopDb()
         {
             var dbShop = new DbShop();
             var shop = new Shop()
@@ -90,7 +90,7 @@ namespace BestilNemtUnitTestTest
             };
             var i = dbShop.AddShop(shop);
             var i2 = dbShop.AddShop(shop);
-            var j = dbShop.FindAllShops();
+            var j = dbShop.GetAllShops();
             dbShop.DeleteShop(i);
             dbShop.DeleteShop(i2);
             Assert.IsNotNull(j);
@@ -364,7 +364,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtr()
+        public void GetShopCtr()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -390,7 +390,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailName()
+        public void GetShopCtrFailName()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -416,7 +416,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailName2()
+        public void GetShopCtrFailName2()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -442,7 +442,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailAddress()
+        public void GetShopCtrFailAddress()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -468,7 +468,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailAddress2()
+        public void GetShopCtrFailAddress2()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -494,7 +494,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailCvr()
+        public void GetShopCtrFailCvr()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -520,7 +520,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailCvr2()
+        public void GetShopCtrFailCvr2()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -546,7 +546,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailWarehouse()
+        public void GetShopCtrFailWarehouse()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -564,7 +564,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailAll()
+        public void GetShopCtrFailAll()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -581,7 +581,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindAllShopCtr()
+        public void GetAllShopCtr()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -601,7 +601,7 @@ namespace BestilNemtUnitTestTest
             };
             var i = shopCtr.AddShop(shop);
             var i2 = shopCtr.AddShop(shop);
-            var j = shopCtr.FindAllShops();
+            var j = shopCtr.GetAllShops();
             shopCtr.DeleteShop(i);
             shopCtr.DeleteShop(i2);
             Assert.IsNotNull(j);
@@ -903,7 +903,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcf()
+        public void GetShopWcf()
         {
             var shop = new Shop()
             {
@@ -932,7 +932,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailName()
+        public void GetShopWcfFailName()
         {
             var shop = new Shop()
             {
@@ -960,7 +960,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailName2()
+        public void GetShopWcfFailName2()
         {
             var shop = new Shop()
             {
@@ -988,7 +988,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailAddress()
+        public void GetShopWcfFailAddress()
         {
             var shop = new Shop()
             {
@@ -1016,7 +1016,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailAddress2()
+        public void GetShopWcfFailAddress2()
         {
             var shop = new Shop()
             {
@@ -1044,7 +1044,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailCvr()
+        public void GetShopWcfFailCvr()
         {
             var shop = new Shop()
             {
@@ -1072,7 +1072,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailCvr2()
+        public void GetShopWcfFailCvr2()
         {
             var shop = new Shop()
             {
@@ -1100,7 +1100,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailWarehouse()
+        public void GetShopWcfFailWarehouse()
         {
             var shop = new Shop()
             {
@@ -1121,7 +1121,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailAll()
+        public void GetShopWcfFailAll()
         {
             var shop = new Shop()
             {
@@ -1141,7 +1141,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindAllShopWcf()
+        public void GetAllShopWcf()
         {
             var shop = new Shop()
             {

@@ -26,34 +26,34 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test of the Cart controller only using CartCtrTestClass that simulates database accses
-        /// Test for find existing Cart object in collection.test is passed if returned value is not null.
-        /// FindCart method returnes Cart object with given id if it exists else returnes null.
+        /// Test for Get existing Cart object in collection.test is passed if returned value is not null.
+        /// GetCart method returnes Cart object with given id if it exists else returnes null.
         /// </summary>
         [TestMethod]
-        public void FindCart()
+        public void GetCart()
         {
             var cartCtr = new CartCtr(new CartCtrTestClass());
             var cart1 = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
             var cart2 = new Cart(new List<PartOrder>(), 50, new Person().Id, new Chain().Id);
             var id1 = cartCtr.AddCart(cart1);
             var id2 = cartCtr.AddCart(cart2);
-            Assert.IsNotNull(cartCtr.FindCart(id1));
+            Assert.IsNotNull(cartCtr.GetCart(id1));
         }
 
         /// <summary>
         /// Test of the Cart controller only using CartCtrTestClass that simulates database accses
-        /// Test for find not existing Cart object in collection. Test is passed if returned value is null.
-        /// FindCart method returnes Cart object with given id if it exists else returnes null.
+        /// Test for Get not existing Cart object in collection. Test is passed if returned value is null.
+        /// GetCart method returnes Cart object with given id if it exists else returnes null.
         /// </summary>
         [TestMethod]
-        public void FindCartFailed()
+        public void GetCartFailed()
         {
             CartCtr cartCtr = new CartCtr(new CartCtrTestClass());
             var cart1 = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
             var cart2 = new Cart(new List<PartOrder>(), 50, new Person().Id, new Chain().Id);
             var id1 = cartCtr.AddCart(cart1);
             var id2 = cartCtr.AddCart(cart2);
-            Assert.IsNull(cartCtr.FindCart(10));
+            Assert.IsNull(cartCtr.GetCart(10));
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace BestilNemtUnitTestTest
             var id1 = cartCtr.AddCart(cart1);
             Cart cart2 = new Cart(id1, new List<PartOrder>(), 50, new Person().Id, new Chain().Id);
             cartCtr.UpdateCart(cart2);
-            Cart updatedCart = cartCtr.FindCart(id1);
+            Cart updatedCart = cartCtr.GetCart(id1);
             Assert.AreEqual(cart2.TotalPrice, updatedCart.TotalPrice);
         }
 
@@ -120,14 +120,14 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test of the Database accses layer only.
-        /// Test for find existing object. Test is passed if returned value is not null. FindCart method 
+        /// Test for Get existing object. Test is passed if returned value is not null. GetCart method 
         /// returnes returns Cart object with given id.
         /// </summary>
         [TestMethod]
-        public void FindCartWithDb()
+        public void GetCartWithDb()
         {
             var cartDb = new DbCart();
-            Assert.IsNotNull(cartDb.FindCart(1));
+            Assert.IsNotNull(cartDb.GetCart(1));
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace BestilNemtUnitTestTest
         /// Test for return a collection of Cart objects. Test is passed if returned collection size is not 0. 
         /// </summary>
         [TestMethod]
-        public void FindAllCartsWithDb()
+        public void GetAllCartsWithDb()
         {
             var cartDb = new DbCart();
             Assert.AreNotEqual(0, cartDb.GetAllCarts().Count);
@@ -174,7 +174,7 @@ namespace BestilNemtUnitTestTest
             var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");
             var prodId = prodDb.AddProduct(product);
             product.Id = prodId;
-            var partOrder = poDb.FindPartOrder(1);
+            var partOrder = poDb.GetPartOrder(1);
             int i = cartDb.AddPartOrderToCart(cart, partOrder);
             Assert.AreEqual(1, i);
         }
@@ -198,17 +198,17 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test of the WcfCervice.
-        /// Test for find Cart object.test is passed if returned object is not null. 
+        /// Test for Get Cart object.test is passed if returned object is not null. 
         /// </summary>
         [TestMethod]
-        public void FindCartWcf()
+        public void GetCartWcf()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
                 var cart = new Cart();
                 var id = proxy.AddCart(cart);
-                var i = proxy.FindCart(id);
+                var i = proxy.GetCart(id);
                 Assert.IsNotNull(i);
             }
         }
@@ -218,7 +218,7 @@ namespace BestilNemtUnitTestTest
         /// Test for all Carts . Test is passed if returned list of objects is not empty. 
         /// </summary>
         [TestMethod]
-        public void FindAllCartWcf()
+        public void GetAllCartWcf()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
@@ -242,7 +242,7 @@ namespace BestilNemtUnitTestTest
                 var id1 = proxy.AddCart(cart1);
                 Cart cart2 = new Cart(id1, new List<PartOrder>(), 50, new Person().Id, new Chain().Id);
                 var i = proxy.UpdateCart(cart2);
-                Cart updatedCart = proxy.FindCart(id1);
+                Cart updatedCart = proxy.GetCart(id1);
                 Assert.AreEqual(cart2.TotalPrice, updatedCart.TotalPrice);
             }
         }
@@ -283,7 +283,7 @@ namespace BestilNemtUnitTestTest
                 var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");
                 var prodId = proxy.AddProduct(product);
                 product.Id = prodId;
-                var partOrder = proxy.FindPartOrder(1);
+                var partOrder = proxy.GetPartOrder(1);
                 int i = proxy.AddPartOrderToCart(cart, partOrder);
                 Assert.AreEqual(1, i);
             }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BestilNemtUnitTestTest
 {
@@ -24,7 +19,7 @@ namespace BestilNemtUnitTestTest
             {
                 System.Diagnostics.Debug.WriteLine("Testing for type: {0}", typeof(T));
                 // After running the test, you examine the result of the serialized file 
-                // by right-clicking on WCFTests project -> Open folder in file explorer -> WCFTests -> bin -> Debug and find the xml file (e.g. testStudent.xml)
+                // by right-clicking on WCFTests project -> Open folder in file explorer -> WCFTests -> bin -> Debug and Get the xml file (e.g. testStudent.xml)
                 dataContractSerializer.WriteObject(fileStream, objectToSerialize);
             }
             // Deserialize

@@ -59,7 +59,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return List of Company
         /// </returns>
-        public List<Company> FindAllCompany()
+        public List<Company> GetAllCompany()
         {
             var companys = new List<Company>();
             using (
@@ -85,7 +85,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return a Company if found, else null
         /// </returns>
-        public Company FindCompany(int id)
+        public Company GetCompany(int id)
         {
             Company company = null;
             using (

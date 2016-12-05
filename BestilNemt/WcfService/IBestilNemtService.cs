@@ -8,7 +8,7 @@ namespace WcfService
     public interface IBestilNemtService
     {
         [OperationContract]
-        Customer FindCustomer(int id);
+        Customer GetCustomer(int id);
 
         [OperationContract]
         int AddCustomer(Customer customer);
@@ -26,7 +26,7 @@ namespace WcfService
         int AddAdmin(Admin admin);
 
         [OperationContract]
-        Admin FindAdmin(int id);
+        Admin GetAdmin(int id);
 
         [OperationContract]
         List<Admin> GetAllAdmins();
@@ -86,7 +86,7 @@ namespace WcfService
         int AddCompany(Company company);
 
         [OperationContract]
-        List<Company> FindAllCompany();
+        List<Company> GetAllCompany();
 
         [OperationContract]
         int DeleteCompany(int id);
@@ -95,7 +95,7 @@ namespace WcfService
         int UpdateCompany(Company company);
 
         [OperationContract]
-        Company FindCompany(int id);
+        Company GetCompany(int id);
 
         [OperationContract]
         int AddProduct(Product product);
@@ -125,10 +125,10 @@ namespace WcfService
         int AddCartWithPartOrders(Cart cart);
 
         [OperationContract]
-        Cart FindCart(int id);
+        Cart GetCart(int id);
 
         [OperationContract]
-        Cart FindCartWithPartOrders(int cartId);
+        Cart GetCartWithPartOrders(int cartId);
 
         [OperationContract]
         List<Cart> GetAllCarts();
@@ -146,7 +146,7 @@ namespace WcfService
         int AddPartOrderToCart(Cart cart, PartOrder partOrder);
 
         [OperationContract]
-        PartOrder FindPartOrder(int id);
+        PartOrder GetPartOrder(int id);
 
         [OperationContract]
         int RemovePartOrder(int id);
@@ -165,13 +165,13 @@ namespace WcfService
         int AddWarehouse(Warehouse warehouse);
 
         [OperationContract]
-        Warehouse FindWarehouse(int id);
+        Warehouse GetWarehouse(int id);
 
         [OperationContract]
-        List<Warehouse> FindAllWarehouses();
+        List<Warehouse> GetAllWarehouses();
 
         [OperationContract]
-        List<Warehouse> FindAllWarehousesByShopId(int shopId);
+        List<Warehouse> GetAllWarehousesByShopId(int shopId);
 
         [OperationContract]
         int UpdateWarehouse(Warehouse warehouse);
@@ -183,10 +183,10 @@ namespace WcfService
         int AddSaving(Saving saving, Product product);
 
         [OperationContract]
-        Saving FindSaving(int id);
+        Saving GetSaving(int id);
 
         [OperationContract]
-        List<Saving> FindAllSavings();
+        List<Saving> GetAllSavings();
 
         [OperationContract]
         int UpdateSaving(Saving saving);
@@ -195,7 +195,7 @@ namespace WcfService
         int DeleteSaving(int id);
 
         [OperationContract]
-        List<Product> FindProductsByName(string input);
+        List<Product> GetProductsByName(string input);
 
         [OperationContract]
         int CreateWithCustomer(Customer customer, Login login);

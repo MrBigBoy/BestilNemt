@@ -59,7 +59,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return Cart if found, else null
         /// </returns>
-        public Cart FindCart(int id)
+        public Cart GetCart(int id)
         {
             Cart cart = null;
             using (
@@ -85,7 +85,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return Cart if found, else null
         /// </returns>
-        public Cart FindCartWithPartOrders(int cartId)
+        public Cart GetCartWithPartOrders(int cartId)
         {
             Cart cart = null;
             using (

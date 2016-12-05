@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -52,7 +49,7 @@ namespace DataAccessLayer
             return id;
         }
 
-        public Warehouse FindWarehouse(int id)
+        public Warehouse GetWarehouse(int id)
         {
             Warehouse warehouse = null;
 
@@ -73,7 +70,7 @@ namespace DataAccessLayer
             return warehouse;
         }
 
-        public List<Warehouse> FindAllWarehouses()
+        public List<Warehouse> GetAllWarehouses()
         {
             List<Warehouse> warehouses = new List<Warehouse>();
             using (
@@ -93,7 +90,7 @@ namespace DataAccessLayer
             return warehouses;
         }
 
-        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
+        public List<Warehouse> GetAllWarehousesByShopId(int shopId)
         {
             List<Warehouse> warehouses = new List<Warehouse>();
             using (

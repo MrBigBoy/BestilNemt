@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -43,22 +40,22 @@ namespace Controller.ControllerTestClasses
 
         public int RemoveCompany(int id)
         {
-             return companys.Remove(FindCompany(id)) ? 1 : 0;
+             return companys.Remove(GetCompany(id)) ? 1 : 0;
         }
 
-        public Company FindCompany(int id)
+        public Company GetCompany(int id)
         {
             return companys.FirstOrDefault(company => company.Id == id);
         }
 
-        public List<Company> FindAllCompany()
+        public List<Company> GetAllCompany()
         {
             return companys;
         }
 
         public int UpdateCompany(Company company)
         {
-            var returendCompany = (FindCompany(company.Id));
+            var returendCompany = (GetCompany(company.Id));
             returendCompany.Name = company.Name;
             returendCompany.Address = company.Address;
            

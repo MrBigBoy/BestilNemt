@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/Models" />
-  <xs:element name="FindCustomer">
+  <xs:element name="GetCustomer">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindCustomerResponse">
+  <xs:element name="GetCustomerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindCustomerResult" nillable="true" type="q1:Customer" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetCustomerResult" nillable="true" type="q1:Customer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -83,17 +83,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAdmin">
+  <xs:element name="GetAdmin">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAdminResponse">
+  <xs:element name="GetAdminResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAdminResult" nillable="true" type="q6:Admin" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAdminResult" nillable="true" type="q6:Admin" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -357,15 +357,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllCompany">
+  <xs:element name="GetAllCompany">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllCompanyResponse">
+  <xs:element name="GetAllCompanyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllCompanyResult" nillable="true" type="q24:ArrayOfCompany" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllCompanyResult" nillable="true" type="q24:ArrayOfCompany" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -397,17 +397,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindCompany">
+  <xs:element name="GetCompany">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindCompanyResponse">
+  <xs:element name="GetCompanyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindCompanyResult" nillable="true" type="q26:Company" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetCompanyResult" nillable="true" type="q26:Company" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -531,31 +531,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindCart">
+  <xs:element name="GetCart">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindCartResponse">
+  <xs:element name="GetCartResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindCartResult" nillable="true" type="q35:Cart" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetCartResult" nillable="true" type="q35:Cart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindCartWithPartOrders">
+  <xs:element name="GetCartWithPartOrders">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="cartId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindCartWithPartOrdersResponse">
+  <xs:element name="GetCartWithPartOrdersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindCartWithPartOrdersResult" nillable="true" type="q36:Cart" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetCartWithPartOrdersResult" nillable="true" type="q36:Cart" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -628,17 +628,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindPartOrder">
+  <xs:element name="GetPartOrder">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindPartOrderResponse">
+  <xs:element name="GetPartOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindPartOrderResult" nillable="true" type="q42:PartOrder" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetPartOrderResult" nillable="true" type="q42:PartOrder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -710,43 +710,43 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindWarehouse">
+  <xs:element name="GetWarehouse">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindWarehouseResponse">
+  <xs:element name="GetWarehouseResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindWarehouseResult" nillable="true" type="q47:Warehouse" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetWarehouseResult" nillable="true" type="q47:Warehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllWarehouses">
+  <xs:element name="GetAllWarehouses">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllWarehousesResponse">
+  <xs:element name="GetAllWarehousesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllWarehousesResult" nillable="true" type="q48:ArrayOfWarehouse" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllWarehousesResult" nillable="true" type="q48:ArrayOfWarehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllWarehousesByShopId">
+  <xs:element name="GetAllWarehousesByShopId">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="shopId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllWarehousesByShopIdResponse">
+  <xs:element name="GetAllWarehousesByShopIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllWarehousesByShopIdResult" nillable="true" type="q49:ArrayOfWarehouse" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllWarehousesByShopIdResult" nillable="true" type="q49:ArrayOfWarehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -793,29 +793,29 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindSaving">
+  <xs:element name="GetSaving">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindSavingResponse">
+  <xs:element name="GetSavingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindSavingResult" nillable="true" type="q53:Saving" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetSavingResult" nillable="true" type="q53:Saving" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllSavings">
+  <xs:element name="GetAllSavings">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindAllSavingsResponse">
+  <xs:element name="GetAllSavingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindAllSavingsResult" nillable="true" type="q54:ArrayOfSaving" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetAllSavingsResult" nillable="true" type="q54:ArrayOfSaving" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -847,17 +847,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindProductsByName">
+  <xs:element name="GetProductsByName">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="input" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FindProductsByNameResponse">
+  <xs:element name="GetProductsByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="FindProductsByNameResult" nillable="true" type="q56:ArrayOfProduct" />
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="GetProductsByNameResult" nillable="true" type="q56:ArrayOfProduct" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

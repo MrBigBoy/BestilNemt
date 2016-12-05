@@ -7,8 +7,8 @@ namespace DataAccessLayer
     {
         int AddCompany(Models.Company company);
         int RemoveCompany(int id);
-        Company FindCompany(int id);
-        List<Company> FindAllCompany();
+        Company GetCompany(int id);
+        List<Company> GetAllCompany();
         int UpdateCompany(Company company);
     }
 }

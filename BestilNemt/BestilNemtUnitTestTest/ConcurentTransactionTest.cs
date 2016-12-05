@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Controller;
-using Controller.ControllerTestClasses;
+﻿using System.Threading.Tasks;
 using DataAccessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
@@ -16,9 +9,9 @@ namespace BestilNemtUnitTestTest
     public class ConcurentTransactionTest
     {
 
-        private Customer cust = new DbCustomer().FindCustomer(1);
-        private Customer cust1 = new DbCustomer().FindCustomer(5);
-        private Product prod = new DbProduct().FindProduct(1);
+        private Customer cust = new DbCustomer().GetCustomer(1);
+        private Customer cust1 = new DbCustomer().GetCustomer(5);
+        private Product prod = new DbProduct().GetProduct(1);
 
 
         [TestMethod]
@@ -27,7 +20,7 @@ namespace BestilNemtUnitTestTest
             var i1 = 0;
             var i2 = 0;
             DbWarehouse dbW = new DbWarehouse();
-            Shop s = new DbShop().FindShop(1);
+            Shop s = new DbShop().GetShop(1);
             Warehouse w = new Warehouse(1, 10, 0, prod, s);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { i1 = StartTr1(); }, () => { i2 = StartTr2(); });
@@ -41,11 +34,11 @@ namespace BestilNemtUnitTestTest
         public void TestConcurrencyBothSuccsesfull()
         {
             DbWarehouse dbW = new DbWarehouse();
-            Shop s = new DbShop().FindShop(1);
+            Shop s = new DbShop().GetShop(1);
             Warehouse w = new Warehouse(1, 10, 0, prod, s);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { StartTr3(); }, () => { StartTr4(); });
-            var stock = dbW.FindWarehouse(1).Stock;
+            var stock = dbW.GetWarehouse(1).Stock;
             Assert.AreEqual(3, stock);
         }
         private int StartTr1()

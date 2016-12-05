@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Controller;
 using Controller.ControllerTestClasses;
-using DataAccessLayer;
 using Models;
 
 namespace BestilNemtUnitTestTest
@@ -34,7 +33,7 @@ namespace BestilNemtUnitTestTest
             var partOrder2 = new PartOrder(new Product(), 10, 10, new Cart());
             var id1 = partOrderCtr.AddPartOrder(partOrder1);
             var id2 = partOrderCtr.AddPartOrder(partOrder2);
-            Assert.IsNotNull(partOrderCtr.FindPartOrder(id1));
+            Assert.IsNotNull(partOrderCtr.GetPartOrder(id1));
         }
 
         [TestMethod]
@@ -45,7 +44,7 @@ namespace BestilNemtUnitTestTest
             var partOrder2 = new PartOrder(new Product(), 2, 10, new Cart());
             var id1 = partOrderCtr.AddPartOrder(partOrder1);
             var id2 = partOrderCtr.AddPartOrder(partOrder2);
-            Assert.IsNull(partOrderCtr.FindPartOrder(10));
+            Assert.IsNull(partOrderCtr.GetPartOrder(10));
         }
 
         [TestMethod]
@@ -72,7 +71,7 @@ namespace BestilNemtUnitTestTest
             partOrderCtr.AddPartOrder(partOrder);
             partOrder = new PartOrder(product, 2, 20, cart);
             partOrderCtr.AddPartOrder(partOrder);
-            var flag = partOrderCtr.UpdatePartorder(partOrder);
+            var flag = partOrderCtr.UpdatePartOrder(partOrder);
             Assert.AreEqual(1, flag);
         }
 
@@ -86,7 +85,7 @@ namespace BestilNemtUnitTestTest
             partOrderCtr.AddPartOrder(partOrder);
             partOrder = new PartOrder(product, -2, 20, cart);
             partOrderCtr.AddPartOrder(partOrder);
-            var flag = partOrderCtr.UpdatePartorder(partOrder);
+            var flag = partOrderCtr.UpdatePartOrder(partOrder);
             Assert.AreEqual(0, flag);
         }
     }

@@ -8,44 +8,97 @@ namespace Controller
     {
         public IDbShop DbShop { get; set; }
 
+        /// <summary>
+        /// Constructor for Shop controller
+        /// </summary>
+        /// <param name="dbShop"></param>
         public ShopCtr(IDbShop dbShop)
         {
             DbShop = dbShop;
         }
 
+        /// <summary>
+        /// Add a Shop
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns>
+        /// id of shop if added, else 0
+        /// </returns>
         public int AddShop(Shop shop)
         {
             return ValidateShop(shop) ? DbShop.AddShop(shop) : 0;
         }
+
+        /// <summary>
+        /// Get a Shop
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Shop if found, else null
+        /// </returns>
         public Shop GetShop(int id)
         {
-            return DbShop.FindShop(id);
+            return DbShop.GetShop(id);
         }
 
-        public List<Shop> FindAllShops()
+        /// <summary>
+        /// Get all shops
+        /// </summary>
+        /// <returns>
+        /// List of Shop
+        /// </returns>
+        public List<Shop> GetAllShops()
         {
-            return DbShop.FindAllShops();
+            return DbShop.GetAllShops();
         }
 
-        public List<Shop> FindAllShopsByChainId(int chainId)
+        /// <summary>
+        /// Get all Shops by a Chain Id
+        /// </summary>
+        /// <param name="chainId"></param>
+        /// <returns>
+        /// List of Shop
+        /// </returns>
+        public List<Shop> GetAllShopsByChainId(int chainId)
         {
-            return DbShop.FindAllShopsByChainId(chainId);
+            return DbShop.GetAllShopsByChainId(chainId);
         }
 
+        /// <summary>
+        /// Delete a Shop
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if deleted, else 0
+        /// </returns>
         public int DeleteShop(int id)
         {
             return DbShop.DeleteShop(id);
         }
 
+        /// <summary>
+        /// Update a Shop
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns>
+        /// 1 if updated, else 0
+        /// </returns>
         public int UpdateShop(Shop shop)
         {
             return ValidateShop(shop) ? DbShop.UpdateShop(shop) : 0;
         }
 
-        private bool ValidateShop(Shop shop)
+        /// <summary>
+        /// Validate Shop fields
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns>
+        /// true if fields is correct, else false
+        /// </returns>
+        private static bool ValidateShop(Shop shop)
         {
-            return shop?.Address != null && !shop.Address.Equals("") && shop.Name != null && !shop.Name.Equals("") &&
-                shop.Cvr != null && !shop.Cvr.Equals("") && shop.Cvr.Length == 8 && shop.Chain != null &&
+            return !string.IsNullOrEmpty(shop?.Address) && !string.IsNullOrEmpty(shop.Name) &&
+                !string.IsNullOrEmpty(shop.Cvr) && shop.Cvr.Length == 8 && shop.Chain != null &&
                 shop.Warehouses != null;
         }
     }

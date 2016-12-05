@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Net.Sockets;
-using System.ServiceModel.Channels;
 using Models;
 
 
@@ -103,7 +101,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return Admin if found, else null
         /// </returns>
-        public Admin FindAdmin(int id)
+        public Admin GetAdmin(int id)
         {
             Admin admin = null;
             using (
@@ -130,7 +128,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return List of Admin
         /// </returns>
-        public List<Admin> FindAllAdmins()
+        public List<Admin> GetAllAdmins()
         {
             var admins = new List<Admin>();
             using (

@@ -8,8 +8,8 @@ namespace DataAccessLayer
     {
         int Create(Customer customer);
         int RemoveCustomer(int id);
-        Customer FindCustomer(int id);
-        List<Customer> FindAllCustomer();
+        Customer GetCustomer(int id);
+        List<Customer> GetAllCustomer();
         int UpdateCustomer(Customer customer);
         int AddCustomerWithLogin(Customer customer, Login login); 
     }

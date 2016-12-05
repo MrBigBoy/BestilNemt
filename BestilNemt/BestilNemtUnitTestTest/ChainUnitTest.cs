@@ -425,7 +425,7 @@ namespace BestilNemtUnitTestTest
         /// The test is successfull if the returned object is not null 
         /// </summary>
         [TestMethod]
-        public void FindChainWcfById()
+        public void GetChainWcfById()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
@@ -439,7 +439,7 @@ namespace BestilNemtUnitTestTest
         /// The test is successfull if the returned object is null 
         /// </summary>
         [TestMethod]
-        public void FindChainWcfByIdFail()
+        public void GetChainWcfByIdFail()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
@@ -453,7 +453,7 @@ namespace BestilNemtUnitTestTest
         /// The test is successfull if the returned list is not empty 
         /// </summary>
         [TestMethod]
-        public void FindAllChainWcf()
+        public void GetAllChainWcf()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {

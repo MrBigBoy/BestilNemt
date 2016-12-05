@@ -6,8 +6,8 @@ namespace DataAccessLayer
     public interface IDbCart
     {
         int AddCart(Cart cart);
-        Cart FindCart(int id);
-        Cart FindCartWithPartOrders(int id);
+        Cart GetCart(int id);
+        Cart GetCartWithPartOrders(int id);
         List<Cart> GetAllCarts();
         int UpdateCart(Cart cart);
         int DeleteCart(int id);

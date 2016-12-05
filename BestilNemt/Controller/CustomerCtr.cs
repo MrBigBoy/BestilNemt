@@ -1,7 +1,6 @@
 ﻿using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
-using System;
 
 namespace Controller
 {
@@ -10,7 +9,7 @@ namespace Controller
         public IDbCustomer DbCustomer { get; set; }
 
         /// <summary>
-        /// The Constructor of Controlleren
+        /// The Constructor of Customer controller
         /// </summary>
         /// <param name="dbCustomer"></param>
         public CustomerCtr(IDbCustomer dbCustomer)
@@ -31,15 +30,15 @@ namespace Controller
         }
 
         /// <summary>
-        /// Return a Customer by id
+        /// Get a Customer by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
         /// Return Customer if found, else null
         /// </returns>
-        public Customer FindCustomer(int id)
+        public Customer GetCustomer(int id)
         {
-            return DbCustomer.FindCustomer(id);
+            return DbCustomer.GetCustomer(id);
         }
 
         /// <summary>
@@ -50,7 +49,7 @@ namespace Controller
         /// </returns>
         public List<Customer> GetAllCustomer()
         {
-            return DbCustomer.FindAllCustomer();
+            return DbCustomer.GetAllCustomer();
         }
 
         /// <summary>
@@ -84,24 +83,22 @@ namespace Controller
         /// <returns>
         /// Return true if field is correct, else false
         /// </returns>
-        private bool ValidatePersonInput(Customer customer)
+        // ReSharper disable once SuggestBaseTypeForParameter
+        private static bool ValidatePersonInput(Customer customer)
         {
-            try
-            {
-                return customer != null && !customer.Address.Equals("") && !customer.Name.Equals("") &&
-               customer.Name != null && !customer.Address.Equals("") && customer.Address != null &&
-               !customer.Email.Equals("") && customer.Email != null;
-            }
-            catch (Exception)
-            {
+            return !string.IsNullOrEmpty(customer?.Address) && !string.IsNullOrEmpty(customer.Name) && !string.IsNullOrEmpty(customer.Email) && customer.PersonType.Equals("Customer");
 
-                throw new Exception("dlfkldkfæd"); 
-                
-            }
-          
         }
 
-        public int CreateCustomerWithLogin(Customer customer, Login login)
+        /// <summary>
+        /// Add a Customer with Login
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="login"></param>
+        /// <returns>
+        /// Id of Customer if added, else 0
+        /// </returns>
+        public int AddCustomerWithLogin(Customer customer, Login login)
         {
             return ValidatePersonInput(customer) ? DbCustomer.AddCustomerWithLogin(customer, login) : 0;
         }

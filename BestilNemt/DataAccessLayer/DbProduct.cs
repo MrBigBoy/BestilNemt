@@ -36,7 +36,7 @@ namespace DataAccessLayer
                     i = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {
@@ -98,7 +98,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return Product if found, else null
         /// </returns>
-        public Product FindProduct(int id)
+        public Product GetProduct(int id)
         {
             Product product = null;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -118,7 +118,7 @@ namespace DataAccessLayer
             return product;
         }
 
-        public List<Product> FindProductsByName(string input)
+        public List<Product> GetProductsByName(string input)
         {
             var products = new List<Product>();
             using (
@@ -144,7 +144,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of products
         /// </returns>
-        public List<Product> FindAllProducts()
+        public List<Product> GetAllProducts()
         {
             var products = new List<Product>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -167,7 +167,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of products
         /// </returns>
-        public List<Product> FindAllSoldProducts()
+        public List<Product> GetAllSoldProducts()
         {
             var products = new List<Product>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -190,7 +190,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of products
         /// </returns>
-        public List<Product> FindAllProductsWithSavings()
+        public List<Product> GetAllProductsWithSavings()
         {
             var products = new List<Product>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -236,7 +236,7 @@ namespace DataAccessLayer
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     try
                     {

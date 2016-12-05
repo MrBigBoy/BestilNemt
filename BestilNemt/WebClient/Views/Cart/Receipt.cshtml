@@ -48,7 +48,7 @@
                                 var savingId = partOrder.Product.SavingId;
                                 if (savingId != null)
                                 {
-                                    var saving = proxy.FindSaving(savingId.Value);
+                                    var saving = proxy.GetSaving(savingId.Value);
                                     var str = @partOrder.Product.Price + " - " +
                                               saving.SavingPercent + " %";
                                     <td>
