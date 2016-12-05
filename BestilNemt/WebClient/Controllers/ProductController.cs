@@ -28,17 +28,12 @@ namespace WebClient.Controllers
 
         public ActionResult Product(int? id)
         {
-            var proxy = new BestilNemtServiceClient();
-            var warehouses = proxy.FindAllWarehouses();
             var products = new List<Product>();
-            foreach (var warehouse in warehouses)
-            {
-                products.Add(warehouse.Product);
-            }
-            var cart = (Cart)Session["ShoppingCart"];
-            ViewBag.Cart = cart;
             if (id == null || id.Value <= 0)
                 return View(products);
+            var cart = (Cart)Session["ShoppingCart"];
+            ViewBag.Cart = cart;
+            var proxy = new BestilNemtServiceClient();
             var shop = proxy.GetShop(id.Value);
             shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
             Session["Shop"] = shop;
