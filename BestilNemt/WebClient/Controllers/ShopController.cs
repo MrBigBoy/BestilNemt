@@ -30,8 +30,8 @@ namespace WebClient.Controllers
                     if (chain.Id != id.Value)
                     {
                         Session["Chain"] = proxy.GetChain(id.Value);
-                        Session["ShoppingCart"] = null;
-                        Session["Shop"] = null;
+                        Session["ShoppingCart"] = new Cart();
+                        Session["Shop"] = new Shop();
                     }
                 }
                 return View(proxy.GetAllShopsByChainId(id.Value));
