@@ -288,6 +288,11 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
+                ////set ALLOW_SNAPSHOT_ISOLATION database option to On to enable READ_COMMITTED_SNAPSHOT isolation level
+                //var cmdSnap = conn.CreateCommand();
+                //cmdSnap.CommandText = "ALTER DATABASE dmab0915_2Sem_1 SET ALLOW_SNAPSHOT_ISOLATION ON; ALTER DATABASE dmab0915_2Sem_1 SET READ_COMMITTED_SNAPSHOT ON;";
+                //cmdSnap.ExecuteNonQuery();
+
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;

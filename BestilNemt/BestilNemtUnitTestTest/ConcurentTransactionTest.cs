@@ -17,7 +17,7 @@ namespace BestilNemtUnitTestTest
     {
 
         private Customer cust = new DbCustomer().FindCustomer(1);
-        private Customer cust1 = new DbCustomer().FindCustomer(4);
+        private Customer cust1 = new DbCustomer().FindCustomer(5);
         private Product prod = new DbProduct().FindProduct(1);
 
 
