@@ -108,10 +108,11 @@ namespace WebClient.Controllers
                 }
 
             }
+            var shop = (Shop)Session["Shop"];  
             cart.PartOrders = partOrders;
             // Update the session
             Session["ShoppingCart"] = cart;
-            return RedirectToAction("ProductPage", new { id = partOrder.Product.Id });
+            return RedirectToAction("Product", new { id = shop.Id });
         }
     }
 }
