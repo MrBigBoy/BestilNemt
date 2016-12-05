@@ -27,16 +27,16 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSavingId) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @SavingId)";
+                    cmd.CommandText = "INSERT INTO Product(productName, productPrice, productDescription, productCategory, productImgPath) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @ImgPath)";
                     cmd.Parameters.AddWithValue("Name", product.Name);
                     cmd.Parameters.AddWithValue("Price", product.Price);
                     cmd.Parameters.AddWithValue("Description", product.Description);
                     cmd.Parameters.AddWithValue("Category", product.Category);
-                    cmd.Parameters.AddWithValue("SavingId", product.SavingId);
+                    cmd.Parameters.AddWithValue("ImgPath", product.ImgPath);
                     i = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     try
                     {
@@ -227,17 +227,16 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSavingId = @ProductSavingId WHERE productId = @ProductId";
+                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory WHERE productId = @ProductId";
                     cmd.Parameters.AddWithValue("ProductId", product.Id);
                     cmd.Parameters.AddWithValue("ProductName", product.Name);
                     cmd.Parameters.AddWithValue("ProductPrice", product.Price);
                     cmd.Parameters.AddWithValue("ProductDescription", product.Description);
                     cmd.Parameters.AddWithValue("ProductCategory", product.Category);
-                    cmd.Parameters.AddWithValue("ProductSavingId", product.SavingId);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     try
                     {
