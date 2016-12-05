@@ -288,11 +288,6 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                ////set ALLOW_SNAPSHOT_ISOLATION database option to On to enable READ_COMMITTED_SNAPSHOT isolation level
-                //var cmdSnap = conn.CreateCommand();
-                //cmdSnap.CommandText = "ALTER DATABASE dmab0915_2Sem_1 SET ALLOW_SNAPSHOT_ISOLATION ON; ALTER DATABASE dmab0915_2Sem_1 SET READ_COMMITTED_SNAPSHOT ON;";
-                //cmdSnap.ExecuteNonQuery();
-
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
@@ -326,8 +321,9 @@ namespace DataAccessLayer
 
                         // Get warehouseStock form DB decrese it with partOrder Amount and save in a variable
                         var cmdDecreseStock = conn.CreateCommand();
-                        cmdDecreseStock.CommandText = "Select warehouseStock from Warehouse where warehouseProductId = @productId";
+                        cmdDecreseStock.CommandText = "Select warehouseStock from Warehouse where warehouseProductId = @productId AND warehouseShopId = @shopId";
                         cmdDecreseStock.Parameters.AddWithValue("productId", po.Product.Id);
+                        cmdDecreseStock.Parameters.AddWithValue("shopId", cart.ShopId);
                         cmdDecreseStock.Transaction = transaction;
                         var reader = cmdDecreseStock.ExecuteReader();
                         var newStock = 0;

@@ -17,9 +17,9 @@ namespace BestilNemtUnitTestTest
     {
 
         private Customer cust = new DbCustomer().FindCustomer(1);
-        private Customer cust1 = new DbCustomer().FindCustomer(5);
+        private Customer cust1 = new DbCustomer().FindCustomer(4);
         private Product prod = new DbProduct().FindProduct(1);
-
+        private Shop s = new DbShop().FindShop(1);
 
         [TestMethod]
         public void TestConcurrencyOneFaild()
@@ -27,7 +27,6 @@ namespace BestilNemtUnitTestTest
             var i1 = 0;
             var i2 = 0;
             DbWarehouse dbW = new DbWarehouse();
-            Shop s = new DbShop().FindShop(1);
             Warehouse w = new Warehouse(1, 10, 0, prod, s);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { i1 = StartTr1(); }, () => { i2 = StartTr2(); });
@@ -41,7 +40,6 @@ namespace BestilNemtUnitTestTest
         public void TestConcurrencyBothSuccsesfull()
         {
             DbWarehouse dbW = new DbWarehouse();
-            Shop s = new DbShop().FindShop(1);
             Warehouse w = new Warehouse(1, 10, 0, prod, s);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { StartTr3(); }, () => { StartTr4(); });
@@ -81,6 +79,7 @@ namespace BestilNemtUnitTestTest
             PartOrder po1 = new PartOrder(prod, 10, 20);
             cart1.PartOrders.Add(po1);
             cart1.PersonId = cust.Id;
+            cart1.ShopId = s.Id;
             return cart1;
         }
 
@@ -90,6 +89,7 @@ namespace BestilNemtUnitTestTest
             PartOrder po2 = new PartOrder(prod, 10, 20);
             cart2.PartOrders.Add(po2);
             cart2.PersonId = cust1.Id;
+            cart2.ShopId = s.Id;
             return cart2;
         }
         private Cart MakeCart3()
@@ -98,6 +98,7 @@ namespace BestilNemtUnitTestTest
             PartOrder po1 = new PartOrder(prod, 5, 20);
             cart1.PartOrders.Add(po1);
             cart1.PersonId = cust.Id;
+            cart1.ShopId = s.Id;
             return cart1;
         }
 
@@ -107,6 +108,7 @@ namespace BestilNemtUnitTestTest
             PartOrder po2 = new PartOrder(prod, 2, 20);
             cart2.PartOrders.Add(po2);
             cart2.PersonId = cust1.Id;
+            cart2.ShopId = s.Id;
             return cart2;
         }
     }
