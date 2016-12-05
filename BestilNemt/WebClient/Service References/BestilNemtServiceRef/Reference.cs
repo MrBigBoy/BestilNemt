@@ -861,9 +861,6 @@ namespace WebClient.BestilNemtServiceRef {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ChainIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -871,6 +868,9 @@ namespace WebClient.BestilNemtServiceRef {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PersonIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ShopIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal TotalPriceField;
@@ -882,19 +882,6 @@ namespace WebClient.BestilNemtServiceRef {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ChainId {
-            get {
-                return this.ChainIdField;
-            }
-            set {
-                if ((this.ChainIdField.Equals(value) != true)) {
-                    this.ChainIdField = value;
-                    this.RaisePropertyChanged("ChainId");
-                }
             }
         }
         
@@ -933,6 +920,19 @@ namespace WebClient.BestilNemtServiceRef {
                 if ((this.PersonIdField.Equals(value) != true)) {
                     this.PersonIdField = value;
                     this.RaisePropertyChanged("PersonId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ShopId {
+            get {
+                return this.ShopIdField;
+            }
+            set {
+                if ((this.ShopIdField.Equals(value) != true)) {
+                    this.ShopIdField = value;
+                    this.RaisePropertyChanged("ShopId");
                 }
             }
         }

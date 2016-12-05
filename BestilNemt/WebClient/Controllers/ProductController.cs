@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
 using WebClient.Models;
@@ -29,11 +28,15 @@ namespace WebClient.Controllers
             shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
             // Get the shop from session
             var shopSes = (Shop)Session["Shop"];
-            // If the ids is different reset the cart
-            if (shopSes.Id != shop.Id)
+            // If the shop is set
+            if (shopSes != null)
             {
-                // Clear the cart from Session
-                Session["ShoppingCart"] = new Cart();
+                // If the ids is different reset the cart
+                if (shopSes.Id != shop.Id)
+                {
+                    // Clear the cart from Session
+                    Session["ShoppingCart"] = null;
+                }
             }
             // Set the shop
             Session["Shop"] = shop;
