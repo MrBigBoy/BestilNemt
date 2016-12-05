@@ -42,20 +42,25 @@ namespace WebClient.Controllers
             }
             return RedirectToAction("GetCart", new { id = 0 });
         }
-
+        //Making a session for cart, with a list of partorders. 
         public Cart ShoppingCart
         {
             get
             {
-                if (Session["ShoppingCart"] != null)
-                    return (Cart)Session["ShoppingCart"];
-                var cart = new Cart { PartOrders = new List<PartOrder>() };
+                var cart = (Cart)Session["ShoppingCart"];
+                if (cart == null)
+                {
+                    cart = new Cart();
+
+                }
+                var shop = (Shop) Session["Shop"];
+                cart.ShopId = shop.Id;
                 Session["ShoppingCart"] = cart;
-                return (Cart)Session["ShoppingCart"];
+                return cart;
             }
         }
 
-        //  [HttpPost]
+       //This metoed empty your cart for partorders. 
         public ActionResult ClearCart()
         {
             ShoppingCart.PartOrders = new List<PartOrder>();
@@ -81,13 +86,14 @@ namespace WebClient.Controllers
             var proxy = new BestilNemtServiceClient();
             try
             {
+                //Checks for partorder is empty in cart
                 if (ShoppingCart.PartOrders.Capacity == 0)
                 {
 
                     return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
 
                 }
-               
+               //If there is partorder on cart, you will contuine to checkout 
                 else if (ShoppingCart.PartOrders.Capacity != 0)
                 {
                     var fl = proxy.AddCartWithPartOrders((Cart) Session["ShoppingCart"]);
@@ -97,6 +103,7 @@ namespace WebClient.Controllers
                         return View();
                     }
                     else
+                    // if product is already is taken, before you checkout, and the wanted amount is not abliable 
                     {
                         return Content("<script language='javascript' type='text/javascript'>alert('Du er for langsomt. Varen er blevet købt. Øv-Øv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
                     }
@@ -107,6 +114,7 @@ namespace WebClient.Controllers
                     return null;
                 }
             }
+            // if product is already is taken, before you checkout, and the wanted amount is not abliable
             catch (System.Exception ex)
             {
 
@@ -115,7 +123,7 @@ namespace WebClient.Controllers
         
 
         }
-
+        //This metoed show, show your receipt with a person. 
         public ActionResult Receipt()
         {
             var login = (Login)Session["Login"];
