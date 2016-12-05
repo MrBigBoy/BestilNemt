@@ -35,7 +35,7 @@ namespace WebClient.Controllers
                 if (shopSes.Id != shop.Id)
                 {
                     // Clear the cart from Session
-                    Session["ShoppingCart"] = new Cart();
+                    Session["ShoppingCart"] = null;
                 }
             }
             // Set the shop
