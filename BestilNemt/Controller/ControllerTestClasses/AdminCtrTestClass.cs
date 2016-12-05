@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -26,22 +23,22 @@ namespace Controller.ControllerTestClasses
 
         public int RemoveAdmin(int id)
         {
-            return Admins.Remove(FindAdmin(id)) ? 1 : 0;
+            return Admins.Remove(GetAdmin(id)) ? 1 : 0;
         }
 
-        public Admin FindAdmin(int id)
+        public Admin GetAdmin(int id)
         {
             return Admins.FirstOrDefault(admins => admins.Id == id);
         }
 
-        public List<Admin> FindAllAdmins()
+        public List<Admin> GetAllAdmins()
         {
             return Admins;
         }
 
         public int UpdateAdmin(Admin admin)
         {
-            var returnedAdmin = FindAdmin(admin.Id);
+            var returnedAdmin = GetAdmin(admin.Id);
             returnedAdmin.Name = admin.Name;
             returnedAdmin.Address = admin.Address;
             returnedAdmin.Email = admin.Email;

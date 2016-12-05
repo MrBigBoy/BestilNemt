@@ -102,7 +102,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return Customer if found, else null
         /// </returns>
-        public Customer FindCustomer(int id)
+        public Customer GetCustomer(int id)
         {
             Customer customer = null;
             using (
@@ -127,7 +127,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return List of Customer
         /// </returns>
-        public List<Customer> FindAllCustomer()
+        public List<Customer> GetAllCustomer()
         {
             var customers = new List<Customer>();
             using (

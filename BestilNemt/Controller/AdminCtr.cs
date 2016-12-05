@@ -6,49 +6,88 @@ namespace Controller
 {
     public class AdminCtr
     {
-
         public IDbAdmin DbAdmin { get; set; }
 
+        /// <summary>
+        /// Constructor for DbAdmin
+        /// </summary>
+        /// <param name="dbAdmin"></param>
         public AdminCtr(IDbAdmin dbAdmin)
         {
             DbAdmin = dbAdmin;
         }
 
+        /// <summary>
+        /// Add a Admin
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns>
+        /// Return 1 if Admin is added, else 0
+        /// </returns>
         public int AddAdmin(Admin admin)
         {
            return ValidateAdminInput(admin) ? DbAdmin.Create(admin) : 0;
         }
-        public Admin FindAdmin(int id)
+
+        /// <summary>
+        /// Get a Admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Admin object if found, else null
+        /// </returns>
+        public Admin GetAdmin(int id)
         {
-            return DbAdmin.FindAdmin(id);
+            return DbAdmin.GetAdmin(id);
         }
 
+        /// <summary>
+        /// Get all Admins
+        /// </summary>
+        /// <returns>
+        /// List of Admin
+        /// </returns>
         public List<Admin> GetAllAdmins()
         {
-            return DbAdmin.FindAllAdmins();
+            return DbAdmin.GetAllAdmins();
         }
 
+        /// <summary>
+        /// Delete a Admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return 1 if Admin is deleted, else 0
+        /// </returns>
         public int DeleteAdmin(int id)
         {
             return DbAdmin.RemoveAdmin(id);
         }
 
+        /// <summary>
+        /// Update a Admin
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns>
+        /// Return 1 if Admin is updated, else 0
+        /// </returns>
         public int UpdateAdmin(Admin admin)
         {
             return ValidateAdminInput(admin) ? DbAdmin.UpdateAdmin(admin) : 0;
         }
 
-        private bool ValidateAdminInput(Admin admin)
+        /// <summary>
+        /// Validate input for Admin
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns>
+        /// true if Admin has correct fields, else false
+        /// </returns>
+        // ReSharper disable once SuggestBaseTypeForParameter
+        private static bool ValidateAdminInput(Admin admin)
         {
-            if (admin == null || admin.Name.Equals("") || admin.Name == null || admin.Address.Equals("") ||
-                admin.Address == null || admin.Email == null || admin.Email.Equals("") || admin.PersonType != "Administrator")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return !string.IsNullOrEmpty(admin?.Name) && !string.IsNullOrEmpty(admin.Address) && 
+                !string.IsNullOrEmpty(admin.Email) && admin.PersonType == "Administrator";
         }
     }
 }

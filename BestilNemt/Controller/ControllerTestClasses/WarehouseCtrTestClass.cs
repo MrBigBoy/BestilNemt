@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -20,24 +17,24 @@ namespace Controller.ControllerTestClasses
             return warehouse.Id;
         }
 
-        public Warehouse FindWarehouse(int id)
+        public Warehouse GetWarehouse(int id)
         {
             return warehouses.FirstOrDefault(w => w.Id == id);
         }
 
-        public List<Warehouse> FindAllWarehouses()
+        public List<Warehouse> GetAllWarehouses()
         {
             return warehouses;
         }
 
-        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
+        public List<Warehouse> GetAllWarehousesByShopId(int shopId)
         {
             return warehouses.Where(w => w.Shop.Id == shopId).ToList();
         }
 
         public int UpdateWarehouse(Warehouse warehouse)
         {
-            var returnedWarehouse = FindWarehouse(warehouse.Id);
+            var returnedWarehouse = GetWarehouse(warehouse.Id);
             returnedWarehouse.Stock = warehouse.Stock;
             returnedWarehouse.MinStock = warehouse.Stock;
             returnedWarehouse.Shop = warehouse.Shop;
@@ -47,7 +44,7 @@ namespace Controller.ControllerTestClasses
 
         public int DeleteWarehouse(int id)
         {
-            return warehouses.Remove(FindWarehouse(id)) ? 1 : 0;
+            return warehouses.Remove(GetWarehouse(id)) ? 1 : 0;
 
         }
 

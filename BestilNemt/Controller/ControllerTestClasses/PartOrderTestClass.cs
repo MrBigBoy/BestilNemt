@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -25,12 +22,12 @@ namespace Controller.ControllerTestClasses
             return Flag;
         }
 
-        public int RemovePartOrder(int id)
+        public int DeletePartOrder(int id)
         {
-            return PartOrders.Remove(FindPartOrder(id)) ? 1 : 0;
+            return PartOrders.Remove(GetPartOrder(id)) ? 1 : 0;
         }
 
-        public PartOrder FindPartOrder(int id)
+        public PartOrder GetPartOrder(int id)
         {
             return PartOrders.FirstOrDefault(PartOrders => PartOrders.Id == id);
         }
@@ -42,7 +39,7 @@ namespace Controller.ControllerTestClasses
 
         public int UpdatePartOrder(PartOrder partOrder)
         {
-            var returnedPartOrder = FindPartOrder(partOrder.Id);
+            var returnedPartOrder = GetPartOrder(partOrder.Id);
             returnedPartOrder.Amount = partOrder.Amount;
             returnedPartOrder.PartPrice = partOrder.PartPrice;
 

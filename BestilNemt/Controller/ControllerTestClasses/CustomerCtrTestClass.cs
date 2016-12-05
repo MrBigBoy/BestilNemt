@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -23,22 +20,22 @@ namespace Controller.ControllerTestClasses
 
         public int RemoveCustomer(int id)
         {
-            return customers.Remove(FindCustomer(id)) ? 1 : 0;
+            return customers.Remove(GetCustomer(id)) ? 1 : 0;
         }
 
-        public Customer FindCustomer(int id)
+        public Customer GetCustomer(int id)
         {
             return customers.FirstOrDefault(customer => customer.Id == id);
         }
 
-        public List<Customer> FindAllCustomer()
+        public List<Customer> GetAllCustomer()
         {
             return customers;
         }
 
         public int UpdateCustomer(Customer customer)
         {
-            var returnedCust = FindCustomer(customer.Id);
+            var returnedCust = GetCustomer(customer.Id);
             returnedCust.Name = customer.Name;
             returnedCust.Birthday = customer.Birthday;
             returnedCust.Address = customer.Address;

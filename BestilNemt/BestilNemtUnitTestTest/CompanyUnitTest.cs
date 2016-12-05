@@ -51,12 +51,12 @@ namespace BestilNemtUnitTestTest
         /// </summary>
 
         [TestMethod]
-        public void FindCompanyById()
+        public void GetCompanyById()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "dsds", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.AddCompany(company);
-            Assert.IsNotNull(companyCtr.FindCompany(1));
+            Assert.IsNotNull(companyCtr.GetCompany(1));
 
         }
 
@@ -65,12 +65,12 @@ namespace BestilNemtUnitTestTest
         /// Tést for the company object with given id is not found return with be null 
         /// </summary>
         [TestMethod]
-        public void FindCompanyByIdFail()
+        public void GetCompanyByIdFail()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             companyCtr.AddCompany(company);
-            Assert.IsNull(companyCtr.FindCompany(4));
+            Assert.IsNull(companyCtr.GetCompany(4));
         }
 
         /// <summary>
@@ -78,14 +78,14 @@ namespace BestilNemtUnitTestTest
         /// Test for the returned list size is equal to expected one
         /// </summary>
         [TestMethod]
-        public void FindAllcompanys()
+        public void GetAllcompanys()
         {
             var companyCtr = new CompanyCtr(new CompanyCtrTestClasses());
             var company = new Company("Nordea", "Email.@gmail.com", "Pilevej 12", "Company", 12345678, 1);
             var company2 = new Company("Nordeaa", "Esmail.@gmail.com", "Pilevej 12", "Company", 123456782, 4);
             companyCtr.AddCompany(company);
             companyCtr.AddCompany(company2);
-            Assert.AreEqual(2, companyCtr.FindAllCompany().Count);
+            Assert.AreEqual(2, companyCtr.GetAllCompany().Count);
         }
 
         /// <summary>
@@ -150,10 +150,10 @@ namespace BestilNemtUnitTestTest
         /// </summary>
 
         [TestMethod]
-        public void FindCompany()
+        public void GetCompany()
         {
             var dbCompany = new DbCompany();
-            var company = dbCompany.FindCompany(3);
+            var company = dbCompany.GetCompany(3);
             Assert.IsNotNull(company);
         }
 
@@ -162,10 +162,10 @@ namespace BestilNemtUnitTestTest
         /// Test is sucsessfull if returned company object is not null 
         /// </summary>
         [TestMethod]
-        public void FindAllCompany()
+        public void GetAllCompany()
         {
             var dbCompany = new DbCompany();
-            var i = dbCompany.FindAllCompany();
+            var i = dbCompany.GetAllCompany();
             var j = i.Count;
             Assert.AreNotEqual(0, i);
         }
@@ -202,7 +202,7 @@ namespace BestilNemtUnitTestTest
         //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
         //    {
         //        proxy.Open();
-        //        var company = proxy.FindCompany(3);
+        //        var company = proxy.GetCompany(3);
         //        var log = new Login(222,"fd","FDF",3232);
         //        if (company != null)
         //        {
@@ -222,12 +222,12 @@ namespace BestilNemtUnitTestTest
         //}
 
         [TestMethod]
-        public void FindCompanyWCF()
+        public void GetCompanyWCF()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var company = proxy.FindCompany(3);
+                var company = proxy.GetCompany(3);
                 Assert.IsNotNull(company);
             }
         }

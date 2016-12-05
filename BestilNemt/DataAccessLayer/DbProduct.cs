@@ -27,12 +27,12 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSavingId) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @SavingId)";
+                    cmd.CommandText = "INSERT INTO Product(productName, productPrice, productDescription, productCategory, productImgPath) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @ImgPath)";
                     cmd.Parameters.AddWithValue("Name", product.Name);
                     cmd.Parameters.AddWithValue("Price", product.Price);
                     cmd.Parameters.AddWithValue("Description", product.Description);
                     cmd.Parameters.AddWithValue("Category", product.Category);
-                    cmd.Parameters.AddWithValue("SavingId", product.SavingId);
+                    cmd.Parameters.AddWithValue("ImgPath", product.ImgPath);
                     i = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
@@ -98,7 +98,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return Product if found, else null
         /// </returns>
-        public Product FindProduct(int id)
+        public Product GetProduct(int id)
         {
             Product product = null;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -118,7 +118,7 @@ namespace DataAccessLayer
             return product;
         }
 
-        public List<Product> FindProductsByName(string input)
+        public List<Product> GetProductsByName(string input)
         {
             var products = new List<Product>();
             using (
@@ -144,7 +144,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of products
         /// </returns>
-        public List<Product> FindAllProducts()
+        public List<Product> GetAllProducts()
         {
             var products = new List<Product>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -167,7 +167,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of products
         /// </returns>
-        public List<Product> FindAllSoldProducts()
+        public List<Product> GetAllSoldProducts()
         {
             var products = new List<Product>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -190,7 +190,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of products
         /// </returns>
-        public List<Product> FindAllProductsWithSavings()
+        public List<Product> GetAllProductsWithSavings()
         {
             var products = new List<Product>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -227,13 +227,12 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSavingId = @ProductSavingId WHERE productId = @ProductId";
+                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory WHERE productId = @ProductId";
                     cmd.Parameters.AddWithValue("ProductId", product.Id);
                     cmd.Parameters.AddWithValue("ProductName", product.Name);
                     cmd.Parameters.AddWithValue("ProductPrice", product.Price);
                     cmd.Parameters.AddWithValue("ProductDescription", product.Description);
                     cmd.Parameters.AddWithValue("ProductCategory", product.Category);
-                    cmd.Parameters.AddWithValue("ProductSavingId", product.SavingId);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                 }

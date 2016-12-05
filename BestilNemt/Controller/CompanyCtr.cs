@@ -8,6 +8,10 @@ namespace Controller
     {
         public IDbCompany DbCompany { get; set; }
 
+        /// <summary>
+        /// Constructor for Company controller
+        /// </summary>
+        /// <param name="dbCustomer"></param>
         public CompanyCtr(IDbCompany dbCustomer)
         {
             DbCompany = dbCustomer;
@@ -31,9 +35,9 @@ namespace Controller
         /// <returns>
         /// List of Company
         /// </returns>
-        public List<Company> FindAllCompany()
+        public List<Company> GetAllCompany()
         {
-            return DbCompany.FindAllCompany();
+            return DbCompany.GetAllCompany();
         }
 
         /// <summary>
@@ -67,9 +71,9 @@ namespace Controller
         /// <returns>
         /// Return Company if found, else null
         /// </returns>
-        public Company FindCompany(int id)
+        public Company GetCompany(int id)
         {
-            return DbCompany.FindCompany(id);
+            return DbCompany.GetCompany(id);
         }
 
         /// <summary>
@@ -79,10 +83,11 @@ namespace Controller
         /// <returns>
         /// Return true if Company fields is correct, else false
         /// </returns>
-        private bool ValidateCompanyInput(Company company)
+        // ReSharper disable once SuggestBaseTypeForParameter
+        private static bool ValidateCompanyInput(Company company)
         {
-            return company?.Name != null && !company.Address.Equals("") && !company.Email.Equals("") &&
-                company.PersonType == "Company" && !company.Name.Equals("");
+            return !string.IsNullOrEmpty(company.Name) && !string.IsNullOrEmpty(company.Address) &&
+                   !string.IsNullOrEmpty(company.Email) && company.PersonType == "Company";
         }
     }
 }

@@ -75,43 +75,43 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindWarehouseCtr()
+        public void GetWarehouseCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             var warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             var id1 = warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
-            var rw = warehouseCtr.FindWarehouse(id1);
+            var rw = warehouseCtr.GetWarehouse(id1);
             Assert.IsNotNull(rw);
         }
 
         [TestMethod]
-        public void FindWarehouseInvalidIdCtr()
+        public void GetWarehouseInvalidIdCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             var warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
-            var rw = warehouseCtr.FindWarehouse(0);
+            var rw = warehouseCtr.GetWarehouse(0);
             Assert.IsNull(rw);
         }
 
         [TestMethod]
-        public void FindAllWarehousesCtr()
+        public void GetAllWarehousesCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop());
             var warehouse2 = new Warehouse(1, 3, new Product(), new Shop());
             warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
-            var count = warehouseCtr.FindAllWarehouses().Count;
+            var count = warehouseCtr.GetAllWarehouses().Count;
             Assert.AreEqual(2, count);
         }
 
         [TestMethod]
-        public void FindAllWarehousesByShopIdCtr()
+        public void GetAllWarehousesByShopIdCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
@@ -120,12 +120,12 @@ namespace BestilNemtUnitTestTest
             warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
             warehouseCtr.AddWarehouse(warehouse3);
-            var count = warehouseCtr.FindAllWarehousesByShopId(2).Count;
+            var count = warehouseCtr.GetAllWarehousesByShopId(2).Count;
             Assert.AreEqual(2, count);
         }
 
         [TestMethod]
-        public void FindAllWarehousesByShopId1Ctr()
+        public void GetAllWarehousesByShopId1Ctr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
             var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(1, "bfvndcm", "bnfvs", "Mandag - Torsdag	08:00 - 21:00;Fredag  08:00 - 22:00;Lørdag - Søndag 08:00 - 21:00", "12312312", null, null));
@@ -134,7 +134,7 @@ namespace BestilNemtUnitTestTest
             warehouseCtr.AddWarehouse(warehouse1);
             warehouseCtr.AddWarehouse(warehouse2);
             warehouseCtr.AddWarehouse(warehouse3);
-            var count = warehouseCtr.FindAllWarehousesByShopId(1).Count;
+            var count = warehouseCtr.GetAllWarehousesByShopId(1).Count;
             Assert.AreEqual(1, count);
         }
 
@@ -147,7 +147,7 @@ namespace BestilNemtUnitTestTest
             var id = warehouseCtr.AddWarehouse(warehouseToUpdate);
             var warehouseNew = new Warehouse(id, 1, 3, new Product(), new Shop());
             warehouseCtr.UpdateWarehouse(warehouseNew);
-            var updatedWarehouse = warehouseCtr.FindWarehouse(id);
+            var updatedWarehouse = warehouseCtr.GetWarehouse(id);
             Assert.AreEqual(warehouseNew.Stock, updatedWarehouse.Stock);
         }
 
@@ -183,7 +183,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindWarehouseDb()
+        public void GetWarehouseDb()
         {
             var warehouseDb = new DbWarehouse();
 
@@ -208,32 +208,32 @@ namespace BestilNemtUnitTestTest
             };
             var warehouse = new Warehouse(10, 5, prod, shop);
             var id = warehouseDb.AddWarehouse(warehouse);
-            var rw = warehouseDb.FindWarehouse(id);
+            var rw = warehouseDb.GetWarehouse(id);
             Assert.IsNotNull(rw);
         }
 
         [TestMethod]
-        public void FindWarehouseFailDb()
+        public void GetWarehouseFailDb()
         {
             var warehouseDb = new DbWarehouse();
-            var rw = warehouseDb.FindWarehouse(0);
+            var rw = warehouseDb.GetWarehouse(0);
             Assert.IsNull(rw);
         }
 
         [TestMethod]
-        public void FindAllWarehousesDb()
+        public void GetAllWarehousesDb()
         {
             var warehouseDb = new DbWarehouse();
-            var count = warehouseDb.FindAllWarehouses().Count;
+            var count = warehouseDb.GetAllWarehouses().Count;
             Assert.AreNotEqual(0, count);
         }
 
 
         [TestMethod]
-        public void FindAllWarehousesByShopIdDb()
+        public void GetAllWarehousesByShopIdDb()
         {
             var warehouseDb = new DbWarehouse();
-            var count = warehouseDb.FindAllWarehousesByShopId(1).Count;
+            var count = warehouseDb.GetAllWarehousesByShopId(1).Count;
             Assert.AreNotEqual(0, count);
         }
 
@@ -264,7 +264,7 @@ namespace BestilNemtUnitTestTest
             var id = warehouseDb.AddWarehouse(warehouseToUpdate);
             var warehouseNew = new Warehouse(id, 100, 50, prod, shop);
             warehouseDb.UpdateWarehouse(warehouseNew);
-            var updatedWarehouse = warehouseDb.FindWarehouse(id);
+            var updatedWarehouse = warehouseDb.GetWarehouse(id);
             Assert.AreEqual(warehouseNew.Stock, updatedWarehouse.Stock);
         }
 
@@ -302,7 +302,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindWarehouseWcf()
+        public void GetWarehouseWcf()
         {
             var prod = new Product
             {
@@ -329,7 +329,7 @@ namespace BestilNemtUnitTestTest
                 proxy.Open();
                 var id1 = proxy.AddWarehouse(warehouse1);
                 var id2 = proxy.AddWarehouse(warehouse2);
-                var rw = proxy.FindWarehouse(id1);
+                var rw = proxy.GetWarehouse(id1);
                 proxy.DeleteWarehouse(id1);
                 proxy.DeleteWarehouse(id2);
                 Assert.IsNotNull(rw);
@@ -337,7 +337,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindWarehouseFailWcf()
+        public void GetWarehouseFailWcf()
         {
             var prod = new Product
             {
@@ -367,30 +367,30 @@ namespace BestilNemtUnitTestTest
                 var id1 = proxy.AddWarehouse(warehouse1);
                 var id2 = proxy.AddWarehouse(warehouse2);
                 proxy.DeleteWarehouse(id1);
-                var rw = proxy.FindWarehouse(id1);
+                var rw = proxy.GetWarehouse(id1);
                 proxy.DeleteWarehouse(id2);
                 Assert.IsNull(rw);
             }
         }
 
         [TestMethod]
-        public void FindAllWarehousesWcf()
+        public void GetAllWarehousesWcf()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var count = proxy.FindAllWarehouses().Count();
+                var count = proxy.GetAllWarehouses().Count();
                 Assert.AreNotEqual(0, count);
             }
         }
 
         [TestMethod]
-        public void FindAllWarehousesByShopIdWcf()
+        public void GetAllWarehousesByShopIdWcf()
         {
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var count = proxy.FindAllWarehousesByShopId(1).Count();
+                var count = proxy.GetAllWarehousesByShopId(1).Count();
                 Assert.AreNotEqual(0, count);
             }
         }
@@ -423,7 +423,7 @@ namespace BestilNemtUnitTestTest
                 var id = proxy.AddWarehouse(warehouseToUpdate);
                 var warehouseNew = new Warehouse(id, 100, 50, prod, shop);
                 proxy.UpdateWarehouse(warehouseNew);
-                var updatedWarehouse = proxy.FindWarehouse(id);
+                var updatedWarehouse = proxy.GetWarehouse(id);
                 proxy.DeleteWarehouse(id);
                 Assert.AreEqual(warehouseNew.Stock, updatedWarehouse.Stock);
             }

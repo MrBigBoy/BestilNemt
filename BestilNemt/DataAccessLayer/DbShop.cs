@@ -141,7 +141,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return Shop if found, else null
         /// </returns>
-        public Shop FindShop(int id)
+        public Shop GetShop(int id)
         {
             Shop shop = null;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -165,7 +165,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of Shop
         /// </returns>
-        public List<Shop> FindAllShops()
+        public List<Shop> GetAllShops()
         {
             var shops = new List<Shop>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -189,7 +189,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of Shop
         /// </returns>
-        public List<Shop> FindAllShopsByChainId(int chainId)
+        public List<Shop> GetAllShopsByChainId(int chainId)
         {
             var shops = new List<Shop>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))

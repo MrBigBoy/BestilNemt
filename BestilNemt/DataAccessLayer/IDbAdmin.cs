@@ -7,8 +7,8 @@ namespace DataAccessLayer
     {
         int Create(Admin admin);
         int RemoveAdmin(int id);
-        Admin FindAdmin(int id);
-        List<Admin> FindAllAdmins();
+        Admin GetAdmin(int id);
+        List<Admin> GetAllAdmins();
         int UpdateAdmin(Admin admin);
     }
 }

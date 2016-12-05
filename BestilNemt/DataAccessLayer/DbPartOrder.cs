@@ -46,7 +46,7 @@ namespace DataAccessLayer
             return i;
         }
 
-        public int RemovePartOrder(int id)
+        public int DeletePartOrder(int id)
         {
             int i = 0;
             using (
@@ -80,7 +80,7 @@ namespace DataAccessLayer
             return i;
         }
 
-        public PartOrder FindPartOrder(int id)
+        public PartOrder GetPartOrder(int id)
         {
             PartOrder partOrder = null;
             using (

@@ -102,7 +102,7 @@ namespace BestilNemtUnitTestTest
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
             var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
             adminCtr.AddAdmin(admin);
-            Assert.IsNotNull(adminCtr.FindAdmin(1));
+            Assert.IsNotNull(adminCtr.GetAdmin(1));
         }
         /// <summary>
         /// Tests the AdminCtr
@@ -114,7 +114,7 @@ namespace BestilNemtUnitTestTest
             var adminCtr = new AdminCtr(new AdminCtrTestClass());
             var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
             adminCtr.AddAdmin(admin);
-            Assert.IsNull(adminCtr.FindAdmin(2));
+            Assert.IsNull(adminCtr.GetAdmin(2));
         }
         /// <summary>
         /// Tests the AdminCtr

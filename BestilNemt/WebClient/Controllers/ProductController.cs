@@ -25,7 +25,7 @@ namespace WebClient.Controllers
             // Get the shop by the id 
             var shop = proxy.GetShop(id.Value);
             // Get all Warehouses with with the shop id
-            shop.Warehouses = proxy.FindAllWarehousesByShopId(id.Value);
+            shop.Warehouses = proxy.GetAllWarehousesByShopId(id.Value);
             // Get the shop from session
             var shopSes = (Shop)Session["Shop"];
             // If the shop is set
@@ -90,8 +90,6 @@ namespace WebClient.Controllers
             // Get all PartOrders from cart
             var partOrders = cart.PartOrders;
             // There is a partOrder
-            // Use of isFound to check if the specific partOrder is allready added
-            var isFound = false;
             // Loop for every partOrdeers
             foreach (var partOrderLoop in partOrders)
             {
@@ -100,8 +98,6 @@ namespace WebClient.Controllers
                 {
                     // Update the amount
                     partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
-                    // Set the isFound to true meaning the product was allready added.
-                    isFound = true;
                 }
 
             }

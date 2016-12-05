@@ -161,27 +161,27 @@ namespace BestilNemtUnitTestTest
         }
 
         /// <summary>
-        /// Test a ProductCtr FindProduct
+        /// Test a ProductCtr GetProduct
         /// The test is successfull if the flag is not null
         /// ERROR: Non
         /// </summary>
         [TestMethod]
-        public void FindProductCtr()
+        public void GetProductCtr()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product = new Product("The product name", 23.45m, "The product description", "The product catagory", 1, "Img path");
             productCtr.AddProduct(product);
-            var flag = productCtr.FindProduct(1);
+            var flag = productCtr.GetProduct(1);
             Assert.IsNotNull(flag);
         }
 
         /// <summary>
-        /// Test a ProductCtr FindAllProducts
+        /// Test a ProductCtr GetAllProducts
         /// The test is successfull if the flag is not null
         /// ERROR: Non
         /// </summary>
         [TestMethod]
-        public void FindAllProductCtr()
+        public void GetAllProductCtr()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
             var product1 = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", 1, "Img path");
@@ -190,7 +190,7 @@ namespace BestilNemtUnitTestTest
             productCtr.AddProduct(product2);
             var product3 = new Product("The product3 name", 45.67m, "The product3 description", "The product3 catagory", 3, "Img path");
             productCtr.AddProduct(product3);
-            var products = productCtr.FindAllProducts();
+            var products = productCtr.GetAllProducts();
             Assert.AreEqual(3, products.Count);
         }
 

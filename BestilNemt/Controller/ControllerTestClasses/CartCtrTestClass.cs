@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -20,12 +18,12 @@ namespace Controller.ControllerTestClasses
             return cart.Id;
         }
 
-        public Cart FindCart(int id)
+        public Cart GetCart(int id)
         {
             return carts.FirstOrDefault(c => c.Id == id);
 
         }
-        public Cart FindCartWithPartOrders(int id)
+        public Cart GetCartWithPartOrders(int id)
         {
             return carts.FirstOrDefault(c => c.Id == id);
 
@@ -38,7 +36,7 @@ namespace Controller.ControllerTestClasses
 
         public int UpdateCart(Cart cart)
         {
-            var cartToUpdate = FindCart(cart.Id);
+            var cartToUpdate = GetCart(cart.Id);
             if (cartToUpdate == null) return 0;
             cartToUpdate.TotalPrice = cart.TotalPrice;
             cartToUpdate.PartOrders = cart.PartOrders;
@@ -47,7 +45,7 @@ namespace Controller.ControllerTestClasses
 
         public int DeleteCart(int id)
         {
-            return carts.Remove(FindCart(id)) ? 1 : 0;
+            return carts.Remove(GetCart(id)) ? 1 : 0;
         }
 
         public int AddPartOrderToCart(Cart cart, PartOrder partOrder)

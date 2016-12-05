@@ -2,7 +2,6 @@
 using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
-using System;
 
 namespace WcfService
 {
@@ -57,9 +56,9 @@ namespace WcfService
         /// <returns>
         /// Return a Customer if found, else null
         /// </returns>
-        public Customer FindCustomer(int id)
+        public Customer GetCustomer(int id)
         {
-            return CustomerCtr.FindCustomer(id);
+            return CustomerCtr.GetCustomer(id);
         }
 
         /// <summary>
@@ -110,15 +109,15 @@ namespace WcfService
         }
 
         /// <summary>
-        /// Find a Admin by id
+        /// Get a Admin by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
         /// Return a Admin if found, else null
         /// </returns>
-        public Admin FindAdmin(int id)
+        public Admin GetAdmin(int id)
         {
-            return AdminCtr.FindAdmin(id);
+            return AdminCtr.GetAdmin(id);
         }
 
         /// <summary>
@@ -175,9 +174,9 @@ namespace WcfService
         /// <returns>
         /// Return Company if found, else null
         /// </returns>
-        public Company FindCompany(int id)
+        public Company GetCompany(int id)
         {
-            return CompanyCtr.FindCompany(id);
+            return CompanyCtr.GetCompany(id);
         }
 
         /// <summary>
@@ -186,9 +185,9 @@ namespace WcfService
         /// <returns>
         /// List of Company
         /// </returns>
-        public List<Company> FindAllCompany()
+        public List<Company> GetAllCompany()
         {
-            return CompanyCtr.FindAllCompany();
+            return CompanyCtr.GetAllCompany();
         }
 
         /// <summary>
@@ -247,7 +246,7 @@ namespace WcfService
         /// </returns>
         public List<Shop> GetAllShops()
         {
-            return ShopController.FindAllShops();
+            return ShopController.GetAllShops();
         }
 
         /// <summary>
@@ -258,7 +257,7 @@ namespace WcfService
         /// </returns>
         public List<Shop> GetAllShopsByChainId(int chainId)
         {
-            return ShopController.FindAllShopsByChainId(chainId);
+            return ShopController.GetAllShopsByChainId(chainId);
         }
 
         /// <summary>
@@ -365,7 +364,7 @@ namespace WcfService
         /// </returns>
         public Product GetProduct(int id)
         {
-            return ProductCtr.FindProduct(id);
+            return ProductCtr.GetProduct(id);
         }
 
         /// <summary>
@@ -376,7 +375,7 @@ namespace WcfService
         /// </returns>
         public List<Product> GetAllProducts()
         {
-            return ProductCtr.FindAllProducts();
+            return ProductCtr.GetAllProducts();
         }
 
         /// <summary>
@@ -387,7 +386,7 @@ namespace WcfService
         /// </returns>
         public List<Product> GetAllSoldProducts()
         {
-            return ProductCtr.FindAllSoldProducts();
+            return ProductCtr.GetAllSoldProducts();
         }
 
         /// <summary>
@@ -398,7 +397,7 @@ namespace WcfService
         /// </returns>
         public List<Product> GetAllProductsWithSavings()
         {
-            return ProductCtr.FindAllProductsWithSavings();
+            return ProductCtr.GetAllProductsWithSavings();
         }
 
         /// <summary>
@@ -433,13 +432,13 @@ namespace WcfService
         {
             return CartCtr.AddCartWithPartOrders(cart);
         }
-        public Cart FindCart(int id)
+        public Cart GetCart(int id)
         {
-            return CartCtr.FindCart(id);
+            return CartCtr.GetCart(id);
         }
-        public Cart FindCartWithPartOrders(int cartId)
+        public Cart GetCartWithPartOrders(int cartId)
         {
-            return CartCtr.FindCartWithPartOrders(cartId);
+            return CartCtr.GetCartWithPartOrders(cartId);
         }
 
         public List<Cart> GetAllCarts()
@@ -515,19 +514,19 @@ namespace WcfService
             return LoginCtr.DeleteLogin(login);
         }
 
-        public PartOrder FindPartOrder(int id)
+        public PartOrder GetPartOrder(int id)
         {
-            return PartOrderCtr.FindPartOrder(id);
+            return PartOrderCtr.GetPartOrder(id);
         }
 
         public int UpdatePartorder(PartOrder partOrder)
         {
-            return PartOrderCtr.UpdatePartorder(partOrder);
+            return PartOrderCtr.UpdatePartOrder(partOrder);
         }
 
         public int RemovePartOrder(int id)
         {
-            return PartOrderCtr.RemovePartOrder(id);
+            return PartOrderCtr.DeletePartOrder(id);
         }
 
         public int AddPartOrder(PartOrder partOrder)
@@ -545,14 +544,14 @@ namespace WcfService
             return SavingCtr.AddSaving(saving, product);
         }
 
-        public Saving FindSaving(int id)
+        public Saving GetSaving(int id)
         {
-            return SavingCtr.FindSaving(id);
+            return SavingCtr.GetSaving(id);
         }
 
-        public List<Saving> FindAllSavings()
+        public List<Saving> GetAllSavings()
         {
-            return SavingCtr.FindAllSavings();
+            return SavingCtr.GetAllSavings();
         }
 
         public int UpdateSaving(Saving saving)
@@ -565,9 +564,9 @@ namespace WcfService
             return SavingCtr.DeleteSaving(id);
         }
 
-        public List<Product> FindProductsByName(string input)
+        public List<Product> GetProductsByName(string input)
         {
-            return ProductCtr.FindProductsByName(input);
+            return ProductCtr.GetProductsByName(input);
         }
 
         //Warehouse
@@ -577,19 +576,19 @@ namespace WcfService
             return WarehouseCtr.AddWarehouse(warehouse);
         }
 
-        public Warehouse FindWarehouse(int id)
+        public Warehouse GetWarehouse(int id)
         {
-            return WarehouseCtr.FindWarehouse(id);
+            return WarehouseCtr.GetWarehouse(id);
         }
 
-        public List<Warehouse> FindAllWarehouses()
+        public List<Warehouse> GetAllWarehouses()
         {
-            return WarehouseCtr.FindAllWarehouses();
+            return WarehouseCtr.GetAllWarehouses();
         }
 
-        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
+        public List<Warehouse> GetAllWarehousesByShopId(int shopId)
         {
-            return WarehouseCtr.FindAllWarehousesByShopId(shopId);
+            return WarehouseCtr.GetAllWarehousesByShopId(shopId);
         }
 
         public int UpdateWarehouse(Warehouse warehouse)
@@ -604,7 +603,7 @@ namespace WcfService
 
         public int CreateWithCustomer(Customer customer, Login login)
         {
-            return CustomerCtr.CreateCustomerWithLogin(customer, login);
+            return CustomerCtr.AddCustomerWithLogin(customer, login);
         }
     }
 }

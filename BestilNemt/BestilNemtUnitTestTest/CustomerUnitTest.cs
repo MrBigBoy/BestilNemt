@@ -90,13 +90,13 @@ namespace BestilNemtUnitTestTest
         /// Test for the customer object with given id is found and returned value is not null
         /// </summary>
         [TestMethod]
-        public void FindCustomerById()
+        public void GetCustomerById()
         {
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
             customerCtr.AddCustomer(customer);
-            Assert.IsNotNull(customerCtr.FindCustomer(1));
+            Assert.IsNotNull(customerCtr.GetCustomer(1));
         }
 
 
@@ -105,13 +105,13 @@ namespace BestilNemtUnitTestTest
         /// Test for the customer object with given id is found and returned value is not null
         /// </summary>
         [TestMethod]
-        public void FindCustomerByIdFailed()
+        public void GetCustomerByIdFailed()
         {
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer = new Customer(
                 "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
             customerCtr.AddCustomer(customer);
-            Assert.IsNull(customerCtr.FindCustomer(2));
+            Assert.IsNull(customerCtr.GetCustomer(2));
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace BestilNemtUnitTestTest
         /// Test for the returned list size is equal to expected
         /// </summary>
         [TestMethod]
-        public void FindAllCustomers()
+        public void GetAllCustomers()
         {
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer1 = new Customer(
@@ -136,7 +136,7 @@ namespace BestilNemtUnitTestTest
         /// Test for the returned list size is equal to expected
         /// </summary>
         [TestMethod]
-        public void FindAllCustomersFailed()
+        public void GetAllCustomersFailed()
         {
             var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
             var customer1 = new Customer(
@@ -171,7 +171,7 @@ namespace BestilNemtUnitTestTest
                 PersonType = "Customer"
             };
             customerCtr.UpdateCustomer(customer2);
-            var returnedCust = customerCtr.FindCustomer(1);
+            var returnedCust = customerCtr.GetCustomer(1);
             Assert.AreEqual("NewCust", returnedCust.Name);
         }
 
@@ -229,7 +229,7 @@ namespace BestilNemtUnitTestTest
         public void GetCustomerFromDbById()
         {
             var dbCust = new DbCustomer();
-          Assert.IsNotNull(dbCust.FindCustomer(1));
+          Assert.IsNotNull(dbCust.GetCustomer(1));
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace BestilNemtUnitTestTest
         public void UpdateCustomerThrougDb()
         {
             var dbCust = new DbCustomer();
-            var customer = dbCust.FindCustomer(1);
+            var customer = dbCust.GetCustomer(1);
             if (customer != null)
             {
                 customer.Name = "Thorkild Brun";
@@ -332,7 +332,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                Assert.IsNotNull(proxy.FindCustomer(1));
+                Assert.IsNotNull(proxy.GetCustomer(1));
             }
         }
 
@@ -346,7 +346,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                Assert.IsNull(proxy.FindCustomer(100));
+                Assert.IsNull(proxy.GetCustomer(100));
             }
         }
 
@@ -360,7 +360,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var customer = proxy.FindCustomer(1);
+                var customer = proxy.GetCustomer(1);
                 if (customer != null)
                 {
                     customer.Name = "Thorkild Brun";
@@ -383,7 +383,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var customer = proxy.FindCustomer(1);
+                var customer = proxy.GetCustomer(1);
                 if (customer != null)
                 {
                     customer.Name = "";

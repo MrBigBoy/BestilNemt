@@ -6,20 +6,13 @@ namespace WebClient.Controllers
 {
     public class CartController : Controller
     {
-        // GET: Cart
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult AddtoCart(PartOrder partOrder)
         {
             var proxy = new BestilNemtServiceClient();
-            if (partOrder == null)
+            if (partOrder != null)
             {
-                return View();
+                proxy.AddPartOrder(partOrder);
             }
-            proxy.AddPartOrder(partOrder);
             return View();
         }
 
@@ -115,7 +108,7 @@ namespace WebClient.Controllers
                 }
             }
             // if product is already is taken, before you checkout, and the wanted amount is not abliable
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
 
                 return Content("<script language='javascript' type='text/javascript'>alert('Ønsket antal varer ikke på lager'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");

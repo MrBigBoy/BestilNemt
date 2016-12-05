@@ -29,7 +29,7 @@
 
             {
                 var proxy = new BestilNemtServiceClient();
-                var warehouses = proxy.FindAllWarehousesByShopId(shop.Id);
+                var warehouses = proxy.GetAllWarehousesByShopId(shop.Id);
 
                 var maxAmount = 0;
                 foreach (var warehouse in warehouses)

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -26,19 +23,19 @@ namespace Controller.ControllerTestClasses
 
         }
 
-        public Saving FindSaving(int id)
+        public Saving GetSaving(int id)
         {
             return Savings.FirstOrDefault(savings => savings.Id == id);
         }
 
-        public List<Saving> FindAllSavings()
+        public List<Saving> GetAllSavings()
         {
             return Savings;
         }
 
         public int UpdateSaving(Saving saving)
         {
-            var returnedSaving = FindSaving(saving.Id);
+            var returnedSaving = GetSaving(saving.Id);
             returnedSaving.StartDate = saving.StartDate;
             returnedSaving.EndDate = saving.EndDate;
             returnedSaving.SavingPercent = saving.SavingPercent;
@@ -48,7 +45,7 @@ namespace Controller.ControllerTestClasses
 
         public int DeleteSaving(int id)
         {
-            return Savings.Remove(FindSaving(id)) ? 1 : 0;
+            return Savings.Remove(GetSaving(id)) ? 1 : 0;
         }
 
         private bool ValidateSavingInput(Saving saving)
