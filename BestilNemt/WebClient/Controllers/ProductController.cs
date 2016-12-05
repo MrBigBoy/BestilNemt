@@ -65,12 +65,18 @@ namespace WebClient.Controllers
         [HttpPost]
         public ActionResult AddProductToCart(ProductPartOrderViewModel partOrder)
         {
-            // Get the login from session
+            // Get the login from session and check if a person is set, is not return a site with a javascript error
             var login = (Login)Session["Login"];
-            var proxy = new BestilNemtServiceClient();
+            if (login.PersonId == 0)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Du skal være logget ind får at tilføje til kurv :)');</script>");
+            }
+            // Get the cart from Session
             var cart = (Cart)Session["ShoppingCart"];
+            var proxy = new BestilNemtServiceClient();
+            // Get the product by a partOrder product id.
             var product = proxy.GetProduct(partOrder.Product.Id);
-            var partOrders = cart.PartOrders;
+            // Make the PartOrder object
             var po = new PartOrder
             {
                 Product = product,
@@ -78,40 +84,33 @@ namespace WebClient.Controllers
                 PartPrice = product.Price * partOrder.Amount,
                 Cart = cart
             };
-            if (login.PersonId == 0)
+            // Get all PartOrders from cart
+            var partOrders = cart.PartOrders;
+            // There is a partOrder
+            // Use of isFound to check if the specific partOrder is allready added
+            var isFound = false;
+            // Loop for every partOrdeers
+            foreach (var partOrderLoop in partOrders)
             {
-                return Content("<script language='javascript' type='text/javascript'>alert('Du skal være logget ind får at tilføje til kurv :)');</script>");
-            }
-            if (partOrders.Count == 0)
-            {
-                partOrders.Add(po);
-            }
-            else
-            {
-                var isFound = false;
-                foreach (var partOrderLoop in partOrders)
+                // If the product ids match 
+                if (partOrderLoop.Product.Id == partOrder.Product.Id)
                 {
-                    if (partOrderLoop.Product.Id == partOrder.Product.Id)
-                    {
-                        partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
-                        isFound = true;
-                    }
-
-                }
-                if (!isFound)
-                {
-                    partOrders.Add(po);
-                }
-                if (!isFound)
-                {
-                    partOrders.Add(po);
+                    // Update the amount
+                    partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
+                    // Set the isFound to true meaning the product was allready added.
+                    isFound = true;
                 }
 
             }
-            var shop = (Shop)Session["Shop"];  
+            // Add the partOrder to the list
+            partOrders.Add(po);
+            // Save the list of PartOrders to the cart
             cart.PartOrders = partOrders;
-            // Update the session
+            // Update the session of Cart
             Session["ShoppingCart"] = cart;
+            // Get the shop from session
+            var shop = (Shop)Session["Shop"];
+            // Return the view to Product with the Shop id
             return RedirectToAction("Product", new { id = shop.Id });
         }
     }
