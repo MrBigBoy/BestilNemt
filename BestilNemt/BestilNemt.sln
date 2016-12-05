@@ -29,6 +29,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebC
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF Client", "WPF Client\WPF Client.csproj", "{A249446D-A4A7-406B-9D81-80FD20CF69D9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2662365-442D-4CDC-BA64-0CC2D500A3E3} = {F2662365-442D-4CDC-BA64-0CC2D500A3E3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
