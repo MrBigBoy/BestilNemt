@@ -92,7 +92,8 @@ namespace WebClient.Controllers
                     return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
 
                 }
-                else
+               
+                else if (ShoppingCart.PartOrders.Capacity != 0)
                 {
                     var fl = proxy.AddCartWithPartOrders((Cart) Session["ShoppingCart"]);
                     if (fl == 1)
@@ -106,8 +107,12 @@ namespace WebClient.Controllers
                     }
                     
                 }
+                else
+                {
+                    return null;
+                }
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
 
                 return Content("<script language='javascript' type='text/javascript'>alert('Ønsket antal varer ikke på lager'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");

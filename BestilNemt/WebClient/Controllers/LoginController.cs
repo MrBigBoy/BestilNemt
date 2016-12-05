@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Web.Mvc;
+using System.Web.UI;
 using System.Xml.Xsl;
 using WebClient.BestilNemtServiceRef;
 using WebClient.Models;
@@ -49,12 +52,40 @@ namespace WebClient.Controllers
         [HttpPost]
         public ActionResult CreateCustomer(Customer customer, Login login)
         {
-
+          
+            DateTime dt;
             var proxy = new BestilNemtServiceClient();
             login.Username = customer.Email;
-            proxy.CreateWithCustomer(customer, login);
+            if (customer.Name == null)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje navn'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+            }
+            if (customer.Address == null)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje adresse'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+            }
+            //if (!DateTime.TryParseExact("customer.Birthday", "MM/dd/yyyy", null, DateTimeStyles.None, out dt) == true)
+            //{
+            //    return Content("<script language='javascript' type='text/javascript'>alert('Syntax fejl ved fødselsdatoen f.ek.s 10/21/2012'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+            //}
+            if (customer.Email.Length < 6)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Email Min. 6 bogstaver'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+            }
+            //if (!customer.Email.Contains("@") && customer.Email.Contains("."))
+            //{
+            //    return Content("<script language='javascript' type='text/javascript'>alert('Syntax fejl ved fødselsdatoen f.ek.s 10/21/2012'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+            //}
+            if (login.Password.Length < 6)
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Kodeord Min. 6 cifre'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+            }
 
-            return RedirectToAction("Index");
+            else
+            {
+                proxy.CreateWithCustomer(customer, login);
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult ResetLogin()
@@ -93,6 +124,21 @@ namespace WebClient.Controllers
             ShoppingCart.PartOrders = new List<PartOrder>();
 
             return RedirectToAction("Index");
+        }
+        private bool ValidatePersonInput(Customer customer)
+        {
+            try
+            {
+                return customer != null && !customer.Address.Equals("") && !customer.Name.Equals("") &&
+               customer.Name != null && !customer.Address.Equals("") && customer.Address != null &&
+               !customer.Email.Equals("") && customer.Email != null;
+            }
+            catch (Exception)
+            {
+                throw new Exception("");
+
+            }
+
         }
 
     }

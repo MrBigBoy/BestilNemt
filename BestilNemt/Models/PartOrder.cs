@@ -25,7 +25,7 @@ namespace Models
             Product = product;
             Amount = amount;
             PartPrice = partPrice;
-            Cart = cart; 
+            Cart = cart;
 
         }
 
@@ -44,6 +44,13 @@ namespace Models
             Amount = amount;
             PartPrice = partPrice;
             Cart = cart;
+        }
+
+        public PartOrder(Product product, int amount, decimal partPrice)
+        {
+            Product = product;
+            Amount = amount;
+            PartPrice = partPrice;
         }
     }
 }

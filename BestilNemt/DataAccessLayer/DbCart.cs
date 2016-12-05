@@ -324,8 +324,8 @@ namespace DataAccessLayer
                         cmdDecreseStock.CommandText = "Select warehouseStock from Warehouse where warehouseProductId = @productId";
                         cmdDecreseStock.Parameters.AddWithValue("productId", po.Product.Id);
                         cmdDecreseStock.Transaction = transaction;
-                        var newStock = 0;
                         var reader = cmdDecreseStock.ExecuteReader();
+                        var newStock = 0;
                         while (reader.Read())
                         {
                             newStock = reader.GetInt32(reader.GetOrdinal("warehouseStock")) - po.Amount;
