@@ -300,10 +300,11 @@ namespace DataAccessLayer
                 try
                 {
                     //save Cart in DB and get generated cartId
-                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId) output inserted.cartId VALUES(@totalPrice, @PersonId)";
+                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId, cartShopId) output inserted.cartId VALUES(@totalPrice, @PersonId, @ShopId)";
 
                     cmd.Parameters.AddWithValue("totalPrice", cartTotalPrice);
                     cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
+                    cmd.Parameters.AddWithValue("ShopId", cart.ShopId);
                     id = (int)cmd.ExecuteScalar();
 
                     foreach (var po in cart.PartOrders)
@@ -333,9 +334,10 @@ namespace DataAccessLayer
 
                         //update warehouseStock with new saved value
                         var cmdUpdateWarehouse = conn.CreateCommand();
-                        cmdUpdateWarehouse.CommandText = "Update Warehouse Set warehouseStock = @newStock where warehouseProductId = @productId";
+                        cmdUpdateWarehouse.CommandText = "Update Warehouse Set warehouseStock = @newStock where warehouseProductId = @productId AND warehouseShopId = @shopId";
                         cmdUpdateWarehouse.Parameters.AddWithValue("newStock", newStock);
                         cmdUpdateWarehouse.Parameters.AddWithValue("productId", po.Product.Id);
+                        cmdUpdateWarehouse.Parameters.AddWithValue("shopId", cart.ShopId);
                         cmdUpdateWarehouse.Transaction = transaction;
                         cmdUpdateWarehouse.ExecuteNonQuery();
                     }

@@ -20,6 +20,8 @@ namespace Models
 
         [DataMember]
         public int ShopId { get; set; }
+        [DataMember]
+        public int ChainId { get; set; }
 
         public Cart(int id, List<PartOrder> partOrders, decimal totalprice, int personId, int shopId)
         {
@@ -32,9 +34,7 @@ namespace Models
 
         public Cart()
         {
-            Id = Id;
             PartOrders = new List<PartOrder>();
-            TotalPrice = TotalPrice;
         }
 
         public Cart(List<PartOrder> partOrders, decimal totalprice, int personId, int shopId)

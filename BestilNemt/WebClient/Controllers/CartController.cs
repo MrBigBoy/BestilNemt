@@ -47,11 +47,16 @@ namespace WebClient.Controllers
         {
             get
             {
-                if (Session["ShoppingCart"] != null)
-                    return (Cart)Session["ShoppingCart"];
-                var cart = new Cart { PartOrders = new List<PartOrder>() };
+                var cart = (Cart)Session["ShoppingCart"];
+                if (cart == null)
+                {
+                    cart = new Cart();
+
+                }
+                var shop = (Shop) Session["Shop"];
+                cart.ShopId = shop.Id;
                 Session["ShoppingCart"] = cart;
-                return (Cart)Session["ShoppingCart"];
+                return cart;
             }
         }
 
