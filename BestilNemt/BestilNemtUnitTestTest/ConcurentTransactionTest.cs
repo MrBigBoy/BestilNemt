@@ -16,10 +16,10 @@ namespace BestilNemtUnitTestTest
     public class ConcurentTransactionTest
     {
 
-        private Customer cust = new DbCustomer().FindCustomer(1);
-        private Customer cust1 = new DbCustomer().FindCustomer(4);
-        private Product prod = new DbProduct().FindProduct(1);
-        private Shop s = new DbShop().FindShop(1);
+        private Customer cust = new DbCustomer().GetCustomer(1);
+        private Customer cust1 = new DbCustomer().GetCustomer(4);
+        private Product prod = new DbProduct().GetProduct(1);
+        private Shop s = new DbShop().GetShop(1);
 
         [TestMethod]
         public void TestConcurrencyOneFaild()
@@ -43,7 +43,7 @@ namespace BestilNemtUnitTestTest
             Warehouse w = new Warehouse(1, 10, 0, prod, s);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { StartTr3(); }, () => { StartTr4(); });
-            var stock = dbW.FindWarehouse(1).Stock;
+            var stock = dbW.GetWarehouse(1).Stock;
             Assert.AreEqual(3, stock);
         }
         private int StartTr1()
