@@ -86,7 +86,7 @@ namespace Controller
         // ReSharper disable once SuggestBaseTypeForParameter
         private static bool ValidatePersonInput(Customer customer)
         {
-            return !string.IsNullOrEmpty(customer?.Address) && !string.IsNullOrEmpty(customer.Name) && !string.IsNullOrEmpty(customer.Email) && customer.PersonType.Equals("Customer");
+            return !string.IsNullOrEmpty(customer?.Address) && !string.IsNullOrEmpty(customer.Name) && !string.IsNullOrEmpty(customer.Email);
 
         }
 

@@ -14,6 +14,7 @@
         <th>Pris pr/stk</th>
         <th>Antal</th>
         <th>Total</th>
+        <th>Fjern vare</th>
     </tr>
     @{
         var cart = (Cart)Session["ShoppingCart"];
@@ -81,6 +82,13 @@
                         </form>
                     </TD>
                     <td>@partOrder.PartPrice kr</td>
+                    <td>
+                        <div class="text-center">
+                            <button class="btn btn-xs btn-danger pull-center" onclick="location.href = '@Url.Action("RemovePartOrder", "Cart", new {id = partOrder.Product.Id})'">
+                                x
+                            </button>
+                        </div>
+                    </td>
                 </tr>
                                         }
                                     }
@@ -101,12 +109,12 @@
 {
     @Html.HiddenFor(x => x.Cart.Id)
     <button class="ClearCart" type="submit">Ryd kurv</button>
- <script>
-     if (ShoppingCart.PartOrders.Capacity == 0) {
-         alert("Du mangler at tilføje en vare til kurv");
+    <script>
+        if (ShoppingCart.PartOrders.Capacity == 0) {
+            alert("Du mangler at tilføje en vare til kurv");
 
-     }
- </script>
+        }
+    </script>
 }
 
 @section scripts

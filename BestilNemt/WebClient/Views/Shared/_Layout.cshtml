@@ -97,9 +97,9 @@
                             if (login.PersonId != 0)
                             {
                                 <a class="LoginClass" onclick="location.href='@Url.Action("LogOff", "Login")';alert('Du logger nu af');">@login.Username.ToLower() Log af </a>
-                                
-                         
-                                
+
+
+
                             }
                             else
                             {
@@ -150,17 +150,11 @@
                                                             }
                                                         </span>
                                                     </span>
-                                                    <span class="item-right">
-                                                        @{
-                                                            buttonId++;
-                                                        }
-                                                        <button class="btn btn-xs btn-danger pull-right" value=@buttonId>x</button>
-                                                    </span>
                                                 </span>
                                             </li>
+                                                                        }
                                                                     }
                                                                 }
-                                                            }
                             }
                             <li class="divider"></li>
                             <li><a class="text-center" onclick="location.href = '@Url.Action("GetCart", "Cart" , new {id=shoppingCart.Id})'">Vis kurv</a></li>
