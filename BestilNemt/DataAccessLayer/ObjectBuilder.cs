@@ -52,8 +52,11 @@ namespace DataAccessLayer
         public static Cart CreateCartWithPartOrders(SqlDataReader reader)
         {
             var partOrder = CreatePartOrder(reader);
+            var shop = CreateShopWithChain(reader);
             var cart = CreateCart(reader);
             cart.PartOrders.Add(partOrder);
+            cart.ShopId = shop.Id;
+            cart.ChainId = shop.Chain.Id;
             return cart;
         }
 
@@ -132,6 +135,14 @@ namespace DataAccessLayer
                 OpeningTime = reader.GetString(reader.GetOrdinal("shopOpeningTime")),
                 Cvr = reader.GetString(reader.GetOrdinal("shopCvr"))
             };
+            return shop;
+        }
+
+        public static Shop CreateShopWithChain(SqlDataReader reader)
+        {
+            var shop = CreateShop(reader);
+            var chain = CreateChain(reader);
+            shop.Chain = chain;
             return shop;
         }
 

@@ -82,30 +82,16 @@ namespace WebClient.Controllers
                 //Checks for partorder is empty in cart
                 if (ShoppingCart.PartOrders.Capacity == 0)
                 {
-
                     return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
-
                 }
-               //If there is partorder on cart, you will contuine to checkout 
-                else if (ShoppingCart.PartOrders.Capacity != 0)
+                //If there is partorder on cart, you will continue to checkout 
+                var fl = proxy.AddCartWithPartOrders((Cart) Session["ShoppingCart"]);
+                if (fl == 1)
                 {
-                    var fl = proxy.AddCartWithPartOrders((Cart) Session["ShoppingCart"]);
-                    if (fl == 1)
-                    {
-
-                        return View();
-                    }
-                    else
-                    // if product is already is taken, before you checkout, and the wanted amount is not abliable 
-                    {
-                        return Content("<script language='javascript' type='text/javascript'>alert('Du er for langsomt. Varen er blevet købt. Øv-Øv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
-                    }
-                    
+                    return View();
                 }
-                else
-                {
-                    return null;
-                }
+                // if product is already taken, before you checkout, and the wanted amount is not abliable 
+                return Content("<script language='javascript' type='text/javascript'>alert('Du er for langsomt. Varen er blevet købt. Øv-Øv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
             }
             // if product is already is taken, before you checkout, and the wanted amount is not abliable
             catch (System.Exception)

@@ -82,7 +82,7 @@ namespace DataAccessLayer
         public Login Login(Login login)
         {
             var parts = DownloadHash(login.Username);
-            if (!VerifyPassword(login.Password, parts))
+            if (string.IsNullOrEmpty(parts) || !VerifyPassword(login.Password, parts))
                 return null;
             login.PersonId = DownloadPersonId(login.Username);
             return login;

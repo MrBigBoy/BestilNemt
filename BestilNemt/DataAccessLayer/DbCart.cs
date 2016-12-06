@@ -29,9 +29,11 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId) output inserted.cartId VALUES(@totalPrice, @personId)";
+                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId, shopId) output inserted.cartId VALUES(@totalPrice, @personId, @ShopId)";
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     cmd.Parameters.AddWithValue("personId", cart.PersonId);
+                    cmd.Parameters.AddWithValue("ShopId", cart.ShopId);
+                    
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
@@ -143,13 +145,12 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Cart, PartOrder, Product, Person_Chain WHERE partOrderProductId = productId AND cartId = partOrderCartId AND cartPersonId = @PersonId AND personChainPersonId = @PersonId", conn);
+                var cmd = new SqlCommand("SELECT * FROM Cart, PartOrder, Product, Shop, Chain WHERE partOrderProductId = productId AND cartId = partOrderCartId AND shopId = cartShopId AND shopChainId = chainId AND cartPersonId = @PersonId", conn);
                 cmd.Parameters.AddWithValue("PersonId", personId);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     var cart = ObjectBuilder.CreateCartWithPartOrders(reader);
-                    cart.ChainId = reader.GetInt32(reader.GetOrdinal("personChainChainId"));
                     carts.Add(cart);
                 }
             }
@@ -176,7 +177,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "UPDATE Cart SET cartTotalPrice=@totalPrice AND cartPersonId=@PersonId WHERE cartId=@id";
+                    cmd.CommandText = "UPDATE Cart SET cartTotalPrice=@totalPrice AND cartPersonId=@PersonId AND chainId = @ChainId WHERE cartId=@id";
                     cmd.Parameters.AddWithValue("id", cart.Id);
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
@@ -281,7 +282,6 @@ namespace DataAccessLayer
 
         public int AddCartWithPartOrders(Cart cart)
         {
-            var id = 0;
             var flag = 0;
             using (
                 var conn =
@@ -294,7 +294,6 @@ namespace DataAccessLayer
                 decimal cartTotalPrice = 0;
                 foreach (var partOrder in cart.PartOrders)
                 {
-
                     cartTotalPrice = partOrder.PartPrice + cartTotalPrice;
                 }
                 try
@@ -305,7 +304,7 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("totalPrice", cartTotalPrice);
                     cmd.Parameters.AddWithValue("PersonId", cart.PersonId);
                     cmd.Parameters.AddWithValue("ShopId", cart.ShopId);
-                    id = (int)cmd.ExecuteScalar();
+                    var id = (int)cmd.ExecuteScalar();
 
                     foreach (var po in cart.PartOrders)
                     {
@@ -342,6 +341,7 @@ namespace DataAccessLayer
                         cmdUpdateWarehouse.Transaction = transaction;
                         cmdUpdateWarehouse.ExecuteNonQuery();
                     }
+
                     transaction.Commit();
                     flag = 1;
                     Console.WriteLine("Commit was succsesfull");
