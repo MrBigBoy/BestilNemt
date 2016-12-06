@@ -20,7 +20,7 @@ namespace WPF_Client
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
+            createSaving();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -83,6 +83,48 @@ namespace WPF_Client
             product.ImgPath = ProductImgPath.Text;
             proxy.UpdateProduct(product);
             FillDataGridProducts();
+        }
+        public void createSaving()
+        {
+            BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
+            var saving = new BestilNemtWPF.Saving();
+            DateTime? startDate = StartDate.SelectedDate;
+            DateTime? endDate = EndDate.SelectedDate;
+            saving.StartDate = startDate.Value;
+            saving.EndDate = endDate.Value;
+            saving.SavingPercent = double.Parse(Saving.Text);
+            if(ProductId.Text == "")
+            {
+                MessageBox.Show("Du mangler at indlæse et product");
+            }
+            else
+            { 
+            Product product = proxy.GetProduct(int.Parse(ProductId.Text));
+            proxy.AddSaving(saving, product);
+            saving.Id = product.SavingId.Value;
+            FillDataGridProducts();
+                MessageBox.Show("Du har lavet en rabet på" + product.Name);
+            }
+        }
+
+        private void CreateRabat_Click(object sender, RoutedEventArgs e)
+        {
+            createSaving();
+        }
+        public void clearText()
+        {
+            ProductId.Text = "";
+            ProductName.Text = "";
+            ProductPrice.Text = "";
+            ProductCategory.Text = "";
+            ProductDescription.Text = "";
+            ProductImgPath.Text = "";
+
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            clearText();
         }
     }
 }

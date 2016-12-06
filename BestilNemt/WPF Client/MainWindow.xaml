@@ -27,9 +27,9 @@
                         <ColumnDefinition Width="Auto" MinWidth="208"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TabControl x:Name="AdminTabControl" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="658" VerticalAlignment="Top" Width="1265">
+                    <TabControl x:Name="AdminTabControl" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="658" VerticalAlignment="Top" Width="1265" Margin="0,26,0,0">
                         <TabItem Header="Produkter">
-                            <Grid Background="#FFE5E5E5">
+                            <Grid Background="#FFE5E5E5" Margin="0,-39,0,39">
                                 <TextBox x:Name="ProductName" HorizontalAlignment="Left" Height="23" Margin="8,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
                                 <TextBox x:Name="ProductPrice" HorizontalAlignment="Left" Height="23" Margin="10,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"/>
                                 <TextBox x:Name="ProductDescription" HorizontalAlignment="Left" Height="23" Margin="10,174,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"/>
@@ -56,6 +56,17 @@
                                 <TextBox x:Name="ProductId" HorizontalAlignment="Left" Height="23" Margin="10,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"/>
                                 <Button x:Name="DeleteButton" Content="Slet" HorizontalAlignment="Left" Height="20" Margin="10,349,0,0" VerticalAlignment="Top" Width="84" Click="DeleteButton_Click"/>
                                 <Button x:Name="UpdateProductButton" Content="Opdater" HorizontalAlignment="Left" Height="19" Margin="109,350,0,0" VerticalAlignment="Top" Width="89" Click="UpdateProductButton_Click"/>
+                                <Label x:Name="ProductNameLabel_Copy" Content="Lav en rabat" HorizontalAlignment="Left" Margin="1,374,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.179,-0.547" Height="26" Width="93"/>
+                                <DatePicker x:Name="StartDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,429,0,0" Width="119"/>
+                                <Label x:Name="ProductNameLabel_Copy1" Content="Start dato" HorizontalAlignment="Left" Margin="8,398,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.179,-0.547" Height="26" Width="93"/>
+                                <Label x:Name="ProductNameLabel_Copy2" Content="Start dato" HorizontalAlignment="Left" Margin="10,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.179,-0.547" Height="26" Width="93"/>
+                                <DatePicker x:Name="EndDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,489,0,0" Width="119"/>
+                                <Label x:Name="Rabat" Content="Rabat i %" HorizontalAlignment="Left" Margin="10,518,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.179,-0.547" Height="26" Width="93"/>
+                                <TextBox x:Name="Saving" HorizontalAlignment="Left" Margin="10,549,0,58" TextWrapping="Wrap" Text="" Width="188"/>
+                                <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+                                <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+                                <Button x:Name="CreateRabat" Content="Opret Rabat" HorizontalAlignment="Left" Margin="123,577,0,33" Width="75" Click="CreateRabat_Click"/>
+                                <Button x:Name="Clear" Content="Ryd felter" HorizontalAlignment="Left" Margin="109,374,0,0" VerticalAlignment="Top" Width="89" Click="Clear_Click"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="TabItem">
