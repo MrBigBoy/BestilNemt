@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
 
@@ -46,17 +47,24 @@ namespace WebClient.Controllers
                     cart = new Cart();
 
                 }
-                var shop = (Shop) Session["Shop"];
+                var shop = (Shop)Session["Shop"];
                 cart.ShopId = shop.Id;
                 Session["ShoppingCart"] = cart;
                 return cart;
             }
         }
 
-       //This metoed empty your cart for partorders. 
+        //This method clear the cart for partorders. 
         public ActionResult ClearCart()
         {
             ShoppingCart.PartOrders = new List<PartOrder>();
+            return RedirectToAction("GetCart", new { id = ShoppingCart.Id });
+        }
+
+        public ActionResult RemovePartOrder(int id)
+        {
+            var partOrders = ShoppingCart.PartOrders;
+            ShoppingCart.PartOrders = partOrders.Where(partOrder => partOrder.Product.Id != id).ToList();
             return RedirectToAction("GetCart", new { id = ShoppingCart.Id });
         }
 
@@ -75,7 +83,7 @@ namespace WebClient.Controllers
         [HttpPost]
         public ActionResult CheckOut()
         {
-       
+
             var proxy = new BestilNemtServiceClient();
             try
             {
@@ -85,7 +93,7 @@ namespace WebClient.Controllers
                     return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje vare til din kurv'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
                 }
                 //If there is partorder on cart, you will continue to checkout 
-                var fl = proxy.AddCartWithPartOrders((Cart) Session["ShoppingCart"]);
+                var fl = proxy.AddCartWithPartOrders((Cart)Session["ShoppingCart"]);
                 if (fl == 1)
                 {
                     return View();
@@ -99,7 +107,7 @@ namespace WebClient.Controllers
 
                 return Content("<script language='javascript' type='text/javascript'>alert('Ønsket antal varer ikke på lager'); window.location.replace('http://localhost:50483/Cart/GetCart/0');</script>");
             }
-        
+
 
         }
         //This metoed show, show your receipt with a person. 
