@@ -18,12 +18,31 @@ namespace WPF_Client
             FillDataGridProducts();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void FillDataGridProducts()
+        {
+
+            var CmdString = string.Empty;
+            Product product = null;
+            Saving saving = null;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                CmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath, productSavingId, savingPercent, CONVERT(date, savingStartDate) as savingStartDate, CONVERT(date, savingEndDate) as savingEndDate from Product, Saving WHERE productSavingId = savingId";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Produkter");
+                //product.Price = Convert.ToDouble(product.Price) * saving.SavingPercent;
+                sda.Fill(dt);
+                ProductInformation.ItemsSource = dt.DefaultView;
+            }
+        }
+
+        private void AddSaving_Click(object sender, RoutedEventArgs e)
         {
             createSaving();
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
             var product = new BestilNemtWPF.Product();
@@ -37,20 +56,7 @@ namespace WPF_Client
             FillDataGridProducts();
         }
 
-        private void FillDataGridProducts()
-        {
-            var CmdString = string.Empty;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                CmdString = "Select * From Product";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Produkter");
-                sda.Fill(dt);
-                ProductInformation.ItemsSource = dt.DefaultView;
-            }
-        }
+
 
         private void LoadDataIntoTextFields_Click(object sender, RoutedEventArgs e)
         {
@@ -61,9 +67,12 @@ namespace WPF_Client
             ProductCategory.Text = (drv["productCategory"]).ToString();
             ProductImgPath.Text = (drv["productImgPath"]).ToString();
             ProductDescription.Text = (drv["productDescription"]).ToString();
+            SavingPercent.Text = (drv["savingPercent"]).ToString();
+            StartDate.Text = (drv["savingStartDate"]).ToString();
+            EndDate.Text = (drv["savingEndDate"]).ToString();
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
             BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
             var id = Int32.Parse(ProductId.Text);
@@ -71,7 +80,7 @@ namespace WPF_Client
             FillDataGridProducts();
         }
 
-        private void UpdateProductButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateProduct_Click(object sender, RoutedEventArgs e)
         {
             BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
             var product = new Product();
@@ -92,17 +101,17 @@ namespace WPF_Client
             DateTime? endDate = EndDate.SelectedDate;
             saving.StartDate = startDate.Value;
             saving.EndDate = endDate.Value;
-            saving.SavingPercent = double.Parse(Saving.Text);
-            if(ProductId.Text == "")
+            saving.SavingPercent = double.Parse(SavingPercent.Text);
+            if (ProductId.Text == "")
             {
                 MessageBox.Show("Du mangler at indlæse et product");
             }
             else
-            { 
-            Product product = proxy.GetProduct(int.Parse(ProductId.Text));
-            proxy.AddSaving(saving, product);
-            saving.Id = product.SavingId.Value;
-            FillDataGridProducts();
+            {
+                Product product = proxy.GetProduct(int.Parse(ProductId.Text));
+                proxy.AddSaving(saving, product);
+                saving.Id = product.SavingId.Value;
+                FillDataGridProducts();
                 MessageBox.Show("Du har lavet en rabet på" + product.Name);
             }
         }
@@ -122,9 +131,14 @@ namespace WPF_Client
 
         }
 
-        private void Clear_Click(object sender, RoutedEventArgs e)
+        private void ClearProductFields_Click(object sender, RoutedEventArgs e)
         {
             clearText();
+        }
+
+        private void RemoveSaving_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
