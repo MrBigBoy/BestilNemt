@@ -23,7 +23,7 @@
                             <DataGridTextColumn Header="Pris" Binding="{Binding productPrice}" Width="75"/>
                             <DataGridTextColumn Header="Tilbuds pris" Binding="{Binding SavingPrice}" Width="75"/>
                             <DataGridTextColumn Header="Beskrivelse" Binding="{Binding productDescription}" Width="*"/>
-                            <DataGridTextColumn Header="Kategori" Binding="{Binding productCategory}" Width="120"/>
+                            <DataGridTextColumn Header="Kategori" Binding="{Binding productCategory}" Width="100"/>
                             <DataGridTextColumn Header="ImgPath" Binding="{Binding productImgPath}" Width="100"/>
                             <DataGridTextColumn Header="TilbudsID" Binding="{Binding productSavingId}" Width="60"/>
                             <DataGridTextColumn Header="%" Binding="{Binding savingPercent}" Width="25"/>
