@@ -27,8 +27,8 @@
                             <DataGridTextColumn Header="ImgPath" Binding="{Binding productImgPath}" Width="100"/>
                             <DataGridTextColumn Header="TilbudsID" Binding="{Binding productSavingId}" Width="60"/>
                             <DataGridTextColumn Header="%" Binding="{Binding savingPercent}" Width="25"/>
-                            <DataGridTextColumn Header="Start dato" Binding="{Binding savingStartDate}"/>
-                            <DataGridTextColumn Header="Slut dato" Binding="{Binding savingEndDate}"/>
+                            <DataGridTextColumn Header="Start dato" Binding="{Binding savingStartDate, StringFormat=\{0:dd.MM.yy\}}"/>
+                            <DataGridTextColumn Header="Slut dato" Binding="{Binding savingEndDate, StringFormat=\{0:dd.MM.yy\}}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Margin="10,17,1103,239">
