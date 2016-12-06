@@ -90,6 +90,8 @@ namespace WebClient.Controllers
             // Get all PartOrders from cart
             var partOrders = cart.PartOrders;
             // There is a partOrder
+            // isFound is used to check if a partOrder is allready added
+            var isFound = false;
             // Loop for every partOrdeers
             foreach (var partOrderLoop in partOrders)
             {
@@ -98,11 +100,17 @@ namespace WebClient.Controllers
                 {
                     // Update the amount
                     partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
+                    // The PartOrder is found
+                    isFound = true;
                 }
 
             }
-            // Add the partOrder to the list
-            partOrders.Add(po);
+            // If the partOrder is not allready added, add it
+            if (!isFound)
+            {
+                // Add the partOrder to the list
+                partOrders.Add(po);
+            }
             // Save the list of PartOrders to the cart
             cart.PartOrders = partOrders;
             // Update the session of Cart
