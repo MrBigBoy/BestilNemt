@@ -50,7 +50,9 @@
             @foreach (var product in Model)
                 {
                 <tr>
-                    <td><img src="/Images/ProductPictures/@product.ImgPath" height="50" width="50"></td>
+                    <td>
+                        <img src="/Images/ProductPictures/@product.ImgPath" height="50" width="50" alt="@product.Name">
+                    </td>
                     <td><a href="/Product/ProductPage/@product.Id">@product.Name</a></td>
                     <td>@product.Description</td>
                     @{
@@ -84,7 +86,22 @@
                             <td>0</td>
                         }
                     }
-                    <td>@product.Price kr</td>
+                    @{
+                        var savingId = product.SavingId;
+                        var price = product.Price;
+                        if (savingId != null)
+                        {
+                            var proxy = new BestilNemtServiceClient();
+                            var saving = proxy.GetSaving(savingId.Value);
+                            var percent = (decimal)saving.SavingPercent;
+                            var newPrice = price - (price * percent / 100);
+                            <td>@price kr - @percent % = @newPrice kr</td>
+                        }
+                        else
+                        {
+                            <td>@price kr</td>
+                        }
+                    }
                 </tr>
                         }
         </table>
