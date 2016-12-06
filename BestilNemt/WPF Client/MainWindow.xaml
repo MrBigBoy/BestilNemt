@@ -15,8 +15,8 @@
         <TabControl x:Name="tabControl" Margin="3,0,0,0" Grid.ColumnSpan="2">
             <TabItem Header="Produkter">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
-                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="5" Margin="10,427,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-                    <DataGrid x:Name="ProductInformation" Margin="185,10,10,10" AutoGenerateColumns="False">
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="3" Margin="10,427,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+                    <DataGrid x:Name="ProductInformation" Margin="180,5,5,5" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding productId}" Width="25" />
                             <DataGridTextColumn Header="Navn" Binding="{Binding productName}" Width="*"/>
@@ -31,7 +31,7 @@
                             <DataGridTextColumn Header="Slut dato" Binding="{Binding savingEndDate, StringFormat=\{0:dd.MM.yy\}}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Grid Margin="10,17,1103,239">
+                    <Grid Margin="10,17,0,239" HorizontalAlignment="Left" Width="170">
                         <Grid Margin="0,31,0,0">
                             <Grid Margin="0,0,0,75">
                                 <Label x:Name="IdLabel" Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top"/>
