@@ -89,7 +89,28 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+            <TabItem Header="Butikker">
+                <Grid Background="#FFE5E5E5" Margin="0,-16,0,16">
+                    <Label x:Name="ShopNameLabel" Content="Butik navn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ShopNameField" HorizontalAlignment="Left" Height="23" Margin="10,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.425,0.481"/>
+                    <Label x:Name="ShopAddressLabel" Content="Adresse" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ShopAddressField" HorizontalAlignment="Left" Height="23" Margin="10,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                    <Label x:Name="OpeningTimeLabel" Content="Åbningstider" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="OpeningTimesField" HorizontalAlignment="Left" Height="122" Margin="10,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" AcceptsReturn="True" SpellCheck.IsEnabled="False"/>
+                    <Label x:Name="ShopCVRLabel" Content="CVR" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ShopCVRField" HorizontalAlignment="Left" Height="23" Margin="10,306,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                    <Label x:Name="ShopChainLabel" Content="Kæde navn" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top"/>
+                    <ListBox x:Name="ChainListBox" HorizontalAlignment="Left" Height="150" Margin="10,358,0,0" VerticalAlignment="Top" Width="150">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path = chainName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

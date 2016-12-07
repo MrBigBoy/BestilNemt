@@ -17,6 +17,7 @@ namespace WPF_Client
             InitializeComponent();
             FillDataGridProducts();
             ReadProductWareHouse();
+            GetChainData();
         }
 
         private void FillDataGridProducts()
@@ -162,8 +163,8 @@ namespace WPF_Client
             {
                 conn.Open();
                 CmdString = "Select productId, productName, warehouseStock, wareHouseMinStock, administratorShopId  from Product, warehouse, Administrator WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId  ";
-               // SqlCommand cmd1 = new SqlCommand();
-               
+                // SqlCommand cmd1 = new SqlCommand();
+
 
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
@@ -180,9 +181,23 @@ namespace WPF_Client
         {
             BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
             var warehouse = new Warehouse();
-            warehouse.Stock =  Int32.Parse(NewAmount1.Text);
+            warehouse.Stock = Int32.Parse(NewAmount1.Text);
             proxy.UpdateWarehouse(warehouse);
             ReadProductWareHouse();
+        }
+
+        public void GetChainData()
+        {
+            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            ChainListBox.ItemsSource = proxy.GetAllChains();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            var meme = OpeningTimesField.Text;
+            var NewMeme = meme.Replace("\r\n", ";");
+            MessageBox.Show(NewMeme);
+
         }
     }
 }
