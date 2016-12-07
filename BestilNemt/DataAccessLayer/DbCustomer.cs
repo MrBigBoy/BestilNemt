@@ -18,13 +18,14 @@ namespace DataAccessLayer
         /// </returns>
         public int Create(Customer customer)
         {
-            int id = 0;
+            var id = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -34,18 +35,22 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("email", customer.Email);
                     cmd.Parameters.AddWithValue("address", customer.Address);
                     cmd.Parameters.AddWithValue("birthday", customer.Birthday);
+                    // Get the id
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -63,13 +68,14 @@ namespace DataAccessLayer
         /// </returns>
         public int RemoveCustomer(int id)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -81,13 +87,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -96,7 +105,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a Customer
+        /// Get a Customer
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
@@ -115,6 +124,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Customer object
                     customer = ObjectBuilder.CreateCustomer(reader);
                 }
             }
@@ -122,7 +132,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a list of all Customers
+        /// Get all Customers
         /// </summary>
         /// <returns>
         /// Return List of Customer
@@ -139,7 +149,9 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Customer object
                     var customer = ObjectBuilder.CreateCustomer(reader);
+                    // Add the Customer to the list
                     customers.Add(customer);
                 }
             }
@@ -155,13 +167,14 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateCustomer(Customer customer)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -178,26 +191,38 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
             }
             return i;
         }
+
+        /// <summary>
+        /// Add a Customer with a login
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="login"></param>
+        /// <returns>
+        /// Id of Customer if added, else 0
+        /// </returns>
         public int AddCustomerWithLogin(Customer customer, Login login)
         {
-            int id = 0;
-            var DbLogin = new DbLogin();
-            var returnedValue = 0;
+            var id = 0;
+            // Check if a user with the Username already exist
             if (DbLogin.DownloadPersonId(login.Username) != 0)
-                return returnedValue;
+                return id;
+            // Generate the hash with the login
             var parts = DbLogin.CreateHash(login.Password);
             using (
                 var conn =
@@ -206,19 +231,23 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = conn.CreateCommand();
                 var cmd2 = conn.CreateCommand();
-                var transaction = conn.BeginTransaction(IsolationLevel.Serializable);
+                // Set the isolation level to ReadCommitted
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 cmd2.Transaction = transaction;
                 try
                 {
+                    // Add the Customer
                     cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, 'Customer', @address);" +
                                               " SELECT @DataID = scope_identity(); INSERT INTO Customer(customerId,customerBirthday) VALUES(@DataID,@birthday);";
                     cmd.Parameters.AddWithValue("name", customer.Name);
                     cmd.Parameters.AddWithValue("email", customer.Email);
                     cmd.Parameters.AddWithValue("address", customer.Address);
                     cmd.Parameters.AddWithValue("birthday", customer.Birthday);
+                    // Get the id of the Customer
                     id = (int)cmd.ExecuteScalar();
-                    
+
+                    // Add the Login
                     cmd2.CommandText = "INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)";
                     cmd2.Parameters.AddWithValue("loginTableUsername", login.Username);
                     cmd2.Parameters.AddWithValue("loginTableParts", parts);
@@ -226,15 +255,18 @@ namespace DataAccessLayer
                     cmd2.ExecuteNonQuery();
                     transaction.Commit();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back" +e.Message);
+                        Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
