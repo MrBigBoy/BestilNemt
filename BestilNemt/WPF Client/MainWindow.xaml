@@ -50,7 +50,7 @@
                             <Grid Margin="0,304,0,0">
                                 <Button x:Name="AddProduct" Content="Opret" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="AddProduct_Click"/>
                                 <Button x:Name="DeleteProduct" Content="Slet" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Width="65" Click="DeleteProduct_Click"/>
-                                <Button x:Name="LoadDataIntoTextFields" Content="Indlæs" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="85,0,0,0" Click="LoadDataIntoTextFields_Click"/>
+                                <Button x:Name="LoadDataIntoTextFields" Content="Indlæs" HorizontalAlignment="Left" Width="65" Margin="85,0,0,98" Click="LoadDataIntoTextFields_Click"/>
                                 <Button x:Name="UpdateProduct" Content="Opdater" HorizontalAlignment="Left" Margin="85,25,0,0" VerticalAlignment="Top" Width="65" Click="UpdateProduct_Click"/>
                                 <Button x:Name="ClearProductFields" Content="Ryd produkt felterne" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="150" Click="ClearProductFields_Click"/>
                             </Grid>
@@ -65,7 +65,7 @@
                     <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="10,631,0,0" VerticalAlignment="Top" Width="65" Click="AddSaving_Click"/>
                     <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="95,631,0,0" VerticalAlignment="Top" Width="65" Click="RemoveSaving_Click"/>
                     <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="10,586,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="107,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+                    <TextBox x:Name="SavingPercent2" HorizontalAlignment="Left" Height="23" Margin="107,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
