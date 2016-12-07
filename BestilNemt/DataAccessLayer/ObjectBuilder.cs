@@ -37,7 +37,8 @@ namespace DataAccessLayer
                     Email = reader.GetString(reader.GetOrdinal("personEmail")),
                     Address = reader.GetString(reader.GetOrdinal("personAddress")),
                     PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                    Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr"))
+                    Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr")),
+                    ShopId = reader.GetInt32(reader.GetOrdinal("administratorShopId"))
                 };
                 return admin;
             }

@@ -119,8 +119,8 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT person.personId, personName, personEmail, personAddress, personType, administratorMemberNr FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personId = @id", conn);
-                cmd.Parameters.AddWithValue("id", id);
+                var cmd = new SqlCommand("SELECT * FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personId = @Id", conn);
+                cmd.Parameters.AddWithValue("Id", id);
                 var reader = cmd.ExecuteReader();
                 if (!reader.HasRows)
                     return null;
