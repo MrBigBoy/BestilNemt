@@ -3,6 +3,9 @@ using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for Saving
+    /// </summary>
     public interface IDbSaving
     {
         int AddSaving(Saving saving, Product product);

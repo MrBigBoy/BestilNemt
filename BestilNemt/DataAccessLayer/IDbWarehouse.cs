@@ -3,6 +3,9 @@ using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbWarehouse
+    /// </summary>
     public interface IDbWarehouse
     {
         int AddWarehouse(Warehouse warehouse);

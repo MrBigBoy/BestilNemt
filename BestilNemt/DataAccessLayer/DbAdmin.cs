@@ -17,7 +17,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Id of Admin if added, else 0
         /// </returns>
-        public int Create(Admin admin)
+        public int AddAdmin(Admin admin)
         {
             var i = 0;
             using (
@@ -66,7 +66,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return 1 if Admin is removed, else 0
         /// </returns>
-        public int RemoveAdmin(int id)
+        public int DeleteAdmin(int id)
         {
             var i = 0;
             using (

@@ -16,7 +16,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return 1 if Customer is added, else 0
         /// </returns>
-        public int Create(Customer customer)
+        public int AddCustomer(Customer customer)
         {
             var id = 0;
             using (
@@ -66,7 +66,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return 1 if Customer is deleted, else 0
         /// </returns>
-        public int RemoveCustomer(int id)
+        public int DeleteCustomer(int id)
         {
             var i = 0;
             using (

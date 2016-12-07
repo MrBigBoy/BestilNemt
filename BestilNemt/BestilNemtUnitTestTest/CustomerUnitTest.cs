@@ -217,7 +217,7 @@ namespace BestilNemtUnitTestTest
             var dbCust = new DbCustomer();
             var customer = new Customer(
                 "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(), "Customer");
-            var flag = dbCust.Create(customer);
+            var flag = dbCust.AddCustomer(customer);
             Assert.AreNotEqual(0, flag);
         }
 
@@ -262,8 +262,8 @@ namespace BestilNemtUnitTestTest
             var dbCust = new DbCustomer();
             var cust = new Customer("Ole Nielsen", "oel@mail.dk", "ahrtghjv", new DateTime(2009, 02, 13),
                 new Login(), new List<Chain>(), "Customer");
-            var id = dbCust.Create(cust);
-            var flag = dbCust.RemoveCustomer(id);
+            var id = dbCust.AddCustomer(cust);
+            var flag = dbCust.DeleteCustomer(id);
             Assert.AreNotEqual(0, flag);
 
         }

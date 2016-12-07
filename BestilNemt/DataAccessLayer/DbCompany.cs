@@ -119,7 +119,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return 1 if Company is removed, else 0
         /// </returns>
-        public int RemoveCompany(int id)
+        public int DeleteCompany(int id)
         {
             var i = 0;
             using (

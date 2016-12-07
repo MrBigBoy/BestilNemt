@@ -3,6 +3,9 @@ using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbShop
+    /// </summary>
     public interface IDbShop
     {
         int AddShop(Shop shop);

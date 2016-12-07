@@ -38,7 +38,7 @@ namespace Controller.ControllerTestClasses
             return flag;
         }
 
-        public int RemoveCompany(int id)
+        public int DeleteCompany(int id)
         {
              return companys.Remove(GetCompany(id)) ? 1 : 0;
         }
