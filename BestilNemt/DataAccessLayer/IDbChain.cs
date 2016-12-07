@@ -3,6 +3,9 @@ using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbChain
+    /// </summary>
     public interface IDbChain
     {
         Chain GetChain(int id);

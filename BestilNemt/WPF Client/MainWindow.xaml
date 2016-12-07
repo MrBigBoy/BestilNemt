@@ -12,11 +12,15 @@
             <ColumnDefinition Width="383*"/>
         </Grid.ColumnDefinitions>
 
-        <TabControl x:Name="tabControl" Margin="3,0,0,0" Grid.ColumnSpan="2">
+        <TabControl x:Name="tabControl" Margin="0,0,3,0" Grid.ColumnSpan="2">
             <TabItem Header="Produkter">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
-                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="3" Margin="10,427,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-                    <DataGrid x:Name="ProductInformation" Margin="180,5,5,5" AutoGenerateColumns="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="89*"/>
+                        <ColumnDefinition Width="1260*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="3" Margin="10,427,0,0" Stroke="Black" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2"/>
+                    <DataGrid x:Name="ProductInformation" Margin="91,5,5,5" AutoGenerateColumns="False" Grid.Column="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding productId}" Width="25" />
                             <DataGridTextColumn Header="Navn" Binding="{Binding productName}" Width="*"/>
@@ -31,7 +35,7 @@
                             <DataGridTextColumn Header="Slut dato" Binding="{Binding savingEndDate, StringFormat=\{0:dd.MM.yy\}}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Grid Margin="10,17,0,239" HorizontalAlignment="Left" Width="170">
+                    <Grid Margin="10,17,0,239" HorizontalAlignment="Left" Width="170" Grid.ColumnSpan="2">
                         <Grid Margin="0,31,0,0">
                             <Grid Margin="0,0,0,75">
                                 <Label x:Name="IdLabel" Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -57,36 +61,41 @@
                         </Grid>
                         <Label x:Name="ProductLabel" Content="Produkthåndtering" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     </Grid>
-                    <Label x:Name="SavingLabelName" Content="Rabathåndtering" HorizontalAlignment="Left" Margin="28,437,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <Label x:Name="SavingLabelName" Content="Rabathåndtering" HorizontalAlignment="Left" Margin="28,437,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="2"/>
                     <Label x:Name="SavingStartDateLabel" Content="Start dato" HorizontalAlignment="Left" Margin="10,471,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="10,502,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="150"/>
+                    <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="10,502,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="150" Grid.ColumnSpan="2"/>
                     <Label x:Name="SavingEndDateLabel" Content="Slut dato" HorizontalAlignment="Left" Margin="10,531,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="10,557,0,128" FirstDayOfWeek="Monday" Width="150"/>
+                    <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="10,557,0,128" FirstDayOfWeek="Monday" Width="150" Grid.ColumnSpan="2"/>
                     <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="10,631,0,0" VerticalAlignment="Top" Width="65" Click="AddSaving_Click"/>
-                    <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="95,631,0,0" VerticalAlignment="Top" Width="65" Click="RemoveSaving_Click"/>
-                    <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="10,586,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="SavingPercent2" HorizontalAlignment="Left" Height="23" Margin="107,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+                    <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="6,631,0,0" VerticalAlignment="Top" Width="65" Click="RemoveSaving_Click" Grid.Column="1"/>
+                    <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="10,586,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="18,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5">
-                    <Button x:Name="AddAmount" Content="Opret Antal" Margin="43,304,1231,385"/>
+                <Grid Background="#FFE5E5E5" Margin="0,-36,0,37">
+                    <Button x:Name="AddAmount" Content="Opret Antal" Margin="32,414,1242,275"/>
                     <Label x:Name="WareHouseLabel" Content="WareHouse" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label" Content="ProduktId" HorizontalAlignment="Left" Margin="43,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
-                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="43,93,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="ReadTable" Content="Indlæs " Margin="140,304,1134,385"/>
-                    <Label x:Name="MinStock" Content="Min. Antal" HorizontalAlignment="Left" Margin="43,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
-                    <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="43,152,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="43,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
-                    <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="43,211,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <DataGrid x:Name="ProductWarehouse" Margin="180,5,5,5" AutoGenerateColumns="False">
+                    <Label x:Name="label" Content="ProduktId" HorizontalAlignment="Left" Margin="32,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
+                    <TextBox x:Name="ProductIdWareHouse" HorizontalAlignment="Left" Height="23" Margin="32,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="ReadTable" Content="Indlæs " Margin="112,414,1162,275" RenderTransformOrigin="0.107,-2" Click="ReadTable_Click"/>
+                    <Label x:Name="MinStock" Content="Min. Antal" HorizontalAlignment="Left" Margin="34,281,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
+                    <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="34,312,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="34,340,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
+                    <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="34,371,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <DataGrid x:Name="ProductWarehouse" Margin="215,10,5,5" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding productId}" Width="25" />
-                            <DataGridTextColumn Header="Navn" Binding="{Binding productName}" Width="*"/>
-                            <DataGridTextColumn Header="Min Antal" Binding="{Binding warehouseStock}" Width="60"/>
-                            <DataGridTextColumn Header="Antal" Binding="{Binding warehouseStock}" Width="25"/>
+                            <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="25" />
+                            <DataGridTextColumn Header="VareHusId" Binding="{Binding warehouseId}" Width="25" />
+                            <DataGridTextColumn Header="Navn" Binding="{Binding productName}" Width="60"/>
+                            <DataGridTextColumn Header="Min Antal" Binding="{Binding wareHouseMinStock}" Width="60"/>
+                            <DataGridTextColumn Header="Antal" Binding="{Binding warehouseStock}" Width="60"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <Label x:Name="ProductNameWarehouse" Content="Produkt Navn" HorizontalAlignment="Left" Margin="34,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
+                    <TextBox x:Name="ProductName1" HorizontalAlignment="Left" Height="23" Margin="32,186,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="WareHouseID" Content="Varehus ID" HorizontalAlignment="Left" Margin="32,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
+                    <TextBox x:Name="WareHouseId" HorizontalAlignment="Left" Height="23" Margin="32,126,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Butikker">

@@ -61,7 +61,7 @@
     <Compile Include="IDbAdmin.cs" />
     <Compile Include="IDbCart.cs" />
     <Compile Include="IDbCompany.cs" />
-    <Compile Include="DbCompany1.cs" />
+    <Compile Include="DbCompany.cs" />
     <Compile Include="IDbLogin.cs" />
     <Compile Include="IDbProduct.cs" />
     <Compile Include="IDbPartOrder.cs" />

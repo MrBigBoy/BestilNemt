@@ -17,7 +17,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Id of Admin if added, else 0
         /// </returns>
-        public int Create(Admin admin)
+        public int AddAdmin(Admin admin)
         {
             var i = 0;
             using (
@@ -31,7 +31,7 @@ namespace DataAccessLayer
                 // Try to Insert the Admin
                 try
                 {
-                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);";
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);";
                     cmd.Parameters.AddWithValue("name", admin.Name);
                     cmd.Parameters.AddWithValue("email", admin.Email);
                     cmd.Parameters.AddWithValue("personType", admin.PersonType);
@@ -66,7 +66,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Return 1 if Admin is removed, else 0
         /// </returns>
-        public int RemoveAdmin(int id)
+        public int DeleteAdmin(int id)
         {
             var i = 0;
             using (
@@ -119,8 +119,8 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT person.personId, personName, personEmail, personAddress, personType, administratorMemberNr FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personId = @id", conn);
-                cmd.Parameters.AddWithValue("id", id);
+                var cmd = new SqlCommand("SELECT * FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personId = @Id", conn);
+                cmd.Parameters.AddWithValue("Id", id);
                 var reader = cmd.ExecuteReader();
                 if (!reader.HasRows)
                     return null;

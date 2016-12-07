@@ -34,11 +34,11 @@ namespace BestilNemtUnitTestTest
         public void AddLoginDb()
         {
             var dbLogin = new DbLogin();
-            var login = new Login("AdminDb", "SuperAdmin", 1);
+            var login = new Login("AdminTestDb", "SuperAdmin", 1);
             var returnedValue = dbLogin.AddLogin(login);
             login.Id = returnedValue;
             dbLogin.DeleteLogin(login);
-            Assert.AreEqual(1, returnedValue);
+            Assert.AreNotEqual(0, returnedValue);
         }
 
         /// <summary>

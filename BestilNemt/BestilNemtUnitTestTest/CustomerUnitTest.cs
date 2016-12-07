@@ -72,21 +72,6 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for invalid input person type
-        /// Test is sucsessful if validation of input failed and returned value is 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerFailPersonType()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "orm");
-            var flag = customerCtr.AddCustomer(customer);
-            Assert.AreEqual(0, flag);
-        }
-
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
         /// Test for the customer object with given id is found and returned value is not null
         /// </summary>
         [TestMethod]
@@ -217,7 +202,7 @@ namespace BestilNemtUnitTestTest
             var dbCust = new DbCustomer();
             var customer = new Customer(
                 "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(), "Customer");
-            var flag = dbCust.Create(customer);
+            var flag = dbCust.AddCustomer(customer);
             Assert.AreNotEqual(0, flag);
         }
 
@@ -262,8 +247,8 @@ namespace BestilNemtUnitTestTest
             var dbCust = new DbCustomer();
             var cust = new Customer("Ole Nielsen", "oel@mail.dk", "ahrtghjv", new DateTime(2009, 02, 13),
                 new Login(), new List<Chain>(), "Customer");
-            var id = dbCust.Create(cust);
-            var flag = dbCust.RemoveCustomer(id);
+            var id = dbCust.AddCustomer(cust);
+            var flag = dbCust.DeleteCustomer(id);
             Assert.AreNotEqual(0, flag);
 
         }

@@ -68,7 +68,7 @@ namespace WPF_Client
             ProductCategory.Text = (drv["productCategory"]).ToString();
             ProductImgPath.Text = (drv["productImgPath"]).ToString();
             ProductDescription.Text = (drv["productDescription"]).ToString();
-            SavingPercent2.Text = (drv["savingPercent"]).ToString();
+            SavingPercent.Text = (drv["savingPercent"]).ToString();
             StartDate.Text = (drv["savingStartDate"]).ToString();
             EndDate.Text = (drv["savingEndDate"]).ToString();
         }
@@ -102,7 +102,7 @@ namespace WPF_Client
             DateTime? endDate = EndDate.SelectedDate;
             saving.StartDate = startDate.Value;
             saving.EndDate = endDate.Value;
-            saving.SavingPercent = double.Parse(SavingPercent2.Text);
+            saving.SavingPercent = double.Parse(SavingPercent.Text);
             if (ProductId.Text == "")
             {
                 MessageBox.Show("Du mangler at indlæse et product");
@@ -144,46 +144,68 @@ namespace WPF_Client
         public void ReadProductWareHouse()
         {
             var proxy = new BestilNemtServiceClient();
-            LoginWindow login2 = new LoginWindow();
-            var login3 = login2.getLogin();
+
+            var login3 = LoginManager.User;
+
+           
             var shopIdAdmin = 0;
             if (login3 != null)
-            {
-                var id = login3.PersonId;
-                var admin = proxy.GetAdmin(id);
-                shopIdAdmin = admin.ShopId;
+             {
+               var id = login3.PersonId;
+                var admin = proxy.GetAdmin(2);
+            shopIdAdmin = admin.ShopId;
+            shopIdAdmin = 1;
+                var CmdString = string.Empty;
+                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+                {
+                    conn.Open();
+                    CmdString = "Select productId, warehouseId, productName, warehouseStock, wareHouseMinStock, administratorShopId  from Product, warehouse, Administrator WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId  ";
+                   // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
+
+
+                    SqlCommand cmd = new SqlCommand(CmdString, conn);
+                    cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
+               
+
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable("ProductWareHouse");
+                    sda.Fill(dt);
+
+                    ProductWarehouse.ItemsSource = dt.DefaultView;
+
+                }
             }
             else
             {
-                MessageBox.Show("Fuck youu");
+                MessageBox.Show("n o login");
             }
 
-            var CmdString = string.Empty;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                CmdString = "Select productId, productName, warehouseStock, wareHouseMinStock, administratorShopId  from Product, warehouse, Administrator WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId  ";
-                // SqlCommand cmd1 = new SqlCommand();
 
-
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
-
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("ProductWareHouse");
-                sda.Fill(dt);
-
-                ProductWarehouse.ItemsSource = dt.DefaultView;
-
-            }
         }
         public void updateAmount()
         {
             BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
             var warehouse = new Warehouse();
-            warehouse.Stock = Int32.Parse(NewAmount1.Text);
+           // warehouse.Id = Int32.Parse()
+          //  warehouse.Stock =  Int32.Parse(NewAmount1.Text);
+
             proxy.UpdateWarehouse(warehouse);
-            ReadProductWareHouse();
+           ReadProductWareHouse();
+        }
+        public void loadWarehouseProduct()
+        {
+            DataRowView drv = (DataRowView)ProductWarehouse.SelectedItem;
+            ProductIdWareHouse.Text = (drv["productId"]).ToString();
+            MinAmount.Text = (drv["wareHouseMinStock"]).ToString();
+            NewAmount1.Text = (drv["warehouseStock"]).ToString();
+            ProductName1.Text = (drv["productName"]).ToString();
+            WareHouseId.Text = (drv["warehouseId"]).ToString();
+           
+        }
+
+        private void ReadTable_Click(object sender, RoutedEventArgs e)
+        {
+            loadWarehouseProduct();
         }
 
         public void GetChainData()

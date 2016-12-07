@@ -14,15 +14,16 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="product"></param>
         /// <returns>
-        /// Return the id of the product from the identity on the database else 0
+        /// Id of Product if added, else 0
         /// </returns>
         public int AddProduct(Product product)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -33,18 +34,22 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("Description", product.Description);
                     cmd.Parameters.AddWithValue("Category", product.Category);
                     cmd.Parameters.AddWithValue("ImgPath", product.ImgPath);
+                    // Get the id
                     i = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -61,11 +66,12 @@ namespace DataAccessLayer
         /// </returns>
         public int RemoveProduct(int id)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -77,13 +83,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -92,11 +101,11 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return Product
+        /// Get a Product
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return Product if found, else null
+        /// product if found, else null
         /// </returns>
         public Product GetProduct(int id)
         {
@@ -107,17 +116,22 @@ namespace DataAccessLayer
                 var command = new SqlCommand("SELECT * FROM Product WHERE productId=@ProductId", conn);
                 command.Parameters.AddWithValue("ProductId", id);
                 var reader = command.ExecuteReader();
-
-                if (!reader.HasRows)
-                    return null;
                 while (reader.Read())
                 {
+                    // Build the object
                     product = ObjectBuilder.CreateProduct(reader);
                 }
             }
             return product;
         }
 
+        /// <summary>
+        /// Get all Product similar to name
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>
+        /// List of Product
+        /// </returns>
         public List<Product> GetProductsByName(string input)
         {
             var products = new List<Product>();
@@ -126,12 +140,14 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("Select * From Product Where productName Like @name", conn);
+                var command = new SqlCommand("SELECT * FROM Product WHERE productName LIKE @name", conn);
                 command.Parameters.AddWithValue("name", input);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Product object
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Add the Product to the list
                     products.Add(product);
                 }
             }
@@ -139,7 +155,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a List of all Products
+        /// Get all products
         /// </summary>
         /// <returns>
         /// List of products
@@ -154,7 +170,9 @@ namespace DataAccessLayer
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Product object
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Add to the list
                     products.Add(product);
                 }
             }
@@ -162,7 +180,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a List of all Products
+        /// Get all Sold products
         /// </summary>
         /// <returns>
         /// List of products
@@ -177,7 +195,9 @@ namespace DataAccessLayer
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Product object
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Add to the list
                     products.Add(product);
                 }
             }
@@ -185,7 +205,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a List of all Products
+        /// Get all Products with Saving
         /// </summary>
         /// <returns>
         /// List of products
@@ -200,14 +220,14 @@ namespace DataAccessLayer
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Product object
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Add to the list
                     products.Add(product);
                 }
             }
             return products;
         }
-
-
 
         /// <summary>
         /// Update a Product
@@ -218,11 +238,12 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateProduct(Product product)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -238,13 +259,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -261,11 +285,12 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteProduct(int id)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -277,13 +302,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }

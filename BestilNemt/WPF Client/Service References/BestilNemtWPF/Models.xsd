@@ -101,8 +101,6 @@
       <xs:element minOccurs="0" name="PersonId" type="xs:int" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
     </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Login" nillable="true" type="tns:Login" />
   <xs:complexType name="ArrayOfCustomer">

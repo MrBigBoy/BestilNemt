@@ -10,7 +10,7 @@ namespace Controller.ControllerTestClasses
         private List<Admin> Admins = new List<Admin>();
         private int IdCounter = 1;
         private int Flag = 0;
-        public int Create(Admin admin)
+        public int AddAdmin(Admin admin)
         {
             admin.Id = IdCounter;
             if (ValidateAdminInput(admin))
@@ -21,7 +21,7 @@ namespace Controller.ControllerTestClasses
             return Flag;
         }
 
-        public int RemoveAdmin(int id)
+        public int DeleteAdmin(int id)
         {
             return Admins.Remove(GetAdmin(id)) ? 1 : 0;
         }

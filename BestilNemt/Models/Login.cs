@@ -2,7 +2,10 @@
 
 namespace Models
 {
-    [DataContract(IsReference = true)]
+    /// <summary>
+    /// The login class
+    /// </summary>
+    [DataContract]
     public class Login
     {
         [DataMember]
@@ -15,7 +18,7 @@ namespace Models
         public int PersonId { get; set; }
 
         /// <summary>
-        /// The main constructor all contructors is depending on
+        /// Empty constructor
         /// </summary>
         public Login()
         {
