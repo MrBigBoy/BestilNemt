@@ -11,6 +11,6 @@
         <Label x:Name="UsernameLabel" Content="Brugernavn" HorizontalAlignment="Left" Margin="10,1,0,0" VerticalAlignment="Top"/>
         <Label x:Name="PasswordLabel" Content="Kodeord" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.1,0.409"/>
         <PasswordBox x:Name="PasswordField" Height="23" Margin="86,35,10,0" VerticalAlignment="Top" />
-        <Button x:Name="LoginConfirm" Content="Login" Margin="207,63,10,10" Click="LoginConfirm_Click"/>
+        <Button x:Name="LoginConfirm" Content="Login" Margin="207,63,10,10" Click="LoginConfirm_Click" IsDefault="True"/>
     </Grid>
 </Window>
