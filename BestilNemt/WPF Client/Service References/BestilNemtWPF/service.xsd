@@ -642,17 +642,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RemovePartOrder">
+  <xs:element name="DeletePartOrder">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RemovePartOrderResponse">
+  <xs:element name="DeletePartOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="RemovePartOrderResult" type="xs:int" />
+        <xs:element minOccurs="0" name="DeletePartOrderResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -670,17 +670,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdatePartorder">
+  <xs:element name="UpdatePartOrder">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="partOrder" nillable="true" type="q44:PartOrder" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdatePartorderResponse">
+  <xs:element name="UpdatePartOrderResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="UpdatePartorderResult" type="xs:int" />
+        <xs:element minOccurs="0" name="UpdatePartOrderResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -861,7 +861,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateWithCustomer">
+  <xs:element name="AddCustomerWithLogin">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="customer" nillable="true" type="q57:Customer" />
@@ -869,10 +869,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateWithCustomerResponse">
+  <xs:element name="AddCustomerWithLoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CreateWithCustomerResult" type="xs:int" />
+        <xs:element minOccurs="0" name="AddCustomerWithLoginResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

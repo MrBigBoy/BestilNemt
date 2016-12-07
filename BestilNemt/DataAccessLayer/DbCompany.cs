@@ -14,15 +14,16 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="company"></param>
         /// <returns>
-        /// Return 1 if Company is added, else 0
+        /// Id of Company if added, else 0
         /// </returns>
         public int AddCompany(Company company)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -34,18 +35,22 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("address", company.Address);
                     cmd.Parameters.AddWithValue("CVR", company.CVR);
                     cmd.Parameters.AddWithValue("KontoNr", company.Kontonr);
-                    i = cmd.ExecuteNonQuery();
+                    // Get the id
+                    i = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -54,7 +59,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a list of Companys
+        /// Get all companies
         /// </summary>
         /// <returns>
         /// Return List of Company
@@ -71,7 +76,9 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Company object
                     var company = ObjectBuilder.CreateCompany(reader);
+                    // Add the Company to the list
                     companys.Add(company);
                 }
             }
@@ -79,7 +86,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a Company
+        /// Get a Company
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
@@ -98,6 +105,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Company object
                     company = ObjectBuilder.CreateCompany(reader);
                 }
             }
@@ -111,15 +119,16 @@ namespace DataAccessLayer
         /// <returns>
         /// Return 1 if Company is removed, else 0
         /// </returns>
-        public int RemoveCompany(int id)
+        public int DeleteCompany(int id)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -131,13 +140,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -154,13 +166,14 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateCompany(Company company)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -175,13 +188,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }

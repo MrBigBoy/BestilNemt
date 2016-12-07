@@ -26,7 +26,7 @@ namespace Controller
         /// </returns>
         public int AddAdmin(Admin admin)
         {
-           return ValidateAdminInput(admin) ? DbAdmin.Create(admin) : 0;
+           return ValidateAdminInput(admin) ? DbAdmin.AddAdmin(admin) : 0;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Controller
         /// </returns>
         public int DeleteAdmin(int id)
         {
-            return DbAdmin.RemoveAdmin(id);
+            return DbAdmin.DeleteAdmin(id);
         }
 
         /// <summary>

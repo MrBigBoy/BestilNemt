@@ -10,7 +10,7 @@ namespace DataAccessLayer
     public class DbShop : IDbShop
     {
         /// <summary>
-        /// AddShop a Shop
+        /// Add a Shop
         /// </summary>
         /// <param name="shop"></param>
         /// <returns>
@@ -18,11 +18,12 @@ namespace DataAccessLayer
         /// </returns>
         public int AddShop(Shop shop)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -33,18 +34,22 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("ShopOpeningTime", shop.OpeningTime);
                     cmd.Parameters.AddWithValue("ShopCvr", shop.Cvr);
                     cmd.Parameters.AddWithValue("ShopChainId", shop.Chain.Id);
+                    // Get the id
                     i = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -61,11 +66,12 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteShop(int id)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -77,13 +83,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -92,7 +101,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// UpdateShop a Shop
+        /// Update a Shop
         /// </summary>
         /// <param name="shop"></param>
         /// <returns>
@@ -100,11 +109,12 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateShop(Shop shop)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -120,13 +130,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -135,7 +148,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a Shop
+        /// Get a Shop
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
@@ -153,6 +166,7 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
+                    // Build the Shop object
                     shop = ObjectBuilder.CreateShop(reader);
                 }
             }
@@ -160,7 +174,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a list of all Shops
+        /// get all Shops
         /// </summary>
         /// <returns>
         /// List of Shop
@@ -176,7 +190,9 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
+                    // Build the Shop object
                     var shop = ObjectBuilder.CreateShop(reader);
+                    // Add it the to list
                     shops.Add(shop);
                 }
             }
@@ -184,7 +200,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a list of all Shops
+        /// Get all Shops by a Chain id
         /// </summary>
         /// <returns>
         /// List of Shop
@@ -201,7 +217,9 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
+                    // build the Shop object
                     var shop = ObjectBuilder.CreateShop(reader);
+                    // Add it to the list
                     shops.Add(shop);
                 }
             }

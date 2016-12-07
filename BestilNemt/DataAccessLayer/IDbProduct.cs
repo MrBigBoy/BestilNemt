@@ -3,6 +3,9 @@ using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbProduct
+    /// </summary>
     public interface IDbProduct
     {
         int AddProduct(Product product);

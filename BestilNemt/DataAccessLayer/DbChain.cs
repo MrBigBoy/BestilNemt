@@ -27,6 +27,7 @@ namespace DataAccessLayer
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Chain object
                     chain = ObjectBuilder.CreateChain(reader);
                 }
             }
@@ -38,7 +39,7 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="chain"></param>
         /// <returns>
-        /// Return 1 if Chain is added, else 0
+        /// Id of Chain if added, else 0
         /// </returns>
         public int AddChain(Chain chain)
         {
@@ -47,6 +48,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -55,18 +57,22 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("ChainName", chain.Name);
                     cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
                     cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
+                    // Get the id
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -75,7 +81,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a list of all chains
+        /// Get all Chains
         /// </summary>
         /// <returns>
         /// List of Chain
@@ -91,7 +97,9 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
+                    // Build the Chain object
                     var chain = ObjectBuilder.CreateChain(reader);
+                    // Add the chain to the list
                     chains.Add(chain);
                 }
             }
@@ -107,11 +115,12 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateChain(Chain chain)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -126,13 +135,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -149,7 +161,7 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteChain(int id)
         {
-            int i = 0;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
@@ -165,13 +177,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }

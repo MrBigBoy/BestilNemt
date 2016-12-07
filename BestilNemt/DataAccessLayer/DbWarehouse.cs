@@ -9,6 +9,13 @@ namespace DataAccessLayer
 {
     public class DbWarehouse : IDbWarehouse
     {
+        /// <summary>
+        /// Add a Warehouse
+        /// </summary>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// id of Warehouse if added, else 0
+        /// </returns>
         public int AddWarehouse(Warehouse warehouse)
         {
             var id = 0;
@@ -18,6 +25,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -28,6 +36,7 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("warehouseMinStock", warehouse.MinStock);
                     cmd.Parameters.AddWithValue("warehouseShopId", warehouse.Shop.Id);
                     cmd.Parameters.AddWithValue("warehouseProductId", warehouse.Product.Id);
+                    // get the id
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
@@ -35,13 +44,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -49,6 +61,13 @@ namespace DataAccessLayer
             return id;
         }
 
+        /// <summary>
+        /// Get a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Warehouse if found, else null
+        /// </returns>
         public Warehouse GetWarehouse(int id)
         {
             Warehouse warehouse = null;
@@ -63,16 +82,22 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the product
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Build the Warehouse with a product
                     warehouse = ObjectBuilder.CreateWarehouse(reader, product);
                 }
             }
             return warehouse;
         }
 
+        /// <summary>
+        /// Get all warehouses
+        /// </summary>
+        /// <returns></returns>
         public List<Warehouse> GetAllWarehouses()
         {
-            List<Warehouse> warehouses = new List<Warehouse>();
+            var warehouses = new List<Warehouse>();
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -82,17 +107,27 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the product object
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Build the warehouse with a product
                     var warehouse = ObjectBuilder.CreateWarehouse(reader, product);
+                    // Add the warehouse to the list
                     warehouses.Add(warehouse);
                 }
             }
             return warehouses;
         }
 
+        /// <summary>
+        /// Get all Warehouse by a shop id
+        /// </summary>
+        /// <param name="shopId"></param>
+        /// <returns>
+        /// List of Warehouse
+        /// </returns>
         public List<Warehouse> GetAllWarehousesByShopId(int shopId)
         {
-            List<Warehouse> warehouses = new List<Warehouse>();
+            var warehouses = new List<Warehouse>();
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -103,8 +138,11 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the product object
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Build the warehouse with a product
                     var warehouse = ObjectBuilder.CreateWarehouse(reader, product);
+                    // Add the warehouse to the list
                     warehouses.Add(warehouse);
                 }
             }
@@ -120,6 +158,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -137,13 +176,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -151,6 +193,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Delete a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if warehouse was deleted, else 0
+        /// </returns>
         public int DeleteWarehouse(int id)
         {
             var i = 0;
@@ -160,6 +209,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the transaction level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Connection = conn;
                 cmd.Transaction = transaction;
@@ -169,18 +219,20 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("warehouseId", id);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
-                    Console.WriteLine("Commit was succsesfull");
-
+                    Console.WriteLine("Commit was successfull");
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }

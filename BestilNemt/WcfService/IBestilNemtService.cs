@@ -4,6 +4,9 @@ using System.ServiceModel;
 
 namespace WcfService
 {
+    /// <summary>
+    /// Interface for service
+    /// </summary>
     [ServiceContract]
     public interface IBestilNemtService
     {
@@ -149,13 +152,13 @@ namespace WcfService
         PartOrder GetPartOrder(int id);
 
         [OperationContract]
-        int RemovePartOrder(int id);
+        int DeletePartOrder(int id);
 
         [OperationContract]
         int AddPartOrder(PartOrder partOrder);
 
         [OperationContract]
-        int UpdatePartorder(PartOrder partOrder);
+        int UpdatePartOrder(PartOrder partOrder);
 
         [OperationContract]
         List<PartOrder> GetAllPartOrders();
@@ -198,7 +201,7 @@ namespace WcfService
         List<Product> GetProductsByName(string input);
 
         [OperationContract]
-        int CreateWithCustomer(Customer customer, Login login);
+        int AddCustomerWithLogin(Customer customer, Login login);
     }
 }
 

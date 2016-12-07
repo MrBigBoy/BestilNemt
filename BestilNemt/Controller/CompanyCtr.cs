@@ -49,7 +49,7 @@ namespace Controller
         /// </returns>
         public int RemoveCompany(int id)
         {
-            return DbCompany.RemoveCompany(id);
+            return DbCompany.DeleteCompany(id);
         }
 
         /// <summary>

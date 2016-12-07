@@ -10,7 +10,7 @@ namespace Controller.ControllerTestClasses
     {
         private List<Customer> customers = new List<Customer>();
         private int idCounter = 1;
-        public int Create(Customer customer)
+        public int AddCustomer(Customer customer)
         {
             customer.Id = idCounter;
             customers.Add(customer);
@@ -18,7 +18,7 @@ namespace Controller.ControllerTestClasses
             return customer.Id;
         }
 
-        public int RemoveCustomer(int id)
+        public int DeleteCustomer(int id)
         {
             return customers.Remove(GetCustomer(id)) ? 1 : 0;
         }

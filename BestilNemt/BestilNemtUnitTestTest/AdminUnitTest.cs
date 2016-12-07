@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Controller;
 using Controller.ControllerTestClasses;
 using DataAccessLayer;
@@ -136,7 +137,7 @@ namespace BestilNemtUnitTestTest
             var adminCtr = new AdminCtr(new DbAdmin());
             var admin = new Admin("Bob", "Bob@mail.com", "Long road 1", "Administrator", 1);
             var id = adminCtr.AddAdmin(admin);
-            Assert.AreNotEqual(0,id);
+            Assert.AreNotEqual(0, id);
         }
     }
 }

@@ -77,7 +77,7 @@ namespace WebClient.Controllers
 
             else
             {
-                proxy.CreateWithCustomer(customer, login);
+                proxy.AddCustomerWithLogin(customer, login);
                 return RedirectToAction("Index");
             }
         }

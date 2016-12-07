@@ -26,7 +26,7 @@ namespace Controller
         /// </returns>
         public int AddCustomer(Customer customer)
         {
-            return ValidatePersonInput(customer) ? DbCustomer.Create(customer) : 0;
+            return ValidatePersonInput(customer) ? DbCustomer.AddCustomer(customer) : 0;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Controller
         /// </returns>
         public int DeleteCustomer(int id)
         {
-            return DbCustomer.RemoveCustomer(id);
+            return DbCustomer.DeleteCustomer(id);
         }
 
         /// <summary>

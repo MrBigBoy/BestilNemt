@@ -9,9 +9,16 @@ namespace DataAccessLayer
 {
     public class DbPartOrder : IDbPartOrder
     {
+        /// <summary>
+        /// Add a PartOrder
+        /// </summary>
+        /// <param name="partOrder"></param>
+        /// <returns>
+        /// Id of PartOrder if added, else 0
+        /// </returns>
         public int AddPartOrder(PartOrder partOrder)
         {
-            int i = 0;
+            var id = 0;
             using (
                 var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
@@ -19,42 +26,53 @@ namespace DataAccessLayer
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
-                cmd.CommandText = "Insert into PartOrder(partOrderProductId,partOrderAmount,partOrderPartPrice,partOrderCartId) values(@productId, @amount, @partPrice, @cartId)";
-                cmd.Parameters.AddWithValue("productId", partOrder.Product.Id);
-                cmd.Parameters.AddWithValue("amount", partOrder.Amount);
-                cmd.Parameters.AddWithValue("partPrice", partOrder.PartPrice);
-                cmd.Parameters.AddWithValue("cartId", partOrder.Cart.Id);
-                i = cmd.ExecuteNonQuery();
-                transaction.Commit();
                 try
                 {
-
+                    cmd.CommandText = "Insert into PartOrder(partOrderProductId,partOrderAmount,partOrderPartPrice,partOrderCartId) values(@productId, @amount, @partPrice, @cartId)";
+                    cmd.Parameters.AddWithValue("productId", partOrder.Product.Id);
+                    cmd.Parameters.AddWithValue("amount", partOrder.Amount);
+                    cmd.Parameters.AddWithValue("partPrice", partOrder.PartPrice);
+                    cmd.Parameters.AddWithValue("cartId", partOrder.Cart.Id);
+                    // Get the Id
+                    id = (int)cmd.ExecuteScalar();
+                    transaction.Commit();
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
             }
-            return i;
+            return id;
         }
 
+        /// <summary>
+        /// Delete a PartOrder
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if PartOrder is deleted, else 0
+        /// </returns>
         public int DeletePartOrder(int id)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -66,13 +84,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -80,6 +101,13 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Get a PartOrder
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// PartOrder if found, else null
+        /// </returns>
         public PartOrder GetPartOrder(int id)
         {
             PartOrder partOrder = null;
@@ -93,12 +121,20 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the PartOrder
                     partOrder = ObjectBuilder.CreatePartOrder(reader);
                 }
             }
             return partOrder;
         }
 
+
+        /// <summary>
+        /// Get all PartOrders
+        /// </summary>
+        /// <returns>
+        /// List of PartOrder
+        /// </returns>
         public List<PartOrder> GetAllPartOrders()
         {
             var partOrders = new List<PartOrder>();
@@ -111,40 +147,32 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the PartOrder object
                     var partOrder = ObjectBuilder.CreatePartOrder(reader);
-                    partOrders.Add(partOrder);
-                }
-            }
-            return partOrders;
-        }
-        public List<PartOrder> GetAllPartOrdersFromCart()
-        {
-            var partOrders = new List<PartOrder>();
-            using (
-                var conn =
-                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Cart, PartOrder, Product WHERE partOrderProductId = productId AND cartId = partOrderCartId", conn);
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    var partOrder = ObjectBuilder.CreatePartOrder(reader);
+                    // Add the PartOrder
                     partOrders.Add(partOrder);
                 }
             }
             return partOrders;
         }
 
+        /// <summary>
+        /// Update a PartOrder
+        /// </summary>
+        /// <param name="partOrder"></param>
+        /// <returns>
+        /// 1 if partOrder is updated, else 0
+        /// </returns>
         public int UpdatePartOrder(PartOrder partOrder)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -158,13 +186,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }

@@ -3,6 +3,9 @@ using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbCart
+    /// </summary>
     public interface IDbCart
     {
         int AddCart(Cart cart);
