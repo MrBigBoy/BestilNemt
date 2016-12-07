@@ -12,6 +12,6 @@
         <Label x:Name="PasswordLabel" Content="Kodeord" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.1,0.409"/>
         <PasswordBox x:Name="PasswordField" Height="23" Margin="86,35,10,0" VerticalAlignment="Top" />
         <Button x:Name="LoginConfirm" Content="Login" Margin="207,63,10,10" Click="LoginConfirm_Click"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="45,88,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="45,88,0,0" VerticalAlignment="Top" Width="75" Click="LoginConfirm_Click"/>
     </Grid>
 </Window>
