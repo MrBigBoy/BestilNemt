@@ -16,6 +16,7 @@ namespace WPF_Client
         {
             InitializeComponent();
             FillDataGridProducts();
+            ReadProductWareHouse();
         }
 
         private void FillDataGridProducts()
@@ -139,10 +140,40 @@ namespace WPF_Client
         {
 
         }
-
-        private void SavingPercent2_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        public void ReadProductWareHouse()
         {
+            var CmdString = string.Empty;
 
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                CmdString = "Select productId, productName, warehouseStock, wareHouseMinStock  from Product, warehouse WHERE warehouseProductId = productId";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                var reader = cmd.ExecuteReader();
+                double NewPrice = 0;
+                while (reader.Read())
+                {
+                    NewPrice = Convert.ToDouble(reader.GetDecimal(reader.GetOrdinal("productPrice"))) - reader.GetDouble(reader.GetOrdinal("savingPercent"));
+                    var price = Convert.ToDouble(reader.GetDecimal(reader.GetOrdinal("productPrice")));
+                    var savingDecimal = reader.GetDouble(reader.GetOrdinal("savingPercent"));
+                    var newPrice = price - (price * savingDecimal / 100);
+                    price = newPrice;
+                }
+                reader.Close();
+
+
+                DataTable dt = new DataTable("ProductWareHouse");
+                sda.Fill(dt);
+                //dt.Columns.Add("SavingPrice");
+                //DataRow dr = dt.NewRow();
+                //dt.Rows[0]
+                //dr["SavingPrice"] = NewPrice;
+                ////dt.Rows.Add(dr);
+
+                ProductWarehouse.ItemsSource = dt.DefaultView;
+
+            }
         }
     }
 }
