@@ -31,7 +31,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId, shopId) output inserted.cartId VALUES(@totalPrice, @personId, @ShopId)";
+                    cmd.CommandText = "INSERT INTO Cart(cartTotalPrice, cartPersonId, cartShopId) output inserted.cartId VALUES(@totalPrice, @personId, @ShopId)";
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     cmd.Parameters.AddWithValue("personId", cart.PersonId);
                     cmd.Parameters.AddWithValue("ShopId", cart.ShopId);

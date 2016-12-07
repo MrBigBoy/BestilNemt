@@ -28,7 +28,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(companyId, companyCVR, companyKontoNr) VALUES(@DataID,@CVR,@KontoNr);";
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Company(companyId, companyCVR, companyKontoNr) VALUES(@DataID,@CVR,@KontoNr);";
                     cmd.Parameters.AddWithValue("name", company.Name);
                     cmd.Parameters.AddWithValue("email", company.Email);
                     cmd.Parameters.AddWithValue("personType", company.PersonType);

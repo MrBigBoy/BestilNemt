@@ -52,7 +52,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)";
+                    cmd.CommandText = "INSERT into LoginTable output inserted.loginTableId values(@loginTableUsername,@loginTableParts,@loginTablePersonId)";
                     cmd.Parameters.AddWithValue("loginTableUsername", login.Username);
                     cmd.Parameters.AddWithValue("loginTableParts", parts);
                     cmd.Parameters.AddWithValue("loginTablePersonId", login.PersonId);

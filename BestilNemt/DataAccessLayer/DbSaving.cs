@@ -29,7 +29,7 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Saving(savingStartDate,savingEndDate,savingPercent)VALUES(@startDate, @endDate, @percent); " +
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Saving(savingStartDate,savingEndDate,savingPercent) output inserted.savingId VALUES(@startDate, @endDate, @percent); " +
                                              "SELECT @DataID = scope_identity(); UPDATE Product SET productSavingId = @DataID WHERE productId = @productId;";
                     cmd.Parameters.AddWithValue("startDate", saving.StartDate);
                     cmd.Parameters.AddWithValue("endDate", saving.EndDate);

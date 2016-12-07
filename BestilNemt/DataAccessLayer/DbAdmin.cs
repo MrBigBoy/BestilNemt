@@ -31,7 +31,7 @@ namespace DataAccessLayer
                 // Try to Insert the Admin
                 try
                 {
-                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);";
+                    cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress) output inserted.personId VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);";
                     cmd.Parameters.AddWithValue("name", admin.Name);
                     cmd.Parameters.AddWithValue("email", admin.Email);
                     cmd.Parameters.AddWithValue("personType", admin.PersonType);

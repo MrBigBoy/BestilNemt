@@ -113,7 +113,12 @@ namespace BestilNemtUnitTestTest
         public void AddCartWithDb()
         {
             var cartDb = new DbCart();
-            var cart = new Cart();
+            var cart = new Cart
+            {
+                PersonId = 1,
+                ShopId = 1,
+                TotalPrice = new decimal(5)
+            };
             var id = cartDb.AddCart(cart);
             Assert.AreNotEqual(0, id);
         }
@@ -190,7 +195,12 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart = new Cart();
+                var cart = new Cart
+                {
+                    ShopId = 1,
+                    PersonId = 1,
+                    TotalPrice = new decimal(5)
+                };
                 var id = proxy.AddCart(cart);
                 Assert.AreNotEqual(0, id);
             }
@@ -277,7 +287,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
+                var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
                 var id = proxy.AddCart(cart);
                 cart.Id = id;
                 var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");

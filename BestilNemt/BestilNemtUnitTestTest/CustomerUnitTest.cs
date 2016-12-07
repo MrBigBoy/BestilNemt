@@ -72,21 +72,6 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for invalid input person type
-        /// Test is sucsessful if validation of input failed and returned value is 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerFailPersonType()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "orm");
-            var flag = customerCtr.AddCustomer(customer);
-            Assert.AreEqual(0, flag);
-        }
-
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
         /// Test for the customer object with given id is found and returned value is not null
         /// </summary>
         [TestMethod]
