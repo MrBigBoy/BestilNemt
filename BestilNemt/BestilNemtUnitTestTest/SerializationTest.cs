@@ -136,9 +136,8 @@ namespace BestilNemtUnitTestTest
         {
             var login = new Login();
             var chain = new Chain();
-            var chains = new List<Chain>();
-            chains.Add(chain);
-            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1);
+            var chains = new List<Chain> {chain};
+            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(admin);
             Assert.AreEqual(admin.Id, serializationResult.Id);
         }
@@ -149,7 +148,7 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain();
             var chains = new List<Chain>();
             chains.Add(chain);
-            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1);
+            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(admin);
             Assert.AreEqual(admin.Name, serializationResult.Name);
         }
@@ -160,7 +159,7 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain();
             var chains = new List<Chain>();
             chains.Add(chain);
-            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1);
+            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(admin);
             Assert.AreEqual(admin.Email, serializationResult.Email);
         }
@@ -171,7 +170,7 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain();
             var chains = new List<Chain>();
             chains.Add(chain);
-            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1);
+            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(admin);
             Assert.AreEqual(admin.Address, serializationResult.Address);
         }
@@ -182,7 +181,7 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain();
             var chains = new List<Chain>();
             chains.Add(chain);
-            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1);
+            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(admin);
             Assert.AreEqual(admin.PersonType, serializationResult.PersonType);
         }
@@ -193,7 +192,7 @@ namespace BestilNemtUnitTestTest
             var chain = new Chain();
             var chains = new List<Chain>();
             chains.Add(chain);
-            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1);
+            var admin = new Admin(4, "Benny", "benny@hotmail.com", "Kattevejen", login, chains, "Administrator", 1, 1);
             var serializationResult = SerializerTestHelpClass.TestSerialize(admin);
             Assert.AreEqual(admin.Membernr, serializationResult.Membernr);
         }

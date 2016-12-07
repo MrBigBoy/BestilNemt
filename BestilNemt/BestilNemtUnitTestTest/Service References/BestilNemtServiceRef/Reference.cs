@@ -297,11 +297,11 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/GetPartOrderResponse")]
         System.Threading.Tasks.Task<Models.PartOrder> GetPartOrderAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemovePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/RemovePartOrderResponse")]
-        int RemovePartOrder(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeletePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/DeletePartOrderResponse")]
+        int DeletePartOrder(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/RemovePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/RemovePartOrderResponse")]
-        System.Threading.Tasks.Task<int> RemovePartOrderAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeletePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/DeletePartOrderResponse")]
+        System.Threading.Tasks.Task<int> DeletePartOrderAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
         int AddPartOrder(Models.PartOrder partOrder);
@@ -309,11 +309,11 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
         System.Threading.Tasks.Task<int> AddPartOrderAsync(Models.PartOrder partOrder);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartorder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse")]
-        int UpdatePartorder(Models.PartOrder partOrder);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartOrderResponse")]
+        int UpdatePartOrder(Models.PartOrder partOrder);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartorder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartorderResponse")]
-        System.Threading.Tasks.Task<int> UpdatePartorderAsync(Models.PartOrder partOrder);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartOrderResponse")]
+        System.Threading.Tasks.Task<int> UpdatePartOrderAsync(Models.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
         Models.PartOrder[] GetAllPartOrders();
@@ -393,11 +393,11 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse")]
         System.Threading.Tasks.Task<Models.Product[]> GetProductsByNameAsync(string input);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateWithCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/CreateWithCustomerResponse")]
-        int CreateWithCustomer(Models.Customer customer, Models.Login login);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerWithLoginResponse")]
+        int AddCustomerWithLogin(Models.Customer customer, Models.Login login);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/CreateWithCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/CreateWithCustomerResponse")]
-        System.Threading.Tasks.Task<int> CreateWithCustomerAsync(Models.Customer customer, Models.Login login);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerWithLoginResponse")]
+        System.Threading.Tasks.Task<int> AddCustomerWithLoginAsync(Models.Customer customer, Models.Login login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -803,12 +803,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.GetPartOrderAsync(id);
         }
         
-        public int RemovePartOrder(int id) {
-            return base.Channel.RemovePartOrder(id);
+        public int DeletePartOrder(int id) {
+            return base.Channel.DeletePartOrder(id);
         }
         
-        public System.Threading.Tasks.Task<int> RemovePartOrderAsync(int id) {
-            return base.Channel.RemovePartOrderAsync(id);
+        public System.Threading.Tasks.Task<int> DeletePartOrderAsync(int id) {
+            return base.Channel.DeletePartOrderAsync(id);
         }
         
         public int AddPartOrder(Models.PartOrder partOrder) {
@@ -819,12 +819,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.AddPartOrderAsync(partOrder);
         }
         
-        public int UpdatePartorder(Models.PartOrder partOrder) {
-            return base.Channel.UpdatePartorder(partOrder);
+        public int UpdatePartOrder(Models.PartOrder partOrder) {
+            return base.Channel.UpdatePartOrder(partOrder);
         }
         
-        public System.Threading.Tasks.Task<int> UpdatePartorderAsync(Models.PartOrder partOrder) {
-            return base.Channel.UpdatePartorderAsync(partOrder);
+        public System.Threading.Tasks.Task<int> UpdatePartOrderAsync(Models.PartOrder partOrder) {
+            return base.Channel.UpdatePartOrderAsync(partOrder);
         }
         
         public Models.PartOrder[] GetAllPartOrders() {
@@ -931,12 +931,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.GetProductsByNameAsync(input);
         }
         
-        public int CreateWithCustomer(Models.Customer customer, Models.Login login) {
-            return base.Channel.CreateWithCustomer(customer, login);
+        public int AddCustomerWithLogin(Models.Customer customer, Models.Login login) {
+            return base.Channel.AddCustomerWithLogin(customer, login);
         }
         
-        public System.Threading.Tasks.Task<int> CreateWithCustomerAsync(Models.Customer customer, Models.Login login) {
-            return base.Channel.CreateWithCustomerAsync(customer, login);
+        public System.Threading.Tasks.Task<int> AddCustomerWithLoginAsync(Models.Customer customer, Models.Login login) {
+            return base.Channel.AddCustomerWithLoginAsync(customer, login);
         }
     }
 }
