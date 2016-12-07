@@ -65,7 +65,7 @@
                     <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="10,631,0,0" VerticalAlignment="Top" Width="65" Click="AddSaving_Click"/>
                     <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="95,631,0,0" VerticalAlignment="Top" Width="65" Click="RemoveSaving_Click"/>
                     <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="10,586,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="SavingPercent2" HorizontalAlignment="Left" Height="23" Margin="107,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+                    <TextBox x:Name="SavingPercent2" HorizontalAlignment="Left" Height="23" Margin="107,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53" TextChanged="SavingPercent2_TextChanged"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
