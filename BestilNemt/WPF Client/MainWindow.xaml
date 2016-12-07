@@ -21,7 +21,7 @@
                             <DataGridTextColumn Header="ID" Binding="{Binding productId}" Width="25" />
                             <DataGridTextColumn Header="Navn" Binding="{Binding productName}" Width="*"/>
                             <DataGridTextColumn Header="Pris" Binding="{Binding productPrice}" Width="75"/>
-                            <DataGridTextColumn Header="Tilbuds pris" Binding="{Binding SavingPrice}" Width="75"/>
+                            <DataGridTextColumn Header="Tilbuds pris" Binding="{Binding savingPrice}" Width="75"/>
                             <DataGridTextColumn Header="Beskrivelse" Binding="{Binding productDescription}" Width="*"/>
                             <DataGridTextColumn Header="Kategori" Binding="{Binding productCategory}" Width="100"/>
                             <DataGridTextColumn Header="ImgPath" Binding="{Binding productImgPath}" Width="100"/>
