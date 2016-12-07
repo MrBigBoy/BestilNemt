@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using Models;
 
 namespace DataAccessLayer
@@ -26,16 +27,26 @@ namespace DataAccessLayer
 
         public static Admin CreateAdmin(SqlDataReader reader)
         {
-            var admin = new Admin()
+            //Uses a try for the login on the dedicated client to see if the admin login is vaild
+            try
             {
-                Id = reader.GetInt32(reader.GetOrdinal("personId")),
-                Name = reader.GetString(reader.GetOrdinal("personName")),
-                Email = reader.GetString(reader.GetOrdinal("personEmail")),
-                Address = reader.GetString(reader.GetOrdinal("personAddress")),
-                PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr"))
-            };
-            return admin;
+                var admin = new Admin()
+                {
+                    Id = reader.GetInt32(reader.GetOrdinal("personId")),
+                    Name = reader.GetString(reader.GetOrdinal("personName")),
+                    Email = reader.GetString(reader.GetOrdinal("personEmail")),
+                    Address = reader.GetString(reader.GetOrdinal("personAddress")),
+                    PersonType = reader.GetString(reader.GetOrdinal("personType")),
+                    Membernr = reader.GetInt32(reader.GetOrdinal("administratorMemberNr"))
+                };
+                return admin;
+            }
+            catch (Exception)
+            {
+                
+                return null;
+            }
+
         }
 
         public static Cart CreateCart(SqlDataReader reader)
