@@ -22,18 +22,40 @@ namespace WPF_Client
         {
 
             var CmdString = string.Empty;
-            Product product = null;
-            Saving saving = null;
+           
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                CmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath, productSavingId, savingPercent, CONVERT(date, savingStartDate) as savingStartDate, CONVERT(date, savingEndDate) as savingEndDate from Product, Saving WHERE productSavingId = savingId";
+                CmdString = "Select productId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, productDescription, productCategory, productImgPath, productSavingId, savingPercent, CONVERT(date, savingStartDate) as savingStartDate, CONVERT(date, savingEndDate) as savingEndDate from Product, Saving WHERE productSavingId = savingId";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                var reader = cmd.ExecuteReader();
+                double NewPrice = 0;
+                while (reader.Read())
+                {
+                   NewPrice = Convert.ToDouble(reader.GetDecimal(reader.GetOrdinal("productPrice"))) - reader.GetDouble(reader.GetOrdinal("savingPercent"));
+                    var price = Convert.ToDouble(reader.GetDecimal(reader.GetOrdinal("productPrice")));
+                    var savingDecimal = reader.GetDouble(reader.GetOrdinal("savingPercent"));
+                    var newPrice = price - (price * savingDecimal / 100);
+                    price = newPrice;
+                }
+                reader.Close();
+                
+
                 DataTable dt = new DataTable("Produkter");
-                //product.Price = Convert.ToDouble(product.Price) * saving.SavingPercent;
                 sda.Fill(dt);
+                //dt.Columns.Add("SavingPrice");
+                //DataRow dr = dt.NewRow();
+                //dt.Rows[0]
+                //dr["SavingPrice"] = NewPrice;
+                ////dt.Rows.Add(dr);
+                
                 ProductInformation.ItemsSource = dt.DefaultView;
+
+
+                //product.Price = Convert.ToDouble(product.Price) * saving.SavingPercent;
+
+
             }
         }
 
@@ -67,7 +89,7 @@ namespace WPF_Client
             ProductCategory.Text = (drv["productCategory"]).ToString();
             ProductImgPath.Text = (drv["productImgPath"]).ToString();
             ProductDescription.Text = (drv["productDescription"]).ToString();
-            SavingPercent.Text = (drv["savingPercent"]).ToString();
+            SavingPercent2.Text = (drv["savingPercent"]).ToString();
             StartDate.Text = (drv["savingStartDate"]).ToString();
             EndDate.Text = (drv["savingEndDate"]).ToString();
         }
@@ -101,7 +123,7 @@ namespace WPF_Client
             DateTime? endDate = EndDate.SelectedDate;
             saving.StartDate = startDate.Value;
             saving.EndDate = endDate.Value;
-            saving.SavingPercent = double.Parse(SavingPercent.Text);
+            saving.SavingPercent = double.Parse(SavingPercent2.Text);
             if (ProductId.Text == "")
             {
                 MessageBox.Show("Du mangler at indlæse et product");

@@ -114,7 +114,7 @@ namespace Controller
         /// </returns>
         public int AddCartWithPartOrders(Cart cart)
         {
-            return DbCart.AddCartWithPartOrders(cart);
+            return ValidateCart(cart) ? DbCart.AddCartWithPartOrders(cart) : 0;
         }
 
         /// <summary>
@@ -127,6 +127,18 @@ namespace Controller
         public List<Cart> GetAllCartsByPersonId(int personId)
         {
             return DbCart.GetAllCartsByPersonId(personId);
+        }
+
+        /// <summary>
+        /// This method validate Cart fields
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns>
+        /// True if fields is correct, else false
+        /// </returns>
+        public bool ValidateCart(Cart cart)
+        {
+            return cart.PersonId != 0 && cart.PartOrders.Count > 0;
         }
     }
 }

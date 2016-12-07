@@ -4,6 +4,7 @@ using Models;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 
 namespace DataAccessLayer
 {
@@ -33,7 +34,7 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("totalPrice", cart.TotalPrice);
                     cmd.Parameters.AddWithValue("personId", cart.PersonId);
                     cmd.Parameters.AddWithValue("ShopId", cart.ShopId);
-                    
+
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                     Console.WriteLine("Commit was succsesfull");
@@ -83,7 +84,6 @@ namespace DataAccessLayer
         /// <summary>
         /// Return a Cart by id
         /// </summary>
-        /// <param name="id"></param>
         /// <returns>
         /// Return Cart if found, else null
         /// </returns>
@@ -282,7 +282,7 @@ namespace DataAccessLayer
 
         public int AddCartWithPartOrders(Cart cart)
         {
-            var flag = 0;
+            int flag;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -291,11 +291,7 @@ namespace DataAccessLayer
                 var cmd = conn.CreateCommand();
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
-                decimal cartTotalPrice = 0;
-                foreach (var partOrder in cart.PartOrders)
-                {
-                    cartTotalPrice = partOrder.PartPrice + cartTotalPrice;
-                }
+                var cartTotalPrice = cart.PartOrders.Aggregate<PartOrder, decimal>(0, (current, partOrder) => partOrder.PartPrice + current);
                 try
                 {
                     //save Cart in DB and get generated cartId

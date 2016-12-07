@@ -100,10 +100,14 @@
                         @{
                             if (login.PersonId != 0)
                             {
+                                // Set the PersonId to the cart
+                                shoppingCart.PersonId = login.PersonId;
+                                // Show a Log Off button 
                                 <a class="LoginClass" onclick="location.href='@Url.Action("LogOff", "Login")';alert('Du logger nu af');">@login.Username.ToLower() Log af </a>
                             }
                             else
                             {
+                                // Show a Log in button
                                 <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">Log ind</a>
                             }
                         }
