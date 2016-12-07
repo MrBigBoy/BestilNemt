@@ -116,6 +116,7 @@
       <xs:extension base="tns:Person">
         <xs:sequence>
           <xs:element minOccurs="0" name="Membernr" type="xs:int" />
+          <xs:element minOccurs="0" name="ShopId" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

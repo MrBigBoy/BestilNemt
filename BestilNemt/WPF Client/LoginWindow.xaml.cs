@@ -21,6 +21,10 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void LoginConfirm_Click(object sender, RoutedEventArgs e)
         {
+            getLogin();
+        }
+        public Login getLogin()
+        {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             Login login = new Login();
             login.Username = UsernameField.Text;
@@ -31,14 +35,18 @@ namespace WPF_Client
                 //Creates a new MainWindow and shows it to the user
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
+                
                 //Closes the login form
                 this.Close();
+                
             }
             else
             {
                 MessageBox.Show("Dit login virkede ikke, prøv igen");
             }
+            return login; 
         }
     }
-}
+    }
+
 
