@@ -3,6 +3,8 @@
 
 @{
     ViewBag.Title = "Product Page";
+    var proxy = new BestilNemtServiceClient();
+    var product = @Model.Product;
 }
 
 <h1>@Model.Product.Name</h1>
@@ -11,8 +13,20 @@
 </div>
 <div id="ProductInformation">
     <div id="BuyModul">
-        <p>Pris: @Model.Product.Price kr</p>
         @{
+            var savingId = product.SavingId;
+            var price = product.Price;
+            if (savingId != null)
+            {
+                var saving = proxy.GetSaving(savingId.Value);
+                var percent = (decimal)saving.SavingPercent;
+                var newPrice = price - (price * percent / 100);
+                <p>Pris: @price kr - @percent % = @newPrice kr</p>
+            }
+            else
+            {
+                <p>Pris: @price kr</p>
+            }
             if (Session["Login"] == null)
             {
                 var loginObj = new Login();
@@ -28,7 +42,6 @@
             if (shop != null)
 
             {
-                var proxy = new BestilNemtServiceClient();
                 var warehouses = proxy.GetAllWarehousesByShopId(shop.Id);
 
                 var maxAmount = 0;
@@ -76,7 +89,7 @@
                             }
                         </select>
                         <br />
-                            @Html.HiddenFor(x => x.Product.Id)
+                        @Html.HiddenFor(x => x.Product.Id)
 
                                 <button type="submit" onclick="alert('@Model.Product.Name er tilføjet til kurven');">Tilføj til kurv</button>
                                             }

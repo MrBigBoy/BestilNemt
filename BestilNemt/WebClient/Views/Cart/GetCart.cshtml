@@ -2,9 +2,11 @@
 @model global::WebClient.Models.ProductPartOrderViewModel
 @{
     ViewBag.Title = "Cart";
+    decimal totalPrice = new decimal(0);
 }
-
-<h2>Din Kurv</h2>
+<h2>
+    Din Kurv
+</h2>
 
 <table id="Carttable">
     <tr>
@@ -26,9 +28,23 @@
                     <td>
                         <img alt="" height="50" src="/Images/ProductPictures/@partOrder.Product.ImgPath" width="50">
                     </td>
-                    <td>@partOrder.Product.Name</td>
-                    <td>@partOrder.Product.Description</td>
-                    <td>@partOrder.Product.Price kr</td>
+
+                    @{
+                        var product = partOrder.Product;
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        var savingId = product.SavingId;
+                        var price = product.Price;
+                        if (savingId != null)
+                        {
+                            var proxy = new BestilNemtServiceClient();
+                            var saving = proxy.GetSaving(savingId.Value);
+                            var percent = (decimal)saving.SavingPercent;
+                            var newPrice = price - (price * percent / 100);
+                            price = newPrice;
+                        }
+                        <td>@price kr</td>
+                    }
                     <TD>
                         <form action="@Url.Action("UpdateCart", "Cart")" method="post">
                             @Html.Hidden("ProductId", partOrder.Product.Id)
@@ -81,7 +97,11 @@
                             </select>
                         </form>
                     </TD>
-                    <td>@partOrder.PartPrice kr</td>
+                    @{
+                        var total = price*partOrder.Amount;
+                        totalPrice += total;
+                    }
+                    <td>@total kr</td>
                     <td>
                         <div class="text-center">
                             <button class="btn btn-xs btn-danger pull-center" onclick="location.href = '@Url.Action("RemovePartOrder", "Cart", new {id = partOrder.Product.Id})'">
@@ -90,10 +110,15 @@
                         </div>
                     </td>
                 </tr>
-                                        }
-                                    }
+            }
+        }
     }
 </table>
+<div>
+    <h3 align="right">
+        Total pris: @totalPrice kr
+    </h3>
+</div>
 
 <div id="CheckOut">
     @*<p>Pris: @shoppingCart.PartOrders kr</p>*@

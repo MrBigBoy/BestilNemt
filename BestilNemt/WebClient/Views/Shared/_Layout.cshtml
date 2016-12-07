@@ -76,11 +76,15 @@
                     @{
                         if (shop != null)
                         {
-                            <li>@Html.ActionLink("Produkter", "Product", "Product")</li>
+                            <li>
+                                @Html.ActionLink("Produkter", "Product", "Product")
+                            </li>
                         }
                         if (login.PersonId != 0)
                         {
-                            <li>@Html.ActionLink("Kvitteringer", "Receipt", "Cart")</li>
+                            <li>
+                                @Html.ActionLink("Kvitteringer", "Receipt", "Cart")
+                            </li>
                         }
                         if (shop != null)
                         {
@@ -97,9 +101,6 @@
                             if (login.PersonId != 0)
                             {
                                 <a class="LoginClass" onclick="location.href='@Url.Action("LogOff", "Login")';alert('Du logger nu af');">@login.Username.ToLower() Log af </a>
-
-
-
                             }
                             else
                             {
@@ -113,7 +114,6 @@
                         <ul class="dropdown-menu dropdown-cart" role="menu">
                             <!-- For every item in cart loop and view -->
                             @{
-                                var buttonId = -1;
                                 if (partOrders != null)
                                 {
                                     for (var i = partOrders.Count - 1; i >= 0; i--)
