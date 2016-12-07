@@ -259,6 +259,9 @@ namespace WPF_Client.BestilNemtWPF {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MembernrField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ShopIdField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Membernr {
             get {
@@ -268,6 +271,19 @@ namespace WPF_Client.BestilNemtWPF {
                 if ((this.MembernrField.Equals(value) != true)) {
                     this.MembernrField = value;
                     this.RaisePropertyChanged("Membernr");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ShopId {
+            get {
+                return this.ShopIdField;
+            }
+            set {
+                if ((this.ShopIdField.Equals(value) != true)) {
+                    this.ShopIdField = value;
+                    this.RaisePropertyChanged("ShopId");
                 }
             }
         }

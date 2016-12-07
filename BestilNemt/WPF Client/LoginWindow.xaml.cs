@@ -22,6 +22,10 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void LoginConfirm_Click(object sender, RoutedEventArgs e)
         {
+            getLogin();
+        }
+        public Login getLogin()
+        {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             Login login = new Login();
             login.Username = UsernameField.Text;
@@ -51,7 +55,9 @@ namespace WPF_Client
             {
                 MessageBox.Show("Dit login virkede ikke, prøv igen");
             }
+            return login; 
         }
     }
-}
+    }
+
 
