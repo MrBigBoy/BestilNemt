@@ -15,18 +15,20 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="admin"></param>
         /// <returns>
-        /// Return 1 if Admin is added, else 0
+        /// Id of Admin if added, else 0
         /// </returns>
         public int Create(Admin admin)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
+                // Try to Insert the Admin
                 try
                 {
                     cmd.CommandText = "DECLARE @DataID int; INSERT INTO Person(personName, personEmail, personType, personAddress)VALUES(@name, @email, @personType, @address); SELECT @DataID = scope_identity(); INSERT INTO Administrator(administratorId) VALUES(@DataID);";
@@ -34,18 +36,22 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("email", admin.Email);
                     cmd.Parameters.AddWithValue("personType", admin.PersonType);
                     cmd.Parameters.AddWithValue("address", admin.Address);
-                    i = cmd.ExecuteNonQuery();
+                    // get the id
+                    i = (int)cmd.ExecuteScalar();
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -62,13 +68,14 @@ namespace DataAccessLayer
         /// </returns>
         public int RemoveAdmin(int id)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -80,13 +87,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
@@ -116,6 +126,7 @@ namespace DataAccessLayer
                     return null;
                 while (reader.Read())
                 {
+                    // Build the admin object
                     admin = ObjectBuilder.CreateAdmin(reader);
                 }
             }
@@ -123,7 +134,7 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a list of Admins
+        /// Get all Admins
         /// </summary>
         /// <returns>
         /// Return List of Admin
@@ -140,6 +151,7 @@ namespace DataAccessLayer
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    // build the admin object
                     var admin = ObjectBuilder.CreateAdmin(reader);
                     admins.Add(admin);
                 }
@@ -156,13 +168,14 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateAdmin(Admin admin)
         {
-            int i = 0;
+            var i = 0;
             using (
                 var conn =
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
+                // Set the transaction level to ReadCommitted
                 var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
                 cmd.Transaction = transaction;
                 try
@@ -177,13 +190,16 @@ namespace DataAccessLayer
                 }
                 catch (Exception)
                 {
+                    // The transaction failed
                     try
                     {
+                        // Try rolling back
                         transaction.Rollback();
                         Console.WriteLine("Transaction was rolled back");
                     }
                     catch (SqlException)
                     {
+                        // Rolling back failed
                         Console.WriteLine("Transaction rollback failed");
                     }
                 }
