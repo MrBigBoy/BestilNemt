@@ -7,11 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{F2662365-442D-4CDC-BA64-0CC2D500A3E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{7BF663BE-716E-4529-828F-FAAC1539F691}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F2662365-442D-4CDC-BA64-0CC2D500A3E3} = {F2662365-442D-4CDC-BA64-0CC2D500A3E3}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{EDF95E2C-B634-42E9-BE8A-58F5D9B40B80}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{F3B8490E-57FF-4C3C-B102-6EE2485FBD33}"
@@ -45,10 +40,6 @@ Global
 		{F2662365-442D-4CDC-BA64-0CC2D500A3E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2662365-442D-4CDC-BA64-0CC2D500A3E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2662365-442D-4CDC-BA64-0CC2D500A3E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BF663BE-716E-4529-828F-FAAC1539F691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BF663BE-716E-4529-828F-FAAC1539F691}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BF663BE-716E-4529-828F-FAAC1539F691}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BF663BE-716E-4529-828F-FAAC1539F691}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDF95E2C-B634-42E9-BE8A-58F5D9B40B80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDF95E2C-B634-42E9-BE8A-58F5D9B40B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDF95E2C-B634-42E9-BE8A-58F5D9B40B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
