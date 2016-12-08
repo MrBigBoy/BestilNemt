@@ -64,6 +64,9 @@ namespace BestilNemtUnitTestTest
         [TestMethod]
         public void TestConcurrencyBothSuccessfull()
         {
+            var i1 = 0;
+            var i2 = 0;
+
             var prod = new Product("TestProd1", new decimal(10), "TestDescription", "Oste", "TestPath");
             var s = new Shop("TestShop1", "TestAddress", "12345678", "OpeningTime", new DbChain().GetChain(1), new List<Warehouse>());
 
@@ -96,9 +99,11 @@ namespace BestilNemtUnitTestTest
 
             //start 2 parallel queries 
             var cartDb = new DbCart();
-            Parallel.Invoke(() => { cartDb.AddCartWithPartOrders(cart1); }, () => { cartDb.AddCartWithPartOrders(cart2); });
-            var stock = new DbWarehouse().GetWarehouse(warId).Stock;
-            Assert.AreEqual(3, stock);
+            Parallel.Invoke(() => { i1 = cartDb.AddCartWithPartOrders(cart1); }, () => { i2 = cartDb.AddCartWithPartOrders(cart2); });
+            var flag = 0;
+            if (i1 == 1 && i2 == 1)
+                flag = 1;
+            Assert.AreEqual(1, flag);
         }
     }
 }
