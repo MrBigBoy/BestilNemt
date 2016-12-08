@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Controller;
-using Controller.ControllerTestClasses;
+﻿using System.Threading.Tasks;
 using DataAccessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
@@ -16,18 +9,18 @@ namespace BestilNemtUnitTestTest
     public class ConcurentTransactionTest
     {
 
-        private Customer cust = new DbCustomer().GetCustomer(1);
-        private Customer cust1 = new DbCustomer().GetCustomer(4);
-        private Product prod = new DbProduct().GetProduct(1);
-        private Shop s = new DbShop().GetShop(1);
+        private readonly Customer _cust = new DbCustomer().GetCustomer(1);
+        private readonly Customer _cust1 = new DbCustomer().GetCustomer(4);
+        private readonly Product _prod = new DbProduct().GetProduct(1);
+        private readonly Shop _s = new DbShop().GetShop(1);
 
         [TestMethod]
         public void TestConcurrencyOneFaild()
         {
             var i1 = 0;
             var i2 = 0;
-            DbWarehouse dbW = new DbWarehouse();
-            Warehouse w = new Warehouse(1, 10, 0, prod, s);
+            var dbW = new DbWarehouse();
+            var w = new Warehouse(1, 10, 0, _prod, _s);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { i1 = StartTr1(); }, () => { i2 = StartTr2(); });
             var flag = 0;
@@ -37,10 +30,10 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void TestConcurrencyBothSuccsesfull()
+        public void TestConcurrencyBothSuccessfull()
         {
-            DbWarehouse dbW = new DbWarehouse();
-            Warehouse w = new Warehouse(1, 10, 0, prod, s);
+            var dbW = new DbWarehouse();
+            var w = new Warehouse(1, 10, 0, _prod, _s);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { StartTr3(); }, () => { StartTr4(); });
             var stock = dbW.GetWarehouse(1).Stock;
@@ -48,67 +41,67 @@ namespace BestilNemtUnitTestTest
         }
         private int StartTr1()
         {
-            DbCart cartDb = new DbCart();
-            Cart cart = MakeCart1();
+            var cartDb = new DbCart();
+            var cart = MakeCart1();
             return cartDb.AddCartWithPartOrders(cart);
         }
 
         private int StartTr2()
         {
-            DbCart cartDb = new DbCart();
-            Cart cart = MakeCart2();
+            var cartDb = new DbCart();
+            var cart = MakeCart2();
             return cartDb.AddCartWithPartOrders(cart);
         }
         private int StartTr3()
         {
-            DbCart cartDb = new DbCart();
-            Cart cart = MakeCart3();
+            var cartDb = new DbCart();
+            var cart = MakeCart3();
             return cartDb.AddCartWithPartOrders(cart);
         }
 
         private int StartTr4()
         {
-            DbCart cartDb = new DbCart();
-            Cart cart = MakeCart4();
+            var cartDb = new DbCart();
+            var cart = MakeCart4();
             return cartDb.AddCartWithPartOrders(cart);
         }
 
         private Cart MakeCart1()
         {
-            Cart cart1 = new Cart();
-            PartOrder po1 = new PartOrder(prod, 10, 20);
+            var cart1 = new Cart();
+            var po1 = new PartOrder(_prod, 10, 20);
             cart1.PartOrders.Add(po1);
-            cart1.PersonId = cust.Id;
-            cart1.ShopId = s.Id;
+            cart1.PersonId = _cust.Id;
+            cart1.ShopId = _s.Id;
             return cart1;
         }
 
         private Cart MakeCart2()
         {
-            Cart cart2 = new Cart();
-            PartOrder po2 = new PartOrder(prod, 10, 20);
+            var cart2 = new Cart();
+            var po2 = new PartOrder(_prod, 10, 20);
             cart2.PartOrders.Add(po2);
-            cart2.PersonId = cust1.Id;
-            cart2.ShopId = s.Id;
+            cart2.PersonId = _cust1.Id;
+            cart2.ShopId = _s.Id;
             return cart2;
         }
         private Cart MakeCart3()
         {
-            Cart cart1 = new Cart();
-            PartOrder po1 = new PartOrder(prod, 5, 20);
+            var cart1 = new Cart();
+            var po1 = new PartOrder(_prod, 5, 20);
             cart1.PartOrders.Add(po1);
-            cart1.PersonId = cust.Id;
-            cart1.ShopId = s.Id;
+            cart1.PersonId = _cust.Id;
+            cart1.ShopId = _s.Id;
             return cart1;
         }
 
         private Cart MakeCart4()
         {
-            Cart cart2 = new Cart();
-            PartOrder po2 = new PartOrder(prod, 2, 20);
+            var cart2 = new Cart();
+            var po2 = new PartOrder(_prod, 2, 20);
             cart2.PartOrders.Add(po2);
-            cart2.PersonId = cust1.Id;
-            cart2.ShopId = s.Id;
+            cart2.PersonId = _cust1.Id;
+            cart2.ShopId = _s.Id;
             return cart2;
         }
     }

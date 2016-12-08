@@ -351,6 +351,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         System.Threading.Tasks.Task<int> UpdateWarehouseAsync(Models.Warehouse warehouse);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdminResponse")]
+        int UpdateWarehouseAdmin(Models.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdminResponse")]
+        System.Threading.Tasks.Task<int> UpdateWarehouseAdminAsync(Models.Warehouse warehouse);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
         int DeleteWarehouse(int id);
         
@@ -873,6 +879,14 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> UpdateWarehouseAsync(Models.Warehouse warehouse) {
             return base.Channel.UpdateWarehouseAsync(warehouse);
+        }
+        
+        public int UpdateWarehouseAdmin(Models.Warehouse warehouse) {
+            return base.Channel.UpdateWarehouseAdmin(warehouse);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateWarehouseAdminAsync(Models.Warehouse warehouse) {
+            return base.Channel.UpdateWarehouseAdminAsync(warehouse);
         }
         
         public int DeleteWarehouse(int id) {
