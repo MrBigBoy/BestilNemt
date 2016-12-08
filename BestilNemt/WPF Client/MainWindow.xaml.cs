@@ -21,10 +21,11 @@ namespace WPF_Client
         public MainWindow()
         {
             InitializeComponent();
-            //FillDataGridProducts();
+            FillDataGridProducts();
             ReadProductWareHouse();
             FillDataGridShop();
             GetChainData();
+     
         }
 
         private void FillDataGridProducts()
@@ -35,7 +36,7 @@ namespace WPF_Client
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                CmdString = "Select productId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, productDescription, productCategory, productImgPath, productSavingId, savingPercent, CONVERT(date, savingStartDate) as savingStartDate, CONVERT(date, savingEndDate) as savingEndDate from Product, Saving WHERE productSavingId = savingId;SELECT * FROM Saving;";
+                CmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath from Product";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
 
@@ -62,7 +63,7 @@ namespace WPF_Client
             product.ImgPath = ProductImgPath.Text;
             proxy.AddProduct(product);
             FillDataGridProducts();
-            MessageBox.Show("hello"); 
+            MessageBox.Show("hello");
         }
 
 
@@ -74,11 +75,11 @@ namespace WPF_Client
             ProductName.Text = (drv["productName"]).ToString();
             ProductPrice.Text = (drv["productPrice"]).ToString();
             ProductCategory.Text = (drv["productCategory"]).ToString();
-            ProductImgPath.Text = (drv["productImgPath"]).ToString();
-            ProductDescription.Text = (drv["productDescription"]).ToString();
-            SavingPercent.Text = (drv["savingPercent"]).ToString();
-            StartDate.Text = (drv["savingStartDate"]).ToString();
-            EndDate.Text = (drv["savingEndDate"]).ToString();
+          //  ProductImgPath.Text = (drv["productImgPath"]).ToString();
+            //ProductDescription.Text = (drv["productDescription"]).ToString();
+            //SavingPercent.Text = (drv["savingPercent"]).ToString();
+            //StartDate.Text = (drv["savingStartDate"]).ToString();
+            //EndDate.Text = (drv["savingEndDate"]).ToString();
         }
 
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)
@@ -119,7 +120,7 @@ namespace WPF_Client
             {
                 Product product = proxy.GetProduct(int.Parse(ProductId.Text));
                 proxy.AddSaving(saving, product);
-                saving.Id = product.SavingId.Value;
+                //saving.Id = W.SavingId.Value;
                 FillDataGridProducts();
                 MessageBox.Show("Du har lavet en rabet på" + product.Name);
             }
@@ -153,20 +154,20 @@ namespace WPF_Client
         {
             var proxy = new BestilNemtServiceClient();
 
-            var login3 = LoginManager.User;
+            var currentUser = LoginManager.User;
 
 
             var shopIdAdmin = 0;
-            if (login3 != null)
+            if (currentUser != null)
             {
-                var id = login3.PersonId;
+                var id = currentUser.PersonId;
                 var admin = proxy.GetAdmin(id);
                 shopIdAdmin = admin.ShopId;
                 var CmdString = string.Empty;
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
                 {
                     conn.Open();
-                    CmdString = "Select productId, warehouseId, productName, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId AND warehouseSavingId = savingId" ;
+                    CmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId AND warehouseSavingId = savingId";
                     // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
 
 
@@ -230,7 +231,7 @@ namespace WPF_Client
                 }
                 warehouse.Stock = Int32.Parse(NewAmount1.Text);
                 warehouse.MinStock = Int32.Parse(MinAmount.Text);
-                warehouse.Shop = getShop;     
+                warehouse.Shop = getShop;
                 proxy.UpdateWarehouse(warehouse);
                 ReadProductWareHouse();
                 MessageBox.Show("Dit Antal er nu blevet opdateret");
@@ -269,7 +270,9 @@ namespace WPF_Client
                 ChainList.ItemsSource = dt.DefaultView;
             }
         }
-
+        /// <summary>
+        /// Get the data used to fill the DataGrid in the Butik tab, this is done with a custom SQL qurey that gets all the colums that we need
+        /// </summary>
         public void FillDataGridShop()
         {
             var CmdString = string.Empty;
@@ -286,16 +289,22 @@ namespace WPF_Client
                 ShopList.ItemsSource = dt.DefaultView;
             }
         }
-
+        /// <summary>
+        /// Gets all the text from the textfields and datatable, and sends that to the WCF that creates a new Shop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddShop_Click(object sender, RoutedEventArgs e)
         {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             DataRowView drv = (DataRowView)ChainList.SelectedItem;
             var shop = new Shop();
+            //Get the chain id form the ChainDataTable, and get the chain from the prooxy
             shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
             shop.Name = ShopNameField.Text;
             shop.Address = ShopAddressField.Text;
             shop.Cvr = ShopCVRField.Text;
+            //Replace the the new lines with semicolons because of the database
             var OpeningTimeRaw = ShopOpeningTimesField.Text;
             var NewOpeningTime = OpeningTimeRaw.Replace("\r\n", ";");
             shop.OpeningTime = NewOpeningTime;
@@ -303,7 +312,12 @@ namespace WPF_Client
             proxy.AddShop(shop);
             FillDataGridShop();
         }
-
+        
+        /// <summary>
+        /// Loads the selected item into the textfields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoadShopIntoTextField_Click(object sender, RoutedEventArgs e)
         {
             DataRowView drv = (DataRowView)ShopList.SelectedItem;
@@ -311,13 +325,18 @@ namespace WPF_Client
             ShopNameField.Text = (drv["shopName"]).ToString();
             ShopAddressField.Text = (drv["shopAddress"]).ToString();
             ShopCVRField.Text = (drv["shopCVR"]).ToString();
+            //Replace the semicolons with new lines because of the database
             var OpeningTimeRaw = (drv["ShopOpeningTime"]).ToString();
             var NewOpeningTime = OpeningTimeRaw.Replace(";", "\r\n");
             ShopOpeningTimesField.Text = NewOpeningTime;
             var chainId = (drv["ShopChainId"]).ToString();
             ChainList.FindName(chainId);
         }
-
+        /// <summary>
+        /// Delete the selected shop in the datatable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteShop_Click(object sender, RoutedEventArgs e)
         {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
@@ -325,7 +344,11 @@ namespace WPF_Client
             proxy.DeleteShop(Int32.Parse(ShopId));
             FillDataGridShop();
         }
-
+        /// <summary>
+        /// Updates the shop with the data inputed in the textfields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateShop_Click(object sender, RoutedEventArgs e)
         {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
@@ -361,6 +384,44 @@ namespace WPF_Client
         {
             ClearWareHouseFields();
         }
+        public void addProductTo()
+        {
+            var proxy = new BestilNemtServiceClient();
+            var CurrentUser = LoginManager.User;
+            var id = CurrentUser.PersonId;
+            var admin = proxy.GetAdmin(id);
+            var shopIdAdmin = 0;
+
+            shopIdAdmin = admin.ShopId;
+           
+            shopIdAdmin = admin.ShopId;
+            Shop getShop = proxy.GetShop(shopIdAdmin);
+            Warehouse warehouse = new Warehouse();
+            var productID = Int32.Parse(ProductId.Text);
+
+            var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+            foreach (var w in warehouses)
+            {
+                if (w.Product.Id == productID)
+                {
+                    warehouse = w;
+                }
+            }
+
+            // var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+            // warehouse.Id =
+            warehouse.MinStock = Int32.Parse(minStock.Text);
+            warehouse.Stock = Int32.Parse(Stock.Text);
+        //    warehouse.Product.Id = Int32.Parse(ProductId.Text);
+            warehouse.Shop= getShop;
+            warehouse.SavingId = null;
+           
+            proxy.AddWarehouse(warehouse);
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            addProductTo();
+        }
     }
 }
-
