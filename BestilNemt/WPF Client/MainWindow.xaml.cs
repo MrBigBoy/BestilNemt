@@ -75,11 +75,11 @@ namespace WPF_Client
             ProductName.Text = (drv["productName"]).ToString();
             ProductPrice.Text = (drv["productPrice"]).ToString();
             ProductCategory.Text = (drv["productCategory"]).ToString();
-            ProductImgPath.Text = (drv["productImgPath"]).ToString();
-            ProductDescription.Text = (drv["productDescription"]).ToString();
-            SavingPercent.Text = (drv["savingPercent"]).ToString();
-            StartDate.Text = (drv["savingStartDate"]).ToString();
-            EndDate.Text = (drv["savingEndDate"]).ToString();
+          //  ProductImgPath.Text = (drv["productImgPath"]).ToString();
+            //ProductDescription.Text = (drv["productDescription"]).ToString();
+            //SavingPercent.Text = (drv["savingPercent"]).ToString();
+            //StartDate.Text = (drv["savingStartDate"]).ToString();
+            //EndDate.Text = (drv["savingEndDate"]).ToString();
         }
 
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)
@@ -393,15 +393,27 @@ namespace WPF_Client
             var shopIdAdmin = 0;
 
             shopIdAdmin = admin.ShopId;
+           
+            shopIdAdmin = admin.ShopId;
             Shop getShop = proxy.GetShop(shopIdAdmin);
             Warehouse warehouse = new Warehouse();
+            var productID = Int32.Parse(ProductId.Text);
+
+            var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+            foreach (var w in warehouses)
+            {
+                if (w.Product.Id == productID)
+                {
+                    warehouse = w;
+                }
+            }
 
             // var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
             // warehouse.Id =
             warehouse.MinStock = Int32.Parse(minStock.Text);
             warehouse.Stock = Int32.Parse(Stock.Text);
-            warehouse.Product.Id = Int32.Parse(ProductId.Text);
-            warehouse.Shop.Id = getShop.Id;
+        //    warehouse.Product.Id = Int32.Parse(ProductId.Text);
+            warehouse.Shop= getShop;
             warehouse.SavingId = null;
            
             proxy.AddWarehouse(warehouse);
