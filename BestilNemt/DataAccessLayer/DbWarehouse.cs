@@ -31,7 +31,7 @@ namespace DataAccessLayer
                 try
                 {
                     cmd.CommandText = "INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId, warehouseSavingId) " +
-                                      "output inserted.warehouseId VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId, @WarehousehouseSavingId)";
+                                      "output inserted.warehouseId VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId, @WarehousehouseSavingId) ";
                     cmd.Parameters.AddWithValue("warehouseStock", warehouse.Stock);
                     cmd.Parameters.AddWithValue("warehouseMinStock", warehouse.MinStock);
                     cmd.Parameters.AddWithValue("warehouseShopId", warehouse.Shop.Id);

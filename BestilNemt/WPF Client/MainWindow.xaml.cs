@@ -18,10 +18,11 @@ namespace WPF_Client
         public MainWindow()
         {
             InitializeComponent();
-          //  FillDataGridProducts();
+            //  FillDataGridProducts();
             ReadProductWareHouse();
             FillDataGridShop();
             GetChainData();
+            addProductTo();
         }
 
         private void FillDataGridProducts()
@@ -59,7 +60,7 @@ namespace WPF_Client
             product.ImgPath = ProductImgPath.Text;
             proxy.AddProduct(product);
             FillDataGridProducts();
-            MessageBox.Show("hello"); 
+            MessageBox.Show("hello");
         }
 
 
@@ -116,7 +117,7 @@ namespace WPF_Client
             {
                 Product product = proxy.GetProduct(int.Parse(ProductId.Text));
                 proxy.AddSaving(saving, product);
-                saving.Id = product.SavingId.Value;
+                //saving.Id = W.SavingId.Value;
                 FillDataGridProducts();
                 MessageBox.Show("Du har lavet en rabet på" + product.Name);
             }
@@ -150,20 +151,20 @@ namespace WPF_Client
         {
             var proxy = new BestilNemtServiceClient();
 
-            var login3 = LoginManager.User;
+            var currentUser = LoginManager.User;
 
 
             var shopIdAdmin = 0;
-            if (login3 != null)
+            if (currentUser != null)
             {
-                var id = login3.PersonId;
+                var id = currentUser.PersonId;
                 var admin = proxy.GetAdmin(id);
                 shopIdAdmin = admin.ShopId;
                 var CmdString = string.Empty;
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
                 {
                     conn.Open();
-                    CmdString = "Select productId, warehouseId, productName, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId AND warehouseSavingId = savingId" ;
+                    CmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId AND warehouseSavingId = savingId";
                     // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
 
 
@@ -227,7 +228,7 @@ namespace WPF_Client
                 }
                 warehouse.Stock = Int32.Parse(NewAmount1.Text);
                 warehouse.MinStock = Int32.Parse(MinAmount.Text);
-                warehouse.Shop = getShop;     
+                warehouse.Shop = getShop;
                 proxy.UpdateWarehouse(warehouse);
                 ReadProductWareHouse();
                 MessageBox.Show("Dit Antal er nu blevet opdateret");
@@ -327,6 +328,27 @@ namespace WPF_Client
         {
             ClearWareHouseFields();
         }
+        public void addProductTo()
+        {
+            var proxy = new BestilNemtServiceClient();
+            var CurrentUser = LoginManager.User;
+            var id = CurrentUser.PersonId;
+            var admin = proxy.GetAdmin(id);
+            var shopIdAdmin = 0;
+
+            shopIdAdmin = admin.ShopId;
+            Shop getShop = proxy.GetShop(shopIdAdmin);
+            Warehouse warehouse = new Warehouse();
+
+            // var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+            // warehouse.Id =
+            warehouse.MinStock =
+            warehouse.Stock =
+            warehouse.Product.Id =
+            warehouse.Shop.Id = getShop.Id;
+            warehouse.SavingId = null;
+           
+            proxy.AddWarehouse(warehouse);
+        }
     }
 }
-
