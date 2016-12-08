@@ -58,5 +58,14 @@ namespace Models
             Chain = chain;
             Warehouses = warehouses;
         }
+        public Shop(string name, string address, string cvr, string openingTime, Chain chain, List<Warehouse> warehouses)
+        {
+            Name = name;
+            Address = address;
+            OpeningTime = openingTime;
+            Cvr = cvr;
+            Chain = chain;
+            Warehouses = warehouses;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using DataAccessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
@@ -12,7 +14,8 @@ namespace BestilNemtUnitTestTest
         private readonly Customer _cust = new DbCustomer().GetCustomer(1);
         private readonly Customer _cust1 = new DbCustomer().GetCustomer(4);
         private readonly Product _prod = new DbProduct().GetProduct(1);
-        private readonly Shop _s = new DbShop().GetShop(1);
+        
+        private readonly Shop _s = new Shop("TestShop", "TestAddress", "12345678", "OpeningTime", new DbChain().GetChain(1), new List<Warehouse>());
 
         [TestMethod]
         public void TestConcurrencyOneFaild()
