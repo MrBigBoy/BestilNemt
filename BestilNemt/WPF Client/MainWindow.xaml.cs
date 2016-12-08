@@ -25,7 +25,7 @@ namespace WPF_Client
             ReadProductWareHouse();
             FillDataGridShop();
             GetChainData();
-            addProductTo();
+     
         }
 
         private void FillDataGridProducts()
@@ -405,6 +405,11 @@ namespace WPF_Client
             warehouse.SavingId = null;
            
             proxy.AddWarehouse(warehouse);
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            addProductTo();
         }
     }
 }
