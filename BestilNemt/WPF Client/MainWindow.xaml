@@ -53,9 +53,14 @@
                         </Grid>
                         <Label x:Name="ProductLabel" Content="Produkthåndtering" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     </Grid>
-                    <TextBox x:Name="minStock" HorizontalAlignment="Left" Height="20" Margin="10,475,0,0" TextWrapping="Wrap" Text="minStock" VerticalAlignment="Top" Width="63"/>
-                    <TextBox x:Name="Stock" HorizontalAlignment="Left" Height="20" Margin="10,500,0,0" TextWrapping="Wrap" Text="stock" VerticalAlignment="Top" Width="63"/>
-                    <Button x:Name="button" Content="Opret Varehus(produkt)" HorizontalAlignment="Left" Margin="29,624,0,0" VerticalAlignment="Top" Width="146" Click="button_Click"/>
+                    <Grid Margin="10,427,1189,136">
+                        <Label x:Name="AddToWarehouseLabel" Content="Produkthåndtering" HorizontalAlignment="Left" Margin="14,0,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                        <TextBox x:Name="minStock" HorizontalAlignment="Left" Height="20" Margin="0,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                        <TextBox x:Name="Stock" HorizontalAlignment="Left" Height="20" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                        <Button x:Name="AddToWarehouseBtn" Content="Tilføj til varehus" HorizontalAlignment="Left" Margin="0,126,0,0" VerticalAlignment="Top" Width="150" Click="AddToWarehouse_Click"/>
+                        <Label x:Name="MinStockLabel" Content="Minimum antal på lager" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="StockLabel" Content="Antal på lager" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top"/>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Varehus">

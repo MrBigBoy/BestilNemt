@@ -22,7 +22,7 @@ namespace WPF_Client
         {
             InitializeComponent();
             FillDataGridProducts();
-            ReadProductWareHouse();
+            FillProductWareHouse();
             FillDataGridShop();
             GetChainData();
      
@@ -150,7 +150,7 @@ namespace WPF_Client
         {
 
         }
-        public void ReadProductWareHouse()
+        public void FillProductWareHouse()
         {
             var proxy = new BestilNemtServiceClient();
 
@@ -233,7 +233,7 @@ namespace WPF_Client
                 warehouse.MinStock = Int32.Parse(MinAmount.Text);
                 warehouse.Shop = getShop;
                 proxy.UpdateWarehouse(warehouse);
-                ReadProductWareHouse();
+                FillProductWareHouse();
                 MessageBox.Show("Dit Antal er nu blevet opdateret");
             }
 
@@ -384,7 +384,7 @@ namespace WPF_Client
         {
             ClearWareHouseFields();
         }
-        public void addProductTo()
+        public void AddProductToWarehouse()
         {
             var proxy = new BestilNemtServiceClient();
             var CurrentUser = LoginManager.User;
@@ -407,9 +407,10 @@ namespace WPF_Client
             proxy.AddWarehouse(warehouse);
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void AddToWarehouse_Click(object sender, RoutedEventArgs e)
         {
-            addProductTo();
+            AddProductToWarehouse();
+            FillProductWareHouse();
         }
     }
 }
