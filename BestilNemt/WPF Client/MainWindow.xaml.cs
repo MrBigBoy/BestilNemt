@@ -3,6 +3,7 @@ using System.Windows;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
 
 namespace WPF_Client
@@ -17,6 +18,7 @@ namespace WPF_Client
             InitializeComponent();
             FillDataGridProducts();
             ReadProductWareHouse();
+            FillDataGridShop();
             GetChainData();
         }
 
@@ -28,7 +30,7 @@ namespace WPF_Client
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                CmdString = "Select productId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, productDescription, productCategory, productImgPath, productSavingId, savingPercent, CONVERT(date, savingStartDate) as savingStartDate, CONVERT(date, savingEndDate) as savingEndDate from Product, Saving WHERE productSavingId = savingId";
+                CmdString = "Select productId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, productDescription, productCategory, productImgPath, productSavingId, savingPercent, CONVERT(date, savingStartDate) as savingStartDate, CONVERT(date, savingEndDate) as savingEndDate from Product, Saving WHERE productSavingId = savingId;SELECT * FROM Saving;";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
 
@@ -147,25 +149,25 @@ namespace WPF_Client
 
             var login3 = LoginManager.User;
 
-           
+
             var shopIdAdmin = 0;
             if (login3 != null)
-             {
-               var id = login3.PersonId;
+            {
+                var id = login3.PersonId;
                 var admin = proxy.GetAdmin(2);
-            shopIdAdmin = admin.ShopId;
-            shopIdAdmin = 1;
+                shopIdAdmin = admin.ShopId;
+                shopIdAdmin = 1;
                 var CmdString = string.Empty;
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
                 {
                     conn.Open();
                     CmdString = "Select productId, warehouseId, productName, warehouseStock, wareHouseMinStock, administratorShopId  from Product, warehouse, Administrator WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId  ";
-                   // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
+                    // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
 
 
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
-               
+
 
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("ProductWareHouse");
@@ -186,11 +188,11 @@ namespace WPF_Client
         {
             BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
             var warehouse = new Warehouse();
-           // warehouse.Id = Int32.Parse()
-          //  warehouse.Stock =  Int32.Parse(NewAmount1.Text);
+            // warehouse.Id = Int32.Parse()
+            //  warehouse.Stock =  Int32.Parse(NewAmount1.Text);
 
             proxy.UpdateWarehouse(warehouse);
-           ReadProductWareHouse();
+            ReadProductWareHouse();
         }
         public void loadWarehouseProduct()
         {
@@ -200,7 +202,7 @@ namespace WPF_Client
             NewAmount1.Text = (drv["warehouseStock"]).ToString();
             ProductName1.Text = (drv["productName"]).ToString();
             WareHouseId.Text = (drv["warehouseId"]).ToString();
-           
+
         }
 
         private void ReadTable_Click(object sender, RoutedEventArgs e)
@@ -210,15 +212,61 @@ namespace WPF_Client
 
         public void GetChainData()
         {
-            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            ChainListBox.ItemsSource = proxy.GetAllChains();
+            var CmdString = string.Empty;
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                CmdString = "Select chainId, chainName From Chain";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable("Kæder");
+                sda.Fill(dt);
+                ChainList.ItemsSource = dt.DefaultView;
+            }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        public void FillDataGridShop()
         {
-            var meme = OpeningTimesField.Text;
-            var NewMeme = meme.Replace("\r\n", ";");
-            MessageBox.Show(NewMeme);
+            var CmdString = string.Empty;
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                CmdString = "SELECT shopId, shopName, shopAddress, shopOpeningTime, shopChainId, chainName FROM Shop, Chain WHERE shopChainId = chainId";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable("Butikker");
+                sda.Fill(dt);
+                ShopList.ItemsSource = dt.DefaultView;
+            }
+        }
+
+        private void AddChain_Click(object sender, RoutedEventArgs e)
+        {
+            var OpeningTimeRaw = ShopOpeningTimesField.Text;
+            var NewOpeningTime = OpeningTimeRaw.Replace("\r\n", ";");
+        }
+
+        private void LoadChainIntoTextField_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView drv = (DataRowView)ProductWarehouse.SelectedItem;
+            ShopIdField.Text = (drv["shopId"]).ToString();
+            ShopNameField.Text = (drv["shopName"]).ToString();
+            ShopAddressField.Text = (drv["shopAddress"]).ToString();
+            ShopOpeningTimesField.Text = (drv["ShopOpeningTime"]).ToString();
+            //ChainList.move = (drv["ShopChainId"]).ToString();
+        }
+
+        private void DeleteChain_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateChain_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
