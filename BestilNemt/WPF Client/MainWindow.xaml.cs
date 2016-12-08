@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using WPF_Client.BestilNemtWPF;
+using System.Collections.Generic;
+
 
 namespace WPF_Client
 {
@@ -208,19 +210,24 @@ namespace WPF_Client
             {
 
                 shopIdAdmin = admin.ShopId;
-                var getShop = proxy.GetShop(shopIdAdmin);
-                var warehouse = new Warehouse();
-                var product = new Product();
-                warehouse.Id = Int32.Parse(WareHouseId.Text);
-                warehouse.ProductId = Int32.Parse(ProductIdWareHouse.Text);
+                Shop getShop = proxy.GetShop(shopIdAdmin);
+                Warehouse warehouse = new Warehouse();
+                var productID = Int32.Parse(ProductIdWareHouse.Text);
+
+                var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+                foreach (var w in warehouses)
+                {
+                    if (w.Product.Id == productID)
+                    {
+                        warehouse = w;
+                    }
+                }
                 warehouse.Stock = Int32.Parse(NewAmount1.Text);
                 warehouse.MinStock = Int32.Parse(MinAmount.Text);
-               // warehouse.Shop.Id = getShop.Id; 
-              // warehouse.Product.Id 
-                warehouse.ShopId = getShop.Id;
-
-                proxy.UpdateWarehouseAdmin(warehouse);
+                warehouse.Shop = getShop;     
+                proxy.UpdateWarehouse(warehouse);
                 ReadProductWareHouse();
+                MessageBox.Show("Dit Antal er nu blevet opdateret");
             }
 
         }
@@ -264,7 +271,7 @@ namespace WPF_Client
             ProductIdWareHouse.Text = "";
             NewAmount1.Text = "";
             MinAmount.Text = "";
-            ProductName1.Text = ""; 
+            ProductName1.Text = "";
         }
 
         private void ClearFiledsWarehouse_Click(object sender, RoutedEventArgs e)

@@ -80,10 +80,7 @@ namespace Controller
         /// <returns>
         /// 1 if Warehouse is updated, else 0
         /// </returns>
-        public int UpdateWarehouseAdmin(Warehouse warehouse)
-        {
-            return ValidateWarehouse(warehouse) ? DbWarehouse.UpdateWarehouseAdmin(warehouse) : 0;
-        }
+      
 
         /// <summary>
         /// Delete a Warehouse
