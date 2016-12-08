@@ -55,7 +55,7 @@
                     </Grid>
                     <TextBox x:Name="minStock" HorizontalAlignment="Left" Height="20" Margin="10,475,0,0" TextWrapping="Wrap" Text="minStock" VerticalAlignment="Top" Width="63"/>
                     <TextBox x:Name="Stock" HorizontalAlignment="Left" Height="20" Margin="10,500,0,0" TextWrapping="Wrap" Text="stock" VerticalAlignment="Top" Width="63"/>
-                    <Button x:Name="button" Content="Opret Varehus(produkt)" HorizontalAlignment="Left" Margin="29,624,0,0" VerticalAlignment="Top" Width="146"/>
+                    <Button x:Name="button" Content="Opret Varehus(produkt)" HorizontalAlignment="Left" Margin="29,624,0,0" VerticalAlignment="Top" Width="146" Click="button_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Varehus">
