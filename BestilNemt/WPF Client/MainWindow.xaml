@@ -16,19 +16,15 @@
             <TabItem Header="Produkter">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="3" Margin="10,427,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-                    <DataGrid x:Name="ProductInformation" Margin="180,5,5,5" AutoGenerateColumns="True" SelectionMode="Single">
+                    <DataGrid x:Name="ProductInformation" Margin="180,5,5,5" AutoGenerateColumns="False" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding productId}" Width="25" />
                             <DataGridTextColumn Header="Navn" Binding="{Binding productName}" Width="*"/>
                             <DataGridTextColumn Header="Pris" Binding="{Binding productPrice}" Width="75"/>
-                            <DataGridTextColumn Header="Tilbuds pris" Binding="{Binding savingPrice}" Width="75"/>
                             <DataGridTextColumn Header="Beskrivelse" Binding="{Binding productDescription}" Width="*"/>
                             <DataGridTextColumn Header="Kategori" Binding="{Binding productCategory}" Width="100"/>
                             <DataGridTextColumn Header="ImgPath" Binding="{Binding productImgPath}" Width="100"/>
-                            <DataGridTextColumn Header="TilbudsID" Binding="{Binding productSavingId}" Width="60"/>
-                            <DataGridTextColumn Header="%" Binding="{Binding savingPercent}" Width="25"/>
-                            <DataGridTextColumn Header="Start dato" Binding="{Binding savingStartDate, StringFormat=\{0:dd.MM.yy\}}"/>
-                            <DataGridTextColumn Header="Slut dato" Binding="{Binding savingEndDate, StringFormat=\{0:dd.MM.yy\}}"/>
+
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Margin="10,17,0,239" HorizontalAlignment="Left" Width="170">
