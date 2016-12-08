@@ -803,9 +803,6 @@ namespace WcfService
             return CustomerCtr.AddCustomerWithLogin(customer, login);
         }
 
-        public int UpdateWarehouseAdmin(Warehouse warehouse)
-        {
-            return WarehouseCtr.UpdateWarehouseAdmin(warehouse);
-        }
+       
     }
 }
