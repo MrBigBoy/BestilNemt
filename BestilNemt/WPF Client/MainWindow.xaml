@@ -86,6 +86,8 @@
                             <DataGridTextColumn Header="Produkt navn" Binding="{Binding productName}" Width="120"/>
                             <DataGridTextColumn Header="Min Antal" Binding="{Binding wareHouseMinStock}" Width="120"/>
                             <DataGridTextColumn Header="Antal" Binding="{Binding warehouseStock}" Width="120"/>
+                            <DataGridTextColumn Header="SavingId" Binding="{Binding warehouseSavingId}" Width="120"/>
+                            <DataGridTextColumn Header="Procent %" Binding="{Binding savingPercent}" Width="120"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label x:Name="ProductNameWarehouse" Content="Produkt Navn" HorizontalAlignment="Left" Margin="12,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462">

@@ -30,16 +30,17 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId) " +
-                                      "output inserted.warehouseId VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId )";
+                    cmd.CommandText = "INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId, warehouseSavingId) " +
+                                      "output inserted.warehouseId VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId, @WarehousehouseSavingId)";
                     cmd.Parameters.AddWithValue("warehouseStock", warehouse.Stock);
                     cmd.Parameters.AddWithValue("warehouseMinStock", warehouse.MinStock);
                     cmd.Parameters.AddWithValue("warehouseShopId", warehouse.Shop.Id);
                     cmd.Parameters.AddWithValue("warehouseProductId", warehouse.Product.Id);
+                    cmd.Parameters.AddWithValue("WarehouseSavingId", warehouse.SavingId);
                     // get the id
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
-                    Console.WriteLine("Commit was succsesfull");
+                    Console.WriteLine("Commit was successfull");
 
                 }
                 catch (Exception)
@@ -103,7 +104,8 @@ namespace DataAccessLayer
                     new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Warehouse, Product WHERE Product.productId = warehouseProductId ", conn);
+                var cmd = new SqlCommand("SELECT * FROM Warehouse, Product WHERE Product.productId = warehouseProductId", conn);
+
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -163,15 +165,16 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "Update Warehouse Set warehouseStock = @stock, warehouseMinStock = @minStock, warehouseShopId = @shopId, warehouseProductId = @productId where warehouseId = @warehouseId";
+                    cmd.CommandText = "Update Warehouse Set warehouseStock = @stock, warehouseMinStock = @minStock, warehouseShopId = @shopId, warehouseProductId = @productId, warehouseSavingId = @SavingId where warehouseId = @warehouseId";
                     cmd.Parameters.AddWithValue("stock", warehouse.Stock);
                     cmd.Parameters.AddWithValue("minStock", warehouse.MinStock);
                     cmd.Parameters.AddWithValue("shopId", warehouse.Shop.Id);
                     cmd.Parameters.AddWithValue("productId", warehouse.Product.Id);
                     cmd.Parameters.AddWithValue("warehouseId", warehouse.Id);
+                    cmd.Parameters.AddWithValue("SavingId", warehouse.SavingId);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
-                    Console.WriteLine("Commit was succsesfull");
+                    Console.WriteLine("Commit was successfull");
 
                 }
                 catch (Exception)
@@ -239,6 +242,6 @@ namespace DataAccessLayer
             }
             return i;
         }
-    
+
     }
 }

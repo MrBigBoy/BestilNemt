@@ -216,7 +216,7 @@ namespace DataAccessLayer
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("SELECT * FROM Product, Saving WHERE productSavingId = savingId", conn);
+                var command = new SqlCommand("SELECT * FROM Product, Saving, Warehouse WHERE warehouseProductId = productId AND warehouseSavingId = savingId", conn);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -317,6 +317,26 @@ namespace DataAccessLayer
                 }
             }
             return i;
+        }
+
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            Warehouse warehouse = null;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var command = new SqlCommand("SELECT * FROM Warehouse, Product WHERE warehouseProductId=@ProductId And warehouseProductId = productId AND warehouseShopId = @ShopId", conn);
+                command.Parameters.AddWithValue("ProductId", productId);
+                command.Parameters.AddWithValue("ShopId", shopId);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Build the object
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    warehouse = ObjectBuilder.CreateWarehouse(reader, product);
+                }
+            }
+            return warehouse;
         }
     }
 }

@@ -24,9 +24,6 @@ namespace Models
         public string Category { get; set; }
 
         [DataMember]
-        public int? SavingId { get; set; }
-
-        [DataMember]
         public string ImgPath { get; set; }
 
         /// <summary>
@@ -44,15 +41,13 @@ namespace Models
         /// <param name="price"></param>
         /// <param name="description"></param>
         /// <param name="category"></param>
-        /// <param name="savingId"></param>
         /// <param name="imgPath"></param>
-        public Product(string name, decimal price, string description, string category, int? savingId, string imgPath) : this()
+        public Product(string name, decimal price, string description, string category, string imgPath) : this()
         {
             Name = name;
             Price = price;
             Description = description;
             Category = category;
-            SavingId = savingId;
             ImgPath = imgPath;
         }
 
@@ -64,9 +59,8 @@ namespace Models
         /// <param name="price"></param>
         /// <param name="description"></param>
         /// <param name="category"></param>
-        /// <param name="savingId"></param>
         /// <param name="imgPath"></param>
-        public Product(int id, string name, decimal price, string description, string category, int? savingId, string imgPath) : this(name, price, description, category, savingId, imgPath)
+        public Product(int id, string name, decimal price, string description, string category, string imgPath) : this(name, price, description, category, imgPath)
         {
             Id = id;
         }

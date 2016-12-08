@@ -30,9 +30,7 @@ namespace DataAccessLayer
                     Category = reader.GetString(reader.GetOrdinal("productCategory"))
                 };
                 var j = reader.IsDBNull(reader.GetOrdinal("productImgPath"));
-                var saving = reader.IsDBNull(reader.GetOrdinal("productSavingId"));
                 product.ImgPath = j ? "NoPhoto.png" : reader.GetString(reader.GetOrdinal("productImgPath"));
-                product.SavingId = saving ? 1 : reader.GetInt32(reader.GetOrdinal("productSavingId"));
                 return product;
             }
             catch (Exception)
@@ -221,6 +219,15 @@ namespace DataAccessLayer
                     MinStock = reader.GetInt32(reader.GetOrdinal("warehouseMinStock")),
                     Product = product
                 };
+                var j = reader.IsDBNull(reader.GetOrdinal("warehouseSavingId"));
+                if (!j)
+                {
+                    warehouse.SavingId = reader.GetInt32(reader.GetOrdinal("warehouseSavingId"));
+                }
+                else
+                {
+                    warehouse.SavingId = null;
+                }
                 return warehouse;
             }
             catch (Exception)

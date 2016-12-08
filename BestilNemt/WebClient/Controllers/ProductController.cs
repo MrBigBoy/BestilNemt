@@ -104,15 +104,12 @@ namespace WebClient.Controllers
             // Loop for every partOrdeers
             foreach (var partOrderLoop in partOrders)
             {
-                // If the product ids match 
-                if (partOrderLoop.Product.Id == partOrder.Product.Id)
-                {
-                    // Update the amount
-                    partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
-                    // The PartOrder is found
-                    isFound = true;
-                }
-
+                // If the product ids not match 
+                if (partOrderLoop.Product.Id != partOrder.Product.Id) continue;
+                // Update the amount
+                partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
+                // The PartOrder is found
+                isFound = true;
             }
             // If the partOrder is not allready added, add it
             if (!isFound)
