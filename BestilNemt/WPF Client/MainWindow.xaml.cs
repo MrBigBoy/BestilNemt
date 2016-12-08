@@ -398,9 +398,9 @@ namespace WPF_Client
 
             // var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
             // warehouse.Id =
-            warehouse.MinStock =
-            warehouse.Stock =
-            warehouse.Product.Id =
+            warehouse.MinStock = Int32.Parse(minStock.Text);
+            warehouse.Stock = Int32.Parse(Stock.Text);
+            warehouse.Product.Id = Int32.Parse(ProductId.Text);
             warehouse.Shop.Id = getShop.Id;
             warehouse.SavingId = null;
            
