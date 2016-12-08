@@ -180,6 +180,9 @@ namespace WcfService
         int UpdateWarehouse(Warehouse warehouse);
 
         [OperationContract]
+        int UpdateWarehouseAdmin(Warehouse warehouse);
+
+        [OperationContract]
         int DeleteWarehouse(int id);
 
         [OperationContract]

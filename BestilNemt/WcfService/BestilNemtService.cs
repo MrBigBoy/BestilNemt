@@ -2,6 +2,7 @@
 using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
+using System;
 
 namespace WcfService
 {
@@ -800,6 +801,11 @@ namespace WcfService
         public int AddCustomerWithLogin(Customer customer, Login login)
         {
             return CustomerCtr.AddCustomerWithLogin(customer, login);
+        }
+
+        public int UpdateWarehouseAdmin(Warehouse warehouse)
+        {
+            return WarehouseCtr.UpdateWarehouseAdmin(warehouse);
         }
     }
 }

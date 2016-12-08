@@ -147,25 +147,24 @@ namespace WPF_Client
 
             var login3 = LoginManager.User;
 
-           
+
             var shopIdAdmin = 0;
             if (login3 != null)
-             {
-               var id = login3.PersonId;
-                var admin = proxy.GetAdmin(2);
-            shopIdAdmin = admin.ShopId;
-            shopIdAdmin = 1;
+            {
+                var id = login3.PersonId;
+                var admin = proxy.GetAdmin(id);
+                shopIdAdmin = admin.ShopId;
                 var CmdString = string.Empty;
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
                 {
                     conn.Open();
                     CmdString = "Select productId, warehouseId, productName, warehouseStock, wareHouseMinStock, administratorShopId  from Product, warehouse, Administrator WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId  ";
-                   // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
+                    // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
 
 
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
-               
+
 
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("ProductWareHouse");
@@ -184,13 +183,46 @@ namespace WPF_Client
         }
         public void updateAmount()
         {
-            BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
-            var warehouse = new Warehouse();
-           // warehouse.Id = Int32.Parse()
-          //  warehouse.Stock =  Int32.Parse(NewAmount1.Text);
+            var proxy = new BestilNemtServiceClient();
+            var CurrentUser = LoginManager.User;
+            var id = CurrentUser.PersonId;
+            var admin = proxy.GetAdmin(id);
+            var shopIdAdmin = 0;
+            //if (admin == null)
+            //{
+            //    MessageBox.Show("Du er ikke admin for en bestemt shop");
+            //}
+            if (ProductIdWareHouse.Text.Equals(""))
+            {
+                MessageBox.Show("Du har glemt at indlæs et produkt");
+            }
+            if (NewAmount1.Text.Equals(""))
+            {
+                MessageBox.Show("Du har glemt at tilføje et antal");
+            }
+            if (Convert.ToInt32(NewAmount1.Text) < Convert.ToInt32(MinAmount.Text))
+            {
+                MessageBox.Show("Nye Antal kan ikke være mindre min. Antal");
+            }
+            else
+            {
 
-            proxy.UpdateWarehouse(warehouse);
-           ReadProductWareHouse();
+                shopIdAdmin = admin.ShopId;
+                var getShop = proxy.GetShop(shopIdAdmin);
+                var warehouse = new Warehouse();
+                var product = new Product();
+                warehouse.Id = Int32.Parse(WareHouseId.Text);
+                warehouse.ProductId = Int32.Parse(ProductIdWareHouse.Text);
+                warehouse.Stock = Int32.Parse(NewAmount1.Text);
+                warehouse.MinStock = Int32.Parse(MinAmount.Text);
+               // warehouse.Shop.Id = getShop.Id; 
+              // warehouse.Product.Id 
+                warehouse.ShopId = getShop.Id;
+
+                proxy.UpdateWarehouseAdmin(warehouse);
+                ReadProductWareHouse();
+            }
+
         }
         public void loadWarehouseProduct()
         {
@@ -200,7 +232,7 @@ namespace WPF_Client
             NewAmount1.Text = (drv["warehouseStock"]).ToString();
             ProductName1.Text = (drv["productName"]).ToString();
             WareHouseId.Text = (drv["warehouseId"]).ToString();
-           
+
         }
 
         private void ReadTable_Click(object sender, RoutedEventArgs e)
@@ -220,6 +252,24 @@ namespace WPF_Client
             var NewMeme = meme.Replace("\r\n", ";");
             MessageBox.Show(NewMeme);
 
+        }
+
+        private void AddAmount_Click(object sender, RoutedEventArgs e)
+        {
+            updateAmount();
+        }
+        private void ClearWareHouseFields()
+        {
+            WareHouseId.Text = "";
+            ProductIdWareHouse.Text = "";
+            NewAmount1.Text = "";
+            MinAmount.Text = "";
+            ProductName1.Text = ""; 
+        }
+
+        private void ClearFiledsWarehouse_Click(object sender, RoutedEventArgs e)
+        {
+            ClearWareHouseFields();
         }
     }
 }

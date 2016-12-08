@@ -74,28 +74,39 @@
             </TabItem>
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5" Margin="0,-36,0,37">
-                    <Button x:Name="AddAmount" Content="Opret Antal" Margin="32,414,1242,275"/>
+                    <Button x:Name="AddAmount" Content="Opret Antal" Margin="10,364,1264,325" Click="AddAmount_Click"/>
                     <Label x:Name="WareHouseLabel" Content="WareHouse" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label" Content="ProduktId" HorizontalAlignment="Left" Margin="32,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
-                    <TextBox x:Name="ProductIdWareHouse" HorizontalAlignment="Left" Height="23" Margin="32,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="ReadTable" Content="Indlæs " Margin="112,414,1162,275" RenderTransformOrigin="0.107,-2" Click="ReadTable_Click"/>
-                    <Label x:Name="MinStock" Content="Min. Antal" HorizontalAlignment="Left" Margin="34,281,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
-                    <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="34,312,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="34,340,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
-                    <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="34,371,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <DataGrid x:Name="ProductWarehouse" Margin="215,10,5,5" AutoGenerateColumns="False">
+                    <Label x:Name="label" Content="ProduktId" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
+                    <TextBox x:Name="ProductIdWareHouse" HorizontalAlignment="Left" Height="23" Margin="10,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" IsReadOnly="True"/>
+                    <Button x:Name="ReadTable" Content="Indlæs Felter" Margin="106,364,1168,325" RenderTransformOrigin="0.107,-2" Click="ReadTable_Click"/>
+                    <Label x:Name="MinStock" Content="Min. Antal" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
+                    <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="8,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" IsReadOnly="True"/>
+                    <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
+                    <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="10,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+                    <DataGrid x:Name="ProductWarehouse" Margin="215,10,5,5" AutoGenerateColumns="False" FontWeight="Bold">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="25" />
-                            <DataGridTextColumn Header="VareHusId" Binding="{Binding warehouseId}" Width="25" />
-                            <DataGridTextColumn Header="Navn" Binding="{Binding productName}" Width="60"/>
-                            <DataGridTextColumn Header="Min Antal" Binding="{Binding wareHouseMinStock}" Width="60"/>
-                            <DataGridTextColumn Header="Antal" Binding="{Binding warehouseStock}" Width="60"/>
+                            <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="120" />
+                            <DataGridTextColumn Header="VareHusId" Binding="{Binding warehouseId}" Width="120" />
+                            <DataGridTextColumn Header="Produkt navn" Binding="{Binding productName}" Width="120"/>
+                            <DataGridTextColumn Header="Min Antal" Binding="{Binding wareHouseMinStock}" Width="120"/>
+                            <DataGridTextColumn Header="Antal" Binding="{Binding warehouseStock}" Width="120"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Label x:Name="ProductNameWarehouse" Content="Produkt Navn" HorizontalAlignment="Left" Margin="34,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
-                    <TextBox x:Name="ProductName1" HorizontalAlignment="Left" Height="23" Margin="32,186,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <Label x:Name="WareHouseID" Content="Varehus ID" HorizontalAlignment="Left" Margin="32,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
-                    <TextBox x:Name="WareHouseId" HorizontalAlignment="Left" Height="23" Margin="32,126,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="ProductNameWarehouse" Content="Produkt Navn" HorizontalAlignment="Left" Margin="12,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462">
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.031"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+                    <TextBox x:Name="ProductName1" HorizontalAlignment="Left" Height="23" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" IsReadOnly="True"/>
+                    <Label x:Name="WareHouseID" Content="Varehus ID" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
+                    <TextBox x:Name="WareHouseId" HorizontalAlignment="Left" Height="23" Margin="10,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" IsReadOnly="True"/>
+                    <Label x:Name="label1" Content="Ønsket antal på en vare" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="-10.534,-10.115" FontWeight="Bold"/>
+                    <Button x:Name="ClearFiledsWarehouse" Content="Ryd Felter" HorizontalAlignment="Left" Margin="106,406,0,0" VerticalAlignment="Top" Width="75" Click="ClearFiledsWarehouse_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Butikker">

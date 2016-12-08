@@ -73,6 +73,17 @@ namespace Controller
         {
             return ValidateWarehouse(warehouse) ? DbWarehouse.UpdateWarehouse(warehouse) : 0;
         }
+        /// <summary>
+        /// Update a Warehouse
+        /// </summary>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// 1 if Warehouse is updated, else 0
+        /// </returns>
+        public int UpdateWarehouseAdmin(Warehouse warehouse)
+        {
+            return ValidateWarehouse(warehouse) ? DbWarehouse.UpdateWarehouseAdmin(warehouse) : 0;
+        }
 
         /// <summary>
         /// Delete a Warehouse
@@ -95,7 +106,7 @@ namespace Controller
         /// </returns>
         private static bool ValidateWarehouse(Warehouse warehouse)
         {
-            return warehouse != null && warehouse.MinStock >= 0 && warehouse.Stock >= 0 && warehouse.Shop != null;
+            return warehouse != null && warehouse.MinStock >= 0 && warehouse.Stock >= 0 /*&& warehouse.Shop != null*/;
         }
     }
 }
