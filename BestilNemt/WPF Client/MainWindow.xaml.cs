@@ -21,7 +21,7 @@ namespace WPF_Client
         public MainWindow()
         {
             InitializeComponent();
-            //  FillDataGridProducts();
+            FillDataGridProducts();
             ReadProductWareHouse();
             FillDataGridShop();
             GetChainData();
@@ -36,7 +36,7 @@ namespace WPF_Client
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                CmdString = "Select productId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, productDescription, productCategory, productImgPath, productSavingId, savingPercent, CONVERT(date, savingStartDate) as savingStartDate, CONVERT(date, savingEndDate) as savingEndDate from Product, Saving WHERE productSavingId = savingId;SELECT * FROM Saving;";
+                CmdString = "Select productId, productName,  productDescription, productCategory, productImgPath as savingEndDate from Product";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
 
