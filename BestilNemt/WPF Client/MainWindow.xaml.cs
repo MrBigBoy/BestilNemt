@@ -18,7 +18,7 @@ namespace WPF_Client
         public MainWindow()
         {
             InitializeComponent();
-            FillDataGridProducts();
+          //  FillDataGridProducts();
             ReadProductWareHouse();
             FillDataGridShop();
             GetChainData();
@@ -163,7 +163,7 @@ namespace WPF_Client
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
                 {
                     conn.Open();
-                    CmdString = "Select productId, warehouseId, productName, warehouseStock, wareHouseMinStock, administratorShopId  from Product, warehouse, Administrator WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId  ";
+                    CmdString = "Select productId, warehouseId, productName, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId AND warehouseSavingId = savingId" ;
                     // SqlCommand cmd1 = new SqlCommand(CmdString, conn);
 
 
