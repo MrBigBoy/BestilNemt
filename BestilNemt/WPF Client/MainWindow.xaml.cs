@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Windows;
 using System.Configuration;
 using System.Data;
@@ -6,6 +7,8 @@ using System.Data.SqlClient;
 using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Documents;
 
 
 namespace WPF_Client
@@ -267,7 +270,9 @@ namespace WPF_Client
                 ChainList.ItemsSource = dt.DefaultView;
             }
         }
-
+        /// <summary>
+        /// Get the data used to fill the DataGrid in the Butik tab, this is done with a custom SQL qurey that gets all the colums that we need
+        /// </summary>
         public void FillDataGridShop()
         {
             var CmdString = string.Empty;
@@ -275,7 +280,7 @@ namespace WPF_Client
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                CmdString = "SELECT shopId, shopName, shopAddress, shopOpeningTime, shopChainId, chainName FROM Shop, Chain WHERE shopChainId = chainId";
+                CmdString = "SELECT shopId, shopName, shopAddress, shopCVR, shopOpeningTime, shopChainId, chainName FROM Shop, Chain WHERE shopChainId = chainId";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
 
@@ -284,31 +289,82 @@ namespace WPF_Client
                 ShopList.ItemsSource = dt.DefaultView;
             }
         }
-
-        private void AddChain_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Gets all the text from the textfields and datatable, and sends that to the WCF that creates a new Shop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddShop_Click(object sender, RoutedEventArgs e)
         {
+            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            DataRowView drv = (DataRowView)ChainList.SelectedItem;
+            var shop = new Shop();
+            //Get the chain id form the ChainDataTable, and get the chain from the prooxy
+            shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
+            shop.Name = ShopNameField.Text;
+            shop.Address = ShopAddressField.Text;
+            shop.Cvr = ShopCVRField.Text;
+            //Replace the the new lines with semicolons because of the database
             var OpeningTimeRaw = ShopOpeningTimesField.Text;
             var NewOpeningTime = OpeningTimeRaw.Replace("\r\n", ";");
+            shop.OpeningTime = NewOpeningTime;
+            shop.Warehouses = new List<Warehouse>().ToArray();
+            proxy.AddShop(shop);
+            FillDataGridShop();
         }
-
-        private void LoadChainIntoTextField_Click(object sender, RoutedEventArgs e)
+        
+        /// <summary>
+        /// Loads the selected item into the textfields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoadShopIntoTextField_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView drv = (DataRowView)ProductWarehouse.SelectedItem;
+            DataRowView drv = (DataRowView)ShopList.SelectedItem;
             ShopIdField.Text = (drv["shopId"]).ToString();
             ShopNameField.Text = (drv["shopName"]).ToString();
             ShopAddressField.Text = (drv["shopAddress"]).ToString();
-            ShopOpeningTimesField.Text = (drv["ShopOpeningTime"]).ToString();
-            //ChainList.move = (drv["ShopChainId"]).ToString();
+            ShopCVRField.Text = (drv["shopCVR"]).ToString();
+            //Replace the semicolons with new lines because of the database
+            var OpeningTimeRaw = (drv["ShopOpeningTime"]).ToString();
+            var NewOpeningTime = OpeningTimeRaw.Replace(";", "\r\n");
+            ShopOpeningTimesField.Text = NewOpeningTime;
+            var chainId = (drv["ShopChainId"]).ToString();
+            ChainList.FindName(chainId);
         }
-
-        private void DeleteChain_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Delete the selected shop in the datatable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteShop_Click(object sender, RoutedEventArgs e)
         {
-
+            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var ShopId = ShopIdField.Text;
+            proxy.DeleteShop(Int32.Parse(ShopId));
+            FillDataGridShop();
         }
-
-        private void UpdateChain_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Updates the shop with the data inputed in the textfields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateShop_Click(object sender, RoutedEventArgs e)
         {
-
+            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            DataRowView drv = (DataRowView)ChainList.SelectedItem;
+            var shop = new Shop();
+            shop.Id = Int32.Parse(ShopIdField.Text);
+            shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
+            shop.Name = ShopNameField.Text;
+            shop.Address = ShopAddressField.Text;
+            shop.Cvr = ShopCVRField.Text;
+            var OpeningTimeRaw = ShopOpeningTimesField.Text;
+            var NewOpeningTime = OpeningTimeRaw.Replace("\r\n", ";");
+            shop.OpeningTime = NewOpeningTime;
+            shop.Warehouses = new List<Warehouse>().ToArray();
+            proxy.UpdateShop(shop);
+            FillDataGridShop();
         }
 
         private void AddAmount_Click(object sender, RoutedEventArgs e)

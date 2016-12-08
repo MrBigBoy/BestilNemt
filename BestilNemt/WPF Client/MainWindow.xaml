@@ -57,19 +57,10 @@
                         </Grid>
                         <Label x:Name="ProductLabel" Content="Produkthåndtering" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     </Grid>
-                    <Label x:Name="SavingLabelName" Content="Rabathåndtering" HorizontalAlignment="Left" Margin="28,437,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-                    <Label x:Name="SavingStartDateLabel" Content="Start dato" HorizontalAlignment="Left" Margin="10,471,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="10,502,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="150"/>
-                    <Label x:Name="SavingEndDateLabel" Content="Slut dato" HorizontalAlignment="Left" Margin="10,531,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="10,557,0,128" FirstDayOfWeek="Monday" Width="150"/>
-                    <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="10,631,0,0" VerticalAlignment="Top" Width="65" Click="AddSaving_Click"/>
-                    <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="95,631,0,0" VerticalAlignment="Top" Width="65" Click="RemoveSaving_Click"/>
-                    <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="10,586,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="107,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Varehus">
-                <Grid Background="#FFE5E5E5" Margin="0,-36,0,37">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
                     <Button x:Name="AddAmount" Content="Opret Antal" Margin="10,364,1264,325" Click="AddAmount_Click"/>
                     <Label x:Name="WareHouseLabel" Content="WareHouse" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label" Content="ProduktId" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
@@ -79,7 +70,7 @@
                     <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="8,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" IsReadOnly="True"/>
                     <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
                     <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="10,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-                    <DataGrid x:Name="ProductWarehouse" Margin="215,10,5,5" AutoGenerateColumns="False" FontWeight="Bold" SelectionMode="Single">
+                    <DataGrid x:Name="ProductWarehouse" Margin="215,5,5,5" AutoGenerateColumns="False" FontWeight="Bold" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="120" />
                             <DataGridTextColumn Header="VareHusId" Binding="{Binding warehouseId}" Width="120" />
@@ -107,6 +98,15 @@
                     <TextBox x:Name="WareHouseId" HorizontalAlignment="Left" Height="23" Margin="10,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" IsReadOnly="True"/>
                     <Label x:Name="label1" Content="Ønsket antal på en vare" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="-10.534,-10.115" FontWeight="Bold"/>
                     <Button x:Name="ClearFiledsWarehouse" Content="Ryd Felter" HorizontalAlignment="Left" Margin="106,406,0,0" VerticalAlignment="Top" Width="75" Click="ClearFiledsWarehouse_Click"/>
+                    <Label x:Name="SavingLabelName" Content="Rabathåndtering" HorizontalAlignment="Left" Margin="39,484,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <Label x:Name="SavingStartDateLabel" Content="Start dato" HorizontalAlignment="Left" Margin="21,518,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="21,549,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="150"/>
+                    <Label x:Name="SavingEndDateLabel" Content="Slut dato" HorizontalAlignment="Left" Margin="21,578,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="21,604,0,81" FirstDayOfWeek="Monday" Width="150"/>
+                    <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="21,678,0,0" VerticalAlignment="Top" Width="65" Click="AddSaving_Click"/>
+                    <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="106,678,0,0" VerticalAlignment="Top" Width="65" Click="RemoveSaving_Click"/>
+                    <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="21,633,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="118,637,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Butikker">
@@ -124,26 +124,28 @@
                         </DataGrid>
                         <Grid Margin="0,0,1184,0">
                             <Label x:Name="ShopIdLabel" Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <TextBox x:Name="ShopIdField" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+                            <TextBox x:Name="ShopIdField" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
                             <Label x:Name="ShopNameLabel" Content="Butik navn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,49,0,0"/>
                             <TextBox x:Name="ShopNameField" HorizontalAlignment="Left" Height="23" Margin="0,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.425,0.481"/>
                             <Label x:Name="ShopAddressLabel" Content="Adresse" HorizontalAlignment="Left" Margin="0,98,0,0" VerticalAlignment="Top"/>
-                            <TextBox x:Name="ShopAddressField" HorizontalAlignment="Left" Height="23" Margin="0,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
-                            <Label x:Name="ShopOpeningTimeLabel" Content="Åbningstider" HorizontalAlignment="Left" Margin="0,147,0,0" VerticalAlignment="Top"/>
-                            <TextBox x:Name="ShopOpeningTimesField" HorizontalAlignment="Left" Height="122" Margin="0,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" AcceptsReturn="True" SpellCheck.IsEnabled="False"/>
-                            <Label x:Name="ShopCVRLabel" Content="CVR" HorizontalAlignment="Left" Margin="0,295,0,0" VerticalAlignment="Top"/>
-                            <TextBox x:Name="ShopCVRField" HorizontalAlignment="Left" Height="23" Margin="0,321,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
-                            <Label x:Name="ShopChainLabel" Content="Kæde navn" HorizontalAlignment="Left" Margin="0,344,0,0" VerticalAlignment="Top"/>
-                            <DataGrid x:Name="ChainList" Margin="0,370,0,0" AutoGenerateColumns="False" Height="170" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" SelectionMode="Single">
+                            <TextBox x:Name="ShopAddressField" HorizontalAlignment="Left" Height="46" Margin="0,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                            <Label x:Name="ShopOpeningTimeLabel" Content="Åbningstider" HorizontalAlignment="Left" Margin="0,170,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="ShopOpeningTimesField" HorizontalAlignment="Left" Height="122" Margin="0,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" AcceptsReturn="True" SpellCheck.IsEnabled="False"/>
+                            <Label x:Name="ShopCVRLabel" Content="CVR" HorizontalAlignment="Left" Margin="0,318,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="ShopCVRField" HorizontalAlignment="Left" Height="23" Margin="0,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                            <Label x:Name="ShopChainLabel" Content="Kæde navn" HorizontalAlignment="Left" Margin="0,367,0,0" VerticalAlignment="Top"/>
+                            <DataGrid x:Name="ChainList" Margin="0,393,0,0" AutoGenerateColumns="False" Height="246" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" SelectionMode="Single">
                                 <DataGrid.Columns >
                                     <DataGridTextColumn Header="ID" Binding="{Binding chainId}" Width="22" />
                                     <DataGridTextColumn Header="Navn" Binding="{Binding chainName}" Width="*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button x:Name="AddChain" Content="Opret" HorizontalAlignment="Left" Margin="0,545,0,0" VerticalAlignment="Top" Width="65" Click="AddChain_Click"/>
-                            <Button x:Name="UpdateChain" Content="Opdater" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="85,570,0,0" Click="UpdateChain_Click"/>
-                            <Button x:Name="DeleteChain" Content="Slet" HorizontalAlignment="Left" Margin="0,570,0,0" VerticalAlignment="Top" Width="65" Click="DeleteChain_Click"/>
-                            <Button x:Name="LoadChainIntoTextField" Content="Indlæs" HorizontalAlignment="Left" Margin="85,545,0,0" VerticalAlignment="Top" Width="65" Click="LoadChainIntoTextField_Click"/>
+                            <Grid Margin="0,0,0,10" Height="45" VerticalAlignment="Bottom">
+                                <Button x:Name="AddShop" Content="Opret" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="AddShop_Click"/>
+                                <Button x:Name="UpdateShop" Content="Opdater" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="85,25,0,0" Click="UpdateShop_Click"/>
+                                <Button x:Name="DeleteShop" Content="Slet" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Width="65" Click="DeleteShop_Click"/>
+                                <Button x:Name="LoadShopIntoTextField" Content="Indlæs" HorizontalAlignment="Left" Margin="85,0,0,0" VerticalAlignment="Top" Width="65" Click="LoadShopIntoTextField_Click"/>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

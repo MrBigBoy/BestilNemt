@@ -74,16 +74,6 @@ namespace BestilNemtUnitTestTest
             savingCtr.AddSaving(saving2, product2);
             Assert.AreEqual(2, savingCtr.GetAllSavings().Count);
         }
-
-        [TestMethod]
-        public void AddAdminCtrDb()
-        {
-            var savingCtr = new SavingCtr(new DbSaving());
-            var product = new Product(1, "The product name", 23.45m, "The product description", "The product catagory", "Img path");
-            var saving = new Saving(new DateTime(2016, 12, 24), new DateTime(2016, 12, 31), 10.50, new List<Product>());
-            var id = savingCtr.AddSaving(saving, product);
-            Assert.AreNotEqual(0, id);
-        }
     }
 }
 

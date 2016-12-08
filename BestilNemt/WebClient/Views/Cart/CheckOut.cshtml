@@ -4,9 +4,11 @@
 }
 
 <h2>CheckOut</h2>
+<!-- Section of scripts -->
 @section scripts
 {
     <script>
+        // This script validate the form to checkout
         function validateForm() {
             var cardNumber = document.forms["PaymentForm"]["cardNumber"].value;
             var exDate = document.forms["PaymentForm"]["exspiringdate"].value;
@@ -29,7 +31,7 @@
         }
     </script>
 }
-
+@*The form to Checkout*@
 <form name="PaymentForm" class="Payment" onsubmit="return validateForm()">
     Kortnummer:<br>
     <input type="text" name="cardNumber" maxlength="10"> <br>
@@ -38,6 +40,8 @@
     Kontrol cifre:<br>
     <input type="text" name="Controlnumbers" maxlength="10"> <br>
 </form>
+
+@*The button to Checkout*@
 @using (Html.BeginForm("CompleteCart", "Cart", FormMethod.Post))
 {
     <button input type="submit" class="CheckOut">Til betaling</button>
