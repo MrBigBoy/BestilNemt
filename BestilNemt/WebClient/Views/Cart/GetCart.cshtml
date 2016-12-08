@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Cart";
     var totalPrice = new decimal(0);
-    var shop = (Shop) Session["Shop"];
+    var shop = (Shop)Session["Shop"];
     var cart = (Cart)Session["ShoppingCart"];
     var proxy = new BestilNemtServiceClient();
 }
@@ -11,6 +11,7 @@
     Din Kurv
 </h2>
 
+@*The Table of the Cart*@
 <table id="Carttable">
     <tr>
         <th></th>
@@ -22,65 +23,93 @@
         <th>Fjern vare</th>
     </tr>
     @{
+        // If the cart is set
         if (cart != null)
         {
+            // Loop for every PartOrder
             foreach (var partOrder in cart.PartOrders)
             {
                 <tr>
+                    @*Show a image of the product*@
                     <td>
                         <img alt="" height="50" src="/Images/ProductPictures/@partOrder.Product.ImgPath" width="50">
                     </td>
 
                     @{
+                        // Get the product
                         var product = partOrder.Product;
+                        // Show the name of the product
                         <td>@product.Name</td>
+                        // Show the description of the product
                         <td>@product.Description</td>
+                        // Get the warehouse to check the saving
                         var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
+                        // Get the Saving id
                         var savingId = warehouse2.SavingId;
+                        // Get the price of the product
                         var price = product.Price;
+                        // If the saving Id has been set set the price to the price with the saving provided
                         if (savingId != null)
                         {
+                            // Get the Saving
                             var saving = proxy.GetSaving(savingId.Value);
+                            // Get the percent from the saving
                             var percent = (decimal)saving.SavingPercent;
+                            // Calculate the new price
                             var newPrice = price - (price * percent / 100);
+                            // Set the new price as the price to later use
                             price = newPrice;
                         }
+                        // Show the price
                         <td>@price kr</td>
                     }
                     <TD>
+                        @* The form to update a Cart by a javascript *@
                         <form action="@Url.Action("UpdateCart", "Cart")" method="post">
+                            @* The hidden element is used to not show after the url *@
                             @Html.Hidden("ProductId", partOrder.Product.Id)
                             <select class="selAmount" name="selAmount">
                                 @{
+                                    // If the warehouse does not have a count show the value 0
                                     if (shop.Warehouses.Count == 0)
                                     {
                                         <option value="0">0</option>
                                     }
-                                    foreach (var warehouse in shop.Warehouses)
+                                    else
                                     {
-                                        if (warehouse.Product.Id == partOrder.Product.Id)
+                                        // Loop for every Warehouse
+                                        foreach (var warehouse in shop.Warehouses)
                                         {
-                                            var stock = warehouse.Stock;
-                                            if (stock < 0)
+                                            // If the product from the warehouse match the product from the partOrder
+                                            if (warehouse.Product.Id == partOrder.Product.Id)
                                             {
-                                                // FUUU somebody removed a product there was NOT in stock
-                                                <option value="0">0</option>
-                                            }
-                                            else
-                                            {
-                                                if (stock > 100)
+                                                // Get the stock from the warehouse
+                                                var stock = warehouse.Stock;
+                                                if (stock < 0)
                                                 {
-                                                    stock = 100;
+                                                    // FUUU somebody removed a product there was NOT in stock
+                                                    <option value="0">0</option>
                                                 }
-                                                for (var i = 1; i <= stock; i++)
+                                                else
                                                 {
-                                                    if (@partOrder.Amount == i)
+                                                    // If the stock is bigger than 100, set a limit of 100
+                                                    if (stock > 100)
                                                     {
-                                                        <option value="@i" selected>@i</option>
+                                                        stock = 100;
                                                     }
-                                                    else
+                                                    // For each stock, show a option to choose from the dropdown menu
+                                                    for (var i = 1; i <= stock; i++)
                                                     {
-                                                        <option value="@i">@i</option>
+                                                        // Select the amount already chosen from the product page as selected
+                                                        if (@partOrder.Amount == i)
+                                                        {
+                                                            // The selected option shows the value as the chosen from the dropdown menu
+                                                            <option value="@i" selected>@i</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
                                                     }
                                                 }
                                             }
@@ -92,11 +121,14 @@
                         </form>
                     </TD>
                     @{
-                        var total = price*partOrder.Amount;
+                        // Calculate the total price for each partOrder
+                        var total = price * partOrder.Amount;
                         totalPrice += total;
                     }
+                    @* Show the total price for the current PartOrder *@
                     <td>@total kr</td>
                     <td>
+                        @* A button to clear a PartOrder *@
                         <div class="text-center">
                             <button class="btn btn-xs btn-danger pull-center" onclick="location.href = '@Url.Action("RemovePartOrder", "Cart", new {id = partOrder.Product.Id})'">
                                 x
@@ -104,18 +136,20 @@
                         </div>
                     </td>
                 </tr>
-            }
-        }
+                            }
+                        }
     }
 </table>
 <div>
+    @* Show the total price for all partOrders *@
     <h3 align="right">
         Total pris: @totalPrice kr
     </h3>
 </div>
 
+@* Here is the posibility to Checkout *@
 <div id="CheckOut">
-    @*<p>Pris: @shoppingCart.PartOrders kr</p>*@
+    @* show a submit button to Checkout *@
     @using (Html.BeginForm("CheckOut", "Cart", FormMethod.Post))
     {
         @Html.HiddenFor(x => x.Cart.Id)
@@ -124,6 +158,7 @@
     }
 </div>
 
+@* Here is the posibility to clear a cart *@
 @using (Html.BeginForm("ClearCart", "Cart", FormMethod.Post))
 {
     @Html.HiddenFor(x => x.Cart.Id)
@@ -136,9 +171,11 @@
     </script>
 }
 
+@* Here is a section of scripts *@
 @section scripts
 {
     <script>
+        // This script update the selected amount
         $('.selAmount').change(function () {
             this.form.submit();
         })
