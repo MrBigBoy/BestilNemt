@@ -50,7 +50,6 @@ namespace Controller.ControllerTestClasses
             returnedProduct.Price = product.Price;
             returnedProduct.Category = product.Category;
             returnedProduct.Description = product.Description;
-            returnedProduct.SavingId = product.SavingId;
             return 1;
         }
 
@@ -60,6 +59,11 @@ namespace Controller.ControllerTestClasses
         }
 
         public List<Product> GetProductsByName(string input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
         {
             throw new NotImplementedException();
         }

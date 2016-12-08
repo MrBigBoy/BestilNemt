@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Kvitteringer";
+    var shop = (Shop)Session["Shop"] ?? new Shop();
 }
 
 <h2>Kvitteringer</h2>
@@ -45,7 +46,9 @@
                                 @partOrder.Product.Name
                             </td>
                             @{
-                                var savingId = partOrder.Product.SavingId;
+                                var product = partOrder.Product;
+                                var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
+                                var savingId = warehouse2.SavingId;
                                 if (savingId != null)
                                 {
                                     var saving = proxy.GetSaving(savingId.Value);

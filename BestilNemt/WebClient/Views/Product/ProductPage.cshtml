@@ -5,6 +5,11 @@
     ViewBag.Title = "Product Page";
     var proxy = new BestilNemtServiceClient();
     var product = @Model.Product;
+    var shop = (Shop)Session["Shop"];
+    if (shop == null)
+    {
+        shop = new Shop();
+    }
 }
 
 <h1>@Model.Product.Name</h1>
@@ -14,7 +19,8 @@
 <div id="ProductInformation">
     <div id="BuyModul">
         @{
-            var savingId = product.SavingId;
+            var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
+            var savingId = warehouse2.SavingId;
             var price = product.Price;
             if (savingId != null)
             {
@@ -38,7 +44,6 @@
 
         @using (Html.BeginForm("AddProductToCart", "Product", FormMethod.Post))
         {
-            var shop = (Shop)Session["Shop"];
             if (shop != null)
 
             {

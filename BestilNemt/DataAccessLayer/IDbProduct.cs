@@ -16,5 +16,6 @@ namespace DataAccessLayer
         int UpdateProduct(Product product);
         int DeleteProduct(int id);
         List<Product> GetProductsByName(string input);
+        Warehouse GetWarehouseByProductId(int productId, int shopId);
     }
 }

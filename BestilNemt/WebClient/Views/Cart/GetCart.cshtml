@@ -2,7 +2,10 @@
 @model global::WebClient.Models.ProductPartOrderViewModel
 @{
     ViewBag.Title = "Cart";
-    decimal totalPrice = new decimal(0);
+    var totalPrice = new decimal(0);
+    var shop = (Shop) Session["Shop"];
+    var cart = (Cart)Session["ShoppingCart"];
+    var proxy = new BestilNemtServiceClient();
 }
 <h2>
     Din Kurv
@@ -19,7 +22,6 @@
         <th>Fjern vare</th>
     </tr>
     @{
-        var cart = (Cart)Session["ShoppingCart"];
         if (cart != null)
         {
             foreach (var partOrder in cart.PartOrders)
@@ -33,11 +35,11 @@
                         var product = partOrder.Product;
                         <td>@product.Name</td>
                         <td>@product.Description</td>
-                        var savingId = product.SavingId;
+                        var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
+                        var savingId = warehouse2.SavingId;
                         var price = product.Price;
                         if (savingId != null)
                         {
-                            var proxy = new BestilNemtServiceClient();
                             var saving = proxy.GetSaving(savingId.Value);
                             var percent = (decimal)saving.SavingPercent;
                             var newPrice = price - (price * percent / 100);
@@ -50,47 +52,39 @@
                             @Html.Hidden("ProductId", partOrder.Product.Id)
                             <select class="selAmount" name="selAmount">
                                 @{
-                                    var shop = (Shop)Session["Shop"];
-                                    if (shop != null)
+                                    if (shop.Warehouses.Count == 0)
                                     {
-                                        if (shop.Warehouses.Count == 0)
+                                        <option value="0">0</option>
+                                    }
+                                    foreach (var warehouse in shop.Warehouses)
+                                    {
+                                        if (warehouse.Product.Id == partOrder.Product.Id)
                                         {
-                                            <option value="0">0</option>
-                                        }
-                                        foreach (var warehouse in shop.Warehouses)
-                                        {
-                                            if (warehouse.Product.Id == partOrder.Product.Id)
+                                            var stock = warehouse.Stock;
+                                            if (stock < 0)
                                             {
-                                                var stock = warehouse.Stock;
-                                                if (stock < 0)
+                                                // FUUU somebody removed a product there was NOT in stock
+                                                <option value="0">0</option>
+                                            }
+                                            else
+                                            {
+                                                if (stock > 100)
                                                 {
-                                                    // FUUU somebody removed a product there was NOT in stock
-                                                    <option value="0">0</option>
+                                                    stock = 100;
                                                 }
-                                                else
+                                                for (var i = 1; i <= stock; i++)
                                                 {
-                                                    if (stock > 100)
+                                                    if (@partOrder.Amount == i)
                                                     {
-                                                        stock = 100;
+                                                        <option value="@i" selected>@i</option>
                                                     }
-                                                    for (var i = 1; i <= stock; i++)
+                                                    else
                                                     {
-                                                        if (@partOrder.Amount == i)
-                                                        {
-                                                            <option value="@i" selected>@i</option>
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@i">@i</option>
-                                                        }
+                                                        <option value="@i">@i</option>
                                                     }
                                                 }
                                             }
                                         }
-                                    }
-                                    else
-                                    {
-                                        <option value="0">0</option>
                                     }
                                 }
                                 }
