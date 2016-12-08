@@ -636,7 +636,13 @@ namespace WebClient.BestilNemtServiceRef {
         private WebClient.BestilNemtServiceRef.Product ProductField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WebClient.BestilNemtServiceRef.Shop ShopField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ShopIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StockField;
@@ -691,6 +697,19 @@ namespace WebClient.BestilNemtServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductId {
+            get {
+                return this.ProductIdField;
+            }
+            set {
+                if ((this.ProductIdField.Equals(value) != true)) {
+                    this.ProductIdField = value;
+                    this.RaisePropertyChanged("ProductId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public WebClient.BestilNemtServiceRef.Shop Shop {
             get {
                 return this.ShopField;
@@ -699,6 +718,19 @@ namespace WebClient.BestilNemtServiceRef {
                 if ((object.ReferenceEquals(this.ShopField, value) != true)) {
                     this.ShopField = value;
                     this.RaisePropertyChanged("Shop");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ShopId {
+            get {
+                return this.ShopIdField;
+            }
+            set {
+                if ((this.ShopIdField.Equals(value) != true)) {
+                    this.ShopIdField = value;
+                    this.RaisePropertyChanged("ShopId");
                 }
             }
         }
@@ -1550,6 +1582,12 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         System.Threading.Tasks.Task<int> UpdateWarehouseAsync(WebClient.BestilNemtServiceRef.Warehouse warehouse);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdminResponse")]
+        int UpdateWarehouseAdmin(WebClient.BestilNemtServiceRef.Warehouse warehouse);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseAdminResponse")]
+        System.Threading.Tasks.Task<int> UpdateWarehouseAdminAsync(WebClient.BestilNemtServiceRef.Warehouse warehouse);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
         int DeleteWarehouse(int id);
         
@@ -2072,6 +2110,14 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> UpdateWarehouseAsync(WebClient.BestilNemtServiceRef.Warehouse warehouse) {
             return base.Channel.UpdateWarehouseAsync(warehouse);
+        }
+        
+        public int UpdateWarehouseAdmin(WebClient.BestilNemtServiceRef.Warehouse warehouse) {
+            return base.Channel.UpdateWarehouseAdmin(warehouse);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateWarehouseAdminAsync(WebClient.BestilNemtServiceRef.Warehouse warehouse) {
+            return base.Channel.UpdateWarehouseAdminAsync(warehouse);
         }
         
         public int DeleteWarehouse(int id) {

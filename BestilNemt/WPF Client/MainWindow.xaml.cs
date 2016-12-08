@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
+using System.Collections.Generic;
+
 
 namespace WPF_Client
 {
@@ -154,9 +156,8 @@ namespace WPF_Client
             if (login3 != null)
             {
                 var id = login3.PersonId;
-                var admin = proxy.GetAdmin(2);
+                var admin = proxy.GetAdmin(id);
                 shopIdAdmin = admin.ShopId;
-                shopIdAdmin = 1;
                 var CmdString = string.Empty;
                 using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
                 {
@@ -186,13 +187,51 @@ namespace WPF_Client
         }
         public void updateAmount()
         {
-            BestilNemtWPF.BestilNemtServiceClient proxy = new BestilNemtWPF.BestilNemtServiceClient();
-            var warehouse = new Warehouse();
-            // warehouse.Id = Int32.Parse()
-            //  warehouse.Stock =  Int32.Parse(NewAmount1.Text);
+            var proxy = new BestilNemtServiceClient();
+            var CurrentUser = LoginManager.User;
+            var id = CurrentUser.PersonId;
+            var admin = proxy.GetAdmin(id);
+            var shopIdAdmin = 0;
+            //if (admin == null)
+            //{
+            //    MessageBox.Show("Du er ikke admin for en bestemt shop");
+            //}
+            if (ProductIdWareHouse.Text.Equals(""))
+            {
+                MessageBox.Show("Du har glemt at indlæs et produkt");
+            }
+            if (NewAmount1.Text.Equals(""))
+            {
+                MessageBox.Show("Du har glemt at tilføje et antal");
+            }
+            if (Convert.ToInt32(NewAmount1.Text) < Convert.ToInt32(MinAmount.Text))
+            {
+                MessageBox.Show("Nye Antal kan ikke være mindre min. Antal");
+            }
+            else
+            {
 
-            proxy.UpdateWarehouse(warehouse);
-            ReadProductWareHouse();
+                shopIdAdmin = admin.ShopId;
+                Shop getShop = proxy.GetShop(shopIdAdmin);
+                Warehouse warehouse = new Warehouse();
+                var productID = Int32.Parse(ProductIdWareHouse.Text);
+
+                var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+                foreach (var w in warehouses)
+                {
+                    if (w.Product.Id == productID)
+                    {
+                        warehouse = w;
+                    }
+                }
+                warehouse.Stock = Int32.Parse(NewAmount1.Text);
+                warehouse.MinStock = Int32.Parse(MinAmount.Text);
+                warehouse.Shop = getShop;     
+                proxy.UpdateWarehouse(warehouse);
+                ReadProductWareHouse();
+                MessageBox.Show("Dit Antal er nu blevet opdateret");
+            }
+
         }
         public void loadWarehouseProduct()
         {
@@ -268,6 +307,24 @@ namespace WPF_Client
         private void UpdateChain_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AddAmount_Click(object sender, RoutedEventArgs e)
+        {
+            updateAmount();
+        }
+        private void ClearWareHouseFields()
+        {
+            WareHouseId.Text = "";
+            ProductIdWareHouse.Text = "";
+            NewAmount1.Text = "";
+            MinAmount.Text = "";
+            ProductName1.Text = "";
+        }
+
+        private void ClearFiledsWarehouse_Click(object sender, RoutedEventArgs e)
+        {
+            ClearWareHouseFields();
         }
     }
 }

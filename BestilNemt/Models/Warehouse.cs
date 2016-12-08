@@ -23,6 +23,7 @@ namespace Models
         [DataMember]
         public Shop Shop { get; set; }
 
+
         /// <summary>
         /// Empty constructor
         /// </summary>

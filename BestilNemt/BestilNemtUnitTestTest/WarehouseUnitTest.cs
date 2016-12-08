@@ -69,7 +69,7 @@ namespace BestilNemtUnitTestTest
         public void AddWarehouseFailShopNullCtr()
         {
             var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var warehouse = new Warehouse(10, 5, new Product(), null);
+            var warehouse = new Warehouse(2, 1, new Product(), null);
             var id = warehouseCtr.AddWarehouse(warehouse);
             Assert.AreEqual(0, id);
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer;
 using Models;
@@ -48,6 +49,9 @@ namespace Controller.ControllerTestClasses
 
         }
 
-       
+        public int UpdateWarehouseAdmin(Warehouse warehouse)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

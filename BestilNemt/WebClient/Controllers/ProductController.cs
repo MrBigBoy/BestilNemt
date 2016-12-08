@@ -6,12 +6,19 @@ using WebClient.Models;
 
 namespace WebClient.Controllers
 {
+    /// <summary>
+    /// This controller is used to all Product related controls
+    /// </summary>
     public class ProductController : Controller
     {
-        /**
-         * Get a list of all products by a shop id
-         * The id is Shop id
-         */
+        /// <summary>
+        /// Get a list of all products by a shop id
+        /// The id is Shop id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// View of all Products
+        /// </returns>
         public ActionResult Product(int? id)
         {
             var products = new List<Product>();
@@ -46,10 +53,12 @@ namespace WebClient.Controllers
             return View(listProduct);
         }
 
-        /**
-         * Return a view of a specific product with a product id
-         * The id is a Product id
-         */
+        /// <summary>
+        /// Return a view of a specific product with a product id
+        /// The id is a Product id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult ProductPage(int? id)
         {
             // If no id is set redirect to frontpage

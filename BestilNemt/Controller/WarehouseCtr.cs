@@ -73,6 +73,14 @@ namespace Controller
         {
             return ValidateWarehouse(warehouse) ? DbWarehouse.UpdateWarehouse(warehouse) : 0;
         }
+        /// <summary>
+        /// Update a Warehouse
+        /// </summary>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// 1 if Warehouse is updated, else 0
+        /// </returns>
+      
 
         /// <summary>
         /// Delete a Warehouse
