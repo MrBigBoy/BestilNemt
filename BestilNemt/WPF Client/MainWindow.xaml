@@ -75,6 +75,8 @@
                             <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="120" />
                             <DataGridTextColumn Header="VareHusId" Binding="{Binding warehouseId}" Width="120" />
                             <DataGridTextColumn Header="Produkt navn" Binding="{Binding productName}" Width="120"/>
+                            <DataGridTextColumn Header="Produkt pris" Binding="{Binding productPrice}" Width="120"/>
+                            <DataGridTextColumn Header="Tilbuds pris" Binding="{Binding savingPrice}" Width="120"/>
                             <DataGridTextColumn Header="Min Antal" Binding="{Binding wareHouseMinStock}" Width="120"/>
                             <DataGridTextColumn Header="Antal" Binding="{Binding warehouseStock}" Width="120"/>
                             <DataGridTextColumn Header="SavingId" Binding="{Binding warehouseSavingId}" Width="120"/>

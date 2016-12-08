@@ -391,6 +391,12 @@
   <wsdl:message name="IBestilNemtService_AddCustomerWithLogin_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddCustomerWithLoginResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetWarehouseByProductId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouseByProductId" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetWarehouseByProductId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouseByProductIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
     <wsdl:operation name="GetCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetCustomer" message="tns:IBestilNemtService_GetCustomer_InputMessage" />
@@ -647,6 +653,10 @@
     <wsdl:operation name="AddCustomerWithLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin" message="tns:IBestilNemtService_AddCustomerWithLogin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLoginResponse" message="tns:IBestilNemtService_AddCustomerWithLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouseByProductId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId" message="tns:IBestilNemtService_GetWarehouseByProductId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductIdResponse" message="tns:IBestilNemtService_GetWarehouseByProductId_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
@@ -1220,6 +1230,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddCustomerWithLogin">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouseByProductId">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

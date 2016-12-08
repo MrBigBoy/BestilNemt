@@ -636,6 +636,9 @@ namespace WPF_Client.BestilNemtWPF {
         private WPF_Client.BestilNemtWPF.Product ProductField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> SavingIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WPF_Client.BestilNemtWPF.Shop ShopField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -686,6 +689,19 @@ namespace WPF_Client.BestilNemtWPF {
                 if ((object.ReferenceEquals(this.ProductField, value) != true)) {
                     this.ProductField = value;
                     this.RaisePropertyChanged("Product");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> SavingId {
+            get {
+                return this.SavingIdField;
+            }
+            set {
+                if ((this.SavingIdField.Equals(value) != true)) {
+                    this.SavingIdField = value;
+                    this.RaisePropertyChanged("SavingId");
                 }
             }
         }
@@ -752,9 +768,6 @@ namespace WPF_Client.BestilNemtWPF {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal PriceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> SavingIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -840,19 +853,6 @@ namespace WPF_Client.BestilNemtWPF {
                 if ((this.PriceField.Equals(value) != true)) {
                     this.PriceField = value;
                     this.RaisePropertyChanged("Price");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> SavingId {
-            get {
-                return this.SavingIdField;
-            }
-            set {
-                if ((this.SavingIdField.Equals(value) != true)) {
-                    this.SavingIdField = value;
-                    this.RaisePropertyChanged("SavingId");
                 }
             }
         }
@@ -1597,6 +1597,12 @@ namespace WPF_Client.BestilNemtWPF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerWithLoginResponse")]
         System.Threading.Tasks.Task<int> AddCustomerWithLoginAsync(WPF_Client.BestilNemtWPF.Customer customer, WPF_Client.BestilNemtWPF.Login login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseByProductIdResponse")]
+        WPF_Client.BestilNemtWPF.Warehouse GetWarehouseByProductId(int productId, int shopId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseByProductIdResponse")]
+        System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> GetWarehouseByProductIdAsync(int productId, int shopId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2136,6 +2142,14 @@ namespace WPF_Client.BestilNemtWPF {
         
         public System.Threading.Tasks.Task<int> AddCustomerWithLoginAsync(WPF_Client.BestilNemtWPF.Customer customer, WPF_Client.BestilNemtWPF.Login login) {
             return base.Channel.AddCustomerWithLoginAsync(customer, login);
+        }
+        
+        public WPF_Client.BestilNemtWPF.Warehouse GetWarehouseByProductId(int productId, int shopId) {
+            return base.Channel.GetWarehouseByProductId(productId, shopId);
+        }
+        
+        public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> GetWarehouseByProductIdAsync(int productId, int shopId) {
+            return base.Channel.GetWarehouseByProductIdAsync(productId, shopId);
         }
     }
 }
