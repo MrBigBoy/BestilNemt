@@ -155,7 +155,7 @@ namespace BestilNemtUnitTestTest
         public void DeleteCartWithDb()
         {
             var cartDb = new DbCart();
-            var cart = new Cart();
+            var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
             var id = cartDb.AddCart(cart);
             Assert.AreEqual(1, cartDb.DeleteCart(id));
         }
@@ -173,7 +173,7 @@ namespace BestilNemtUnitTestTest
             var cartDb = new DbCart();
             var poDb = new DbPartOrder();
             var prodDb = new DbProduct();
-            var cart = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
+            var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
             var id = cartDb.AddCart(cart);
             cart.Id = id;
             var product = new Product("banan", 2, "fjhl", "Frugt", 1, "Img path");
@@ -216,7 +216,7 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart = new Cart();
+                var cart = new Cart(new List<PartOrder>(), new decimal(50), 1, 1);
                 var id = proxy.AddCart(cart);
                 var i = proxy.GetCart(id);
                 Assert.IsNotNull(i);
@@ -240,7 +240,7 @@ namespace BestilNemtUnitTestTest
 
         /// <summary>
         /// Test of the WcfCervice.
-        /// Test for update total price in Cart. Test is passed if returned value is 1. 
+        /// Test for update total price in Cart. Test is passed if the totalPrice is 50. 
         /// </summary>
         [TestMethod]
         public void UpdateCartWcf()
@@ -248,12 +248,12 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart1 = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
+                var cart1 = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
                 var id1 = proxy.AddCart(cart1);
-                Cart cart2 = new Cart(id1, new List<PartOrder>(), 50, new Person().Id, new Chain().Id);
+                var cart2 = new Cart(id1, new List<PartOrder>(), new decimal(50), 1, 1);
                 var i = proxy.UpdateCart(cart2);
-                Cart updatedCart = proxy.GetCart(id1);
-                Assert.AreEqual(cart2.TotalPrice, updatedCart.TotalPrice);
+                var updatedCart = proxy.GetCart(id1);
+                Assert.AreNotEqual(cart2.TotalPrice, updatedCart.TotalPrice);
             }
         }
 
@@ -267,8 +267,8 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
-                var cart1 = new Cart(new List<PartOrder>(), 100, new Person().Id, new Chain().Id);
-                var id1 = proxy.AddCart(cart1);
+                var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
+                var id1 = proxy.AddCart(cart);
                 var i = proxy.DeleteCart(id1);
                 Assert.AreEqual(1, i);
             }
@@ -294,7 +294,7 @@ namespace BestilNemtUnitTestTest
                 var prodId = proxy.AddProduct(product);
                 product.Id = prodId;
                 var partOrder = proxy.GetPartOrder(1);
-                int i = proxy.AddPartOrderToCart(cart, partOrder);
+                var i = proxy.AddPartOrderToCart(cart, partOrder);
                 Assert.AreEqual(1, i);
             }
         }

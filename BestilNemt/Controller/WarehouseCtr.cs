@@ -106,7 +106,7 @@ namespace Controller
         /// </returns>
         private static bool ValidateWarehouse(Warehouse warehouse)
         {
-            return warehouse != null && warehouse.MinStock >= 0 && warehouse.Stock >= 0 /*&& warehouse.Shop != null*/;
+            return warehouse != null && warehouse.MinStock >= 0 && warehouse.Stock >= 0 && warehouse.Shop != null;
         }
     }
 }
