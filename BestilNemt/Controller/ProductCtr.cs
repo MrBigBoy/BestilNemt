@@ -122,5 +122,10 @@ namespace Controller
         {
             return DbProduct.GetAllProductsWithSavings();
         }
+
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            return DbProduct.GetWarehouseByProductId(productId, shopId);
+        }
     }
 }

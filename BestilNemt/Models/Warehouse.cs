@@ -23,6 +23,9 @@ namespace Models
         [DataMember]
         public Shop Shop { get; set; }
 
+        [DataMember]
+        public int? SavingId { get; set; }
+
 
         /// <summary>
         /// Empty constructor
@@ -52,9 +55,11 @@ namespace Models
         /// <param name="minStock"></param>
         /// <param name="product"></param>
         /// <param name="shop"></param>
-        public Warehouse(int stock, int minStock, Product product, Shop shop) : this(stock, minStock, product)
+        /// <param name="savingId"></param>
+        public Warehouse(int stock, int minStock, Product product, Shop shop, int? savingId) : this(stock, minStock, product)
         {
             Shop = shop;
+            SavingId = savingId;
         }
 
         /// <summary>
@@ -65,7 +70,8 @@ namespace Models
         /// <param name="minStock"></param>
         /// <param name="product"></param>
         /// <param name="shop"></param>
-        public Warehouse(int id, int stock, int minStock, Product product, Shop shop) : this(stock, minStock, product, shop)
+        /// <param name="savingId"></param>
+        public Warehouse(int id, int stock, int minStock, Product product, Shop shop, int? savingId) : this(stock, minStock, product, shop, savingId)
         {
             Id = id;
         }

@@ -20,7 +20,7 @@ namespace BestilNemtUnitTestTest
             var i1 = 0;
             var i2 = 0;
             var dbW = new DbWarehouse();
-            var w = new Warehouse(1, 10, 0, _prod, _s);
+            var w = new Warehouse(1, 10, 0, _prod, _s, 1);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { i1 = StartTr1(); }, () => { i2 = StartTr2(); });
             var flag = 0;
@@ -30,10 +30,10 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void TestConcurrencyBothSuccessfull()
+        public void TestConcurrencyBothSuccesfull()
         {
             var dbW = new DbWarehouse();
-            var w = new Warehouse(1, 10, 0, _prod, _s);
+            var w = new Warehouse(1, 10, 0, _prod, _s, 1);
             dbW.UpdateWarehouse(w);
             Parallel.Invoke(() => { StartTr3(); }, () => { StartTr4(); });
             var stock = dbW.GetWarehouse(1).Stock;

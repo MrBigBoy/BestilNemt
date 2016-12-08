@@ -85,17 +85,28 @@
                         {
                             <td>0</td>
                         }
-                    }
-                    @{
-                        var savingId = product.SavingId;
+                        var proxy = new BestilNemtServiceClient();
+                        if (shop == null)
+                        {
+                            shop = new Shop();
+                        }
+                        var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
+                        var savingId = warehouse2.SavingId;
                         var price = product.Price;
                         if (savingId != null)
                         {
-                            var proxy = new BestilNemtServiceClient();
                             var saving = proxy.GetSaving(savingId.Value);
-                            var percent = (decimal)saving.SavingPercent;
-                            var newPrice = price - (price * percent / 100);
-                            <td>@price kr - @percent % = @newPrice kr</td>
+                            if (saving != null)
+                            {
+                                var percent = (decimal)saving.SavingPercent;
+                                var newPrice = price - (price * percent / 100);
+                                <td>@price kr - @percent % = @newPrice kr</td>
+                            }
+                            else
+                            {
+                                <td>@price kr</td>
+                            }
+
                         }
                         else
                         {
