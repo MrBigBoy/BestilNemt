@@ -239,48 +239,6 @@ namespace DataAccessLayer
             }
             return i;
         }
-        public int UpdateWarehouseAdmin(Warehouse warehouse)
-        {
-            var i = 0;
-            using (
-               var conn =
-                   new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = conn.CreateCommand();
-                // Set the isolation level to ReadCommitted
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Transaction = transaction;
-                try
-                {
-                    cmd.CommandText = "Update Warehouse Set warehouseStock = @stock, warehouseMinStock = @minStock, warehouseShopId = @shopId, warehouseProductId = @productId where warehouseId = @warehouseId";
-                    cmd.Parameters.AddWithValue("stock", warehouse.Stock);
-                    cmd.Parameters.AddWithValue("minStock", warehouse.MinStock);
-                    cmd.Parameters.AddWithValue("shopId", warehouse.ShopId);
-                    cmd.Parameters.AddWithValue("productId", warehouse.ProductId);
-                    cmd.Parameters.AddWithValue("warehouseId", warehouse.Id);
-                    i = cmd.ExecuteNonQuery();
-                    transaction.Commit();
-                    Console.WriteLine("Commit was succsesfull");
-
-                }
-                catch (Exception)
-                {
-                    // The transaction failed
-                    try
-                    {
-                        // Try rolling back
-                        transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
-                    }
-                    catch (SqlException)
-                    {
-                        // Rolling back failed
-                        Console.WriteLine("Transaction rollback failed");
-                    }
-                }
-            }
-            return i;
-        }
+    
     }
 }

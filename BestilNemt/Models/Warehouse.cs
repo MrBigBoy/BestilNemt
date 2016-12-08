@@ -23,10 +23,6 @@ namespace Models
         [DataMember]
         public Shop Shop { get; set; }
 
-        [DataMember]
-        public int ShopId { get; set; }
-        [DataMember]
-        public int ProductId { get; set; }
 
         /// <summary>
         /// Empty constructor
