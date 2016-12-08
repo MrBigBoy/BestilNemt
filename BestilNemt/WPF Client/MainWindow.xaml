@@ -68,7 +68,7 @@
                     <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="107,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Varehus">
                 <Grid Background="#FFE5E5E5" Margin="0,-36,0,37">
                     <Button x:Name="AddAmount" Content="Opret Antal" Margin="10,364,1264,325" Click="AddAmount_Click"/>
                     <Label x:Name="WareHouseLabel" Content="WareHouse" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -79,7 +79,7 @@
                     <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="8,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" IsReadOnly="True"/>
                     <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
                     <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="10,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-                    <DataGrid x:Name="ProductWarehouse" Margin="215,10,5,5" AutoGenerateColumns="False" FontWeight="Bold">
+                    <DataGrid x:Name="ProductWarehouse" Margin="215,10,5,5" AutoGenerateColumns="False" FontWeight="Bold" SelectionMode="Single">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="120" />
                             <DataGridTextColumn Header="VareHusId" Binding="{Binding warehouseId}" Width="120" />
