@@ -31,12 +31,16 @@ namespace DataAccessLayer
                 try
                 {
                     cmd.CommandText = "INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId, warehouseSavingId) " +
-                                      "output inserted.warehouseId VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId, @WarehousehouseSavingId)";
+                                      "output inserted.warehouseId VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId, @WarehouseSavingId)";
                     cmd.Parameters.AddWithValue("warehouseStock", warehouse.Stock);
                     cmd.Parameters.AddWithValue("warehouseMinStock", warehouse.MinStock);
                     cmd.Parameters.AddWithValue("warehouseShopId", warehouse.Shop.Id);
                     cmd.Parameters.AddWithValue("warehouseProductId", warehouse.Product.Id);
-                    cmd.Parameters.AddWithValue("WarehouseSavingId", warehouse.SavingId);
+                    if (warehouse.SavingId == null)
+                        cmd.Parameters.AddWithValue("WarehouseSavingId", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("WarehouseSavingId", warehouse.SavingId);
+
                     // get the id
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
