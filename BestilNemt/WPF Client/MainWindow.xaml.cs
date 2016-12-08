@@ -57,6 +57,7 @@ namespace WPF_Client
             product.ImgPath = ProductImgPath.Text;
             proxy.AddProduct(product);
             FillDataGridProducts();
+            MessageBox.Show("hello"); 
         }
 
 
