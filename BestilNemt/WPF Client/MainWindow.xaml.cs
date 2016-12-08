@@ -36,7 +36,7 @@ namespace WPF_Client
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                CmdString = "Select productId, productName,  productDescription, productCategory, productImgPath as savingEndDate from Product";
+                CmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath as savingEndDate from Product";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
 
