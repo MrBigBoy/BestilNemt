@@ -803,6 +803,9 @@ namespace WcfService
             return CustomerCtr.AddCustomerWithLogin(customer, login);
         }
 
-       
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            return ProductCtr.GetWarehouseByProductId(productId, shopId);
+        }
     }
 }

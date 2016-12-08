@@ -202,6 +202,10 @@ namespace WcfService
 
         [OperationContract]
         int AddCustomerWithLogin(Customer customer, Login login);
+
+        [OperationContract]
+        Warehouse GetWarehouseByProductId(int productId, int shopId);
+
     }
 }
 
