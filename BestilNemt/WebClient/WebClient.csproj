@@ -259,13 +259,10 @@
     <Content Include="Views\Shop\ShopList.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\ProductPage.cshtml" />
-    <Content Include="Views\Product\AddProductToCart.cshtml" />
-    <Content Include="Views\Cart\AddtoCart.cshtml" />
     <Content Include="Views\Cart\GetCart.cshtml" />
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Login\SignIn.cshtml" />
     <Content Include="Views\Login\CreateLogin.cshtml" />
-    <Content Include="Views\Login\ResetLogin.cshtml" />
     <Content Include="Views\Cart\Receipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
