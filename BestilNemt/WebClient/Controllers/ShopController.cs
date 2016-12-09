@@ -25,16 +25,13 @@ namespace WebClient.Controllers
             using (proxy)
             {
                 proxy.Open();
-                // Get the chain from session
-                var chain = (Chain)Session["Chain"];
-                // If the chain has not been set before
-                if (chain == null)
-                    return View(proxy.GetAllShopsByChainId(id.Value));
-                // If the id is not different from the id there has been set before reset the id and clear the cart and the shop id
-                if (chain.Id == id.Value)
-                    return View(proxy.GetAllShopsByChainId(id.Value));
+                var chain_old = (Chain) Session["Chain"];
+                var chainId_old = chain_old?.Id;
+                var chain = proxy.GetChain(id.Value);
                 // Set the new Chain
-                Session["Chain"] = proxy.GetChain(id.Value);
+                Session["Chain"] = chain;
+                // If the id is not different from the id there has been set before reset the id and clear the cart and the shop id
+                if (chain?.Id == chainId_old) return View(proxy.GetAllShopsByChainId(id.Value));
                 // Clear the cart
                 Session["ShoppingCart"] = null;
                 // Clear the shop

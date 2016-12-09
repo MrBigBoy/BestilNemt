@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Windows.Documents;
 using System.Windows.Input;
 
@@ -522,7 +523,12 @@ namespace WPF_Client
             warehouse.Shop = getShop;
             warehouse.SavingId = null;
 
-            proxy.AddWarehouse(warehouse);
+            var warehouseId = proxy.AddWarehouse(warehouse);
+            if (warehouseId == 0)
+            {
+                MessageBox.Show("Warehouse findes allerede, opret et ny produkt");
+            }
+
         }
 
         private void ShopList_SelectionChanged()
