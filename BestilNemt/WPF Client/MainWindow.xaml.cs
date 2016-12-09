@@ -9,6 +9,7 @@ using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 
 namespace WPF_Client
@@ -155,6 +156,7 @@ namespace WPF_Client
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             //Create a local saving object
             var saving = new Saving();
+            var warehouse = proxy.GetWarehouse(Int32.Parse(WareHouseId.Text));
             //Takes the date selected and makes them a datetime, instead of strings
             DateTime? startDate = StartDate.SelectedDate;
             DateTime? endDate = EndDate.SelectedDate;
@@ -166,16 +168,17 @@ namespace WPF_Client
             //Checks if the user has loaded in a product
             if (ProductId.Text == "")
             {
-                MessageBox.Show("Du mangler at indlæse et product");
+                MessageBox.Show("Du mangler at indlæse et VareHus");
             }
             else
             {
-                //Skriv kommentar når det her er rigtig ;)
-                Product product = proxy.GetProduct(int.Parse(ProductId.Text));
-                proxy.AddSaving(saving, product);
-                //saving.Id = W.SavingId.Value;
+                //Adding saving with a warehouse
+                //  proxy.AddSaving(saving, warehouse);
+                //Setting savingId equals to warehouseId
+                saving.Id = warehouse.SavingId.Value;
+                //Reloading the tabel agin 
                 FillDataGridProducts();
-                MessageBox.Show("Du har lavet en rabet på" + product.Name);
+                MessageBox.Show("Du har lavet en rabet på" + ProductName1.Text);
             }
         }
 
@@ -230,7 +233,7 @@ namespace WPF_Client
                 {
                     //Opens the connection and runs the querey
                     conn.Open();
-                    CmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId AND warehouseSavingId = savingId";
+                    CmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId ";
                     //Sends the qurey and adds the missing parameter
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
@@ -240,6 +243,7 @@ namespace WPF_Client
                     //fills the datatabek
                     sda.Fill(dt);
                     ProductWarehouse.ItemsSource = dt.DefaultView;
+                    /* AND warehouseSavingId = savingId*/
                 }
             }
             else
@@ -247,17 +251,21 @@ namespace WPF_Client
                 MessageBox.Show("Du er ikke logget ind, hvordan åbenede du det her vindue?");
             }
         }
-        
+
         /// <summary>
         /// Updates the amount on a product in a warehouse
         /// </summary>
         public void updateAmount()
         {
             var proxy = new BestilNemtServiceClient();
+            //getting the current User 
             var CurrentUser = LoginManager.User;
+            //Finds his PersonID 
             var id = CurrentUser.PersonId;
+            //With id we find the admin, and all admin has shopID
             var admin = proxy.GetAdmin(id);
             var shopIdAdmin = 0;
+            //Checks for value input
             //if (admin == null)
             //{
             //    MessageBox.Show("Du er ikke admin for en bestemt shop");
@@ -278,10 +286,14 @@ namespace WPF_Client
             {
 
                 shopIdAdmin = admin.ShopId;
+                //we find the shop for the currentuser/admin
                 Shop getShop = proxy.GetShop(shopIdAdmin);
+                //Make a new instance of warehouse 
                 Warehouse warehouse = new Warehouse();
+                //Get the productID 
                 var productID = Int32.Parse(ProductIdWareHouse.Text);
-
+                //GetAllWarehousebyShopid() is a list, so we make a foreach loop, and find the corret warehouse =
+                //with right productID
                 var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
                 foreach (var w in warehouses)
                 {
@@ -290,15 +302,18 @@ namespace WPF_Client
                         warehouse = w;
                     }
                 }
+                //sets value for textbox
                 warehouse.Stock = Int32.Parse(NewAmount1.Text);
                 warehouse.MinStock = Int32.Parse(MinAmount.Text);
                 warehouse.Shop = getShop;
+                //we update warehouse with a new amount
                 proxy.UpdateWarehouse(warehouse);
                 FillProductWareHouse();
                 MessageBox.Show("Dit Antal er nu blevet opdateret");
             }
 
         }
+        //loading tabel into the fields
         public void loadWarehouseProduct()
         {
             DataRowView drv = (DataRowView)ProductWarehouse.SelectedItem;
@@ -403,6 +418,7 @@ namespace WPF_Client
             var NewOpeningTime = OpeningTimeRaw.Replace(";", "\r\n");
             ShopOpeningTimesField.Text = NewOpeningTime;
             var chainId = (drv["ShopChainId"]).ToString();
+            ShopList_SelectionChanged();
             ChainList.FindName(chainId);
         }
         /// <summary>
@@ -473,21 +489,25 @@ namespace WPF_Client
         {
             ClearWareHouseFields();
         }
+        /// <summary>
+        /// Find an product, and then adding a new warehouse
+        /// </summary>
         public void AddProductToWarehouse()
         {
             var proxy = new BestilNemtServiceClient();
+            //Finds the currentuser, by using our static class
             var CurrentUser = LoginManager.User;
             var id = CurrentUser.PersonId;
+            //finds the corret admin
             var admin = proxy.GetAdmin(id);
             var shopIdAdmin = 0;
-
             shopIdAdmin = admin.ShopId;
-
             shopIdAdmin = admin.ShopId;
+            //finds the shop through admin
             Shop getShop = proxy.GetShop(shopIdAdmin);
             Warehouse warehouse = new Warehouse();
             var productID = Int32.Parse(ProductId.Text);
-
+            //Getting all warehouse with a shopID, and loop through it 
             var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
             foreach (var w in warehouses)
             {
@@ -496,16 +516,35 @@ namespace WPF_Client
                     warehouse = w;
                 }
             }
-
-            // var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
-            // warehouse.Id =
+            //sets value in the textboxes
             warehouse.MinStock = Int32.Parse(minStock.Text);
             warehouse.Stock = Int32.Parse(Stock.Text);
-            //    warehouse.Product.Id = Int32.Parse(ProductId.Text);
             warehouse.Shop = getShop;
             warehouse.SavingId = null;
 
             proxy.AddWarehouse(warehouse);
+        }
+
+        private void ShopList_SelectionChanged()
+        {
+            var drvShopView = (DataRowView)ShopList.SelectedItem;
+            string chainId = null;
+            if (drvShopView != null)
+                chainId = drvShopView[5].ToString();
+
+            for (var i = 0; i < ChainList.Items.Count; i++)
+            {
+                var row = (DataGridRow)ChainList.ItemContainerGenerator.ContainerFromIndex(i);
+                var cellContent = ChainList.Columns[0].GetCellContent(row) as TextBlock;
+                if (cellContent != null && cellContent.Text.Equals(chainId))
+                {
+                    var item = ChainList.Items[i];
+                    ChainList.SelectedItem = item;
+                    ChainList.ScrollIntoView(item);
+                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                    break;
+                }
+            }
         }
 
         private void AddToWarehouse_Click(object sender, RoutedEventArgs e)
