@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1366">
+        Title="MainWindow" Height="748" Width="1366">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="889*"/>
@@ -53,7 +53,7 @@
                         </Grid>
                         <Label x:Name="ProductLabel" Content="Produkthåndtering" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     </Grid>
-                    <Grid Margin="10,427,1189,136">
+                    <Grid Margin="10,427,1189,0" Height="200" VerticalAlignment="Top">
                         <Label x:Name="AddToWarehouseLabel" Content="Produkthåndtering" HorizontalAlignment="Left" Margin="14,0,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                         <TextBox x:Name="minStock" HorizontalAlignment="Left" Height="20" Margin="0,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
                         <TextBox x:Name="Stock" HorizontalAlignment="Left" Height="20" Margin="0,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
@@ -127,7 +127,7 @@
                             <Label x:Name="ShopCVRLabel" Content="CVR" HorizontalAlignment="Left" Margin="0,318,0,0" VerticalAlignment="Top"/>
                             <TextBox x:Name="ShopCVRField" HorizontalAlignment="Left" Height="23" Margin="0,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
                             <Label x:Name="ShopChainLabel" Content="Kæde navn" HorizontalAlignment="Left" Margin="0,367,0,0" VerticalAlignment="Top"/>
-                            <DataGrid x:Name="ChainList" Margin="0,393,0,0" AutoGenerateColumns="False" Height="246" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" SelectionMode="Single">
+                            <DataGrid x:Name="ChainList" Margin="0,393,0,0" AutoGenerateColumns="False" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" SelectionMode="Single">
                                 <DataGrid.Columns >
                                     <DataGridTextColumn Header="ID" Binding="{Binding chainId}" Width="22" />
                                     <DataGridTextColumn Header="Navn" Binding="{Binding chainName}" Width="*"/>
