@@ -418,6 +418,7 @@ namespace WPF_Client
             var NewOpeningTime = OpeningTimeRaw.Replace(";", "\r\n");
             ShopOpeningTimesField.Text = NewOpeningTime;
             var chainId = (drv["ShopChainId"]).ToString();
+            ShopList_SelectionChanged();
             ChainList.FindName(chainId);
         }
         /// <summary>
@@ -520,16 +521,11 @@ namespace WPF_Client
             warehouse.Stock = Int32.Parse(Stock.Text);
             warehouse.Shop = getShop;
             warehouse.SavingId = null;
-            //adding new warehouse with a product. 
+
             proxy.AddWarehouse(warehouse);
         }
 
-        private void ProductInformation_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ShopList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ShopList_SelectionChanged()
         {
             var drvShopView = (DataRowView)ShopList.SelectedItem;
             string chainId = null;
@@ -550,8 +546,6 @@ namespace WPF_Client
                 }
             }
         }
-
-
 
         private void AddToWarehouse_Click(object sender, RoutedEventArgs e)
         {
