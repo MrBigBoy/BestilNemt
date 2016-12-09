@@ -25,13 +25,13 @@ namespace Controller
         /// <returns>
         /// Id of saving if added, else 0
         /// </returns>
-        public int AddSaving(Saving saving, Product product)
+        public int AddSaving(Saving saving, Warehouse warehouse)
         {
-            if (product == null)
+            if (warehouse == null)
             {
                 return 0;
             }
-            return ValidateSavingInput(saving) ? DbSaving.AddSaving(saving, product) : 0;
+            return ValidateSavingInput(saving) ? DbSaving.AddSaving(saving, warehouse) : 0;
         }
 
         /// <summary>

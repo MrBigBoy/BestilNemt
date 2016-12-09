@@ -17,7 +17,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Id of Saving if added, else 0
         /// </returns>
-        public int AddSaving(Saving saving, Product product)
+        public int AddSaving(Saving saving, Warehouse warehouse)
         {
             var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -30,11 +30,12 @@ namespace DataAccessLayer
                 try
                 {
                     cmd.CommandText = "DECLARE @DataID int; INSERT INTO Saving(savingStartDate,savingEndDate,savingPercent) output inserted.savingId VALUES(@startDate, @endDate, @percent); " +
-                                             "SELECT @DataID = scope_identity(); UPDATE Product SET productSavingId = @DataID WHERE productId = @productId;";
+                                             "SELECT @DataID = scope_identity(); UPDATE warehouse SET warehouseSavingId = @DataID WHERE warehouseId = @warehouseId;";
+
                     cmd.Parameters.AddWithValue("startDate", saving.StartDate);
                     cmd.Parameters.AddWithValue("endDate", saving.EndDate);
                     cmd.Parameters.AddWithValue("percent", saving.SavingPercent);
-                    cmd.Parameters.AddWithValue("productId", product.Id);
+                    cmd.Parameters.AddWithValue("warehouseId", warehouse.Id);
                     // Get the id
                     i = (int)cmd.ExecuteScalar();
                     transaction.Commit();

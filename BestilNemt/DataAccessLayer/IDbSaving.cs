@@ -8,7 +8,7 @@ namespace DataAccessLayer
     /// </summary>
     public interface IDbSaving
     {
-        int AddSaving(Saving saving, Product product);
+        int AddSaving(Saving saving, Warehouse warehouse);
         Saving GetSaving(int id);
         List<Saving> GetAllSavings();
         int UpdateSaving(Saving saving);

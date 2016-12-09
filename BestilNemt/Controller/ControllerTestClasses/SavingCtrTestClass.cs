@@ -11,7 +11,7 @@ namespace Controller.ControllerTestClasses
         private int IdCounter = 1;
         private int Flag = 0;
 
-        public int AddSaving(Saving saving, Product product)
+        public int AddSaving(Saving saving, Warehouse warehouse)
         {
             saving.Id = IdCounter;
             if (ValidateSavingInput(saving))
