@@ -552,5 +552,10 @@ namespace WPF_Client
             AddProductToWarehouse();
             FillProductWareHouse();
         }
+
+        private void UpdataTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
