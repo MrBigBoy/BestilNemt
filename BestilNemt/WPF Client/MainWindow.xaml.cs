@@ -166,18 +166,19 @@ namespace WPF_Client
             //Parses the textfield string to a doube to corresponnd to the database
             saving.SavingPercent = double.Parse(SavingPercent.Text);
             //Checks if the user has loaded in a product
-            if (ProductId.Text == "")
+            if (WareHouseId.Text == "")
             {
                 MessageBox.Show("Du mangler at indlæse et VareHus");
             }
             else
             {
-                //Adding saving with a warehouse
-                //  proxy.AddSaving(saving, warehouse);
-                //Setting savingId equals to warehouseId
                 saving.Id = warehouse.SavingId.Value;
+                //Adding saving with a warehouse
+                proxy.AddSaving(saving, warehouse);
+                //Setting savingId equals to warehouseId
+
                 //Reloading the tabel agin 
-                FillDataGridProducts();
+                FillProductWareHouse();
                 MessageBox.Show("Du har lavet en rabet på" + ProductName1.Text);
             }
         }
@@ -233,7 +234,7 @@ namespace WPF_Client
                 {
                     //Opens the connection and runs the querey
                     conn.Open();
-                    CmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId ";
+                    CmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId   AND warehouseSavingId = savingId ";
                     //Sends the qurey and adds the missing parameter
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
@@ -243,7 +244,7 @@ namespace WPF_Client
                     //fills the datatabek
                     sda.Fill(dt);
                     ProductWarehouse.ItemsSource = dt.DefaultView;
-                    /* AND warehouseSavingId = savingId*/
+                  
                 }
             }
             else
@@ -483,6 +484,8 @@ namespace WPF_Client
             NewAmount1.Text = "";
             MinAmount.Text = "";
             ProductName1.Text = "";
+            FillDataGridProducts();
+            MessageBox.Show("dsds"); 
         }
 
         private void ClearFiledsWarehouse_Click(object sender, RoutedEventArgs e)

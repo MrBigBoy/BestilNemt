@@ -1557,10 +1557,10 @@ namespace WPF_Client.BestilNemtWPF {
         System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product);
+        int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product);
+        System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
         WPF_Client.BestilNemtWPF.Saving GetSaving(int id);
@@ -2088,12 +2088,12 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.DeleteWarehouseAsync(id);
         }
         
-        public int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product) {
-            return base.Channel.AddSaving(saving, product);
+        public int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse) {
+            return base.Channel.AddSaving(saving, warehouse);
         }
         
-        public System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product) {
-            return base.Channel.AddSavingAsync(saving, product);
+        public System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse) {
+            return base.Channel.AddSavingAsync(saving, warehouse);
         }
         
         public WPF_Client.BestilNemtWPF.Saving GetSaving(int id) {
