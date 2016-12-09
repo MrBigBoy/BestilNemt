@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="748" Width="1366">
+        Title="MainWindow" Height="748" Width="1366"
+        WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="889*"/>
