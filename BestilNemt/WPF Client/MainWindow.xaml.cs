@@ -9,6 +9,7 @@ using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 
 namespace WPF_Client
@@ -403,6 +404,7 @@ namespace WPF_Client
             var NewOpeningTime = OpeningTimeRaw.Replace(";", "\r\n");
             ShopOpeningTimesField.Text = NewOpeningTime;
             var chainId = (drv["ShopChainId"]).ToString();
+            ShopList_SelectionChanged();
             ChainList.FindName(chainId);
         }
         /// <summary>
@@ -506,6 +508,28 @@ namespace WPF_Client
             warehouse.SavingId = null;
 
             proxy.AddWarehouse(warehouse);
+        }
+
+        private void ShopList_SelectionChanged()
+        {
+            var drvShopView = (DataRowView)ShopList.SelectedItem;
+            string chainId = null;
+            if (drvShopView != null)
+                chainId = drvShopView[5].ToString();
+
+            for (var i = 0; i < ChainList.Items.Count; i++)
+            {
+                var row = (DataGridRow)ChainList.ItemContainerGenerator.ContainerFromIndex(i);
+                var cellContent = ChainList.Columns[0].GetCellContent(row) as TextBlock;
+                if (cellContent != null && cellContent.Text.Equals(chainId))
+                {
+                    var item = ChainList.Items[i];
+                    ChainList.SelectedItem = item;
+                    ChainList.ScrollIntoView(item);
+                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                    break;
+                }
+            }
         }
 
         private void AddToWarehouse_Click(object sender, RoutedEventArgs e)
