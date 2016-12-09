@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="748" Width="1366">
+        Title="MainWindow" Height="748" Width="1366"
+        WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="889*"/>
@@ -63,7 +64,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Varehus">
+            <TabItem Header="Varehus" Margin="-2,0,-2,-2">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
                     <Button x:Name="AddAmount" Content="Opret Antal" Margin="10,265,0,0" Click="AddAmount_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
                     <Label x:Name="label" Content="ProduktId" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top"/>
@@ -91,15 +92,16 @@
                     <Label x:Name="WareHouseID" Content="Varehus ID" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
                     <TextBox x:Name="WareHouseId" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsReadOnly="True"/>
                     <Button x:Name="ClearFiledsWarehouse" Content="Ryd Felter" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Width="150" Click="ClearFiledsWarehouse_Click"/>
-                    <Label x:Name="SavingLabelName" Content="Rabathåndtering" HorizontalAlignment="Left" Margin="25,346,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-                    <Label x:Name="SavingStartDateLabel" Content="Start dato" HorizontalAlignment="Left" Margin="10,380,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="10,406,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="150"/>
-                    <Label x:Name="SavingEndDateLabel" Content="Slut dato" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="10,456,0,0" FirstDayOfWeek="Monday" Width="150" Height="24" VerticalAlignment="Top"/>
-                    <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="10,512,0,0" VerticalAlignment="Top" Width="150" Click="AddSaving_Click"/>
-                    <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="10,537,0,0" VerticalAlignment="Top" Width="150" Click="RemoveSaving_Click"/>
-                    <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="10,481,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="107,484,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+                    <Label x:Name="SavingLabelName" Content="Rabathåndtering" HorizontalAlignment="Left" Margin="25,376,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <Label x:Name="SavingStartDateLabel" Content="Start dato" HorizontalAlignment="Left" Margin="10,410,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="10,436,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="150"/>
+                    <Label x:Name="SavingEndDateLabel" Content="Slut dato" HorizontalAlignment="Left" Margin="10,460,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="EndDate" HorizontalAlignment="Left" Margin="10,486,0,0" FirstDayOfWeek="Monday" Width="150" Height="24" VerticalAlignment="Top"/>
+                    <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="10,542,0,0" VerticalAlignment="Top" Width="150" Click="AddSaving_Click"/>
+                    <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="10,567,0,0" VerticalAlignment="Top" Width="150" Click="RemoveSaving_Click"/>
+                    <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="10,511,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="107,514,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+                    <Button x:Name="UpdataTable" Content="Opdater tabel" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="150" Click="UpdataTable_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Butikker">

@@ -782,7 +782,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="saving" nillable="true" type="q51:Saving" />
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="product" nillable="true" type="q52:Product" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Models" minOccurs="0" name="warehouse" nillable="true" type="q52:Warehouse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
