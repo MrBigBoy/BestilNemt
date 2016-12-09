@@ -16,6 +16,7 @@ namespace DataAccessLayer
         /// <returns>
         /// id of Warehouse if added, else 0
         /// </returns>
+       
         public int AddWarehouse(Warehouse warehouse)
         {
             var id = 0;
@@ -30,8 +31,11 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId, warehouseSavingId) " +
-                                      "output inserted.warehouseId VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId, @WarehouseSavingId)";
+                    cmd.CommandText =
+                        "If not Exists (Select * from Warehouse where warehouseShopId = @warehouseShopId and warehouseProductId = @warehouseProductId)" +
+                        " INSERT INTO Warehouse(warehouseStock, warehouseMinStock, warehouseShopId, warehouseProductId, warehouseSavingId) output inserted.warehouseId " +
+                        "VALUES(@warehouseStock, @warehouseMinStock, @warehouseShopId, @warehouseProductId, @WarehouseSavingId)";
+                    
                     cmd.Parameters.AddWithValue("warehouseStock", warehouse.Stock);
                     cmd.Parameters.AddWithValue("warehouseMinStock", warehouse.MinStock);
                     cmd.Parameters.AddWithValue("warehouseShopId", warehouse.Shop.Id);
