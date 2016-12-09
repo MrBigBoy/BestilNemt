@@ -21,21 +21,40 @@ namespace WebClient.Controllers
         /// </returns>
         public ActionResult Product(int? id)
         {
+            // Create a empty list of Products to return if something is not right, else fill it
             var products = new List<Product>();
-            // if the id is null or has a value lower than 0 return a empty list to the view
-            if (id == null || id.Value <= 0)
-                return View(products);
+            // Get the shop from session
+            var shopSes = (Shop)Session["Shop"];
             // Get the cart from Session
             var cart = (Cart)Session["ShoppingCart"];
             ViewBag.Cart = cart;
             var proxy = new BestilNemtServiceClient();
+
+            // If the id is null check if shop from session is also null, then return the view
+            if (id == null)
+            {
+                // Check if shop from session is null
+                if (shopSes == null)
+                {
+                    // Return a view of empty list
+                    return View(products);
+                }
+                // Set the id to the id from the shop from session
+                id = shopSes.Id;
+            }
+
+            // if the value of id is lower than or equal 0 return the empty list 
+            if (id.Value <= 0)
+                return View(products);
             // Get the shop by the id 
             var shop = proxy.GetShop(id.Value);
+            // If the shop is null return the empty list 
+            if (shop == null)
+                return View(products);
             // Get all Warehouses with with the shop id
             shop.Warehouses = proxy.GetAllWarehousesByShopId(id.Value);
-            // Get the shop from session
-            var shopSes = (Shop)Session["Shop"];
-            // If the shop is set
+
+            // If the shop from session is set
             if (shopSes != null)
             {
                 // If the ids is different reset the cart
@@ -45,12 +64,13 @@ namespace WebClient.Controllers
                     Session["ShoppingCart"] = null;
                 }
             }
-            // Set the shop
+
+            // Save the shop to session
             Session["Shop"] = shop;
             // Get all products from the warehouses
-            var listProduct = shop.Warehouses.Select(warehouse => warehouse.Product).ToList();
+            products = shop.Warehouses.Select(warehouse => warehouse.Product).ToList();
             // Return the view with the list of products
-            return View(listProduct);
+            return View(products);
         }
 
         /// <summary>
@@ -77,7 +97,8 @@ namespace WebClient.Controllers
         [HttpPost]
         public ActionResult AddProductToCart(ProductPartOrderViewModel partOrder)
         {
-            // Get the login from session and check if a person is set, is not return a site with a javascript error
+            // Get the login from session and check if a person is set, is not return a site with a javascript 
+
             var login = (Login)Session["Login"];
             if (login.PersonId == 0)
             {
@@ -105,7 +126,8 @@ namespace WebClient.Controllers
             foreach (var partOrderLoop in partOrders)
             {
                 // If the product ids not match 
-                if (partOrderLoop.Product.Id != partOrder.Product.Id) continue;
+                if (partOrderLoop.Product.Id != partOrder.Product.Id)
+                    continue;
                 // Update the amount
                 partOrderLoop.Amount = partOrder.Amount + partOrderLoop.Amount;
                 // The PartOrder is found

@@ -183,7 +183,7 @@ namespace WcfService
         int DeleteWarehouse(int id);
 
         [OperationContract]
-        int AddSaving(Saving saving, Product product);
+        int AddSaving(Saving saving, Warehouse warehouse);
 
         [OperationContract]
         Saving GetSaving(int id);

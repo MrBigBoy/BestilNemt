@@ -650,13 +650,13 @@ namespace WcfService
         /// Add a Saving
         /// </summary>
         /// <param name="saving"></param>
-        /// <param name="product"></param>
+        /// <param name="warehouse"></param>
         /// <returns>
         /// Id of Saving if added, else 0
         /// </returns>
-        public int AddSaving(Saving saving, Product product)
+        public int AddSaving(Saving saving, Warehouse warehouse)
         {
-            return SavingCtr.AddSaving(saving, product);
+            return SavingCtr.AddSaving(saving, warehouse);
         }
 
         /// <summary>
