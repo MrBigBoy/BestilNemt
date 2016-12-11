@@ -136,15 +136,22 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void AddSaving_Click(object sender, RoutedEventArgs e)
         {
-            createSaving();
+            CreateSaving();
         }
 
         /// <summary>
         /// Creates a saving for a product in the warehouse
         /// </summary>
-        public void createSaving()
+        public void CreateSaving()
         {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            //gets the current admin 
+            var currentUser = LoginManager.User;
+            var id = currentUser.PersonId;
+            //Get admin 
+            var admin = proxy.GetAdmin(id);
+            //Finds the login shop
+            var shop = proxy.GetShop(admin.ShopId);
             //Create a local saving object
             var saving = new Saving();
             var warehouse = proxy.GetWarehouse(Int32.Parse(WareHouseId.Text));
@@ -157,19 +164,20 @@ namespace WPF_Client
             //Parses the textfield string to a doube to corresponnd to the database
             saving.SavingPercent = double.Parse(SavingPercent.Text);
             //Checks if the user has loaded in a product
-            if (ProductId.Text == "")
+            if (WareHouseId.Text == "")
             {
-                MessageBox.Show("Du mangler at indlæse et VareHus");
+                MessageBox.Show("Du mangler at indlæse fra tabellen ");
             }
             else
             {
-                //Adding saving with a warehouse
-                //  proxy.AddSaving(saving, warehouse);
-                //Setting savingId equals to warehouseId
                 saving.Id = warehouse.SavingId.Value;
+                //Adding saving with a warehouse
+                proxy.AddSaving(saving, warehouse);
+                //Setting savingId equals to warehouseId
+
                 //Reloading the tabel agin 
-                FillDataGridProducts();
-                MessageBox.Show("Du har lavet en rabet på" + ProductName1.Text);
+                FillProductWareHouse();
+                MessageBox.Show("Du har lavet en rabet på " + ProductName1.Text + " i " + shop.Name );
             }
         }
 
@@ -230,7 +238,7 @@ namespace WPF_Client
         /// <summary>
         /// Updates the amount on a product in a warehouse
         /// </summary>
-        public void updateAmount()
+        public void UpdateAmount()
         {
             var proxy = new BestilNemtServiceClient();
             //getting the current User 
@@ -241,10 +249,10 @@ namespace WPF_Client
             var admin = proxy.GetAdmin(id);
             var shopIdAdmin = 0;
             //Checks for value input
-            //if (admin == null)
-            //{
-            //    MessageBox.Show("Du er ikke admin for en bestemt shop");
-            //}
+            if (admin.Id == 0)
+            {
+                MessageBox.Show("Du er ikke admin for en bestemt shop");
+            }
             if (ProductIdWareHouse.Text.Equals(""))
             {
                 MessageBox.Show("Du har glemt at indlæs et produkt");
@@ -289,7 +297,7 @@ namespace WPF_Client
 
         }
         //loading tabel into the fields
-        public void loadWarehouseProduct()
+        public void LoadWarehouseProduct()
         {
             DataRowView drv = (DataRowView)ProductWarehouse.SelectedItem;
             ProductIdWareHouse.Text = (drv["productId"]).ToString();
@@ -303,7 +311,7 @@ namespace WPF_Client
         //Used to update the tabel of the warehouse tab
         private void ReadTable_Click(object sender, RoutedEventArgs e)
         {
-            loadWarehouseProduct();
+            LoadWarehouseProduct();
         }
 
         /// <summary>
@@ -423,7 +431,7 @@ namespace WPF_Client
 
         private void AddAmount_Click(object sender, RoutedEventArgs e)
         {
-            updateAmount();
+            UpdateAmount();
         }
 
         /// <summary>
@@ -436,6 +444,8 @@ namespace WPF_Client
             NewAmount1.Text = "";
             MinAmount.Text = "";
             ProductName1.Text = "";
+            FillDataGridProducts();
+            MessageBox.Show("dsds"); 
         }
 
         private void ClearFiledsWarehouse_Click(object sender, RoutedEventArgs e)
@@ -482,14 +492,19 @@ namespace WPF_Client
             }
 
         }
+        /// <summary>
+        /// Find the selected chain with a shop.
+        /// </summary>
 
         private void ShopList_SelectionChanged()
         {
+            //SelecttedRow in tabel 
             var drvShopView = (DataRowView)ShopList.SelectedItem;
             string chainId = null;
+            //Checks for the tabel isnt empty 
             if (drvShopView != null)
                 chainId = drvShopView[5].ToString();
-
+            //Runs a for loop for all chains 
             for (var i = 0; i < ChainList.Items.Count; i++)
             {
                 var row = (DataGridRow)ChainList.ItemContainerGenerator.ContainerFromIndex(i);
@@ -509,6 +524,11 @@ namespace WPF_Client
         {
             AddProductToWarehouse();
             FillProductWareHouse();
+        }
+
+        private void UpdataTable_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
