@@ -193,5 +193,23 @@ namespace DataAccessLayer
             }
             return i;
         }
+
+        public DataTable GetChainData()
+        {
+            var cmdString = "Select chainId, chainName From Chain";
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                //Opens the connetion and sets the qurey to the cmdstring
+                conn.Open();
+                var cmd = new SqlCommand(cmdString, conn);
+                //Adapts the data that the SQL returnns
+                var sda = new SqlDataAdapter(cmd);
+                //Makes a new table
+                var dt = new DataTable("Kæder");
+                //Fills the tabel
+                sda.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

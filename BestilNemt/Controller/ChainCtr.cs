@@ -1,6 +1,8 @@
 ﻿using Models;
 using DataAccessLayer;
 using System.Collections.Generic;
+using System;
+using System.Data;
 
 namespace Controller
 {
@@ -87,6 +89,11 @@ namespace Controller
         {
             return chain != null && chain.Cvr.Length == 8 &&
                    !string.IsNullOrEmpty(chain.Name);
+        }
+
+        public DataTable GetChainData()
+        {
+            return DbChain.GetChainData();
         }
     }
 }

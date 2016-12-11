@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Models;
 using DataAccessLayer;
+using System;
+using System.Data;
 
 namespace Controller
 {
@@ -100,6 +102,11 @@ namespace Controller
             return !string.IsNullOrEmpty(shop?.Address) && !string.IsNullOrEmpty(shop.Name) &&
                 !string.IsNullOrEmpty(shop.Cvr) && shop.Cvr.Length == 8 && shop.Chain != null &&
                 shop.Warehouses != null;
+        }
+
+        public DataTable GetDataGridShop()
+        {
+            return DbShop.GetDataGridShop();
         }
     }
 }

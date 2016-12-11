@@ -35,23 +35,13 @@ namespace WPF_Client
         /// </summary>
         private void FillDataGridProducts()
         {
-            //Makes a empty string for use with the SQL command
-            var CmdString = string.Empty;
+            var proxy = new BestilNemtServiceClient();
+            //Get data table with products info from wcf
+            var dt = proxy.GetDataGridProducts();
+            //Sets the datatable to correspond to the datatable in the GUI
+            ProductInformation.ItemsSource = dt.DefaultView;
 
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                //Open the connection and send the CmdString
-                conn.Open();
-                CmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath from Product";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                //Take the returned SQL and adapt it to a datatable
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Produkter");
-                //Fill out the datatable 
-                sda.Fill(dt);
-                //Sets the datatable to correspond to the datatable in the GUI
-                ProductInformation.ItemsSource = dt.DefaultView;
-            }
+
         }
 
         /// <summary>
@@ -221,31 +211,15 @@ namespace WPF_Client
             //Creates a empty user, 
             var currentUser = LoginManager.User;
             //Sets the shopId To be 0
-            var shopIdAdmin = 0;
             //If the user is loged in, then it will get all the details of the person
             if (currentUser != null)
             {
                 var id = currentUser.PersonId;
                 var admin = proxy.GetAdmin(id);
-                shopIdAdmin = admin.ShopId;
-                var CmdString = string.Empty;
-                //SQL used to get the warehouses that belong to the shop where the admin is
-                using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-                {
-                    //Opens the connection and runs the querey
-                    conn.Open();
-                    CmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId ";
-                    //Sends the qurey and adds the missing parameter
-                    SqlCommand cmd = new SqlCommand(CmdString, conn);
-                    cmd.Parameters.AddWithValue("administratorShopId", shopIdAdmin);
-                    //Takes what the SQL return and adapts it so it can be used in a datatabel
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable("ProductWareHouse");
-                    //fills the datatabek
-                    sda.Fill(dt);
-                    ProductWarehouse.ItemsSource = dt.DefaultView;
-                    /* AND warehouseSavingId = savingId*/
-                }
+                var shopIdAdmin = admin.ShopId;
+                var dt = proxy.GetProductWareHouse(shopIdAdmin);
+                //Sets the datatable to correspond to the datatable in the GUI
+                ProductWarehouse.ItemsSource = dt.DefaultView;
             }
             else
             {
@@ -337,46 +311,24 @@ namespace WPF_Client
         /// </summary>
         public void GetChainData()
         {
-            //Sets a empty string used for SQL
-            var CmdString = string.Empty;
+            var proxy = new BestilNemtServiceClient();
+            //Get the list of chains from database via wcf
+            var dt = proxy.GetChainData();
+            //Sets the datatable to correspond to the datatable in the GUI
+            ChainList.ItemsSource = dt.DefaultView;
 
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                //Opens the connetion and sets the qurey to the cmdstring
-                conn.Open();
-                CmdString = "Select chainId, chainName From Chain";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                //Adapts the data that the SQL returnns
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                //Makes a new table
-                DataTable dt = new DataTable("Kæder");
-                //Fills the tabel
-                sda.Fill(dt);
-                ChainList.ItemsSource = dt.DefaultView;
-            }
         }
         /// <summary>
         /// Get the data used to fill the DataGrid in the Butik tab, this is done with a custom SQL qurey that gets all the colums that we need
         /// </summary>
         public void FillDataGridShop()
         {
-            //Sets a empty string used for SQL
-            var CmdString = string.Empty;
+            var proxy = new BestilNemtServiceClient();
+            //Get the list of shops from database via wcf
+            var dt = proxy.GetDataGridShop();
+            //Sets the datatable to correspond to the datatable in the GUI
+            ShopList.ItemsSource = dt.DefaultView;
 
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                //Opens the connetion and sets the qurey to the cmdstring
-                conn.Open();
-                CmdString = "SELECT shopId, shopName, shopAddress, shopCVR, shopOpeningTime, shopChainId, chainName FROM Shop, Chain WHERE shopChainId = chainId";
-                //Adapts the data that the SQL returnns
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                //Makes a new table
-                DataTable dt = new DataTable("Butikker");
-                //Fills the tabel
-                sda.Fill(dt);
-                ShopList.ItemsSource = dt.DefaultView;
-            }
         }
         /// <summary>
         /// Gets all the text from the textfields and datatable, and sends that to the WCF that creates a new Shop

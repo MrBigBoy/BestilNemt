@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using Models;
 
 namespace DataAccessLayer
@@ -14,5 +15,6 @@ namespace DataAccessLayer
         List<Shop> GetAllShops();
         List<Shop> GetAllShopsByChainId(int chainId);
         Shop GetShop(int id);
+        DataTable GetDataGridShop();
     }
 }

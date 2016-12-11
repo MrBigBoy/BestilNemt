@@ -338,5 +338,41 @@ namespace DataAccessLayer
             }
             return warehouse;
         }
+
+        public DataTable GetDataGridProducts()
+        {
+            var cmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath from Product";
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                //Open the connection and send the CmdString
+                conn.Open();
+                var cmd = new SqlCommand(cmdString, conn);
+                //Take the returned SQL and adapt it to a datatable
+                var sda = new SqlDataAdapter(cmd);
+                var dt = new DataTable("Produkter");
+                //Fill out the datatable 
+                sda.Fill(dt);
+                return dt;
+            }
+        }
+
+        public DataTable GetProductWareHouse(int adminId)
+        {
+            var cmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) " +
+                            "as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  " +
+                            "from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId ";
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand(cmdString, conn);
+                cmd.Parameters.AddWithValue("administratorShopId", adminId);
+                //Takes what the SQL return and adapts it so it can be used in a datatabel
+                var sda = new SqlDataAdapter(cmd);
+                var dt = new DataTable("ProductWareHouse");
+                //fills the datatabel
+                sda.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

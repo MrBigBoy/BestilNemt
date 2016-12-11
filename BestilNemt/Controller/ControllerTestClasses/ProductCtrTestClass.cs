@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using DataAccessLayer;
 using Models;
@@ -64,6 +65,16 @@ namespace Controller.ControllerTestClasses
         }
 
         public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataTable GetDataGridProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataTable GetProductWareHouse(int adminId)
         {
             throw new NotImplementedException();
         }

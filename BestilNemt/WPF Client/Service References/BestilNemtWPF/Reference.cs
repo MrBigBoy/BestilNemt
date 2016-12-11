@@ -1557,10 +1557,10 @@ namespace WPF_Client.BestilNemtWPF {
         System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product);
+        int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product);
+        System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
         WPF_Client.BestilNemtWPF.Saving GetSaving(int id);
@@ -1603,6 +1603,30 @@ namespace WPF_Client.BestilNemtWPF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseByProductIdResponse")]
         System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> GetWarehouseByProductIdAsync(int productId, int shopId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridProductsResponse")]
+        System.Data.DataTable GetDataGridProducts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridProductsResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridProductsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductWareHouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductWareHouseResponse")]
+        System.Data.DataTable GetProductWareHouse(int adminId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductWareHouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductWareHouseResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetProductWareHouseAsync(int adminId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetChainData", ReplyAction="http://tempuri.org/IBestilNemtService/GetChainDataResponse")]
+        System.Data.DataTable GetChainData();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetChainData", ReplyAction="http://tempuri.org/IBestilNemtService/GetChainDataResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetChainDataAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridShopResponse")]
+        System.Data.DataTable GetDataGridShop();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridShopResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridShopAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2088,12 +2112,12 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.DeleteWarehouseAsync(id);
         }
         
-        public int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product) {
-            return base.Channel.AddSaving(saving, product);
+        public int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse) {
+            return base.Channel.AddSaving(saving, warehouse);
         }
         
-        public System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Product product) {
-            return base.Channel.AddSavingAsync(saving, product);
+        public System.Threading.Tasks.Task<int> AddSavingAsync(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse) {
+            return base.Channel.AddSavingAsync(saving, warehouse);
         }
         
         public WPF_Client.BestilNemtWPF.Saving GetSaving(int id) {
@@ -2150,6 +2174,38 @@ namespace WPF_Client.BestilNemtWPF {
         
         public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Warehouse> GetWarehouseByProductIdAsync(int productId, int shopId) {
             return base.Channel.GetWarehouseByProductIdAsync(productId, shopId);
+        }
+        
+        public System.Data.DataTable GetDataGridProducts() {
+            return base.Channel.GetDataGridProducts();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridProductsAsync() {
+            return base.Channel.GetDataGridProductsAsync();
+        }
+        
+        public System.Data.DataTable GetProductWareHouse(int adminId) {
+            return base.Channel.GetProductWareHouse(adminId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetProductWareHouseAsync(int adminId) {
+            return base.Channel.GetProductWareHouseAsync(adminId);
+        }
+        
+        public System.Data.DataTable GetChainData() {
+            return base.Channel.GetChainData();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetChainDataAsync() {
+            return base.Channel.GetChainDataAsync();
+        }
+        
+        public System.Data.DataTable GetDataGridShop() {
+            return base.Channel.GetDataGridShop();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridShopAsync() {
+            return base.Channel.GetDataGridShopAsync();
         }
     }
 }

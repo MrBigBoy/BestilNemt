@@ -1,5 +1,6 @@
 ﻿using Models;
 using System.Collections.Generic;
+using System.Data;
 using System.ServiceModel;
 
 namespace WcfService
@@ -206,6 +207,17 @@ namespace WcfService
         [OperationContract]
         Warehouse GetWarehouseByProductId(int productId, int shopId);
 
+        [OperationContract]
+        DataTable GetDataGridProducts();
+
+        [OperationContract]
+        DataTable GetProductWareHouse(int adminId);
+
+        [OperationContract]
+        DataTable GetChainData();
+
+        [OperationContract]
+        DataTable GetDataGridShop();
     }
 }
 

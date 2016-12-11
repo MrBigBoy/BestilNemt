@@ -5,6 +5,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Models" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IBestilNemtService_GetCustomer_InputMessage">
@@ -397,6 +398,30 @@
   <wsdl:message name="IBestilNemtService_GetWarehouseByProductId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetWarehouseByProductIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetDataGridProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataGridProducts" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetDataGridProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataGridProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetProductWareHouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductWareHouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetProductWareHouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductWareHouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetChainData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChainData" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetChainData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChainDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetDataGridShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataGridShop" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetDataGridShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataGridShopResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
     <wsdl:operation name="GetCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetCustomer" message="tns:IBestilNemtService_GetCustomer_InputMessage" />
@@ -657,6 +682,22 @@
     <wsdl:operation name="GetWarehouseByProductId">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId" message="tns:IBestilNemtService_GetWarehouseByProductId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductIdResponse" message="tns:IBestilNemtService_GetWarehouseByProductId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataGridProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetDataGridProducts" message="tns:IBestilNemtService_GetDataGridProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetDataGridProductsResponse" message="tns:IBestilNemtService_GetDataGridProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductWareHouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetProductWareHouse" message="tns:IBestilNemtService_GetProductWareHouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetProductWareHouseResponse" message="tns:IBestilNemtService_GetProductWareHouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChainData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetChainData" message="tns:IBestilNemtService_GetChainData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetChainDataResponse" message="tns:IBestilNemtService_GetChainData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataGridShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetDataGridShop" message="tns:IBestilNemtService_GetDataGridShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetDataGridShopResponse" message="tns:IBestilNemtService_GetDataGridShop_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
@@ -1239,6 +1280,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetWarehouseByProductId">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataGridProducts">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetDataGridProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductWareHouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetProductWareHouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChainData">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetChainData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataGridShop">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetDataGridShop" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
