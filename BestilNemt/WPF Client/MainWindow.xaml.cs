@@ -295,6 +295,10 @@ namespace WPF_Client
             NewAmount1.Text = (drv["warehouseStock"]).ToString();
             ProductName1.Text = (drv["productName"]).ToString();
             WareHouseId.Text = (drv["warehouseId"]).ToString();
+            SavingPercent.Text = (drv["savingPercent"]).ToString();
+            SavingIdField.Text = (drv["warehouseSavingId"]).ToString();
+            StartDate.Text = (drv["savingStartDate"]).ToString();
+            EndDate.Text = (drv["savingEndDate"]).ToString();
         }
 
         //Used to update the tabel of the warehouse tab
