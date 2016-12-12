@@ -367,16 +367,16 @@ namespace BestilNemtUnitTestTest
             }
         }
 
-        [TestMethod]
-        public void GetAllWarehousesWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var count = proxy.GetAllWarehouses().Count();
-                Assert.AreNotEqual(0, count);
-            }
-        }
+        //[TestMethod]
+        //public void GetAllWarehousesWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var count = proxy.GetAllWarehouses().Count();
+        //        Assert.AreNotEqual(0, count);
+        //    }
+        //}
 
         [TestMethod]
         public void GetAllWarehousesByShopIdWcf()

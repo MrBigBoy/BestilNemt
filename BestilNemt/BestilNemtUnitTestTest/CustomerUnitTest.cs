@@ -251,151 +251,152 @@ namespace BestilNemtUnitTestTest
 
         //}
 
-        /// <summary>
-        /// Test Create Customer from wcf  
-        /// Test is sucsessful if all customer input values are valid and returned value is not 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var customer = new Customer(
-                    "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(),
-                    "Customer");
-                var flag = proxy.AddCustomer(customer);
-                Assert.AreNotEqual(0, flag);
-            }
-        }
+        ///// <summary>
+        ///// Test Create Customer from wcf  
+        ///// Test is sucsessful if all customer input values are valid and returned value is not 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomerWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var customer = new Customer(
+        //            "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(),
+        //            "Customer");
+        //        var flag = proxy.AddCustomer(customer);
+        //        Assert.AreNotEqual(0, flag);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test Create Customer from wcf  
-        /// Test is sucsessful if customers input name are not valid and returned value is 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerWcfFailNoName()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var customer = new Customer(
-                    "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(),
-                    "Customer");
-                var flag = proxy.AddCustomer(customer);
-                Assert.AreEqual(0, flag);
-            }
-        }
-        /// <summary>
-        /// Test Create Customer from wcf  
-        /// Test is sucsessful if customers input type are not valid(not Customer) and returned value is 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerWcfFailInvalidType()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var customer = new Customer(
-                    "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(),
-                    "Admin");
-                var flag = proxy.AddCustomer(customer);
-                Assert.AreEqual(0, flag);
-            }
-        }
+        ///// <summary>
+        ///// Test Create Customer from wcf  
+        ///// Test is sucsessful if customers input name are not valid and returned value is 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomerWcfFailNoName()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var customer = new Customer(
+        //            "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(),
+        //            "Customer");
+        //        var flag = proxy.AddCustomer(customer);
+        //        Assert.AreEqual(0, flag);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test GetCustomer Customer from wcf 
-        /// Test is sucsessful if returned customer object is not null
-        /// </summary>
-        [TestMethod]
-        public void GetCustomerFromWcfById()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                Assert.IsNotNull(proxy.GetCustomer(1));
-            }
-        }
+        ///// <summary>
+        ///// Test Create Customer from wcf  
+        ///// Test is sucsessful if customers input type are not valid(not Customer) and returned value is 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomerWcfFailInvalidType()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var customer = new Customer(
+        //            "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(),
+        //            "Admin");
+        //        var flag = proxy.AddCustomer(customer);
+        //        Assert.AreEqual(0, flag);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test GetCustomer Customer from wcf 
-        /// Test is sucsessful if returned customer object is null
-        /// </summary>
-        [TestMethod]
-        public void GetCustomerFromWcfByIdFail()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                Assert.IsNull(proxy.GetCustomer(100));
-            }
-        }
+        ///// <summary>
+        ///// Test GetCustomer Customer from wcf 
+        ///// Test is sucsessful if returned customer object is not null
+        ///// </summary>
+        //[TestMethod]
+        //public void GetCustomerFromWcfById()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        Assert.IsNotNull(proxy.GetCustomer(1));
+        //    }
+        //}
 
-        /// <summary>
-        /// Test updateCustomer Customer from wcf 
-        /// Test is sucsessful if returned value is 2
-        /// </summary>
-        [TestMethod]
-        public void UpdateCustomerThrougWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var customer = proxy.GetCustomer(1);
-                if (customer != null)
-                {
-                    customer.Name = "Thorkild Brun";
-                    customer.Address = "Dk";
-                    customer.Email = "thorkild@email.dk";
-                    customer.Birthday = new DateTime(2015, 02, 03);
-                }
-                var flag = proxy.UpdateCustomer(customer);
-                Assert.AreEqual(2, flag);
-            }
-        }
+        ///// <summary>
+        ///// Test GetCustomer Customer from wcf 
+        ///// Test is sucsessful if returned customer object is null
+        ///// </summary>
+        //[TestMethod]
+        //public void GetCustomerFromWcfByIdFail()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        Assert.IsNull(proxy.GetCustomer(100));
+        //    }
+        //}
 
-        /// <summary>
-        /// Test updateCustomer Customer from wcf 
-        /// Test is sucsessful if returned value is not 2, it is not possible to updete name with empty one
-        /// </summary>
-        [TestMethod]
-        public void UpdateCustomerThrougWcfFail()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var customer = proxy.GetCustomer(1);
-                if (customer != null)
-                {
-                    customer.Name = "";
-                    customer.Address = "Dk";
-                    customer.Email = "thorkild@email.dk";
-                    customer.Birthday = new DateTime(2015, 02, 03);
-                }
-                var flag = proxy.UpdateCustomer(customer);
-                Assert.AreEqual(0, flag);
-            }
-        }
+        ///// <summary>
+        ///// Test updateCustomer Customer from wcf 
+        ///// Test is sucsessful if returned value is 2
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateCustomerThrougWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var customer = proxy.GetCustomer(1);
+        //        if (customer != null)
+        //        {
+        //            customer.Name = "Thorkild Brun";
+        //            customer.Address = "Dk";
+        //            customer.Email = "thorkild@email.dk";
+        //            customer.Birthday = new DateTime(2015, 02, 03);
+        //        }
+        //        var flag = proxy.UpdateCustomer(customer);
+        //        Assert.AreEqual(2, flag);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test DeleteCustomer Customer from wcf  
-        /// Test is sucsessful if returned value is 2
-        /// </summary>
-        [TestMethod]
-        public void DeleteCustomerThrougWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var cust = new Customer("Ole Nielsen", "oel@mail.dk", "ahrtghjv", new DateTime(2009, 02, 13),
-                    new Login(), new List<Chain>(), "Customer");
-                var id = proxy.AddCustomer(cust);
-                var flag = proxy.DeleteCustomer(id);
-                Assert.AreNotEqual(0, flag);
-            }
+        ///// <summary>
+        ///// Test updateCustomer Customer from wcf 
+        ///// Test is sucsessful if returned value is not 2, it is not possible to updete name with empty one
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateCustomerThrougWcfFail()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var customer = proxy.GetCustomer(1);
+        //        if (customer != null)
+        //        {
+        //            customer.Name = "";
+        //            customer.Address = "Dk";
+        //            customer.Email = "thorkild@email.dk";
+        //            customer.Birthday = new DateTime(2015, 02, 03);
+        //        }
+        //        var flag = proxy.UpdateCustomer(customer);
+        //        Assert.AreEqual(0, flag);
+        //    }
+        //}
 
-        }
+        ///// <summary>
+        ///// Test DeleteCustomer Customer from wcf  
+        ///// Test is sucsessful if returned value is 2
+        ///// </summary>
+        //[TestMethod]
+        //public void DeleteCustomerThrougWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var cust = new Customer("Ole Nielsen", "oel@mail.dk", "ahrtghjv", new DateTime(2009, 02, 13),
+        //            new Login(), new List<Chain>(), "Customer");
+        //        var id = proxy.AddCustomer(cust);
+        //        var flag = proxy.DeleteCustomer(id);
+        //        Assert.AreNotEqual(0, flag);
+        //    }
+
+        //}
         
     }
 }

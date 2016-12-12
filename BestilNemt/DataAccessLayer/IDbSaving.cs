@@ -11,6 +11,6 @@ namespace DataAccessLayer
         Saving GetSaving(int id);
         //List<Saving> GetAllSavings();
         //int UpdateSaving(Saving saving);
-        //int DeleteSaving(int id);
+        int DeleteSaving(int id);
     }
 }

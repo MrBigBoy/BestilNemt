@@ -206,22 +206,22 @@ namespace BestilNemtUnitTestTest
             }
         }
 
-        /// <summary>
-        /// Test of the WcfCervice.
-        /// Test for Get Cart object.test is passed if returned object is not null. 
-        /// </summary>
-        [TestMethod]
-        public void GetCartWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var cart = new Cart(new List<PartOrder>(), new decimal(50), 1, 1);
-                var id = proxy.AddCart(cart);
-                var i = proxy.GetCart(id);
-                Assert.IsNotNull(i);
-            }
-        }
+        ///// <summary>
+        ///// Test of the WcfCervice.
+        ///// Test for Get Cart object.test is passed if returned object is not null. 
+        ///// </summary>
+        //[TestMethod]
+        //public void GetCartWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var cart = new Cart(new List<PartOrder>(), new decimal(50), 1, 1);
+        //        var id = proxy.AddCart(cart);
+        //        var i = proxy.GetCart(id);
+        //        Assert.IsNotNull(i);
+        //    }
+        //}
 
         /// <summary>
         /// Test of the WcfCervice.
@@ -238,65 +238,65 @@ namespace BestilNemtUnitTestTest
             }
         }
 
-        /// <summary>
-        /// Test of the WcfCervice.
-        /// Test for update total price in Cart. Test is passed if the totalPrice is 50. 
-        /// </summary>
-        [TestMethod]
-        public void UpdateCartWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var cart1 = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
-                var id1 = proxy.AddCart(cart1);
-                var cart2 = new Cart(id1, new List<PartOrder>(), new decimal(50), 1, 1);
-                proxy.UpdateCart(cart2);
-                var updatedCart = proxy.GetCart(id1);
-                Assert.AreNotEqual(cart2.TotalPrice, updatedCart.TotalPrice);
-            }
-        }
+        ///// <summary>
+        ///// Test of the WcfCervice.
+        ///// Test for update total price in Cart. Test is passed if the totalPrice is 50. 
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateCartWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var cart1 = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
+        //        var id1 = proxy.AddCart(cart1);
+        //        var cart2 = new Cart(id1, new List<PartOrder>(), new decimal(50), 1, 1);
+        //        proxy.UpdateCart(cart2);
+        //        var updatedCart = proxy.GetCart(id1);
+        //        Assert.AreNotEqual(cart2.TotalPrice, updatedCart.TotalPrice);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test of the WcfCervice.
-        /// Test for delete a Cart. Test is passed if returned value is 1. 
-        /// </summary>
-        [TestMethod]
-        public void DeleteCartWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
-                var id1 = proxy.AddCart(cart);
-                var i = proxy.DeleteCart(id1);
-                Assert.AreEqual(1, i);
-            }
-        }
+        ///// <summary>
+        ///// Test of the WcfCervice.
+        ///// Test for delete a Cart. Test is passed if returned value is 1. 
+        ///// </summary>
+        //[TestMethod]
+        //public void DeleteCartWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
+        //        var id1 = proxy.AddCart(cart);
+        //        var i = proxy.DeleteCart(id1);
+        //        Assert.AreEqual(1, i);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test of the wcf service.
-        /// Test for add a partOrder to a Cart using wcf. The method AddPartOrderToCart takes cart and partOrder 
-        /// objects as parameters and updates partOrder entry with cart.Id
-        /// Test is passed if returned value is 1.
-        /// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
-        /// </summary>
-        [TestMethod]
-        public void AddPartOrderToCartWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
-                var id = proxy.AddCart(cart);
-                cart.Id = id;
-                var product = new Product("banan", 2, "fjhl", "Frugt", "Img path");
-                var prodId = proxy.AddProduct(product);
-                product.Id = prodId;
-                var partOrder = proxy.GetPartOrder(1);
-                var i = proxy.AddPartOrderToCart(cart, partOrder);
-                Assert.AreEqual(1, i);
-            }
-        }
+        ///// <summary>
+        ///// Test of the wcf service.
+        ///// Test for add a partOrder to a Cart using wcf. The method AddPartOrderToCart takes cart and partOrder 
+        ///// objects as parameters and updates partOrder entry with cart.Id
+        ///// Test is passed if returned value is 1.
+        ///// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
+        ///// </summary>
+        //[TestMethod]
+        //public void AddPartOrderToCartWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
+        //        var id = proxy.AddCart(cart);
+        //        cart.Id = id;
+        //        var product = new Product("banan", 2, "fjhl", "Frugt", "Img path");
+        //        var prodId = proxy.AddProduct(product);
+        //        product.Id = prodId;
+        //        var partOrder = proxy.GetPartOrder(1);
+        //        var i = proxy.AddPartOrderToCart(cart, partOrder);
+        //        Assert.AreEqual(1, i);
+        //    }
+        //}
     }
 }

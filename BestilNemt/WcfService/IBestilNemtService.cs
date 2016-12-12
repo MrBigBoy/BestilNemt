@@ -180,8 +180,8 @@ namespace WcfService
         [OperationContract]
         int UpdateWarehouse(Warehouse warehouse);
 
-        //    [OperationContract]
-        //    int DeleteWarehouse(int id);
+        [OperationContract]
+        int DeleteWarehouse(int id);
 
         [OperationContract]
         int AddSaving(Saving saving, Warehouse warehouse);
@@ -195,8 +195,8 @@ namespace WcfService
         //    [OperationContract]
         //    int UpdateSaving(Saving saving);
 
-        //    [OperationContract]
-        //    int DeleteSaving(int id);
+        [OperationContract]
+        int DeleteSaving(int id);
 
         //    [OperationContract]
         //    List<Product> GetAllProductsByName(string input);

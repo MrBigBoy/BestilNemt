@@ -1318,6 +1318,12 @@ namespace WPF_Client.BestilNemtWPF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         System.Threading.Tasks.Task<int> UpdateWarehouseAsync(WPF_Client.BestilNemtWPF.Warehouse warehouse);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
+        int DeleteWarehouse(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
+        System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
         int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse);
         
@@ -1329,6 +1335,12 @@ namespace WPF_Client.BestilNemtWPF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
         System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving> GetSavingAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
+        int DeleteSaving(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
+        System.Threading.Tasks.Task<int> DeleteSavingAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerWithLoginResponse")]
         int AddCustomerWithLogin(WPF_Client.BestilNemtWPF.Customer customer, WPF_Client.BestilNemtWPF.Login login);
@@ -1586,6 +1598,14 @@ namespace WPF_Client.BestilNemtWPF {
             return base.Channel.UpdateWarehouseAsync(warehouse);
         }
         
+        public int DeleteWarehouse(int id) {
+            return base.Channel.DeleteWarehouse(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id) {
+            return base.Channel.DeleteWarehouseAsync(id);
+        }
+        
         public int AddSaving(WPF_Client.BestilNemtWPF.Saving saving, WPF_Client.BestilNemtWPF.Warehouse warehouse) {
             return base.Channel.AddSaving(saving, warehouse);
         }
@@ -1600,6 +1620,14 @@ namespace WPF_Client.BestilNemtWPF {
         
         public System.Threading.Tasks.Task<WPF_Client.BestilNemtWPF.Saving> GetSavingAsync(int id) {
             return base.Channel.GetSavingAsync(id);
+        }
+        
+        public int DeleteSaving(int id) {
+            return base.Channel.DeleteSaving(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteSavingAsync(int id) {
+            return base.Channel.DeleteSavingAsync(id);
         }
         
         public int AddCustomerWithLogin(WPF_Client.BestilNemtWPF.Customer customer, WPF_Client.BestilNemtWPF.Login login) {

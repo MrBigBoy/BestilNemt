@@ -370,55 +370,55 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, chainCtr.GetAllChains().Count);
         }
 
-        /// <summary>
-        /// Test Chain through Wcf
-        /// The test is successfull if the returned id is not 0
-        /// </summary>
-        [TestMethod]
-        public void AddChainWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var chain = new Chain("new chain", "15987533", "Img path");
-                var i = proxy.AddChain(chain);
-                Assert.AreNotEqual(0, i);
-            }
-        }
+        ///// <summary>
+        ///// Test Chain through Wcf
+        ///// The test is successfull if the returned id is not 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddChainWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var chain = new Chain("new chain", "15987533", "Img path");
+        //        var i = proxy.AddChain(chain);
+        //        Assert.AreNotEqual(0, i);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test Chain through Wcf
-        /// The test is successfull if the returned id is 0
-        /// Cvr is not 8 char
-        /// </summary>
-        [TestMethod]
-        public void AddChainWcfFailCvr()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var chain = new Chain("new chain", "87533", "Img path");
-                var i = proxy.AddChain(chain);
-                Assert.AreEqual(0, i);
-            }
-        }
+        ///// <summary>
+        ///// Test Chain through Wcf
+        ///// The test is successfull if the returned id is 0
+        ///// Cvr is not 8 char
+        ///// </summary>
+        //[TestMethod]
+        //public void AddChainWcfFailCvr()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var chain = new Chain("new chain", "87533", "Img path");
+        //        var i = proxy.AddChain(chain);
+        //        Assert.AreEqual(0, i);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test Chain through Wcf
-        /// The test is successfull if the returned id is 0
-        /// Name is empty
-        /// </summary>
-        [TestMethod]
-        public void AddChainWcfFailName()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var chain = new Chain("", "82227533", "Img path");
-                var i = proxy.AddChain(chain);
-                Assert.AreEqual(0, i);
-            }
-        }
+        ///// <summary>
+        ///// Test Chain through Wcf
+        ///// The test is successfull if the returned id is 0
+        ///// Name is empty
+        ///// </summary>
+        //[TestMethod]
+        //public void AddChainWcfFailName()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var chain = new Chain("", "82227533", "Img path");
+        //        var i = proxy.AddChain(chain);
+        //        Assert.AreEqual(0, i);
+        //    }
+        //}
 
         /// <summary>
         /// Test Chain through Wcf
@@ -462,47 +462,47 @@ namespace BestilNemtUnitTestTest
             }
         }
 
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned object name is the same given new name
-        /// </summary>
-        [TestMethod]
-        public void UpdateChainWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var chain = new Chain("MiniChain", "12121212", "Img path");
-                var returnedId = proxy.AddChain(chain);
-                var chain1 = new Chain
-                {
-                    Id = returnedId,
-                    Name = "UpdatedName",
-                    Cvr = "12121212",
-                    ImgPath = "Img path"
-                };
-                proxy.UpdateChain(chain1);
-                var returnedChain = proxy.GetChain(returnedId);
-                Assert.AreEqual("UpdatedName", returnedChain.Name);
-            }
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        ///// The test is successfull if the returned object name is the same given new name
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateChainWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var chain = new Chain("MiniChain", "12121212", "Img path");
+        //        var returnedId = proxy.AddChain(chain);
+        //        var chain1 = new Chain
+        //        {
+        //            Id = returnedId,
+        //            Name = "UpdatedName",
+        //            Cvr = "12121212",
+        //            ImgPath = "Img path"
+        //        };
+        //        proxy.UpdateChain(chain1);
+        //        var returnedChain = proxy.GetChain(returnedId);
+        //        Assert.AreEqual("UpdatedName", returnedChain.Name);
+        //    }
+        //}
 
-        /// <summary>
-        /// Test Chain through Wcf
-        /// The test is successfull if the returned object is not null 
-        /// </summary>
-        [TestMethod]
-        public void DeleteChainWcf()
-        {
-            using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-            {
-                proxy.Open();
-                var chain = new Chain("ChainToDelete", "12121212", "Img path");
-                var returnedId = proxy.AddChain(chain);
-                var flag = proxy.DeleteChain(returnedId);
-                Assert.AreEqual(1, flag);
-            }
-        }
+        ///// <summary>
+        ///// Test Chain through Wcf
+        ///// The test is successfull if the returned object is not null 
+        ///// </summary>
+        //[TestMethod]
+        //public void DeleteChainWcf()
+        //{
+        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
+        //    {
+        //        proxy.Open();
+        //        var chain = new Chain("ChainToDelete", "12121212", "Img path");
+        //        var returnedId = proxy.AddChain(chain);
+        //        var flag = proxy.DeleteChain(returnedId);
+        //        Assert.AreEqual(1, flag);
+        //    }
+        //}
     }
 }
 

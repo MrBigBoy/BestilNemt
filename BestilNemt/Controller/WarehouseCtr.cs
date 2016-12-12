@@ -74,17 +74,17 @@ namespace Controller
             return ValidateWarehouse(warehouse) ? DbWarehouse.UpdateWarehouse(warehouse) : 0;
         }
 
-        ///// <summary>
-        ///// Delete a Warehouse
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// 1 if Warehouse is deleted, else 0
-        ///// </returns>
-        //public int DeleteWarehouse(int id)
-        //{
-        //    return DbWarehouse.DeleteWarehouse(id);
-        //}
+        /// <summary>
+        /// Delete a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if Warehouse is deleted, else 0
+        /// </returns>
+        public int DeleteWarehouse(int id)
+        {
+            return DbWarehouse.DeleteWarehouse(id);
+        }
 
         /// <summary>
         /// Validate of Warehouse fields

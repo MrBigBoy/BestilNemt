@@ -152,6 +152,12 @@
   <wsdl:message name="IBestilNemtService_UpdateWarehouse_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateWarehouseResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWarehouseResponse" />
+  </wsdl:message>
   <wsdl:message name="IBestilNemtService_AddSaving_InputMessage">
     <wsdl:part name="parameters" element="tns:AddSaving" />
   </wsdl:message>
@@ -163,6 +169,12 @@
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetSaving_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSavingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteSaving_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSaving" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteSaving_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSavingResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_AddCustomerWithLogin_InputMessage">
     <wsdl:part name="parameters" element="tns:AddCustomerWithLogin" />
@@ -297,6 +309,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse" message="tns:IBestilNemtService_UpdateWarehouse_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse" message="tns:IBestilNemtService_UpdateWarehouse_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DeleteWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse" message="tns:IBestilNemtService_DeleteWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse" message="tns:IBestilNemtService_DeleteWarehouse_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddSaving">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddSaving" message="tns:IBestilNemtService_AddSaving_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddSavingResponse" message="tns:IBestilNemtService_AddSaving_OutputMessage" />
@@ -304,6 +320,10 @@
     <wsdl:operation name="GetSaving">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetSaving" message="tns:IBestilNemtService_GetSaving_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetSavingResponse" message="tns:IBestilNemtService_GetSaving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSaving">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteSaving" message="tns:IBestilNemtService_DeleteSaving_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteSavingResponse" message="tns:IBestilNemtService_DeleteSaving_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddCustomerWithLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin" message="tns:IBestilNemtService_AddCustomerWithLogin_InputMessage" />
@@ -548,6 +568,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DeleteWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddSaving">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddSaving" style="document" />
       <wsdl:input>
@@ -559,6 +588,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetSaving">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetSaving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSaving">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteSaving" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

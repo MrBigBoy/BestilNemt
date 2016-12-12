@@ -13,7 +13,7 @@ namespace DataAccessLayer
         //List<Warehouse> GetAllWarehouses();
         List<Warehouse> GetAllWarehousesByShopId(int shopId);
         int UpdateWarehouse(Warehouse warehouse);
-        //int DeleteWarehouse(int id);
+        int DeleteWarehouse(int id);
         Warehouse GetWarehouseByProductId(int productId, int shopId);
     }
 }

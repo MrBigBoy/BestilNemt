@@ -692,17 +692,17 @@ namespace WcfService
         //    return SavingCtr.UpdateSaving(saving);
         //}
 
-        ///// <summary>
-        ///// Delete a Saving
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// 1 if Saving was deleted, else 0
-        ///// </returns>
-        //public int DeleteSaving(int id)
-        //{
-        //    return SavingCtr.DeleteSaving(id);
-        //}
+        /// <summary>
+        /// Delete a Saving
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if Saving was deleted, else 0
+        /// </returns>
+        public int DeleteSaving(int id)
+        {
+            return SavingCtr.DeleteSaving(id);
+        }
 
         ///// <summary>
         ///// Get a product by Name
@@ -776,17 +776,17 @@ namespace WcfService
             return WarehouseCtr.UpdateWarehouse(warehouse);
         }
 
-        /////// <summary>
-        /////// Delete a Warehouse
-        /////// </summary>
-        /////// <param name="id"></param>
-        /////// <returns>
-        /////// 1 if Warehouse was deleted, else 0
-        /////// </returns>
-        ////public int DeleteWarehouse(int id)
-        ////{
-        ////    return WarehouseCtr.DeleteWarehouse(id);
-        ////}
+        /// <summary>
+        /// Delete a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if Warehouse was deleted, else 0
+        /// </returns>
+        public int DeleteWarehouse(int id)
+        {
+            return WarehouseCtr.DeleteWarehouse(id);
+        }
 
         /// <summary>
         /// Add a Customer with a Login

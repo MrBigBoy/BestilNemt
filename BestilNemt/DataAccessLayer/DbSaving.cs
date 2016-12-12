@@ -162,49 +162,49 @@ namespace DataAccessLayer
         //    return i;
         //}
 
-        ///// <summary>
-        ///// Delete a Saving
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// 1 if deleted, else 0
-        ///// </returns>
-        //public int DeleteSaving(int id)
-        //{
-        //    var i = 0;
-        //    using (
-        //        var conn =
-        //            new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = conn.CreateCommand();
-        //        // Set the isolation level
-        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-        //        cmd.Transaction = transaction;
-        //        try
-        //        {
-        //            cmd.CommandText = "UPDATE Product SET productSavingId = null WHERE productSavingId = @ID; DELETE FROM Saving WHERE savingId = @ID;";
-        //            cmd.Parameters.AddWithValue("ID", id);
-        //            i = cmd.ExecuteNonQuery();
-        //            transaction.Commit();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            // The transaction failed
-        //            try
-        //            {
-        //                // Try rolling back
-        //                transaction.Rollback();
-        //                Console.WriteLine("Transaction was rolled back");
-        //            }
-        //            catch (SqlException)
-        //            {
-        //                // Rolling back failed
-        //                Console.WriteLine("Transaction rollback failed");
-        //            }
-        //        }
-        //    }
-        //    return i;
-        //}
+        /// <summary>
+        /// Delete a Saving
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if deleted, else 0
+        /// </returns>
+        public int DeleteSaving(int id)
+        {
+            var i = 0;
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                // Set the isolation level
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Product SET productSavingId = null WHERE productSavingId = @ID; DELETE FROM Saving WHERE savingId = @ID;";
+                    cmd.Parameters.AddWithValue("ID", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    // The transaction failed
+                    try
+                    {
+                        // Try rolling back
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        // Rolling back failed
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
+            }
+            return i;
+        }
     }
 }
