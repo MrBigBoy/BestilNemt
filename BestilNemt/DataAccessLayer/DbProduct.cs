@@ -248,12 +248,13 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory WHERE productId = @ProductId";
+                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productImgPath = @pImgPath WHERE productId = @ProductId";
                     cmd.Parameters.AddWithValue("ProductId", product.Id);
                     cmd.Parameters.AddWithValue("ProductName", product.Name);
                     cmd.Parameters.AddWithValue("ProductPrice", product.Price);
                     cmd.Parameters.AddWithValue("ProductDescription", product.Description);
                     cmd.Parameters.AddWithValue("ProductCategory", product.Category);
+                    cmd.Parameters.AddWithValue("pImgPath", product.ImgPath);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                 }

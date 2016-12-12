@@ -51,7 +51,7 @@ namespace DataAccessLayer
                     Console.WriteLine("Commit was successfull");
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     // The transaction failed
                     try
