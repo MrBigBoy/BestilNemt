@@ -28,6 +28,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="8accfdbe-1a93-486f-9120-c1fd8e81fc2a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3deecd64-84b4-4622-8c97-565a6001e540" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
     <MetadataFile FileName="Models.xsd" MetadataType="Schema" ID="062142b8-5916-4d6c-9a2b-e8bf29c71006" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
+    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="a3e1cfc2-c147-42fb-a5aa-dde55f4e6386" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WcfService/BestilNemtService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

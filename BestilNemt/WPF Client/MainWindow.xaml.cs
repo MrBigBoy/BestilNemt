@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Windows;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Windows.Documents;
 using System.Windows.Input;
-
 
 namespace WPF_Client
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         //Initilize the main window and fill all the tables
         public MainWindow()
@@ -91,7 +84,7 @@ namespace WPF_Client
         {
             var proxy = new BestilNemtServiceClient();
             //Parse the textfield from a string to an int
-            var id = Int32.Parse(ProductId.Text);
+            var id = int.Parse(ProductId.Text);
             //Contact the WCF to delete the ID, that it got from the textfield
             proxy.DeleteProduct(id);
             //Updates the datatable
@@ -109,7 +102,7 @@ namespace WPF_Client
             //Create an empty product
             var product = new Product();
             //Parse the textfield from a string to an int
-            product.Id = Int32.Parse(ProductId.Text);
+            product.Id = int.Parse(ProductId.Text);
             //Gets the rest of the textfields and adds them to the local product
             product.Name = ProductName.Text;
             product.Price = decimal.Parse(ProductPrice.Text);
@@ -147,13 +140,15 @@ namespace WPF_Client
             var shop = proxy.GetShop(admin.ShopId);
             //Create a local saving object
             var saving = new Saving();
-            var warehouse = proxy.GetWarehouse(Int32.Parse(WareHouseId.Text));
+            var warehouse = proxy.GetWarehouse(int.Parse(WareHouseId.Text));
             //Takes the date selected and makes them a datetime, instead of strings
-            DateTime? startDate = StartDate.SelectedDate;
-            DateTime? endDate = EndDate.SelectedDate;
+            var startDate = StartDate.SelectedDate;
+            var endDate = EndDate.SelectedDate;
             //Sets the datetime to the local saving
-            saving.StartDate = startDate.Value;
-            saving.EndDate = endDate.Value;
+            if (startDate != null)
+                saving.StartDate = startDate.Value;
+            if (endDate != null)
+                saving.EndDate = endDate.Value;
             //Parses the textfield string to a doube to corresponnd to the database
             saving.SavingPercent = double.Parse(SavingPercent.Text);
             //Checks if the user has loaded in a product
@@ -163,7 +158,8 @@ namespace WPF_Client
             }
             else
             {
-                saving.Id = warehouse.SavingId.Value;
+                if (warehouse.SavingId != null)
+                    saving.Id = warehouse.SavingId.Value;
                 //Adding saving with a warehouse
                 proxy.AddSaving(saving, warehouse);
                 //Setting savingId equals to warehouseId
@@ -265,7 +261,7 @@ namespace WPF_Client
                 //Make a new instance of warehouse 
                 var warehouse = new Warehouse();
                 //Get the productID 
-                var productId = Int32.Parse(ProductIdWareHouse.Text);
+                var productId = int.Parse(ProductIdWareHouse.Text);
                 //GetAllWarehousebyShopid() is a list, so we make a foreach loop, and find the corret warehouse =
                 //with right productID
                 var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
@@ -277,8 +273,8 @@ namespace WPF_Client
                     }
                 }
                 //sets value for textbox
-                warehouse.Stock = Int32.Parse(NewAmount1.Text);
-                warehouse.MinStock = Int32.Parse(MinAmount.Text);
+                warehouse.Stock = int.Parse(NewAmount1.Text);
+                warehouse.MinStock = int.Parse(MinAmount.Text);
                 warehouse.Shop = getShop;
                 //we update warehouse with a new amount
                 proxy.UpdateWarehouse(warehouse);
@@ -289,7 +285,7 @@ namespace WPF_Client
         //loading tabel into the fields
         public void LoadWarehouseProduct()
         {
-            DataRowView drv = (DataRowView)ProductWarehouse.SelectedItem;
+            var drv = (DataRowView)ProductWarehouse.SelectedItem;
             ProductIdWareHouse.Text = (drv["productId"]).ToString();
             MinAmount.Text = (drv["wareHouseMinStock"]).ToString();
             NewAmount1.Text = (drv["warehouseStock"]).ToString();
@@ -332,14 +328,16 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void AddShop_Click(object sender, RoutedEventArgs e)
         {
-            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            DataRowView drv = (DataRowView)ChainList.SelectedItem;
-            var shop = new Shop();
+            var proxy = new BestilNemtServiceClient();
+            var drv = (DataRowView)ChainList.SelectedItem;
+            var shop = new Shop
+            {
+                Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString())),
+                Name = ShopNameField.Text,
+                Address = ShopAddressField.Text,
+                Cvr = ShopCVRField.Text
+            };
             //Get the chain id form the ChainDataTable, and get the chain from the prooxy
-            shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
-            shop.Name = ShopNameField.Text;
-            shop.Address = ShopAddressField.Text;
-            shop.Cvr = ShopCVRField.Text;
             //Replace the the new lines with semicolons because of the database
             var openingTimeRaw = ShopOpeningTimesField.Text;
             var newOpeningTime = openingTimeRaw.Replace("\r\n", ";");
@@ -376,9 +374,9 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void DeleteShop_Click(object sender, RoutedEventArgs e)
         {
-            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var proxy = new BestilNemtServiceClient();
             var shopId = ShopIdField.Text;
-            proxy.DeleteShop(Int32.Parse(shopId));
+            proxy.DeleteShop(int.Parse(shopId));
             FillDataGridShop();
         }
         /// <summary>
@@ -393,15 +391,18 @@ namespace WPF_Client
             //Gets the selected item in the datatable
             var drv = (DataRowView)ChainList.SelectedItem;
             //create empty table
-            var shop = new Shop();
-            //Get id from text field
-            shop.Id = Int32.Parse(ShopIdField.Text);
-            //Get chainId from ChainTable
-            shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
-            //Get name address and CVR from the other text fields
-            shop.Name = ShopNameField.Text;
-            shop.Address = ShopAddressField.Text;
-            shop.Cvr = ShopCVRField.Text;
+            var shop = new Shop
+            {
+                //Get id from text field
+                Id = int.Parse(ShopIdField.Text),
+                //Get chainId from ChainTable
+                Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString())),
+                //Get name address and CVR from the other text fields
+                Name = ShopNameField.Text,
+                Address = ShopAddressField.Text,
+                Cvr = ShopCVRField.Text
+            };
+
             //Gets the opening time form the textfield and sets it as a var
             var openingTimeRaw = ShopOpeningTimesField.Text;
             //Replaces the new lines with semicolons because of the databse
@@ -450,13 +451,11 @@ namespace WPF_Client
             var id = currentUser.PersonId;
             //finds the corret admin
             var admin = proxy.GetAdmin(id);
-            var shopIdAdmin = 0;
-            shopIdAdmin = admin.ShopId;
-            shopIdAdmin = admin.ShopId;
+            var shopIdAdmin = admin.ShopId;
             //finds the shop through admin
-            Shop getShop = proxy.GetShop(shopIdAdmin);
-            Warehouse warehouse = new Warehouse();
-            var productId = Int32.Parse(ProductId.Text);
+            var getShop = proxy.GetShop(shopIdAdmin);
+            var warehouse = new Warehouse();
+            var productId = int.Parse(ProductId.Text);
             //Getting all warehouse with a shopID, and loop through it 
             var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
             foreach (var w in warehouses)
@@ -467,8 +466,8 @@ namespace WPF_Client
                 }
             }
             //sets value in the textboxes
-            warehouse.MinStock = Int32.Parse(minStock.Text);
-            warehouse.Stock = Int32.Parse(Stock.Text);
+            warehouse.MinStock = int.Parse(minStock.Text);
+            warehouse.Stock = int.Parse(Stock.Text);
             warehouse.Shop = getShop;
             warehouse.SavingId = null;
 
@@ -496,14 +495,12 @@ namespace WPF_Client
             {
                 var row = (DataGridRow)ChainList.ItemContainerGenerator.ContainerFromIndex(i);
                 var cellContent = ChainList.Columns[0].GetCellContent(row) as TextBlock;
-                if (cellContent != null && cellContent.Text.Equals(chainId))
-                {
-                    var item = ChainList.Items[i];
-                    ChainList.SelectedItem = item;
-                    ChainList.ScrollIntoView(item);
-                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                    break;
-                }
+                if (cellContent == null || !cellContent.Text.Equals(chainId)) continue;
+                var item = ChainList.Items[i];
+                ChainList.SelectedItem = item;
+                ChainList.ScrollIntoView(item);
+                row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                break;
             }
         }
 

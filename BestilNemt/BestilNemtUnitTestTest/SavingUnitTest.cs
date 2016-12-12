@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Controller;
+﻿using Controller;
 using Controller.ControllerTestClasses;
-using DataAccessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
 
 namespace BestilNemtUnitTestTest
 {

@@ -1,0 +1,82 @@
+﻿@model global::WebClient.Models.CreatePersonViewModel
+
+@{
+    ViewBag.Title = "Opret Login";
+}
+
+@* A div to create a Customer in a form *@
+<div id="CreateCustomerForm">
+    @* Set the whole thing in a form to post *@
+    @using (Html.BeginForm("CreateCustomer", "Login", FormMethod.Post))
+    {
+        // Anti hack with more fields than where should be
+        @Html.AntiForgeryToken()
+        <form name="CreateCustomer" class="Payment" onsubmit="return validateForm()">
+            <div class="form-horizontal">
+                <h4>Opret som privat kunde</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group" name="name">
+                    @* The Customer Name *@
+                    @Html.LabelFor(model => model.Customer.Name, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" name="name">
+                        @Html.EditorFor(model => model.Customer.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "f.eks. Lars Larsen" } })
+                        @Html.ValidationMessageFor(model => model.Customer.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @* The Customer Address *@
+                    @Html.LabelFor(model => model.Customer.Address, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Customer.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "f.eks. Vej 1, 9000 Aalborg" } })
+                        @Html.ValidationMessageFor(model => model.Customer.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @* The Customer Email *@
+                    @Html.LabelFor(model => model.Customer.Email, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Customer.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "f.eks. lars@bestilnemt.dk" } })
+                        @Html.ValidationMessageFor(model => model.Customer.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @* The Customer Birthday *@
+                    @Html.LabelFor(model => model.Customer.Birthday, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Customer.Birthday, new { htmlAttributes = new { @class = "form-control", placeholder = "DD-MM-ÅÅÅÅ" } })
+                        @Html.ValidationMessageFor(model => model.Customer.Birthday, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @* The Customer Password *@
+                    @Html.LabelFor(model => model.Login.Password, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Login.Password, new { htmlAttributes = new { @class = "form-control", align = "left" } })
+                        @Html.ValidationMessageFor(model => model.Login.Password, "Mininum 6 tegn", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @* Text to inform about all fields should hold data *@
+                    <div class="col-md-offset-2 col-md-10">
+                        <p>Alle felter skal være udfyldt</p>
+                    </div>
+                </div>
+
+                @* A submit button *@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Opret" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+</div>
+@* A link back to Index *@
+<div>
+    @Html.ActionLink("Tilbage til Login", "Index")
+</div>

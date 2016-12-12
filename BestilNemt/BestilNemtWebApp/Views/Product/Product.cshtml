@@ -1,0 +1,144 @@
+﻿@using WebClient.BestilNemtServiceRef
+@model List<Product>
+@{
+    ViewBag.Title = "Product";
+    var products = Model;
+}
+@* All Scripts *@
+<script>
+    // This script is used to search after a product
+    function myFunction() {
+        // Declare variables
+        var td, i;
+        var input = document.getElementById("MyInput");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("ProductTable");
+        var tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+@{
+    // Show a header if there is a shop in Session
+    var shop = (Shop)Session["Shop"];
+    if (shop != null)
+    {
+        <h2>Alle produkter i @shop.Name - @shop.Address</h2>
+    }
+}
+
+<input type="text" id="MyInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+@{
+    // If there is some products
+    if (products.Count > 0)
+    {
+        // Show a products table
+        <table id="ProductTable">
+            <tr>
+                @* Product image *@
+                <th></th>
+                <th>Navn</th>
+                <th>Beskrivelse</th>
+                <th>Antal på lager</th>
+                <th>Pris</th>
+            </tr>
+            @* For each product show the information *@
+            @foreach (var product in products)
+            {
+                <tr>
+                    @* Show a product image *@
+                    <td>
+                        <img src="/Images/ProductPictures/@product.ImgPath" height="50" width="50" alt="@product.Name">
+                    </td>
+                    @* Show the name of the product as a link *@
+                    <td><a href="/Product/ProductPage/@product.Id">@product.Name</a></td>
+                    @* Show the description of the product *@
+                    <td>@product.Description</td>
+                    @{
+                        // isFound is used to check if the product is already added ones in the warehouse
+                        var isFound = false;
+
+                        var stock = 0;
+                        // If the shop is not null and the list of warehouses is bigger than 0
+                        if (shop?.Warehouses.Count > 0)
+                        {
+                            var warehouses = shop.Warehouses;
+                            // Loop for each warehouse
+                            foreach (var warehouse in warehouses)
+                            {
+                                // If the product in the warehouse match the product update the
+                                if (warehouse.Product.Id == product.Id)
+                                {
+                                    // Get the stock from the warehouse
+                                    stock = warehouse.Stock;
+                                    // Set the found to true because the warehouse was found
+                                    isFound = true;
+
+                                    // If the stock is bigger than 100, limit it to be 100
+                                    if (stock > 100)
+                                    {
+                                        stock = 100;
+                                    }
+                                    // break if found
+                                    break;
+                                }
+                            }
+                        }
+                        // If the product was not found  show a stock of 100
+                        if (!isFound)
+                        {
+                            <td>0</td>
+                        }
+                        else
+                        {
+                            // Show the stock
+                            <td>@stock</td>
+                        }
+                        var proxy = new BestilNemtServiceClient();
+                        // If shop is set
+                        if (shop != null)
+                        {
+                            // Get the warehouse by a product id and the shop id
+                            var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
+                            // Get the saving Id
+                            var savingId = warehouse2.SavingId;
+                            // Get the price
+                            var price = product.Price;
+                            // A string to show the price
+                            var priceStr = price + " kr";
+                            // If the saving id is not null
+                            if (savingId != null)
+                            {
+                                // Get the saving
+                                var saving = proxy.GetSaving(savingId.Value);
+                                // If the saving is not null
+                                if (saving != null)
+                                {
+                                    // Get the percent
+                                    var percent = (decimal)saving.SavingPercent;
+                                    // Calculate the new price
+                                    var newPrice = price - (price * percent / 100);
+                                    // Save the new string to show the price with a percent and calculated
+                                    priceStr = price + " kr - " + percent + " % = " + newPrice + " kr";
+                                }
+                            }
+                            // Show the price
+                            <td>@priceStr</td>
+                        }
+                    }
+                </tr>
+                        }
+        </table>
+                        }
+}

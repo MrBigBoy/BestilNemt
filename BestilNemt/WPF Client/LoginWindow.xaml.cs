@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using WPF_Client.BestilNemtWPF;
 
 namespace WPF_Client
@@ -7,16 +6,15 @@ namespace WPF_Client
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow
     {
-        BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+        private readonly BestilNemtServiceClient proxy = new BestilNemtServiceClient();
         //public Login Login2 { get; set; }
-        private Login Login2 = null;
         public LoginWindow()
         {
             InitializeComponent();
             LoginManager.Setup(proxy);
-            
+
         }
 
         /// <summary>
@@ -27,29 +25,26 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void LoginConfirm_Click(object sender, RoutedEventArgs e)
         {
-            getLogin();
+            GetLogin();
         }
-        public Login getLogin()
+        public Login GetLogin()
         {
-            
-           var login =  LoginManager.Login(UsernameField.Text, PasswordField.Password);
+            var login = LoginManager.Login(UsernameField.Text, PasswordField.Password);
             if (login != null)
             {
-               
+
                 var personId = login.PersonId;
                 //Check the database to see if the person is a admin, and returns a admin object
                 var admin = proxy.GetAdmin(personId);
                 //Uses the admin object to login
-               
+
                 if (admin != null)
                 {
                     //Creates a new MainWindow and shows it to the user
-                    MainWindow mainWindow = new MainWindow();
+                    var mainWindow = new MainWindow();
                     mainWindow.Show();
                     //Closes the login form
-                     this.Close();
-                  
-
+                    Close();
                 }
                 else
                 {
@@ -61,10 +56,9 @@ namespace WPF_Client
             {
                 MessageBox.Show("Dit login virkede ikke, prøv igen");
             }
-            return login; 
+            return login;
         }
-        
     }
-    }
+}
 
 
