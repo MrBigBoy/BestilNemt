@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using DataAccessLayer;
 using Models;
@@ -49,6 +50,11 @@ namespace Controller.ControllerTestClasses
         public int DeleteChain(int id)
         {
             return chains.Remove(GetChain(id)) ? 1 : 0;
+        }
+
+        public DataTable GetChainData()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

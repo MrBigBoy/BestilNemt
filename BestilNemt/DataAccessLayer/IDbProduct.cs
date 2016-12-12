@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using Models;
 
 namespace DataAccessLayer
@@ -17,5 +18,7 @@ namespace DataAccessLayer
         int DeleteProduct(int id);
         List<Product> GetProductsByName(string input);
         Warehouse GetWarehouseByProductId(int productId, int shopId);
+        DataTable GetDataGridProducts();
+        DataTable GetProductWareHouse(int adminId);
     }
 }

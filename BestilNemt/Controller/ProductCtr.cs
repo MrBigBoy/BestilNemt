@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using DataAccessLayer;
 using Models;
 
@@ -126,6 +128,16 @@ namespace Controller
         public Warehouse GetWarehouseByProductId(int productId, int shopId)
         {
             return DbProduct.GetWarehouseByProductId(productId, shopId);
+        }
+
+        public DataTable GetDataGridProducts()
+        {
+            return DbProduct.GetDataGridProducts();
+        }
+
+        public DataTable GetProductWareHouse(int adminId)
+        {
+            return DbProduct.GetProductWareHouse(adminId);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using DataAccessLayer;
 using Models;
@@ -46,6 +47,11 @@ namespace Controller.ControllerTestClasses
         public Shop GetShop(int id)
         {
             return shops.FirstOrDefault(shop => shop.Id == id);
+        }
+
+        public DataTable GetDataGridShop()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

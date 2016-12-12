@@ -100,6 +100,24 @@ namespace DataAccessLayer
             return i;
         }
 
+        public DataTable GetDataGridShop()
+        {
+            var cmdString = "SELECT shopId, shopName, shopAddress, shopCVR, shopOpeningTime, shopChainId, chainName FROM Shop, Chain WHERE shopChainId = chainId";
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                //Opens the connetion and sets the qurey to the cmdstring
+                conn.Open();
+                //Adapts the data that the SQL returnns
+                var cmd = new SqlCommand(cmdString, conn);
+                var sda = new SqlDataAdapter(cmd);
+                //Makes a new table
+                var dt = new DataTable("Butikker");
+                //Fills the tabel
+                sda.Fill(dt);
+                return dt;
+            }
+        }
+
         /// <summary>
         /// Update a Shop
         /// </summary>

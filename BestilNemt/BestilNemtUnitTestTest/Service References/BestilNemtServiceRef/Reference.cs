@@ -358,10 +358,10 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        int AddSaving(Models.Saving saving, Models.Product product);
+        int AddSaving(Models.Saving saving, Models.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Product product);
+        System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
         Models.Saving GetSaving(int id);
@@ -889,12 +889,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.DeleteWarehouseAsync(id);
         }
         
-        public int AddSaving(Models.Saving saving, Models.Product product) {
-            return base.Channel.AddSaving(saving, product);
+        public int AddSaving(Models.Saving saving, Models.Warehouse warehouse) {
+            return base.Channel.AddSaving(saving, warehouse);
         }
         
-        public System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Product product) {
-            return base.Channel.AddSavingAsync(saving, product);
+        public System.Threading.Tasks.Task<int> AddSavingAsync(Models.Saving saving, Models.Warehouse warehouse) {
+            return base.Channel.AddSavingAsync(saving, warehouse);
         }
         
         public Models.Saving GetSaving(int id) {

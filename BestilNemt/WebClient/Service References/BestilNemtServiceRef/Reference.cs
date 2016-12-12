@@ -1557,10 +1557,10 @@ namespace WebClient.BestilNemtServiceRef {
         System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        int AddSaving(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Product product);
+        int AddSaving(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
-        System.Threading.Tasks.Task<int> AddSavingAsync(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Product product);
+        System.Threading.Tasks.Task<int> AddSavingAsync(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Warehouse warehouse);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
         WebClient.BestilNemtServiceRef.Saving GetSaving(int id);
@@ -2088,12 +2088,12 @@ namespace WebClient.BestilNemtServiceRef {
             return base.Channel.DeleteWarehouseAsync(id);
         }
         
-        public int AddSaving(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Product product) {
-            return base.Channel.AddSaving(saving, product);
+        public int AddSaving(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Warehouse warehouse) {
+            return base.Channel.AddSaving(saving, warehouse);
         }
         
-        public System.Threading.Tasks.Task<int> AddSavingAsync(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Product product) {
-            return base.Channel.AddSavingAsync(saving, product);
+        public System.Threading.Tasks.Task<int> AddSavingAsync(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Warehouse warehouse) {
+            return base.Channel.AddSavingAsync(saving, warehouse);
         }
         
         public WebClient.BestilNemtServiceRef.Saving GetSaving(int id) {

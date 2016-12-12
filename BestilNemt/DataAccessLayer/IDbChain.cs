@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using Models;
 
 namespace DataAccessLayer
@@ -13,5 +14,6 @@ namespace DataAccessLayer
         List<Chain> GetAllChains();
         int UpdateChain(Chain chain);
         int DeleteChain(int id);
+        DataTable GetChainData();
     }
 }

@@ -3,6 +3,7 @@ using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
 using System;
+using System.Data;
 
 namespace WcfService
 {
@@ -806,6 +807,26 @@ namespace WcfService
         public Warehouse GetWarehouseByProductId(int productId, int shopId)
         {
             return ProductCtr.GetWarehouseByProductId(productId, shopId);
+        }
+
+        public DataTable GetDataGridProducts()
+        {
+           return  ProductCtr.GetDataGridProducts();
+        }
+
+        public DataTable GetProductWareHouse(int adminId)
+        {
+            return ProductCtr.GetProductWareHouse(adminId);
+        }
+
+        public DataTable GetChainData()
+        {
+            return ChainCtr.GetChainData();
+        }
+
+        public DataTable GetDataGridShop()
+        {
+            return ShopController.GetDataGridShop();
         }
     }
 }
