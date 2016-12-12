@@ -57,29 +57,29 @@ namespace Controller
             return DbSaving.GetAllSavings();
         }
 
-        /// <summary>
-        /// Update a Saving
-        /// </summary>
-        /// <param name="saving"></param>
-        /// <returns>
-        /// 1 if updated, else 0
-        /// </returns>
-        public int UpdateSaving(Saving saving)
-        {
-            return DbSaving.UpdateSaving(saving);
-        }
+        ///// <summary>
+        ///// Update a Saving
+        ///// </summary>
+        ///// <param name="saving"></param>
+        ///// <returns>
+        ///// 1 if updated, else 0
+        ///// </returns>
+        //public int UpdateSaving(Saving saving)
+        //{
+        //    return DbSaving.UpdateSaving(saving);
+        //}
 
-        /// <summary>
-        /// Delete a Saving
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// 1 if deleted, else 0
-        /// </returns>
-        public int DeleteSaving(int id)
-        {
-            return DbSaving.DeleteSaving(id);
-        }
+        ///// <summary>
+        ///// Delete a Saving
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// 1 if deleted, else 0
+        ///// </returns>
+        //public int DeleteSaving(int id)
+        //{
+        //    return DbSaving.DeleteSaving(id);
+        //}
 
         /// <summary>
         /// Validate Saving fields

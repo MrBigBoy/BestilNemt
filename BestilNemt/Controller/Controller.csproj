@@ -46,11 +46,9 @@
     <Compile Include="CartCtr.cs" />
     <Compile Include="ControllerTestClasses\CartCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\LoginCtrTestClass.cs" />
-    <Compile Include="CompanyCtr.cs" />
     <Compile Include="AdminCtr.cs" />
     <Compile Include="ControllerTestClasses\AdminCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\CustomerCtrTestClass.cs" />
-    <Compile Include="ControllerTestClasses\CompanyCtrTestClasses.cs" />
     <Compile Include="ControllerTestClasses\PartOrderTestClass.cs" />
     <Compile Include="ControllerTestClasses\ProductCtrTestClass.cs" />
     <Compile Include="ControllerTestClasses\ChainCtrTestClass.cs" />

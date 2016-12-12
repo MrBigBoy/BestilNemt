@@ -17,9 +17,8 @@ namespace WebClient.BestilNemtServiceRef {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Person", Namespace="http://schemas.datacontract.org/2004/07/Models")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WebClient.BestilNemtServiceRef.Admin))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WebClient.BestilNemtServiceRef.Company))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WebClient.BestilNemtServiceRef.Customer))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WebClient.BestilNemtServiceRef.Admin))]
     public partial class Person : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -252,6 +251,29 @@ namespace WebClient.BestilNemtServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Customer", Namespace="http://schemas.datacontract.org/2004/07/Models")]
+    [System.SerializableAttribute()]
+    public partial class Customer : WebClient.BestilNemtServiceRef.Person {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime BirthdayField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Birthday {
+            get {
+                return this.BirthdayField;
+            }
+            set {
+                if ((this.BirthdayField.Equals(value) != true)) {
+                    this.BirthdayField = value;
+                    this.RaisePropertyChanged("Birthday");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Admin", Namespace="http://schemas.datacontract.org/2004/07/Models")]
     [System.SerializableAttribute()]
     public partial class Admin : WebClient.BestilNemtServiceRef.Person {
@@ -284,68 +306,6 @@ namespace WebClient.BestilNemtServiceRef {
                 if ((this.ShopIdField.Equals(value) != true)) {
                     this.ShopIdField = value;
                     this.RaisePropertyChanged("ShopId");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Company", Namespace="http://schemas.datacontract.org/2004/07/Models")]
-    [System.SerializableAttribute()]
-    public partial class Company : WebClient.BestilNemtServiceRef.Person {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CVRField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int KontonrField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CVR {
-            get {
-                return this.CVRField;
-            }
-            set {
-                if ((this.CVRField.Equals(value) != true)) {
-                    this.CVRField = value;
-                    this.RaisePropertyChanged("CVR");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Kontonr {
-            get {
-                return this.KontonrField;
-            }
-            set {
-                if ((this.KontonrField.Equals(value) != true)) {
-                    this.KontonrField = value;
-                    this.RaisePropertyChanged("Kontonr");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Customer", Namespace="http://schemas.datacontract.org/2004/07/Models")]
-    [System.SerializableAttribute()]
-    public partial class Customer : WebClient.BestilNemtServiceRef.Person {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime BirthdayField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Birthday {
-            get {
-                return this.BirthdayField;
-            }
-            set {
-                if ((this.BirthdayField.Equals(value) != true)) {
-                    this.BirthdayField = value;
-                    this.RaisePropertyChanged("Birthday");
                 }
             }
         }
@@ -1214,65 +1174,11 @@ namespace WebClient.BestilNemtServiceRef {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BestilNemtServiceRef.IBestilNemtService")]
     public interface IBestilNemtService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetCustomerResponse")]
-        WebClient.BestilNemtServiceRef.Customer GetCustomer(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetCustomerResponse")]
-        System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Customer> GetCustomerAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerResponse")]
-        int AddCustomer(WebClient.BestilNemtServiceRef.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerResponse")]
-        System.Threading.Tasks.Task<int> AddCustomerAsync(WebClient.BestilNemtServiceRef.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse")]
-        int UpdateCustomer(WebClient.BestilNemtServiceRef.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse")]
-        System.Threading.Tasks.Task<int> UpdateCustomerAsync(WebClient.BestilNemtServiceRef.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCustomerResponse")]
-        int DeleteCustomer(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCustomerResponse")]
-        System.Threading.Tasks.Task<int> DeleteCustomerAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCustomerResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Customer> GetAllCustomer();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCustomerResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Customer>> GetAllCustomerAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/AddAdminResponse")]
-        int AddAdmin(WebClient.BestilNemtServiceRef.Admin admin);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/AddAdminResponse")]
-        System.Threading.Tasks.Task<int> AddAdminAsync(WebClient.BestilNemtServiceRef.Admin admin);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/GetAdminResponse")]
         WebClient.BestilNemtServiceRef.Admin GetAdmin(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/GetAdminResponse")]
         System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Admin> GetAdminAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllAdmins", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Admin> GetAllAdmins();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllAdmins", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Admin>> GetAllAdminsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteAdminResponse")]
-        int DeleteAdmin(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteAdminResponse")]
-        System.Threading.Tasks.Task<int> DeleteAdminAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateAdminResponse")]
-        int UpdateAdmin(WebClient.BestilNemtServiceRef.Admin admin);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateAdminResponse")]
-        System.Threading.Tasks.Task<int> UpdateAdminAsync(WebClient.BestilNemtServiceRef.Admin admin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
         int AddShop(WebClient.BestilNemtServiceRef.Shop shop);
@@ -1285,12 +1191,6 @@ namespace WebClient.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
         System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Shop> GetShopAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop> GetAllShops();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop>> GetAllShopsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse")]
         System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop> GetAllShopsByChainId(int chainId);
@@ -1322,77 +1222,11 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllChains", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllChainsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Chain>> GetAllChainsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteChain", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteChainResponse")]
-        int DeleteChain(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteChain", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteChainResponse")]
-        System.Threading.Tasks.Task<int> DeleteChainAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddChain", ReplyAction="http://tempuri.org/IBestilNemtService/AddChainResponse")]
-        int AddChain(WebClient.BestilNemtServiceRef.Chain chain);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddChain", ReplyAction="http://tempuri.org/IBestilNemtService/AddChainResponse")]
-        System.Threading.Tasks.Task<int> AddChainAsync(WebClient.BestilNemtServiceRef.Chain chain);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateChain", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateChainResponse")]
-        int UpdateChain(WebClient.BestilNemtServiceRef.Chain chain);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateChain", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateChainResponse")]
-        System.Threading.Tasks.Task<int> UpdateChainAsync(WebClient.BestilNemtServiceRef.Chain chain);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
         WebClient.BestilNemtServiceRef.Login Login([System.ServiceModel.MessageParameterAttribute(Name="login")] WebClient.BestilNemtServiceRef.Login login1);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
         System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Login> LoginAsync(WebClient.BestilNemtServiceRef.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
-        int AddLogin(WebClient.BestilNemtServiceRef.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
-        System.Threading.Tasks.Task<int> AddLoginAsync(WebClient.BestilNemtServiceRef.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateLogin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateLoginResponse")]
-        int UpdateLogin(WebClient.BestilNemtServiceRef.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateLogin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateLoginResponse")]
-        System.Threading.Tasks.Task<int> UpdateLoginAsync(WebClient.BestilNemtServiceRef.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteLoginResponse")]
-        int DeleteLogin(WebClient.BestilNemtServiceRef.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteLoginResponse")]
-        System.Threading.Tasks.Task<int> DeleteLoginAsync(WebClient.BestilNemtServiceRef.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCompany", ReplyAction="http://tempuri.org/IBestilNemtService/AddCompanyResponse")]
-        int AddCompany(WebClient.BestilNemtServiceRef.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCompany", ReplyAction="http://tempuri.org/IBestilNemtService/AddCompanyResponse")]
-        System.Threading.Tasks.Task<int> AddCompanyAsync(WebClient.BestilNemtServiceRef.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCompanyResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Company> GetAllCompany();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCompanyResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Company>> GetAllCompanyAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCompany", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCompanyResponse")]
-        int DeleteCompany(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCompany", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCompanyResponse")]
-        System.Threading.Tasks.Task<int> DeleteCompanyAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCompanyResponse")]
-        int UpdateCompany(WebClient.BestilNemtServiceRef.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCompanyResponse")]
-        System.Threading.Tasks.Task<int> UpdateCompanyAsync(WebClient.BestilNemtServiceRef.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetCompanyResponse")]
-        WebClient.BestilNemtServiceRef.Company GetCompany(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetCompanyResponse")]
-        System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Company> GetCompanyAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddProduct", ReplyAction="http://tempuri.org/IBestilNemtService/AddProductResponse")]
         int AddProduct(WebClient.BestilNemtServiceRef.Product product);
@@ -1405,12 +1239,6 @@ namespace WebClient.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProduct", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductResponse")]
         System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Product> GetProductAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllProductsResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllProducts();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllProductsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllProductsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSoldProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSoldProductsResponse")]
         System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllSoldProducts();
@@ -1448,18 +1276,6 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse")]
         System.Threading.Tasks.Task<int> AddCartWithPartOrdersAsync(WebClient.BestilNemtServiceRef.Cart cart);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCart", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartResponse")]
-        WebClient.BestilNemtServiceRef.Cart GetCart(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCart", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartResponse")]
-        System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Cart> GetCartAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartWithPartOrdersResponse")]
-        WebClient.BestilNemtServiceRef.Cart GetCartWithPartOrders(int cartId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartWithPartOrdersResponse")]
-        System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Cart> GetCartWithPartOrdersAsync(int cartId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
         System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart> GetAllCarts();
         
@@ -1472,53 +1288,11 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart>> GetAllCartsByPersonIdAsync(int personId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
-        int UpdateCart(WebClient.BestilNemtServiceRef.Cart cart);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
-        System.Threading.Tasks.Task<int> UpdateCartAsync(WebClient.BestilNemtServiceRef.Cart cart);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCart", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCartResponse")]
-        int DeleteCart(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCart", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCartResponse")]
-        System.Threading.Tasks.Task<int> DeleteCartAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
-        int AddPartOrderToCart(WebClient.BestilNemtServiceRef.Cart cart, WebClient.BestilNemtServiceRef.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
-        System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(WebClient.BestilNemtServiceRef.Cart cart, WebClient.BestilNemtServiceRef.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/GetPartOrderResponse")]
-        WebClient.BestilNemtServiceRef.PartOrder GetPartOrder(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/GetPartOrderResponse")]
-        System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.PartOrder> GetPartOrderAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeletePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/DeletePartOrderResponse")]
-        int DeletePartOrder(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeletePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/DeletePartOrderResponse")]
-        System.Threading.Tasks.Task<int> DeletePartOrderAsync(int id);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
         int AddPartOrder(WebClient.BestilNemtServiceRef.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
         System.Threading.Tasks.Task<int> AddPartOrderAsync(WebClient.BestilNemtServiceRef.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartOrderResponse")]
-        int UpdatePartOrder(WebClient.BestilNemtServiceRef.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartOrderResponse")]
-        System.Threading.Tasks.Task<int> UpdatePartOrderAsync(WebClient.BestilNemtServiceRef.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.PartOrder> GetAllPartOrders();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.PartOrder>> GetAllPartOrdersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
         int AddWarehouse(WebClient.BestilNemtServiceRef.Warehouse warehouse);
@@ -1532,12 +1306,6 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
         System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Warehouse> GetWarehouseAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Warehouse> GetAllWarehouses();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Warehouse>> GetAllWarehousesAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopIdResponse")]
         System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Warehouse> GetAllWarehousesByShopId(int shopId);
         
@@ -1550,12 +1318,6 @@ namespace WebClient.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         System.Threading.Tasks.Task<int> UpdateWarehouseAsync(WebClient.BestilNemtServiceRef.Warehouse warehouse);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
-        int DeleteWarehouse(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
-        System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
         int AddSaving(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Warehouse warehouse);
         
@@ -1567,30 +1329,6 @@ namespace WebClient.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
         System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Saving> GetSavingAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSavingsResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Saving> GetAllSavings();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSavingsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Saving>> GetAllSavingsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateSaving", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateSavingResponse")]
-        int UpdateSaving(WebClient.BestilNemtServiceRef.Saving saving);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateSaving", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateSavingResponse")]
-        System.Threading.Tasks.Task<int> UpdateSavingAsync(WebClient.BestilNemtServiceRef.Saving saving);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
-        int DeleteSaving(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
-        System.Threading.Tasks.Task<int> DeleteSavingAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse")]
-        System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetProductsByName(string input);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetProductsByNameAsync(string input);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerWithLoginResponse")]
         int AddCustomerWithLogin(WebClient.BestilNemtServiceRef.Customer customer, WebClient.BestilNemtServiceRef.Login login);
@@ -1656,84 +1394,12 @@ namespace WebClient.BestilNemtServiceRef {
                 base(binding, remoteAddress) {
         }
         
-        public WebClient.BestilNemtServiceRef.Customer GetCustomer(int id) {
-            return base.Channel.GetCustomer(id);
-        }
-        
-        public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Customer> GetCustomerAsync(int id) {
-            return base.Channel.GetCustomerAsync(id);
-        }
-        
-        public int AddCustomer(WebClient.BestilNemtServiceRef.Customer customer) {
-            return base.Channel.AddCustomer(customer);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddCustomerAsync(WebClient.BestilNemtServiceRef.Customer customer) {
-            return base.Channel.AddCustomerAsync(customer);
-        }
-        
-        public int UpdateCustomer(WebClient.BestilNemtServiceRef.Customer customer) {
-            return base.Channel.UpdateCustomer(customer);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateCustomerAsync(WebClient.BestilNemtServiceRef.Customer customer) {
-            return base.Channel.UpdateCustomerAsync(customer);
-        }
-        
-        public int DeleteCustomer(int id) {
-            return base.Channel.DeleteCustomer(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteCustomerAsync(int id) {
-            return base.Channel.DeleteCustomerAsync(id);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Customer> GetAllCustomer() {
-            return base.Channel.GetAllCustomer();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Customer>> GetAllCustomerAsync() {
-            return base.Channel.GetAllCustomerAsync();
-        }
-        
-        public int AddAdmin(WebClient.BestilNemtServiceRef.Admin admin) {
-            return base.Channel.AddAdmin(admin);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddAdminAsync(WebClient.BestilNemtServiceRef.Admin admin) {
-            return base.Channel.AddAdminAsync(admin);
-        }
-        
         public WebClient.BestilNemtServiceRef.Admin GetAdmin(int id) {
             return base.Channel.GetAdmin(id);
         }
         
         public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Admin> GetAdminAsync(int id) {
             return base.Channel.GetAdminAsync(id);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Admin> GetAllAdmins() {
-            return base.Channel.GetAllAdmins();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Admin>> GetAllAdminsAsync() {
-            return base.Channel.GetAllAdminsAsync();
-        }
-        
-        public int DeleteAdmin(int id) {
-            return base.Channel.DeleteAdmin(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteAdminAsync(int id) {
-            return base.Channel.DeleteAdminAsync(id);
-        }
-        
-        public int UpdateAdmin(WebClient.BestilNemtServiceRef.Admin admin) {
-            return base.Channel.UpdateAdmin(admin);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateAdminAsync(WebClient.BestilNemtServiceRef.Admin admin) {
-            return base.Channel.UpdateAdminAsync(admin);
         }
         
         public int AddShop(WebClient.BestilNemtServiceRef.Shop shop) {
@@ -1750,14 +1416,6 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Shop> GetShopAsync(int id) {
             return base.Channel.GetShopAsync(id);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop> GetAllShops() {
-            return base.Channel.GetAllShops();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop>> GetAllShopsAsync() {
-            return base.Channel.GetAllShopsAsync();
         }
         
         public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Shop> GetAllShopsByChainId(int chainId) {
@@ -1800,100 +1458,12 @@ namespace WebClient.BestilNemtServiceRef {
             return base.Channel.GetAllChainsAsync();
         }
         
-        public int DeleteChain(int id) {
-            return base.Channel.DeleteChain(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteChainAsync(int id) {
-            return base.Channel.DeleteChainAsync(id);
-        }
-        
-        public int AddChain(WebClient.BestilNemtServiceRef.Chain chain) {
-            return base.Channel.AddChain(chain);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddChainAsync(WebClient.BestilNemtServiceRef.Chain chain) {
-            return base.Channel.AddChainAsync(chain);
-        }
-        
-        public int UpdateChain(WebClient.BestilNemtServiceRef.Chain chain) {
-            return base.Channel.UpdateChain(chain);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateChainAsync(WebClient.BestilNemtServiceRef.Chain chain) {
-            return base.Channel.UpdateChainAsync(chain);
-        }
-        
         public WebClient.BestilNemtServiceRef.Login Login(WebClient.BestilNemtServiceRef.Login login1) {
             return base.Channel.Login(login1);
         }
         
         public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Login> LoginAsync(WebClient.BestilNemtServiceRef.Login login) {
             return base.Channel.LoginAsync(login);
-        }
-        
-        public int AddLogin(WebClient.BestilNemtServiceRef.Login login) {
-            return base.Channel.AddLogin(login);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddLoginAsync(WebClient.BestilNemtServiceRef.Login login) {
-            return base.Channel.AddLoginAsync(login);
-        }
-        
-        public int UpdateLogin(WebClient.BestilNemtServiceRef.Login login) {
-            return base.Channel.UpdateLogin(login);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateLoginAsync(WebClient.BestilNemtServiceRef.Login login) {
-            return base.Channel.UpdateLoginAsync(login);
-        }
-        
-        public int DeleteLogin(WebClient.BestilNemtServiceRef.Login login) {
-            return base.Channel.DeleteLogin(login);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteLoginAsync(WebClient.BestilNemtServiceRef.Login login) {
-            return base.Channel.DeleteLoginAsync(login);
-        }
-        
-        public int AddCompany(WebClient.BestilNemtServiceRef.Company company) {
-            return base.Channel.AddCompany(company);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddCompanyAsync(WebClient.BestilNemtServiceRef.Company company) {
-            return base.Channel.AddCompanyAsync(company);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Company> GetAllCompany() {
-            return base.Channel.GetAllCompany();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Company>> GetAllCompanyAsync() {
-            return base.Channel.GetAllCompanyAsync();
-        }
-        
-        public int DeleteCompany(int id) {
-            return base.Channel.DeleteCompany(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteCompanyAsync(int id) {
-            return base.Channel.DeleteCompanyAsync(id);
-        }
-        
-        public int UpdateCompany(WebClient.BestilNemtServiceRef.Company company) {
-            return base.Channel.UpdateCompany(company);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateCompanyAsync(WebClient.BestilNemtServiceRef.Company company) {
-            return base.Channel.UpdateCompanyAsync(company);
-        }
-        
-        public WebClient.BestilNemtServiceRef.Company GetCompany(int id) {
-            return base.Channel.GetCompany(id);
-        }
-        
-        public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Company> GetCompanyAsync(int id) {
-            return base.Channel.GetCompanyAsync(id);
         }
         
         public int AddProduct(WebClient.BestilNemtServiceRef.Product product) {
@@ -1910,14 +1480,6 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Product> GetProductAsync(int id) {
             return base.Channel.GetProductAsync(id);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllProducts() {
-            return base.Channel.GetAllProducts();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetAllProductsAsync() {
-            return base.Channel.GetAllProductsAsync();
         }
         
         public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetAllSoldProducts() {
@@ -1968,22 +1530,6 @@ namespace WebClient.BestilNemtServiceRef {
             return base.Channel.AddCartWithPartOrdersAsync(cart);
         }
         
-        public WebClient.BestilNemtServiceRef.Cart GetCart(int id) {
-            return base.Channel.GetCart(id);
-        }
-        
-        public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Cart> GetCartAsync(int id) {
-            return base.Channel.GetCartAsync(id);
-        }
-        
-        public WebClient.BestilNemtServiceRef.Cart GetCartWithPartOrders(int cartId) {
-            return base.Channel.GetCartWithPartOrders(cartId);
-        }
-        
-        public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Cart> GetCartWithPartOrdersAsync(int cartId) {
-            return base.Channel.GetCartWithPartOrdersAsync(cartId);
-        }
-        
         public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Cart> GetAllCarts() {
             return base.Channel.GetAllCarts();
         }
@@ -2000,68 +1546,12 @@ namespace WebClient.BestilNemtServiceRef {
             return base.Channel.GetAllCartsByPersonIdAsync(personId);
         }
         
-        public int UpdateCart(WebClient.BestilNemtServiceRef.Cart cart) {
-            return base.Channel.UpdateCart(cart);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateCartAsync(WebClient.BestilNemtServiceRef.Cart cart) {
-            return base.Channel.UpdateCartAsync(cart);
-        }
-        
-        public int DeleteCart(int id) {
-            return base.Channel.DeleteCart(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteCartAsync(int id) {
-            return base.Channel.DeleteCartAsync(id);
-        }
-        
-        public int AddPartOrderToCart(WebClient.BestilNemtServiceRef.Cart cart, WebClient.BestilNemtServiceRef.PartOrder partOrder) {
-            return base.Channel.AddPartOrderToCart(cart, partOrder);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(WebClient.BestilNemtServiceRef.Cart cart, WebClient.BestilNemtServiceRef.PartOrder partOrder) {
-            return base.Channel.AddPartOrderToCartAsync(cart, partOrder);
-        }
-        
-        public WebClient.BestilNemtServiceRef.PartOrder GetPartOrder(int id) {
-            return base.Channel.GetPartOrder(id);
-        }
-        
-        public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.PartOrder> GetPartOrderAsync(int id) {
-            return base.Channel.GetPartOrderAsync(id);
-        }
-        
-        public int DeletePartOrder(int id) {
-            return base.Channel.DeletePartOrder(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeletePartOrderAsync(int id) {
-            return base.Channel.DeletePartOrderAsync(id);
-        }
-        
         public int AddPartOrder(WebClient.BestilNemtServiceRef.PartOrder partOrder) {
             return base.Channel.AddPartOrder(partOrder);
         }
         
         public System.Threading.Tasks.Task<int> AddPartOrderAsync(WebClient.BestilNemtServiceRef.PartOrder partOrder) {
             return base.Channel.AddPartOrderAsync(partOrder);
-        }
-        
-        public int UpdatePartOrder(WebClient.BestilNemtServiceRef.PartOrder partOrder) {
-            return base.Channel.UpdatePartOrder(partOrder);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdatePartOrderAsync(WebClient.BestilNemtServiceRef.PartOrder partOrder) {
-            return base.Channel.UpdatePartOrderAsync(partOrder);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.PartOrder> GetAllPartOrders() {
-            return base.Channel.GetAllPartOrders();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.PartOrder>> GetAllPartOrdersAsync() {
-            return base.Channel.GetAllPartOrdersAsync();
         }
         
         public int AddWarehouse(WebClient.BestilNemtServiceRef.Warehouse warehouse) {
@@ -2080,14 +1570,6 @@ namespace WebClient.BestilNemtServiceRef {
             return base.Channel.GetWarehouseAsync(id);
         }
         
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Warehouse> GetAllWarehouses() {
-            return base.Channel.GetAllWarehouses();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Warehouse>> GetAllWarehousesAsync() {
-            return base.Channel.GetAllWarehousesAsync();
-        }
-        
         public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Warehouse> GetAllWarehousesByShopId(int shopId) {
             return base.Channel.GetAllWarehousesByShopId(shopId);
         }
@@ -2104,14 +1586,6 @@ namespace WebClient.BestilNemtServiceRef {
             return base.Channel.UpdateWarehouseAsync(warehouse);
         }
         
-        public int DeleteWarehouse(int id) {
-            return base.Channel.DeleteWarehouse(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id) {
-            return base.Channel.DeleteWarehouseAsync(id);
-        }
-        
         public int AddSaving(WebClient.BestilNemtServiceRef.Saving saving, WebClient.BestilNemtServiceRef.Warehouse warehouse) {
             return base.Channel.AddSaving(saving, warehouse);
         }
@@ -2126,38 +1600,6 @@ namespace WebClient.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<WebClient.BestilNemtServiceRef.Saving> GetSavingAsync(int id) {
             return base.Channel.GetSavingAsync(id);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Saving> GetAllSavings() {
-            return base.Channel.GetAllSavings();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Saving>> GetAllSavingsAsync() {
-            return base.Channel.GetAllSavingsAsync();
-        }
-        
-        public int UpdateSaving(WebClient.BestilNemtServiceRef.Saving saving) {
-            return base.Channel.UpdateSaving(saving);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateSavingAsync(WebClient.BestilNemtServiceRef.Saving saving) {
-            return base.Channel.UpdateSavingAsync(saving);
-        }
-        
-        public int DeleteSaving(int id) {
-            return base.Channel.DeleteSaving(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteSavingAsync(int id) {
-            return base.Channel.DeleteSavingAsync(id);
-        }
-        
-        public System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product> GetProductsByName(string input) {
-            return base.Channel.GetProductsByName(input);
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<WebClient.BestilNemtServiceRef.Product>> GetProductsByNameAsync(string input) {
-            return base.Channel.GetProductsByNameAsync(input);
         }
         
         public int AddCustomerWithLogin(WebClient.BestilNemtServiceRef.Customer customer, WebClient.BestilNemtServiceRef.Login login) {

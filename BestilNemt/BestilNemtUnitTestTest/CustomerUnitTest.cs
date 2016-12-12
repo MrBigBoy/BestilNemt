@@ -11,186 +11,186 @@ namespace BestilNemtUnitTestTest
     [TestClass]
     public class CustomerUnitTest
     {
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test is sucsessful if all customer input values are valid and returned value is not 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomer()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(), "Customer");
-            var flag = customerCtr.AddCustomer(customer);
-            Assert.AreNotEqual(0, flag);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test is sucsessful if all customer input values are valid and returned value is not 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomer()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer = new Customer(
+        //        "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(), "Customer");
+        //    var flag = customerCtr.AddCustomer(customer);
+        //    Assert.AreNotEqual(0, flag);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for invalid input name
-        /// Test is sucsessful if validation of input failed and returned value is 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerFailNoName()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), new Login(), new List<Chain>(), "Customer");
-            var flag = customerCtr.AddCustomer(customer);
-            Assert.AreEqual(0, flag);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for invalid input name
+        ///// Test is sucsessful if validation of input failed and returned value is 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomerFailNoName()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer = new Customer(
+        //        "", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), new Login(), new List<Chain>(), "Customer");
+        //    var flag = customerCtr.AddCustomer(customer);
+        //    Assert.AreEqual(0, flag);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for invalid input Email
-        /// Test is sucsessful if validation of input failed and returned value is 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerFailNoEmail()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "Cust1", "", "Addrerrsr", new DateTime(2000, 02, 01), new Login(), new List<Chain>(), "Customer");
-            var flag = customerCtr.AddCustomer(customer);
-            Assert.AreEqual(0, flag);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for invalid input Email
+        ///// Test is sucsessful if validation of input failed and returned value is 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomerFailNoEmail()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer = new Customer(
+        //        "Cust1", "", "Addrerrsr", new DateTime(2000, 02, 01), new Login(), new List<Chain>(), "Customer");
+        //    var flag = customerCtr.AddCustomer(customer);
+        //    Assert.AreEqual(0, flag);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for invalid input address
-        /// Test is sucsessful if validation of input failed and returned value is 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerFailNoAddress()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "Cust1", "email", "", new DateTime(2000, 02, 01), new Login(), new List<Chain>(), "Customer");
-            var flag = customerCtr.AddCustomer(customer);
-            Assert.AreEqual(0, flag);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for invalid input address
+        ///// Test is sucsessful if validation of input failed and returned value is 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomerFailNoAddress()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer = new Customer(
+        //        "Cust1", "email", "", new DateTime(2000, 02, 01), new Login(), new List<Chain>(), "Customer");
+        //    var flag = customerCtr.AddCustomer(customer);
+        //    Assert.AreEqual(0, flag);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for the customer object with given id is found and returned value is not null
-        /// </summary>
-        [TestMethod]
-        public void GetCustomerById()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            customerCtr.AddCustomer(customer);
-            Assert.IsNotNull(customerCtr.GetCustomer(1));
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for the customer object with given id is found and returned value is not null
+        ///// </summary>
+        //[TestMethod]
+        //public void GetCustomerById()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer = new Customer(
+        //        "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    customerCtr.AddCustomer(customer);
+        //    Assert.IsNotNull(customerCtr.GetCustomer(1));
+        //}
 
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for the customer object with given id is found and returned value is not null
-        /// </summary>
-        [TestMethod]
-        public void GetCustomerByIdFailed()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            customerCtr.AddCustomer(customer);
-            Assert.IsNull(customerCtr.GetCustomer(2));
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for the customer object with given id is found and returned value is not null
+        ///// </summary>
+        //[TestMethod]
+        //public void GetCustomerByIdFailed()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer = new Customer(
+        //        "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    customerCtr.AddCustomer(customer);
+        //    Assert.IsNull(customerCtr.GetCustomer(2));
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for the returned list size is equal to expected
-        /// </summary>
-        [TestMethod]
-        public void GetAllCustomers()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer1 = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            var customer2 = new Customer(
-               "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            customerCtr.AddCustomer(customer1);
-            customerCtr.AddCustomer(customer2);
-            Assert.AreEqual(2, customerCtr.GetAllCustomer().Count);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for the returned list size is equal to expected
+        ///// </summary>
+        //[TestMethod]
+        //public void GetAllCustomers()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer1 = new Customer(
+        //        "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    var customer2 = new Customer(
+        //       "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    customerCtr.AddCustomer(customer1);
+        //    customerCtr.AddCustomer(customer2);
+        //    Assert.AreEqual(2, customerCtr.GetAllCustomer().Count);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for the returned list size is equal to expected
-        /// </summary>
-        [TestMethod]
-        public void GetAllCustomersFailed()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer1 = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            var customer2 = new Customer(
-               "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            customerCtr.AddCustomer(customer1);
-            customerCtr.AddCustomer(customer2);
-            Assert.AreNotEqual(1, customerCtr.GetAllCustomer().Count);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for the returned list size is equal to expected
+        ///// </summary>
+        //[TestMethod]
+        //public void GetAllCustomersFailed()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer1 = new Customer(
+        //        "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    var customer2 = new Customer(
+        //       "Cust2", "email1", "Ddjkcgsf", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    customerCtr.AddCustomer(customer1);
+        //    customerCtr.AddCustomer(customer2);
+        //    Assert.AreNotEqual(1, customerCtr.GetAllCustomer().Count);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test for the returned list size is equal to expected
-        /// </summary>
-        [TestMethod]
-        public void UpdateCustomerName()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer1 = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            customerCtr.AddCustomer(customer1);
-            var customer2 = new Customer
-            {
-                Id = 1,
-                Name = "NewCust",
-                Address = "Ddjk",
-                Email = "email",
-                Birthday = new DateTime(),
-                Login = new Login(),
-                Chains = new List<Chain>(),
-                PersonType = "Customer"
-            };
-            customerCtr.UpdateCustomer(customer2);
-            var returnedCust = customerCtr.GetCustomer(1);
-            Assert.AreEqual("NewCust", returnedCust.Name);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test for the returned list size is equal to expected
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateCustomerName()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer1 = new Customer(
+        //        "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    customerCtr.AddCustomer(customer1);
+        //    var customer2 = new Customer
+        //    {
+        //        Id = 1,
+        //        Name = "NewCust",
+        //        Address = "Ddjk",
+        //        Email = "email",
+        //        Birthday = new DateTime(),
+        //        Login = new Login(),
+        //        Chains = new List<Chain>(),
+        //        PersonType = "Customer"
+        //    };
+        //    customerCtr.UpdateCustomer(customer2);
+        //    var returnedCust = customerCtr.GetCustomer(1);
+        //    Assert.AreEqual("NewCust", returnedCust.Name);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test is sucsessfull if returned value is 1, it means that a customer with id = 1 is  
-        /// found and DeleteCustomer method was sucsessfull.
-        /// </summary>
-        [TestMethod]
-        public void RemoveCustomer()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer1 = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            customerCtr.AddCustomer(customer1);
-            var flag = customerCtr.DeleteCustomer(1);
-            Assert.AreEqual(1, flag);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test is sucsessfull if returned value is 1, it means that a customer with id = 1 is  
+        ///// found and DeleteCustomer method was sucsessfull.
+        ///// </summary>
+        //[TestMethod]
+        //public void RemoveCustomer()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer1 = new Customer(
+        //        "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    customerCtr.AddCustomer(customer1);
+        //    var flag = customerCtr.DeleteCustomer(1);
+        //    Assert.AreEqual(1, flag);
+        //}
 
-        /// <summary>
-        /// Test only CustomerCtr using CustomerCrtTestClass that simulates database
-        /// Test is sucsessfull if returned value is 0, it means that a customer with id = 2 is not 
-        /// found and DeleteCustomer method was failed. 
-        /// </summary>
-        [TestMethod]
-        public void RemoveCustomerFaild()
-        {
-            var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
-            var customer1 = new Customer(
-                "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
-            customerCtr.AddCustomer(customer1);
-            var flag = customerCtr.DeleteCustomer(2);
-            Assert.AreEqual(0, flag);
-        }
+        ///// <summary>
+        ///// Test only CustomerCtr using CustomerCrtTestClass that simulates database
+        ///// Test is sucsessfull if returned value is 0, it means that a customer with id = 2 is not 
+        ///// found and DeleteCustomer method was failed. 
+        ///// </summary>
+        //[TestMethod]
+        //public void RemoveCustomerFaild()
+        //{
+        //    var customerCtr = new CustomerCtr(new CustomerCtrTestClass());
+        //    var customer1 = new Customer(
+        //        "Cust1", "email", "Ddjk", new DateTime(), new Login(), new List<Chain>(), "Customer");
+        //    customerCtr.AddCustomer(customer1);
+        //    var flag = customerCtr.DeleteCustomer(2);
+        //    Assert.AreEqual(0, flag);
+        //}
 
         /// <summary>
         /// Test only DbCustomer 

@@ -24,141 +24,141 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(chainCtr);
         }
 
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned value is 1
-        /// </summary>
-        [TestMethod]
-        public void AddChain()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            var flag = chainCtr.AddChain(chain);
-            Assert.AreEqual(1, flag);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        ///// The test is successfull if the returned value is 1
+        ///// </summary>
+        //[TestMethod]
+        //public void AddChain()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    var flag = chainCtr.AddChain(chain);
+        //    Assert.AreEqual(1, flag);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned value is 0
-        /// Cvr is not 8 char
-        /// </summary>
-        [TestMethod]
-        public void AddChainInvalidCvr()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "323232", "Img path");
-            var flag = chainCtr.AddChain(chain);
-            Assert.AreEqual(0, flag);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        ///// The test is successfull if the returned value is 0
+        ///// Cvr is not 8 char
+        ///// </summary>
+        //[TestMethod]
+        //public void AddChainInvalidCvr()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "323232", "Img path");
+        //    var flag = chainCtr.AddChain(chain);
+        //    Assert.AreEqual(0, flag);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
-        /// The test is successfull if chain is found (not null)
-        /// </summary>
-        [TestMethod]
-        public void GetChainById()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            chainCtr.AddChain(chain);
-            Assert.IsNotNull(chainCtr.GetChain(1));
-        }
+        ///// <summary>
+        ///// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
+        ///// The test is successfull if chain is found (not null)
+        ///// </summary>
+        //[TestMethod]
+        //public void GetChainById()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    chainCtr.AddChain(chain);
+        //    Assert.IsNotNull(chainCtr.GetChain(1));
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
-        /// The test is successfull if chain is not found (null)
-        /// </summary>
-        [TestMethod]
-        public void GetChainByIdFail()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            chainCtr.AddChain(chain);
-            Assert.IsNull(chainCtr.GetChain(2));
-        }
+        ///// <summary>
+        ///// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
+        ///// The test is successfull if chain is not found (null)
+        ///// </summary>
+        //[TestMethod]
+        //public void GetChainByIdFail()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    chainCtr.AddChain(chain);
+        //    Assert.IsNull(chainCtr.GetChain(2));
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
-        /// The test is successfull if the list of chains is two
-        /// </summary>
-        [TestMethod]
-        public void GetAllChains()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            var chain2 = new Chain("MiniChain", "21212121", "Img path");
-            chainCtr.AddChain(chain);
-            chainCtr.AddChain(chain2);
-            Assert.AreEqual(2, chainCtr.GetAllChains().Count);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
+        ///// The test is successfull if the list of chains is two
+        ///// </summary>
+        //[TestMethod]
+        //public void GetAllChains()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    var chain2 = new Chain("MiniChain", "21212121", "Img path");
+        //    chainCtr.AddChain(chain);
+        //    chainCtr.AddChain(chain2);
+        //    Assert.AreEqual(2, chainCtr.GetAllChains().Count);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
-        /// The test is successfull if the reutrned value = 1
-        /// </summary>
-        [TestMethod]
-        public void UpdateChainCheckFlag()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            chainCtr.AddChain(chain);
-            chain.Name = "Hello World";
-            var flag = chainCtr.UpdateChain(chain);
-            Assert.AreEqual(1, flag);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
+        ///// The test is successfull if the reutrned value = 1
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateChainCheckFlag()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    chainCtr.AddChain(chain);
+        //    chain.Name = "Hello World";
+        //    var flag = chainCtr.UpdateChain(chain);
+        //    Assert.AreEqual(1, flag);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
-        /// The test is successfull if the reutrned name equals "Hello World"
-        /// </summary>
-        [TestMethod]
-        public void UpdateChainCheckName()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            chainCtr.AddChain(chain);
-            var chain2 = new Chain
-            {
-                Id = 1,
-                Name = "Hello World",
-                Cvr = "12121212"
-            };
-            chainCtr.UpdateChain(chain2);
-            var returnedChain = chainCtr.GetChain(1);
-            Assert.AreEqual("Hello World", returnedChain.Name);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
+        ///// The test is successfull if the reutrned name equals "Hello World"
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateChainCheckName()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    chainCtr.AddChain(chain);
+        //    var chain2 = new Chain
+        //    {
+        //        Id = 1,
+        //        Name = "Hello World",
+        //        Cvr = "12121212"
+        //    };
+        //    chainCtr.UpdateChain(chain2);
+        //    var returnedChain = chainCtr.GetChain(1);
+        //    Assert.AreEqual("Hello World", returnedChain.Name);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
-        /// The test is successfull if the reutrned value is 1
-        /// </summary>
-        [TestMethod]
-        public void DeleteChainById()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            chainCtr.AddChain(chain);
-            var id = chainCtr.DeleteChain(chain.Id);
-            Assert.AreEqual(1, id);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
+        ///// The test is successfull if the reutrned value is 1
+        ///// </summary>
+        //[TestMethod]
+        //public void DeleteChainById()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    chainCtr.AddChain(chain);
+        //    var id = chainCtr.DeleteChain(chain.Id);
+        //    Assert.AreEqual(1, id);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
-        /// The test is successfull if the reutrned value is 1
-        /// </summary>
-        [TestMethod]
-        public void DeleteChainByIdFail()
-        {
-            var chainCtr = new ChainCtr(new ChainCtrTestClass());
-            var chain = new Chain
-            {
-                Name = "MiniChain",
-                Cvr = "12121212"
-            };
-            chainCtr.AddChain(chain);
-            var id = chainCtr.DeleteChain(chain.Id);
-            Assert.AreNotEqual(0, id);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr with the ChainCtrTestClass (simulate Db) 
+        ///// The test is successfull if the reutrned value is 1
+        ///// </summary>
+        //[TestMethod]
+        //public void DeleteChainByIdFail()
+        //{
+        //    var chainCtr = new ChainCtr(new ChainCtrTestClass());
+        //    var chain = new Chain
+        //    {
+        //        Name = "MiniChain",
+        //        Cvr = "12121212"
+        //    };
+        //    chainCtr.AddChain(chain);
+        //    var id = chainCtr.DeleteChain(chain.Id);
+        //    Assert.AreNotEqual(0, id);
+        //}
 
         /// <summary>
         /// Test af DbChain
@@ -251,46 +251,46 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, dbChain.GetAllChains().Count);
         }
 
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned id is  not 0
-        /// </summary>
-        [TestMethod]
-        public void AddCtrDbChain()
-        {
-            var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            var id = chainCtr.AddChain(chain);
-            Assert.AreNotEqual(0, id);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        ///// The test is successfull if the returned id is  not 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCtrDbChain()
+        //{
+        //    var chainCtr = new ChainCtr(new DbChain());
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    var id = chainCtr.AddChain(chain);
+        //    Assert.AreNotEqual(0, id);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned id is 0
-        /// Name is empty
-        /// </summary>
-        [TestMethod]
-        public void AddCtrDbChainFailName()
-        {
-            var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("", "12121212", "Img path");
-            var id = chainCtr.AddChain(chain);
-            Assert.AreEqual(0, id);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        ///// The test is successfull if the returned id is 0
+        ///// Name is empty
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCtrDbChainFailName()
+        //{
+        //    var chainCtr = new ChainCtr(new DbChain());
+        //    var chain = new Chain("", "12121212", "Img path");
+        //    var id = chainCtr.AddChain(chain);
+        //    Assert.AreEqual(0, id);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned id is 0
-        /// Cvr is not 8 char
-        /// </summary>
-        [TestMethod]
-        public void AddCtrDbChainFailCvr()
-        {
-            var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("MiniChain", "12", "Img path");
-            var id = chainCtr.AddChain(chain);
-            Assert.AreEqual(0, id);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        ///// The test is successfull if the returned id is 0
+        ///// Cvr is not 8 char
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCtrDbChainFailCvr()
+        //{
+        //    var chainCtr = new ChainCtr(new DbChain());
+        //    var chain = new Chain("MiniChain", "12", "Img path");
+        //    var id = chainCtr.AddChain(chain);
+        //    Assert.AreEqual(0, id);
+        //}
 
         /// <summary>
         /// Test a ChainCtr
@@ -304,59 +304,59 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(chain);
         }
 
-        /// <summary>
-        /// Test a ChainCtr
-        /// The test is successfull if the returned value is 1
-        /// </summary>
-        [TestMethod]
-        public void UpdateCtrDbChain()
-        {
-            var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain
-            {
-                Id = 1,
-                Name = "Test World",
-                Cvr = "12121212",
-                ImgPath = "Img Path"
-            };
-            var returnedValue = chainCtr.UpdateChain(chain);
-            Assert.AreEqual(1, returnedValue);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        ///// The test is successfull if the returned value is 1
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateCtrDbChain()
+        //{
+        //    var chainCtr = new ChainCtr(new DbChain());
+        //    var chain = new Chain
+        //    {
+        //        Id = 1,
+        //        Name = "Test World",
+        //        Cvr = "12121212",
+        //        ImgPath = "Img Path"
+        //    };
+        //    var returnedValue = chainCtr.UpdateChain(chain);
+        //    Assert.AreEqual(1, returnedValue);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr
-        ///  The test is successfull if the returned value is not 1 
-        /// because there is no chain with id = 0
-        /// </summary>
-        [TestMethod]
-        public void UpdateCtrDbChainFail()
-        {
-            var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain
-            {
-                Id = 0,
-                Name = "Test World",
-                Cvr = "12121212",
-                ImgPath = "Img Path"
-            };
-            var returnedValue = chainCtr.UpdateChain(chain);
-            Assert.AreNotEqual(1, returnedValue);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        /////  The test is successfull if the returned value is not 1 
+        ///// because there is no chain with id = 0
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateCtrDbChainFail()
+        //{
+        //    var chainCtr = new ChainCtr(new DbChain());
+        //    var chain = new Chain
+        //    {
+        //        Id = 0,
+        //        Name = "Test World",
+        //        Cvr = "12121212",
+        //        ImgPath = "Img Path"
+        //    };
+        //    var returnedValue = chainCtr.UpdateChain(chain);
+        //    Assert.AreNotEqual(1, returnedValue);
+        //}
 
-        /// <summary>
-        /// Test a ChainCtr
-        ///  The test is successfull if the returned value is 1
-        ///  Require testMethod AddDbChain 
-        /// </summary>
-        [TestMethod]
-        public void DelCtrDbChain()
-        {
-            var chainCtr = new ChainCtr(new DbChain());
-            var chain = new Chain("Test World", "12121212", "Img path");
-            var id = chainCtr.AddChain(chain);
-            var returnedValue = chainCtr.DeleteChain(id);
-            Assert.AreEqual(1, returnedValue);
-        }
+        ///// <summary>
+        ///// Test a ChainCtr
+        /////  The test is successfull if the returned value is 1
+        /////  Require testMethod AddDbChain 
+        ///// </summary>
+        //[TestMethod]
+        //public void DelCtrDbChain()
+        //{
+        //    var chainCtr = new ChainCtr(new DbChain());
+        //    var chain = new Chain("Test World", "12121212", "Img path");
+        //    var id = chainCtr.AddChain(chain);
+        //    var returnedValue = chainCtr.DeleteChain(id);
+        //    Assert.AreEqual(1, returnedValue);
+        //}
 
         /// <summary>
         /// Test a ChainCtr

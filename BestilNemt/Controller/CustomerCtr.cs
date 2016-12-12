@@ -17,78 +17,64 @@ namespace Controller
             DbCustomer = dbCustomer;
         }
 
-        /// <summary>
-        /// Add a Customer
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <returns>
-        /// Return id of Customer if added, else 0
-        /// </returns>
-        public int AddCustomer(Customer customer)
-        {
-            return ValidatePersonInput(customer) ? DbCustomer.AddCustomer(customer) : 0;
-        }
+        ///// <summary>
+        ///// Add a Customer
+        ///// </summary>
+        ///// <param name="customer"></param>
+        ///// <returns>
+        ///// Return id of Customer if added, else 0
+        ///// </returns>
+        //public int AddCustomer(Customer customer)
+        //{
+        //    return ValidatePersonInput(customer) ? DbCustomer.AddCustomer(customer) : 0;
+        //}
 
-        /// <summary>
-        /// Get a Customer by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return Customer if found, else null
-        /// </returns>
-        public Customer GetCustomer(int id)
-        {
-            return DbCustomer.GetCustomer(id);
-        }
+        ///// <summary>
+        ///// Get a Customer by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return Customer if found, else null
+        ///// </returns>
+        //public Customer GetCustomer(int id)
+        //{
+        //    return DbCustomer.GetCustomer(id);
+        //}
 
-        /// <summary>
-        /// Return all Customers
-        /// </summary>
-        /// <returns>
-        /// List of Customer
-        /// </returns>
-        public List<Customer> GetAllCustomer()
-        {
-            return DbCustomer.GetAllCustomer();
-        }
+        ///// <summary>
+        ///// Return all Customers
+        ///// </summary>
+        ///// <returns>
+        ///// List of Customer
+        ///// </returns>
+        //public List<Customer> GetAllCustomer()
+        //{
+        //    return DbCustomer.GetAllCustomer();
+        //}
 
-        /// <summary>
-        /// Delete a Customer
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Customer is deleted, else 0
-        /// </returns>
-        public int DeleteCustomer(int id)
-        {
-            return DbCustomer.DeleteCustomer(id);
-        }
+        ///// <summary>
+        ///// Delete a Customer
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Customer is deleted, else 0
+        ///// </returns>
+        //public int DeleteCustomer(int id)
+        //{
+        //    return DbCustomer.DeleteCustomer(id);
+        //}
 
-        /// <summary>
-        /// Update a Customer
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <returns>
-        /// Return 1 if Customer is updated, else 0
-        /// </returns>
-        public int UpdateCustomer(Customer customer)
-        {
-            return ValidatePersonInput(customer) ? DbCustomer.UpdateCustomer(customer) : 0;
-        }
-
-        /// <summary>
-        /// Validate the Customer fields
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <returns>
-        /// Return true if field is correct, else false
-        /// </returns>
-        // ReSharper disable once SuggestBaseTypeForParameter
-        private static bool ValidatePersonInput(Customer customer)
-        {
-            return !string.IsNullOrEmpty(customer?.Address) && !string.IsNullOrEmpty(customer.Name) && !string.IsNullOrEmpty(customer.Email);
-
-        }
+        ///// <summary>
+        ///// Update a Customer
+        ///// </summary>
+        ///// <param name="customer"></param>
+        ///// <returns>
+        ///// Return 1 if Customer is updated, else 0
+        ///// </returns>
+        //public int UpdateCustomer(Customer customer)
+        //{
+        //    return ValidatePersonInput(customer) ? DbCustomer.UpdateCustomer(customer) : 0;
+        //}
 
         /// <summary>
         /// Add a Customer with Login
@@ -101,6 +87,19 @@ namespace Controller
         public int AddCustomerWithLogin(Customer customer, Login login)
         {
             return ValidatePersonInput(customer) ? DbCustomer.AddCustomerWithLogin(customer, login) : 0;
+        }
+
+        /// <summary>
+        /// Validate the Customer fields
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns>
+        /// Return true if field is correct, else false
+        /// </returns>
+            // ReSharper disable once SuggestBaseTypeForParameter
+        private static bool ValidatePersonInput(Customer customer)
+        {
+            return !string.IsNullOrEmpty(customer?.Address) && !string.IsNullOrEmpty(customer.Name) && !string.IsNullOrEmpty(customer.Email);
         }
     }
 }

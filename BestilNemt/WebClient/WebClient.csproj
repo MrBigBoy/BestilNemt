@@ -224,9 +224,6 @@
     <None Include="Service References\BestilNemtServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Customer.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Views\Shop\ShopList.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\ProductPage.cshtml" />
@@ -247,13 +244,7 @@
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Chain.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Company.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Login.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.PartOrder.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Product.datasource">

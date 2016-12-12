@@ -131,16 +131,7 @@
     <None Include="Service References\BestilNemtWPF\WPF_Client.BestilNemtWPF.Chain.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\BestilNemtWPF\WPF_Client.BestilNemtWPF.Company.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\BestilNemtWPF\WPF_Client.BestilNemtWPF.Customer.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\BestilNemtWPF\WPF_Client.BestilNemtWPF.Login.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\BestilNemtWPF\WPF_Client.BestilNemtWPF.PartOrder.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\BestilNemtWPF\WPF_Client.BestilNemtWPF.Product.datasource">

@@ -66,7 +66,6 @@
     <Compile Include="SerializerTestHelpClass.cs" />
     <Compile Include="SerializationTest.cs" />
     <Compile Include="ChainUnitTest.cs" />
-    <Compile Include="CompanyUnitTest.cs" />
     <Compile Include="AdminUnitTest.cs" />
     <Compile Include="ProductUnitTest.cs" />
     <Compile Include="Service References\BestilNemtServiceRef\Reference.cs">
