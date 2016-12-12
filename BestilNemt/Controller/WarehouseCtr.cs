@@ -97,5 +97,11 @@ namespace Controller
         {
             return warehouse != null && warehouse.MinStock >= 0 && warehouse.Stock >= 0 && warehouse.Shop != null;
         }
+
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            return DbWarehouse.GetWarehouseByProductId(productId, shopId);
+        }
+
     }
 }

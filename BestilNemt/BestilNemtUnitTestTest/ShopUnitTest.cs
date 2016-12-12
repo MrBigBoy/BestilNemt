@@ -68,33 +68,33 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(j);
         }
 
-        [TestMethod]
-        public void GetAllShopDb()
-        {
-            var dbShop = new DbShop();
-            var shop = new Shop()
-            {
-                Name = "hello world",
-                Address = "Hello address",
-                OpeningTime = "Manday Never",
-                Cvr = "12121212",
-                Warehouses = new List<Warehouse>(),
-                Chain = new Chain
-                {
-                    Id = 1,
-                    Cvr = "12121212",
-                    Name = "",
-                    Persons = new List<Person>(),
-                    Shops = new List<Shop>()
-                }
-            };
-            var i = dbShop.AddShop(shop);
-            var i2 = dbShop.AddShop(shop);
-            var j = dbShop.GetAllShops();
-            dbShop.DeleteShop(i);
-            dbShop.DeleteShop(i2);
-            Assert.IsNotNull(j);
-        }
+        //[TestMethod]
+        //public void GetAllShopDb()
+        //{
+        //    var dbShop = new DbShop();
+        //    var shop = new Shop()
+        //    {
+        //        Name = "hello world",
+        //        Address = "Hello address",
+        //        OpeningTime = "Manday Never",
+        //        Cvr = "12121212",
+        //        Warehouses = new List<Warehouse>(),
+        //        Chain = new Chain
+        //        {
+        //            Id = 1,
+        //            Cvr = "12121212",
+        //            Name = "",
+        //            Persons = new List<Person>(),
+        //            Shops = new List<Shop>()
+        //        }
+        //    };
+        //    var i = dbShop.AddShop(shop);
+        //    var i2 = dbShop.AddShop(shop);
+        //    var j = dbShop.GetAllShops();
+        //    dbShop.DeleteShop(i);
+        //    dbShop.DeleteShop(i2);
+        //    Assert.IsNotNull(j);
+        //}
 
         [TestMethod]
         public void DeleteShopDb()
@@ -580,32 +580,32 @@ namespace BestilNemtUnitTestTest
             Assert.IsNull(j);
         }
 
-        [TestMethod]
-        public void GetAllShopCtr()
-        {
-            var shopCtr = new ShopCtr(new ShopCtrTestClass());
-            var shop = new Shop()
-            {
-                Name = "hello world",
-                Address = "Hello address",
-                Cvr = "Hello Cvr",
-                Warehouses = new List<Warehouse>(),
-                Chain = new Chain
-                {
-                    Id = 1,
-                    Cvr = "12121212",
-                    Name = "",
-                    Persons = new List<Person>(),
-                    Shops = new List<Shop>()
-                }
-            };
-            var i = shopCtr.AddShop(shop);
-            var i2 = shopCtr.AddShop(shop);
-            var j = shopCtr.GetAllShops();
-            shopCtr.DeleteShop(i);
-            shopCtr.DeleteShop(i2);
-            Assert.IsNotNull(j);
-        }
+        //[TestMethod]
+        //public void GetAllShopCtr()
+        //{
+        //    var shopCtr = new ShopCtr(new ShopCtrTestClass());
+        //    var shop = new Shop()
+        //    {
+        //        Name = "hello world",
+        //        Address = "Hello address",
+        //        Cvr = "Hello Cvr",
+        //        Warehouses = new List<Warehouse>(),
+        //        Chain = new Chain
+        //        {
+        //            Id = 1,
+        //            Cvr = "12121212",
+        //            Name = "",
+        //            Persons = new List<Person>(),
+        //            Shops = new List<Shop>()
+        //        }
+        //    };
+        //    var i = shopCtr.AddShop(shop);
+        //    var i2 = shopCtr.AddShop(shop);
+        //    var j = shopCtr.GetAllShops();
+        //    shopCtr.DeleteShop(i);
+        //    shopCtr.DeleteShop(i2);
+        //    Assert.IsNotNull(j);
+        //}
 
         [TestMethod]
         public void DeleteShopCtr()

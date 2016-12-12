@@ -58,49 +58,6 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Delete Product
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if the product was deleted, else 0
-        /// </returns>
-        public int RemoveProduct(int id)
-        {
-            var i = 0;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = conn.CreateCommand();
-                // Set the isolation level to ReadCommitted
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Transaction = transaction;
-                try
-                {
-                    cmd.CommandText = "DELETE FROM Product WHERE productId = @ProductId";
-                    cmd.Parameters.AddWithValue("ProductId", id);
-                    i = cmd.ExecuteNonQuery();
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    // The transaction failed
-                    try
-                    {
-                        // Try rolling back
-                        transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
-                    }
-                    catch (SqlException)
-                    {
-                        // Rolling back failed
-                        Console.WriteLine("Transaction rollback failed");
-                    }
-                }
-            }
-            return i;
-        }
-
-        /// <summary>
         /// Get a Product
         /// </summary>
         /// <param name="id"></param>
@@ -132,7 +89,7 @@ namespace DataAccessLayer
         /// <returns>
         /// List of Product
         /// </returns>
-        public List<Product> GetProductsByName(string input)
+        public List<Product> GetAllProductsByName(string input)
         {
             var products = new List<Product>();
             using (
@@ -154,30 +111,30 @@ namespace DataAccessLayer
             return products;
         }
 
-        /// <summary>
-        /// Get all products
-        /// </summary>
-        /// <returns>
-        /// List of products
-        /// </returns>
-        public List<Product> GetAllProducts()
-        {
-            var products = new List<Product>();
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var command = new SqlCommand("SELECT * FROM Product", conn);
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    // Build the Product object
-                    var product = ObjectBuilder.CreateProduct(reader);
-                    // Add to the list
-                    products.Add(product);
-                }
-            }
-            return products;
-        }
+        ///// <summary>
+        ///// Get all products
+        ///// </summary>
+        ///// <returns>
+        ///// List of products
+        ///// </returns>
+        //public List<Product> GetAllProducts()
+        //{
+        //    var products = new List<Product>();
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var command = new SqlCommand("SELECT * FROM Product", conn);
+        //        var reader = command.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            // Build the Product object
+        //            var product = ObjectBuilder.CreateProduct(reader);
+        //            // Add to the list
+        //            products.Add(product);
+        //        }
+        //    }
+        //    return products;
+        //}
 
         /// <summary>
         /// Get all Sold products
@@ -319,27 +276,7 @@ namespace DataAccessLayer
             return i;
         }
 
-        public Warehouse GetWarehouseByProductId(int productId, int shopId)
-        {
-            Warehouse warehouse = null;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var command = new SqlCommand("SELECT * FROM Warehouse, Product WHERE warehouseProductId=@ProductId And warehouseProductId = productId AND warehouseShopId = @ShopId", conn);
-                command.Parameters.AddWithValue("ProductId", productId);
-                command.Parameters.AddWithValue("ShopId", shopId);
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    // Build the object
-                    var product = ObjectBuilder.CreateProduct(reader);
-                    warehouse = ObjectBuilder.CreateWarehouse(reader, product);
-                }
-            }
-            return warehouse;
-        }
-
-        public DataTable GetDataGridProducts()
+      public DataTable GetDataGridProducts()
         {
             var cmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath from Product";
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -356,7 +293,7 @@ namespace DataAccessLayer
             }
         }
 
-        public DataTable GetProductWareHouse(int adminId)
+        public DataTable GetProductWarehouse(int adminId)
         {
             var cmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) " +
                             "as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  " +

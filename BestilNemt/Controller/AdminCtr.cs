@@ -1,6 +1,5 @@
 ﻿using DataAccessLayer;
 using Models;
-using System.Collections.Generic;
 
 namespace Controller
 {

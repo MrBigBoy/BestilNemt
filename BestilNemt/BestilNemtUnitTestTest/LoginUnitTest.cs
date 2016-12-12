@@ -25,21 +25,21 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(loginCtr);
         }
 
-        /// <summary>
-        /// Test a AddLogin in the db
-        /// The test is successfull if the returned value is 1
-        /// ERROR: Non
-        /// </summary>
-        [TestMethod]
-        public void AddLoginDb()
-        {
-            var dbLogin = new DbLogin();
-            var login = new Login("AdminTestDb", "SuperAdmin", 1);
-            var returnedValue = dbLogin.AddLogin(login);
-            login.Id = returnedValue;
-            dbLogin.DeleteLogin(login);
-            Assert.AreNotEqual(0, returnedValue);
-        }
+        ///// <summary>
+        ///// Test a AddLogin in the db
+        ///// The test is successfull if the returned value is 1
+        ///// ERROR: Non
+        ///// </summary>
+        //[TestMethod]
+        //public void AddLoginDb()
+        //{
+        //    var dbLogin = new DbLogin();
+        //    var login = new Login("AdminTestDb", "SuperAdmin", 1);
+        //    var returnedValue = dbLogin.AddLogin(login);
+        //    login.Id = returnedValue;
+        //    dbLogin.DeleteLogin(login);
+        //    Assert.AreNotEqual(0, returnedValue);
+        //}
 
         /// <summary>
         /// Test a Login in the db
@@ -55,34 +55,34 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(login);
         }
 
-        /// <summary>
-        /// Test a UpdateLogin in the db
-        /// The test is successfull if the returned value is not 0
-        /// ERROR: Non
-        /// </summary>
-        [TestMethod]
-        public void UpdateLoginDb()
-        {
-            var dbLogin = new DbLogin();
-            var login = new Login("Admin", "SuperAdmin", 2);
-            var returnedValue = dbLogin.UpdateLogin(login);
-            Assert.AreNotEqual(0, returnedValue);
-        }
+        ///// <summary>
+        ///// Test a UpdateLogin in the db
+        ///// The test is successfull if the returned value is not 0
+        ///// ERROR: Non
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateLoginDb()
+        //{
+        //    var dbLogin = new DbLogin();
+        //    var login = new Login("Admin", "SuperAdmin", 2);
+        //    var returnedValue = dbLogin.UpdateLogin(login);
+        //    Assert.AreNotEqual(0, returnedValue);
+        //}
 
-        /// <summary>
-        /// Test a DeleteLogin in the db
-        /// The test is successfull if the returned value is not 0
-        /// ERROR: Non
-        /// </summary>
-        [TestMethod]
-        public void DelLoginDb()
-        {
-            var dbLogin = new DbLogin();
-            var login = new Login("Username", "Password", 1);
-            dbLogin.AddLogin(login);
-            var returnedValue = dbLogin.DeleteLogin(login);
-            Assert.AreNotEqual(0, returnedValue);
-        }
+        ///// <summary>
+        ///// Test a DeleteLogin in the db
+        ///// The test is successfull if the returned value is not 0
+        ///// ERROR: Non
+        ///// </summary>
+        //[TestMethod]
+        //public void DelLoginDb()
+        //{
+        //    var dbLogin = new DbLogin();
+        //    var login = new Login("Username", "Password", 1);
+        //    dbLogin.AddLogin(login);
+        //    var returnedValue = dbLogin.DeleteLogin(login);
+        //    Assert.AreNotEqual(0, returnedValue);
+        //}
 
         ///// <summary>
         ///// Test a AddLogin in the Ctr through Db

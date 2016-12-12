@@ -669,16 +669,16 @@ namespace WcfService
             return SavingCtr.GetSaving(id);
         }
 
-        /// <summary>
-        /// Get all Savings
-        /// </summary>
-        /// <returns>
-        /// List of Saving
-        /// </returns>
-        public List<Saving> GetAllSavings()
-        {
-            return SavingCtr.GetAllSavings();
-        }
+        ///// <summary>
+        ///// Get all Savings
+        ///// </summary>
+        ///// <returns>
+        ///// List of Saving
+        ///// </returns>
+        //public List<Saving> GetAllSavings()
+        //{
+        //    return SavingCtr.GetAllSavings();
+        //}
 
         ///// <summary>
         ///// Update a Saving
@@ -712,9 +712,9 @@ namespace WcfService
         ///// <returns>
         ///// List of Product
         ///// </returns>
-        //public List<Product> GetProductsByName(string input)
+        //public List<Product> GetAllProductsByName(string input)
         //{
-        //    return ProductCtr.GetProductsByName(input);
+        //    return ProductCtr.GetAllProductsByName(input);
         //}
 
         /// <summary>
@@ -803,12 +803,12 @@ namespace WcfService
 
         public Warehouse GetWarehouseByProductId(int productId, int shopId)
         {
-            return ProductCtr.GetWarehouseByProductId(productId, shopId);
+            return WarehouseCtr.GetWarehouseByProductId(productId, shopId);
         }
 
         public DataTable GetDataGridProducts()
         {
-           return  ProductCtr.GetDataGridProducts();
+            return ProductCtr.GetDataGridProducts();
         }
 
         public DataTable GetProductWareHouse(int adminId)

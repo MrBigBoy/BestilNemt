@@ -46,16 +46,16 @@ namespace Controller
             return DbSaving.GetSaving(id);
         }
 
-        /// <summary>
-        /// Get all Savings
-        /// </summary>
-        /// <returns>
-        /// List of Saving
-        /// </returns>
-        public List<Saving> GetAllSavings()
-        {
-            return DbSaving.GetAllSavings();
-        }
+        ///// <summary>
+        ///// Get all Savings
+        ///// </summary>
+        ///// <returns>
+        ///// List of Saving
+        ///// </returns>
+        //public List<Saving> GetAllSavings()
+        //{
+        //    return DbSaving.GetAllSavings();
+        //}
 
         ///// <summary>
         ///// Update a Saving

@@ -123,17 +123,17 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, id);
         }
 
-        /// <summary>
-        /// Test of the Database accses layer only.
-        /// Test for Get existing object. Test is passed if returned value is not null. GetCart method 
-        /// returnes returns Cart object with given id.
-        /// </summary>
-        [TestMethod]
-        public void GetCartWithDb()
-        {
-            var cartDb = new DbCart();
-            Assert.IsNotNull(cartDb.GetCart(1));
-        }
+        ///// <summary>
+        ///// Test of the Database accses layer only.
+        ///// Test for Get existing object. Test is passed if returned value is not null. GetCart method 
+        ///// returnes returns Cart object with given id.
+        ///// </summary>
+        //[TestMethod]
+        //public void GetCartWithDb()
+        //{
+        //    var cartDb = new DbCart();
+        //    Assert.IsNotNull(cartDb.GetCart(1));
+        //}
 
         /// <summary>
         /// Test of the Database accses layer only.
@@ -146,43 +146,43 @@ namespace BestilNemtUnitTestTest
             Assert.AreNotEqual(0, cartDb.GetAllCarts().Count);
         }
 
-        /// <summary>
-        /// Test of the Database accses layer only.
-        /// Test for delete existing Cart object from databese. Test is passed if returned value is 1.
-        /// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
-        /// </summary>
-        [TestMethod]
-        public void DeleteCartWithDb()
-        {
-            var cartDb = new DbCart();
-            var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
-            var id = cartDb.AddCart(cart);
-            Assert.AreEqual(1, cartDb.DeleteCart(id));
-        }
+        ///// <summary>
+        ///// Test of the Database accses layer only.
+        ///// Test for delete existing Cart object from databese. Test is passed if returned value is 1.
+        ///// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
+        ///// </summary>
+        //[TestMethod]
+        //public void DeleteCartWithDb()
+        //{
+        //    var cartDb = new DbCart();
+        //    var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
+        //    var id = cartDb.AddCart(cart);
+        //    Assert.AreEqual(1, cartDb.DeleteCart(id));
+        //}
 
-        /// <summary>
-        /// Test of the Database accses layer only.
-        /// Test for add a partOrder to a Cart. The method AddPartOrderToCart takes cart and partOrder 
-        /// objects as parameters and updates partOrder entry with cart.Id
-        /// Test is passed if returned value is 1.
-        /// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
-        /// </summary>
-        [TestMethod]
-        public void AddPartOrderToCartWithDb()
-        {
-            var cartDb = new DbCart();
-            var poDb = new DbPartOrder();
-            var prodDb = new DbProduct();
-            var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
-            var id = cartDb.AddCart(cart);
-            cart.Id = id;
-            var product = new Product("banan", 2, "fjhl", "Frugt", "Img path");
-            var prodId = prodDb.AddProduct(product);
-            product.Id = prodId;
-            var partOrder = poDb.GetPartOrder(1);
-            int i = cartDb.AddPartOrderToCart(cart, partOrder);
-            Assert.AreEqual(1, i);
-        }
+        ///// <summary>
+        ///// Test of the Database accses layer only.
+        ///// Test for add a partOrder to a Cart. The method AddPartOrderToCart takes cart and partOrder 
+        ///// objects as parameters and updates partOrder entry with cart.Id
+        ///// Test is passed if returned value is 1.
+        ///// DeleteCart method returnes 1 if the entry with given id exists else returnes 0.
+        ///// </summary>
+        //[TestMethod]
+        //public void AddPartOrderToCartWithDb()
+        //{
+        //    var cartDb = new DbCart();
+        //    var poDb = new DbPartOrder();
+        //    var prodDb = new DbProduct();
+        //    var cart = new Cart(new List<PartOrder>(), new decimal(5), 1, 1);
+        //    var id = cartDb.AddCart(cart);
+        //    cart.Id = id;
+        //    var product = new Product("banan", 2, "fjhl", "Frugt", "Img path");
+        //    var prodId = prodDb.AddProduct(product);
+        //    product.Id = prodId;
+        //    var partOrder = poDb.GetPartOrder(1);
+        //    int i = cartDb.AddPartOrderToCart(cart, partOrder);
+        //    Assert.AreEqual(1, i);
+        //}
 
         /// <summary>
         /// Test of the WcfCervice.

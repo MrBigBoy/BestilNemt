@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Controller;
-using Controller.ControllerTestClasses;
 using DataAccessLayer;
 using Models;
 
@@ -192,67 +190,66 @@ namespace BestilNemtUnitTestTest
         //    Assert.AreEqual(0, flag);
         //}
 
-        /// <summary>
-        /// Test only DbCustomer 
-        /// Test is sucsessful if all customer input values are valid and returned value is not 0
-        /// </summary>
-        [TestMethod]
-        public void AddCustomerDb()
-        {
-            var dbCust = new DbCustomer();
-            var customer = new Customer(
-                "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(), "Customer");
-            var flag = dbCust.AddCustomer(customer);
-            Assert.AreNotEqual(0, flag);
-        }
+        ///// <summary>
+        ///// Test only DbCustomer 
+        ///// Test is sucsessful if all customer input values are valid and returned value is not 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddCustomerDb()
+        //{
+        //    var dbCust = new DbCustomer();
+        //    var customer = new Customer(
+        //        "Cust1", "cust1@mail.dk", "Addrerrsr", new DateTime(2000, 02, 01), null, new List<Chain>(), "Customer");
+        //    var flag = dbCust.AddCustomer(customer);
+        //    Assert.AreNotEqual(0, flag);
+        //}
 
-        /// <summary>
-        /// Test only DbCustomer 
-        /// Test is sucsessful if returned customer object is not null
-        /// </summary>
-        [TestMethod]
-        public void GetCustomerFromDbById()
-        {
-            var dbCust = new DbCustomer();
-          Assert.IsNotNull(dbCust.GetCustomer(1));
-        }
+        ///// <summary>
+        ///// Test only DbCustomer 
+        ///// Test is sucsessful if returned customer object is not null
+        ///// </summary>
+        //[TestMethod]
+        //public void GetCustomerFromDbById()
+        //{
+        //    var dbCust = new DbCustomer();
+        //  Assert.IsNotNull(dbCust.GetCustomer(1));
+        //}
 
-        /// <summary>
-        /// Test only DbCustomer 
-        /// Test is sucsessful if returned value is 2
-        /// </summary>
-        [TestMethod]
-        public void UpdateCustomerThrougDb()
-        {
-            var dbCust = new DbCustomer();
-            var customer = dbCust.GetCustomer(1);
-            if (customer != null)
-            {
-                customer.Name = "Thorkild Brun";
-                customer.Address = "Dk";
-                customer.Email = "thorkild@email.dk";
-                customer.Birthday = new DateTime(2015, 02, 03);
-            }
-            var flag = dbCust.UpdateCustomer(customer);
-            Assert.AreEqual(2, flag);
-        }
+        ///// <summary>
+        ///// Test only DbCustomer 
+        ///// Test is sucsessful if returned value is 2
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateCustomerThrougDb()
+        //{
+        //    var dbCust = new DbCustomer();
+        //    var customer = dbCust.GetCustomer(1);
+        //    if (customer != null)
+        //    {
+        //        customer.Name = "Thorkild Brun";
+        //        customer.Address = "Dk";
+        //        customer.Email = "thorkild@email.dk";
+        //        customer.Birthday = new DateTime(2015, 02, 03);
+        //    }
+        //    var flag = dbCust.UpdateCustomer(customer);
+        //    Assert.AreEqual(2, flag);
+        //}
 
-        /// <summary>
-        /// Test only DbCustomer 
-        /// Test is sucsessful if returned value is 2
-        /// </summary>
-        [TestMethod]
-        public void DeleteCustomerThrougDb()
-        {
-            var dbCust = new DbCustomer();
-            var cust = new Customer("Ole Nielsen", "oel@mail.dk", "ahrtghjv", new DateTime(2009, 02, 13),
-                new Login(), new List<Chain>(), "Customer");
-            var id = dbCust.AddCustomer(cust);
-            var flag = dbCust.DeleteCustomer(id);
-            Assert.AreNotEqual(0, flag);
+        ///// <summary>
+        ///// Test only DbCustomer 
+        ///// Test is sucsessful if returned value is 2
+        ///// </summary>
+        //[TestMethod]
+        //public void DeleteCustomerThrougDb()
+        //{
+        //    var dbCust = new DbCustomer();
+        //    var cust = new Customer("Ole Nielsen", "oel@mail.dk", "ahrtghjv", new DateTime(2009, 02, 13),
+        //        new Login(), new List<Chain>(), "Customer");
+        //    var id = dbCust.AddCustomer(cust);
+        //    var flag = dbCust.DeleteCustomer(id);
+        //    Assert.AreNotEqual(0, flag);
 
-        }
-
+        //}
 
         /// <summary>
         /// Test Create Customer from wcf  

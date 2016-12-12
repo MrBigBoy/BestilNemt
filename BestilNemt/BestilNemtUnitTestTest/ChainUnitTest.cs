@@ -160,18 +160,18 @@ namespace BestilNemtUnitTestTest
         //    Assert.AreNotEqual(0, id);
         //}
 
-        /// <summary>
-        /// Test af DbChain
-        /// The test is successfull if the returned id is not 0
-        /// </summary>
-        [TestMethod]
-        public void AddDbChain()
-        {
-            var dbChain = new DbChain();
-            var chain = new Chain("MiniChain", "12121212", "Img path");
-            var id = dbChain.AddChain(chain);
-            Assert.AreNotEqual(0, id);
-        }
+        ///// <summary>
+        ///// Test af DbChain
+        ///// The test is successfull if the returned id is not 0
+        ///// </summary>
+        //[TestMethod]
+        //public void AddDbChain()
+        //{
+        //    var dbChain = new DbChain();
+        //    var chain = new Chain("MiniChain", "12121212", "Img path");
+        //    var id = dbChain.AddChain(chain);
+        //    Assert.AreNotEqual(0, id);
+        //}
 
         /// <summary>
         /// Test af dbChain
@@ -185,59 +185,59 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(chain);
         }
 
-        /// <summary>
-        /// Test af dbChain
-        /// The test is successfull if the returned value is 1
-        /// </summary>
-        [TestMethod]
-        public void UpdateDbChain()
-        {
-            var dbChain = new DbChain();
-            var chain = new Chain
-            {
-                Id = 1,
-                Name = "Test World",
-                Cvr = "12121212",
-                ImgPath = "Img Path"
-            };
-            var returnedValue = dbChain.UpdateChain(chain);
-            Assert.AreEqual(1, returnedValue);
-        }
+        ///// <summary>
+        ///// Test af dbChain
+        ///// The test is successfull if the returned value is 1
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateDbChain()
+        //{
+        //    var dbChain = new DbChain();
+        //    var chain = new Chain
+        //    {
+        //        Id = 1,
+        //        Name = "Test World",
+        //        Cvr = "12121212",
+        //        ImgPath = "Img Path"
+        //    };
+        //    var returnedValue = dbChain.UpdateChain(chain);
+        //    Assert.AreEqual(1, returnedValue);
+        //}
 
-        /// <summary>
-        /// Test af dbChain
-        /// The test is successfull if the returned value is not 1
-        /// because there is no chain with id = 0
-        /// </summary>
-        [TestMethod]
-        public void UpdateDbChainFail()
-        {
-            var dbChain = new DbChain();
-            var chain = new Chain
-            {
-                Id = 0,
-                Name = "Test World",
-                Cvr = "12121212",
-                ImgPath = "Img Path"
-            };
-            var returnedValue = dbChain.UpdateChain(chain);
-            Assert.AreNotEqual(1, returnedValue);
-        }
+        ///// <summary>
+        ///// Test af dbChain
+        ///// The test is successfull if the returned value is not 1
+        ///// because there is no chain with id = 0
+        ///// </summary>
+        //[TestMethod]
+        //public void UpdateDbChainFail()
+        //{
+        //    var dbChain = new DbChain();
+        //    var chain = new Chain
+        //    {
+        //        Id = 0,
+        //        Name = "Test World",
+        //        Cvr = "12121212",
+        //        ImgPath = "Img Path"
+        //    };
+        //    var returnedValue = dbChain.UpdateChain(chain);
+        //    Assert.AreNotEqual(1, returnedValue);
+        //}
 
-        /// <summary>
-        /// Test af dbChain
-        /// The test is successfull if the returned value is 1
-        /// Require testMethod AddDbChain
-        /// </summary>
-        [TestMethod]
-        public void DelDbChain()
-        {
-            var dbChain = new DbChain();
-            var chain = new Chain("Test World", "12121212", "Img path");
-            var id = dbChain.AddChain(chain);
-            var returnedValue = dbChain.DeleteChain(id);
-            Assert.AreEqual(1, returnedValue);
-        }
+        ///// <summary>
+        ///// Test af dbChain
+        ///// The test is successfull if the returned value is 1
+        ///// Require testMethod AddDbChain
+        ///// </summary>
+        //[TestMethod]
+        //public void DelDbChain()
+        //{
+        //    var dbChain = new DbChain();
+        //    var chain = new Chain("Test World", "12121212", "Img path");
+        //    var id = dbChain.AddChain(chain);
+        //    var returnedValue = dbChain.DeleteChain(id);
+        //    Assert.AreEqual(1, returnedValue);
+        //}
 
         /// <summary>
         /// Test af dbChain

@@ -59,7 +59,7 @@ namespace Controller.ControllerTestClasses
             return products.Remove(GetProduct(id)) ? 1 : 0;
         }
 
-        public List<Product> GetProductsByName(string input)
+        public List<Product> GetAllProductsByName(string input)
         {
             throw new NotImplementedException();
         }
@@ -74,7 +74,7 @@ namespace Controller.ControllerTestClasses
             throw new NotImplementedException();
         }
 
-        public DataTable GetProductWareHouse(int adminId)
+        public DataTable GetProductWarehouse(int adminId)
         {
             throw new NotImplementedException();
         }

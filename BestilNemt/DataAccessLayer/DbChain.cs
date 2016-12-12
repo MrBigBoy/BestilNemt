@@ -1,5 +1,4 @@
-﻿using System;
-using Models;
+﻿using Models;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -34,51 +33,51 @@ namespace DataAccessLayer
             return chain;
         }
 
-        /// <summary>
-        /// Add a Chain
-        /// </summary>
-        /// <param name="chain"></param>
-        /// <returns>
-        /// Id of Chain if added, else 0
-        /// </returns>
-        public int AddChain(Chain chain)
-        {
-            var id = 0;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = conn.CreateCommand();
-                // Set the isolation level to ReadCommitted
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Transaction = transaction;
-                try
-                {
-                    cmd.CommandText = "INSERT INTO Chain (chainName, chainCvr, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)";
-                    cmd.Parameters.AddWithValue("ChainName", chain.Name);
-                    cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
-                    cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
-                    // Get the id
-                    id = (int)cmd.ExecuteScalar();
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    // The transaction failed
-                    try
-                    {
-                        // Try rolling back
-                        transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
-                    }
-                    catch (SqlException)
-                    {
-                        // Rolling back failed
-                        Console.WriteLine("Transaction rollback failed");
-                    }
-                }
-            }
-            return id;
-        }
+        ///// <summary>
+        ///// Add a Chain
+        ///// </summary>
+        ///// <param name="chain"></param>
+        ///// <returns>
+        ///// Id of Chain if added, else 0
+        ///// </returns>
+        //public int AddChain(Chain chain)
+        //{
+        //    var id = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        // Set the isolation level to ReadCommitted
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "INSERT INTO Chain (chainName, chainCvr, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)";
+        //            cmd.Parameters.AddWithValue("ChainName", chain.Name);
+        //            cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
+        //            cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
+        //            // Get the id
+        //            id = (int)cmd.ExecuteScalar();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return id;
+        //}
 
         /// <summary>
         /// Get all Chains
@@ -106,97 +105,97 @@ namespace DataAccessLayer
             return chains;
         }
 
-        /// <summary>
-        /// Update a Chain
-        /// </summary>
-        /// <param name="chain"></param>
-        /// <returns>
-        /// Return 1 if Chain is updated, else 0
-        /// </returns>
-        public int UpdateChain(Chain chain)
-        {
-            var i = 0;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = conn.CreateCommand();
-                // Set the isolation level to ReadCommitted
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Transaction = transaction;
-                try
-                {
-                    cmd.CommandText = "UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId";
-                    cmd.Parameters.AddWithValue("ChainId", chain.Id);
-                    cmd.Parameters.AddWithValue("ChainName", chain.Name);
-                    cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
-                    cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
-                    i = cmd.ExecuteNonQuery();
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    // The transaction failed
-                    try
-                    {
-                        // Try rolling back
-                        transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
-                    }
-                    catch (SqlException)
-                    {
-                        // Rolling back failed
-                        Console.WriteLine("Transaction rollback failed");
-                    }
-                }
-            }
-            return i;
-        }
+        ///// <summary>
+        ///// Update a Chain
+        ///// </summary>
+        ///// <param name="chain"></param>
+        ///// <returns>
+        ///// Return 1 if Chain is updated, else 0
+        ///// </returns>
+        //public int UpdateChain(Chain chain)
+        //{
+        //    var i = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        // Set the isolation level to ReadCommitted
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId";
+        //            cmd.Parameters.AddWithValue("ChainId", chain.Id);
+        //            cmd.Parameters.AddWithValue("ChainName", chain.Name);
+        //            cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
+        //            cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
+        //            i = cmd.ExecuteNonQuery();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return i;
+        //}
 
-        /// <summary>
-        /// Delete a Chain
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Chain is deleted, else 0
-        /// </returns>
-        public int DeleteChain(int id)
-        {
-            var i = 0;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = conn.CreateCommand();
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-                cmd.Transaction = transaction;
-                try
-                {
-                    cmd.CommandText = "DELETE FROM Chain WHERE chainId = @ChainId";
-                    cmd.Parameters.AddWithValue("ChainId", id);
-                    i = cmd.ExecuteNonQuery();
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    // The transaction failed
-                    try
-                    {
-                        // Try rolling back
-                        transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
-                    }
-                    catch (SqlException)
-                    {
-                        // Rolling back failed
-                        Console.WriteLine("Transaction rollback failed");
-                    }
-                }
-            }
-            return i;
-        }
+        ///// <summary>
+        ///// Delete a Chain
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Chain is deleted, else 0
+        ///// </returns>
+        //public int DeleteChain(int id)
+        //{
+        //    var i = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "DELETE FROM Chain WHERE chainId = @ChainId";
+        //            cmd.Parameters.AddWithValue("ChainId", id);
+        //            i = cmd.ExecuteNonQuery();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return i;
+        //}
 
         public DataTable GetChainData()
         {
-            var cmdString = "Select chainId, chainName From Chain";
+            const string cmdString = "Select chainId, chainName From Chain";
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 //Opens the connetion and sets the qurey to the cmdstring

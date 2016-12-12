@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Controller;
 using Controller.ControllerTestClasses;
-using DataAccessLayer;
-using Models;
 
 namespace BestilNemtUnitTestTest
 {

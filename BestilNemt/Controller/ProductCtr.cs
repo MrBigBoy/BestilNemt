@@ -97,9 +97,9 @@ namespace Controller
         ///// <returns>
         ///// List of Product
         ///// </returns>
-        //public List<Product> GetProductsByName(string input)
+        //public List<Product> GetAllProductsByName(string input)
         //{
-        //    return DbProduct.GetProductsByName(input);
+        //    return DbProduct.GetAllProductsByName(input);
         //}
 
         /// <summary>
@@ -124,11 +124,6 @@ namespace Controller
             return DbProduct.GetAllProductsWithSavings();
         }
 
-        public Warehouse GetWarehouseByProductId(int productId, int shopId)
-        {
-            return DbProduct.GetWarehouseByProductId(productId, shopId);
-        }
-
         public DataTable GetDataGridProducts()
         {
             return DbProduct.GetDataGridProducts();
@@ -136,7 +131,7 @@ namespace Controller
 
         public DataTable GetProductWareHouse(int adminId)
         {
-            return DbProduct.GetProductWareHouse(adminId);
+            return DbProduct.GetProductWarehouse(adminId);
         }
     }
 }

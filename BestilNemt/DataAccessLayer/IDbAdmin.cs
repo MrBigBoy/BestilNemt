@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Models;
+﻿using Models;
 
 namespace DataAccessLayer
 {
@@ -8,10 +7,10 @@ namespace DataAccessLayer
     /// </summary>
     public interface IDbAdmin
     {
-        int AddAdmin(Admin admin);
-        int DeleteAdmin(int id);
+        //int AddAdmin(Admin admin);
+        //int DeleteAdmin(int id);
         Admin GetAdmin(int id);
-        List<Admin> GetAllAdmins();
-        int UpdateAdmin(Admin admin);
+        //List<Admin> GetAllAdmins();
+        //int UpdateAdmin(Admin admin);
     }
 }

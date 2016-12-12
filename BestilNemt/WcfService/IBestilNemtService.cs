@@ -199,7 +199,7 @@ namespace WcfService
         //    int DeleteSaving(int id);
 
         //    [OperationContract]
-        //    List<Product> GetProductsByName(string input);
+        //    List<Product> GetAllProductsByName(string input);
 
         [OperationContract]
         int AddCustomerWithLogin(Customer customer, Login login);

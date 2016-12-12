@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DataAccessLayer;
+﻿using DataAccessLayer;
 using Models;
 
 namespace Controller

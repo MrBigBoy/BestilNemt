@@ -1,6 +1,5 @@
 ﻿using DataAccessLayer;
 using Models;
-using System.Collections.Generic;
 
 namespace Controller
 {
@@ -29,17 +28,17 @@ namespace Controller
         //    return ValidatePersonInput(customer) ? DbCustomer.AddCustomer(customer) : 0;
         //}
 
-        ///// <summary>
-        ///// Get a Customer by id
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// Return Customer if found, else null
-        ///// </returns>
-        //public Customer GetCustomer(int id)
-        //{
-        //    return DbCustomer.GetCustomer(id);
-        //}
+        /// <summary>
+        /// Get a Customer by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Return Customer if found, else null
+        /// </returns>
+        public Customer GetCustomer(int id)
+        {
+            return DbCustomer.GetCustomer(id);
+        }
 
         ///// <summary>
         ///// Return all Customers
