@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Models;
 using DataAccessLayer;
-using System;
 using System.Data;
 
 namespace Controller
@@ -43,16 +42,16 @@ namespace Controller
             return DbShop.GetShop(id);
         }
 
-        /// <summary>
-        /// Get all shops
-        /// </summary>
-        /// <returns>
-        /// List of Shop
-        /// </returns>
-        public List<Shop> GetAllShops()
-        {
-            return DbShop.GetAllShops();
-        }
+        ///// <summary>
+        ///// Get all shops
+        ///// </summary>
+        ///// <returns>
+        ///// List of Shop
+        ///// </returns>
+        //public List<Shop> GetAllShops()
+        //{
+        //    return DbShop.GetAllShops();
+        //}
 
         /// <summary>
         /// Get all Shops by a Chain Id

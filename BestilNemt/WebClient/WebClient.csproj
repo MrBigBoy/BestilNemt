@@ -180,6 +180,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -223,6 +224,17 @@
     <None Include="Service References\BestilNemtServiceRef\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Shop\ShopList.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Product\ProductPage.cshtml" />
+    <Content Include="Views\Cart\GetCart.cshtml" />
+    <Content Include="Views\Cart\CheckOut.cshtml" />
+    <Content Include="Views\Login\SignIn.cshtml" />
+    <Content Include="Views\Login\CreateLogin.cshtml" />
+    <Content Include="Views\Cart\Receipt.cshtml" />
+    <None Include="Service References\BestilNemtServiceRef\System.Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Admin.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -232,16 +244,7 @@
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Chain.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Company.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Customer.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Login.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.PartOrder.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Product.datasource">
@@ -256,14 +259,6 @@
     <Content Include="Service References\BestilNemtServiceRef\WebClient.BestilNemtServiceRef.Warehouse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\Shop\ShopList.cshtml" />
-    <Content Include="Views\Product\Product.cshtml" />
-    <Content Include="Views\Product\ProductPage.cshtml" />
-    <Content Include="Views\Cart\GetCart.cshtml" />
-    <Content Include="Views\Cart\CheckOut.cshtml" />
-    <Content Include="Views\Login\SignIn.cshtml" />
-    <Content Include="Views\Login\CreateLogin.cshtml" />
-    <Content Include="Views\Cart\Receipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

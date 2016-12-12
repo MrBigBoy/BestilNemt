@@ -29,53 +29,53 @@ namespace Controller
             return DbCart.AddCart(cart);
         }
 
-        /// <summary>
-        /// Return a Cart by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return Cart if found, else null
-        /// </returns>
-        public Cart GetCart(int id)
-        {
-            return DbCart.GetCart(id);
-        }
+        ///// <summary>
+        ///// Return a Cart by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return Cart if found, else null
+        ///// </returns>
+        //public Cart GetCart(int id)
+        //{
+        //    return DbCart.GetCart(id);
+        //}
 
-        /// <summary>
-        /// Return a Cart by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return Cart if found, else null
-        /// </returns>
-        public Cart GetCartWithPartOrders(int id)
-        {
-            return DbCart.GetCartWithPartOrders(id);
-        }
+        ///// <summary>
+        ///// Return a Cart by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return Cart if found, else null
+        ///// </returns>
+        //public Cart GetCartWithPartOrders(int id)
+        //{
+        //    return DbCart.GetCartWithPartOrders(id);
+        //}
 
-        /// <summary>
-        /// Method to update a Cart
-        /// </summary>
-        /// <param name="cart"></param>
-        /// <returns>
-        /// Return 1 if cart is updated, else 0
-        /// </returns>
-        public int UpdateCart(Cart cart)
-        {
-            return DbCart.UpdateCart(cart);
-        }
+        ///// <summary>
+        ///// Method to update a Cart
+        ///// </summary>
+        ///// <param name="cart"></param>
+        ///// <returns>
+        ///// Return 1 if cart is updated, else 0
+        ///// </returns>
+        //public int UpdateCart(Cart cart)
+        //{
+        //    return DbCart.UpdateCart(cart);
+        //}
 
-        /// <summary>
-        /// Method to delete a Cart
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if cart is deleted, else 0
-        /// </returns>
-        public int DeleteCart(int id)
-        {
-            return DbCart.DeleteCart(id);
-        }
+        ///// <summary>
+        ///// Method to delete a Cart
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if cart is deleted, else 0
+        ///// </returns>
+        //public int DeleteCart(int id)
+        //{
+        //    return DbCart.DeleteCart(id);
+        //}
 
         /// <summary>
         /// Get all Carts
@@ -88,22 +88,22 @@ namespace Controller
             return DbCart.GetAllCarts();
         }
 
-        /// <summary>
-        /// Add a PartOrder to a Cart
-        /// </summary>
-        /// <param name="cart"></param>
-        /// <param name="partOrder"></param>
-        /// <returns>
-        /// Return 1 if PartOrder is added, else 0;
-        /// </returns>
-        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
-        {
-            if (cart != null && partOrder != null)
-            {
-                return DbCart.AddPartOrderToCart(cart, partOrder);
-            }
-            return 0;
-        }
+        ///// <summary>
+        ///// Add a PartOrder to a Cart
+        ///// </summary>
+        ///// <param name="cart"></param>
+        ///// <param name="partOrder"></param>
+        ///// <returns>
+        ///// Return 1 if PartOrder is added, else 0;
+        ///// </returns>
+        //public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        //{
+        //    if (cart != null && partOrder != null)
+        //    {
+        //        return DbCart.AddPartOrderToCart(cart, partOrder);
+        //    }
+        //    return 0;
+        //}
 
         /// <summary>
         /// Add a Cart with PartOrders to the database

@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="Customer">
+  <xs:complexType name="Admin">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Person">
         <xs:sequence>
-          <xs:element minOccurs="0" name="Birthday" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Membernr" type="xs:int" />
+          <xs:element minOccurs="0" name="ShopId" type="xs:int" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="Customer" nillable="true" type="tns:Customer" />
+  <xs:element name="Admin" nillable="true" type="tns:Admin" />
   <xs:complexType name="Person">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
@@ -103,46 +104,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Login" nillable="true" type="tns:Login" />
-  <xs:complexType name="ArrayOfCustomer">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Customer" nillable="true" type="tns:Customer" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCustomer" nillable="true" type="tns:ArrayOfCustomer" />
-  <xs:complexType name="Admin">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Person">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Membernr" type="xs:int" />
-          <xs:element minOccurs="0" name="ShopId" type="xs:int" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Admin" nillable="true" type="tns:Admin" />
-  <xs:complexType name="ArrayOfAdmin">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Admin" nillable="true" type="tns:Admin" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfAdmin" nillable="true" type="tns:ArrayOfAdmin" />
-  <xs:complexType name="Company">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Person">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="CVR" type="xs:int" />
-          <xs:element minOccurs="0" name="Kontonr" type="xs:int" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Company" nillable="true" type="tns:Company" />
-  <xs:complexType name="ArrayOfCompany">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Company" nillable="true" type="tns:Company" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCompany" nillable="true" type="tns:ArrayOfCompany" />
   <xs:complexType name="ArrayOfProduct">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
@@ -194,10 +155,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Saving" nillable="true" type="tns:Saving" />
-  <xs:complexType name="ArrayOfSaving">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Saving" nillable="true" type="tns:Saving" />
-    </xs:sequence>
+  <xs:complexType name="Customer">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Person">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Birthday" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ArrayOfSaving" nillable="true" type="tns:ArrayOfSaving" />
+  <xs:element name="Customer" nillable="true" type="tns:Customer" />
 </xs:schema>

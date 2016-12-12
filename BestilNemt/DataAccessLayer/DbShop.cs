@@ -191,31 +191,31 @@ namespace DataAccessLayer
             return shop;
         }
 
-        /// <summary>
-        /// get all Shops
-        /// </summary>
-        /// <returns>
-        /// List of Shop
-        /// </returns>
-        public List<Shop> GetAllShops()
-        {
-            var shops = new List<Shop>();
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = new SqlCommand("SELECT * FROM Shop", conn);
-                var reader = cmd.ExecuteReader();
+        ///// <summary>
+        ///// get all Shops
+        ///// </summary>
+        ///// <returns>
+        ///// List of Shop
+        ///// </returns>
+        //public List<Shop> GetAllShops()
+        //{
+        //    var shops = new List<Shop>();
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = new SqlCommand("SELECT * FROM Shop", conn);
+        //        var reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    // Build the Shop object
-                    var shop = ObjectBuilder.CreateShop(reader);
-                    // Add it the to list
-                    shops.Add(shop);
-                }
-            }
-            return shops;
-        }
+        //        while (reader.Read())
+        //        {
+        //            // Build the Shop object
+        //            var shop = ObjectBuilder.CreateShop(reader);
+        //            // Add it the to list
+        //            shops.Add(shop);
+        //        }
+        //    }
+        //    return shops;
+        //}
 
         /// <summary>
         /// Get all Shops by a Chain id

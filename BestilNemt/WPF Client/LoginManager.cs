@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPF_Client.BestilNemtWPF;
+﻿using WPF_Client.BestilNemtWPF;
 
 namespace WPF_Client
 {

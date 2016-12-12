@@ -138,36 +138,36 @@ namespace DataAccessLayer
             return cart;
         }
 
-        /// <summary>
-        /// Create a Company with a SqlDataReader
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns>
-        /// Company if builded correct, else null
-        /// </returns>
-        public static Company CreateCompany(SqlDataReader reader)
-        {
-            // Use try to check if all fields is valid
-            try
-            {
-                var company = new Company()
-                {
-                    Id = reader.GetInt32(reader.GetOrdinal("personId")),
-                    Name = reader.GetString(reader.GetOrdinal("personName")),
-                    Email = reader.GetString(reader.GetOrdinal("personEmail")),
-                    Address = reader.GetString(reader.GetOrdinal("personAddress")),
-                    PersonType = reader.GetString(reader.GetOrdinal("personType")),
-                    CVR = reader.GetInt32(reader.GetOrdinal("companyCVR")),
-                    Kontonr = reader.GetInt32(reader.GetOrdinal("companyKontoNr"))
-                };
-                return company;
-            }
-            catch (Exception)
-            {
-                // The build failed, return a null
-                return null;
-            }
-        }
+        ///// <summary>
+        ///// Create a Company with a SqlDataReader
+        ///// </summary>
+        ///// <param name="reader"></param>
+        ///// <returns>
+        ///// Company if builded correct, else null
+        ///// </returns>
+        //public static Company CreateCompany(SqlDataReader reader)
+        //{
+        //    // Use try to check if all fields is valid
+        //    try
+        //    {
+        //        var company = new Company()
+        //        {
+        //            Id = reader.GetInt32(reader.GetOrdinal("personId")),
+        //            Name = reader.GetString(reader.GetOrdinal("personName")),
+        //            Email = reader.GetString(reader.GetOrdinal("personEmail")),
+        //            Address = reader.GetString(reader.GetOrdinal("personAddress")),
+        //            PersonType = reader.GetString(reader.GetOrdinal("personType")),
+        //            CVR = reader.GetInt32(reader.GetOrdinal("companyCVR")),
+        //            Kontonr = reader.GetInt32(reader.GetOrdinal("companyKontoNr"))
+        //        };
+        //        return company;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        // The build failed, return a null
+        //        return null;
+        //    }
+        //}
 
         /// <summary>
         /// Create a Customer with a SqlDataReader

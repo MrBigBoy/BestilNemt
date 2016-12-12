@@ -1,0 +1,41 @@
+﻿@using WebClient.BestilNemtServiceRef
+@model IEnumerable<Shop>
+
+@{
+    ViewBag.Title = "Butikker";
+}
+
+
+
+<h2>Vælg en butik</h2>
+<table class="ShopListTable">
+    <tr>
+        <td>
+            <h3 class="ShopListTableHeader">Navn</h3>
+        </td>
+        <td>
+            <h3 class="ShopListTableHeader">Adresse</h3>
+        </td>
+        <td>
+            <h3 id="ShopListTableHeader">Åbningstider</h3>
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        var opTime = @item.OpeningTime.Split(';');
+        <tr>
+            <td>
+                <a href="/Product/Product/@item.Id">@item.Name</a>
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                @foreach (var j in opTime)
+                {
+                    <p>@j</p>
+                }
+            </td>
+        </tr>
+    }
+</table>

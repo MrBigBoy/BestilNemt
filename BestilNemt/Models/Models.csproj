@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Cart.cs" />
-    <Compile Include="Company.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="PartOrder.cs" />

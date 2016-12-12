@@ -43,6 +43,11 @@ namespace Controller.ControllerTestClasses
             return 1;
         }
 
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            throw new NotImplementedException();
+        }
+
         public int DeleteWarehouse(int id)
         {
             return warehouses.Remove(GetWarehouse(id)) ? 1 : 0;

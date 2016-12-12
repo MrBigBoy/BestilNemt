@@ -46,40 +46,40 @@ namespace Controller
             return DbSaving.GetSaving(id);
         }
 
-        /// <summary>
-        /// Get all Savings
-        /// </summary>
-        /// <returns>
-        /// List of Saving
-        /// </returns>
-        public List<Saving> GetAllSavings()
-        {
-            return DbSaving.GetAllSavings();
-        }
+        ///// <summary>
+        ///// Get all Savings
+        ///// </summary>
+        ///// <returns>
+        ///// List of Saving
+        ///// </returns>
+        //public List<Saving> GetAllSavings()
+        //{
+        //    return DbSaving.GetAllSavings();
+        //}
 
-        /// <summary>
-        /// Update a Saving
-        /// </summary>
-        /// <param name="saving"></param>
-        /// <returns>
-        /// 1 if updated, else 0
-        /// </returns>
-        public int UpdateSaving(Saving saving)
-        {
-            return DbSaving.UpdateSaving(saving);
-        }
+        ///// <summary>
+        ///// Update a Saving
+        ///// </summary>
+        ///// <param name="saving"></param>
+        ///// <returns>
+        ///// 1 if updated, else 0
+        ///// </returns>
+        //public int UpdateSaving(Saving saving)
+        //{
+        //    return DbSaving.UpdateSaving(saving);
+        //}
 
-        /// <summary>
-        /// Delete a Saving
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// 1 if deleted, else 0
-        /// </returns>
-        public int DeleteSaving(int id)
-        {
-            return DbSaving.DeleteSaving(id);
-        }
+        ///// <summary>
+        ///// Delete a Saving
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// 1 if deleted, else 0
+        ///// </returns>
+        //public int DeleteSaving(int id)
+        //{
+        //    return DbSaving.DeleteSaving(id);
+        //}
 
         /// <summary>
         /// Validate Saving fields

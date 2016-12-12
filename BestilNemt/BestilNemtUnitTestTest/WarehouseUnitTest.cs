@@ -98,17 +98,17 @@ namespace BestilNemtUnitTestTest
             Assert.IsNull(rw);
         }
 
-        [TestMethod]
-        public void GetAllWarehousesCtr()
-        {
-            var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-            var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(), 1);
-            var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(), 1);
-            warehouseCtr.AddWarehouse(warehouse1);
-            warehouseCtr.AddWarehouse(warehouse2);
-            var count = warehouseCtr.GetAllWarehouses().Count;
-            Assert.AreEqual(2, count);
-        }
+        //[TestMethod]
+        //public void GetAllWarehousesCtr()
+        //{
+        //    var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
+        //    var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(), 1);
+        //    var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(), 1);
+        //    warehouseCtr.AddWarehouse(warehouse1);
+        //    warehouseCtr.AddWarehouse(warehouse2);
+        //    var count = warehouseCtr.GetAllWarehouses().Count;
+        //    Assert.AreEqual(2, count);
+        //}
 
         [TestMethod]
         public void GetAllWarehousesByShopIdCtr()

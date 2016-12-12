@@ -251,5 +251,32 @@ namespace DataAccessLayer
             return i;
         }
 
+        /// <summary>
+        /// Get a Warehouse by a Product id
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="shopId"></param>
+        /// <returns>
+        /// Warehouse if found, else null
+        /// </returns>
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            Warehouse warehouse = null;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var command = new SqlCommand("SELECT * FROM Warehouse, Product WHERE warehouseProductId=@ProductId And warehouseProductId = productId AND warehouseShopId = @ShopId", conn);
+                command.Parameters.AddWithValue("ProductId", productId);
+                command.Parameters.AddWithValue("ShopId", shopId);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Build the object
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    warehouse = ObjectBuilder.CreateWarehouse(reader, product);
+                }
+            }
+            return warehouse;
+        }
     }
 }

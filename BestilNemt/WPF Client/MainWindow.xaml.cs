@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Windows;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Windows.Documents;
 using System.Windows.Input;
-
 
 namespace WPF_Client
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         //Initilize the main window and fill all the tables
         public MainWindow()
@@ -155,11 +148,13 @@ namespace WPF_Client
             var saving = new Saving();
             var warehouse = proxy.GetWarehouse(int.Parse(WarehouseIdField.Text));
             //Takes the date selected and makes them a datetime, instead of strings
-            DateTime? startDate = StartDate.SelectedDate;
-            DateTime? endDate = EndDate.SelectedDate;
+            var startDate = StartDate.SelectedDate;
+            var endDate = EndDate.SelectedDate;
             //Sets the datetime to the local saving
-            saving.StartDate = startDate.Value;
-            saving.EndDate = endDate.Value;
+            if (startDate != null)
+                saving.StartDate = startDate.Value;
+            if (endDate != null)
+                saving.EndDate = endDate.Value;
             //Parses the textfield string to a doube to corresponnd to the database
             saving.SavingPercent = double.Parse(SavingPercent.Text);
             //Checks if the user has loaded in a product
@@ -169,7 +164,8 @@ namespace WPF_Client
             }
             else
             {
-                saving.Id = warehouse.SavingId.Value;
+                if (warehouse.SavingId != null)
+                    saving.Id = warehouse.SavingId.Value;
                 //Adding saving with a warehouse
                 proxy.AddSaving(saving, warehouse);
                 //Setting savingId equals to warehouseId
@@ -300,7 +296,7 @@ namespace WPF_Client
         //loading tabel into the fields
         public void LoadWarehouseProduct()
         {
-            DataRowView drv = (DataRowView)ProductWarehouse.SelectedItem;
+            var drv = (DataRowView)ProductWarehouse.SelectedItem;
             ProductIdWareHouse.Text = (drv["productId"]).ToString();
             MinAmount.Text = (drv["wareHouseMinStock"]).ToString();
             NewAmount1.Text = (drv["warehouseStock"]).ToString();
@@ -347,14 +343,16 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void AddShop_Click(object sender, RoutedEventArgs e)
         {
-            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
-            DataRowView drv = (DataRowView)ChainList.SelectedItem;
-            var shop = new Shop();
+            var proxy = new BestilNemtServiceClient();
+            var drv = (DataRowView)ChainList.SelectedItem;
+            var shop = new Shop
+            {
+                Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString())),
+                Name = ShopNameField.Text,
+                Address = ShopAddressField.Text,
+                Cvr = ShopCVRField.Text
+            };
             //Get the chain id form the ChainDataTable, and get the chain from the prooxy
-            shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
-            shop.Name = ShopNameField.Text;
-            shop.Address = ShopAddressField.Text;
-            shop.Cvr = ShopCVRField.Text;
             //Replace the the new lines with semicolons because of the database
             var openingTimeRaw = ShopOpeningTimesField.Text;
             var newOpeningTime = openingTimeRaw.Replace("\r\n", ";");
@@ -392,7 +390,7 @@ namespace WPF_Client
         /// <param name="e"></param>
         private void DeleteShop_Click(object sender, RoutedEventArgs e)
         {
-            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var proxy = new BestilNemtServiceClient();
             var shopId = ShopIdField.Text;
             proxy.DeleteShop(int.Parse(shopId));
             FillDataGridShop();
@@ -519,14 +517,12 @@ namespace WPF_Client
             {
                 var row = (DataGridRow)ChainList.ItemContainerGenerator.ContainerFromIndex(i);
                 var cellContent = ChainList.Columns[0].GetCellContent(row) as TextBlock;
-                if (cellContent != null && cellContent.Text.Equals(chainId))
-                {
-                    var item = ChainList.Items[i];
-                    ChainList.SelectedItem = item;
-                    ChainList.ScrollIntoView(item);
-                    row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                    break;
-                }
+                if (cellContent == null || !cellContent.Text.Equals(chainId)) continue;
+                var item = ChainList.Items[i];
+                ChainList.SelectedItem = item;
+                ChainList.ScrollIntoView(item);
+                row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                break;
             }
         }
 

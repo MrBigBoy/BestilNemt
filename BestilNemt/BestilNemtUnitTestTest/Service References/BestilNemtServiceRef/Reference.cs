@@ -15,65 +15,11 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BestilNemtServiceRef.IBestilNemtService")]
     public interface IBestilNemtService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetCustomerResponse")]
-        Models.Customer GetCustomer(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetCustomerResponse")]
-        System.Threading.Tasks.Task<Models.Customer> GetCustomerAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerResponse")]
-        int AddCustomer(Models.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerResponse")]
-        System.Threading.Tasks.Task<int> AddCustomerAsync(Models.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse")]
-        int UpdateCustomer(Models.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCustomerResponse")]
-        System.Threading.Tasks.Task<int> UpdateCustomerAsync(Models.Customer customer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCustomerResponse")]
-        int DeleteCustomer(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCustomerResponse")]
-        System.Threading.Tasks.Task<int> DeleteCustomerAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCustomerResponse")]
-        Models.Customer[] GetAllCustomer();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCustomer", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCustomerResponse")]
-        System.Threading.Tasks.Task<Models.Customer[]> GetAllCustomerAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/AddAdminResponse")]
-        int AddAdmin(Models.Admin admin);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/AddAdminResponse")]
-        System.Threading.Tasks.Task<int> AddAdminAsync(Models.Admin admin);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/GetAdminResponse")]
         Models.Admin GetAdmin(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/GetAdminResponse")]
         System.Threading.Tasks.Task<Models.Admin> GetAdminAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllAdmins", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse")]
-        Models.Admin[] GetAllAdmins();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllAdmins", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllAdminsResponse")]
-        System.Threading.Tasks.Task<Models.Admin[]> GetAllAdminsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteAdminResponse")]
-        int DeleteAdmin(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteAdminResponse")]
-        System.Threading.Tasks.Task<int> DeleteAdminAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateAdminResponse")]
-        int UpdateAdmin(Models.Admin admin);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateAdmin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateAdminResponse")]
-        System.Threading.Tasks.Task<int> UpdateAdminAsync(Models.Admin admin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddShop", ReplyAction="http://tempuri.org/IBestilNemtService/AddShopResponse")]
         int AddShop(Models.Shop shop);
@@ -86,12 +32,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetShopResponse")]
         System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        Models.Shop[] GetAllShops();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShops", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsResponse")]
-        System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse")]
         Models.Shop[] GetAllShopsByChainId(int chainId);
@@ -123,77 +63,11 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllChains", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllChainsResponse")]
         System.Threading.Tasks.Task<Models.Chain[]> GetAllChainsAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteChain", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteChainResponse")]
-        int DeleteChain(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteChain", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteChainResponse")]
-        System.Threading.Tasks.Task<int> DeleteChainAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddChain", ReplyAction="http://tempuri.org/IBestilNemtService/AddChainResponse")]
-        int AddChain(Models.Chain chain);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddChain", ReplyAction="http://tempuri.org/IBestilNemtService/AddChainResponse")]
-        System.Threading.Tasks.Task<int> AddChainAsync(Models.Chain chain);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateChain", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateChainResponse")]
-        int UpdateChain(Models.Chain chain);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateChain", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateChainResponse")]
-        System.Threading.Tasks.Task<int> UpdateChainAsync(Models.Chain chain);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
         Models.Login Login([System.ServiceModel.MessageParameterAttribute(Name="login")] Models.Login login1);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/Login", ReplyAction="http://tempuri.org/IBestilNemtService/LoginResponse")]
         System.Threading.Tasks.Task<Models.Login> LoginAsync(Models.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
-        int AddLogin(Models.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddLoginResponse")]
-        System.Threading.Tasks.Task<int> AddLoginAsync(Models.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateLogin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateLoginResponse")]
-        int UpdateLogin(Models.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateLogin", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateLoginResponse")]
-        System.Threading.Tasks.Task<int> UpdateLoginAsync(Models.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteLoginResponse")]
-        int DeleteLogin(Models.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteLogin", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteLoginResponse")]
-        System.Threading.Tasks.Task<int> DeleteLoginAsync(Models.Login login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCompany", ReplyAction="http://tempuri.org/IBestilNemtService/AddCompanyResponse")]
-        int AddCompany(Models.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCompany", ReplyAction="http://tempuri.org/IBestilNemtService/AddCompanyResponse")]
-        System.Threading.Tasks.Task<int> AddCompanyAsync(Models.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCompanyResponse")]
-        Models.Company[] GetAllCompany();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCompanyResponse")]
-        System.Threading.Tasks.Task<Models.Company[]> GetAllCompanyAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCompany", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCompanyResponse")]
-        int DeleteCompany(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCompany", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCompanyResponse")]
-        System.Threading.Tasks.Task<int> DeleteCompanyAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCompanyResponse")]
-        int UpdateCompany(Models.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCompany", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCompanyResponse")]
-        System.Threading.Tasks.Task<int> UpdateCompanyAsync(Models.Company company);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetCompanyResponse")]
-        Models.Company GetCompany(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCompany", ReplyAction="http://tempuri.org/IBestilNemtService/GetCompanyResponse")]
-        System.Threading.Tasks.Task<Models.Company> GetCompanyAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddProduct", ReplyAction="http://tempuri.org/IBestilNemtService/AddProductResponse")]
         int AddProduct(Models.Product product);
@@ -206,12 +80,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProduct", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductResponse")]
         System.Threading.Tasks.Task<Models.Product> GetProductAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllProductsResponse")]
-        Models.Product[] GetAllProducts();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllProductsResponse")]
-        System.Threading.Tasks.Task<Models.Product[]> GetAllProductsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSoldProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSoldProductsResponse")]
         Models.Product[] GetAllSoldProducts();
@@ -249,18 +117,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse")]
         System.Threading.Tasks.Task<int> AddCartWithPartOrdersAsync(Models.Cart cart);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCart", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartResponse")]
-        Models.Cart GetCart(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCart", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartResponse")]
-        System.Threading.Tasks.Task<Models.Cart> GetCartAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartWithPartOrdersResponse")]
-        Models.Cart GetCartWithPartOrders(int cartId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetCartWithPartOrdersResponse")]
-        System.Threading.Tasks.Task<Models.Cart> GetCartWithPartOrdersAsync(int cartId);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCarts", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsResponse")]
         Models.Cart[] GetAllCarts();
         
@@ -273,53 +129,11 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse")]
         System.Threading.Tasks.Task<Models.Cart[]> GetAllCartsByPersonIdAsync(int personId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
-        int UpdateCart(Models.Cart cart);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateCart", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateCartResponse")]
-        System.Threading.Tasks.Task<int> UpdateCartAsync(Models.Cart cart);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCart", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCartResponse")]
-        int DeleteCart(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteCart", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteCartResponse")]
-        System.Threading.Tasks.Task<int> DeleteCartAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
-        int AddPartOrderToCart(Models.Cart cart, Models.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse")]
-        System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(Models.Cart cart, Models.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/GetPartOrderResponse")]
-        Models.PartOrder GetPartOrder(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/GetPartOrderResponse")]
-        System.Threading.Tasks.Task<Models.PartOrder> GetPartOrderAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeletePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/DeletePartOrderResponse")]
-        int DeletePartOrder(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeletePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/DeletePartOrderResponse")]
-        System.Threading.Tasks.Task<int> DeletePartOrderAsync(int id);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
         int AddPartOrder(Models.PartOrder partOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddPartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/AddPartOrderResponse")]
         System.Threading.Tasks.Task<int> AddPartOrderAsync(Models.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartOrderResponse")]
-        int UpdatePartOrder(Models.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdatePartOrder", ReplyAction="http://tempuri.org/IBestilNemtService/UpdatePartOrderResponse")]
-        System.Threading.Tasks.Task<int> UpdatePartOrderAsync(Models.PartOrder partOrder);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
-        Models.PartOrder[] GetAllPartOrders();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse")]
-        System.Threading.Tasks.Task<Models.PartOrder[]> GetAllPartOrdersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/AddWarehouseResponse")]
         int AddWarehouse(Models.Warehouse warehouse);
@@ -333,12 +147,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseResponse")]
         System.Threading.Tasks.Task<Models.Warehouse> GetWarehouseAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        Models.Warehouse[] GetAllWarehouses();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse")]
-        System.Threading.Tasks.Task<Models.Warehouse[]> GetAllWarehousesAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopId", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopIdResponse")]
         Models.Warehouse[] GetAllWarehousesByShopId(int shopId);
         
@@ -350,12 +158,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse")]
         System.Threading.Tasks.Task<int> UpdateWarehouseAsync(Models.Warehouse warehouse);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
-        int DeleteWarehouse(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse")]
-        System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddSaving", ReplyAction="http://tempuri.org/IBestilNemtService/AddSavingResponse")]
         int AddSaving(Models.Saving saving, Models.Warehouse warehouse);
@@ -369,30 +171,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetSaving", ReplyAction="http://tempuri.org/IBestilNemtService/GetSavingResponse")]
         System.Threading.Tasks.Task<Models.Saving> GetSavingAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSavingsResponse")]
-        Models.Saving[] GetAllSavings();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetAllSavings", ReplyAction="http://tempuri.org/IBestilNemtService/GetAllSavingsResponse")]
-        System.Threading.Tasks.Task<Models.Saving[]> GetAllSavingsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateSaving", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateSavingResponse")]
-        int UpdateSaving(Models.Saving saving);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/UpdateSaving", ReplyAction="http://tempuri.org/IBestilNemtService/UpdateSavingResponse")]
-        System.Threading.Tasks.Task<int> UpdateSavingAsync(Models.Saving saving);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
-        int DeleteSaving(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/DeleteSaving", ReplyAction="http://tempuri.org/IBestilNemtService/DeleteSavingResponse")]
-        System.Threading.Tasks.Task<int> DeleteSavingAsync(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse")]
-        Models.Product[] GetProductsByName(string input);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductsByName", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse")]
-        System.Threading.Tasks.Task<Models.Product[]> GetProductsByNameAsync(string input);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/AddCustomerWithLogin", ReplyAction="http://tempuri.org/IBestilNemtService/AddCustomerWithLoginResponse")]
         int AddCustomerWithLogin(Models.Customer customer, Models.Login login);
         
@@ -404,6 +182,30 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetWarehouseByProductId", ReplyAction="http://tempuri.org/IBestilNemtService/GetWarehouseByProductIdResponse")]
         System.Threading.Tasks.Task<Models.Warehouse> GetWarehouseByProductIdAsync(int productId, int shopId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridProductsResponse")]
+        System.Data.DataTable GetDataGridProducts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridProducts", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridProductsResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridProductsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductWareHouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductWareHouseResponse")]
+        System.Data.DataTable GetProductWareHouse(int adminId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetProductWareHouse", ReplyAction="http://tempuri.org/IBestilNemtService/GetProductWareHouseResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetProductWareHouseAsync(int adminId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetChainData", ReplyAction="http://tempuri.org/IBestilNemtService/GetChainDataResponse")]
+        System.Data.DataTable GetChainData();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetChainData", ReplyAction="http://tempuri.org/IBestilNemtService/GetChainDataResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetChainDataAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridShopResponse")]
+        System.Data.DataTable GetDataGridShop();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBestilNemtService/GetDataGridShop", ReplyAction="http://tempuri.org/IBestilNemtService/GetDataGridShopResponse")]
+        System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridShopAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -433,84 +235,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
                 base(binding, remoteAddress) {
         }
         
-        public Models.Customer GetCustomer(int id) {
-            return base.Channel.GetCustomer(id);
-        }
-        
-        public System.Threading.Tasks.Task<Models.Customer> GetCustomerAsync(int id) {
-            return base.Channel.GetCustomerAsync(id);
-        }
-        
-        public int AddCustomer(Models.Customer customer) {
-            return base.Channel.AddCustomer(customer);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddCustomerAsync(Models.Customer customer) {
-            return base.Channel.AddCustomerAsync(customer);
-        }
-        
-        public int UpdateCustomer(Models.Customer customer) {
-            return base.Channel.UpdateCustomer(customer);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateCustomerAsync(Models.Customer customer) {
-            return base.Channel.UpdateCustomerAsync(customer);
-        }
-        
-        public int DeleteCustomer(int id) {
-            return base.Channel.DeleteCustomer(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteCustomerAsync(int id) {
-            return base.Channel.DeleteCustomerAsync(id);
-        }
-        
-        public Models.Customer[] GetAllCustomer() {
-            return base.Channel.GetAllCustomer();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Customer[]> GetAllCustomerAsync() {
-            return base.Channel.GetAllCustomerAsync();
-        }
-        
-        public int AddAdmin(Models.Admin admin) {
-            return base.Channel.AddAdmin(admin);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddAdminAsync(Models.Admin admin) {
-            return base.Channel.AddAdminAsync(admin);
-        }
-        
         public Models.Admin GetAdmin(int id) {
             return base.Channel.GetAdmin(id);
         }
         
         public System.Threading.Tasks.Task<Models.Admin> GetAdminAsync(int id) {
             return base.Channel.GetAdminAsync(id);
-        }
-        
-        public Models.Admin[] GetAllAdmins() {
-            return base.Channel.GetAllAdmins();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Admin[]> GetAllAdminsAsync() {
-            return base.Channel.GetAllAdminsAsync();
-        }
-        
-        public int DeleteAdmin(int id) {
-            return base.Channel.DeleteAdmin(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteAdminAsync(int id) {
-            return base.Channel.DeleteAdminAsync(id);
-        }
-        
-        public int UpdateAdmin(Models.Admin admin) {
-            return base.Channel.UpdateAdmin(admin);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateAdminAsync(Models.Admin admin) {
-            return base.Channel.UpdateAdminAsync(admin);
         }
         
         public int AddShop(Models.Shop shop) {
@@ -527,14 +257,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.Shop> GetShopAsync(int id) {
             return base.Channel.GetShopAsync(id);
-        }
-        
-        public Models.Shop[] GetAllShops() {
-            return base.Channel.GetAllShops();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Shop[]> GetAllShopsAsync() {
-            return base.Channel.GetAllShopsAsync();
         }
         
         public Models.Shop[] GetAllShopsByChainId(int chainId) {
@@ -577,100 +299,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.GetAllChainsAsync();
         }
         
-        public int DeleteChain(int id) {
-            return base.Channel.DeleteChain(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteChainAsync(int id) {
-            return base.Channel.DeleteChainAsync(id);
-        }
-        
-        public int AddChain(Models.Chain chain) {
-            return base.Channel.AddChain(chain);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddChainAsync(Models.Chain chain) {
-            return base.Channel.AddChainAsync(chain);
-        }
-        
-        public int UpdateChain(Models.Chain chain) {
-            return base.Channel.UpdateChain(chain);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateChainAsync(Models.Chain chain) {
-            return base.Channel.UpdateChainAsync(chain);
-        }
-        
         public Models.Login Login(Models.Login login1) {
             return base.Channel.Login(login1);
         }
         
         public System.Threading.Tasks.Task<Models.Login> LoginAsync(Models.Login login) {
             return base.Channel.LoginAsync(login);
-        }
-        
-        public int AddLogin(Models.Login login) {
-            return base.Channel.AddLogin(login);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddLoginAsync(Models.Login login) {
-            return base.Channel.AddLoginAsync(login);
-        }
-        
-        public int UpdateLogin(Models.Login login) {
-            return base.Channel.UpdateLogin(login);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateLoginAsync(Models.Login login) {
-            return base.Channel.UpdateLoginAsync(login);
-        }
-        
-        public int DeleteLogin(Models.Login login) {
-            return base.Channel.DeleteLogin(login);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteLoginAsync(Models.Login login) {
-            return base.Channel.DeleteLoginAsync(login);
-        }
-        
-        public int AddCompany(Models.Company company) {
-            return base.Channel.AddCompany(company);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddCompanyAsync(Models.Company company) {
-            return base.Channel.AddCompanyAsync(company);
-        }
-        
-        public Models.Company[] GetAllCompany() {
-            return base.Channel.GetAllCompany();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Company[]> GetAllCompanyAsync() {
-            return base.Channel.GetAllCompanyAsync();
-        }
-        
-        public int DeleteCompany(int id) {
-            return base.Channel.DeleteCompany(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteCompanyAsync(int id) {
-            return base.Channel.DeleteCompanyAsync(id);
-        }
-        
-        public int UpdateCompany(Models.Company company) {
-            return base.Channel.UpdateCompany(company);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateCompanyAsync(Models.Company company) {
-            return base.Channel.UpdateCompanyAsync(company);
-        }
-        
-        public Models.Company GetCompany(int id) {
-            return base.Channel.GetCompany(id);
-        }
-        
-        public System.Threading.Tasks.Task<Models.Company> GetCompanyAsync(int id) {
-            return base.Channel.GetCompanyAsync(id);
         }
         
         public int AddProduct(Models.Product product) {
@@ -687,14 +321,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.Product> GetProductAsync(int id) {
             return base.Channel.GetProductAsync(id);
-        }
-        
-        public Models.Product[] GetAllProducts() {
-            return base.Channel.GetAllProducts();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Product[]> GetAllProductsAsync() {
-            return base.Channel.GetAllProductsAsync();
         }
         
         public Models.Product[] GetAllSoldProducts() {
@@ -745,22 +371,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.AddCartWithPartOrdersAsync(cart);
         }
         
-        public Models.Cart GetCart(int id) {
-            return base.Channel.GetCart(id);
-        }
-        
-        public System.Threading.Tasks.Task<Models.Cart> GetCartAsync(int id) {
-            return base.Channel.GetCartAsync(id);
-        }
-        
-        public Models.Cart GetCartWithPartOrders(int cartId) {
-            return base.Channel.GetCartWithPartOrders(cartId);
-        }
-        
-        public System.Threading.Tasks.Task<Models.Cart> GetCartWithPartOrdersAsync(int cartId) {
-            return base.Channel.GetCartWithPartOrdersAsync(cartId);
-        }
-        
         public Models.Cart[] GetAllCarts() {
             return base.Channel.GetAllCarts();
         }
@@ -777,68 +387,12 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.GetAllCartsByPersonIdAsync(personId);
         }
         
-        public int UpdateCart(Models.Cart cart) {
-            return base.Channel.UpdateCart(cart);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateCartAsync(Models.Cart cart) {
-            return base.Channel.UpdateCartAsync(cart);
-        }
-        
-        public int DeleteCart(int id) {
-            return base.Channel.DeleteCart(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteCartAsync(int id) {
-            return base.Channel.DeleteCartAsync(id);
-        }
-        
-        public int AddPartOrderToCart(Models.Cart cart, Models.PartOrder partOrder) {
-            return base.Channel.AddPartOrderToCart(cart, partOrder);
-        }
-        
-        public System.Threading.Tasks.Task<int> AddPartOrderToCartAsync(Models.Cart cart, Models.PartOrder partOrder) {
-            return base.Channel.AddPartOrderToCartAsync(cart, partOrder);
-        }
-        
-        public Models.PartOrder GetPartOrder(int id) {
-            return base.Channel.GetPartOrder(id);
-        }
-        
-        public System.Threading.Tasks.Task<Models.PartOrder> GetPartOrderAsync(int id) {
-            return base.Channel.GetPartOrderAsync(id);
-        }
-        
-        public int DeletePartOrder(int id) {
-            return base.Channel.DeletePartOrder(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeletePartOrderAsync(int id) {
-            return base.Channel.DeletePartOrderAsync(id);
-        }
-        
         public int AddPartOrder(Models.PartOrder partOrder) {
             return base.Channel.AddPartOrder(partOrder);
         }
         
         public System.Threading.Tasks.Task<int> AddPartOrderAsync(Models.PartOrder partOrder) {
             return base.Channel.AddPartOrderAsync(partOrder);
-        }
-        
-        public int UpdatePartOrder(Models.PartOrder partOrder) {
-            return base.Channel.UpdatePartOrder(partOrder);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdatePartOrderAsync(Models.PartOrder partOrder) {
-            return base.Channel.UpdatePartOrderAsync(partOrder);
-        }
-        
-        public Models.PartOrder[] GetAllPartOrders() {
-            return base.Channel.GetAllPartOrders();
-        }
-        
-        public System.Threading.Tasks.Task<Models.PartOrder[]> GetAllPartOrdersAsync() {
-            return base.Channel.GetAllPartOrdersAsync();
         }
         
         public int AddWarehouse(Models.Warehouse warehouse) {
@@ -857,14 +411,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.GetWarehouseAsync(id);
         }
         
-        public Models.Warehouse[] GetAllWarehouses() {
-            return base.Channel.GetAllWarehouses();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Warehouse[]> GetAllWarehousesAsync() {
-            return base.Channel.GetAllWarehousesAsync();
-        }
-        
         public Models.Warehouse[] GetAllWarehousesByShopId(int shopId) {
             return base.Channel.GetAllWarehousesByShopId(shopId);
         }
@@ -879,14 +425,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<int> UpdateWarehouseAsync(Models.Warehouse warehouse) {
             return base.Channel.UpdateWarehouseAsync(warehouse);
-        }
-        
-        public int DeleteWarehouse(int id) {
-            return base.Channel.DeleteWarehouse(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteWarehouseAsync(int id) {
-            return base.Channel.DeleteWarehouseAsync(id);
         }
         
         public int AddSaving(Models.Saving saving, Models.Warehouse warehouse) {
@@ -905,38 +443,6 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
             return base.Channel.GetSavingAsync(id);
         }
         
-        public Models.Saving[] GetAllSavings() {
-            return base.Channel.GetAllSavings();
-        }
-        
-        public System.Threading.Tasks.Task<Models.Saving[]> GetAllSavingsAsync() {
-            return base.Channel.GetAllSavingsAsync();
-        }
-        
-        public int UpdateSaving(Models.Saving saving) {
-            return base.Channel.UpdateSaving(saving);
-        }
-        
-        public System.Threading.Tasks.Task<int> UpdateSavingAsync(Models.Saving saving) {
-            return base.Channel.UpdateSavingAsync(saving);
-        }
-        
-        public int DeleteSaving(int id) {
-            return base.Channel.DeleteSaving(id);
-        }
-        
-        public System.Threading.Tasks.Task<int> DeleteSavingAsync(int id) {
-            return base.Channel.DeleteSavingAsync(id);
-        }
-        
-        public Models.Product[] GetProductsByName(string input) {
-            return base.Channel.GetProductsByName(input);
-        }
-        
-        public System.Threading.Tasks.Task<Models.Product[]> GetProductsByNameAsync(string input) {
-            return base.Channel.GetProductsByNameAsync(input);
-        }
-        
         public int AddCustomerWithLogin(Models.Customer customer, Models.Login login) {
             return base.Channel.AddCustomerWithLogin(customer, login);
         }
@@ -951,6 +457,38 @@ namespace BestilNemtUnitTestTest.BestilNemtServiceRef {
         
         public System.Threading.Tasks.Task<Models.Warehouse> GetWarehouseByProductIdAsync(int productId, int shopId) {
             return base.Channel.GetWarehouseByProductIdAsync(productId, shopId);
+        }
+        
+        public System.Data.DataTable GetDataGridProducts() {
+            return base.Channel.GetDataGridProducts();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridProductsAsync() {
+            return base.Channel.GetDataGridProductsAsync();
+        }
+        
+        public System.Data.DataTable GetProductWareHouse(int adminId) {
+            return base.Channel.GetProductWareHouse(adminId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetProductWareHouseAsync(int adminId) {
+            return base.Channel.GetProductWareHouseAsync(adminId);
+        }
+        
+        public System.Data.DataTable GetChainData() {
+            return base.Channel.GetChainData();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetChainDataAsync() {
+            return base.Channel.GetChainDataAsync();
+        }
+        
+        public System.Data.DataTable GetDataGridShop() {
+            return base.Channel.GetDataGridShop();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataTable> GetDataGridShopAsync() {
+            return base.Channel.GetDataGridShopAsync();
         }
     }
 }

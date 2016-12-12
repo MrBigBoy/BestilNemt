@@ -1,6 +1,5 @@
 ﻿using DataAccessLayer;
 using Models;
-using System.Collections.Generic;
 
 namespace Controller
 {
@@ -17,17 +16,17 @@ namespace Controller
             DbAdmin = dbAdmin;
         }
 
-        /// <summary>
-        /// Add a Admin
-        /// </summary>
-        /// <param name="admin"></param>
-        /// <returns>
-        /// Return 1 if Admin is added, else 0
-        /// </returns>
-        public int AddAdmin(Admin admin)
-        {
-           return ValidateAdminInput(admin) ? DbAdmin.AddAdmin(admin) : 0;
-        }
+        ///// <summary>
+        ///// Add a Admin
+        ///// </summary>
+        ///// <param name="admin"></param>
+        ///// <returns>
+        ///// Return 1 if Admin is added, else 0
+        ///// </returns>
+        //public int AddAdmin(Admin admin)
+        //{
+        //   return ValidateAdminInput(admin) ? DbAdmin.AddAdmin(admin) : 0;
+        //}
 
         /// <summary>
         /// Get a Admin
@@ -41,53 +40,53 @@ namespace Controller
             return DbAdmin.GetAdmin(id);
         }
 
-        /// <summary>
-        /// Get all Admins
-        /// </summary>
-        /// <returns>
-        /// List of Admin
-        /// </returns>
-        public List<Admin> GetAllAdmins()
-        {
-            return DbAdmin.GetAllAdmins();
-        }
+        ///// <summary>
+        ///// Get all Admins
+        ///// </summary>
+        ///// <returns>
+        ///// List of Admin
+        ///// </returns>
+        //public List<Admin> GetAllAdmins()
+        //{
+        //    return DbAdmin.GetAllAdmins();
+        //}
 
-        /// <summary>
-        /// Delete a Admin
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Admin is deleted, else 0
-        /// </returns>
-        public int DeleteAdmin(int id)
-        {
-            return DbAdmin.DeleteAdmin(id);
-        }
+        ///// <summary>
+        ///// Delete a Admin
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Admin is deleted, else 0
+        ///// </returns>
+        //public int DeleteAdmin(int id)
+        //{
+        //    return DbAdmin.DeleteAdmin(id);
+        //}
 
-        /// <summary>
-        /// Update a Admin
-        /// </summary>
-        /// <param name="admin"></param>
-        /// <returns>
-        /// Return 1 if Admin is updated, else 0
-        /// </returns>
-        public int UpdateAdmin(Admin admin)
-        {
-            return ValidateAdminInput(admin) ? DbAdmin.UpdateAdmin(admin) : 0;
-        }
+        ///// <summary>
+        ///// Update a Admin
+        ///// </summary>
+        ///// <param name="admin"></param>
+        ///// <returns>
+        ///// Return 1 if Admin is updated, else 0
+        ///// </returns>
+        //public int UpdateAdmin(Admin admin)
+        //{
+        //    return ValidateAdminInput(admin) ? DbAdmin.UpdateAdmin(admin) : 0;
+        //}
 
-        /// <summary>
-        /// Validate input for Admin
-        /// </summary>
-        /// <param name="admin"></param>
-        /// <returns>
-        /// true if Admin has correct fields, else false
-        /// </returns>
-        // ReSharper disable once SuggestBaseTypeForParameter
-        private static bool ValidateAdminInput(Admin admin)
-        {
-            return !string.IsNullOrEmpty(admin?.Name) && !string.IsNullOrEmpty(admin.Address) && 
-                !string.IsNullOrEmpty(admin.Email) && admin.PersonType == "Administrator";
-        }
+        ///// <summary>
+        ///// Validate input for Admin
+        ///// </summary>
+        ///// <param name="admin"></param>
+        ///// <returns>
+        ///// true if Admin has correct fields, else false
+        ///// </returns>
+        //// ReSharper disable once SuggestBaseTypeForParameter
+        //private static bool ValidateAdminInput(Admin admin)
+        //{
+        //    return !string.IsNullOrEmpty(admin?.Name) && !string.IsNullOrEmpty(admin.Address) && 
+        //        !string.IsNullOrEmpty(admin.Email) && admin.PersonType == "Administrator";
+        //}
     }
 }

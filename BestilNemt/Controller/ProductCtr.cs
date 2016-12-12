@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using DataAccessLayer;
 using Models;
@@ -80,28 +79,28 @@ namespace Controller
             return DbProduct.GetProduct(i);
         }
 
-        /// <summary>
-        /// Get all Products
-        /// </summary>
-        /// <returns>
-        /// List of Products
-        /// </returns>
-        public List<Product> GetAllProducts()
-        {
-            return DbProduct.GetAllProducts();
-        }
+        ///// <summary>
+        ///// Get all Products
+        ///// </summary>
+        ///// <returns>
+        ///// List of Products
+        ///// </returns>
+        //public List<Product> GetAllProducts()
+        //{
+        //    return DbProduct.GetAllProducts();
+        //}
 
-        /// <summary>
-        /// Get all Product starting with the Name
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns>
-        /// List of Product
-        /// </returns>
-        public List<Product> GetProductsByName(string input)
-        {
-            return DbProduct.GetProductsByName(input);
-        }
+        ///// <summary>
+        ///// Get all Product starting with the Name
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns>
+        ///// List of Product
+        ///// </returns>
+        //public List<Product> GetAllProductsByName(string input)
+        //{
+        //    return DbProduct.GetAllProductsByName(input);
+        //}
 
         /// <summary>
         /// Get all sold products
@@ -125,11 +124,6 @@ namespace Controller
             return DbProduct.GetAllProductsWithSavings();
         }
 
-        public Warehouse GetWarehouseByProductId(int productId, int shopId)
-        {
-            return DbProduct.GetWarehouseByProductId(productId, shopId);
-        }
-
         public DataTable GetDataGridProducts()
         {
             return DbProduct.GetDataGridProducts();
@@ -137,7 +131,7 @@ namespace Controller
 
         public DataTable GetProductWareHouse(int adminId)
         {
-            return DbProduct.GetProductWareHouse(adminId);
+            return DbProduct.GetProductWarehouse(adminId);
         }
     }
 }

@@ -11,14 +11,13 @@ namespace DataAccessLayer
     {
         int AddProduct(Product product);
         Product GetProduct(int id);
-        List<Product> GetAllProducts();
+        //List<Product> GetAllProducts();
         List<Product> GetAllSoldProducts();
         List<Product> GetAllProductsWithSavings();
         int UpdateProduct(Product product);
         int DeleteProduct(int id);
-        List<Product> GetProductsByName(string input);
-        Warehouse GetWarehouseByProductId(int productId, int shopId);
+        List<Product> GetAllProductsByName(string input);
         DataTable GetDataGridProducts();
-        DataTable GetProductWareHouse(int adminId);
+        DataTable GetProductWarehouse(int adminId);
     }
 }

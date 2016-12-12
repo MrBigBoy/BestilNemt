@@ -41,16 +41,16 @@ namespace Controller
             return DbWarehouse.GetWarehouse(id);
         }
 
-        /// <summary>
-        /// Get all warehouses
-        /// </summary>
-        /// <returns>
-        /// List of Warehouse
-        /// </returns>
-        public List<Warehouse> GetAllWarehouses()
-        {
-            return DbWarehouse.GetAllWarehouses();
-        }
+        ///// <summary>
+        ///// Get all warehouses
+        ///// </summary>
+        ///// <returns>
+        ///// List of Warehouse
+        ///// </returns>
+        //public List<Warehouse> GetAllWarehouses()
+        //{
+        //    return DbWarehouse.GetAllWarehouses();
+        //}
 
         /// <summary>
         /// Get all warehouses by Shop Id
@@ -73,26 +73,18 @@ namespace Controller
         {
             return ValidateWarehouse(warehouse) ? DbWarehouse.UpdateWarehouse(warehouse) : 0;
         }
-        /// <summary>
-        /// Update a Warehouse
-        /// </summary>
-        /// <param name="warehouse"></param>
-        /// <returns>
-        /// 1 if Warehouse is updated, else 0
-        /// </returns>
-      
 
-        /// <summary>
-        /// Delete a Warehouse
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// 1 if Warehouse is deleted, else 0
-        /// </returns>
-        public int DeleteWarehouse(int id)
-        {
-            return DbWarehouse.DeleteWarehouse(id);
-        }
+        ///// <summary>
+        ///// Delete a Warehouse
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// 1 if Warehouse is deleted, else 0
+        ///// </returns>
+        //public int DeleteWarehouse(int id)
+        //{
+        //    return DbWarehouse.DeleteWarehouse(id);
+        //}
 
         /// <summary>
         /// Validate of Warehouse fields
@@ -105,5 +97,11 @@ namespace Controller
         {
             return warehouse != null && warehouse.MinStock >= 0 && warehouse.Stock >= 0 && warehouse.Shop != null;
         }
+
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            return DbWarehouse.GetWarehouseByProductId(productId, shopId);
+        }
+
     }
 }
