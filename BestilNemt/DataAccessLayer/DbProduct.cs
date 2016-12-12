@@ -205,12 +205,13 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory WHERE productId = @ProductId";
+                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productImgPath = @pImgPath WHERE productId = @ProductId";
                     cmd.Parameters.AddWithValue("ProductId", product.Id);
                     cmd.Parameters.AddWithValue("ProductName", product.Name);
                     cmd.Parameters.AddWithValue("ProductPrice", product.Price);
                     cmd.Parameters.AddWithValue("ProductDescription", product.Description);
                     cmd.Parameters.AddWithValue("ProductCategory", product.Category);
+                    cmd.Parameters.AddWithValue("pImgPath", product.ImgPath);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                 }
@@ -295,14 +296,19 @@ namespace DataAccessLayer
 
         public DataTable GetProductWarehouse(int adminId)
         {
-            var cmdString = "Select productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) " +
-                            "as savingPrice, warehouseStock, wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent  " +
-                            "from Product, warehouse, Administrator, saving WHERE warehouseProductId = productId AND warehouseShopId = @administratorShopId ";
+            var cmdString = "SELECT productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock," +
+                            "wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent," +
+                            "CONVERT(varchar, savingStartDate, 106) as savingStartDate, CONVERT(varchar, savingEndDate, 106) as savingEndDate " +
+                            "FROM Warehouse " +
+                            "LEFT JOIN Saving On savingId = warehouseSavingId " +
+                            "LEFT JOIN Product On productId = warehouseproductId " +
+                            "LEFT JOIN Administrator on administratorShopId = warehouseShopId " +
+                            "WHERE administratorShopId = 1 and warehouseShopId = 1 and warehouseProductId = productId and(savingId = warehouseSavingId Or warehouseSavingId Is NULL);";
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
                 var cmd = new SqlCommand(cmdString, conn);
-                cmd.Parameters.AddWithValue("administratorShopId", adminId);
+                cmd.Parameters.AddWithValue("adminShopId", adminId);
                 //Takes what the SQL return and adapts it so it can be used in a datatabel
                 var sda = new SqlDataAdapter(cmd);
                 var dt = new DataTable("ProductWareHouse");

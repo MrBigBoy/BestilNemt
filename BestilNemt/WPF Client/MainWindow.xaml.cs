@@ -55,6 +55,7 @@ namespace WPF_Client
             proxy.AddProduct(product);
             //Updates the product table
             FillDataGridProducts();
+            ClearProductTextField();
         }
 
         /// <summary>
@@ -70,7 +71,9 @@ namespace WPF_Client
             ProductId.Text = (drv["productId"]).ToString();
             ProductName.Text = (drv["productName"]).ToString();
             ProductPrice.Text = (drv["productPrice"]).ToString();
+            ProductDescription.Text = (drv["productDescription"]).ToString();
             ProductCategory.Text = (drv["productCategory"]).ToString();
+            ProductImgPath.Text = (drv["ProductImgPath"]).ToString();
         }
 
         /// <summary>
@@ -89,6 +92,7 @@ namespace WPF_Client
             proxy.DeleteProduct(id);
             //Updates the datatable
             FillDataGridProducts();
+            ClearProductTextField();
         }
 
         /// <summary>
@@ -113,6 +117,7 @@ namespace WPF_Client
             proxy.UpdateProduct(product);
             //Updates the datatable
             FillDataGridProducts();
+            ClearProductTextField();
         }
 
         /// <summary>
@@ -123,6 +128,7 @@ namespace WPF_Client
         private void AddSaving_Click(object sender, RoutedEventArgs e)
         {
             CreateSaving();
+            ClearWareHouseFields();
         }
 
         /// <summary>
@@ -140,7 +146,7 @@ namespace WPF_Client
             var shop = proxy.GetShop(admin.ShopId);
             //Create a local saving object
             var saving = new Saving();
-            var warehouse = proxy.GetWarehouse(int.Parse(WareHouseId.Text));
+            var warehouse = proxy.GetWarehouse(int.Parse(WarehouseIdField.Text));
             //Takes the date selected and makes them a datetime, instead of strings
             var startDate = StartDate.SelectedDate;
             var endDate = EndDate.SelectedDate;
@@ -152,7 +158,7 @@ namespace WPF_Client
             //Parses the textfield string to a doube to corresponnd to the database
             saving.SavingPercent = double.Parse(SavingPercent.Text);
             //Checks if the user has loaded in a product
-            if (WareHouseId.Text == "")
+            if (WarehouseIdField.Text == "")
             {
                 MessageBox.Show("Du mangler at indlæse fra tabellen ");
             }
@@ -195,7 +201,12 @@ namespace WPF_Client
 
         private void RemoveSaving_Click(object sender, RoutedEventArgs e)
         {
-            //?
+            var proxy = new BestilNemtServiceClient();
+            //take the id from the loaded product and saving
+            var id = int.Parse(SavingIdField.Text);
+            //send the id to the proxy, so the saving can be deleted
+            proxy.DeleteSaving(id);
+            ClearWareHouseFields();
         }
 
         /// <summary>
@@ -290,7 +301,11 @@ namespace WPF_Client
             MinAmount.Text = (drv["wareHouseMinStock"]).ToString();
             NewAmount1.Text = (drv["warehouseStock"]).ToString();
             ProductName1.Text = (drv["productName"]).ToString();
-            WareHouseId.Text = (drv["warehouseId"]).ToString();
+            WarehouseIdField.Text = (drv["warehouseId"]).ToString();
+            SavingPercent.Text = (drv["savingPercent"]).ToString();
+            SavingIdField.Text = (drv["warehouseSavingId"]).ToString();
+            StartDate.Text = (drv["savingStartDate"]).ToString();
+            EndDate.Text = (drv["savingEndDate"]).ToString();
         }
 
         //Used to update the tabel of the warehouse tab
@@ -345,6 +360,7 @@ namespace WPF_Client
             shop.Warehouses = new List<Warehouse>().ToArray();
             proxy.AddShop(shop);
             FillDataGridShop();
+            ClearAllShopTextFields();
         }
 
         /// <summary>
@@ -378,6 +394,7 @@ namespace WPF_Client
             var shopId = ShopIdField.Text;
             proxy.DeleteShop(int.Parse(shopId));
             FillDataGridShop();
+            ClearAllShopTextFields();
         }
         /// <summary>
         /// Updates the shop with the data inputed in the textfields
@@ -391,18 +408,15 @@ namespace WPF_Client
             //Gets the selected item in the datatable
             var drv = (DataRowView)ChainList.SelectedItem;
             //create empty table
-            var shop = new Shop
-            {
-                //Get id from text field
-                Id = int.Parse(ShopIdField.Text),
-                //Get chainId from ChainTable
-                Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString())),
-                //Get name address and CVR from the other text fields
-                Name = ShopNameField.Text,
-                Address = ShopAddressField.Text,
-                Cvr = ShopCVRField.Text
-            };
-
+            var shop = new Shop();
+            //Get id from text field
+            shop.Id = int.Parse(ShopIdField.Text);
+            //Get chainId from ChainTable
+            shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
+            //Get name address and CVR from the other text fields
+            shop.Name = ShopNameField.Text;
+            shop.Address = ShopAddressField.Text;
+            shop.Cvr = ShopCVRField.Text;
             //Gets the opening time form the textfield and sets it as a var
             var openingTimeRaw = ShopOpeningTimesField.Text;
             //Replaces the new lines with semicolons because of the databse
@@ -415,11 +429,14 @@ namespace WPF_Client
             proxy.UpdateShop(shop);
             //Update the datatabel
             FillDataGridShop();
+            ClearAllShopTextFields();
         }
 
-        private void AddAmount_Click(object sender, RoutedEventArgs e)
+        private void UpdateAmount_Click(object sender, RoutedEventArgs e)
         {
             UpdateAmount();
+            ClearWareHouseFields();
+            FillProductWareHouse();
         }
 
         /// <summary>
@@ -427,13 +444,12 @@ namespace WPF_Client
         /// </summary>
         private void ClearWareHouseFields()
         {
-            WareHouseId.Text = "";
+            WarehouseIdField.Text = "";
             ProductIdWareHouse.Text = "";
             NewAmount1.Text = "";
             MinAmount.Text = "";
             ProductName1.Text = "";
             FillDataGridProducts();
-            MessageBox.Show("dsds");
         }
 
         private void ClearFiledsWarehouse_Click(object sender, RoutedEventArgs e)
@@ -451,10 +467,11 @@ namespace WPF_Client
             var id = currentUser.PersonId;
             //finds the corret admin
             var admin = proxy.GetAdmin(id);
-            var shopIdAdmin = admin.ShopId;
+            var shopIdAdmin = 0;
+            shopIdAdmin = admin.ShopId;
             //finds the shop through admin
-            var getShop = proxy.GetShop(shopIdAdmin);
-            var warehouse = new Warehouse();
+            Shop getShop = proxy.GetShop(shopIdAdmin);
+            Warehouse warehouse = new Warehouse();
             var productId = int.Parse(ProductId.Text);
             //Getting all warehouse with a shopID, and loop through it 
             var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
@@ -470,13 +487,18 @@ namespace WPF_Client
             warehouse.Stock = int.Parse(Stock.Text);
             warehouse.Shop = getShop;
             warehouse.SavingId = null;
-
+            warehouse.Product = proxy.GetProduct(productId);
             var warehouseId = proxy.AddWarehouse(warehouse);
+            //If the warehouse couldn't be created, it shows a message telling the user
+            //If the warehouse is create, then the user gets a message telling it succeced
             if (warehouseId == 0)
             {
-                MessageBox.Show("Warehouse findes allerede, opret et ny produkt");
+                MessageBox.Show("Varehus findes allerede, opret et ny produkt");
             }
-
+            else
+            {
+                MessageBox.Show("Produktet er tilføjet til dit varehus");
+            }
         }
         /// <summary>
         /// Find the selected chain with a shop.
@@ -512,7 +534,29 @@ namespace WPF_Client
 
         private void UpdataTable_Click(object sender, RoutedEventArgs e)
         {
+            FillProductWareHouse();
+        }
 
+        private void RemoveWarehouseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BestilNemtServiceClient proxy = new BestilNemtServiceClient();
+            var wId = WarehouseIdField.Text;
+            proxy.DeleteWarehouse(int.Parse(wId));
+            FillProductWareHouse();
+        }
+
+        private void ClearAllShopFields_Click(object sender, RoutedEventArgs e)
+        {
+            ClearAllShopTextFields();
+        }
+
+        private void ClearAllShopTextFields()
+        {
+            ShopIdField.Text = "";
+            ShopAddressField.Text = "";
+            ShopCVRField.Text = "";
+            ShopNameField.Text = "";
+            ShopOpeningTimesField.Text = "";
         }
     }
 }
