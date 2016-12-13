@@ -38,7 +38,7 @@ namespace DataAccessLayer
                     // Get the Id
                     id = (int)cmd.ExecuteScalar();
                     transaction.Commit();
-                    Console.WriteLine("Commit was succsesfull");
+                    Console.WriteLine("Commit was successfull");
                 }
                 catch (Exception)
                 {
@@ -287,7 +287,7 @@ namespace DataAccessLayer
         //            cmd.Parameters.AddWithValue("partOrderId", partOrder.Id);
         //            i = cmd.ExecuteNonQuery();
         //            transaction.Commit();
-        //            Console.WriteLine("Commit was succsesfull");
+        //            Console.WriteLine("Commit was successfull");
 
         //        }
         //        catch (Exception)
@@ -385,8 +385,7 @@ namespace DataAccessLayer
                     transaction.Commit();
                     // Everything went well, set flag to 1
                     flag = 1;
-                    Console.WriteLine("Commit was succsesfull");
-
+                    Console.WriteLine("Commit was successfull");
                 }
                 catch (Exception)
                 {

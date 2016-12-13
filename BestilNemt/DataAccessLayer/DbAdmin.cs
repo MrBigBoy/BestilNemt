@@ -57,7 +57,7 @@ namespace DataAccessLayer
         //}
 
         ///// <summary>
-        ///// Delete a Admin
+        ///// Delete a Admintransaction
         ///// </summary>
         ///// <param name="id"></param>
         ///// <returns>
