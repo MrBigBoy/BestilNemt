@@ -44,12 +44,12 @@
                                 <Label x:Name="ImgPathLabel" Content="Billede sti" HorizontalAlignment="Left" Margin="0,288,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="ProductImgPath" HorizontalAlignment="Left" Height="23" Margin="0,319,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
                             </Grid>
-                            <Grid Margin="0,351,10,0">
+                            <Grid Margin="0,351,10,-10">
                                 <Button x:Name="AddProduct" Content="Opret" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Click="AddProduct_Click"/>
                                 <Button x:Name="DeleteProduct" Content="Slet" HorizontalAlignment="Left" Margin="0,25,0,0" VerticalAlignment="Top" Width="65" Click="DeleteProduct_Click"/>
                                 <Button x:Name="LoadDataIntoTextFields" Content="Indlæs" HorizontalAlignment="Left" Width="65" Margin="85,0,0,0" Click="LoadDataIntoTextFields_Click" Height="20" VerticalAlignment="Top"/>
                                 <Button x:Name="UpdateProduct" Content="Opdater" HorizontalAlignment="Left" Margin="85,25,0,0" VerticalAlignment="Top" Width="65" Click="UpdateProduct_Click"/>
-                                <Button x:Name="ClearProductFields" Content="Ryd produkt felterne" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="150" Click="ClearProductFields_Click"/>
+                                <Button x:Name="ClearProductFields" Content="Ryd produkt felterne" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="150" Click="ClearProductFields_Click" Height="26"/>
                             </Grid>
                         </Grid>
                         <Label x:Name="ProductLabel" Content="Produkthåndtering" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
