@@ -471,33 +471,42 @@ namespace WPF_Client
             shopIdAdmin = admin.ShopId;
             //finds the shop through admin
             Shop getShop = proxy.GetShop(shopIdAdmin);
-            Warehouse warehouse = new Warehouse();
-            var productId = int.Parse(ProductId.Text);
-            //Getting all warehouse with a shopID, and loop through it 
-            var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
-            foreach (var w in warehouses)
+            if (ProductId.Text.Equals(""))
             {
-                if (w.Product.Id == productId)
-                {
-                    warehouse = w;
-                }
-            }
-            //sets value in the textboxes
-            warehouse.MinStock = int.Parse(minStock.Text);
-            warehouse.Stock = int.Parse(Stock.Text);
-            warehouse.Shop = getShop;
-            warehouse.SavingId = null;
-            warehouse.Product = proxy.GetProduct(productId);
-            var warehouseId = proxy.AddWarehouse(warehouse);
-            //If the warehouse couldn't be created, it shows a message telling the user
-            //If the warehouse is create, then the user gets a message telling it succeced
-            if (warehouseId == 0)
-            {
-                MessageBox.Show("Varehus findes allerede, opret et ny produkt");
+                MessageBox.Show("Du har glemt at indlæse i produkt");
             }
             else
             {
-                MessageBox.Show("Produktet er tilføjet til dit varehus");
+                Warehouse warehouse = new Warehouse();
+                var productId = int.Parse(ProductId.Text);
+                //Getting all warehouse with a shopID, and loop through it 
+                var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+                foreach (var w in warehouses)
+                {
+                    if (w.Product.Id == productId)
+                    {
+                        warehouse = w;
+                    }
+                }
+
+                //sets value in the textboxes
+                warehouse.MinStock = int.Parse(minStock.Text);
+                warehouse.Stock = int.Parse(Stock.Text);
+                warehouse.Shop = getShop;
+                warehouse.SavingId = null;
+                warehouse.Product = proxy.GetProduct(productId);
+                var warehouseId = proxy.AddWarehouse(warehouse);
+
+                //If the warehouse couldn't be created, it shows a message telling the user
+                //If the warehouse is create, then the user gets a message telling it succeced
+                if (warehouseId == 0)
+                {
+                    MessageBox.Show("Varehus findes allerede, opret et ny produkt");
+                }
+                else
+                {
+                    MessageBox.Show("Produktet er tilføjet til dit varehus");
+                }
             }
         }
         /// <summary>
@@ -523,7 +532,8 @@ namespace WPF_Client
                     row = (DataGridRow) ChainList.ItemContainerGenerator.ContainerFromIndex(i);
                 }
                 var cellContent = ChainList.Columns[0].GetCellContent(row) as TextBlock;
-                if (cellContent == null || !cellContent.Text.Equals(chainId)) continue;
+                if (cellContent == null || !cellContent.Text.Equals(chainId))
+                    continue;
                 var item = ChainList.Items[i];
                 ChainList.SelectedItem = item;
                 ChainList.ScrollIntoView(item);
