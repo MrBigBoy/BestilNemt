@@ -166,18 +166,15 @@
     <script>
         if (ShoppingCart.PartOrders.Capacity == 0) {
             alert("Du mangler at tilføje en vare til kurv");
-
         }
     </script>
 }
 
 @* Here is a section of scripts *@
-@section scripts
-{
+
     <script>
         // This script update the selected amount
         $('.selAmount').change(function () {
             this.form.submit();
         })
     </script>
-}
