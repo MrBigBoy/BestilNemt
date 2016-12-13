@@ -516,6 +516,12 @@ namespace WPF_Client
             for (var i = 0; i < ChainList.Items.Count; i++)
             {
                 var row = (DataGridRow)ChainList.ItemContainerGenerator.ContainerFromIndex(i);
+                if (row == null)
+                {
+                    ChainList.UpdateLayout();
+                    ChainList.ScrollIntoView(ChainList.Items[i]);
+                    row = (DataGridRow) ChainList.ItemContainerGenerator.ContainerFromIndex(i);
+                }
                 var cellContent = ChainList.Columns[0].GetCellContent(row) as TextBlock;
                 if (cellContent == null || !cellContent.Text.Equals(chainId))
                     continue;
