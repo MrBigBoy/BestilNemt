@@ -253,12 +253,12 @@ namespace DataAccessLayer
                 cmd.Transaction = transaction;
                 try
                 {
-                    cmd.CommandText = "DELETE FROM Product WHERE productId = @ProductId";
+                    cmd.CommandText = "DELETE FROM Warehouse WHERE warehouseProductId = @ProductId; DELETE FROM Product WHERE productId = @ProductId";
                     cmd.Parameters.AddWithValue("ProductId", id);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     // The transaction failed
                     try
