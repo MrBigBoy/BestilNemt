@@ -87,12 +87,19 @@ namespace WPF_Client
         {
             var proxy = new BestilNemtServiceClient();
             //Parse the textfield from a string to an int
-            var id = int.Parse(ProductId.Text);
-            //Contact the WCF to delete the ID, that it got from the textfield
-            proxy.DeleteProduct(id);
-            //Updates the datatable
-            FillDataGridProducts();
-            ClearProductTextField();
+            if (ProductId.Text.Equals(""))
+            {
+                MessageBox.Show("Indlæse venligst et produkt før du prøver at slette det");
+            }
+            else
+            {
+                var id = int.Parse(ProductId.Text);
+                //Contact the WCF to delete the ID, that it got from the textfield
+                proxy.DeleteProduct(id);
+                //Updates the datatable
+                FillDataGridProducts();
+                ClearProductTextField();
+            }
         }
 
         /// <summary>
@@ -529,7 +536,7 @@ namespace WPF_Client
                 {
                     ChainList.UpdateLayout();
                     ChainList.ScrollIntoView(ChainList.Items[i]);
-                    row = (DataGridRow) ChainList.ItemContainerGenerator.ContainerFromIndex(i);
+                    row = (DataGridRow)ChainList.ItemContainerGenerator.ContainerFromIndex(i);
                 }
                 var cellContent = ChainList.Columns[0].GetCellContent(row) as TextBlock;
                 if (cellContent == null || !cellContent.Text.Equals(chainId))
