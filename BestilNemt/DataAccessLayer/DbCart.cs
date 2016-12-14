@@ -327,7 +327,7 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = conn.CreateCommand();
                 // Set the Isolation level to ReadCommitted
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                var transaction = conn.BeginTransaction(IsolationLevel.Snapshot);
                 cmd.Transaction = transaction;
                 // Calculate the total price from all partOrders
                 var cartTotalPrice = cart.PartOrders.Aggregate<PartOrder, decimal>(0, (current, partOrder) => partOrder.PartPrice + current);

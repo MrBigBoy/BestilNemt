@@ -15,7 +15,7 @@ namespace BestilNemtUnitTestTest
 
 
         [TestMethod]
-        public void TestConcurrencyOneFaild()
+        public void TestConcurrencyMaxAmount()
         {
             var i1 = 0;
             var i2 = 0;
@@ -61,7 +61,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void TestConcurrencyBothSuccessfull()
+        public void TestConcurrencyLessThenMaxAmount()
         {
             var i1 = 0;
             var i2 = 0;
@@ -99,8 +99,9 @@ namespace BestilNemtUnitTestTest
             //start 2 parallel queries 
             var cartDb = new DbCart();
             Parallel.Invoke(() => { i1 = cartDb.AddCartWithPartOrders(cart1); }, () => { i2 = cartDb.AddCartWithPartOrders(cart2); });
+            //var antal = new DbWarehouse().GetWarehouse(warId).Stock;
             var flag = 0;
-            if (i1 == 1 && i2 == 1)
+            if (i1 == 0 || i2 == 0)
                 flag = 1;
             Assert.AreEqual(1, flag);
         }

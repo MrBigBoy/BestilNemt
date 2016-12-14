@@ -90,7 +90,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label x:Name="ProductNameWarehouse" Content="Produkt Navn" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="ProductName1" HorizontalAlignment="Left" Height="23" Margin="10,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsReadOnly="True"/>
+                    <TextBox x:Name="ProductName1" HorizontalAlignment="Left" Height="23" Margin="10,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsReadOnly="True" Background="#FFD4D4D4"/>
                     <Label x:Name="WarehouseIdLabel" Content="Varehus ID" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
                     <TextBox x:Name="WarehouseIdField" HorizontalAlignment="Left" Height="23" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsReadOnly="True" IsEnabled="False" Background="#FFD4D4D4"/>
                     <Button x:Name="ClearFiledsWarehouse" Content="Ryd Felter" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="150" Click="ClearFiledsWarehouse_Click"/>

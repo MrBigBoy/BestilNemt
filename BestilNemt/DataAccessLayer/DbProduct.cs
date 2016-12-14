@@ -201,7 +201,7 @@ namespace DataAccessLayer
                 conn.Open();
                 var cmd = conn.CreateCommand();
                 // Set the isolation level to ReadCommitted
-                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                var transaction = conn.BeginTransaction(IsolationLevel.Snapshot);
                 cmd.Transaction = transaction;
                 try
                 {
