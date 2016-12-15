@@ -27,22 +27,7 @@ namespace Controller.ControllerTestClasses
         {
             return Savings.FirstOrDefault(savings => savings.Id == id);
         }
-
-        public List<Saving> GetAllSavings()
-        {
-            return Savings;
-        }
-
-        public int UpdateSaving(Saving saving)
-        {
-            var returnedSaving = GetSaving(saving.Id);
-            returnedSaving.StartDate = saving.StartDate;
-            returnedSaving.EndDate = saving.EndDate;
-            returnedSaving.SavingPercent = saving.SavingPercent;
-
-            return 1;
-        }
-
+        
         public int DeleteSaving(int id)
         {
             return Savings.Remove(GetSaving(id)) ? 1 : 0;

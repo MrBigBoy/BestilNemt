@@ -23,44 +23,20 @@ namespace Controller.ControllerTestClasses
             return carts.FirstOrDefault(c => c.Id == id);
 
         }
-        public Cart GetCartWithPartOrders(int id)
-        {
-            return carts.FirstOrDefault(c => c.Id == id);
-
-        }
 
         public List<Cart> GetAllCarts()
         {
             return carts;
         }
 
-        public int UpdateCart(Cart cart)
-        {
-            var cartToUpdate = GetCart(cart.Id);
-            if (cartToUpdate == null) return 0;
-            cartToUpdate.TotalPrice = cart.TotalPrice;
-            cartToUpdate.PartOrders = cart.PartOrders;
-            return 1;
-        }
-
-        public int DeleteCart(int id)
-        {
-            return carts.Remove(GetCart(id)) ? 1 : 0;
-        }
-
-        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
-        {
-            return 1;
-        }
-
         public int AddCartWithPartOrders(Cart cart)
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
         public List<Cart> GetAllCartsByPersonId(int personId)
         {
-            throw new NotImplementedException();
+            return  carts.FindAll(c => c.PersonId == personId);
         }
     }
 }

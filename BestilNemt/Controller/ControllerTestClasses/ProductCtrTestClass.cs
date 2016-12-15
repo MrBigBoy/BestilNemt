@@ -18,20 +18,10 @@ namespace Controller.ControllerTestClasses
             products.Add(product);
             return idCounter++;
         }
-
-        public int RemoveProduct(int id)
-        {
-            return products.Remove(GetProduct(id)) ? 1 : 0;
-        }
-
+        
         public Product GetProduct(int id)
         {
             return products.FirstOrDefault(product => product.Id == id);
-        }
-
-        public List<Product> GetAllProducts()
-        {
-            return products;
         }
 
         public List<Product> GetAllSoldProducts()
@@ -61,22 +51,17 @@ namespace Controller.ControllerTestClasses
 
         public List<Product> GetAllProductsByName(string input)
         {
-            throw new NotImplementedException();
-        }
-
-        public Warehouse GetWarehouseByProductId(int productId, int shopId)
-        {
-            throw new NotImplementedException();
+            return products.FindAll(product => product.Name == input);
         }
 
         public DataTable GetDataGridProducts()
         {
-            throw new NotImplementedException();
+            return new DataTable();
         }
 
         public DataTable GetProductWarehouse(int adminId)
         {
-            throw new NotImplementedException();
+            return new DataTable();
         }
     }
 }

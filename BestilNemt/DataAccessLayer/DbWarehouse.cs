@@ -179,20 +179,23 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("shopId", warehouse.Shop.Id);
                     cmd.Parameters.AddWithValue("productId", warehouse.Product.Id);
                     cmd.Parameters.AddWithValue("warehouseId", warehouse.Id);
-                    cmd.Parameters.AddWithValue("SavingId", warehouse.SavingId);
+                    if (warehouse.SavingId == null)
+                        cmd.Parameters.AddWithValue("SavingId", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("SavingId", warehouse.SavingId);
                     i = cmd.ExecuteNonQuery();
                     transaction.Commit();
                     Console.WriteLine("Commit was successfull");
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     // The transaction failed
                     try
                     {
                         // Try rolling back
                         transaction.Rollback();
-                        Console.WriteLine("Transaction was rolled back");
+                        Console.WriteLine(ex.Message);
                     }
                     catch (SqlException)
                     {

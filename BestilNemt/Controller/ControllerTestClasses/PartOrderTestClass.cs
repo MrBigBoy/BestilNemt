@@ -22,30 +22,6 @@ namespace Controller.ControllerTestClasses
             return Flag;
         }
 
-        public int DeletePartOrder(int id)
-        {
-            return PartOrders.Remove(GetPartOrder(id)) ? 1 : 0;
-        }
-
-        public PartOrder GetPartOrder(int id)
-        {
-            return PartOrders.FirstOrDefault(PartOrders => PartOrders.Id == id);
-        }
-
-        public List<PartOrder> GetAllPartOrders()
-        {
-            return PartOrders;
-        }
-
-        public int UpdatePartOrder(PartOrder partOrder)
-        {
-            var returnedPartOrder = GetPartOrder(partOrder.Id);
-            returnedPartOrder.Amount = partOrder.Amount;
-            returnedPartOrder.PartPrice = partOrder.PartPrice;
-
-            return 1;
-        }
-
         private bool ValidatePartOrderInput(PartOrder partOrder)
         {
             if (partOrder.Amount > 0 && partOrder.Product != null && partOrder.Cart != null)

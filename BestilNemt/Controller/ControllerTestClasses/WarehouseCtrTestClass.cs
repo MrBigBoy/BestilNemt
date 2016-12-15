@@ -6,7 +6,7 @@ using Models;
 
 namespace Controller.ControllerTestClasses
 {
-    public class WarehouseCtrTestClass: IDbWarehouse
+    public class WarehouseCtrTestClass : IDbWarehouse
     {
         private List<Warehouse> warehouses = new List<Warehouse>();
         private int idCounter = 1;
@@ -45,18 +45,13 @@ namespace Controller.ControllerTestClasses
 
         public Warehouse GetWarehouseByProductId(int productId, int shopId)
         {
-            throw new NotImplementedException();
+            return new Warehouse();
         }
 
         public int DeleteWarehouse(int id)
         {
             return warehouses.Remove(GetWarehouse(id)) ? 1 : 0;
 
-        }
-
-        public int UpdateWarehouseAdmin(Warehouse warehouse)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -98,18 +98,6 @@ namespace BestilNemtUnitTestTest
             Assert.IsNull(rw);
         }
 
-        //[TestMethod]
-        //public void GetAllWarehousesCtr()
-        //{
-        //    var warehouseCtr = new WarehouseCtr(new WarehouseCtrTestClass());
-        //    var warehouse1 = new Warehouse(10, 5, new Product(), new Shop(), 1);
-        //    var warehouse2 = new Warehouse(1, 3, new Product(), new Shop(), 1);
-        //    warehouseCtr.AddWarehouse(warehouse1);
-        //    warehouseCtr.AddWarehouse(warehouse2);
-        //    var count = warehouseCtr.GetAllWarehouses().Count;
-        //    Assert.AreEqual(2, count);
-        //}
-
         [TestMethod]
         public void GetAllWarehousesByShopIdCtr()
         {
@@ -166,15 +154,16 @@ namespace BestilNemtUnitTestTest
             };
             var shop = new Shop
             {
-                Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
                 OpeningTime = "Manday Never",
-                Chain = new Chain(),
+                Chain = new DbChain().GetChain(1),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            var warehouse = new Warehouse(10, 5, prod, shop, 1);
+            var shopId = new DbShop().AddShop(shop);
+            shop.Id = shopId;
+            var warehouse = new Warehouse(10, 5, prod, shop, null);
             var warehouseDb = new DbWarehouse();
             var id = warehouseDb.AddWarehouse(warehouse);
             warehouseDb.DeleteWarehouse(id);
@@ -196,14 +185,15 @@ namespace BestilNemtUnitTestTest
             };
             var shop = new Shop
             {
-                Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
                 OpeningTime = "Manday Never",
-                Chain = new Chain(),
+                Chain = new DbChain().GetChain(1),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
+            var shopId = new DbShop().AddShop(shop);
+            shop.Id = shopId;
             var warehouse = new Warehouse(10, 5, prod, shop, 1);
             var id = warehouseDb.AddWarehouse(warehouse);
             var rw = warehouseDb.GetWarehouse(id);
@@ -249,16 +239,18 @@ namespace BestilNemtUnitTestTest
             };
             var shop = new Shop
             {
-                Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
                 OpeningTime = "Manday Never",
-                Chain = new Chain(),
+                Chain = new DbChain().GetChain(1),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            var warehouseToUpdate = new Warehouse(1, 1, prod, shop, 1);
+            var shopId = new DbShop().AddShop(shop);
+            shop.Id = shopId;
+            var warehouseToUpdate = new Warehouse(1, 1, prod, shop, null);
             var id = warehouseDb.AddWarehouse(warehouseToUpdate);
+            warehouseToUpdate.Id = id;
             var warehouseNew = new Warehouse(id, 100, 50, prod, shop, 1);
             warehouseDb.UpdateWarehouse(warehouseNew);
             var updatedWarehouse = warehouseDb.GetWarehouse(id);
@@ -279,7 +271,6 @@ namespace BestilNemtUnitTestTest
             };
             var shop = new Shop
             {
-                Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
                 OpeningTime = "Manday Never",
@@ -287,10 +278,15 @@ namespace BestilNemtUnitTestTest
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            var warehouse = new Warehouse(10, 5, prod, shop, 1);
+
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
+                var chain = proxy.GetChain(1);
+                shop.Chain = chain;
+                var shopId = proxy.AddShop(shop);
+                shop.Id = shopId;
+                var warehouse = new Warehouse(10, 5, prod, shop, 1);
                 var id = proxy.AddWarehouse(warehouse);
                 proxy.DeleteWarehouse(id);
                 Assert.AreNotEqual(0, id);
@@ -310,18 +306,21 @@ namespace BestilNemtUnitTestTest
             };
             var shop = new Shop
             {
-                Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
-                Chain = new Chain(),
+                OpeningTime = "Manday Never",
+                Chain = new DbChain().GetChain(1),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
-            var warehouse1 = new Warehouse(10, 5, prod, shop, 1);
-            var warehouse2 = new Warehouse(10, 5, prod, shop, 1);
+
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
+                var shopId = proxy.AddShop(shop);
+                shop.Id = shopId;
+                var warehouse1 = new Warehouse(10, 5, prod, shop, 1);
+                var warehouse2 = new Warehouse(10, 5, prod, shop, 1);
                 var id1 = proxy.AddWarehouse(warehouse1);
                 var id2 = proxy.AddWarehouse(warehouse2);
                 var rw = proxy.GetWarehouse(id1);
@@ -367,17 +366,6 @@ namespace BestilNemtUnitTestTest
             }
         }
 
-        //[TestMethod]
-        //public void GetAllWarehousesWcf()
-        //{
-        //    using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
-        //    {
-        //        proxy.Open();
-        //        var count = proxy.GetAllWarehouses().Count();
-        //        Assert.AreNotEqual(0, count);
-        //    }
-        //}
-
         [TestMethod]
         public void GetAllWarehousesByShopIdWcf()
         {
@@ -402,10 +390,10 @@ namespace BestilNemtUnitTestTest
             };
             var shop = new Shop
             {
-                Id = 1,
                 Name = "ShopName",
                 Address = "new addr",
-                Chain = new Chain(),
+                OpeningTime = "Manday Never",
+                Chain = new DbChain().GetChain(1),
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>()
             };
@@ -413,7 +401,10 @@ namespace BestilNemtUnitTestTest
             using (var proxy = new BestilNemtServiceRef.BestilNemtServiceClient())
             {
                 proxy.Open();
+                var shopId = proxy.AddShop(shop);
+                shop.Id = shopId;
                 var id = proxy.AddWarehouse(warehouseToUpdate);
+                warehouseToUpdate.Id = id;
                 var warehouseNew = new Warehouse(id, 100, 50, prod, shop, 1);
                 proxy.UpdateWarehouse(warehouseNew);
                 var updatedWarehouse = proxy.GetWarehouse(id);

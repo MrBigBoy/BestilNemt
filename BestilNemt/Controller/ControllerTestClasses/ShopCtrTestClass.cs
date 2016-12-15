@@ -34,11 +34,6 @@ namespace Controller.ControllerTestClasses
             return 1;
         }
 
-        public List<Shop> GetAllShops()
-        {
-            return shops;
-        }
-
         public List<Shop> GetAllShopsByChainId(int chainId)
         {
             return shops.Where(shop => shop.Chain.Id == chainId).ToList();
@@ -51,7 +46,7 @@ namespace Controller.ControllerTestClasses
 
         public DataTable GetDataGridShop()
         {
-            throw new System.NotImplementedException();
+            return  new DataTable();
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Controller.ControllerTestClasses
 
         public int AddCustomerWithLogin(Customer customer, Login login)
         {
-            throw new NotImplementedException();
+            return 1;
         }
     }
 }
