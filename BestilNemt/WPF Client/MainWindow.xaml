@@ -36,7 +36,7 @@
                                 <Label x:Name="ProductNameLabel" Content="Navn" HorizontalAlignment="Left" Margin="0,49,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="ProductName" HorizontalAlignment="Left" Height="23" Margin="0,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
                                 <Label x:Name="PriceLabel" Content="Pris" HorizontalAlignment="Left" Margin="0,103,0,0" VerticalAlignment="Top"/>
-                                <TextBox x:Name="ProductPrice" HorizontalAlignment="Left" Height="23" Margin="0,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                                <TextBox x:Name="ProductPrice" HorizontalAlignment="Left" Height="23" Margin="0,129,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" PreviewTextInput="PriceValidationTextBox"/>
                                 <Label x:Name="DescriptionLabel" Content="Beskrivelse" HorizontalAlignment="Left" Margin="0,152,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="ProductDescription" HorizontalAlignment="Left" Margin="0,178,0,0" TextWrapping="Wrap" Text="" Width="150" Height="61" VerticalAlignment="Top"/>
                                 <Label x:Name="CategoryLabel" Content="Kategori" HorizontalAlignment="Left" Margin="0,239,0,0" VerticalAlignment="Top"/>
@@ -71,9 +71,9 @@
                     <TextBox x:Name="ProductIdWareHouse" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsReadOnly="True" Background="#FFD4D4D4"/>
                     <Button x:Name="ReadTable" Content="Indlæs Felter" Margin="10,315,0,0" Click="ReadTable_Click" HorizontalAlignment="Left" Width="150" Height="20" VerticalAlignment="Top"/>
                     <Label x:Name="MinStock" Content="Min. Antal" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="-15.474,0.462"/>
-                    <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="10,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" IsReadOnly="True"/>
+                    <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="10,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" PreviewTextInput="NumberValidationTextBox"/>
                     <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
-                    <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="10,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                    <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="10,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" PreviewTextInput="NumberValidationTextBox"/>
                     <DataGrid x:Name="ProductWarehouse" Margin="180,5,5,5" AutoGenerateColumns="False" FontWeight="Bold" SelectionMode="Single" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="70" />
@@ -103,7 +103,7 @@
                         <Button x:Name="AddSaving" Content="Opret" HorizontalAlignment="Left" Margin="2,221,0,0" VerticalAlignment="Top" Width="150" Click="AddSaving_Click"/>
                         <Button x:Name="RemoveSaving" Content="Slet" HorizontalAlignment="Left" Margin="2,246,0,0" VerticalAlignment="Top" Width="150" Click="RemoveSaving_Click"/>
                         <Label x:Name="SavingPercentLabel" Content="Tilbuds procent" HorizontalAlignment="Left" Margin="0,184,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="97,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+                        <TextBox x:Name="SavingPercent" HorizontalAlignment="Left" Height="23" Margin="97,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53" PreviewTextInput="NumberValidationTextBox"/>
                         <Label x:Name="SavingIdLabel" Content="Tilbuds Id" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="SavingIdField" HorizontalAlignment="Left" Height="23" Margin="0,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" IsEnabled="False" Background="#FFD4D4D4"/>
                     </Grid>
@@ -134,7 +134,7 @@
                             <Label x:Name="ShopOpeningTimeLabel" Content="Åbningstider" HorizontalAlignment="Left" Margin="0,170,0,0" VerticalAlignment="Top"/>
                             <TextBox x:Name="ShopOpeningTimesField" HorizontalAlignment="Left" Height="122" Margin="0,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" AcceptsReturn="True" SpellCheck.IsEnabled="False"/>
                             <Label x:Name="ShopCVRLabel" Content="CVR" HorizontalAlignment="Left" Margin="0,318,0,0" VerticalAlignment="Top"/>
-                            <TextBox x:Name="ShopCVRField" HorizontalAlignment="Left" Height="23" Margin="0,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                            <TextBox x:Name="ShopCVRField" HorizontalAlignment="Left" Height="23" Margin="0,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150" PreviewTextInput="NumberValidationTextBox"/>
                             <Label x:Name="ShopChainLabel" Content="Kæde navn" HorizontalAlignment="Left" Margin="0,367,0,0" VerticalAlignment="Top"/>
                             <DataGrid x:Name="ChainList" Margin="0,393,0,0" AutoGenerateColumns="False" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" SelectionMode="Single" IsReadOnly="True">
                                 <DataGrid.Columns >
