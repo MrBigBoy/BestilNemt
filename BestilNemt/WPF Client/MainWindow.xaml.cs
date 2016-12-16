@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace WPF_Client
@@ -580,6 +581,16 @@ namespace WPF_Client
             ShopCVRField.Text = "";
             ShopNameField.Text = "";
             ShopOpeningTimesField.Text = "";
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void PriceValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
