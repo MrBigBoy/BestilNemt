@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Controls;
 using WPF_Client.BestilNemtWPF;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace WPF_Client
@@ -585,7 +586,11 @@ namespace WPF_Client
                 break;
             }
         }
-
+        /// <summary>
+        /// Adds a product to the local warehouse, and refreshes the warehouse tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddToWarehouse_Click(object sender, RoutedEventArgs e)
         {
             AddProductToWarehouse();
@@ -596,7 +601,11 @@ namespace WPF_Client
         {
             FillProductWareHouse();
         }
-
+        /// <summary>
+        /// Removes a warehouse from the database, by calling the service
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveWarehouseBtn_Click(object sender, RoutedEventArgs e)
         {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
@@ -609,12 +618,19 @@ namespace WPF_Client
             FillProductWareHouse();
             ClearWareHouseFields();
         }
-
+        /// <summary>
+        /// Clears all the textfields with the press of a button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearAllShopFields_Click(object sender, RoutedEventArgs e)
         {
             ClearAllShopTextFields();
         }
 
+        /// <summary>
+        /// Made for clearing all the textfields in the shop tab
+        /// </summary>
         private void ClearAllShopTextFields()
         {
             ShopIdField.Text = "";
@@ -622,6 +638,26 @@ namespace WPF_Client
             ShopCVRField.Text = "";
             ShopNameField.Text = "";
             ShopOpeningTimesField.Text = "";
+        }
+        /// <summary>
+        /// Checks if the inputs in a textfield is only numbers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        /// <summary>
+        /// Checks if the inputs in a textfields are numbers and dots. This is the same format used for the price
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PriceValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
