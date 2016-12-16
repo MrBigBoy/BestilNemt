@@ -4,47 +4,44 @@
 }
 
 <h2>CheckOut</h2>
-<!-- Section of scripts -->
-@section scripts
-{
-    <script>
-        // This script validate the form to checkout
-        function validateForm() {
-            var cardNumber = document.forms["PaymentForm"]["cardNumber"].value;
-            var exDate = document.forms["PaymentForm"]["exspiringdate"].value;
-            var controlNumbers = document.forms["PaymentForm"]["Controlnumbers"].value;
-            if (cardNumber === "") {
-                alert("CardNumber must be filled out");
-                return false;
-            }
-            if (exDate === "") {
-                alert("Expiry date must be filled out");
-                return false;
-            }
-            if (controlNumbers === "") {
-                alert("ControlNumbers must be filled out");
-                return false;
-            } else {
-                alert("Betaling gennemført");
-                return true;
-            }
+<script>
+    // This script validate the form to checkout
+    function validateForm() {
+        var cardNumber = document.forms["PaymentForm"]["cardNumber"].value;
+        var exDate = document.forms["PaymentForm"]["exspiringdate"].value;
+        var controlNumbers = document.forms["PaymentForm"]["Controlnumbers"].value;
+        if (cardNumber === "" || cardNumber.length !== 16) {
+            alert("Kortnummer skal være udfyldt og være 16 cifre");
+            return false;
         }
-    </script>
-}
+        if (exDate === "" || exDate.length !== 5) {
+            alert("Udløbsdato skal være udfyldt og være 4 cifre med en bindestreg");
+            return false;
+        }
+        if (controlNumbers === "" || controlNumbers.length !== 3) {
+            alert("Kontrolnummer skal være udfyldt og være 3 cifre");
+            return false;
+        } else {
+            alert("Betaling gennemført");
+            return true;
+        }
+    }
+</script>
+
 @*The form to Checkout*@
-<form name="PaymentForm" class="Payment" onsubmit="return validateForm()">
+<form name="PaymentForm" class="Payment" onsubmit="return validateForm()" method="post">
     Kortnummer:<br>
-    <input type="text" name="cardNumber" maxlength="10"> <br>
+    <input type="text" name="cardNumber" maxlength="16"> <br>
     Udløbsnings dato:<br>
-    <input type="text" name="exspiringdate" maxlength="10"> <br>
+    <input type="text" name="exspiringdate" maxlength="5"> <br>
     Kontrol cifre:<br>
-    <input type="text" name="Controlnumbers" maxlength="10"> <br>
+    <input type="text" name="Controlnumbers" maxlength="3"> <br>
 </form>
 
 @*The button to Checkout*@
 @using (Html.BeginForm("CompleteCart", "Cart", FormMethod.Post))
 {
-    <button input type="submit" class="CheckOut">Til betaling</button>
+    <button input type="submit" class="Payment" onclick="return validateForm()">Check ud</button>
 }
 
 
