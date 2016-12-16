@@ -45,17 +45,32 @@ namespace WPF_Client
             //Call the service and create an empty product
             var proxy = new BestilNemtServiceClient();
             var product = new Product();
-            //Set the textbox text to correspond to the product attributes
-            product.Name = ProductName.Text;
-            product.Price = Convert.ToDecimal(ProductPrice.Text);
-            product.Category = ProductCategory.Text;
-            product.Description = ProductDescription.Text;
-            product.ImgPath = ProductImgPath.Text;
-            //sends the filled attributes to the service and adds a product to the database 
-            proxy.AddProduct(product);
-            //Updates the product table
-            FillDataGridProducts();
-            ClearProductTextField();
+            if (ProductName.Text.Equals(""))
+            {
+                MessageBox.Show("Du mangler at give produket et navn");
+            }
+            if (ProductPrice.Text.Equals(""))
+            {
+                MessageBox.Show("Du mangler at sætte en ny pris");
+            }
+            if (ProductCategory.Text.Equals(""))
+            {
+                MessageBox.Show("Du mangler skrive en kategori");
+            }
+            else
+            {
+                //Set the textbox text to correspond to the product attributes
+                product.Name = ProductName.Text;
+                product.Price = Convert.ToDecimal(ProductPrice.Text);
+                product.Category = ProductCategory.Text;
+                product.Description = ProductDescription.Text;
+                product.ImgPath = ProductImgPath.Text;
+                //sends the filled attributes to the service and adds a product to the database 
+                proxy.AddProduct(product);
+                //Updates the product table
+                FillDataGridProducts();
+                ClearProductTextField();
+            }
         }
 
         /// <summary>
@@ -68,12 +83,19 @@ namespace WPF_Client
             //Select the current selected row
             var drv = (DataRowView)ProductInformation.SelectedItem;
             //Take the text in the coloums and puts them into the textfields
-            ProductId.Text = (drv["productId"]).ToString();
-            ProductName.Text = (drv["productName"]).ToString();
-            ProductPrice.Text = (drv["productPrice"]).ToString();
-            ProductDescription.Text = (drv["productDescription"]).ToString();
-            ProductCategory.Text = (drv["productCategory"]).ToString();
-            ProductImgPath.Text = (drv["ProductImgPath"]).ToString();
+            if (drv != null)
+            {
+                ProductId.Text = (drv["productId"]).ToString();
+                ProductName.Text = (drv["productName"]).ToString();
+                ProductPrice.Text = (drv["productPrice"]).ToString();
+                ProductDescription.Text = (drv["productDescription"]).ToString();
+                ProductCategory.Text = (drv["productCategory"]).ToString();
+                ProductImgPath.Text = (drv["ProductImgPath"]).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Du mangler at markere en række");
+            }
         }
 
         /// <summary>
@@ -153,7 +175,7 @@ namespace WPF_Client
             var shop = proxy.GetShop(admin.ShopId);
             //Create a local saving object
             var saving = new Saving();
-            var warehouse = proxy.GetWarehouse(int.Parse(WarehouseIdField.Text));
+
             //Takes the date selected and makes them a datetime, instead of strings
             var startDate = StartDate.SelectedDate;
             var endDate = EndDate.SelectedDate;
@@ -171,6 +193,7 @@ namespace WPF_Client
             }
             else
             {
+                var warehouse = proxy.GetWarehouse(int.Parse(WarehouseIdField.Text));
                 if (warehouse.SavingId != null)
                     saving.Id = warehouse.SavingId.Value;
                 //Adding saving with a warehouse
@@ -304,15 +327,22 @@ namespace WPF_Client
         public void LoadWarehouseProduct()
         {
             var drv = (DataRowView)ProductWarehouse.SelectedItem;
-            ProductIdWareHouse.Text = (drv["productId"]).ToString();
-            MinAmount.Text = (drv["wareHouseMinStock"]).ToString();
-            NewAmount1.Text = (drv["warehouseStock"]).ToString();
-            ProductName1.Text = (drv["productName"]).ToString();
-            WarehouseIdField.Text = (drv["warehouseId"]).ToString();
-            SavingPercent.Text = (drv["savingPercent"]).ToString();
-            SavingIdField.Text = (drv["warehouseSavingId"]).ToString();
-            StartDate.Text = (drv["savingStartDate"]).ToString();
-            EndDate.Text = (drv["savingEndDate"]).ToString();
+            if (drv != null)
+            {
+                ProductIdWareHouse.Text = (drv["productId"]).ToString();
+                MinAmount.Text = (drv["wareHouseMinStock"]).ToString();
+                NewAmount1.Text = (drv["warehouseStock"]).ToString();
+                ProductName1.Text = (drv["productName"]).ToString();
+                WarehouseIdField.Text = (drv["warehouseId"]).ToString();
+                SavingPercent.Text = (drv["savingPercent"]).ToString();
+                SavingIdField.Text = (drv["warehouseSavingId"]).ToString();
+                StartDate.Text = (drv["savingStartDate"]).ToString();
+                EndDate.Text = (drv["savingEndDate"]).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Du mangler at markere ind række"); 
+            }
         }
 
         //Used to update the tabel of the warehouse tab
@@ -378,17 +408,24 @@ namespace WPF_Client
         private void LoadShopIntoTextField_Click(object sender, RoutedEventArgs e)
         {
             var drv = (DataRowView)ShopList.SelectedItem;
-            ShopIdField.Text = (drv["shopId"]).ToString();
-            ShopNameField.Text = (drv["shopName"]).ToString();
-            ShopAddressField.Text = (drv["shopAddress"]).ToString();
-            ShopCVRField.Text = (drv["shopCVR"]).ToString();
-            //Replace the semicolons with new lines because of the database
-            var openingTimeRaw = (drv["ShopOpeningTime"]).ToString();
-            var newOpeningTime = openingTimeRaw.Replace(";", "\r\n");
-            ShopOpeningTimesField.Text = newOpeningTime;
-            var chainId = (drv["ShopChainId"]).ToString();
-            ShopList_SelectionChanged();
-            ChainList.FindName(chainId);
+            if (drv != null)
+            {
+                ShopIdField.Text = (drv["shopId"]).ToString();
+                ShopNameField.Text = (drv["shopName"]).ToString();
+                ShopAddressField.Text = (drv["shopAddress"]).ToString();
+                ShopCVRField.Text = (drv["shopCVR"]).ToString();
+                //Replace the semicolons with new lines because of the database
+                var openingTimeRaw = (drv["ShopOpeningTime"]).ToString();
+                var newOpeningTime = openingTimeRaw.Replace(";", "\r\n");
+                ShopOpeningTimesField.Text = newOpeningTime;
+                var chainId = (drv["ShopChainId"]).ToString();
+                ShopList_SelectionChanged();
+                ChainList.FindName(chainId);
+            }
+            else
+            {
+                MessageBox.Show("Du mangler at markere en række"); 
+            }
         }
         /// <summary>
         /// Delete the selected shop in the datatable
@@ -564,8 +601,13 @@ namespace WPF_Client
         {
             BestilNemtServiceClient proxy = new BestilNemtServiceClient();
             var wId = WarehouseIdField.Text;
+            if (wId.Equals(""))
+            {
+                MessageBox.Show("Du mangler at markere indlæse et felt");
+            }
             proxy.DeleteWarehouse(int.Parse(wId));
             FillProductWareHouse();
+            ClearWareHouseFields();
         }
 
         private void ClearAllShopFields_Click(object sender, RoutedEventArgs e)
