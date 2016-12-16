@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using WebClient.BestilNemtServiceRef;
 
@@ -90,29 +91,34 @@ namespace WebClient.Controllers
             // Set the Username to the email for the Customer
             login.Username = customer.Email;
             // Alert if the Customer name is null
-            if (customer.Name == null)
+            if (string.IsNullOrEmpty(customer.Name) || customer.Name.Length < 4)
             {
-                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje navn'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje navn, navnet skal være fornavn og efternavn'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
             }
             // Alert if the Customer address is null
-            if (customer.Address == null)
+            if (string.IsNullOrEmpty(customer.Address) || customer.Address.Length < 4)
             {
-                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje adresse'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+                return Content("<script language='javascript' type='text/javascript'>alert('Du mangler at tilføje valid adresse'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
             }
             // Alert if the Customer email is under 6 digit
-            if (customer.Email.Length < 6)
+            if (string.IsNullOrEmpty(customer.Email) || customer.Email.Length < 6)
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Email Min. 6 bogstaver'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
             }
+            var dateTime = Convert.ToDateTime(customer.Birthday);
+            if (dateTime == new DateTime(0001, 01, 01, 00, 00, 00))
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Dato ikke korrekt, skal skrives i følgende format: dd-mm-yyyy'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
+            }
             // Alert if the Customer password is under 6 digit
-            if (login.Password.Length < 6)
+            if (string.IsNullOrEmpty(login.Password) || login.Password.Length < 6)
             {
                 return Content("<script language='javascript' type='text/javascript'>alert('Kodeord Min. 6 cifre'); window.location.replace('http://localhost:50483/Login/CreateLogin');</script>");
             }
             // Add the Customer with the login object
             proxy.AddCustomerWithLogin(customer, login);
             // Reload to Index
-            return RedirectToAction("Index");
+            return Content("<script language='javascript' type='text/javascript'>alert('Bruger tilføjet'); window.location.replace('http://localhost:50483');</script>");
         }
 
         /// <summary>
