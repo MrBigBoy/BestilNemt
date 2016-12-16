@@ -58,6 +58,10 @@ namespace WPF_Client
             {
                 MessageBox.Show("Du mangler skrive en kategori");
             }
+            if (ProductDescription.Text.Equals(""))
+            {
+                MessageBox.Show("Du skal have udfyldt beskrivelse");
+            }
             else
             {
                 //Set the textbox text to correspond to the product attributes
@@ -109,13 +113,14 @@ namespace WPF_Client
         private void DeleteProduct_Click(object sender, RoutedEventArgs e)
         {
             var proxy = new BestilNemtServiceClient();
-            //Parse the textfield from a string to an int
+            //checks for you have loadet, a product
             if (ProductId.Text.Equals(""))
             {
                 MessageBox.Show("Indlæse venligst et produkt før du prøver at slette det");
             }
             else
             {
+                //Parse the textfield from a string to an int
                 var id = int.Parse(ProductId.Text);
                 //Contact the WCF to delete the ID, that it got from the textfield
                 proxy.DeleteProduct(id);
@@ -135,19 +140,26 @@ namespace WPF_Client
             var proxy = new BestilNemtServiceClient();
             //Create an empty product
             var product = new Product();
-            //Parse the textfield from a string to an int
-            product.Id = int.Parse(ProductId.Text);
-            //Gets the rest of the textfields and adds them to the local product
-            product.Name = ProductName.Text;
-            product.Price = decimal.Parse(ProductPrice.Text);
-            product.Category = ProductCategory.Text;
-            product.Description = ProductDescription.Text;
-            product.ImgPath = ProductImgPath.Text;
-            //Sends the local product with the ID to update the specific product
-            proxy.UpdateProduct(product);
-            //Updates the datatable
-            FillDataGridProducts();
-            ClearProductTextField();
+            if (ProductId.Text.Equals(""))
+            {
+                MessageBox.Show("Du skal have indlæst et produkt");
+            }
+            else
+            {
+                //Parse the textfield from a string to an int
+                product.Id = int.Parse(ProductId.Text);
+                //Gets the rest of the textfields and adds them to the local product
+                product.Name = ProductName.Text;
+                product.Price = decimal.Parse(ProductPrice.Text);
+                product.Category = ProductCategory.Text;
+                product.Description = ProductDescription.Text;
+                product.ImgPath = ProductImgPath.Text;
+                //Sends the local product with the ID to update the specific product
+                proxy.UpdateProduct(product);
+                //Updates the datatable
+                FillDataGridProducts();
+                ClearProductTextField();
+            }
         }
 
         /// <summary>
@@ -290,38 +302,46 @@ namespace WPF_Client
             {
                 MessageBox.Show("Du har glemt at tilføje et antal");
             }
-            if (Convert.ToInt32(NewAmount1.Text) < Convert.ToInt32(MinAmount.Text))
+            if (MinAmount.Text.Equals(""))
             {
-                MessageBox.Show("Nye Antal kan ikke være mindre min. Antal");
+                MessageBox.Show("Du mangler tilføje et minamount");
             }
             else
             {
-
-                var shopIdAdmin = admin.ShopId;
-                //we find the shop for the currentuser/admin
-                var getShop = proxy.GetShop(shopIdAdmin);
-                //Make a new instance of warehouse 
-                var warehouse = new Warehouse();
-                //Get the productID 
-                var productId = int.Parse(ProductIdWareHouse.Text);
-                //GetAllWarehousebyShopid() is a list, so we make a foreach loop, and find the corret warehouse =
-                //with right productID
-                var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
-                foreach (var w in warehouses)
+                //var newamount = Int32.TryParse(NewAmount1.Text);
+                //var minamount = Int32.TryParse(MinAmount.Text);
+                if (Convert.ToInt32(NewAmount1.Text) < Convert.ToInt32(MinAmount.Text))
                 {
-                    if (w.Product.Id == productId)
-                    {
-                        warehouse = w;
-                    }
+                    MessageBox.Show("Nye Antal kan ikke være mindre min. Antal");
                 }
-                //sets value for textbox
-                warehouse.Stock = int.Parse(NewAmount1.Text);
-                warehouse.MinStock = int.Parse(MinAmount.Text);
-                warehouse.Shop = getShop;
-                //we update warehouse with a new amount
-                proxy.UpdateWarehouse(warehouse);
-                FillProductWareHouse();
-                MessageBox.Show("Dit Antal er nu blevet opdateret");
+                else
+                {
+                    var shopIdAdmin = admin.ShopId;
+                    //we find the shop for the currentuser/admin
+                    var getShop = proxy.GetShop(shopIdAdmin);
+                    //Make a new instance of warehouse 
+                    var warehouse = new Warehouse();
+                    //Get the productID 
+                    var productId = int.Parse(ProductIdWareHouse.Text);
+                    //GetAllWarehousebyShopid() is a list, so we make a foreach loop, and find the corret warehouse =
+                    //with right productID
+                    var warehouses = proxy.GetAllWarehousesByShopId(getShop.Id);
+                    foreach (var w in warehouses)
+                    {
+                        if (w.Product.Id == productId)
+                        {
+                            warehouse = w;
+                        }
+                    }
+                    //sets value for textbox
+                    warehouse.Stock = int.Parse(NewAmount1.Text);
+                    warehouse.MinStock = int.Parse(MinAmount.Text);
+                    warehouse.Shop = getShop;
+                    //we update warehouse with a new amount
+                    proxy.UpdateWarehouse(warehouse);
+                    FillProductWareHouse();
+                    MessageBox.Show("Dit Antal er nu blevet opdateret");
+                }
             }
         }
         //loading tabel into the fields
@@ -342,7 +362,7 @@ namespace WPF_Client
             }
             else
             {
-                MessageBox.Show("Du mangler at markere ind række"); 
+                MessageBox.Show("Du mangler at markere ind række");
             }
         }
 
@@ -383,22 +403,37 @@ namespace WPF_Client
         {
             var proxy = new BestilNemtServiceClient();
             var drv = (DataRowView)ChainList.SelectedItem;
-            var shop = new Shop
+            if (ShopNameField.Text.Equals(""))
             {
-                Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString())),
-                Name = ShopNameField.Text,
-                Address = ShopAddressField.Text,
-                Cvr = ShopCVRField.Text
-            };
-            //Get the chain id form the ChainDataTable, and get the chain from the prooxy
-            //Replace the the new lines with semicolons because of the database
-            var openingTimeRaw = ShopOpeningTimesField.Text;
-            var newOpeningTime = openingTimeRaw.Replace("\r\n", ";");
-            shop.OpeningTime = newOpeningTime;
-            shop.Warehouses = new List<Warehouse>().ToArray();
-            proxy.AddShop(shop);
-            FillDataGridShop();
-            ClearAllShopTextFields();
+                MessageBox.Show("Du mangler giv det et navn");
+            }
+            if (ShopAddressField.Text.Equals(""))
+            {
+                MessageBox.Show("Du mangler give butikken et navn");
+            }
+            if (ShopCVRField.Text.Equals(""))
+            {
+                MessageBox.Show("Du mangler Skrive cvr Nummer");
+            }
+            else
+            {
+                var shop = new Shop
+                {
+                    Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString())),
+                    Name = ShopNameField.Text,
+                    Address = ShopAddressField.Text,
+                    Cvr = ShopCVRField.Text
+                };
+                //Get the chain id form the ChainDataTable, and get the chain from the prooxy
+                //Replace the the new lines with semicolons because of the database
+                var openingTimeRaw = ShopOpeningTimesField.Text;
+                var newOpeningTime = openingTimeRaw.Replace("\r\n", ";");
+                shop.OpeningTime = newOpeningTime;
+                shop.Warehouses = new List<Warehouse>().ToArray();
+                proxy.AddShop(shop);
+                FillDataGridShop();
+                ClearAllShopTextFields();
+            }
         }
 
         /// <summary>
@@ -425,7 +460,7 @@ namespace WPF_Client
             }
             else
             {
-                MessageBox.Show("Du mangler at markere en række"); 
+                MessageBox.Show("Du mangler at markere en række");
             }
         }
         /// <summary>
@@ -436,10 +471,18 @@ namespace WPF_Client
         private void DeleteShop_Click(object sender, RoutedEventArgs e)
         {
             var proxy = new BestilNemtServiceClient();
-            var shopId = ShopIdField.Text;
-            proxy.DeleteShop(int.Parse(shopId));
-            FillDataGridShop();
-            ClearAllShopTextFields();
+            //checks tabel shopid is null 
+            if (ShopIdField.Text.Equals(""))
+            {
+                MessageBox.Show("Du mangler at indlæse et butik");
+            }
+            else
+            {
+                var shopId = ShopIdField.Text;
+                proxy.DeleteShop(int.Parse(shopId));
+                FillDataGridShop();
+                ClearAllShopTextFields();
+            }
         }
         /// <summary>
         /// Updates the shop with the data inputed in the textfields
@@ -452,29 +495,47 @@ namespace WPF_Client
             var proxy = new BestilNemtServiceClient();
             //Gets the selected item in the datatable
             var drv = (DataRowView)ChainList.SelectedItem;
-            //create empty table
-            var shop = new Shop();
-            //Get id from text field
-            shop.Id = int.Parse(ShopIdField.Text);
-            //Get chainId from ChainTable
-            shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
-            //Get name address and CVR from the other text fields
-            shop.Name = ShopNameField.Text;
-            shop.Address = ShopAddressField.Text;
-            shop.Cvr = ShopCVRField.Text;
-            //Gets the opening time form the textfield and sets it as a var
-            var openingTimeRaw = ShopOpeningTimesField.Text;
-            //Replaces the new lines with semicolons because of the databse
-            var newOpeningTime = openingTimeRaw.Replace("\r\n", ";");
-            //sets the opening time
-            shop.OpeningTime = newOpeningTime;
-            //Updates empty warehouse for the shop
-            shop.Warehouses = new List<Warehouse>().ToArray();
-            //Sends the new shop for the update with the shopId
-            proxy.UpdateShop(shop);
-            //Update the datatabel
-            FillDataGridShop();
-            ClearAllShopTextFields();
+            if (ShopIdField.Text.Equals(""))
+            {
+                MessageBox.Show("Du skal indlæse en butik");
+            }
+            else
+            {
+                if (ShopNameField.Text.Equals(""))
+                {
+                    MessageBox.Show("Du mangler giv det et navn");
+                }
+                if (ShopAddressField.Text.Equals(""))
+                {
+                    MessageBox.Show("Du mangler give butikken et beskrivelse");
+                }
+                if (ShopCVRField.Text.Equals(""))
+                {
+                    MessageBox.Show("Du mangler Skrive cvr Nummer");
+                }
+                //create empty table
+                var shop = new Shop();
+                //Get id from text field
+                shop.Id = int.Parse(ShopIdField.Text);
+                //Get chainId from ChainTable
+                shop.Chain = proxy.GetChain(int.Parse(drv["chainId"].ToString()));
+                //Get name address and CVR from the other text fields
+                shop.Name = ShopNameField.Text;
+                shop.Address = ShopAddressField.Text;
+                shop.Cvr = ShopCVRField.Text;
+                //Gets the opening time form the textfield and sets it as a var
+                var openingTimeRaw = ShopOpeningTimesField.Text;
+                //Replaces the new lines with semicolons because of the databse
+                var newOpeningTime = openingTimeRaw.Replace("\r\n", ";");
+                //sets the opening time
+                shop.OpeningTime = newOpeningTime;
+                //Updates empty warehouse for the shop
+                shop.Warehouses = new List<Warehouse>().ToArray();
+                //Sends the new shop for the update with the shopId
+                proxy.UpdateShop(shop);
+                //Update the datatabel
+                FillDataGridShop();
+            }
         }
 
         private void UpdateAmount_Click(object sender, RoutedEventArgs e)
@@ -614,9 +675,12 @@ namespace WPF_Client
             {
                 MessageBox.Show("Du mangler at markere indlæse et felt");
             }
-            proxy.DeleteWarehouse(int.Parse(wId));
-            FillProductWareHouse();
-            ClearWareHouseFields();
+            else
+            {
+                proxy.DeleteWarehouse(int.Parse(wId));
+                FillProductWareHouse();
+                ClearWareHouseFields();
+            }
         }
         /// <summary>
         /// Clears all the textfields with the press of a button

@@ -74,7 +74,7 @@
                     <TextBox x:Name="MinAmount" HorizontalAlignment="Left" Height="23" Margin="10,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" PreviewTextInput="NumberValidationTextBox"/>
                     <Label x:Name="NewAmount" Content="Nyt antal" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.947,-9"/>
                     <TextBox x:Name="NewAmount1" HorizontalAlignment="Left" Height="23" Margin="10,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" PreviewTextInput="NumberValidationTextBox"/>
-                    <DataGrid x:Name="ProductWarehouse" Margin="180,5,5,5" AutoGenerateColumns="False" FontWeight="Bold" SelectionMode="Single" IsReadOnly="True">
+                    <DataGrid x:Name="ProductWarehouse" Margin="180,5,5,5" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ProduktId" Binding="{Binding productId}" Width="70" />
                             <DataGridTextColumn Header="VareHusId" Binding="{Binding warehouseId}" Width="70" />
