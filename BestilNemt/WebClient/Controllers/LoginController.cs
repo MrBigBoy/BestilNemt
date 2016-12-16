@@ -49,7 +49,9 @@ namespace WebClient.Controllers
             login = proxy.Login(login);
             // Login is now null if the username and password not match
             if (login == null)
-                return RedirectToAction("Index", "Login");
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Brugernavn eller Adganskode er forkert'); window.location.replace('http://localhost:50483/Login/SignIn');</script>");
+            }
             // Save the new login object to session
             Session["Login"] = login;
             // Save the person to the cart
