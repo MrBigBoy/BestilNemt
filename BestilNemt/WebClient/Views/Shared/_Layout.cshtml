@@ -175,7 +175,7 @@
                             <li class="divider"></li>
                             @* Show a link to the cart *@
                             <li>
-                                <a class="text-center" onclick="location.href = '@Url.Action("GetCart", "Cart" , new { id=shoppingCart.Id })'">
+                                <a class="text-center" onclick="location.href = '@Url.Action(" GetCart", "Cart" , new { id=shoppingCart.Id })'">
                                     Vis kurv
                                 </a>
                             </li>
@@ -190,13 +190,17 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
+
+    </div>
+    <div class="container body-content">
         <footer>
             <p>&copy; @DateTime.Now.Year - Bestil Nemt Inc.</p>
         </footer>
     </div>
 
 </body>
+
 </html>
