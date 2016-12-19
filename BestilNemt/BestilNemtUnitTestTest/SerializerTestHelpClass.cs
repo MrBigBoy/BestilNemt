@@ -5,7 +5,7 @@ namespace BestilNemtUnitTestTest
 {
      public class SerializerTestHelpClass
     {
-        //Based on https://msdn.microsoft.com/en-us/library/mt693218.aspx
+        //Based on https://msdn.microsoft.com/en-us/library/mt693218.aspx taken from Rasmus Cristiansen Knap
         public static T TestSerialize<T>(T objectToSerialize)
             where T : class
         {

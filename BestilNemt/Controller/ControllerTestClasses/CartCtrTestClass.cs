@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer;
 using Models;
@@ -16,12 +15,6 @@ namespace Controller.ControllerTestClasses
             carts.Add(cart);
             idCounter++;
             return cart.Id;
-        }
-
-        public Cart GetCart(int id)
-        {
-            return carts.FirstOrDefault(c => c.Id == id);
-
         }
 
         public List<Cart> GetAllCarts()

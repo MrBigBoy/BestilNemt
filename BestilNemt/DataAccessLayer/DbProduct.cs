@@ -111,31 +111,6 @@ namespace DataAccessLayer
             return products;
         }
 
-        ///// <summary>
-        ///// Get all products
-        ///// </summary>
-        ///// <returns>
-        ///// List of products
-        ///// </returns>
-        //public List<Product> GetAllProducts()
-        //{
-        //    var products = new List<Product>();
-        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var command = new SqlCommand("SELECT * FROM Product", conn);
-        //        var reader = command.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            // Build the Product object
-        //            var product = ObjectBuilder.CreateProduct(reader);
-        //            // Add to the list
-        //            products.Add(product);
-        //        }
-        //    }
-        //    return products;
-        //}
-
         /// <summary>
         /// Get all Sold products
         /// </summary>
@@ -277,7 +252,7 @@ namespace DataAccessLayer
             return i;
         }
 
-      public DataTable GetDataGridProducts()
+        public DataTable GetDataGridProducts()
         {
             var cmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath from Product";
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))

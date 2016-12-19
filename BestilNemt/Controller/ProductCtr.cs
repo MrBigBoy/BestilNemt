@@ -78,30 +78,7 @@ namespace Controller
         {
             return DbProduct.GetProduct(i);
         }
-
-        ///// <summary>
-        ///// Get all Products
-        ///// </summary>
-        ///// <returns>
-        ///// List of Products
-        ///// </returns>
-        //public List<Product> GetAllProducts()
-        //{
-        //    return DbProduct.GetAllProducts();
-        //}
-
-        ///// <summary>
-        ///// Get all Product starting with the Name
-        ///// </summary>
-        ///// <param name="input"></param>
-        ///// <returns>
-        ///// List of Product
-        ///// </returns>
-        //public List<Product> GetAllProductsByName(string input)
-        //{
-        //    return DbProduct.GetAllProductsByName(input);
-        //}
-
+        
         /// <summary>
         /// Get all sold products
         /// </summary>
@@ -124,11 +101,24 @@ namespace Controller
             return DbProduct.GetAllProductsWithSavings();
         }
 
+        /// <summary>
+        /// Get Data Grid for Product
+        /// </summary>
+        /// <returns>
+        /// DataTable
+        /// </returns>
         public DataTable GetDataGridProducts()
         {
             return DbProduct.GetDataGridProducts();
         }
 
+        /// <summary>
+        /// Get Warehouse with a Product by admin Id
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <returns>
+        /// DataTable
+        /// </returns>
         public DataTable GetProductWareHouse(int adminId)
         {
             return DbProduct.GetProductWarehouse(adminId);

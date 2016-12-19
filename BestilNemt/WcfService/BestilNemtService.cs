@@ -41,66 +41,6 @@ namespace WcfService
             SavingCtr = new SavingCtr(new DbSaving());
             WarehouseCtr = new WarehouseCtr(new DbWarehouse());
         }
-
-        ///// <summary>
-        ///// Add a Customer
-        ///// </summary>
-        ///// <param name="customer"></param>
-        ///// <returns>
-        ///// Id of Customer if added, else 0
-        ///// </returns>
-        //public int AddCustomer(Customer customer)
-        //{
-        //    return CustomerCtr.AddCustomer(customer);
-        //}
-
-        ///// <summary>
-        ///// Get a Customer by id
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// Return a Customer if found, else null
-        ///// </returns>
-        //public Customer GetCustomer(int id)
-        //{
-        //    return CustomerCtr.GetCustomer(id);
-        //}
-
-        ///// <summary>
-        ///// Get All Customers
-        ///// </summary>
-        ///// <returns>
-        ///// List of Customer
-        ///// </returns>
-        //public List<Customer> GetAllCustomer()
-        //{
-        //    return CustomerCtr.GetAllCustomer();
-        //}
-
-        ///// <summary>
-        ///// Update a Customer
-        ///// </summary>
-        ///// <param name="customer"></param>
-        ///// <returns>
-        ///// Return 1 if Customer was updated, else 0
-        ///// </returns>
-        //public int UpdateCustomer(Customer customer)
-        //{
-        //    return CustomerCtr.UpdateCustomer(customer);
-        //}
-
-        ///// <summary>
-        ///// Delete a Customer
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// Return 1 if Customer was deleted, else 0
-        ///// </returns>
-        //public int DeleteCustomer(int id)
-        //{
-        //    return CustomerCtr.DeleteCustomer(id);
-        //}
-
         ///// <summary>
         ///// Add a Admin
         ///// </summary>
@@ -126,17 +66,6 @@ namespace WcfService
         }
 
         ///// <summary>
-        ///// Get all Admins
-        ///// </summary>
-        ///// <returns>
-        ///// List of Admin
-        ///// </returns>
-        //public List<Admin> GetAllAdmins()
-        //{
-        //    return AdminCtr.GetAllAdmins();
-        //}
-
-        ///// <summary>
         ///// Update a Admin
         ///// </summary>
         ///// <param name="admin"></param>
@@ -158,65 +87,6 @@ namespace WcfService
         //public int DeleteAdmin(int id)
         //{
         //    return AdminCtr.DeleteAdmin(id);
-        //}
-
-        ///// <summary>
-        ///// Add a Company
-        ///// </summary>
-        ///// <param name="company"></param>
-        ///// <returns>
-        ///// Id of Company if added, else 0
-        ///// </returns>
-        //public int AddCompany(Company company)
-        //{
-        //    return CompanyCtr.AddCompany(company);
-        //}
-
-        ///// <summary>
-        ///// Get a Company by id
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// Return Company if found, else null
-        ///// </returns>
-        //public Company GetCompany(int id)
-        //{
-        //    return CompanyCtr.GetCompany(id);
-        //}
-
-        ///// <summary>
-        ///// Get all Companies
-        ///// </summary>
-        ///// <returns>
-        ///// List of Company
-        ///// </returns>
-        //public List<Company> GetAllCompany()
-        //{
-        //    return CompanyCtr.GetAllCompany();
-        //}
-
-        ///// <summary>
-        ///// Update a Company
-        ///// </summary>
-        ///// <param name="company"></param>
-        ///// <returns>
-        ///// Return 1 if Company was updated, else 0
-        ///// </returns>
-        //public int UpdateCompany(Company company)
-        //{
-        //    return CompanyCtr.UpdateCompany(company);
-        //}
-
-        ///// <summary>
-        ///// Delete a Company
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// Return 1 if Company was deleted, else 0
-        ///// </returns>
-        //public int DeleteCompany(int id)
-        //{
-        //    return CompanyCtr.RemoveCompany(id);
         //}
 
         /// <summary>
@@ -242,17 +112,6 @@ namespace WcfService
         {
             return ShopController.GetShop(id);
         }
-
-        ///// <summary>
-        ///// Get all Shops
-        ///// </summary>
-        ///// <returns>
-        ///// List of Shop
-        ///// </returns>
-        //public List<Shop> GetAllShops()
-        //{
-        //    return ShopController.GetAllShops();
-        //}
 
         /// <summary>
         /// Get all shops a Chain Id
@@ -325,18 +184,6 @@ namespace WcfService
         }
 
         ///// <summary>
-        ///// Update a Chain
-        ///// </summary>
-        ///// <param name="chain"></param>
-        ///// <returns>
-        ///// Return 1 if Chain was updated, else 0
-        ///// </returns>
-        //public int UpdateChain(Chain chain)
-        //{
-        //    return ChainCtr.UpdateChain(chain);
-        //}
-
-        ///// <summary>
         ///// Delete a Chain
         ///// </summary>
         ///// <param name="id"></param>
@@ -371,17 +218,6 @@ namespace WcfService
         {
             return ProductCtr.GetProduct(id);
         }
-
-        ///// <summary>
-        ///// Get all Products
-        ///// </summary>
-        ///// <returns>
-        ///// List of Product
-        ///// </returns>
-        //public List<Product> GetAllProducts()
-        //{
-        //    return ProductCtr.GetAllProducts();
-        //}
 
         /// <summary>
         /// Get all Sold Products
@@ -453,30 +289,6 @@ namespace WcfService
             return CartCtr.AddCartWithPartOrders(cart);
         }
 
-        ///// <summary>
-        ///// Get a Cart
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// Cart if found, else null
-        ///// </returns>
-        //public Cart GetCart(int id)
-        //{
-        //    return CartCtr.GetCart(id);
-        //}
-
-        ///// <summary>
-        ///// Get a Cart with a list of PartOrders
-        ///// </summary>
-        ///// <param name="cartId"></param>
-        ///// <returns>
-        ///// Cart if found, else null
-        ///// </returns>
-        //public Cart GetCartWithPartOrders(int cartId)
-        //{
-        //    return CartCtr.GetCartWithPartOrders(cartId);
-        //}
-
         /// <summary>
         /// Get all carts
         /// </summary>
@@ -499,55 +311,6 @@ namespace WcfService
         {
             return CartCtr.GetAllCartsByPersonId(personId);
         }
-
-        ///// <summary>
-        ///// Update a Cart
-        ///// </summary>
-        ///// <param name="cart"></param>
-        ///// <returns>
-        ///// 1 if cart was updated, else 0
-        ///// </returns>
-        //public int UpdateCart(Cart cart)
-        //{
-        //    return CartCtr.UpdateCart(cart);
-        //}
-
-        ///// <summary>
-        ///// Delete a Cart
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// 1 if Cart was deleted, else 0
-        ///// </returns>
-        //public int DeleteCart(int id)
-        //{
-        //    return CartCtr.DeleteCart(id);
-        //}
-
-        ///// <summary>
-        ///// Add a PartOrder to a Cart
-        ///// </summary>
-        ///// <param name="cart"></param>
-        ///// <param name="partOrder"></param>
-        ///// <returns>
-        ///// 1 if the partOrder was added to the cart
-        ///// </returns>
-        //public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
-        //{
-        //    return CartCtr.AddPartOrderToCart(cart, partOrder);
-        //}
-
-        ///// <summary>
-        ///// Add a Login
-        ///// </summary>
-        ///// <param name="login"></param>
-        ///// <returns>
-        ///// if of Login if added, else 0
-        ///// </returns>
-        //public int AddLogin(Login login)
-        //{
-        //    return LoginCtr.AddLogin(login);
-        //}
 
         /// <summary>
         /// Login with a login object
@@ -573,54 +336,6 @@ namespace WcfService
         //    return LoginCtr.UpdateLogin(login);
         //}
 
-        ///// <summary>
-        ///// Delete a Login
-        ///// </summary>
-        ///// <param name="login"></param>
-        ///// <returns>
-        ///// Return 1 if Login was deleted, else 0
-        ///// </returns>
-        //public int DeleteLogin(Login login)
-        //{
-        //    return LoginCtr.DeleteLogin(login);
-        //}
-
-        ///// <summary>
-        ///// Get a PartOrder by id
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// PartOrder if found, else null
-        ///// </returns>
-        //public PartOrder GetPartOrder(int id)
-        //{
-        //    return PartOrderCtr.GetPartOrder(id);
-        //}
-
-        ///// <summary>
-        ///// Update a PartOrder
-        ///// </summary>
-        ///// <param name="partOrder"></param>
-        ///// <returns>
-        ///// 1 if PartOrder was updated, else 0
-        ///// </returns>
-        //public int UpdatePartOrder(PartOrder partOrder)
-        //{
-        //    return PartOrderCtr.UpdatePartOrder(partOrder);
-        //}
-
-        ///// <summary>
-        ///// Delete a PartOrder
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// 1 if PartOrder was deleted, else 0
-        ///// </returns>
-        //public int DeletePartOrder(int id)
-        //{
-        //    return PartOrderCtr.DeletePartOrder(id);
-        //}
-
         /// <summary>
         /// Add a PartOrder
         /// </summary>
@@ -632,17 +347,6 @@ namespace WcfService
         {
             return PartOrderCtr.AddPartOrder(partOrder);
         }
-
-        ///// <summary>
-        ///// Get all PartOrders
-        ///// </summary>
-        ///// <returns>
-        ///// List of PartOrder
-        ///// </returns>
-        //public List<PartOrder> GetAllPartOrders()
-        //{
-        //    return PartOrderCtr.GetAllPartOrders();
-        //}
 
         /// <summary>
         /// Add a Saving
@@ -669,29 +373,6 @@ namespace WcfService
             return SavingCtr.GetSaving(id);
         }
 
-        ///// <summary>
-        ///// Get all Savings
-        ///// </summary>
-        ///// <returns>
-        ///// List of Saving
-        ///// </returns>
-        //public List<Saving> GetAllSavings()
-        //{
-        //    return SavingCtr.GetAllSavings();
-        //}
-
-        ///// <summary>
-        ///// Update a Saving
-        ///// </summary>
-        ///// <param name="saving"></param>
-        ///// <returns>
-        ///// 1 if Saving is updated, else 0
-        ///// </returns>
-        //public int UpdateSaving(Saving saving)
-        //{
-        //    return SavingCtr.UpdateSaving(saving);
-        //}
-
         /// <summary>
         /// Delete a Saving
         /// </summary>
@@ -703,19 +384,6 @@ namespace WcfService
         {
             return SavingCtr.DeleteSaving(id);
         }
-
-        ///// <summary>
-        ///// Get a product by Name
-        ///// Used to find all products with a name similar to input
-        ///// </summary>
-        ///// <param name="input"></param>
-        ///// <returns>
-        ///// List of Product
-        ///// </returns>
-        //public List<Product> GetAllProductsByName(string input)
-        //{
-        //    return ProductCtr.GetAllProductsByName(input);
-        //}
 
         /// <summary>
         /// Add a Warehouse
@@ -740,17 +408,6 @@ namespace WcfService
         {
             return WarehouseCtr.GetWarehouse(id);
         }
-
-        ///// <summary>
-        ///// Get all Warehouses
-        ///// </summary>
-        ///// <returns>
-        ///// list of Warehouse
-        ///// </returns>
-        //public List<Warehouse> GetAllWarehouses()
-        //{
-        //    return WarehouseCtr.GetAllWarehouses();
-        //}
 
         /// <summary>
         /// Get all Warehouses by a Shop id
@@ -801,26 +458,59 @@ namespace WcfService
             return CustomerCtr.AddCustomerWithLogin(customer, login);
         }
 
+        /// <summary>
+        /// Get a Warehouse by product id
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="shopId"></param>
+        /// <returns>
+        /// Warehouse if found, else null
+        /// </returns>
         public Warehouse GetWarehouseByProductId(int productId, int shopId)
         {
             return WarehouseCtr.GetWarehouseByProductId(productId, shopId);
         }
 
+        /// <summary>
+        /// Get data grid for Product
+        /// </summary>
+        /// <returns>
+        /// DataTable
+        /// </returns>
         public DataTable GetDataGridProducts()
         {
             return ProductCtr.GetDataGridProducts();
         }
 
+        /// <summary>
+        /// Get a Warehouse with a Product by a adminId
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <returns>
+        /// DataTable
+        /// </returns>
         public DataTable GetProductWareHouse(int adminId)
         {
             return ProductCtr.GetProductWareHouse(adminId);
         }
 
+        /// <summary>
+        /// Get a Chain DataTable
+        /// </summary>
+        /// <returns>
+        /// DataTable
+        /// </returns>
         public DataTable GetChainData()
         {
             return ChainCtr.GetChainData();
         }
 
+        /// <summary>
+        /// Get Data Grid for Shop
+        /// </summary>
+        /// <returns>
+        /// DataTable
+        /// </returns>
         public DataTable GetDataGridShop()
         {
             return ShopController.GetDataGridShop();

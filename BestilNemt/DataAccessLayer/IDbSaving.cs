@@ -9,8 +9,6 @@ namespace DataAccessLayer
     {
         int AddSaving(Saving saving, Warehouse warehouse);
         Saving GetSaving(int id);
-        //List<Saving> GetAllSavings();
-        //int UpdateSaving(Saving saving);
         int DeleteSaving(int id);
     }
 }

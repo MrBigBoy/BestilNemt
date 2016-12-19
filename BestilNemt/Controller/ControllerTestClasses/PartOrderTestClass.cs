@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using DataAccessLayer;
 using Models;
 
@@ -24,14 +23,7 @@ namespace Controller.ControllerTestClasses
 
         private bool ValidatePartOrderInput(PartOrder partOrder)
         {
-            if (partOrder.Amount > 0 && partOrder.Product != null && partOrder.Cart != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return partOrder.Amount > 0 && partOrder.Product != null && partOrder.Cart != null;
         }
     }
 }

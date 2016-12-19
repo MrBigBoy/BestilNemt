@@ -41,17 +41,6 @@ namespace Controller
         }
 
         ///// <summary>
-        ///// Get all Admins
-        ///// </summary>
-        ///// <returns>
-        ///// List of Admin
-        ///// </returns>
-        //public List<Admin> GetAllAdmins()
-        //{
-        //    return DbAdmin.GetAllAdmins();
-        //}
-
-        ///// <summary>
         ///// Delete a Admin
         ///// </summary>
         ///// <param name="id"></param>

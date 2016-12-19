@@ -161,25 +161,6 @@ namespace BestilNemtUnitTestTest
             Assert.IsNotNull(flag);
         }
 
-        ///// <summary>
-        ///// Test a ProductCtr GetAllProducts
-        ///// The test is successfull if the flag is not null
-        ///// ERROR: Non
-        ///// </summary>
-        //[TestMethod]
-        //public void GetAllProductCtr()
-        //{
-        //    var productCtr = new ProductCtr(new ProductCtrTestClass());
-        //    var product1 = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", "Img path");
-        //    productCtr.AddProduct(product1);
-        //    var product2 = new Product("The product2 name", 34.56m, "The product2 description", "The product2 catagory", "Img path");
-        //    productCtr.AddProduct(product2);
-        //    var product3 = new Product("The product3 name", 45.67m, "The product3 description", "The product3 catagory", "Img path");
-        //    productCtr.AddProduct(product3);
-        //    var products = productCtr.GetAllProducts();
-        //    Assert.AreEqual(3, products.Count);
-        //}
-
         /// <summary>
         /// Test a ProductCtr UpdateProduct
         /// The test is successfull if the flag is 1
@@ -303,7 +284,7 @@ namespace BestilNemtUnitTestTest
         public void DeleteProductCtr()
         {
             var productCtr = new ProductCtr(new ProductCtrTestClass());
-            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory","Img path");
+            var product = new Product("The product1 name", 23.45m, "The product1 description", "The product1 catagory", "Img path");
             var flag = productCtr.AddProduct(product);
             flag = productCtr.DeleteProduct(flag);
             Assert.AreEqual(1, flag);
