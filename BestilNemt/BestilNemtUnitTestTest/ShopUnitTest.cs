@@ -25,12 +25,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -42,56 +43,58 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopDb()
+        public void GetShopDb()
         {
             var dbShop = new DbShop();
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
                 }
             };
             var i = dbShop.AddShop(shop);
-            var j = dbShop.FindShop(i);
+            var j = dbShop.GetShop(i);
             dbShop.DeleteShop(i);
             Assert.IsNotNull(j);
         }
 
-        [TestMethod]
-        public void FindAllShopDb()
-        {
-            var dbShop = new DbShop();
-            var shop = new Shop()
-            {
-                Name = "hello world",
-                Address = "Hello address",
-                Cvr = "12121212",
-                Warehouses = new List<Warehouse>(),
-                Chain = new Chain
-                {
-                    Id = 1,
-                    CVR = "12121212",
-                    Name = "",
-                    Persons = new List<Person>(),
-                    Shops = new List<Shop>()
-                }
-            };
-            var i = dbShop.AddShop(shop);
-            var i2 = dbShop.AddShop(shop);
-            var j = dbShop.FindAllShops();
-            dbShop.DeleteShop(i);
-            dbShop.DeleteShop(i2);
-            Assert.IsNotNull(j);
-        }
+        //[TestMethod]
+        //public void GetAllShopDb()
+        //{
+        //    var dbShop = new DbShop();
+        //    var shop = new Shop()
+        //    {
+        //        Name = "hello world",
+        //        Address = "Hello address",
+        //        OpeningTime = "Manday Never",
+        //        Cvr = "12121212",
+        //        Warehouses = new List<Warehouse>(),
+        //        Chain = new Chain
+        //        {
+        //            Id = 1,
+        //            Cvr = "12121212",
+        //            Name = "",
+        //            Persons = new List<Person>(),
+        //            Shops = new List<Shop>()
+        //        }
+        //    };
+        //    var i = dbShop.AddShop(shop);
+        //    var i2 = dbShop.AddShop(shop);
+        //    var j = dbShop.GetAllShops();
+        //    dbShop.DeleteShop(i);
+        //    dbShop.DeleteShop(i2);
+        //    Assert.IsNotNull(j);
+        //}
 
         [TestMethod]
         public void DeleteShopDb()
@@ -101,12 +104,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -125,12 +129,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -149,12 +154,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = null,
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -173,12 +179,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -197,12 +204,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = null,
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -221,12 +229,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -245,12 +254,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = null,
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -269,12 +279,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -294,11 +305,12 @@ namespace BestilNemtUnitTestTest
                 Name = null,
                 Address = null,
                 Cvr = null,
+                OpeningTime = "Manday Never",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -317,12 +329,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "",
                 Address = "",
+                OpeningTime = "Manday Never",
                 Cvr = "",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -341,6 +354,7 @@ namespace BestilNemtUnitTestTest
             {
                 Name = null,
                 Address = null,
+                OpeningTime = "Manday Never",
                 Cvr = null,
                 Warehouses = null
             };
@@ -350,19 +364,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtr()
+        public void GetShopCtr()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -375,19 +390,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailName()
+        public void GetShopCtrFailName()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
             {
                 Name = null,
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -400,19 +416,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailName2()
+        public void GetShopCtrFailName2()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
             {
                 Name = "",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -425,19 +442,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailAddress()
+        public void GetShopCtrFailAddress()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = null,
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -450,19 +468,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailAddress2()
+        public void GetShopCtrFailAddress2()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = "",
+                OpeningTime = "Manday Never",
                 Cvr = "Hello Cvr",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -475,19 +494,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailCvr()
+        public void GetShopCtrFailCvr()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = null,
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -500,19 +520,20 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailCvr2()
+        public void GetShopCtrFailCvr2()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Manday Never",
                 Cvr = "",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -525,7 +546,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailWarehouse()
+        public void GetShopCtrFailWarehouse()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -543,7 +564,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopCtrFailAll()
+        public void GetShopCtrFailAll()
         {
             var shopCtr = new ShopCtr(new ShopCtrTestClass());
             var shop = new Shop()
@@ -559,32 +580,32 @@ namespace BestilNemtUnitTestTest
             Assert.IsNull(j);
         }
 
-        [TestMethod]
-        public void FindAllShopCtr()
-        {
-            var shopCtr = new ShopCtr(new ShopCtrTestClass());
-            var shop = new Shop()
-            {
-                Name = "hello world",
-                Address = "Hello address",
-                Cvr = "Hello Cvr",
-                Warehouses = new List<Warehouse>(),
-                Chain = new Chain
-                {
-                    Id = 1,
-                    CVR = "12121212",
-                    Name = "",
-                    Persons = new List<Person>(),
-                    Shops = new List<Shop>()
-                }
-            };
-            var i = shopCtr.AddShop(shop);
-            var i2 = shopCtr.AddShop(shop);
-            var j = shopCtr.FindAllShops();
-            shopCtr.DeleteShop(i);
-            shopCtr.DeleteShop(i2);
-            Assert.IsNotNull(j);
-        }
+        //[TestMethod]
+        //public void GetAllShopCtr()
+        //{
+        //    var shopCtr = new ShopCtr(new ShopCtrTestClass());
+        //    var shop = new Shop()
+        //    {
+        //        Name = "hello world",
+        //        Address = "Hello address",
+        //        Cvr = "Hello Cvr",
+        //        Warehouses = new List<Warehouse>(),
+        //        Chain = new Chain
+        //        {
+        //            Id = 1,
+        //            Cvr = "12121212",
+        //            Name = "",
+        //            Persons = new List<Person>(),
+        //            Shops = new List<Shop>()
+        //        }
+        //    };
+        //    var i = shopCtr.AddShop(shop);
+        //    var i2 = shopCtr.AddShop(shop);
+        //    var j = shopCtr.GetAllShops();
+        //    shopCtr.DeleteShop(i);
+        //    shopCtr.DeleteShop(i2);
+        //    Assert.IsNotNull(j);
+        //}
 
         [TestMethod]
         public void DeleteShopCtr()
@@ -599,7 +620,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -625,12 +646,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -657,7 +679,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -684,7 +706,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -711,7 +733,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -738,7 +760,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -765,7 +787,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -792,7 +814,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -819,7 +841,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -846,7 +868,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -881,18 +903,19 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcf()
+        public void GetShopWcf()
         {
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -909,7 +932,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailName()
+        public void GetShopWcfFailName()
         {
             var shop = new Shop()
             {
@@ -920,7 +943,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -937,7 +960,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailName2()
+        public void GetShopWcfFailName2()
         {
             var shop = new Shop()
             {
@@ -948,7 +971,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -965,7 +988,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailAddress()
+        public void GetShopWcfFailAddress()
         {
             var shop = new Shop()
             {
@@ -976,7 +999,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -993,7 +1016,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailAddress2()
+        public void GetShopWcfFailAddress2()
         {
             var shop = new Shop()
             {
@@ -1004,7 +1027,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1021,7 +1044,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailCvr()
+        public void GetShopWcfFailCvr()
         {
             var shop = new Shop()
             {
@@ -1032,7 +1055,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1049,7 +1072,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailCvr2()
+        public void GetShopWcfFailCvr2()
         {
             var shop = new Shop()
             {
@@ -1060,7 +1083,7 @@ namespace BestilNemtUnitTestTest
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1077,7 +1100,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailWarehouse()
+        public void GetShopWcfFailWarehouse()
         {
             var shop = new Shop()
             {
@@ -1098,7 +1121,7 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindShopWcfFailAll()
+        public void GetShopWcfFailAll()
         {
             var shop = new Shop()
             {
@@ -1118,18 +1141,19 @@ namespace BestilNemtUnitTestTest
         }
 
         [TestMethod]
-        public void FindAllShopWcf()
+        public void GetAllShopWcf()
         {
             var shop = new Shop()
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()
@@ -1154,12 +1178,13 @@ namespace BestilNemtUnitTestTest
             {
                 Name = "hello world",
                 Address = "Hello address",
+                OpeningTime = "Never",
                 Cvr = "12121212",
                 Warehouses = new List<Warehouse>(),
                 Chain = new Chain
                 {
                     Id = 1,
-                    CVR = "12121212",
+                    Cvr = "12121212",
                     Name = "",
                     Persons = new List<Person>(),
                     Shops = new List<Shop>()

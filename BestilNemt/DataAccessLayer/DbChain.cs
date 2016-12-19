@@ -1,6 +1,7 @@
 ﻿using Models;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DataAccessLayer
@@ -25,35 +26,61 @@ namespace DataAccessLayer
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Chain object
                     chain = ObjectBuilder.CreateChain(reader);
                 }
             }
             return chain;
         }
 
-        /// <summary>
-        /// Add a Chain
-        /// </summary>
-        /// <param name="chain"></param>
-        /// <returns>
-        /// Return 1 if Chain is added, else 0
-        /// </returns>
-        public int AddChain(Chain chain)
-        {
-            int id;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var command = new SqlCommand("INSERT INTO Chain (chainName, chainCVR) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr)", conn);
-                command.Parameters.AddWithValue("ChainName", chain.Name);
-                command.Parameters.AddWithValue("ChainCvr", chain.CVR);
-                id = (int)command.ExecuteScalar();
-            }
-            return id;
-        }
+        ///// <summary>
+        ///// Add a Chain
+        ///// </summary>
+        ///// <param name="chain"></param>
+        ///// <returns>
+        ///// Id of Chain if added, else 0
+        ///// </returns>
+        //public int AddChain(Chain chain)
+        //{
+        //    var id = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        // Set the isolation level to ReadCommitted
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "INSERT INTO Chain (chainName, chainCvr, chainImgPath) OUTPUT Inserted.chainId values (@ChainName, @ChainCvr, @ChainImgPath)";
+        //            cmd.Parameters.AddWithValue("ChainName", chain.Name);
+        //            cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
+        //            cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
+        //            // Get the id
+        //            id = (int)cmd.ExecuteScalar();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return id;
+        //}
 
         /// <summary>
-        /// Return a list of all chains
+        /// Get all Chains
         /// </summary>
         /// <returns>
         /// List of Chain
@@ -69,70 +96,119 @@ namespace DataAccessLayer
 
                 while (reader.Read())
                 {
+                    // Build the Chain object
                     var chain = ObjectBuilder.CreateChain(reader);
+                    // Add the chain to the list
                     chains.Add(chain);
                 }
             }
             return chains;
         }
 
-        /// <summary>
-        /// Update a Chain
-        /// </summary>
-        /// <param name="chain"></param>
-        /// <returns>
-        /// Return 1 if Chain is updated, else 0
-        /// </returns>
-        public int UpdateChain(Chain chain)
-        {
-            int i;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var command = new SqlCommand("UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr where chainId = @ChainId", conn);
-                command.Parameters.AddWithValue("chainId", chain.Id);
-                command.Parameters.AddWithValue("chainName", chain.Name);
-                command.Parameters.AddWithValue("chainCvr", chain.CVR);
-                i = command.ExecuteNonQuery();
-            }
-            return i;
-        }
+        ///// <summary>
+        ///// Update a Chain
+        ///// </summary>
+        ///// <param name="chain"></param>
+        ///// <returns>
+        ///// Return 1 if Chain is updated, else 0
+        ///// </returns>
+        //public int UpdateChain(Chain chain)
+        //{
+        //    var i = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        // Set the isolation level to ReadCommitted
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId";
+        //            cmd.Parameters.AddWithValue("ChainId", chain.Id);
+        //            cmd.Parameters.AddWithValue("ChainName", chain.Name);
+        //            cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
+        //            cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
+        //            i = cmd.ExecuteNonQuery();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return i;
+        //}
 
-        /// <summary>
-        /// Delete a Chain
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Chain is deleted, else 0
-        /// </returns>
-        public int DeleteChain(int id)
-        {
-            int i;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var command = new SqlCommand("DELETE FROM Chain WHERE chainId = @ChainId", conn);
-                command.Parameters.AddWithValue("ChainId", id);
-                i = command.ExecuteNonQuery();
-            }
-            return i;
-        }
+        ///// <summary>
+        ///// Delete a Chain
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Chain is deleted, else 0
+        ///// </returns>
+        //public int DeleteChain(int id)
+        //{
+        //    var i = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "DELETE FROM Chain WHERE chainId = @ChainId";
+        //            cmd.Parameters.AddWithValue("ChainId", id);
+        //            i = cmd.ExecuteNonQuery();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return i;
+        //}
 
-        /// <summary>
-        /// Return true if the connection if open, else false
-        /// </summary>
-        /// <returns>
-        /// Return true if the connection if open, else false
-        /// </returns>
-        public bool IsOpen()
+        public DataTable GetChainData()
         {
-            bool con;
+            const string cmdString = "Select chainId, chainName From Chain";
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
+                //Opens the connetion and sets the qurey to the cmdstring
                 conn.Open();
-                con = true;
+                var cmd = new SqlCommand(cmdString, conn);
+                //Adapts the data that the SQL returnns
+                var sda = new SqlDataAdapter(cmd);
+                //Makes a new table
+                var dt = new DataTable("Kæder");
+                //Fills the tabel
+                sda.Fill(dt);
+                return dt;
             }
-            return con;
         }
     }
 }

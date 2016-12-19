@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -19,36 +18,50 @@ namespace Controller.ControllerTestClasses
             products.Add(product);
             return idCounter++;
         }
-
-        public int RemoveProduct(int id)
-        {
-            return products.Remove(FindProduct(id)) ? 1 : 0;
-        }
-
-        public Product FindProduct(int id)
+        
+        public Product GetProduct(int id)
         {
             return products.FirstOrDefault(product => product.Id == id);
         }
 
-        public List<Product> FindAllProducts()
+        public List<Product> GetAllSoldProducts()
+        {
+            return products;
+        }
+
+        public List<Product> GetAllProductsWithSavings()
         {
             return products;
         }
 
         public int UpdateProduct(Product product)
         {
-            var returnedProduct = FindProduct(product.Id);
+            var returnedProduct = GetProduct(product.Id);
             returnedProduct.Name = product.Name;
             returnedProduct.Price = product.Price;
             returnedProduct.Category = product.Category;
             returnedProduct.Description = product.Description;
-            returnedProduct.SavingId = product.SavingId;
             return 1;
         }
 
         public int DeleteProduct(int id)
         {
-            return products.Remove(FindProduct(id)) ? 1 : 0;
+            return products.Remove(GetProduct(id)) ? 1 : 0;
+        }
+
+        public List<Product> GetAllProductsByName(string input)
+        {
+            return products.FindAll(product => product.Name == input);
+        }
+
+        public DataTable GetDataGridProducts()
+        {
+            return new DataTable();
+        }
+
+        public DataTable GetProductWarehouse(int adminId)
+        {
+            return new DataTable();
         }
     }
 }

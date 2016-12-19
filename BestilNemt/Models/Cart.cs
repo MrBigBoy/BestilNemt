@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace Models
 {
+    /// <summary>
+    /// The Cart class
+    /// </summary>
     [DataContract]
     public class Cart
     {
@@ -15,24 +18,49 @@ namespace Models
         [DataMember]
         public decimal TotalPrice { get; set; }
 
-        public Cart(int id, List<PartOrder> partOrders, decimal totalprice)
-        {
-            Id = id;
-            PartOrders = partOrders;
-            TotalPrice = totalprice; 
-        }
+        [DataMember]
+        public int PersonId { get; set; }
 
+        [DataMember]
+        public int ShopId { get; set; }
+
+        [DataMember]
+        public int ChainId { get; set; }
+
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
         public Cart()
         {
-            Id = Id;
             PartOrders = new List<PartOrder>();
-            TotalPrice = TotalPrice;
         }
 
-        public Cart(List<PartOrder> partOrders, decimal totalprice)
+        /// <summary>
+        /// Constructor without id
+        /// </summary>
+        /// <param name="partOrders"></param>
+        /// <param name="totalprice"></param>
+        /// <param name="personId"></param>
+        /// <param name="shopId"></param>
+        public Cart(List<PartOrder> partOrders, decimal totalprice, int personId, int shopId)
         {
             PartOrders = partOrders;
             TotalPrice = totalprice;
+            PersonId = personId;
+            ShopId = shopId;
+        }
+
+        /// <summary>
+        /// Constructor with id using the constructor without id with this
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="partOrders"></param>
+        /// <param name="totalprice"></param>
+        /// <param name="personId"></param>
+        /// <param name="shopId"></param>
+        public Cart(int id, List<PartOrder> partOrders, decimal totalprice, int personId, int shopId) : this(partOrders, totalprice, personId, shopId)
+        {
+            Id = id;
         }
     }
 }

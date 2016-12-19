@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using Models;
 
@@ -13,7 +10,7 @@ namespace Controller.ControllerTestClasses
     {
         private List<Customer> customers = new List<Customer>();
         private int idCounter = 1;
-        public int Create(Customer customer)
+        public int AddCustomer(Customer customer)
         {
             customer.Id = idCounter;
             customers.Add(customer);
@@ -21,24 +18,24 @@ namespace Controller.ControllerTestClasses
             return customer.Id;
         }
 
-        public int RemoveCustomer(int id)
+        public int DeleteCustomer(int id)
         {
-            return customers.Remove(FindCustomer(id)) ? 1 : 0;
+            return customers.Remove(GetCustomer(id)) ? 1 : 0;
         }
 
-        public Customer FindCustomer(int id)
+        public Customer GetCustomer(int id)
         {
             return customers.FirstOrDefault(customer => customer.Id == id);
         }
 
-        public List<Customer> FindAllCustomer()
+        public List<Customer> GetAllCustomer()
         {
             return customers;
         }
 
         public int UpdateCustomer(Customer customer)
         {
-            var returnedCust = FindCustomer(customer.Id);
+            var returnedCust = GetCustomer(customer.Id);
             returnedCust.Name = customer.Name;
             returnedCust.Birthday = customer.Birthday;
             returnedCust.Address = customer.Address;
@@ -50,5 +47,9 @@ namespace Controller.ControllerTestClasses
             return 1;
         }
 
+        public int AddCustomerWithLogin(Customer customer, Login login)
+        {
+            return 1;
+        }
     }
 }

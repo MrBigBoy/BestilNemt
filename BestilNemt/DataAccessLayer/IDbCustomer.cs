@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
-using Models;
+﻿using Models;
 
 namespace DataAccessLayer
 
 {
+    /// <summary>
+    /// Interfaces for DbCustomer
+    /// </summary>
     public interface IDbCustomer
     {
-        int Create(Customer customer);
-        int RemoveCustomer(int id);
-        Customer FindCustomer(int id);
-        List<Customer> FindAllCustomer();
-        int UpdateCustomer(Customer customer);
+        //int AddCustomer(Customer customer);
+        //int DeleteCustomer(int id);
+        Customer GetCustomer(int id);
+        //List<Customer> GetAllCustomer();
+        //int UpdateCustomer(Customer customer);
+        int AddCustomerWithLogin(Customer customer, Login login); 
     }
     
 }

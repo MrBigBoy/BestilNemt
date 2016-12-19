@@ -4,13 +4,17 @@ using Models;
 
 namespace Controller
 {
-   public class CartCtr
+    public class CartCtr
     {
-        public IDbCart IDbCart { get; set; }
+        public IDbCart DbCart { get; set; }
 
+        /// <summary>
+        /// Constructor for Cart Controller
+        /// </summary>
+        /// <param name="iDbCart"></param>
         public CartCtr(IDbCart iDbCart)
         {
-            IDbCart = iDbCart;
+            DbCart = iDbCart;
         }
 
         /// <summary>
@@ -22,46 +26,119 @@ namespace Controller
         /// </returns>
         public int AddCart(Cart cart)
         {
-           return IDbCart.AddCart(cart);
+            return DbCart.AddCart(cart);
+        }
+
+        ///// <summary>
+        ///// Return a Cart by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return Cart if found, else null
+        ///// </returns>
+        //public Cart GetCart(int id)
+        //{
+        //    return DbCart.GetCart(id);
+        //}
+
+        ///// <summary>
+        ///// Return a Cart by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return Cart if found, else null
+        ///// </returns>
+        //public Cart GetCartWithPartOrders(int id)
+        //{
+        //    return DbCart.GetCartWithPartOrders(id);
+        //}
+
+        ///// <summary>
+        ///// Method to update a Cart
+        ///// </summary>
+        ///// <param name="cart"></param>
+        ///// <returns>
+        ///// Return 1 if cart is updated, else 0
+        ///// </returns>
+        //public int UpdateCart(Cart cart)
+        //{
+        //    return DbCart.UpdateCart(cart);
+        //}
+
+        ///// <summary>
+        ///// Method to delete a Cart
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if cart is deleted, else 0
+        ///// </returns>
+        //public int DeleteCart(int id)
+        //{
+        //    return DbCart.DeleteCart(id);
+        //}
+
+        /// <summary>
+        /// Get all Carts
+        /// </summary>
+        /// <returns>
+        /// List of Cart
+        /// </returns>
+        public List<Cart> GetAllCarts()
+        {
+            return DbCart.GetAllCarts();
+        }
+
+        ///// <summary>
+        ///// Add a PartOrder to a Cart
+        ///// </summary>
+        ///// <param name="cart"></param>
+        ///// <param name="partOrder"></param>
+        ///// <returns>
+        ///// Return 1 if PartOrder is added, else 0;
+        ///// </returns>
+        //public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        //{
+        //    if (cart != null && partOrder != null)
+        //    {
+        //        return DbCart.AddPartOrderToCart(cart, partOrder);
+        //    }
+        //    return 0;
+        //}
+
+        /// <summary>
+        /// Add a Cart with PartOrders to the database
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns>
+        /// List of Cart
+        /// </returns>
+        public int AddCartWithPartOrders(Cart cart)
+        {
+            return ValidateCart(cart) ? DbCart.AddCartWithPartOrders(cart) : 0;
         }
 
         /// <summary>
-        /// Return a Cart by id
+        /// Get all Cart by a Person Id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="personId"></param>
         /// <returns>
-        /// Return Cart if found, else null
+        /// List of cart
         /// </returns>
-        public Cart FindCart(int id)
+        public List<Cart> GetAllCartsByPersonId(int personId)
         {
-            return IDbCart.FindCart(id) ;
+            return DbCart.GetAllCartsByPersonId(personId);
         }
 
-        public int UpdateCart(Cart cart)
+        /// <summary>
+        /// This method validate Cart fields
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns>
+        /// True if fields is correct, else false
+        /// </returns>
+        public bool ValidateCart(Cart cart)
         {
-            return IDbCart.UpdateCart(cart);
-        }
-
-        public int DeleteCart(int id)
-        {
-            return IDbCart.DeleteCart(id);
-        }
-
-        public List<Cart> GetAllCarts()
-        {
-            return IDbCart.GetAllCarts();
-        }
-
-        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
-        {
-            if (cart != null && partOrder != null)
-            {
-                return IDbCart.AddPartOrderToCart(cart, partOrder);
-            }
-            else
-            {
-                return 0;
-            }
+            return cart.PersonId != 0 && cart.PartOrders.Count > 0;
         }
     }
 }

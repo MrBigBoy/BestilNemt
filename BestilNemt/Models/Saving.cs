@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models
 {
+    /// <summary>
+    /// The Saving class
+    /// </summary>
     [DataContract]
     public class Saving
     {
@@ -26,7 +25,9 @@ namespace Models
         [DataMember]
         private List<Product> Products { get; set; }
 
-
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
         public Saving()
         {
             StartDate = DateTime.Now;
@@ -35,21 +36,32 @@ namespace Models
             Products = new List<Product>();
         }
 
-        public Saving(int id, DateTime startdate, DateTime enddate, double savingpercent, List<Product> products)
-        {
-            Id = id;
-            StartDate = startdate;
-            EndDate = enddate;
-            SavingPercent = savingpercent;
-            Products = products;
-        }
-
+        /// <summary>
+        /// Constructor without id
+        /// </summary>
+        /// <param name="startdate"></param>
+        /// <param name="enddate"></param>
+        /// <param name="savingpercent"></param>
+        /// <param name="products"></param>
         public Saving(DateTime startdate, DateTime enddate, double savingpercent, List<Product> products)
         {
             StartDate = startdate;
             EndDate = enddate;
             SavingPercent = savingpercent;
             Products = products;
+        }
+
+        /// <summary>
+        /// Constructor with id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="startdate"></param>
+        /// <param name="enddate"></param>
+        /// <param name="savingpercent"></param>
+        /// <param name="products"></param>
+        public Saving(int id, DateTime startdate, DateTime enddate, double savingpercent, List<Product> products) : this(startdate, enddate, savingpercent, products)
+        {
+            Id = id;
         }
     }
 }

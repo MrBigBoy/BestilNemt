@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using Models;
 
@@ -12,54 +14,57 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="product"></param>
         /// <returns>
-        /// Return the id of the product from the identity on the database else 0
+        /// Id of Product if added, else 0
         /// </returns>
         public int AddProduct(Product product)
         {
-            int i;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var cmd =
-                    new SqlCommand("INSERT INTO Product(productName, productPrice, productDescription, productCategory, productSavingId) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @SavingId)", conn);
-                cmd.Parameters.AddWithValue("Name", product.Name);
-                cmd.Parameters.AddWithValue("Price", product.Price);
-                cmd.Parameters.AddWithValue("Description", product.Description);
-                cmd.Parameters.AddWithValue("Category", product.Category);
-                cmd.Parameters.AddWithValue("SavingId", product.SavingId);
-                i = (int)cmd.ExecuteScalar();
+                var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "INSERT INTO Product(productName, productPrice, productDescription, productCategory, productImgPath) OUTPUT Inserted.productId VALUES(@Name, @Price, @Description, @Category, @ImgPath)";
+                    cmd.Parameters.AddWithValue("Name", product.Name);
+                    cmd.Parameters.AddWithValue("Price", product.Price);
+                    cmd.Parameters.AddWithValue("Description", product.Description);
+                    cmd.Parameters.AddWithValue("Category", product.Category);
+                    cmd.Parameters.AddWithValue("ImgPath", product.ImgPath);
+                    // Get the id
+                    i = (int)cmd.ExecuteScalar();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    // The transaction failed
+                    try
+                    {
+                        // Try rolling back
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        // Rolling back failed
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
 
         /// <summary>
-        /// Delete Product
+        /// Get a Product
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return 1 if the product was deleted, else 0
+        /// product if found, else null
         /// </returns>
-        public int RemoveProduct(int id)
-        {
-            int i;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE productId = @ProductId", conn);
-                command.Parameters.AddWithValue("ProductId", id);
-                i = command.ExecuteNonQuery();
-            }
-            return i;
-        }
-
-        /// <summary>
-        /// Return Product
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return Product if found, else null
-        /// </returns>
-        public Product FindProduct(int id)
+        public Product GetProduct(int id)
         {
             Product product = null;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
@@ -68,10 +73,9 @@ namespace DataAccessLayer
                 var command = new SqlCommand("SELECT * FROM Product WHERE productId=@ProductId", conn);
                 command.Parameters.AddWithValue("ProductId", id);
                 var reader = command.ExecuteReader();
-
-                if (!reader.HasRows) return null;
                 while (reader.Read())
                 {
+                    // Build the object
                     product = ObjectBuilder.CreateProduct(reader);
                 }
             }
@@ -79,22 +83,103 @@ namespace DataAccessLayer
         }
 
         /// <summary>
-        /// Return a List of all Products
+        /// Get all Product similar to name
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>
+        /// List of Product
+        /// </returns>
+        public List<Product> GetAllProductsByName(string input)
+        {
+            var products = new List<Product>();
+            using (
+                var conn =
+                    new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var command = new SqlCommand("SELECT * FROM Product WHERE productName LIKE @name", conn);
+                command.Parameters.AddWithValue("name", input);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Build the Product object
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    // Add the Product to the list
+                    products.Add(product);
+                }
+            }
+            return products;
+        }
+
+        ///// <summary>
+        ///// Get all products
+        ///// </summary>
+        ///// <returns>
+        ///// List of products
+        ///// </returns>
+        //public List<Product> GetAllProducts()
+        //{
+        //    var products = new List<Product>();
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var command = new SqlCommand("SELECT * FROM Product", conn);
+        //        var reader = command.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            // Build the Product object
+        //            var product = ObjectBuilder.CreateProduct(reader);
+        //            // Add to the list
+        //            products.Add(product);
+        //        }
+        //    }
+        //    return products;
+        //}
+
+        /// <summary>
+        /// Get all Sold products
         /// </summary>
         /// <returns>
         /// List of products
         /// </returns>
-        public List<Product> FindAllProducts()
+        public List<Product> GetAllSoldProducts()
         {
             var products = new List<Product>();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("SELECT * FROM Product", conn);
+                var command = new SqlCommand("SELECT * FROM Cart, PartOrder, Product WHERE cartId = partOrderCartId AND partOrderProductId = productId", conn);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    // Build the Product object
                     var product = ObjectBuilder.CreateProduct(reader);
+                    // Add to the list
+                    products.Add(product);
+                }
+            }
+            return products;
+        }
+
+        /// <summary>
+        /// Get all Products with Saving
+        /// </summary>
+        /// <returns>
+        /// List of products
+        /// </returns>
+        public List<Product> GetAllProductsWithSavings()
+        {
+            var products = new List<Product>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var command = new SqlCommand("SELECT * FROM Product, Saving, Warehouse WHERE warehouseProductId = productId AND warehouseSavingId = savingId", conn);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Build the Product object
+                    var product = ObjectBuilder.CreateProduct(reader);
+                    // Add to the list
                     products.Add(product);
                 }
             }
@@ -110,18 +195,41 @@ namespace DataAccessLayer
         /// </returns>
         public int UpdateProduct(Product product)
         {
-            int i;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productSavingId = @ProductSavingId WHERE productId = @ProductId", conn);
-                command.Parameters.AddWithValue("ProductId", product.Id);
-                command.Parameters.AddWithValue("ProductName", product.Name);
-                command.Parameters.AddWithValue("ProductPrice", product.Price);
-                command.Parameters.AddWithValue("ProductDescription", product.Description);
-                command.Parameters.AddWithValue("ProductCategory", product.Category);
-                command.Parameters.AddWithValue("ProductSavingId", product.SavingId);
-                i = command.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
+                var transaction = conn.BeginTransaction(IsolationLevel.Snapshot);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "UPDATE Product SET productName = @ProductName, productPrice = @ProductPrice, productDescription = @ProductDescription, productCategory = @productCategory, productImgPath = @pImgPath WHERE productId = @ProductId";
+                    cmd.Parameters.AddWithValue("ProductId", product.Id);
+                    cmd.Parameters.AddWithValue("ProductName", product.Name);
+                    cmd.Parameters.AddWithValue("ProductPrice", product.Price);
+                    cmd.Parameters.AddWithValue("ProductDescription", product.Description);
+                    cmd.Parameters.AddWithValue("ProductCategory", product.Category);
+                    cmd.Parameters.AddWithValue("pImgPath", product.ImgPath);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    // The transaction failed
+                    try
+                    {
+                        // Try rolling back
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        // Rolling back failed
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
         }
@@ -135,15 +243,79 @@ namespace DataAccessLayer
         /// </returns>
         public int DeleteProduct(int id)
         {
-            int i;
+            var i = 0;
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
             {
                 conn.Open();
-                var command = new SqlCommand("DELETE FROM Product WHERE productId = @ProductId", conn);
-                command.Parameters.AddWithValue("ProductId", id);
-                i = command.ExecuteNonQuery();
+                var cmd = conn.CreateCommand();
+                // Set the isolation level to ReadCommitted
+                var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+                cmd.Transaction = transaction;
+                try
+                {
+                    cmd.CommandText = "DELETE FROM Warehouse WHERE warehouseProductId = @ProductId; DELETE FROM Product WHERE productId = @ProductId";
+                    cmd.Parameters.AddWithValue("ProductId", id);
+                    i = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    // The transaction failed
+                    try
+                    {
+                        // Try rolling back
+                        transaction.Rollback();
+                        Console.WriteLine("Transaction was rolled back");
+                    }
+                    catch (SqlException)
+                    {
+                        // Rolling back failed
+                        Console.WriteLine("Transaction rollback failed");
+                    }
+                }
             }
             return i;
+        }
+
+      public DataTable GetDataGridProducts()
+        {
+            var cmdString = "Select productId, productName, productPrice, productDescription, productCategory, productImgPath from Product";
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                //Open the connection and send the CmdString
+                conn.Open();
+                var cmd = new SqlCommand(cmdString, conn);
+                //Take the returned SQL and adapt it to a datatable
+                var sda = new SqlDataAdapter(cmd);
+                var dt = new DataTable("Produkter");
+                //Fill out the datatable 
+                sda.Fill(dt);
+                return dt;
+            }
+        }
+
+        public DataTable GetProductWarehouse(int adminId)
+        {
+            var cmdString = "SELECT productId, warehouseId, productName, productPrice,(productPrice-productPrice*savingPercent/100) as savingPrice, warehouseStock," +
+                            "wareHouseMinStock, administratorShopId, warehouseSavingId, savingPercent," +
+                            "CONVERT(varchar, savingStartDate, 106) as savingStartDate, CONVERT(varchar, savingEndDate, 106) as savingEndDate " +
+                            "FROM Warehouse " +
+                            "LEFT JOIN Saving On savingId = warehouseSavingId " +
+                            "LEFT JOIN Product On productId = warehouseproductId " +
+                            "LEFT JOIN Administrator on administratorShopId = warehouseShopId " +
+                            "WHERE administratorShopId = 1 and warehouseShopId = 1 and warehouseProductId = productId and(savingId = warehouseSavingId Or warehouseSavingId Is NULL);";
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+            {
+                conn.Open();
+                var cmd = new SqlCommand(cmdString, conn);
+                cmd.Parameters.AddWithValue("adminShopId", adminId);
+                //Takes what the SQL return and adapts it so it can be used in a datatabel
+                var sda = new SqlDataAdapter(cmd);
+                var dt = new DataTable("ProductWareHouse");
+                //fills the datatabel
+                sda.Fill(dt);
+                return dt;
+            }
         }
     }
 }

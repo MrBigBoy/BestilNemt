@@ -3,13 +3,17 @@ using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbWarehouse
+    /// </summary>
     public interface IDbWarehouse
     {
         int AddWarehouse(Warehouse warehouse);
-        Warehouse FindWarehouse(int id);
-        List<Warehouse> FindAllWarehouses();
-        List<Warehouse> FindAllWarehousesByShopId(int shopId);
+        Warehouse GetWarehouse(int id);
+        //List<Warehouse> GetAllWarehouses();
+        List<Warehouse> GetAllWarehousesByShopId(int shopId);
         int UpdateWarehouse(Warehouse warehouse);
         int DeleteWarehouse(int id);
+        Warehouse GetWarehouseByProductId(int productId, int shopId);
     }
 }

@@ -1,0 +1,118 @@
+﻿@using WebClient.BestilNemtServiceRef
+@model List<Cart>
+
+@{
+    ViewBag.Title = "Kvitteringer";
+    // Get the shop from Session
+    var shop = (Shop)Session["Shop"] ?? new Shop();
+    // Get the carts list from Model
+    var carts = @Model;
+}
+
+<h2>Kvitteringer</h2>
+@{
+    // If the count is over 0
+    if (carts.Count > 0)
+    {
+        var proxy = new BestilNemtServiceClient();
+        // Foreach cart show the partOrders
+        foreach (var cart in carts)
+        {
+            // Get the chain mathing the chain Id from the cart
+            var chain = proxy.GetChain(cart.ChainId);
+            // Show a Chain logo
+            <img alt="" height="50" src="/Images/Chains/@chain.ImgPath">
+            // Get the list of PartOrders
+            var partOrders = cart.PartOrders;
+            // If the list contains something useful
+            if (partOrders.Count > 0)
+            {
+                // Show a table
+                <table style="border-collapse: collapse">
+                    <tr>
+                        <th>
+                            <!-- image -->
+                        </th>
+                        <th>
+                            Navn
+                        </th>
+                        <th>
+                            Stk Pris
+                        </th>
+                        <th>
+                            Antal
+                        </th>
+                        <th>
+                            Pris
+                        </th>
+                    </tr>
+                    @* Foreach partOrder show the content for the product *@
+                    @foreach (var partOrder in cart.PartOrders)
+                    {
+                        // Get the product
+                        var product = partOrder.Product;
+                        <tr>
+                            @* Show a product image *@
+                            <td>
+                                <img alt="" height="50" src="/Images/ProductPictures/@product.ImgPath">
+                            </td>
+                            @* Show the Product name *@
+                            <td>
+                                @product.Name
+                            </td>
+                            @{
+
+                                // Get the warehouse mathcing the product id and the shop id
+                                var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
+                                // Get the saving Id from the warehouse
+                                var savingId = warehouse2.SavingId;
+                                // If there is a saving
+                                if (savingId != null)
+                                {
+                                    // Get the saving
+                                    var saving = proxy.GetSaving(savingId.Value);
+                                    // Show the price as ex: 10 kr - 20 %
+                                    var str = @product.Price + " kr - " +
+                                              saving.SavingPercent + " %";
+                                    <td>
+                                        @str
+                                    </td>
+                                }
+                                else
+                                {
+                                    // Show the product price
+                                    <td>
+                                        @product.Price kr
+                                    </td>
+                                }
+                            }
+                            @* Show the amount of the PartOrder *@
+                            <td>
+                                @partOrder.Amount
+                            </td>
+                            @* Show the PartPrice of the PartOrder, which is calculated by the amount and the product price *@
+                            <td>
+                                @partOrder.PartPrice kr
+                            </td>
+                        </tr>
+                                }
+
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        @* Show total price of all partOrders *@
+                        <td>
+                            I alt @cart.TotalPrice kr.
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                                        }
+                                    }
+                                }
+}

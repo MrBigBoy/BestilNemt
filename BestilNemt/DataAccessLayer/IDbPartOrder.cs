@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-using Models;
+﻿using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbPartOrder
+    /// </summary>
     public interface IDbPartOrder
     {
         int AddPartOrder(PartOrder partOrder);
-        int RemovePartOrder(int id);
-        PartOrder FindPartOrder(int id);
-        List<PartOrder> GetAllPartOrders();
-        int UpdatePartOrder(PartOrder partOrder);
+        //int DeletePartOrder(int id);
+        //PartOrder GetPartOrder(int id);
+        //List<PartOrder> GetAllPartOrders();
+        //int UpdatePartOrder(PartOrder partOrder);
     }
 }

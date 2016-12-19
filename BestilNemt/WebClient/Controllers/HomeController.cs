@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using WebClient.BestilNemtServiceRef;
 
 namespace WebClient.Controllers
 {
+    /// <summary>
+    /// This controller is used to all Chain related controls
+    /// </summary>
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -15,23 +18,21 @@ namespace WebClient.Controllers
             using (proxy)
             {
                 proxy.Open();
+                // Get all Chains
                 var chains = proxy.GetAllChains();
-                return View(chains);
+                // Get all products with a saving
+                var products = proxy.GetAllProductsWithSavings();
+                // Only have the products one time, comparing by id
+                var productList = products.DistinctBy(product => product.Id).ToList();
+                // Get all sold products
+                var soldProducts = proxy.GetAllSoldProducts();
+                // Only have the products one time, comparing by id
+                var soldProductsList = soldProducts.DistinctBy(product => product.Id).ToList();
+                // Make a Tuple with the three lists, the tuple is used to get three list to the cshtml page
+                var tuple = new Tuple<List<Chain>, List<Product>, List<Product>>(chains, soldProductsList, productList);
+                // Return the Tuple
+                return View(tuple);
             }
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using DataAccessLayer;
 using Models;
@@ -20,12 +21,12 @@ namespace Controller.ControllerTestClasses
 
         public int DeleteShop(int id)
         {
-            return shops.Remove(FindShop(id)) ? 1 : 0;
+            return shops.Remove(GetShop(id)) ? 1 : 0;
         }
 
         public int UpdateShop(Shop shop)
         {
-            var returnedShop = FindShop(shop.Id);
+            var returnedShop = GetShop(shop.Id);
             returnedShop.Name = shop.Name;
             returnedShop.Address = shop.Address;
             returnedShop.Cvr = shop.Cvr;
@@ -33,19 +34,19 @@ namespace Controller.ControllerTestClasses
             return 1;
         }
 
-        public List<Shop> FindAllShops()
-        {
-            return shops;
-        }
-
-        public List<Shop> FindAllShopsByChainId(int chainId)
+        public List<Shop> GetAllShopsByChainId(int chainId)
         {
             return shops.Where(shop => shop.Chain.Id == chainId).ToList();
         }
 
-        public Shop FindShop(int id)
+        public Shop GetShop(int id)
         {
             return shops.FirstOrDefault(shop => shop.Id == id);
+        }
+
+        public DataTable GetDataGridShop()
+        {
+            return  new DataTable();
         }
     }
 }

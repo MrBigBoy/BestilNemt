@@ -1,13 +1,49 @@
 ﻿@using WebClient.BestilNemtServiceRef
-
-@model List<Chain>
+@model Tuple<List<Chain>, List<Product>, List<Product>>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Kæder";
+    // Get the list of Chains from Model
+    var chains = Model.Item1;
+    // Get the list of Products from Model
+    var popProducts = Model.Item2;
+    // Get the list of products with a saving
+    var savProducts = Model.Item3;
 }
 
-<h2>Index</h2>
-@foreach (var chain in Model)
+@* For each chain show the logo in a button *@
+@foreach (var chain in chains)
 {
-    <h3>@chain.Name</h3>
+    var imgPath = "/Images/Chains/" + chain.ImgPath;
+    <button name=@chain.Name value="@chain.Id" class="button" style="width: 200px; height: 200px" onclick="location.href='@Url.Action("ShopList", "Shop", new { id = chain.Id })'">
+        <img src=@imgPath alt=@chain.Name style="width:200px;border:0;">
+    </button>
 }
+
+@* A div to hold two columns *@
+<div id="wrap">
+    @* The left column *@
+    <div id="left_col">
+        <h2 class="frontPage">Populære produkter</h2>
+        @* For each product show a product image in a button *@
+        @foreach (var product in popProducts)
+        {
+            var imgPath = "/Images/ProductPictures/" + product.ImgPath;
+            <button name=@product.Name value=@product.Id class="button" style="width: 200px; height: 200px" onclick="location.href = '@Url.Action("ProductPage", "Product", new {id = product.Id})'">
+                <img src=@imgPath alt="@product.Name" style="width: 200px; border: 0;">
+            </button>
+        }
+    </div>
+    @* The right column *@
+    <div id="right_col">
+        <h2 class="frontPage">Aktuelle tilbud</h2>
+        @* For each product show a product image in a button *@
+        @foreach (var product in savProducts)
+        {
+            var imgPath = "/Images/ProductPictures/" + product.ImgPath;
+            <button name=@product.Name value=@product.Id class="button" style="width: 200px; height: 200px" onclick="location.href = '@Url.Action("ProductPage", "Product", new {id = product.Id})'">
+                <img src=@imgPath alt="@product.Name" style="width: 200px; border: 0;">
+            </button>
+        }
+    </div>
+</div>

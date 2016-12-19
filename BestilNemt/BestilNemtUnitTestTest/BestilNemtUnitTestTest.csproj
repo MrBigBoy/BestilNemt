@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -57,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CartUnitTest.cs" />
+    <Compile Include="ConcurentTransactionTest.cs" />
     <Compile Include="LoginUnitTest.cs" />
     <Compile Include="CustomerUnitTest.cs" />
     <Compile Include="PartOrderUnitTest.cs" />
@@ -65,7 +67,6 @@
     <Compile Include="SerializerTestHelpClass.cs" />
     <Compile Include="SerializationTest.cs" />
     <Compile Include="ChainUnitTest.cs" />
-    <Compile Include="CompanyUnitTest.cs" />
     <Compile Include="AdminUnitTest.cs" />
     <Compile Include="ProductUnitTest.cs" />
     <Compile Include="Service References\BestilNemtServiceRef\Reference.cs">
@@ -75,7 +76,6 @@
     </Compile>
     <Compile Include="ShopUnitTest.cs" />
     <Compile Include="WarehouseUnitTest.cs" />
-    <Compile Include="WCFReadOnly.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -92,6 +92,7 @@
     <None Include="Properties\DataSources\Models.Shop.datasource" />
     <None Include="Properties\DataSources\Models.Warehouse.datasource" />
     <None Include="Properties\DataSources\Models.Warehouse1.datasource" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <None Include="Service References\BestilNemtServiceRef\Models.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -100,6 +101,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\BestilNemtServiceRef\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BestilNemtServiceRef\System.Data.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

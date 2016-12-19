@@ -1,15 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using Models;
 
 namespace DataAccessLayer
 {
+    /// <summary>
+    /// Interfaces for DbShop
+    /// </summary>
     public interface IDbShop
     {
         int AddShop(Shop shop);
         int DeleteShop(int id);
         int UpdateShop(Shop shop);
-        List<Shop> FindAllShops();
-        List<Shop> FindAllShopsByChainId(int chainId);
-        Shop FindShop(int id);
+        //List<Shop> GetAllShops();
+        List<Shop> GetAllShopsByChainId(int chainId);
+        Shop GetShop(int id);
+        DataTable GetDataGridShop();
     }
 }

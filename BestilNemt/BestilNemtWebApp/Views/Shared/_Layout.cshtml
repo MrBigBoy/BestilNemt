@@ -1,0 +1,202 @@
+﻿@using BestilNemtWebApp.BestilNemtServiceRef
+@using Login = BestilNemtWebApp.BestilNemtServiceRef.Login
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bestil Nemt</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            var t;
+
+            function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
+
+            t = { config: config };
+            var u = document, e = window, o = 'script', s = u.createElement(o), i, f; for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;) r('track' + i.pop()); return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== true && t['_' + i](config, r, u, e, o), s }), t;
+        }({
+            instrumentationKey: '11493d8e-cadf-4c0c-a0bd-f647a13aee8e'
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body>
+    @{
+        // Get the login from session
+        if (Session["Login"] == null)
+        {
+            var loginObj = new Login();
+            Session["Login"] = loginObj;
+        }
+        var login = (Login)Session["Login"];
+        // Get the cart from session
+        if (Session["ShoppingCart"] == null)
+        {
+            var cart = new Cart { PartOrders = new List<PartOrder>() };
+            Session["ShoppingCart"] = cart;
+        }
+        var shoppingCart = (Cart)Session["ShoppingCart"];
+        var partOrders = new List<PartOrder>();
+        var amount = 0;
+        if (shoppingCart != null)
+        {
+            // Get the PartOrders from the cart
+            partOrders = shoppingCart.PartOrders;
+            if (partOrders != null)
+            {
+                // Summerize the amount
+                amount += partOrders.Sum(partOrder => partOrder.Amount);
+            }
+        }
+        // get the shop from session
+        var shop = (Shop)Session["Shop"];
+    }
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            @*Brand and toggle get grouped for better mobile display*@
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" onclick="location.href = '@Url.Action("Index", "Home", new {id = shoppingCart.Id})'">Bestil Nemt</a>
+            </div>
+
+            @*Collect the nav links, forms, and other content for toggling*@
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    @{
+                        // Only show Produkter fane if shop is set
+                        if (shop != null)
+                        {
+                            <li>
+                                @Html.ActionLink("Produkter", "Product", "Product")
+                            </li>
+                        }
+                        // Show the Kvitteringer fane if the person id is set
+                        if (login.PersonId != 0)
+                        {
+                            <li>
+                                @Html.ActionLink("Kvitteringer", "Receipt", "Cart")
+                            </li>
+                        }
+                        // Show the message "You are shopping in here"
+                        if (shop != null)
+                        {
+                            <li>
+                                <h3>Du shopper nu i @shop.Name - @shop.Address</h3>
+                            </li>
+                        }
+                    }
+                </ul>
+                @* This div is used to hold the login button *@
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @{
+                            // If the person id is set it to the cart
+                            if (login.PersonId != 0)
+                            {
+                                // Set the PersonId to the cart
+                                shoppingCart.PersonId = login.PersonId;
+                                // Show a Log Off button
+                                <a class="LoginClass" onclick="location.href='@Url.Action("LogOff", "Login")';alert('Du logger nu af');">@login.Username.ToLower() Log af </a>
+                            }
+                            else
+                            {
+                                // Show a Log in button
+                                <a class="LoginClass" onclick="location.href='@Url.Action("Index", "Login")'">Log ind</a>
+                            }
+                        }
+                    </li>
+                    @* A dropdown to view the partOrders in the cart as a small image to the left, the name of the product and the price under the name *@
+                    <li class="dropdown">
+                        @* The button showing the amount of the products and a small icon *@
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @amount - Produkter<span class="caret"></span></a>
+                        @* The dropdown class *@
+                        <ul class="dropdown-menu dropdown-cart" role="menu">
+                            @{
+                                // if the partOrders has been set
+                                if (partOrders != null)
+                                {
+                                    // A backrunning loop to show a Product
+                                    for (var i = partOrders.Count - 1; i >= 0; i--)
+                                    {
+                                        // Get the product from the partOrder
+                                        var product = partOrders[i].Product;
+                                        // If the product is set
+                                        if (product != null)
+                                        {
+                                            <li>
+                                                <span class="item">
+                                                    <span class="item-left">
+                                                        @* Show a image of the product *@
+                                                        <img src=\Images\ProductPictures\@product.ImgPath alt="" width="50" />
+                                                        <span class="item-info">
+                                                            @{
+                                                                // Get the name of the product
+                                                                var name = product.Name;
+                                                                // Limit the show of the name to 15 digit
+                                                                if (name.Length > 15)
+                                                                {
+                                                                    <span>@product.Name.Substring(0, 15)</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span>@product.Name</span>
+                                                                }
+                                                                // If the amount of the partOrder is bigger than 1 show a X and the price after that
+                                                                if (partOrders[i].Amount > 1)
+                                                                {
+                                                                    <span>@partOrders[i].Amount X @product.Price kr</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    // Only show the price
+                                                                    <span>@product.Price kr</span>
+                                                                }
+                                                            }
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                                                        }
+                                                                    }
+                                                                }
+                            }
+                            <li class="divider"></li>
+                            @* Show a link to the cart *@
+                            <li>
+                                <a class="text-center" onclick="location.href = '@Url.Action("GetCart", "Cart" , new { id=shoppingCart.Id })'">
+                                    Vis kurv
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", false)
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Bestil Nemt Inc.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -3,8 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.Serialization;
 using System.Security.Cryptography;
 
 namespace DataAccessLayer
@@ -24,34 +24,59 @@ namespace DataAccessLayer
         public const int Pbkdf2Index = 4;
         public const int HashSections = 5;
 
-        /// <summary>
-        /// Add a Login
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns>
-        /// Return 1 if Login is added, else 0
-        /// </returns>
-        public int AddLogin(Login login)
-        {
-            var returnedValue = 0;
-            if (DownloadPersonId(login.Username) != 0)
-                return returnedValue;
-            var parts = CreateHash(login.Password);
-            using (
-                var conn =
-                    new SqlConnection(
-                        ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                // Now the connection is open
-                var cmd = new SqlCommand("INSERT into LoginTable values(@loginTableUsername,@loginTableParts,@loginTablePersonId)", conn);
-                cmd.Parameters.AddWithValue("loginTableUsername", login.Username);
-                cmd.Parameters.AddWithValue("loginTableParts", parts);
-                cmd.Parameters.AddWithValue("loginTablePersonId", login.PersonId);
-                returnedValue = cmd.ExecuteNonQuery();
-            }
-            return returnedValue;
-        }
+        ///// <summary>
+        ///// Add a Login
+        ///// </summary>
+        ///// <param name="login"></param>
+        ///// <returns>
+        ///// Id of Login if added, else 0
+        ///// </returns>
+        //public int AddLogin(Login login)
+        //{
+        //    var returnedValue = 0;
+        //    // Check if a person with the Username is already in the system
+        //    if (DownloadPersonId(login.Username) != 0)
+        //        return returnedValue;
+        //    // Create the parts for the password, containing all the information about a password to login
+        //    var parts = CreateHash(login.Password);
+        //    using (
+        //        var conn =
+        //            new SqlConnection(
+        //                ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        // Open the connection
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        // Set isolation level to ReadCommitted
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "INSERT into LoginTable output inserted.loginTableId values(@loginTableUsername,@loginTableParts,@loginTablePersonId)";
+        //            cmd.Parameters.AddWithValue("loginTableUsername", login.Username);
+        //            cmd.Parameters.AddWithValue("loginTableParts", parts);
+        //            cmd.Parameters.AddWithValue("loginTablePersonId", login.PersonId);
+        //            returnedValue = (int)cmd.ExecuteScalar();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return returnedValue;
+        //}
 
         /// <summary>
         /// Login with a Login object
@@ -62,55 +87,109 @@ namespace DataAccessLayer
         /// </returns>
         public Login Login(Login login)
         {
+            // Get the parts mathing the Username. The parts holds information about algoritm, number of iterations, salt and other stuff to try to login
             var parts = DownloadHash(login.Username);
-            if (!VerifyPassword(login.Password, parts))
+            // Verify the password
+            if (string.IsNullOrEmpty(parts) || !VerifyPassword(login.Password, parts))
+            {
+                // The password did not match the username, return a null
                 return null;
+            }
+            // The password did match, return the personId related to the username
             login.PersonId = DownloadPersonId(login.Username);
+            // return the Login object with the username, password and a personId
             return login;
         }
 
-        /// <summary>
-        /// Update a Login
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns>
-        /// Return 1 if Login is updated, else 0
-        /// </returns>
-        public int UpdateLogin(Login login)
-        {
-            var parts = CreateHash(login.Password);
-            int i;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = new SqlCommand("UPDATE LoginTable SET loginTableUsername=@LoginTableUsername, loginTableParts=@LoginTableParts WHERE loginTablePersonId=@LoginTablePersonId", conn);
-                cmd.Parameters.AddWithValue("LoginTableUsername", login.Username);
-                cmd.Parameters.AddWithValue("LoginTableParts", parts);
-                cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
-                i = cmd.ExecuteNonQuery();
-            }
-            return i;
-        }
+        ///// <summary>
+        ///// Update a Login
+        ///// </summary>
+        ///// <param name="login"></param>
+        ///// <returns>
+        ///// Return 1 if Login is updated, else 0
+        ///// </returns>
+        //public int UpdateLogin(Login login)
+        //{
+        //    // Create the Hash called parts holding all information to check for new passwords
+        //    var parts = CreateHash(login.Password);
+        //    var i = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        // Set isolation level to ReadCommitted
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "UPDATE LoginTable SET loginTableUsername=@LoginTableUsername, loginTableParts=@LoginTableParts WHERE loginTablePersonId=@LoginTablePersonId";
+        //            cmd.Parameters.AddWithValue("LoginTableUsername", login.Username);
+        //            cmd.Parameters.AddWithValue("LoginTableParts", parts);
+        //            cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
+        //            i = cmd.ExecuteNonQuery();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return i;
+        //}
 
-        /// <summary>
-        /// Delete a Login
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns>
-        /// Return 1 if Login is deleted, else 0
-        /// </returns>
-        public int DeleteLogin(Login login)
-        {
-            int i;
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-            {
-                conn.Open();
-                var cmd = new SqlCommand("DELETE FROM LoginTable WHERE loginTablePersonId = @LoginTablePersonId", conn);
-                cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
-                i = cmd.ExecuteNonQuery();
-            }
-            return i;
-        }
+        ///// <summary>
+        ///// Delete a Login
+        ///// </summary>
+        ///// <param name="login"></param>
+        ///// <returns>
+        ///// Return 1 if Login is deleted, else 0
+        ///// </returns>
+        //public int DeleteLogin(Login login)
+        //{
+        //    var i = 0;
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = conn.CreateCommand();
+        //        // Set isolation level to ReadCommitted
+        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
+        //        cmd.Transaction = transaction;
+        //        try
+        //        {
+        //            cmd.CommandText = "DELETE FROM LoginTable WHERE loginTablePersonId = @LoginTablePersonId";
+        //            cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
+        //            i = cmd.ExecuteNonQuery();
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception)
+        //        {
+        //            // The transaction failed
+        //            try
+        //            {
+        //                // Try rolling back
+        //                transaction.Rollback();
+        //                Console.WriteLine("Transaction was rolled back");
+        //            }
+        //            catch (SqlException)
+        //            {
+        //                // Rolling back failed
+        //                Console.WriteLine("Transaction rollback failed");
+        //            }
+        //        }
+        //    }
+        //    return i;
+        //}
 
         /// <summary>
         /// Return the Hash from a username
@@ -148,7 +227,7 @@ namespace DataAccessLayer
         /// <returns>
         /// Int Person id
         /// </returns>
-        private static int DownloadPersonId(string username)
+        public static int DownloadPersonId(string username)
         {
             var personId = 0;
             using (
@@ -157,7 +236,7 @@ namespace DataAccessLayer
             {
                 conn.Open();
                 // Now the connection is open
-                var cmd = new SqlCommand("SELECT loginTablePersonId FROM LoginTable where loginTableUsername=@LoginTableUsername", conn);
+                var cmd = new SqlCommand("SELECT * FROM LoginTable where loginTableUsername=@LoginTableUsername", conn);
                 cmd.Parameters.AddWithValue("LoginTableUsername", username);
                 var loginReader = cmd.ExecuteReader();
                 if (!loginReader.HasRows)
@@ -183,8 +262,10 @@ namespace DataAccessLayer
             var salt = new byte[SaltBytes];
             try
             {
+                // Use a cryto service
                 using (var csprng = new RNGCryptoServiceProvider())
                 {
+                    // Fils the salt array with random values
                     csprng.GetBytes(salt);
                 }
             }
@@ -203,6 +284,7 @@ namespace DataAccessLayer
                 );
             }
 
+            // Create the hash string with the salted password, the salt, the number of iterations and the Hash bytes
             var hash = Pbkdf2(password, salt, Pbkdf2Iterations, HashBytes);
 
             // format: algorithm:iterations:hashSize:salt:hash
@@ -214,11 +296,12 @@ namespace DataAccessLayer
                 Convert.ToBase64String(salt) +
                 ":" +
                 Convert.ToBase64String(hash);
+            // Return the parts
             return parts;
         }
 
         /// <summary>
-        /// Return true if password is correct, else false
+        /// Verify the password with the parts in the database
         /// </summary>
         /// <param name="password"></param>
         /// <param name="goodHash"></param>
@@ -227,9 +310,12 @@ namespace DataAccessLayer
         /// </returns>
         public static bool VerifyPassword(string password, string goodHash)
         {
+            // Set the splitter
             char[] delimiter = { ':' };
+            // split by the delimiter
             var split = goodHash.Split(delimiter);
 
+            // Check if the length match
             if (split.Length != HashSections)
             {
                 throw new InvalidHashException(
@@ -237,7 +323,7 @@ namespace DataAccessLayer
                 );
             }
 
-            // Only support SHA1 with C#.
+            // Check if the algoritm match
             if (split[HashAlgorithmIndex] != "sha1")
             {
                 throw new CannotPerformOperationException(
@@ -246,6 +332,7 @@ namespace DataAccessLayer
             }
 
             int iterations;
+            // Try to get the number of iterations
             try
             {
                 iterations = int.Parse(split[IterationIndex]);
@@ -280,6 +367,7 @@ namespace DataAccessLayer
             }
 
             byte[] salt;
+            // Get the salt as a byte array
             try
             {
                 salt = Convert.FromBase64String(split[SaltIndex]);
@@ -300,6 +388,7 @@ namespace DataAccessLayer
             }
 
             byte[] hash;
+            // Get the hash as a byte array
             try
             {
                 hash = Convert.FromBase64String(split[Pbkdf2Index]);
@@ -320,6 +409,7 @@ namespace DataAccessLayer
             }
 
             int storedHashSize;
+            // Get the size of the hash
             try
             {
                 storedHashSize = int.Parse(split[HashSizeIndex]);
@@ -346,6 +436,7 @@ namespace DataAccessLayer
                 );
             }
 
+            // If the length of the hash does not match
             if (storedHashSize != hash.Length)
             {
                 throw new InvalidHashException(
@@ -353,12 +444,13 @@ namespace DataAccessLayer
                 );
             }
 
+            // Save the hash as a string
             var testHash = Pbkdf2(password, salt, iterations, hash.Length);
+            // Slow test the testhash matching the hash from the database
             return SlowEquals(hash, testHash);
         }
 
         /// <summary>
-        /// Return True if the two byte list is equal, else false
         /// This function is slow to compare to make it to hard to force a password compare
         /// </summary>
         /// <param name="a"></param>
@@ -383,8 +475,10 @@ namespace DataAccessLayer
         /// </returns>
         private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
         {
+            // Salt and hash the raw password
             using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations))
             {
+                // Return the byte array of the hashed password
                 return pbkdf2.GetBytes(outputBytes);
             }
         }

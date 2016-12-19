@@ -2,17 +2,22 @@
 using DataAccessLayer;
 using Models;
 using System.Collections.Generic;
-using System;
+using System.Data;
 
 namespace WcfService
 {
+    /// <summary>
+    /// The Service class
+    /// </summary>
     public class BestilNemtService : IBestilNemtService
     {
+        /// <summary>
+        /// Global variables of the Constrollers
+        /// </summary>
+        public LoginCtr LoginCtr { get; set; }
         public CustomerCtr CustomerCtr { get; set; }
         public ShopCtr ShopController { get; set; }
-        public LoginCtr LoginCtr { get; set; }
         public ChainCtr ChainCtr { get; set; }
-        public CompanyCtr CompanyCtr { get; set; }
         public AdminCtr AdminCtr { get; set; }
         public ProductCtr ProductCtr { get; set; }
         public PartOrderCtr PartOrderCtr { get; set; }
@@ -29,198 +34,197 @@ namespace WcfService
             CustomerCtr = new CustomerCtr(new DbCustomer());
             ShopController = new ShopCtr(new DbShop());
             ChainCtr = new ChainCtr(new DbChain());
-            CompanyCtr = new CompanyCtr(new DbCompany());
             AdminCtr = new AdminCtr(new DbAdmin());
             ProductCtr = new ProductCtr(new DbProduct());
             CartCtr = new CartCtr(new DbCart());
             PartOrderCtr = new PartOrderCtr(new DbPartOrder());
-            WarehouseCtr = new WarehouseCtr(new DbWarehouse());
             SavingCtr = new SavingCtr(new DbSaving());
+            WarehouseCtr = new WarehouseCtr(new DbWarehouse());
         }
 
-        /// <summary>
-        /// Add a Customer
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <returns>
-        /// Return 1 if Customer was added, else 0
-        /// </returns>
-        public int AddCustomer(Customer customer)
-        {
-            return CustomerCtr.AddCustomer(customer);
-        }
+        ///// <summary>
+        ///// Add a Customer
+        ///// </summary>
+        ///// <param name="customer"></param>
+        ///// <returns>
+        ///// Id of Customer if added, else 0
+        ///// </returns>
+        //public int AddCustomer(Customer customer)
+        //{
+        //    return CustomerCtr.AddCustomer(customer);
+        //}
+
+        ///// <summary>
+        ///// Get a Customer by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return a Customer if found, else null
+        ///// </returns>
+        //public Customer GetCustomer(int id)
+        //{
+        //    return CustomerCtr.GetCustomer(id);
+        //}
+
+        ///// <summary>
+        ///// Get All Customers
+        ///// </summary>
+        ///// <returns>
+        ///// List of Customer
+        ///// </returns>
+        //public List<Customer> GetAllCustomer()
+        //{
+        //    return CustomerCtr.GetAllCustomer();
+        //}
+
+        ///// <summary>
+        ///// Update a Customer
+        ///// </summary>
+        ///// <param name="customer"></param>
+        ///// <returns>
+        ///// Return 1 if Customer was updated, else 0
+        ///// </returns>
+        //public int UpdateCustomer(Customer customer)
+        //{
+        //    return CustomerCtr.UpdateCustomer(customer);
+        //}
+
+        ///// <summary>
+        ///// Delete a Customer
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Customer was deleted, else 0
+        ///// </returns>
+        //public int DeleteCustomer(int id)
+        //{
+        //    return CustomerCtr.DeleteCustomer(id);
+        //}
+
+        ///// <summary>
+        ///// Add a Admin
+        ///// </summary>
+        ///// <param name="admin"></param>
+        ///// <returns>
+        ///// Id of Admin if added, else 0
+        ///// </returns>
+        //public int AddAdmin(Admin admin)
+        //{
+        //    return AdminCtr.AddAdmin(admin);
+        //}
 
         /// <summary>
-        /// Return a Customer by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return a Customer if found, else null
-        /// </returns>
-        public Customer FindCustomer(int id)
-        {
-            return CustomerCtr.FindCustomer(id);
-        }
-
-        /// <summary>
-        /// Return a list of all Customers
-        /// </summary>
-        /// <returns>
-        /// List of Customer
-        /// </returns>
-        public List<Customer> GetAllCustomer()
-        {
-            return CustomerCtr.GetAllCustomer();
-        }
-
-        /// <summary>
-        /// Update a Customer
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <returns>
-        /// Return 1 if Customer was updated, else 0
-        /// </returns>
-        public int UpdateCustomer(Customer customer)
-        {
-            return CustomerCtr.UpdateCustomer(customer);
-        }
-
-        /// <summary>
-        /// Delete a Customer
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Customer was deleted, else 0
-        /// </returns>
-        public int DeleteCustomer(int id)
-        {
-            return CustomerCtr.DeleteCustomer(id);
-        }
-
-        /// <summary>
-        /// Add a Admin
-        /// </summary>
-        /// <param name="admin"></param>
-        /// <returns>
-        /// Return 1 if Admin was added, else 0
-        /// </returns>
-        public int AddAdmin(Admin admin)
-        {
-            return AdminCtr.AddAdmin(admin);
-        }
-
-        /// <summary>
-        /// Find a Admin by id
+        /// Get a Admin by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
         /// Return a Admin if found, else null
         /// </returns>
-        public Admin FindAdmin(int id)
+        public Admin GetAdmin(int id)
         {
-            return AdminCtr.FindAdmin(id);
+            return AdminCtr.GetAdmin(id);
         }
 
-        /// <summary>
-        /// Return a list of all Admins
-        /// </summary>
-        /// <returns>
-        /// List of Admin
-        /// </returns>
-        public List<Admin> GetAllAdmins()
-        {
-            return AdminCtr.GetAllAdmins();
-        }
+        ///// <summary>
+        ///// Get all Admins
+        ///// </summary>
+        ///// <returns>
+        ///// List of Admin
+        ///// </returns>
+        //public List<Admin> GetAllAdmins()
+        //{
+        //    return AdminCtr.GetAllAdmins();
+        //}
 
-        /// <summary>
-        /// Update a Admin
-        /// </summary>
-        /// <param name="admin"></param>
-        /// <returns>
-        /// Return 1 if Admin was updated, else 0
-        /// </returns>
-        public int UpdateAdmin(Admin admin)
-        {
-            return AdminCtr.UpdateAdmin(admin);
-        }
+        ///// <summary>
+        ///// Update a Admin
+        ///// </summary>
+        ///// <param name="admin"></param>
+        ///// <returns>
+        ///// Return 1 if Admin was updated, else 0
+        ///// </returns>
+        //public int UpdateAdmin(Admin admin)
+        //{
+        //    return AdminCtr.UpdateAdmin(admin);
+        //}
 
-        /// <summary>
-        /// Delete a Admin
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Admin was deleted, else 0
-        /// </returns>
-        public int DeleteAdmin(int id)
-        {
-            return AdminCtr.DeleteAdmin(id);
-        }
+        ///// <summary>
+        ///// Delete a Admin
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Admin was deleted, else 0
+        ///// </returns>
+        //public int DeleteAdmin(int id)
+        //{
+        //    return AdminCtr.DeleteAdmin(id);
+        //}
 
-        /// <summary>
-        /// Add a Company
-        /// </summary>
-        /// <param name="company"></param>
-        /// <returns>
-        /// Return 1 if Company was added, else 0
-        /// </returns>
-        public int AddCompany(Company company)
-        {
-            return CompanyCtr.AddCompany(company);
-        }
+        ///// <summary>
+        ///// Add a Company
+        ///// </summary>
+        ///// <param name="company"></param>
+        ///// <returns>
+        ///// Id of Company if added, else 0
+        ///// </returns>
+        //public int AddCompany(Company company)
+        //{
+        //    return CompanyCtr.AddCompany(company);
+        //}
 
-        /// <summary>
-        /// Get a Company by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return Company if found, else null
-        /// </returns>
-        public Company FindCompany(int id)
-        {
-            return CompanyCtr.FindCompany(id);
-        }
+        ///// <summary>
+        ///// Get a Company by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return Company if found, else null
+        ///// </returns>
+        //public Company GetCompany(int id)
+        //{
+        //    return CompanyCtr.GetCompany(id);
+        //}
 
-        /// <summary>
-        /// Return a list of all Company
-        /// </summary>
-        /// <returns>
-        /// List of Company
-        /// </returns>
-        public List<Company> FindAllCompany()
-        {
-            return CompanyCtr.FindAllCompany();
-        }
+        ///// <summary>
+        ///// Get all Companies
+        ///// </summary>
+        ///// <returns>
+        ///// List of Company
+        ///// </returns>
+        //public List<Company> GetAllCompany()
+        //{
+        //    return CompanyCtr.GetAllCompany();
+        //}
 
-        /// <summary>
-        /// Update a Company
-        /// </summary>
-        /// <param name="company"></param>
-        /// <returns>
-        /// Return 1 if Company was updated, else 0
-        /// </returns>
-        public int UpdateCompany(Company company)
-        {
-            return CompanyCtr.UpdateCompany(company);
-        }
+        ///// <summary>
+        ///// Update a Company
+        ///// </summary>
+        ///// <param name="company"></param>
+        ///// <returns>
+        ///// Return 1 if Company was updated, else 0
+        ///// </returns>
+        //public int UpdateCompany(Company company)
+        //{
+        //    return CompanyCtr.UpdateCompany(company);
+        //}
 
-        /// <summary>
-        /// Delete a Company
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Company was deleted, else 0
-        /// </returns>
-        public int DeleteCompany(int id)
-        {
-            return CompanyCtr.RemoveCompany(id);
-        }
+        ///// <summary>
+        ///// Delete a Company
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Company was deleted, else 0
+        ///// </returns>
+        //public int DeleteCompany(int id)
+        //{
+        //    return CompanyCtr.RemoveCompany(id);
+        //}
 
         /// <summary>
         /// Add a Shop
         /// </summary>
         /// <param name="shop"></param>
         /// <returns>
-        /// Return 1 if Shop was added, else 0
+        /// Id of Shop if added, else 0
         /// </returns>
         public int AddShop(Shop shop)
         {
@@ -228,7 +232,7 @@ namespace WcfService
         }
 
         /// <summary>
-        /// Return a Shop by id
+        /// Get a Shop
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
@@ -239,26 +243,26 @@ namespace WcfService
             return ShopController.GetShop(id);
         }
 
-        /// <summary>
-        /// Return a list of all Shops
-        /// </summary>
-        /// <returns>
-        /// List of Shop
-        /// </returns>
-        public List<Shop> GetAllShops()
-        {
-            return ShopController.FindAllShops();
-        }
+        ///// <summary>
+        ///// Get all Shops
+        ///// </summary>
+        ///// <returns>
+        ///// List of Shop
+        ///// </returns>
+        //public List<Shop> GetAllShops()
+        //{
+        //    return ShopController.GetAllShops();
+        //}
 
         /// <summary>
-        /// Return a list of all Shops by a chain Id
+        /// Get all shops a Chain Id
         /// </summary>
         /// <returns>
         /// List of Shop
         /// </returns>
         public List<Shop> GetAllShopsByChainId(int chainId)
         {
-            return ShopController.FindAllShopsByChainId(chainId);
+            return ShopController.GetAllShopsByChainId(chainId);
         }
 
         /// <summary>
@@ -285,24 +289,24 @@ namespace WcfService
             return ShopController.DeleteShop(id);
         }
 
-        /// <summary>
-        /// Add a Chain
-        /// </summary>
-        /// <param name="chain"></param>
-        /// <returns>
-        /// Return 1 if Chain was added, else 0
-        /// </returns>
-        public int AddChain(Chain chain)
-        {
-            return ChainCtr.AddChain(chain);
-        }
+        ///// <summary>
+        ///// Add a Chain
+        ///// </summary>
+        ///// <param name="chain"></param>
+        ///// <returns>
+        ///// id of Chain if added, else 0
+        ///// </returns>
+        //public int AddChain(Chain chain)
+        //{
+        //    return ChainCtr.AddChain(chain);
+        //}
 
         /// <summary>
-        /// Return a Chain by id
+        /// Get a Chain by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>
-        /// Return a Chain if found, else null
+        /// Chain if found, else null
         /// </returns>
         public Chain GetChain(int id)
         {
@@ -310,7 +314,7 @@ namespace WcfService
         }
 
         /// <summary>
-        /// Return a list of all Chains
+        /// Get all Chains
         /// </summary>
         /// <returns>
         /// List of Chain
@@ -320,36 +324,36 @@ namespace WcfService
             return ChainCtr.GetAllChains();
         }
 
-        /// <summary>
-        /// Update a Chain
-        /// </summary>
-        /// <param name="chain"></param>
-        /// <returns>
-        /// Return 1 if Chain was updated, else 0
-        /// </returns>
-        public int UpdateChain(Chain chain)
-        {
-            return ChainCtr.UpdateChain(chain);
-        }
+        ///// <summary>
+        ///// Update a Chain
+        ///// </summary>
+        ///// <param name="chain"></param>
+        ///// <returns>
+        ///// Return 1 if Chain was updated, else 0
+        ///// </returns>
+        //public int UpdateChain(Chain chain)
+        //{
+        //    return ChainCtr.UpdateChain(chain);
+        //}
 
-        /// <summary>
-        /// Delete a Chain
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>
-        /// Return 1 if Chain was deleted, else 0
-        /// </returns>
-        public int DeleteChain(int id)
-        {
-            return ChainCtr.DeleteChain(id);
-        }
+        ///// <summary>
+        ///// Delete a Chain
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Return 1 if Chain was deleted, else 0
+        ///// </returns>
+        //public int DeleteChain(int id)
+        //{
+        //    return ChainCtr.DeleteChain(id);
+        //}
 
         /// <summary>
         /// Add a Product
         /// </summary>
         /// <param name="product"></param>
         /// <returns>
-        /// Return 1 if Product was added, else 0
+        /// Id of Product if added, else 0
         /// </returns>
         public int AddProduct(Product product)
         {
@@ -365,18 +369,40 @@ namespace WcfService
         /// </returns>
         public Product GetProduct(int id)
         {
-            return ProductCtr.FindProduct(id);
+            return ProductCtr.GetProduct(id);
         }
 
+        ///// <summary>
+        ///// Get all Products
+        ///// </summary>
+        ///// <returns>
+        ///// List of Product
+        ///// </returns>
+        //public List<Product> GetAllProducts()
+        //{
+        //    return ProductCtr.GetAllProducts();
+        //}
+
         /// <summary>
-        /// Get a list of all Products
+        /// Get all Sold Products
         /// </summary>
         /// <returns>
         /// List of Product
         /// </returns>
-        public List<Product> GetAllProducts()
+        public List<Product> GetAllSoldProducts()
         {
-            return ProductCtr.FindAllProducts();
+            return ProductCtr.GetAllSoldProducts();
+        }
+
+        /// <summary>
+        /// Get all Products with a Saving
+        /// </summary>
+        /// <returns>
+        /// List of Product
+        /// </returns>
+        public List<Product> GetAllProductsWithSavings()
+        {
+            return ProductCtr.GetAllProductsWithSavings();
         }
 
         /// <summary>
@@ -403,164 +429,401 @@ namespace WcfService
             return ProductCtr.DeleteProduct(id);
         }
 
+        /// <summary>
+        /// Add a Cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns>
+        /// 1 if cart waas added, else 0
+        /// </returns>
         public int AddCart(Cart cart)
         {
             return CartCtr.AddCart(cart);
         }
 
-        public Cart FindCart(int id)
+        /// <summary>
+        /// Add a Cart with a List of PartOrders
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns>
+        /// 1 if cart was added, else 0
+        /// </returns>
+        public int AddCartWithPartOrders(Cart cart)
         {
-            return CartCtr.FindCart(id);
+            return CartCtr.AddCartWithPartOrders(cart);
         }
 
+        ///// <summary>
+        ///// Get a Cart
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// Cart if found, else null
+        ///// </returns>
+        //public Cart GetCart(int id)
+        //{
+        //    return CartCtr.GetCart(id);
+        //}
+
+        ///// <summary>
+        ///// Get a Cart with a list of PartOrders
+        ///// </summary>
+        ///// <param name="cartId"></param>
+        ///// <returns>
+        ///// Cart if found, else null
+        ///// </returns>
+        //public Cart GetCartWithPartOrders(int cartId)
+        //{
+        //    return CartCtr.GetCartWithPartOrders(cartId);
+        //}
+
+        /// <summary>
+        /// Get all carts
+        /// </summary>
+        /// <returns>
+        /// List of Cart
+        /// </returns>
         public List<Cart> GetAllCarts()
         {
             return CartCtr.GetAllCarts();
         }
 
-        public int UpdateCart(Cart cart)
-        {
-            return CartCtr.UpdateCart(cart);
-        }
-
-        public int DeleteCart(int id)
-        {
-            return CartCtr.DeleteCart(id);
-        }
-
-        public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
-        {
-            return CartCtr.AddPartOrderToCart(cart, partOrder);
-        }
-
         /// <summary>
-        /// Add a Login
+        /// Get all Cart by a person id
         /// </summary>
-        /// <param name="login"></param>
+        /// <param name="personId"></param>
         /// <returns>
-        /// Return 1 if Login was added, else 0
+        /// list of Cart 
         /// </returns>
-        public int AddLogin(Login login)
+        public List<Cart> GetAllCartsByPersonId(int personId)
         {
-            return LoginCtr.AddLogin(login);
+            return CartCtr.GetAllCartsByPersonId(personId);
         }
+
+        ///// <summary>
+        ///// Update a Cart
+        ///// </summary>
+        ///// <param name="cart"></param>
+        ///// <returns>
+        ///// 1 if cart was updated, else 0
+        ///// </returns>
+        //public int UpdateCart(Cart cart)
+        //{
+        //    return CartCtr.UpdateCart(cart);
+        //}
+
+        ///// <summary>
+        ///// Delete a Cart
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// 1 if Cart was deleted, else 0
+        ///// </returns>
+        //public int DeleteCart(int id)
+        //{
+        //    return CartCtr.DeleteCart(id);
+        //}
+
+        ///// <summary>
+        ///// Add a PartOrder to a Cart
+        ///// </summary>
+        ///// <param name="cart"></param>
+        ///// <param name="partOrder"></param>
+        ///// <returns>
+        ///// 1 if the partOrder was added to the cart
+        ///// </returns>
+        //public int AddPartOrderToCart(Cart cart, PartOrder partOrder)
+        //{
+        //    return CartCtr.AddPartOrderToCart(cart, partOrder);
+        //}
+
+        ///// <summary>
+        ///// Add a Login
+        ///// </summary>
+        ///// <param name="login"></param>
+        ///// <returns>
+        ///// if of Login if added, else 0
+        ///// </returns>
+        //public int AddLogin(Login login)
+        //{
+        //    return LoginCtr.AddLogin(login);
+        //}
 
         /// <summary>
         /// Login with a login object
         /// </summary>
         /// <param name="login"></param>
         /// <returns>
-        /// Return a Login object if login was correct, else null
+        /// Login object if login was correct, else null
         /// </returns>
         public Login Login(Login login)
         {
             return LoginCtr.Login(login);
         }
 
-        /// <summary>
-        /// Update a Login
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns>
-        /// Return 1 if Login was updated, else 0
-        /// </returns>
-        public int UpdateLogin(Login login)
-        {
-            return LoginCtr.UpdateLogin(login);
-        }
+        ///// <summary>
+        ///// Update a Login
+        ///// </summary>
+        ///// <param name="login"></param>
+        ///// <returns>
+        ///// Return 1 if Login was updated, else 0
+        ///// </returns>
+        //public int UpdateLogin(Login login)
+        //{
+        //    return LoginCtr.UpdateLogin(login);
+        //}
+
+        ///// <summary>
+        ///// Delete a Login
+        ///// </summary>
+        ///// <param name="login"></param>
+        ///// <returns>
+        ///// Return 1 if Login was deleted, else 0
+        ///// </returns>
+        //public int DeleteLogin(Login login)
+        //{
+        //    return LoginCtr.DeleteLogin(login);
+        //}
+
+        ///// <summary>
+        ///// Get a PartOrder by id
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// PartOrder if found, else null
+        ///// </returns>
+        //public PartOrder GetPartOrder(int id)
+        //{
+        //    return PartOrderCtr.GetPartOrder(id);
+        //}
+
+        ///// <summary>
+        ///// Update a PartOrder
+        ///// </summary>
+        ///// <param name="partOrder"></param>
+        ///// <returns>
+        ///// 1 if PartOrder was updated, else 0
+        ///// </returns>
+        //public int UpdatePartOrder(PartOrder partOrder)
+        //{
+        //    return PartOrderCtr.UpdatePartOrder(partOrder);
+        //}
+
+        ///// <summary>
+        ///// Delete a PartOrder
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns>
+        ///// 1 if PartOrder was deleted, else 0
+        ///// </returns>
+        //public int DeletePartOrder(int id)
+        //{
+        //    return PartOrderCtr.DeletePartOrder(id);
+        //}
 
         /// <summary>
-        /// Delete a Login
+        /// Add a PartOrder
         /// </summary>
-        /// <param name="login"></param>
+        /// <param name="partOrder"></param>
         /// <returns>
-        /// Return 1 if Login was deleted, else 0
+        /// Id of PartOrder if added, else 0
         /// </returns>
-        public int DeleteLogin(Login login)
-        {
-            return LoginCtr.DeleteLogin(login);
-        }
-
-        public PartOrder FindPartOrder(int id)
-        {
-            return PartOrderCtr.FindPartOrder(id);
-        }
-
-        public int UpdatePartorder(PartOrder partOrder)
-        {
-            return PartOrderCtr.UpdatePartorder(partOrder);
-        }
-
-        public int RemovePartOrder(int id)
-        {
-            return PartOrderCtr.RemovePartOrder(id);
-        }
-
         public int AddPartOrder(PartOrder partOrder)
         {
             return PartOrderCtr.AddPartOrder(partOrder);
         }
 
-        public List<PartOrder> GetAllPartOrders()
+        ///// <summary>
+        ///// Get all PartOrders
+        ///// </summary>
+        ///// <returns>
+        ///// List of PartOrder
+        ///// </returns>
+        //public List<PartOrder> GetAllPartOrders()
+        //{
+        //    return PartOrderCtr.GetAllPartOrders();
+        //}
+
+        /// <summary>
+        /// Add a Saving
+        /// </summary>
+        /// <param name="saving"></param>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// Id of Saving if added, else 0
+        /// </returns>
+        public int AddSaving(Saving saving, Warehouse warehouse)
         {
-            return PartOrderCtr.GetAllPartOrders();
+            return SavingCtr.AddSaving(saving, warehouse);
         }
 
-        public int AddSaving(Saving saving, Product product)
+        /// <summary>
+        /// Get a Saving
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Saving if found, else null
+        /// </returns>
+        public Saving GetSaving(int id)
         {
-            return SavingCtr.AddSaving(saving, product);
+            return SavingCtr.GetSaving(id);
         }
 
-        public Saving FindSaving(int id)
-        {
-            return SavingCtr.FindSaving(id);
-        }
+        ///// <summary>
+        ///// Get all Savings
+        ///// </summary>
+        ///// <returns>
+        ///// List of Saving
+        ///// </returns>
+        //public List<Saving> GetAllSavings()
+        //{
+        //    return SavingCtr.GetAllSavings();
+        //}
 
-        public List<Saving> FindAllSavings()
-        {
-            return SavingCtr.FindAllSavings();
-        }
+        ///// <summary>
+        ///// Update a Saving
+        ///// </summary>
+        ///// <param name="saving"></param>
+        ///// <returns>
+        ///// 1 if Saving is updated, else 0
+        ///// </returns>
+        //public int UpdateSaving(Saving saving)
+        //{
+        //    return SavingCtr.UpdateSaving(saving);
+        //}
 
-        public int UpdateSaving(Saving saving)
-        {
-            return SavingCtr.UpdateSaving(saving);
-        }
-
+        /// <summary>
+        /// Delete a Saving
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if Saving was deleted, else 0
+        /// </returns>
         public int DeleteSaving(int id)
         {
             return SavingCtr.DeleteSaving(id);
         }
 
-        //Warehouse
+        ///// <summary>
+        ///// Get a product by Name
+        ///// Used to find all products with a name similar to input
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns>
+        ///// List of Product
+        ///// </returns>
+        //public List<Product> GetAllProductsByName(string input)
+        //{
+        //    return ProductCtr.GetAllProductsByName(input);
+        //}
 
+        /// <summary>
+        /// Add a Warehouse
+        /// </summary>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// Id of Warehouse if added, else 0
+        /// </returns>
         public int AddWarehouse(Warehouse warehouse)
         {
             return WarehouseCtr.AddWarehouse(warehouse);
         }
 
-        public Warehouse FindWarehouse(int id)
+        /// <summary>
+        /// Get a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Warehouse if found, else null
+        /// </returns>
+        public Warehouse GetWarehouse(int id)
         {
-            return WarehouseCtr.FindWarehouse(id);
+            return WarehouseCtr.GetWarehouse(id);
         }
 
-        public List<Warehouse> FindAllWarehouses()
+        ///// <summary>
+        ///// Get all Warehouses
+        ///// </summary>
+        ///// <returns>
+        ///// list of Warehouse
+        ///// </returns>
+        //public List<Warehouse> GetAllWarehouses()
+        //{
+        //    return WarehouseCtr.GetAllWarehouses();
+        //}
+
+        /// <summary>
+        /// Get all Warehouses by a Shop id
+        /// </summary>
+        /// <param name="shopId"></param>
+        /// <returns>
+        /// List of Warehouse
+        /// </returns>
+        public List<Warehouse> GetAllWarehousesByShopId(int shopId)
         {
-            return WarehouseCtr.FindAllWarehouses();
+            return WarehouseCtr.GetAllWarehousesByShopId(shopId);
         }
 
-        public List<Warehouse> FindAllWarehousesByShopId(int shopId)
-        {
-            return WarehouseCtr.FindAllWarehousesByShopId(shopId);
-        }
-
+        /// <summary>
+        /// Update a Warehouse
+        /// </summary>
+        /// <param name="warehouse"></param>
+        /// <returns>
+        /// 1 if Warehouse was updated, else 0
+        /// </returns>
         public int UpdateWarehouse(Warehouse warehouse)
         {
             return WarehouseCtr.UpdateWarehouse(warehouse);
         }
 
+        /// <summary>
+        /// Delete a Warehouse
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if Warehouse was deleted, else 0
+        /// </returns>
         public int DeleteWarehouse(int id)
         {
             return WarehouseCtr.DeleteWarehouse(id);
+        }
+
+        /// <summary>
+        /// Add a Customer with a Login
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="login"></param>
+        /// <returns>
+        /// Id of Customer if added, else 0
+        /// </returns>
+        public int AddCustomerWithLogin(Customer customer, Login login)
+        {
+            return CustomerCtr.AddCustomerWithLogin(customer, login);
+        }
+
+        public Warehouse GetWarehouseByProductId(int productId, int shopId)
+        {
+            return WarehouseCtr.GetWarehouseByProductId(productId, shopId);
+        }
+
+        public DataTable GetDataGridProducts()
+        {
+            return ProductCtr.GetDataGridProducts();
+        }
+
+        public DataTable GetProductWareHouse(int adminId)
+        {
+            return ProductCtr.GetProductWareHouse(adminId);
+        }
+
+        public DataTable GetChainData()
+        {
+            return ChainCtr.GetChainData();
+        }
+
+        public DataTable GetDataGridShop()
+        {
+            return ShopController.GetDataGridShop();
         }
     }
 }

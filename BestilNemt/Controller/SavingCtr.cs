@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataAccessLayer;
 using Models;
 
@@ -11,51 +7,88 @@ namespace Controller
     public class SavingCtr
     {
         public IDbSaving DbSaving { get; set; }
+
+        /// <summary>
+        /// Constructor for Saving controller
+        /// </summary>
+        /// <param name="dbSaving"></param>
         public SavingCtr(IDbSaving dbSaving)
         {
             DbSaving = dbSaving;
         }
 
-
-        public int AddSaving(Saving saving, Product product)
+        /// <summary>
+        /// Add a Saving
+        /// </summary>
+        /// <param name="saving"></param>
+        /// <param name="product"></param>
+        /// <returns>
+        /// Id of saving if added, else 0
+        /// </returns>
+        public int AddSaving(Saving saving, Warehouse warehouse)
         {
-            if (product == null)
+            if (warehouse == null)
             {
                 return 0;
             }
-            return ValidateSavingInput(saving) ? DbSaving.AddSaving(saving, product) : 0;
+            return ValidateSavingInput(saving) ? DbSaving.AddSaving(saving, warehouse) : 0;
         }
 
-        public Saving FindSaving(int id)
+        /// <summary>
+        /// Get a Saving
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Saving if found, else null
+        /// </returns>
+        public Saving GetSaving(int id)
         {
-            return DbSaving.FindSaving(id);
+            return DbSaving.GetSaving(id);
         }
 
-        public List<Saving> FindAllSavings()
-        {
-            return DbSaving.FindAllSavings();
-        }
+        ///// <summary>
+        ///// Get all Savings
+        ///// </summary>
+        ///// <returns>
+        ///// List of Saving
+        ///// </returns>
+        //public List<Saving> GetAllSavings()
+        //{
+        //    return DbSaving.GetAllSavings();
+        //}
 
-        public int UpdateSaving(Saving saving)
-        {
-            return DbSaving.UpdateSaving(saving);
-        }
+        ///// <summary>
+        ///// Update a Saving
+        ///// </summary>
+        ///// <param name="saving"></param>
+        ///// <returns>
+        ///// 1 if updated, else 0
+        ///// </returns>
+        //public int UpdateSaving(Saving saving)
+        //{
+        //    return DbSaving.UpdateSaving(saving);
+        //}
 
+        /// <summary>
+        /// Delete a Saving
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// 1 if deleted, else 0
+        /// </returns>
         public int DeleteSaving(int id)
         {
             return DbSaving.DeleteSaving(id);
         }
 
-        private bool ValidateSavingInput(Saving saving)
+        /// <summary>
+        /// Validate Saving fields
+        /// </summary>
+        /// <param name="saving"></param>
+        /// <returns></returns>
+        private static bool ValidateSavingInput(Saving saving)
         {
-            if(saving.SavingPercent < 0.1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return (saving.SavingPercent > 0.1);
         }
     }
 }

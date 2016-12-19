@@ -1,41 +1,45 @@
 ﻿using Models;
 using System.Collections.Generic;
+using System.Data;
 using System.ServiceModel;
 
 namespace WcfService
 {
+    /// <summary>
+    /// Interface for service
+    /// </summary>
     [ServiceContract]
     public interface IBestilNemtService
     {
-        [OperationContract]
-        Customer FindCustomer(int id);
+        //    [OperationContract]
+        //    Customer GetCustomer(int id);
+
+        //    [OperationContract]
+        //    int AddCustomer(Customer customer);
+
+        //    [OperationContract]
+        //    int UpdateCustomer(Customer customer);
+
+        //    [OperationContract]
+        //    int DeleteCustomer(int id);
+
+        //    [OperationContract]
+        //    List<Customer> GetAllCustomer();
+
+        //    [OperationContract]
+        //    int AddAdmin(Admin admin);
 
         [OperationContract]
-        int AddCustomer(Customer customer);
+        Admin GetAdmin(int id);
 
-        [OperationContract]
-        int UpdateCustomer(Customer customer);
+        //    [OperationContract]
+        //    List<Admin> GetAllAdmins();
 
-        [OperationContract]
-        int DeleteCustomer(int id);
+        //    [OperationContract]
+        //    int DeleteAdmin(int id);
 
-        [OperationContract]
-        List<Customer> GetAllCustomer();
-
-        [OperationContract]
-        int AddAdmin(Admin admin);
-
-        [OperationContract]
-        Admin FindAdmin(int id);
-
-        [OperationContract]
-        List<Admin> GetAllAdmins();
-
-        [OperationContract]
-        int DeleteAdmin(int id);
-
-        [OperationContract]
-        int UpdateAdmin(Admin admin);
+        //    [OperationContract]
+        //    int UpdateAdmin(Admin admin);
 
         [OperationContract]
         int AddShop(Shop shop);
@@ -43,8 +47,8 @@ namespace WcfService
         [OperationContract]
         Shop GetShop(int id);
 
-        [OperationContract]
-        List<Shop> GetAllShops();
+        //    [OperationContract]
+        //    List<Shop> GetAllShops();
 
         [OperationContract]
         List<Shop> GetAllShopsByChainId(int chainId);
@@ -61,41 +65,41 @@ namespace WcfService
         [OperationContract]
         List<Chain> GetAllChains();
 
-        [OperationContract]
-        int DeleteChain(int id);
+        //    [OperationContract]
+        //    int DeleteChain(int id);
 
-        [OperationContract]
-        int AddChain(Chain chain);
+        //    [OperationContract]
+        //    int AddChain(Chain chain);
 
-        [OperationContract]
-        int UpdateChain(Chain chain);
+        //    [OperationContract]
+        //    int UpdateChain(Chain chain);
 
         [OperationContract]
         Login Login(Login login);
 
-        [OperationContract]
-        int AddLogin(Login login);
+        //    [OperationContract]
+        //    int AddLogin(Login login);
 
-        [OperationContract]
-        int UpdateLogin(Login login);
+        //    [OperationContract]
+        //    int UpdateLogin(Login login);
 
-        [OperationContract]
-        int DeleteLogin(Login login);
+        //    [OperationContract]
+        //    int DeleteLogin(Login login);
 
-        [OperationContract]
-        int AddCompany(Company company);
+        //    [OperationContract]
+        //    int AddCompany(Company company);
 
-        [OperationContract]
-        List<Company> FindAllCompany();
+        //    [OperationContract]
+        //    List<Company> GetAllCompany();
 
-        [OperationContract]
-        int DeleteCompany(int id);
+        //    [OperationContract]
+        //    int DeleteCompany(int id);
 
-        [OperationContract]
-        int UpdateCompany(Company company);
+        //    [OperationContract]
+        //    int UpdateCompany(Company company);
 
-        [OperationContract]
-        Company FindCompany(int id);
+        //    [OperationContract]
+        //    Company GetCompany(int id);
 
         [OperationContract]
         int AddProduct(Product product);
@@ -103,8 +107,14 @@ namespace WcfService
         [OperationContract]
         Product GetProduct(int id);
 
+        //    [OperationContract]
+        //    List<Product> GetAllProducts();
+
         [OperationContract]
-        List<Product> GetAllProducts();
+        List<Product> GetAllSoldProducts();
+
+        [OperationContract]
+        List<Product> GetAllProductsWithSavings();
 
         [OperationContract]
         int UpdateProduct(Product product);
@@ -114,45 +124,58 @@ namespace WcfService
 
         [OperationContract]
         int AddCart(Cart cart);
+
         [OperationContract]
-        Cart FindCart(int id);
+        int AddCartWithPartOrders(Cart cart);
+
+        //    [OperationContract]
+        //    Cart GetCart(int id);
+
+        //    [OperationContract]
+        //    Cart GetCartWithPartOrders(int cartId);
+
         [OperationContract]
         List<Cart> GetAllCarts();
-        [OperationContract]
-        int UpdateCart(Cart cart);
-        [OperationContract]
-        int DeleteCart(int id);
 
         [OperationContract]
-        int AddPartOrderToCart(Cart cart, PartOrder partOrder);
+        List<Cart> GetAllCartsByPersonId(int personId);
 
-        [OperationContract]
-        PartOrder FindPartOrder(int id);
+        //    [OperationContract]
+        //    int UpdateCart(Cart cart);
 
-        [OperationContract]
-        int RemovePartOrder(int id);
+        //    [OperationContract]
+        //    int DeleteCart(int id);
+
+        //    [OperationContract]
+        //    int AddPartOrderToCart(Cart cart, PartOrder partOrder);
+
+        //    [OperationContract]
+        //    PartOrder GetPartOrder(int id);
+
+        //    [OperationContract]
+        //    int DeletePartOrder(int id);
 
         [OperationContract]
         int AddPartOrder(PartOrder partOrder);
 
-        [OperationContract]
-        int UpdatePartorder(PartOrder partOrder);
+        //    [OperationContract]
+        //    int UpdatePartOrder(PartOrder partOrder);
 
-        [OperationContract]
-        List<PartOrder> GetAllPartOrders();
+        //    [OperationContract]
+        //    List<PartOrder> GetAllPartOrders();
 
-        //Warehouse
+        // Warehouse
         [OperationContract]
         int AddWarehouse(Warehouse warehouse);
 
         [OperationContract]
-        Warehouse FindWarehouse(int id);
+        Warehouse GetWarehouse(int id);
+
+        //    [OperationContract]
+        //    List<Warehouse> GetAllWarehouses();
 
         [OperationContract]
-        List<Warehouse> FindAllWarehouses();
-
-        [OperationContract]
-        List<Warehouse> FindAllWarehousesByShopId(int shopId);
+        List<Warehouse> GetAllWarehousesByShopId(int shopId);
 
         [OperationContract]
         int UpdateWarehouse(Warehouse warehouse);
@@ -161,19 +184,40 @@ namespace WcfService
         int DeleteWarehouse(int id);
 
         [OperationContract]
-        int AddSaving(Saving saving, Product product);
+        int AddSaving(Saving saving, Warehouse warehouse);
 
         [OperationContract]
-        Saving FindSaving(int id);
+        Saving GetSaving(int id);
 
-        [OperationContract]
-        List<Saving> FindAllSavings();
+        //    [OperationContract]
+        //    List<Saving> GetAllSavings();
 
-        [OperationContract]
-        int UpdateSaving(Saving saving);
+        //    [OperationContract]
+        //    int UpdateSaving(Saving saving);
 
         [OperationContract]
         int DeleteSaving(int id);
+
+        //    [OperationContract]
+        //    List<Product> GetAllProductsByName(string input);
+
+        [OperationContract]
+        int AddCustomerWithLogin(Customer customer, Login login);
+
+        [OperationContract]
+        Warehouse GetWarehouseByProductId(int productId, int shopId);
+
+        [OperationContract]
+        DataTable GetDataGridProducts();
+
+        [OperationContract]
+        DataTable GetProductWareHouse(int adminId);
+
+        [OperationContract]
+        DataTable GetChainData();
+
+        [OperationContract]
+        DataTable GetDataGridShop();
     }
 }
 

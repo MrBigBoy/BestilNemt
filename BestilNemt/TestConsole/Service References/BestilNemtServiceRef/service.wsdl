@@ -7,11 +7,11 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Models" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBestilNemtService_FindCustomer_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindCustomer" />
+  <wsdl:message name="IBestilNemtService_GetCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomer" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindCustomer_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindCustomerResponse" />
+  <wsdl:message name="IBestilNemtService_GetCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_AddCustomer_InputMessage">
     <wsdl:part name="parameters" element="tns:AddCustomer" />
@@ -43,11 +43,11 @@
   <wsdl:message name="IBestilNemtService_AddAdmin_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddAdminResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindAdmin_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindAdmin" />
+  <wsdl:message name="IBestilNemtService_GetAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdmin" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindAdmin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindAdminResponse" />
+  <wsdl:message name="IBestilNemtService_GetAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdminResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetAllAdmins_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllAdmins" />
@@ -67,6 +67,12 @@
   <wsdl:message name="IBestilNemtService_UpdateAdmin_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateAdminResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddShop" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddShopResponse" />
+  </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetShop_InputMessage">
     <wsdl:part name="parameters" element="tns:GetShop" />
   </wsdl:message>
@@ -79,23 +85,23 @@
   <wsdl:message name="IBestilNemtService_GetAllShops_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllShopsResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_DeleteShop_InputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteShop" />
+  <wsdl:message name="IBestilNemtService_GetAllShopsByChainId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShopsByChainId" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_DeleteShop_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DeleteShopResponse" />
-  </wsdl:message>
-  <wsdl:message name="IBestilNemtService_AddShop_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddShop" />
-  </wsdl:message>
-  <wsdl:message name="IBestilNemtService_AddShop_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddShopResponse" />
+  <wsdl:message name="IBestilNemtService_GetAllShopsByChainId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllShopsByChainIdResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateShop_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateShop" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateShop_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateShopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteShop_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShop" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteShop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteShopResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetChain_InputMessage">
     <wsdl:part name="parameters" element="tns:GetChain" />
@@ -157,11 +163,11 @@
   <wsdl:message name="IBestilNemtService_AddCompany_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddCompanyResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindAllCompany_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindAllCompany" />
+  <wsdl:message name="IBestilNemtService_GetAllCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompany" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindAllCompany_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindAllCompanyResponse" />
+  <wsdl:message name="IBestilNemtService_GetAllCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompanyResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_DeleteCompany_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteCompany" />
@@ -175,11 +181,11 @@
   <wsdl:message name="IBestilNemtService_UpdateCompany_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCompanyResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindCompany_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindCompany" />
+  <wsdl:message name="IBestilNemtService_GetCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompany" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindCompany_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindCompanyResponse" />
+  <wsdl:message name="IBestilNemtService_GetCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompanyResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_AddProduct_InputMessage">
     <wsdl:part name="parameters" element="tns:AddProduct" />
@@ -199,6 +205,18 @@
   <wsdl:message name="IBestilNemtService_GetAllProducts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllProductsResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllSoldProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSoldProducts" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllSoldProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSoldProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllProductsWithSavings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductsWithSavings" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllProductsWithSavings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductsWithSavingsResponse" />
+  </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateProduct_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateProduct" />
   </wsdl:message>
@@ -217,17 +235,35 @@
   <wsdl:message name="IBestilNemtService_AddCart_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddCartResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindCart_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindCart" />
+  <wsdl:message name="IBestilNemtService_AddCartWithPartOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCartWithPartOrders" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindCart_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindCartResponse" />
+  <wsdl:message name="IBestilNemtService_AddCartWithPartOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCartWithPartOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCart" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetCartWithPartOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCartWithPartOrders" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetCartWithPartOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCartWithPartOrdersResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetAllCarts_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCarts" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_GetAllCarts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCartsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllCartsByPersonId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCartsByPersonId" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllCartsByPersonId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCartsByPersonIdResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_UpdateCart_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateCart" />
@@ -247,11 +283,11 @@
   <wsdl:message name="IBestilNemtService_AddPartOrderToCart_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddPartOrderToCartResponse" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindPartOrder_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindPartOrder" />
+  <wsdl:message name="IBestilNemtService_GetPartOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPartOrder" />
   </wsdl:message>
-  <wsdl:message name="IBestilNemtService_FindPartOrder_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindPartOrderResponse" />
+  <wsdl:message name="IBestilNemtService_GetPartOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPartOrderResponse" />
   </wsdl:message>
   <wsdl:message name="IBestilNemtService_RemovePartOrder_InputMessage">
     <wsdl:part name="parameters" element="tns:RemovePartOrder" />
@@ -277,10 +313,88 @@
   <wsdl:message name="IBestilNemtService_GetAllPartOrders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllPartOrdersResponse" />
   </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllWarehouses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWarehouses" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllWarehouses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWarehousesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllWarehousesByShopId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWarehousesByShopId" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllWarehousesByShopId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllWarehousesByShopIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteWarehouse_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWarehouse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteWarehouse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWarehouseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddSaving_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSaving" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_AddSaving_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSavingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetSaving_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSaving" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetSaving_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllSavings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSavings" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetAllSavings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSavingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateSaving_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSaving" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_UpdateSaving_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSavingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteSaving_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSaving" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_DeleteSaving_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSavingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetProductsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByName" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_GetProductsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_CreateWithCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateWithCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IBestilNemtService_CreateWithCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateWithCustomerResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBestilNemtService">
-    <wsdl:operation name="FindCustomer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomer" message="tns:IBestilNemtService_FindCustomer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCustomerResponse" message="tns:IBestilNemtService_FindCustomer_OutputMessage" />
+    <wsdl:operation name="GetCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetCustomer" message="tns:IBestilNemtService_GetCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetCustomerResponse" message="tns:IBestilNemtService_GetCustomer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddCustomer">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCustomer" message="tns:IBestilNemtService_AddCustomer_InputMessage" />
@@ -302,9 +416,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddAdmin" message="tns:IBestilNemtService_AddAdmin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddAdminResponse" message="tns:IBestilNemtService_AddAdmin_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FindAdmin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindAdmin" message="tns:IBestilNemtService_FindAdmin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindAdminResponse" message="tns:IBestilNemtService_FindAdmin_OutputMessage" />
+    <wsdl:operation name="GetAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAdmin" message="tns:IBestilNemtService_GetAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAdminResponse" message="tns:IBestilNemtService_GetAdmin_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllAdmins">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllAdmins" message="tns:IBestilNemtService_GetAllAdmins_InputMessage" />
@@ -318,6 +432,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateAdmin" message="tns:IBestilNemtService_UpdateAdmin_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateAdminResponse" message="tns:IBestilNemtService_UpdateAdmin_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddShop" message="tns:IBestilNemtService_AddShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddShopResponse" message="tns:IBestilNemtService_AddShop_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetShop">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetShop" message="tns:IBestilNemtService_GetShop_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetShopResponse" message="tns:IBestilNemtService_GetShop_OutputMessage" />
@@ -326,17 +444,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShops" message="tns:IBestilNemtService_GetAllShops_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShopsResponse" message="tns:IBestilNemtService_GetAllShops_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteShop">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteShop" message="tns:IBestilNemtService_DeleteShop_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteShopResponse" message="tns:IBestilNemtService_DeleteShop_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="AddShop">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddShop" message="tns:IBestilNemtService_AddShop_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddShopResponse" message="tns:IBestilNemtService_AddShop_OutputMessage" />
+    <wsdl:operation name="GetAllShopsByChainId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId" message="tns:IBestilNemtService_GetAllShopsByChainId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllShopsByChainIdResponse" message="tns:IBestilNemtService_GetAllShopsByChainId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateShop">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateShop" message="tns:IBestilNemtService_UpdateShop_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateShopResponse" message="tns:IBestilNemtService_UpdateShop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteShop" message="tns:IBestilNemtService_DeleteShop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteShopResponse" message="tns:IBestilNemtService_DeleteShop_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetChain">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetChain" message="tns:IBestilNemtService_GetChain_InputMessage" />
@@ -378,9 +496,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCompany" message="tns:IBestilNemtService_AddCompany_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddCompanyResponse" message="tns:IBestilNemtService_AddCompany_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FindAllCompany">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindAllCompany" message="tns:IBestilNemtService_FindAllCompany_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindAllCompanyResponse" message="tns:IBestilNemtService_FindAllCompany_OutputMessage" />
+    <wsdl:operation name="GetAllCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCompany" message="tns:IBestilNemtService_GetAllCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCompanyResponse" message="tns:IBestilNemtService_GetAllCompany_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteCompany">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteCompany" message="tns:IBestilNemtService_DeleteCompany_InputMessage" />
@@ -390,9 +508,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCompany" message="tns:IBestilNemtService_UpdateCompany_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCompanyResponse" message="tns:IBestilNemtService_UpdateCompany_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FindCompany">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCompany" message="tns:IBestilNemtService_FindCompany_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCompanyResponse" message="tns:IBestilNemtService_FindCompany_OutputMessage" />
+    <wsdl:operation name="GetCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetCompany" message="tns:IBestilNemtService_GetCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetCompanyResponse" message="tns:IBestilNemtService_GetCompany_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddProduct">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddProduct" message="tns:IBestilNemtService_AddProduct_InputMessage" />
@@ -406,6 +524,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllProducts" message="tns:IBestilNemtService_GetAllProducts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllProductsResponse" message="tns:IBestilNemtService_GetAllProducts_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllSoldProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllSoldProducts" message="tns:IBestilNemtService_GetAllSoldProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllSoldProductsResponse" message="tns:IBestilNemtService_GetAllSoldProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProductsWithSavings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllProductsWithSavings" message="tns:IBestilNemtService_GetAllProductsWithSavings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllProductsWithSavingsResponse" message="tns:IBestilNemtService_GetAllProductsWithSavings_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="UpdateProduct">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateProduct" message="tns:IBestilNemtService_UpdateProduct_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateProductResponse" message="tns:IBestilNemtService_UpdateProduct_OutputMessage" />
@@ -418,13 +544,25 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCart" message="tns:IBestilNemtService_AddCart_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddCartResponse" message="tns:IBestilNemtService_AddCart_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FindCart">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindCart" message="tns:IBestilNemtService_FindCart_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindCartResponse" message="tns:IBestilNemtService_FindCart_OutputMessage" />
+    <wsdl:operation name="AddCartWithPartOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders" message="tns:IBestilNemtService_AddCartWithPartOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddCartWithPartOrdersResponse" message="tns:IBestilNemtService_AddCartWithPartOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetCart" message="tns:IBestilNemtService_GetCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetCartResponse" message="tns:IBestilNemtService_GetCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCartWithPartOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders" message="tns:IBestilNemtService_GetCartWithPartOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetCartWithPartOrdersResponse" message="tns:IBestilNemtService_GetCartWithPartOrders_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllCarts">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCarts" message="tns:IBestilNemtService_GetAllCarts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCartsResponse" message="tns:IBestilNemtService_GetAllCarts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCartsByPersonId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId" message="tns:IBestilNemtService_GetAllCartsByPersonId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonIdResponse" message="tns:IBestilNemtService_GetAllCartsByPersonId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateCart">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateCart" message="tns:IBestilNemtService_UpdateCart_InputMessage" />
@@ -438,9 +576,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCart" message="tns:IBestilNemtService_AddPartOrderToCart_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddPartOrderToCartResponse" message="tns:IBestilNemtService_AddPartOrderToCart_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FindPartOrder">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/FindPartOrder" message="tns:IBestilNemtService_FindPartOrder_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/FindPartOrderResponse" message="tns:IBestilNemtService_FindPartOrder_OutputMessage" />
+    <wsdl:operation name="GetPartOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetPartOrder" message="tns:IBestilNemtService_GetPartOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetPartOrderResponse" message="tns:IBestilNemtService_GetPartOrder_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RemovePartOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/RemovePartOrder" message="tns:IBestilNemtService_RemovePartOrder_InputMessage" />
@@ -458,11 +596,63 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllPartOrders" message="tns:IBestilNemtService_GetAllPartOrders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllPartOrdersResponse" message="tns:IBestilNemtService_GetAllPartOrders_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddWarehouse" message="tns:IBestilNemtService_AddWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddWarehouseResponse" message="tns:IBestilNemtService_AddWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouse" message="tns:IBestilNemtService_GetWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetWarehouseResponse" message="tns:IBestilNemtService_GetWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWarehouses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllWarehouses" message="tns:IBestilNemtService_GetAllWarehouses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesResponse" message="tns:IBestilNemtService_GetAllWarehouses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWarehousesByShopId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopId" message="tns:IBestilNemtService_GetAllWarehousesByShopId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopIdResponse" message="tns:IBestilNemtService_GetAllWarehousesByShopId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateWarehouse" message="tns:IBestilNemtService_UpdateWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateWarehouseResponse" message="tns:IBestilNemtService_UpdateWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWarehouse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteWarehouse" message="tns:IBestilNemtService_DeleteWarehouse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteWarehouseResponse" message="tns:IBestilNemtService_DeleteWarehouse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSaving">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/AddSaving" message="tns:IBestilNemtService_AddSaving_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/AddSavingResponse" message="tns:IBestilNemtService_AddSaving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSaving">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetSaving" message="tns:IBestilNemtService_GetSaving_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetSavingResponse" message="tns:IBestilNemtService_GetSaving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSavings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllSavings" message="tns:IBestilNemtService_GetAllSavings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetAllSavingsResponse" message="tns:IBestilNemtService_GetAllSavings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSaving">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateSaving" message="tns:IBestilNemtService_UpdateSaving_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/UpdateSavingResponse" message="tns:IBestilNemtService_UpdateSaving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSaving">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteSaving" message="tns:IBestilNemtService_DeleteSaving_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/DeleteSavingResponse" message="tns:IBestilNemtService_DeleteSaving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/GetProductsByName" message="tns:IBestilNemtService_GetProductsByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/GetProductsByNameResponse" message="tns:IBestilNemtService_GetProductsByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateWithCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBestilNemtService/CreateWithCustomer" message="tns:IBestilNemtService_CreateWithCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBestilNemtService/CreateWithCustomerResponse" message="tns:IBestilNemtService_CreateWithCustomer_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBestilNemtService" type="tns:IBestilNemtService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="FindCustomer">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCustomer" style="document" />
+    <wsdl:operation name="GetCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -515,8 +705,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindAdmin">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindAdmin" style="document" />
+    <wsdl:operation name="GetAdmin">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAdmin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -551,6 +741,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddShop">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddShop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetShop">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetShop" style="document" />
       <wsdl:input>
@@ -569,17 +768,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteShop">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteShop" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddShop">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddShop" style="document" />
+    <wsdl:operation name="GetAllShopsByChainId">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllShopsByChainId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -589,6 +779,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateShop">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateShop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteShop">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteShop" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -686,8 +885,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindAllCompany">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindAllCompany" style="document" />
+    <wsdl:operation name="GetAllCompany">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllCompany" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -713,8 +912,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindCompany">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCompany" style="document" />
+    <wsdl:operation name="GetCompany">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetCompany" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -749,6 +948,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllSoldProducts">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllSoldProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProductsWithSavings">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllProductsWithSavings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="UpdateProduct">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateProduct" style="document" />
       <wsdl:input>
@@ -776,8 +993,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindCart">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindCart" style="document" />
+    <wsdl:operation name="AddCartWithPartOrders">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddCartWithPartOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCart">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCartWithPartOrders">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetCartWithPartOrders" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -787,6 +1022,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllCarts">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllCarts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCartsByPersonId">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllCartsByPersonId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -821,8 +1065,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindPartOrder">
-      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/FindPartOrder" style="document" />
+    <wsdl:operation name="GetPartOrder">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetPartOrder" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -859,6 +1103,123 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllPartOrders">
       <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllPartOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWarehouses">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllWarehouses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWarehousesByShopId">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllWarehousesByShopId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWarehouse">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteWarehouse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSaving">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/AddSaving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSaving">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetSaving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSavings">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetAllSavings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSaving">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/UpdateSaving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSaving">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/DeleteSaving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsByName">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/GetProductsByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateWithCustomer">
+      <soap:operation soapAction="http://tempuri.org/IBestilNemtService/CreateWithCustomer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
