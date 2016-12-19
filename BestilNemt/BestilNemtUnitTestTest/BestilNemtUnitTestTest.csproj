@@ -60,7 +60,6 @@
     <Compile Include="CartUnitTest.cs" />
     <Compile Include="ConcurentTransactionTest.cs" />
     <Compile Include="LoginUnitTest.cs" />
-    <Compile Include="CustomerUnitTest.cs" />
     <Compile Include="PartOrderUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavingUnitTest.cs" />

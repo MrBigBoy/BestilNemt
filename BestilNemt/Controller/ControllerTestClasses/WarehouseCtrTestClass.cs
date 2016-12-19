@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer;
 using Models;
@@ -51,7 +50,6 @@ namespace Controller.ControllerTestClasses
         public int DeleteWarehouse(int id)
         {
             return warehouses.Remove(GetWarehouse(id)) ? 1 : 0;
-
         }
     }
 }

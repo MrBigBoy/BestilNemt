@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DataAccessLayer;
+﻿using DataAccessLayer;
 using Models;
 
 namespace Controller
@@ -21,7 +20,7 @@ namespace Controller
         /// Add a Saving
         /// </summary>
         /// <param name="saving"></param>
-        /// <param name="product"></param>
+        /// <param name="warehouse"></param>
         /// <returns>
         /// Id of saving if added, else 0
         /// </returns>
@@ -45,30 +44,7 @@ namespace Controller
         {
             return DbSaving.GetSaving(id);
         }
-
-        ///// <summary>
-        ///// Get all Savings
-        ///// </summary>
-        ///// <returns>
-        ///// List of Saving
-        ///// </returns>
-        //public List<Saving> GetAllSavings()
-        //{
-        //    return DbSaving.GetAllSavings();
-        //}
-
-        ///// <summary>
-        ///// Update a Saving
-        ///// </summary>
-        ///// <param name="saving"></param>
-        ///// <returns>
-        ///// 1 if updated, else 0
-        ///// </returns>
-        //public int UpdateSaving(Saving saving)
-        //{
-        //    return DbSaving.UpdateSaving(saving);
-        //}
-
+        
         /// <summary>
         /// Delete a Saving
         /// </summary>

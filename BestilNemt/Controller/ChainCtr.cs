@@ -64,19 +64,7 @@ namespace Controller
         //{
         //    return ValidateChainInput(chain) ? DbChain.AddChain(chain) : 0;
         //}
-
-        ///// <summary>
-        ///// Update a Chain
-        ///// </summary>
-        ///// <param name="chain"></param>
-        ///// <returns>
-        ///// Return 1 if updated, else 0
-        ///// </returns>
-        //public int UpdateChain(Chain chain)
-        //{
-        //    return ValidateChainInput(chain) ? DbChain.UpdateChain(chain) : 0;
-        //}
-
+        
         ///// <summary>
         ///// Method to validate Chain fields
         ///// </summary>

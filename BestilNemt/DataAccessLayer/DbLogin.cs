@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 
@@ -23,60 +22,6 @@ namespace DataAccessLayer
         public const int SaltIndex = 3;
         public const int Pbkdf2Index = 4;
         public const int HashSections = 5;
-
-        ///// <summary>
-        ///// Add a Login
-        ///// </summary>
-        ///// <param name="login"></param>
-        ///// <returns>
-        ///// Id of Login if added, else 0
-        ///// </returns>
-        //public int AddLogin(Login login)
-        //{
-        //    var returnedValue = 0;
-        //    // Check if a person with the Username is already in the system
-        //    if (DownloadPersonId(login.Username) != 0)
-        //        return returnedValue;
-        //    // Create the parts for the password, containing all the information about a password to login
-        //    var parts = CreateHash(login.Password);
-        //    using (
-        //        var conn =
-        //            new SqlConnection(
-        //                ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        // Open the connection
-        //        conn.Open();
-        //        var cmd = conn.CreateCommand();
-        //        // Set isolation level to ReadCommitted
-        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-        //        cmd.Transaction = transaction;
-        //        try
-        //        {
-        //            cmd.CommandText = "INSERT into LoginTable output inserted.loginTableId values(@loginTableUsername,@loginTableParts,@loginTablePersonId)";
-        //            cmd.Parameters.AddWithValue("loginTableUsername", login.Username);
-        //            cmd.Parameters.AddWithValue("loginTableParts", parts);
-        //            cmd.Parameters.AddWithValue("loginTablePersonId", login.PersonId);
-        //            returnedValue = (int)cmd.ExecuteScalar();
-        //            transaction.Commit();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            // The transaction failed
-        //            try
-        //            {
-        //                // Try rolling back
-        //                transaction.Rollback();
-        //                Console.WriteLine("Transaction was rolled back");
-        //            }
-        //            catch (SqlException)
-        //            {
-        //                // Rolling back failed
-        //                Console.WriteLine("Transaction rollback failed");
-        //            }
-        //        }
-        //    }
-        //    return returnedValue;
-        //}
 
         /// <summary>
         /// Login with a Login object
@@ -100,96 +45,6 @@ namespace DataAccessLayer
             // return the Login object with the username, password and a personId
             return login;
         }
-
-        ///// <summary>
-        ///// Update a Login
-        ///// </summary>
-        ///// <param name="login"></param>
-        ///// <returns>
-        ///// Return 1 if Login is updated, else 0
-        ///// </returns>
-        //public int UpdateLogin(Login login)
-        //{
-        //    // Create the Hash called parts holding all information to check for new passwords
-        //    var parts = CreateHash(login.Password);
-        //    var i = 0;
-        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = conn.CreateCommand();
-        //        // Set isolation level to ReadCommitted
-        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-        //        cmd.Transaction = transaction;
-        //        try
-        //        {
-        //            cmd.CommandText = "UPDATE LoginTable SET loginTableUsername=@LoginTableUsername, loginTableParts=@LoginTableParts WHERE loginTablePersonId=@LoginTablePersonId";
-        //            cmd.Parameters.AddWithValue("LoginTableUsername", login.Username);
-        //            cmd.Parameters.AddWithValue("LoginTableParts", parts);
-        //            cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
-        //            i = cmd.ExecuteNonQuery();
-        //            transaction.Commit();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            // The transaction failed
-        //            try
-        //            {
-        //                // Try rolling back
-        //                transaction.Rollback();
-        //                Console.WriteLine("Transaction was rolled back");
-        //            }
-        //            catch (SqlException)
-        //            {
-        //                // Rolling back failed
-        //                Console.WriteLine("Transaction rollback failed");
-        //            }
-        //        }
-        //    }
-        //    return i;
-        //}
-
-        ///// <summary>
-        ///// Delete a Login
-        ///// </summary>
-        ///// <param name="login"></param>
-        ///// <returns>
-        ///// Return 1 if Login is deleted, else 0
-        ///// </returns>
-        //public int DeleteLogin(Login login)
-        //{
-        //    var i = 0;
-        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = conn.CreateCommand();
-        //        // Set isolation level to ReadCommitted
-        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-        //        cmd.Transaction = transaction;
-        //        try
-        //        {
-        //            cmd.CommandText = "DELETE FROM LoginTable WHERE loginTablePersonId = @LoginTablePersonId";
-        //            cmd.Parameters.AddWithValue("LoginTablePersonId", login.PersonId);
-        //            i = cmd.ExecuteNonQuery();
-        //            transaction.Commit();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            // The transaction failed
-        //            try
-        //            {
-        //                // Try rolling back
-        //                transaction.Rollback();
-        //                Console.WriteLine("Transaction was rolled back");
-        //            }
-        //            catch (SqlException)
-        //            {
-        //                // Rolling back failed
-        //                Console.WriteLine("Transaction rollback failed");
-        //            }
-        //        }
-        //    }
-        //    return i;
-        //}
 
         /// <summary>
         /// Return the Hash from a username

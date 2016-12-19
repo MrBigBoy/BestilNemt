@@ -40,18 +40,7 @@ namespace Controller
         {
             return DbWarehouse.GetWarehouse(id);
         }
-
-        ///// <summary>
-        ///// Get all warehouses
-        ///// </summary>
-        ///// <returns>
-        ///// List of Warehouse
-        ///// </returns>
-        //public List<Warehouse> GetAllWarehouses()
-        //{
-        //    return DbWarehouse.GetAllWarehouses();
-        //}
-
+        
         /// <summary>
         /// Get all warehouses by Shop Id
         /// </summary>
@@ -98,6 +87,14 @@ namespace Controller
             return warehouse != null && warehouse.MinStock >= 0 && warehouse.Stock >= 0 && warehouse.Shop != null;
         }
 
+        /// <summary>
+        /// Get Warehouse by Product iD and Shop Id
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="shopId"></param>
+        /// <returns>
+        /// Warehouse
+        /// </returns>
         public Warehouse GetWarehouseByProductId(int productId, int shopId)
         {
             return DbWarehouse.GetWarehouseByProductId(productId, shopId);

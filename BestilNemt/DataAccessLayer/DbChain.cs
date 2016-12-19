@@ -106,52 +106,6 @@ namespace DataAccessLayer
         }
 
         ///// <summary>
-        ///// Update a Chain
-        ///// </summary>
-        ///// <param name="chain"></param>
-        ///// <returns>
-        ///// Return 1 if Chain is updated, else 0
-        ///// </returns>
-        //public int UpdateChain(Chain chain)
-        //{
-        //    var i = 0;
-        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = conn.CreateCommand();
-        //        // Set the isolation level to ReadCommitted
-        //        var transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted);
-        //        cmd.Transaction = transaction;
-        //        try
-        //        {
-        //            cmd.CommandText = "UPDATE Chain SET chainName = @ChainName, chainCVR = @ChainCvr, chainImgPath = @ChainImgPath where chainId = @ChainId";
-        //            cmd.Parameters.AddWithValue("ChainId", chain.Id);
-        //            cmd.Parameters.AddWithValue("ChainName", chain.Name);
-        //            cmd.Parameters.AddWithValue("ChainCvr", chain.Cvr);
-        //            cmd.Parameters.AddWithValue("ChainImgPath", chain.ImgPath);
-        //            i = cmd.ExecuteNonQuery();
-        //            transaction.Commit();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            // The transaction failed
-        //            try
-        //            {
-        //                // Try rolling back
-        //                transaction.Rollback();
-        //                Console.WriteLine("Transaction was rolled back");
-        //            }
-        //            catch (SqlException)
-        //            {
-        //                // Rolling back failed
-        //                Console.WriteLine("Transaction rollback failed");
-        //            }
-        //        }
-        //    }
-        //    return i;
-        //}
-
-        ///// <summary>
         ///// Delete a Chain
         ///// </summary>
         ///// <param name="id"></param>

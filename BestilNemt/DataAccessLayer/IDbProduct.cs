@@ -11,7 +11,6 @@ namespace DataAccessLayer
     {
         int AddProduct(Product product);
         Product GetProduct(int id);
-        //List<Product> GetAllProducts();
         List<Product> GetAllSoldProducts();
         List<Product> GetAllProductsWithSavings();
         int UpdateProduct(Product product);

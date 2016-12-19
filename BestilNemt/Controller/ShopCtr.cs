@@ -41,18 +41,7 @@ namespace Controller
         {
             return DbShop.GetShop(id);
         }
-
-        ///// <summary>
-        ///// Get all shops
-        ///// </summary>
-        ///// <returns>
-        ///// List of Shop
-        ///// </returns>
-        //public List<Shop> GetAllShops()
-        //{
-        //    return DbShop.GetAllShops();
-        //}
-
+        
         /// <summary>
         /// Get all Shops by a Chain Id
         /// </summary>
@@ -103,6 +92,12 @@ namespace Controller
                 shop.Warehouses != null;
         }
 
+        /// <summary>
+        /// Get DatGrid for Shop
+        /// </summary>
+        /// <returns>
+        /// DataTable
+        /// </returns>
         public DataTable GetDataGridShop()
         {
             return DbShop.GetDataGridShop();

@@ -61,14 +61,13 @@
                                 @product.Name
                             </td>
                             @{
-
                                 // Get the warehouse mathcing the product id and the shop id
                                 var warehouse2 = proxy.GetWarehouseByProductId(product.Id, shop.Id);
-                                int savingId = 0;
-                                if (warehouse2 != null)
+                                var savingId = 0;
+                                // Get the saving Id from the warehouse
+                                if (warehouse2?.SavingId != null)
                                 {
-                                    // Get the saving Id from the warehouse
-                                     savingId = warehouse2.SavingId.Value;
+                                    savingId = warehouse2.SavingId.Value;
                                 }
                                 // If there is a saving
                                 if (savingId != 0)

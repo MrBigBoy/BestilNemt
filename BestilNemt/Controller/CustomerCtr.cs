@@ -15,19 +15,7 @@ namespace Controller
         {
             DbCustomer = dbCustomer;
         }
-
-        ///// <summary>
-        ///// Add a Customer
-        ///// </summary>
-        ///// <param name="customer"></param>
-        ///// <returns>
-        ///// Return id of Customer if added, else 0
-        ///// </returns>
-        //public int AddCustomer(Customer customer)
-        //{
-        //    return ValidatePersonInput(customer) ? DbCustomer.AddCustomer(customer) : 0;
-        //}
-
+        
         /// <summary>
         /// Get a Customer by id
         /// </summary>
@@ -39,42 +27,7 @@ namespace Controller
         {
             return DbCustomer.GetCustomer(id);
         }
-
-        ///// <summary>
-        ///// Return all Customers
-        ///// </summary>
-        ///// <returns>
-        ///// List of Customer
-        ///// </returns>
-        //public List<Customer> GetAllCustomer()
-        //{
-        //    return DbCustomer.GetAllCustomer();
-        //}
-
-        ///// <summary>
-        ///// Delete a Customer
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns>
-        ///// Return 1 if Customer is deleted, else 0
-        ///// </returns>
-        //public int DeleteCustomer(int id)
-        //{
-        //    return DbCustomer.DeleteCustomer(id);
-        //}
-
-        ///// <summary>
-        ///// Update a Customer
-        ///// </summary>
-        ///// <param name="customer"></param>
-        ///// <returns>
-        ///// Return 1 if Customer is updated, else 0
-        ///// </returns>
-        //public int UpdateCustomer(Customer customer)
-        //{
-        //    return ValidatePersonInput(customer) ? DbCustomer.UpdateCustomer(customer) : 0;
-        //}
-
+        
         /// <summary>
         /// Add a Customer with Login
         /// </summary>

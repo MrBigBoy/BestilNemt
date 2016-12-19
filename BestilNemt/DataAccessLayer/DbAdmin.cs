@@ -129,33 +129,7 @@ namespace DataAccessLayer
             }
             return admin;
         }
-
-        ///// <summary>
-        ///// Get all Admins
-        ///// </summary>
-        ///// <returns>
-        ///// Return List of Admin
-        ///// </returns>
-        //public List<Admin> GetAllAdmins()
-        //{
-        //    var admins = new List<Admin>();
-        //    using (
-        //        var conn =
-        //            new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationDbContext"].ConnectionString))
-        //    {
-        //        conn.Open();
-        //        var cmd = new SqlCommand("SELECT Person.personId, personName, personEmail, personAddress, personType, administratorMemberNr FROM Person LEFT JOIN Administrator ON Person.personId = Administrator.administratorId WHERE Person.personType = 'Administrator'", conn);
-        //        var reader = cmd.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            // build the admin object
-        //            var admin = ObjectBuilder.CreateAdmin(reader);
-        //            admins.Add(admin);
-        //        }
-        //    }
-        //    return admins;
-        //}
-
+        
         ///// <summary>
         ///// Update a Admin
         ///// </summary>

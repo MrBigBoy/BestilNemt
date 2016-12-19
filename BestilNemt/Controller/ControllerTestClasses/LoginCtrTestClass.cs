@@ -18,18 +18,5 @@ namespace Controller.ControllerTestClasses
             }
             return login;
         }
-        
-        private int DownloadPersonId(string username)
-        {
-            var personId = 0;
-            foreach (var login in _logins)
-            {
-                if (!login.Username.Equals(username))
-                    continue;
-                personId = login.PersonId;
-                return personId;
-            }
-            return personId;
-        }
     }
 }

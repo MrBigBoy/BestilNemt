@@ -35,14 +35,7 @@ namespace Controller.ControllerTestClasses
 
         private bool ValidateSavingInput(Saving saving)
         {
-            if (saving.SavingPercent < 0.1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return !(saving.SavingPercent < 0.1);
         }
     }
 }
